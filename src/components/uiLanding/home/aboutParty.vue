@@ -1,0 +1,132 @@
+<template>
+  <section class="aboutParty landing-block">
+    <div class="wrapper landing-wrapper">
+      <div class="aboutParty-inner">
+        <div class="aboutParty-item">
+          <img src="/img/uiLanding/events-1.jpg" alt="">
+        </div>
+        <div class="aboutParty-item">
+          <img src="/img/uiLanding/events-2.jpg" alt="">
+        </div>
+        <div class="aboutParty-item">
+          <img src="/img/uiLanding/events-3.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="aboutParty-bottom">
+        <p class="aboutParty-description">Мы стремимся организовать массовое движение в каждом почтовом индексе, поддерживаемое такими волонтерами, как вы. <span>Примите участие в вашем сообществе, присоединившись сейчас.</span></p>
+
+        <Button name="Вступить в партию" type="default-blue" />
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import Button from '../../../components/common/Button.vue'
+</script>
+
+<style scoped lang="scss">
+.aboutParty {
+  padding-top: 35px;
+  &-description {
+    max-width: 1200px;
+
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    margin-bottom: 40px;
+
+    & span {
+      color: var(--accent-color);
+    }
+  }
+
+  &-inner {
+    display: grid;
+    grid-template-columns: 23% 1fr 31%;
+    grid-gap: 40px;
+    padding: 40px 0;
+    margin-bottom: 40px;
+
+    position: relative;
+
+    &::before {
+      content: '';
+
+      display: block;
+      width: calc(100% - 80px);
+      height: 100%;
+
+      position: absolute;
+      left: 50%;
+      top: 0;
+      z-index: -1;
+      transform: translateX(-50%);
+      
+      background-color: var(--accent-color-op3);
+    }
+
+    & .aboutParty-item:first-child,
+    & .aboutParty-item:last-child {
+      top: -75px;
+    }
+  }
+
+  &-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  &-links {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 25px;
+
+    padding: 10px 0 20px 40px;
+    border-left: 2px solid var(--accent-color);
+
+    &-item {
+      display: inline-flex;
+      align-items: center;
+      grid-gap: 7px;
+
+      &.red {
+        & span {
+          color: var(--red-color);
+        }
+
+        & svg {
+          fill: var(--red-color);
+        }
+      }
+
+      & span {
+        color: var(--accent-color);
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.8;
+      }
+
+      & svg {
+        height: 42px;
+        width: 42px;
+        fill: var(--accent-color);
+      }
+    }
+  }
+  &-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

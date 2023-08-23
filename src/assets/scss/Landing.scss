@@ -1,0 +1,15 @@
+.landing {
+  &-block {
+    margin: 120px 0;
+  }
+
+  &-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  &-wrapper {
+    max-width: 1400px;
+  }
+}
