@@ -3,7 +3,7 @@
     <div class="wrapper" v-if="!withoutTopAndNavs">
       <div class="header-top">
         <div class="header-top-snList">
-          <a href="#" class="header-top-snList-item">
+          <a href="" class="header-top-snList-item">
             <SvgIcon
               name="facebook"
               :viewboxHeight="32"
@@ -58,7 +58,7 @@
           </Router-link>
 
           <nav class="header-main-navs" v-if="!withoutTopAndNavs">
-            <Router-link to="/" class="header-main-navs-item">
+            <Router-link to="/about" class="header-main-navs-item">
               О партии
             </Router-link>
 
