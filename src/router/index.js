@@ -4,7 +4,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Authorization from '../views/Authorization.vue'
 import NotFound from '../views/404NotFound.vue'
 
+
 import Home from '../views/uiLanding/Home.vue'
+import Feedback from '../views/uiLanding/Feedback.vue'
 import News from '../views/uiLanding/News.vue'
 
 const routes = [
@@ -12,13 +14,18 @@ const routes = [
   // ------------- UI Landing Pages ---------------
   {
     path: '/auth',
-    name: 'Authorizationx',
+    name: 'Authorization',
     component: Authorization,
   },
   {
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: Feedback,
   },
   {
     path: '/news',

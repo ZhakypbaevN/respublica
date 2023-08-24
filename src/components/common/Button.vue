@@ -28,7 +28,7 @@ import handleError from '../../helpers/handleError'
 
 interface IProps {
   name?: string
-  type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue' | 'outline-default'
+  type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light'
   loading?: boolean
   htmlType?: 'button' | 'submit' | 'reset',
   disabled?: boolean
@@ -92,6 +92,14 @@ button {
       
       & span {
         color: var(--primary-color);
+      }
+    }
+
+    &-light {
+      border-color: white;
+      
+      & span {
+        color: white;
       }
     }
 

@@ -5,10 +5,13 @@
       labeled: input.focused || input.value,
       withError: input.withError && input.focused || input.withError && input.value,
       hasError: input.withError,
-    }"
-  >
+      disabled,
+      static: staticPlaceholder,
+      light: light
+    }">
 
-    <label class="label">{{ label }}</label>
+    <span class="placeholder" v-if="type !== 'editor' && !staticPlaceholder">{{ placeholder }}</span>
+    <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ 255 - (input.value ? input.value.length : 0) }}</span>
 
     <input
       :type="input.eyeState ? input.eyeState : type"
@@ -21,6 +24,7 @@
       v-mask="'+7 (###) ### ####'"
       :autofocus="autofocus"
       :autocomplete="autocomplete"
+      :placeholder="staticPlaceholder ? placeholder : ''"
       v-if="type === 'tel'"
     >
 
@@ -28,24 +32,73 @@
       v-model="input.value"
       :required="required"
       @change="$emit('change')"
+      :maxlength="maxSymbol"
       @blur="onBlur"
       @focus="onFocus"
       :class="{'with-error': input.withError}"
+      :placeholder="staticPlaceholder ? placeholder : ''"
       v-else-if="type === 'textarea'"
     />
+
+    <div
+      class="disabled-input"
+      v-else-if="type === 'disabled'"
+    >
+      <span v-if="input.value">
+        {{ input.value }}
+      </span>
+    </div>
 
     <input
       :type="input.eyeState ? input.eyeState : type"
       v-model="input.value"
       :required="required"
+      :min="min"
       @blur="onBlur"
       @focus="onFocus"
       @change="$emit('change')"
       :class="{'with-error': input.withError}"
       :autocomplete="autocomplete"
       :autofocus="autofocus"
+      :placeholder="staticPlaceholder ? placeholder : ''"
+      :disabled="disabled"
       v-else
     >
+
+    <span v-if="type === 'password'" class="input__eye">
+      <Transition mode="out-in">
+        <SvgIcon
+          v-if="input.eyeState === 'text'"
+          name="password-eye-on"
+          :height="24"
+          :width="24"
+          :viewboxHeight="56"
+          :viewboxWidth="56"
+          @click="input.eyeState = 'password'"
+          :fill="input.withError ? 'var(--error-color)' : (input.focused ? 'var(--accent-color)' : 'black')"
+        />
+        <SvgIcon
+          v-else
+          name="password-eye-off"
+          :height="24"
+          :width="24"
+          :viewboxHeight="56"
+          :viewboxWidth="56"
+          @click="input.eyeState = 'text'"
+          :fill="input.withError ? 'var(--error-color)' : (input.focused ? 'var(--accent-color)' : 'black')"
+        />
+      </Transition>
+    </span>
+    <SvgIcon
+      v-if="resetButton && input.value"
+      class="reset"
+      name="x"
+      :height="14"
+      :width="14"
+      :viewboxHeight="14"
+      :viewboxWidth="14"
+      @click="$emit('reset')"
+    />
     <Transition name="error">
       <span class="error" :class="{ long: input.withError.length > 20 }" v-if="input.withError">{{ input.withError }}</span>
     </Transition>
@@ -53,27 +106,39 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, reactive, watch } from 'vue'
+import { inject, onMounted, reactive, watch } from 'vue-demi'
 
 interface IProps {
   modelValue?: any,
   value?: string | number,
   name?: string,
-  type?: 'text' | 'tel' | 'textarea',
-  label: string,
+  type?: 'text' | 'tel' | 'email' | 'number' | 'editor' | 'password' | 'textarea' | 'disabled',
+  light: boolean,
+  placeholder?: string,
   required?: boolean,
   validation?: any,
   sameAs?: string,
   autocomplete?: string,
   autofocus?: boolean,
+  min?: number,
+  staticPlaceholder?: boolean,
+  disabled?: boolean,
+  resetButton?: boolean,
+  multiple?: boolean,
+  errorText?: string,
+  maxSymbol?: number
 }
 const props = withDefaults(defineProps<IProps>(), {
   type: 'text',
-  label: 'Example label',
   required: false,
   validation: false,
   autocomplete: 'on',
+  light: false,
   autofocus: false,
+  staticPlaceholder: false,
+  disabled: false,
+  resetButton: false,
+  multiple: false
 })
 const emit = defineEmits([
   'update:modelValue',
@@ -218,47 +283,68 @@ const onFocus = e => {
   transition: all .2s ease;
   margin-bottom: 10px;
 
-  &.hasError {
-    margin-bottom: 15px;
-  }
-}
-.label {
-  display: inline-block;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 100%;
-  color: #222222;
-  margin-bottom: 20px;
-}
+  &.light {
+    & input {
+      border-color: white;
+      background-color: transparent;
+    }
 
-input, textarea {
-  width: inherit;
-  resize: vertical;
-
-  padding: 16px;
-  
-  line-height: 1.2;
-  font-size: 18px;
-
-  background: #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
-  border: 1px solid transparent;
-
-  &:focus {
-    border: 1px solid #67687D;
-  }
-
-  &.with-error {
-    border: 1px solid var(--error-color);
-    animation: shake .1s linear 3;
-
-    &:focus {
-      border: 1px solid var(--error-color);
+    & .placeholder {
+      color: rgba(white, .8);
     }
   }
 }
-
+.placeholder,
+.maxSymbol {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 16.71px;
+  color: var(--light-gray-color);
+  transition: all .2s ease;
+  pointer-events: none;
+}
+.placeholder {
+  position: absolute;
+  z-index: 1;
+  top: 19px;
+  left: 30px;
+}
+.maxSymbol {
+  position: absolute;
+  color: var(--cancel-color);
+  right: 0;
+  top: -20px;
+  z-index: 0;
+  line-height: 17px;
+}
+.input.hasError {
+  margin-bottom: 15px;
+}
+.input.labeled,
+.input.focused,
+.input.withError {
+  margin-top: 10px;
+}
+.input.static {
+  margin-top: 0;
+}
+.input.labeled .placeholder {
+  left: 0;
+  top: -24px;
+  z-index: 0;
+  line-height: 17px;
+  color: var(--light-gray-color);
+}
+.input.focused .placeholder {
+  color: var(--accent-color);
+  left: 0;
+  top: -20px;
+  z-index: 0;
+  line-height: 17px;
+}
+.input.withError .placeholder {
+  color: var(--error-color)!important;
+}
 .error {
   color: var(--error-color);
   font-weight: 400;
@@ -276,10 +362,86 @@ input, textarea {
   margin-bottom: -10px;
   max-width: 36em;
 }
-
+input, textarea, select {
+  border: 1px solid var(--light-gray-color);
+  border-radius: 10px;
+  text-align: left !important;
+  box-sizing: border-box;
+  padding: 19px 30px;
+  width: inherit;
+  position: relative;
+  resize: vertical;
+  line-height: 16.71px;
+  font-size: 18px;
+}
+input.with-error,
+textarea.with-error,
+select.with-error {
+  border: 1px solid var(--error-color);
+  animation: shake .1s linear 3;
+}
 @keyframes shake {
   0% { left: -5px; }
   100% { left: 5px; }
+}
+input.with-error::placeholder,
+textarea.with-error::placeholder {
+  color: var(--error-color);
+  opacity: .5;
+}
+input::placeholder,
+textarea::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: var(--light-gray-color);
+}
+.input__eye {
+  position: absolute;
+  right: 20px;
+  top: 14px;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+}
+.reset {
+  position: absolute;
+  right: 15px;
+  top: 18px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.reset:hover {
+  fill: var(--error-color);
+}
+input:focus,
+textarea:focus {
+  border: 1px solid var(--accent-color);
+}
+input:focus .placeholder {
+  position: relative;
+}
+input.with-error:focus,
+textarea.with-error:focus {
+  border: 1px solid var(--error-color);
+}
+
+.disabled-input {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: rgba(22, 25, 49, 0.05);
+  mix-blend-mode: normal;
+  border-radius: 3px;
+  padding: 16px 18px 17px 18px;
+}
+.disabled-input span {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 17px;
+  letter-spacing: 0.02em;
+  color: var(--primary-color);
 }
 
 .v-enter-active,
@@ -300,38 +462,5 @@ input, textarea {
 .error-leave-to {
   opacity: 0;
   transform: translateY(-50%);
-}
-
-
-// Adaptation
-@media (max-width: 992px) {
-  .label {
-    font-size: 18px;
-    margin-bottom: 18px;
-  }
-}
-
-@media (max-width: 576px) {
-  .label {
-    font-size: 16px;
-    margin-bottom: 16px;
-  }
-
-  input, textarea {
-    padding: 14px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 430px) {
-  .label {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-
-  input, textarea {
-    padding: 14px;
-    font-size: 16px;
-  }
 }
 </style>

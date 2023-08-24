@@ -30,7 +30,6 @@
 <script setup lang="ts">
 import Header from '../../components/uiLanding/layouts/header.vue';
 import Footer from '../../components/uiLanding/layouts/footer.vue';
-import Button from '../../components/common/Button.vue'
 
 import AboutUs from '../../components/uiLanding/home/aboutUs.vue'
 import NewsSlider from '../../components/uiLanding/home/newsSlider.vue'

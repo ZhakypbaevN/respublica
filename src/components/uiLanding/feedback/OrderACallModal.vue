@@ -1,0 +1,122 @@
+<template>
+  <Modal
+    v-if="props.show"
+    @hide="emits('hide')"
+    class="feedbackModal"
+    title="Заказать звонок"
+  >
+    <Form @finish="postFeedback">
+      <div class="feedbackModal-inputs">
+        <Input
+          type="text"
+          name="name"
+          placeholder="Ваше имя"
+          required
+          autofocus
+        />
+
+        <Input
+          type="tel"
+          name="phone"
+          placeholder="Ваш номер телефона"
+          required
+        />
+
+        <Input
+          type="textarea"
+          name="comment"
+          placeholder="Комментарий"
+          required
+        />
+      </div>
+      
+      <p class="feedbackModal-description">
+        Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
+      </p>
+
+      <div>
+        <Button
+          name="Заказать обратный звонок"
+          :loading="loading"
+          htmlType="submit"
+        />
+      </div>
+    </Form>
+  </Modal>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import axios from 'axios'
+import { useToast } from '../../../modules/toast'
+
+interface IProps {
+  show: boolean,
+}
+interface Emits {
+  (event: 'hide'): Function
+}
+
+const props = defineProps<IProps>()
+const emits = defineEmits<Emits>()
+
+const { toast } = useToast()
+
+const loading = ref(false)
+
+const postFeedback = ({ name, phone, comment }) => {
+  // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
+  // const bodyFormData = {
+  //   title: name,
+  //   message: `Телефон номер: ${phone},\r\nКомментарий: ${comment}`,
+  //   priority: 5,
+  // };
+
+  // const formData = new FormData();
+  // Object.keys(bodyFormData).forEach(key => formData.append(key, bodyFormData[key]));
+
+  // loading.value = true
+  // // Simple POST request with a JSON body using axios
+  // axios({
+  //   method: "post",
+  //   url: url,
+  //   data: formData,
+  // })
+  //   .then((response) => {
+  //     toast({
+  //       message: 'Ваша заявка успешно отправлена'
+  //     })
+  //     loading.value = false
+  //     emits('hide')
+  //   })
+  //   .catch((err) => {
+  //     toast({
+  //       message: 'Возникли ошибки при запросе'
+  //     })
+  //     loading.value = false
+  //   });
+}
+</script>
+
+<style scoped lang="scss">
+.feedbackModal {
+  &-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  &-description {
+    color: var(--light-gray-color);
+    margin-bottom: 50px;
+  }
+
+  & button {
+    width: 100%;
+    padding: 26px;
+  }
+}
+
+</style>

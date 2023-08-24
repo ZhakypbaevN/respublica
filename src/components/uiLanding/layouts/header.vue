@@ -104,19 +104,21 @@
               />
             </button>
 
-            <Button
-              v-if="withoutTopAndNavs"
-              name="Обратная связь"
-              type="outline-default"
-              class="header-main-callBtn"
-              v-slot:left
-            >
-              <SvgIcon
-                name="call-dark"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
-              />
-            </Button>
+            <RouterLink to="/feedback">
+              <Button
+                v-if="withoutTopAndNavs"
+                name="Обратная связь"
+                type="outline-default"
+                class="header-main-callBtn"
+                v-slot:left
+              >
+                <SvgIcon
+                  name="call-dark"
+                  :viewboxWidth="24"
+                  :viewboxHeight="24"
+                />
+              </Button>
+            </RouterLink>
 
             <RouterLink to="/auth">
               <Button name="Авторизация" />
