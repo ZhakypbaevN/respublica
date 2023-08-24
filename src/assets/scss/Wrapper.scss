@@ -3,4 +3,18 @@
   max-width: 1740px;
   margin: 0 auto;
   padding: 0;
+
+  &-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &.dark {
+      background-color: var(--primary-color);
+    }
+  }
+
+  &-darkMain {
+  }
 }

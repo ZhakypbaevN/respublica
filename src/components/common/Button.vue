@@ -28,7 +28,7 @@ import handleError from '../../helpers/handleError'
 
 interface IProps {
   name?: string
-  type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue'
+  type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue' | 'outline-default'
   loading?: boolean
   htmlType?: 'button' | 'submit' | 'reset',
   disabled?: boolean
@@ -76,29 +76,39 @@ button {
 
   &.default {
     background: var(--primary-color);
-  }
 
-  &.default-blue {
-    background: var(--accent-color);
-  }
-  
-  &.default-red {
-    background: var(--red-color);
-  }
+    &-red {
+      background: var(--red-color);
+    }
 
-  &.outline-red {
-    border-color: var(--red-color);
-    
-    & span {
-      color: var(--red-color);
+    &-blue {
+      background: var(--accent-color);
     }
   }
 
-  &.outline-blue {
-    border-color: var(--accent-color);
-    
-    & span {
-      color: var(--accent-color);
+  &.outline {
+    &-default {
+      border-color: var(--primary-color);
+      
+      & span {
+        color: var(--primary-color);
+      }
+    }
+
+    &-red {
+      border-color: var(--red-color);
+      
+      & span {
+        color: var(--red-color);
+      }
+    }
+
+    &-blue {
+      border-color: var(--accent-color);
+      
+      & span {
+        color: var(--accent-color);
+      }
     }
   }
 }

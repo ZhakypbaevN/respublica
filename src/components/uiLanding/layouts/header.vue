@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="wrapper">
+    <div class="wrapper" v-if="!withoutTopAndNavs">
       <div class="header-top">
         <div class="header-top-snList">
           <a href="#" class="header-top-snList-item">
@@ -57,7 +57,7 @@
             />
           </Router-link>
 
-          <nav class="header-main-navs">
+          <nav class="header-main-navs" v-if="!withoutTopAndNavs">
             <Router-link to="/" class="header-main-navs-item">
               О партии
             </Router-link>
@@ -104,7 +104,23 @@
               />
             </button>
 
-            <Button name="Авторизация" />
+            <Button
+              v-if="withoutTopAndNavs"
+              name="Обратная связь"
+              type="outline-default"
+              class="header-main-callBtn"
+              v-slot:left
+            >
+              <SvgIcon
+                name="call-dark"
+                :viewboxWidth="24"
+                :viewboxHeight="24"
+              />
+            </Button>
+
+            <RouterLink to="/auth">
+              <Button name="Авторизация" />
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -115,10 +131,19 @@
 <script setup lang="ts">
 import SvgIcon from '../../../components/common/SvgIcon.vue'
 import Button from '../../../components/common/Button.vue'
+
+defineProps({
+  withoutTopAndNavs: {
+    type: Boolean,
+    default: false
+  }
+})
 </script>
 
 <style scoped lang="scss">
 .header {
+  background-color: white;
+
   &-top {
     display: flex;
     justify-content: space-between;
@@ -204,7 +229,8 @@ import Button from '../../../components/common/Button.vue'
       grid-gap: 30px;
     }
 
-    &-donatBtn {
+    &-donatBtn,
+    &-callBtn {
       display: flex;
       align-items: center;
       grid-gap: 10px;
