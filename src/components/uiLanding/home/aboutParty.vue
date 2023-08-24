@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import Button from '../../../components/common/Button.vue'
 </script>
 
 <style scoped lang="scss">

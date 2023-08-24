@@ -3,20 +3,20 @@
     <div class="modal-back" :style="{opacity: opacity}">
       <div class="modal-inner" @mousedown.stop ref="container">
         <div class="modal-form">
-          <div class="modal-header">
-            <h2 class="modal-title" v-if="title">{{ title }}</h2>
-            <p class="modal-subtitle" v-if="subtitle">{{ subtitle }}</p>
+          <div class="modal-form-inner">
+            <div class="modal-header">
+              <h2 class="modal-title" v-if="title">{{ title }}</h2>
+              <p class="modal-subtitle" v-if="subtitle">{{ subtitle }}</p>
+            </div>
+            <SvgIcon
+              name="close"
+              class="close"
+              :viewboxHeight="37"
+              :viewboxWidth="37"
+              @click="hideModal"
+            />
+            <slot />
           </div>
-          <SvgIcon
-            name="x"
-            class="close"
-            :viewboxHeight="61"
-            :viewboxWidth="61"
-            :width="61"
-            :height="61"
-            @click="hideModal"
-          />
-          <slot />
         </div>
       </div>
     </div>
@@ -25,7 +25,6 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import SvgIcon from './SvgIcon.vue';
 
 interface IProps {
   title?: string,
@@ -127,27 +126,36 @@ const hideModalOnEsc = (e) => {
   }
 
   &-form {
-    min-width: 720px;
+    min-width: 985px;
     width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     position: relative;
 
-    padding: 70px 96px;
+    padding: 52px 50px;
 
-    background: #E2DED3;
-    border-radius: 10px;
+    background: #ffffff;
     margin: 0;
+
+    &-inner {
+      width: 100%;
+      max-width: 600px;
+    }
   }
 
   &-header {
-    margin-bottom: 66px;
+    margin-bottom: 48px;
   }
 
   &-title {
+    font-size: 36px;
     font-weight: 700;
-    font-size: 48px;
-    text-transform: uppercase;
-    color: #222222;
-    margin-bottom: 38px;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 48px;
   }
 
   &-subtitle {
@@ -157,9 +165,12 @@ const hideModalOnEsc = (e) => {
   }
 }
 .close {
+  width: 37px;
+  height: 37px;
+
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 30px;
   cursor: pointer;
 }
 
@@ -170,133 +181,5 @@ const hideModalOnEsc = (e) => {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}
-
-// Adaptation
-@media (max-width: 992px) {
-  .modal {
-    &-inner {
-      padding: 10px 20px 80px;
-    }
-    
-    &-form {
-      min-width: 630px;
-      padding: 50px 60px;
-    }
-
-    &-header {
-      margin-bottom: 50px;
-    }
-
-    &-title {
-      font-size: 38px;
-      margin-bottom: 28px;
-    }
-
-    &-subtitle {
-      font-size: 22px;
-    }
-  }
-  .close {
-    top: 10px;
-    right: 10px;
-
-    height: 48px !important;
-    width: 48px !important;
-  }
-}
-
-// Adaptation
-@media (max-width: 768px) {
-  .modal {
-    &-inner {
-      padding: 10px 20px 80px;
-    }
-
-    &-form {
-      min-width: 500px;
-      padding: 40px 50px;
-    }
-
-    &-header {
-      margin-bottom: 40px;
-    }
-
-    &-title {
-      font-size: 34px;
-      margin-bottom: 22px;
-    }
-
-    &-subtitle {
-      font-size: 22px;
-    }
-  }
-  .close {
-    top: 10px;
-    right: 10px;
-
-    height: 44px !important;
-    width: 44px !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .modal {
-    &-inner {
-      padding: 10px 20px 60px;
-    }
-
-    &-form {
-      min-width: 400px;
-      padding: 40px 30px;
-    }
-
-    &-header {
-      margin-bottom: 36px;
-    }
-
-    &-title {
-      font-size: 30px;
-      margin-bottom: 22px;
-    }
-
-    &-subtitle {
-      font-size: 20px;
-    }
-  }
-  .close {
-    height: 40px !important;
-    width: 40px !important;
-  }
-}
-
-@media (max-width: 430px) {
-  .modal {
-    &-inner {
-      padding: 10px 20px 40px;
-    }
-
-    &-form {
-      min-width: 300px;
-      padding: 45px 20px;
-    }
-
-    &-header {
-      margin-bottom: 32px;
-    }
-
-    &-title {
-      font-size: 24px;
-      margin-bottom: 22px;
-    }
-
-    &-subtitle {
-      font-size: 18px;
-    }
-  }
-  .close {
-    height: 35px !important;
-    width: 35px !important;
-  }
 }
 </style>

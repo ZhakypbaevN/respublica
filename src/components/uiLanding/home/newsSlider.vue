@@ -95,7 +95,6 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '../../../components/common/SvgIcon.vue'
 </script>
 
 <style scoped lang="scss">

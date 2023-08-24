@@ -60,7 +60,6 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '../../../components/common/SvgIcon.vue'
 
 let aboutUsList = [
   {

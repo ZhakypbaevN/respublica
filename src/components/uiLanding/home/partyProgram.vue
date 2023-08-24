@@ -47,8 +47,6 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '../../../components/common/SvgIcon.vue'
-import Button from '../../../components/common/Button.vue'
 </script>
 
 <style scoped lang="scss">
