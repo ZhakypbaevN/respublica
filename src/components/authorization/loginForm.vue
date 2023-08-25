@@ -65,7 +65,9 @@ function generateVerificationCode() {
 }
 
 const postFeedback = ({ phone }: { phone: string }) => {
-  const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
+  const url = `http://localhost:3000/users`;
+  // const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
+
   axios({
     method: "get",
     url: url,
