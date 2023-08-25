@@ -58,7 +58,7 @@
           </Router-link>
 
           <nav class="header-main-navs" v-if="!withoutTopAndNavs">
-            <Router-link to="/" class="header-main-navs-item">
+            <Router-link to="/about" class="header-main-navs-item">
               О партии
             </Router-link>
 

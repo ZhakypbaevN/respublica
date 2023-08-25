@@ -7,6 +7,8 @@ import NotFound from '../views/404NotFound.vue'
 import Home from '../views/uiLanding/Home.vue'
 import Feedback from '../views/uiLanding/Feedback.vue'
 import News from '../views/uiLanding/News.vue'
+import About from '../views/uiLanding/About.vue'
+
 
 import MainDB from '../views/uiBusiness/Main.vue'
 
@@ -33,11 +35,15 @@ const routes = [
     name: 'News',
     component: News,
   },
-
   {
     path: '/main-db',
     name: 'MainDB',
     component: MainDB,
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
   }
 ]
 

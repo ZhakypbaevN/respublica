@@ -1,7 +1,18 @@
 <template>
   <section class="newsSlider landing-block">
     <div class="wrapper landing-wrapper">
-      <h2 class="landing-title">Новости</h2>
+      <div class="title-wrapper">
+        <h2 class="landing-title">Новости</h2>
+      <RouterLink to="/news" class="newsSlider-item-link">
+              <span>Смотреть все</span>
+              <SvgIcon
+                name="double-arrow-right"
+                :viewboxWidth="24"
+                :viewboxHeight="24"
+              />
+            </RouterLink>
+      </div>
+
 
       <div class="newsSlider-items">
         <div class="newsSlider-item">
@@ -98,6 +109,10 @@
 </script>
 
 <style scoped lang="scss">
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 .newsSlider {
   &-items {
     display: grid;
