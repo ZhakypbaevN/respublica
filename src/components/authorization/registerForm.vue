@@ -63,7 +63,7 @@ function generateVerificationCode() {
 }
 
 const postFeedback = ({ phone }: { phone: string }) => {
-  const url = `http://195.49.215.151:3000/users`;
+  const url = `https://tri.codetau.com/users`;
   axios({
     method: "get",
     url: url,
