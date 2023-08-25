@@ -74,8 +74,8 @@ const usersList = ref()
 const usersListEgov = ref()
 
 onMounted(() => {
-  const url = `http://localhost:3000/users`;
-  const urlEgov = `http://localhost:3000/usersInEgov`;
+  const url = `http://195.49.215.151:3000/users`;
+  const urlEgov = `http://195.49.215.151:3000/usersInEgov`;
 
   axios({
     method: "get",

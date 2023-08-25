@@ -128,7 +128,7 @@ const formValue = reactive({
 watch(
   () => formValue.iin,
   () => {
-    const url = `http://localhost:3000/usersInEgov`;
+    const url = `http://195.49.215.151:3000/usersInEgov`;
     axios({
       method: "get",
       url: url,
@@ -162,7 +162,7 @@ watch(
 )
 
 const postFeedback = ({ password }: { password: string }) => {
-  const url = `http://localhost:3000/users`;
+  const url = `http://195.49.215.151:3000/users`;
   axios({
     method: "post",
     url: url,

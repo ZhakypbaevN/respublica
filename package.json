@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "start": "vite",
     "server": "json-server --watch server/db.json",
-    "build": "vite build",
+    "build": "vite build \"npm run server\"",
     "preview": "vite preview"
   },
   "dependencies": {
