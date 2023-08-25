@@ -21,8 +21,6 @@
       />
     </div>
 
-    <a :href="link">sdcsdcsdcsdc</a>
-
     <div class="modal-message">
       <h4 class="modal-message-title">У вас нет аккаунта?  </h4>
       <button
@@ -56,7 +54,6 @@ interface Emits {
 
 console.log('window.location.hostname', window.location.hostname);
 console.log('window.location.protocol', window.location.protocol);
-const link = `${window.location.protocol}//${window.location.hostname}`
 
 defineProps<IProps>()
 const emit = defineEmits<Emits>()

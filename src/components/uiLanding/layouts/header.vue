@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'sticky': isSticky }" :style="{paddingBottom: paddingBottom}">
     <div class="wrapper" v-if="!withoutTopAndNavs">
       <div class="header-top">
         <div class="header-top-snList">
@@ -46,14 +46,22 @@
         </button>
       </div>
     </div>
-    <div class="header-main">
+    <div class="header-main" id="header-main">
       <div class="wrapper">
         <div class="header-main-inner">
           <Router-link to="/" class="header-main-logo">
             <SvgIcon
+              class="logo-big"
               name="logo"
               :viewboxWidth="260"
               :viewboxHeight="49"
+            />
+
+            <SvgIcon
+              class="logo-mini"
+              name="logo-mini"
+              :viewboxWidth="96"
+              :viewboxHeight="95"
             />
           </Router-link>
 
@@ -133,6 +141,7 @@
 <script setup lang="ts">
 import SvgIcon from '../../../components/common/SvgIcon.vue'
 import Button from '../../../components/common/Button.vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 defineProps({
   withoutTopAndNavs: {
@@ -140,11 +149,86 @@ defineProps({
     default: false
   }
 })
+
+const isSticky = ref(false);
+const headerOffsetTop = ref(0);
+const paddingBottom = ref('0px');
+
+const handleScroll = () => {
+  const headerMain = document.querySelector('#header-main');
+  console.log('acsdcsd', headerMain!.offsetHeight);
+  if (window.pageYOffset >= headerOffsetTop.value) {
+    isSticky.value = true;
+    paddingBottom.value = headerMain!.offsetHeight + 'px';
+  } else {
+    isSticky.value = false;
+    paddingBottom.value = '0px';
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  const headerMain = document.querySelector('#header-main');
+  headerOffsetTop.value = headerMain!.offsetTop;
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var header = document.querySelector('header');
+//   var headerHeight = header.offsetHeight;
+//   console.log('headerHeight', headerHeight);
+//   var headerFake = document.querySelector('#header-fake');
+//   headerFake.style.paddingTop = headerHeight + 'px';
+
+//   window.addEventListener('scroll', function() {
+//     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+//     if (scrollTop === 0) {
+//       header.classList.remove('fixed');
+//       header.classList.add('big');
+//     } else {
+//       header.classList.add('fixed');
+//       header.classList.remove('big');
+//     }
+//     headerFake.style.paddingTop = header.offsetHeight + 'px';
+//   });
+
+//   window.addEventListener('resize', function() {
+//     headerHeight = header.offsetHeight;
+//     headerFake.style.paddingTop = headerHeight + 'px';
+//   });
+// });
 </script>
 
 <style scoped lang="scss">
+
 .header {
-  background-color: white;
+  background-color: #F6F9FD;
+
+  &.sticky {
+    & .header-main {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+      & svg.logo-big {
+        opacity: 0;
+      }
+
+      & svg.logo-mini {
+        opacity: 1;
+        animation: spin 3s ease 0.2s, zoom 1s ease-in-out 3s;
+        transform: rotate(0deg);
+      }
+    }
+  }
 
   &-top {
     display: flex;
@@ -192,8 +276,10 @@ defineProps({
   }
 
   &-main {
-    padding: 34px 0;
-    background: #F6F9FD;
+    padding: 18px 0;
+    background: white;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    transition: box-shadow .2s ease-in-out;
 
     &-inner {
       display: flex;
@@ -204,12 +290,30 @@ defineProps({
 
     &-logo {
       display: block;
-      height: 49;
+      height: 95px;
       width: 260px;
+      position: relative;
 
       & svg {
-        height: 100%;
-        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+
+        transition: opacity .4s ease-in-out;
+      }
+
+      & svg.logo-big {
+        height: 95px;
+        width: 260px;
+        opacity: 1;
+      }
+
+      & svg.logo-mini {
+        height: 95px;
+        width: 95px;
+
+        transition: opacity .2s ease-in-out;
       }
     }
 
@@ -261,6 +365,27 @@ defineProps({
         width: 100%;
       }
     }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>
