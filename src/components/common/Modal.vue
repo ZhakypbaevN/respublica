@@ -1,7 +1,7 @@
 <template>
   <Transition appear>
     <div class="modal-back" :style="{opacity: opacity}">
-      <div class="modal-inner" @mousedown.stop ref="container">
+      <div class="modal-inner" @mousedown.stop :style="container">
         <div class="modal-form">
           <div class="modal-form-inner">
             <div class="modal-header">
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
 
 interface IProps {
   title?: string,
@@ -35,22 +35,23 @@ interface Emits {
   (event: 'hide'): Function
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+withDefaults(defineProps<IProps>(), {
   title: undefined,
   subtitle: undefined,
 })
 const emits = defineEmits<Emits>()
 
-const container = ref(null)
+const container = reactive({
+  top: '140%',
+  opacity: '0'
+})
 const opacity = ref(0)
 
 const showModal = () => {
-  const element = document.getElementById('intro-btn');
-
   setTimeout(() => {
     opacity.value = 1
-    container.value.style.top = '100px'
-    container.value.style.opacity = '1'
+    container.top = '100px'
+    container.opacity = '1'
   }, 0)
   document.removeEventListener('mouseover', showModal)
 }
@@ -69,17 +70,15 @@ onUnmounted(() => {
 // Hide Modal Events
 const hideModal = () => {
   opacity.value = 0
-  container.value.style.top = '140%'
-  container.value.style.opacity = '0'
+  container.top = '140%'
+  container.opacity = '0'
   setTimeout(() => {
     emits('hide')
   }, 300)
 }
 
-const hideModalOnEsc = (e) => {
-  if (e.keyCode === 27) {
-    hideModal()
-  }
+const hideModalOnEsc = () => {
+  hideModal()
 }
 </script>
 
@@ -113,7 +112,6 @@ const hideModalOnEsc = (e) => {
     justify-content: center;
 
     position: absolute;
-    top: 100%;
     left: 50%;
     transform: translateX(-50%);
 
@@ -121,8 +119,6 @@ const hideModalOnEsc = (e) => {
     transition: all 0.3s ease;
 
     padding: 30px 20px 70px;
-    
-    opacity: 0;
   }
 
   &-form {

@@ -8,7 +8,7 @@
         </div>
         
         <div class="footer-snList">
-          <a href="#" class="footer-snList-item">
+          <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank" class="footer-snList-item">
             <SvgIcon
               name="facebook-dark"
               :viewboxHeight="32"
@@ -16,7 +16,7 @@
             />
           </a>
           
-          <a href="#" class="footer-snList-item">
+          <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank" class="footer-snList-item">
             <SvgIcon
               name="instagram-dark"
               :viewboxHeight="32"
@@ -32,7 +32,7 @@
             />
           </a>
 
-          <a href="#" class="footer-snList-item">
+          <a href="https://youtube.com/@respublica_partiyasy?si=lu_6apPVAJCFtd0z" target="_blank" class="footer-snList-item">
             <SvgIcon
               name="youtube-dark"
               :viewboxHeight="32"

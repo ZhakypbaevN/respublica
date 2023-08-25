@@ -20,8 +20,6 @@ import Collapse from './directives/collapse.js'
 import clickOutside from './directives/clickOutside'
 import loading from './directives/loading.js'
 
-
-
 createApp(App)
   .use(router)
   .use(VueTheMask)

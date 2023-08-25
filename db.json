@@ -1,0 +1,43 @@
+{
+  "usersInEgov": [
+    {
+      "id": 1,
+      "name": "Абенова",
+      "surname": "Айгуль",
+      "patronymic": "Ескермесова",
+      "phone": "+7 (747) 715 4489",
+      "iin": "010101-444444",
+      "inParty": false
+    },
+    {
+      "id": 2,
+      "name": "Кайнекеева",
+      "surname": "Жанар",
+      "patronymic": "Сактапбергеновна",
+      "phone": "+7 (747) 875 5858",
+      "iin": "020202-444444",
+      "inParty": true
+    },
+    {
+      "id": 3,
+      "name": "Dulanova",
+      "surname": "Asel",
+      "patronymic": "Сактапбергеновна",
+      "phone": "+7 (747) 222 0202",
+      "iin": "030303-444444",
+      "inParty": true
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "phone": "+7 (747) 715 4489",
+      "password": "030399qweQ"
+    },
+    {
+      "phone": "+7 (473) 232 3232",
+      "password": "030399qweQ",
+      "id": 2
+    }
+  ]
+}

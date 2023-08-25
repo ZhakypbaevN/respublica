@@ -7,6 +7,7 @@
         light
         name="phone"
         placeholder="Ваш номер телефона"
+        :min="17"
         required
       />
     </div>
@@ -40,47 +41,72 @@ import { useToast } from '../../modules/toast'
 
 const { toast } = useToast()
 
-interface Emits {
-  (event: 'toLogin', value: Function): void,
-  (event: 'toCheck', value: Function): void,
+interface IProps {
+  phone: string,
+  code: string
 }
 
+interface Emits {
+  (event: 'update:phone', value: string): void,
+  (event: 'update:code', value: string): void,
+  (event: 'toLogin', value: Function): void,
+  (event: 'toCheck'): Function,
+}
+
+defineProps<IProps>()
 const emit = defineEmits<Emits>()
 
 const loading = ref(false)
 
-const postFeedback = ({ phone }) => {
-  emit('toCheck', (phone, false));
-  // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
-  // const bodyFormData = {
-  //   title: name,
-  //   message: `Телефон номер: ${phone},\r\nКомментарий: ${comment}`,
-  //   priority: 5,
-  // };
+function generateVerificationCode() {
+  return (Math.floor(Math.random() * 90000) + 10000).toString();
+}
 
-  // const formData = new FormData();
-  // Object.keys(bodyFormData).forEach(key => formData.append(key, bodyFormData[key]));
+const postFeedback = ({ phone }: { phone: string }) => {
+  const url = `http://localhost:3000/users`;
+  axios({
+    method: "get",
+    url: url,
+  })
+    .then((response) => {
+      console.log('url', url);
+      console.log('response', response);
 
-  // loading.value = true
-  // // Simple POST request with a JSON body using axios
-  // axios({
-  //   method: "post",
-  //   url: url,
-  //   data: formData,
-  // })
-  //   .then((response) => {
-  //     toast({
-  //       message: 'Ваша заявка успешно отправлена'
-  //     })
-  //     loading.value = false
-  //     emits('hide')
-  //   })
-  //   .catch((err) => {
-  //     toast({
-  //       message: 'Возникли ошибки при запросе'
-  //     })
-  //     loading.value = false
-  //   });
+      let finded = false;
+
+      response.data.forEach(userData => {
+        if (userData.phone === phone) finded = true;
+      });
+
+      if (finded) {
+        toast({
+          message: 'Этот номер уже зарегистрирован!',
+          type: 'warning'
+        })
+      } else {
+        toast({
+          message: 'На ваш номер был отправлен код для подтверждение',
+          type: 'success'
+        })
+
+        const code = generateVerificationCode();
+        emit('update:phone', phone);
+        emit('update:code', code);
+        emit('toCheck');
+
+        setTimeout(() => {
+          alert('Код для подтверждения ' + code)
+        }, 5000);
+      }
+      loading.value = false
+    })
+    .catch((err) => {
+      console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+      loading.value = false
+    });
 }
 </script>
 

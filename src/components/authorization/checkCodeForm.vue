@@ -1,12 +1,14 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postFeedback">
+  <Form class="wrapper-darkMain-form" @finish="$emit('toNext')">
     <h2 class="wrapper-darkMain-title">Введите код</h2>
 
     <div class="modal-message">
-      <h4 class="modal-message-title">Мы отправили код подтверждения на номер <br> {{ phone }}  </h4>
+      <h4 class="modal-message-title">Мы отправили код подтверждения на номер <br> {{ phone }}</h4>
+      
       <button
         type="button"
-        @click="() => $emit('toReplace')"
+        class="modal-message-btn"
+        @click="() => $emit('toBack')"
       >
         <span> 
           Изменить
@@ -16,17 +18,30 @@
 
     <div class="modal-inputs">
       <Input
-        type="number"
         light
         name="code"
         placeholder="Введите код"
+        validation="sameAs"
+        :sameAs="checkCode"
+        mask="######"
+        :min="4"
         required
       />
     </div>
 
     <div class="modal-message">
-      <h4 class="modal-message-title">Получить новый код можно через </h4>
-      <span>00:16</span>
+      <TransitionGroup>
+        <div v-if="time > 0">
+          <h4 class="modal-message-title">Получить новый код можно через </h4>
+          <span>{{ timeLeft }}</span>
+        </div>
+        <button
+          v-else
+          @click="newCode"
+        >
+          <span>Отправить еще раз</span>
+        </button>
+      </TransitionGroup>
     </div>
 
     <Button
@@ -52,56 +67,41 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
-import { useToast } from '../../modules/toast'
+// import axios from 'axios'
+// import { useToast } from '../../modules/toast'
 
-const { toast } = useToast()
+// const { toast } = useToast()
 
 interface IProps {
-  phone: String,
+  phone: string,
+  checkCode: string,
 }
 interface Emits {
+  (event: 'toBack', value: Function): void,
   (event: 'toLogin', value: Function): void,
-  (event: 'toReplace', value: Function): void,
+  (event: 'toNext', value: Function): void,
 }
 
 withDefaults(defineProps<IProps>(), {})
 defineEmits<Emits>()
 
+const timeLeft = ref('01:00')
 const loading = ref(false)
 
-const postFeedback = ({ code }) => {
-  // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
-  // const bodyFormData = {
-  //   title: name,
-  //   message: `Телефон номер: ${phone},\r\nКомментарий: ${comment}`,
-  //   priority: 5,
-  // };
+const time = ref(60);
+const timer = setInterval(() => {
+  time.value--;
+  const minutes = Math.floor(time.value / 60);
+  const seconds = time.value % 60;
+  timeLeft.value = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
+}, 1000);
 
-  // const formData = new FormData();
-  // Object.keys(bodyFormData).forEach(key => formData.append(key, bodyFormData[key]));
-
-  // loading.value = true
-  // // Simple POST request with a JSON body using axios
-  // axios({
-  //   method: "post",
-  //   url: url,
-  //   data: formData,
-  // })
-  //   .then((response) => {
-  //     toast({
-  //       message: 'Ваша заявка успешно отправлена'
-  //     })
-  //     loading.value = false
-  //     emits('hide')
-  //   })
-  //   .catch((err) => {
-  //     toast({
-  //       message: 'Возникли ошибки при запросе'
-  //     })
-  //     loading.value = false
-  //   });
+const newCode = () => {
+  clearInterval(timer);
 }
+
 </script>
 
 <style scoped lang="scss">
@@ -129,9 +129,28 @@ const postFeedback = ({ code }) => {
       font-weight: 500;
     }
 
+    &-btn {
+      display: inline-block;
+      margin-left: 5px;
+    }
+
     & span{
       color: var(--accent-color);
     }
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+.v-leave-active {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

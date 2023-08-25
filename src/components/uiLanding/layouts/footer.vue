@@ -13,7 +13,7 @@
           </RouterLink>
 
           <div class="footer-mainForm-snList">
-            <a href="#" class="footer-mainForm-snList-item">
+            <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank" class="footer-mainForm-snList-item">
               <SvgIcon
                 name="facebook-light"
                 :viewboxHeight="32"
@@ -21,7 +21,7 @@
               />
             </a>
             
-            <a href="#" class="footer-mainForm-snList-item">
+            <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank" class="footer-mainForm-snList-item">
               <SvgIcon
                 name="instagram-light"
                 :viewboxHeight="32"
@@ -37,7 +37,7 @@
               />
             </a>
 
-            <a href="#" class="footer-mainForm-snList-item">
+            <a href="https://youtube.com/@respublica_partiyasy?si=lu_6apPVAJCFtd0z" target="_blank" class="footer-mainForm-snList-item">
               <SvgIcon
                 name="youtube-light"
                 :viewboxHeight="32"
@@ -75,7 +75,7 @@
             <div class="footer-mainNavs-item">
               <h4 class="footer-mainNavs-title">БУДЬТЕ ЧАСТЬЮ ЭТОГО</h4>
               <Button
-                name="ДОНАТЫ"
+                name="ПОЖЕРТВОВАТЬ СЕЙЧАС"
                 type="default-red"
                 class="footer-mainNavs-donatBtn"
               >
@@ -91,14 +91,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-bottom-description">
-          Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
-        </p>
-
-        <div class="footer-bottom-right">
-          <p class="footer-bottom-copyright">© 2023 партия RESPUBLICA</p>
-          <button class="footer-bottom-siteRightBtn">Все права защищены.</button>
-        </div>
+        <p class="footer-bottom-copyright">© 2023 партия RESPUBLICA</p>
+        <button class="footer-bottom-siteRightBtn">Все права защищены.</button>
       </div>
     </div>
   </footer>
@@ -202,17 +196,11 @@ import { RouterLink } from 'vue-router';
 
   &-bottom {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    align-items: center;
+    grid-gap: 4px;
 
-    &-description {
-      max-width: 596px;
-    }
 
-    &-copyright {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+    &-copyright,
     &-siteRightBtn {
       font-size: 18px;
     }

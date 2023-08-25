@@ -3,7 +3,7 @@
     <div class="wrapper" v-if="!withoutTopAndNavs">
       <div class="header-top">
         <div class="header-top-snList">
-          <a href="#" class="header-top-snList-item">
+          <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank" class="header-top-snList-item">
             <SvgIcon
               name="facebook"
               :viewboxHeight="32"
@@ -11,7 +11,7 @@
             />
           </a>
           
-          <a href="#" class="header-top-snList-item">
+          <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank" class="header-top-snList-item">
             <SvgIcon
               name="instagram"
               :viewboxHeight="32"
@@ -27,7 +27,7 @@
             />
           </a>
 
-          <a href="#" class="header-top-snList-item">
+          <a href="https://youtube.com/@respublica_partiyasy?si=lu_6apPVAJCFtd0z" target="_blank" class="header-top-snList-item">
             <SvgIcon
               name="youtube"
               :viewboxHeight="32"

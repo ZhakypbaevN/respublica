@@ -11,7 +11,7 @@
     }">
 
     <span class="placeholder" v-if="type !== 'editor' && !staticPlaceholder">{{ placeholder }}</span>
-    <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ 255 - (input.value ? input.value.length : 0) }}</span>
+    <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ 255 - (input.value ? String(input.value).length : 0) }}</span>
 
     <input
       :type="input.eyeState ? input.eyeState : type"
@@ -22,6 +22,7 @@
       @focus="onFocus"
       :class="{'with-error': input.withError}"
       v-mask="'+7 (###) ### ####'"
+      :min="17"
       :autofocus="autofocus"
       :autocomplete="autocomplete"
       :placeholder="staticPlaceholder ? placeholder : ''"
@@ -53,6 +54,7 @@
       :type="input.eyeState ? input.eyeState : type"
       v-model="input.value"
       :required="required"
+      v-mask="props.mask"
       :min="min"
       @blur="onBlur"
       @focus="onFocus"
@@ -62,6 +64,24 @@
       :autofocus="autofocus"
       :placeholder="staticPlaceholder ? placeholder : ''"
       :disabled="disabled"
+      :maxlength="maxSymbol"
+      v-else-if="props.mask"
+    >
+
+    <input
+      :type="input.eyeState ? input.eyeState : type"
+      v-model="input.value"
+      :required="required"
+      :min="min"
+      @blur="onBlur"
+      @focus="onFocus"
+      @change="$emit('change')"
+      :class="{'with-error': input.withError}"
+      :autocomplete="autocomplete"
+      :autofocus="autofocus"
+      :placeholder="staticPlaceholder ? placeholder : ''"
+      :disabled="disabled"
+      :maxlength="maxSymbol"
       v-else
     >
 
@@ -121,6 +141,7 @@ interface IProps {
   autocomplete?: string,
   autofocus?: boolean,
   min?: number,
+  mask?: string,
   staticPlaceholder?: boolean,
   disabled?: boolean,
   resetButton?: boolean,
@@ -138,7 +159,8 @@ const props = withDefaults(defineProps<IProps>(), {
   staticPlaceholder: false,
   disabled: false,
   resetButton: false,
-  multiple: false
+  multiple: false,
+  mask: null
 })
 const emit = defineEmits([
   'update:modelValue',
@@ -151,35 +173,47 @@ const emit = defineEmits([
   'label'
 ])
 
-const input = reactive({
-  value: props.modelValue,
+interface IInputValues {
+  value: string | number,
+  isDirty: boolean,
+  eyeState: any,
+  withError: any,
+  focused: boolean,
+  hasError: any,
+  formValue: any,
+}
+
+const input = reactive(<IInputValues>{
+  value: props.modelValue ?? '',
   isDirty: false,
   eyeState: null,
   withError: null,
-  focused: false
+  focused: false,
+  hasError: (props.required || props.validation) && props.name ? inject('hasError') : {},
+  formValue: props.name ? inject('formData') : {}
 })
-const hasError = (props.required || props.validation) && props.name ? inject('hasError') : {}
-if (props.name) hasError[props.name] = props.required || props.validation
+if (props.name) input.hasError[props.name] = props.required || props.validation
 const inputName = props.name ?? 'example'
 
-const formValue = props.name ? inject('formData') : {}
-
 const rules = {
-  email: email => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    .test(String(email).toLowerCase()) ? false : 'Введите правильную почту',
+  email: ({str}: {str: string}) => /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$/
+    .test(String(str).toLowerCase()) ? false : 'Введите правильную почту',
 
-  phone: phone => phone && phone.length === 17 ? false : 'Введите правильный номер',
+  phone: ({str}: {str: string}) => str && str.length === 17 ? false : 'Введите правильный номер',
 
-  password: password => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
-    .test(String(password)) ? false : 'Пароль должен содержать минимум 8 символов. И в нем должны быть минимум, одна цифра,одна большая буква и одна маленькая буква',
+  password: ({str}: {str: string}) => /^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+    .test(String(str)) ? false : 'Пароль должен содержать минимум 8 символов. И в нем должны быть минимум, одна цифра,одна большая буква и одна маленькая буква',
 
-  sameAs: string => string === props.sameAs ? false : 'Поля не совпадают',
+  sameAs: ({str}: {str: string}) => {
+    console.log('str', str);
+    return input.value.toString() === props.sameAs ? false : 'Поля не совпадают';
+  },
 
-  customRegex: string => props.validation.test(String(string)) ? false : props.errorText ?? 'Введите поле правильно'
+  customRegex: ({str}: {str: string}) => props.validation.test(String(str)) ? false : props.errorText ?? 'Введите поле правильно'
 }
 
 const onChangeValue = () => {
-  formValue[inputName] = input.value
+  input.formValue[inputName] = input.value
   const validate = validation()
   if (input.isDirty) {
     input.withError = false
@@ -192,18 +226,21 @@ const onChangeValue = () => {
   }
   if (props.validation && !validate(input.value)) {
     emit('success')
-    hasError[inputName] = false
+    input.hasError[inputName] = false
   } else if (props.validation && validate(input.value)) {
     emit('error')
-    hasError[inputName] = true
+    input.hasError[inputName] = true
   } else if (props.required && input.value) {
     emit('success')
-    hasError[inputName] = false
+    input.hasError[inputName] = false
   } else {
     emit('error')
-    hasError[inputName] = true
+    input.hasError[inputName] = true
   }
-  if (props.min && input.value < props.min) input.value = props.min
+  if (props.min && (input.value ? input.value.toString().length : 0) < props.min) {
+    emit('error')
+    input.hasError[inputName] = true
+  }
   emit('update:modelValue', input.value)
 }
 
@@ -227,10 +264,10 @@ watch(
   () => {
     if (input.withError) {
       emit('error')
-      hasError[inputName] = true
+      input.hasError[inputName] = true
     } else {
       emit('success')
-      hasError[inputName] = false
+      input.hasError[inputName] = false
     }
   }
 )
@@ -246,14 +283,14 @@ watch(
 
 const validation = () => {
   if (typeof props.validation === 'string') {
-    return rules[props.validation]
+    return rules[props.validation as keyof typeof rules]
   } else if (typeof props.validation === 'object') {
     return rules.customRegex
   }
   return () => {}
 }
 
-const onBlur = e => {
+const onBlur = ({e}: {e: KeyboardEvent}) => {
   emit('blur', e)
   input.focused = false
 
@@ -265,11 +302,11 @@ const onBlur = e => {
 
   if (props.validation && !input.withError) {
     const validate = validation()
-    input.withError = validate(input.value)
+    input.withError = validate(input.value) as boolean
   }
 }
 
-const onFocus = e => {
+const onFocus = ({e}: {e: KeyboardEvent}) => {
   input.focused = true
   emit('focus', e)
 }

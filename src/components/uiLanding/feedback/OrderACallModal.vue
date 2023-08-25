@@ -47,8 +47,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
-import { useToast } from '../../../modules/toast'
+// import axios from 'axios'
+// import { useToast } from '../../../modules/toast'
+// const { toast } = useToast()
 
 interface IProps {
   show: boolean,
@@ -60,11 +61,13 @@ interface Emits {
 const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
-const { toast } = useToast()
 
 const loading = ref(false)
 
-const postFeedback = ({ name, phone, comment }) => {
+const postFeedback = ({ name, phone, comment }: { name: string, phone: string, comment: string }) => {
+  console.log('name', name);
+  console.log('name', phone);
+  console.log('name', comment);
   // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
   // const bodyFormData = {
   //   title: name,
