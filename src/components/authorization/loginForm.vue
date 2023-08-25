@@ -21,6 +21,8 @@
       />
     </div>
 
+    <a :href="link">sdcsdcsdcsdc</a>
+
     <div class="modal-message">
       <h4 class="modal-message-title">У вас нет аккаунта?  </h4>
       <button
@@ -52,6 +54,10 @@ interface Emits {
   (event: 'toCheck'): Function,
 }
 
+console.log('window.location.hostname', window.location.hostname);
+console.log('window.location.protocol', window.location.protocol);
+const link = `${window.location.protocol}//${window.location.hostname}`
+
 defineProps<IProps>()
 const emit = defineEmits<Emits>()
 
@@ -62,7 +68,7 @@ function generateVerificationCode() {
 }
 
 const postFeedback = ({ phone }: { phone: string }) => {
-  const url = `http://localhost:3000/users`;
+  const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
   axios({
     method: "get",
     url: url,

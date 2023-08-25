@@ -66,10 +66,10 @@ interface ShowForm {
 }
 
 const showForm = reactive<ShowForm>({
-  login: false,
+  login: true,
   checkCode: false,
 
-  register: true,
+  register: false,
   registerFinish: false,
 })
 
