@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "start": "vite",
-    "server": "json-server --watch public/db.json",
+    "server": "json-server --watch server/db.json",
     "build": "vite build",
     "preview": "vite preview"
   },
