@@ -4,22 +4,20 @@
       <Header />
       <div class="content">
         <div class="wrapper-menu">
-          <div class="left-menu" id="menu-left">
-            <div class="left-menu-inner" :class="{ 'sticky': isSticky }" :style="{top: obsaluteTop}">
-              <div class="left-menu-about">
-                <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-                <span>О партии</span>
+          <div class="left-menu">
+            <div class="left-menu-about">
+              <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
+              <span>О партии</span>
 
-              </div>
-              <div class="left-menu-list">
-                <ul>
-                  <li>Новости</li>
-                  <li>Пресса о нас</li>
-                  <li>Видеогалерея</li>
-                  <li>Фотогалерея</li>
-                  <li>Анонсы, объявления</li>
-                </ul>
-              </div>
+            </div>
+            <div class="left-menu-list">
+              <ul>
+                <li>Новости</li>
+                <li>Пресса о нас</li>
+                <li>Видеогалерея</li>
+                <li>Фотогалерея</li>
+                <li>Анонсы, объявления</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -27,6 +25,8 @@
           <div class="wrapper landing-wrapper">
             <h2 class="landing-title">Новости</h2>
             <NewsList />
+
+            <PressAboutUS />
 
 
           </div>
@@ -42,32 +42,7 @@
 import Header from '../../components/uiLanding/layouts/header.vue';
 import Footer from '../../components/uiLanding/layouts/footer.vue';
 import NewsList from '../../components/uiLanding/news/newsList.vue';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
-
-const isSticky = ref(false);
-const menuOffsetTop = ref(0);
-const obsaluteTop = ref('0px')
-
-const handleScroll = () => {
-  if (window.pageYOffset >= document.querySelector('header')!.offsetHeight) {
-    const headerMain = document.querySelector('#header-main');
-    obsaluteTop.value = headerMain!.offsetHeight + 'px';
-    isSticky.value = true;
-  } else {
-    obsaluteTop.value = '0px';
-    isSticky.value = false;
-  }
-};
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-  const manuLeft = document.querySelector('#menu-left');
-  menuOffsetTop.value = manuLeft!.offsetTop;
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
+import PressAboutUS from '../../components/uiLanding/news/pressAboutUS.vue';
 </script>
 
 <style scoped lang="scss">
@@ -89,21 +64,12 @@ onBeforeUnmount(() => {
   background: #042051;
 }
 .left-menu {
-  position: relative;
-  &-inner {
-    height: 300px;
-    position: absolute;
-    left: 0;
-    top: 0px;
+  top: 20px;
 
-    transition: all .2s linear;
-    
-    &.sticky {
-      position: fixed;
-    }
-  }
 
-  
+  height: 300px;
+  position: sticky;
+
 
   &-about {
     width: 285px;

@@ -1,12 +1,12 @@
 <template>
   <button
-    :class="{
+      :class="{
       [type]: true,
       loading
     }"
-    :type="htmlType"
-    :disabled="disabled || handleError(hasError)"
-    @click="
+      :type="htmlType"
+      :disabled="disabled || handleError(hasError)"
+      @click="
       loading || disabled || handleError(hasError)
         ? null
         : $emit('click', $event)
@@ -28,7 +28,7 @@ import handleError from '../../helpers/handleError'
 
 interface IProps {
   name?: string
-  type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'
+  type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'  | 'outline-grey'
   loading?: boolean
   htmlType?: 'button' | 'submit' | 'reset',
   disabled?: boolean
@@ -97,7 +97,7 @@ button {
   &.outline {
     &-default {
       border-color: var(--primary-color);
-      
+
       & span {
         color: var(--primary-color);
       }
@@ -105,7 +105,7 @@ button {
 
     &-light {
       border-color: white;
-      
+
       & span {
         color: white;
       }
@@ -113,7 +113,7 @@ button {
 
     &-red {
       border-color: var(--red-color);
-      
+
       & span {
         color: var(--red-color);
       }
@@ -121,9 +121,21 @@ button {
 
     &-blue {
       border-color: var(--accent-color);
-      
+
       & span {
         color: var(--accent-color);
+      }
+    }
+    &-grey {
+      display: flex;
+
+      border-color: var(--light-gray-color);
+      padding: 18px 30px;
+      border-radius: 30px;
+      color: #818FA7;
+
+      & span {
+        color: #818FA7;
       }
     }
   }
