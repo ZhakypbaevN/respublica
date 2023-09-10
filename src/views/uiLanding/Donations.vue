@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="donations-right-block">
-          <!--<div class="donations-right-block-steps-line"></div>-->
+          <div class="donations-right-block-steps-line"></div>
 
           <div class="donations-right-block-steps">
             <div class="donations-right-block-steps-circles current-step">
@@ -173,12 +173,16 @@ import Footer from "../../components/uiLanding/layouts/footer.vue";
           display: flex;
           justify-content: center;
           align-items: center;
+          z-index: 2;
         }
       }
       &-line {
-        width: 90%;
+        width: 560px;
         height: 1px;
         background: #dadee5;
+        position: fixed;
+        margin-top: 60px;
+        z-index: 1;
       }
     }
   }
