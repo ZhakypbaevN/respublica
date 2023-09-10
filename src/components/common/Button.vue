@@ -128,14 +128,20 @@ button {
     }
     &-grey {
       display: flex;
-
       border-color: var(--light-gray-color);
       padding: 18px 30px;
       border-radius: 30px;
-      color: #818FA7;
+      color: var(--light-gray-color);
 
       & span {
-        color: #818FA7;
+        color: var(--light-gray-color);
+      }
+    }
+    &-grey-light {
+      border-color: var(--light-gray-color);
+      & span {
+        color: var(--light-gray-color);
+        font-size: 20px;
       }
     }
   }

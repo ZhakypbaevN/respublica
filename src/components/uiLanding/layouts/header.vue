@@ -70,24 +70,25 @@
               О партии
             </Router-link>
 
-            <Router-link to="/" class="header-main-navs-item">
+            <Router-link to="/party-fraction" class="header-main-navs-item">
               Партийная фракция
             </Router-link>
 
-            <Router-link to="/" class="header-main-navs-item">
+            <Router-link to="/news" class="header-main-navs-item">
               Пресс-центр
             </Router-link>
 
-            <Router-link to="/" class="header-main-navs-item">
+            <Router-link to="/contacts" class="header-main-navs-item">
               Контакты
             </Router-link>
 
-            <Router-link to="/" class="header-main-navs-item">
+            <Router-link to="/faq" class="header-main-navs-item">
               FAQ
             </Router-link>
           </nav>
-
+         
           <div class="header-main-right">
+            <Router-link to="/donations">
             <Button
               name="ДОНАТЫ"
               type="outline-red"
@@ -99,6 +100,7 @@
                 :viewboxHeight="24"
               />
             </Button>
+          </Router-link>
 
             <button class="header-main-lang">
               <span>РУ</span>

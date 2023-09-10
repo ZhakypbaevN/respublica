@@ -330,6 +330,16 @@ const onFocus = ({e}: {e: KeyboardEvent}) => {
       color: rgba(white, .8);
     }
   }
+  &.grey {
+    & input {
+      border-color: #818FA7;
+      background-color: transparent;
+    }
+
+    & .placeholder {
+      color: rgba(white, .8);
+    }
+  }
 }
 .placeholder,
 .maxSymbol {

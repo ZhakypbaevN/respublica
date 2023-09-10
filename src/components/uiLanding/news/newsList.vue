@@ -1,241 +1,208 @@
 <template>
-  <section class="newsSlider">
-    <div class="newsSlider-items">
-      <div class="newsSlider-item">
-        <img class="newsSlider-item-preview" src="/img/uiLanding/news-example.jpg" alt="">
-        <div class="newsSlider-item-text">
-          <h4 class="newsSlider-item-title">Полный запрет вейпов будет введен в Казахстане</h4>
-
-          <p class="newsSlider-item-description">Этому предшествовала большая работа фракции партии Respublica,
-            государственных и общественных организаций.</p>
-
-          <div class="newsSlider-item-bottom">
-            <div class="newsSlider-item-comment">
-              <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>0</span>
-            </div>
-            <div class="newsSlider-item-date">
-              <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>12:30, 5 июля 2023</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="newsSlider-item">
-        <img class="newsSlider-item-preview" src="/img/uiLanding/news-example.jpg" alt="">
-        <div class="newsSlider-item-text">
-          <h4 class="newsSlider-item-title">Полный запрет вейпов будет введен в Казахстане</h4>
-
-          <p class="newsSlider-item-description">Этому предшествовала большая работа фракции партии Respublica,
-            государственных и общественных организаций.</p>
-
-          <div class="newsSlider-item-bottom">
-            <div class="newsSlider-item-comment">
-              <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>0</span>
-            </div>
-            <div class="newsSlider-item-date">
-              <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>12:30, 5 июля 2023</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="newsSlider-item">
-        <img class="newsSlider-item-preview" src="/img/uiLanding/news-example.jpg" alt="">
-        <div class="newsSlider-item-text">
-          <h4 class="newsSlider-item-title">Полный запрет вейпов будет введен в Казахстане</h4>
-
-          <p class="newsSlider-item-description">Этому предшествовала большая работа фракции партии Respublica,
-            государственных и общественных организаций.</p>
-
-          <div class="newsSlider-item-bottom">
-            <div class="newsSlider-item-comment">
-              <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>0</span>
-            </div>
-            <div class="newsSlider-item-date">
-              <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>12:30, 5 июля 2023</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="newsSlider-item">
-        <img class="newsSlider-item-preview" src="/img/uiLanding/news-example.jpg" alt="">
-        <div class="newsSlider-item-text">
-          <h4 class="newsSlider-item-title">Полный запрет вейпов будет введен в Казахстане</h4>
-
-          <p class="newsSlider-item-description">Этому предшествовала большая работа фракции партии Respublica,
-            государственных и общественных организаций.</p>
-
-          <div class="newsSlider-item-bottom">
-            <div class="newsSlider-item-comment">
-              <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>0</span>
-            </div>
-            <div class="newsSlider-item-date">
-              <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>12:30, 5 июля 2023</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="newsSlider-item">
-        <img class="newsSlider-item-preview" src="/img/uiLanding/news-example.jpg" alt="">
-        <div class="newsSlider-item-text">
-          <h4 class="newsSlider-item-title">Полный запрет вейпов будет введен в Казахстане</h4>
-
-          <p class="newsSlider-item-description">Этому предшествовала большая работа фракции партии Respublica,
-            государственных и общественных организаций.</p>
-
-          <div class="newsSlider-item-bottom">
-            <div class="newsSlider-item-comment">
-              <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>0</span>
-            </div>
-            <div class="newsSlider-item-date">
-              <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>12:30, 5 июля 2023</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="newsSlider-item">
-        <img class="newsSlider-item-preview" src="/img/uiLanding/news-example.jpg" alt="">
-        <div class="newsSlider-item-text">
-          <h4 class="newsSlider-item-title">Полный запрет вейпов будет введен в Казахстане</h4>
-
-          <p class="newsSlider-item-description">Этому предшествовала большая работа фракции партии Respublica,
-            государственных и общественных организаций.</p>
-
-          <div class="newsSlider-item-bottom">
-            <div class="newsSlider-item-comment">
-              <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>0</span>
-            </div>
-            <div class="newsSlider-item-date">
-              <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-              <span>12:30, 5 июля 2023</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="title">
+    <span>Новости</span>
+    <div>
+      <RouterLink to="/news-all" class="title-link">
+        <span>Смотреть все новости</span>
+        <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
+      </RouterLink>
     </div>
-    <div class="content-centre">
-      <div class="modal-btn">
-        <Button name="Смотреть еще" type="outline-grey" htmlType="submit">
-          <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" class="svg-btn" />
-        </Button>
+  </div>
+
+  <div class="news-items">
+    <RouterLink to="/news-in-full" class="newsSlider-item-link">
+      <div class="news-item">
+        <div class="news-item-img">
+          <img src="/img/news.png" alt="">
+          <div class="news-item-img-date">
+            <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
+            <span>05.08.2023</span>
+          </div>
+        </div>
+        <div class="news-item-name">
+          <span class="">Партия Respublica начала акцию "Абай айлығы"</span>
+        </div>
+        <div class="news-item-line"></div>
+        <span class="news-item-text">У Казахстана большой потенциал в сфере эко- и этнотуризма, - Р.Берденов</span>
       </div>
+    </RouterLink>
+    <div class="news-item">
+      <div class="news-item-img">
+        <img src="/img/news.png" alt="">
+        <div class="news-item-img-date">
+          <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
+          <span>05.08.2023</span>
+        </div>
+      </div>
+      <div class="news-item-name">
+        <span class="">Партия Respublica начала акцию "Абай айлығы"</span>
+      </div>
+      <div class="news-item-line"></div>
+      <span class="news-item-text">У Казахстана большой потенциал в сфере эко- и этнотуризма, - Р.Берденов</span>
     </div>
-
-
-  </section>
+    <div class="news-item">
+      <div class="news-item-img">
+        <img src="/img/news.png" alt="">
+        <div class="news-item-img-date">
+          <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
+          <span>05.08.2023</span>
+        </div>
+      </div>
+      <div class="news-item-name">
+        <span class="">Партия Respublica начала акцию "Абай айлығы"</span>
+      </div>
+      <div class="news-item-line"></div>
+      <span class="news-item-text">У Казахстана большой потенциал в сфере эко- и этнотуризма, - Р.Берденов</span>
+    </div>
+    <div class="news-item">
+      <div class="news-item-img">
+        <img src="/img/news.png" alt="">
+        <div class="news-item-img-date">
+          <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
+          <span>05.08.2023</span>
+        </div>
+      </div>
+      <div class="news-item-name">
+        <span class="">Партия Respublica начала акцию "Абай айлығы"</span>
+      </div>
+      <div class="news-item-line"></div>
+      <span class="news-item-text">У Казахстана большой потенциал в сфере эко- и этнотуризма, - Р.Берденов</span>
+    </div>
+    <div class="news-item">
+      <div class="news-item-img">
+        <img src="/img/news.png" alt="">
+        <div class="news-item-img-date">
+          <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
+          <span>05.08.2023</span>
+        </div>
+      </div>
+      <div class="news-item-name">
+        <span class="">Партия Respublica начала акцию "Абай айлығы"</span>
+      </div>
+      <div class="news-item-line"></div>
+      <span class="news-item-text">У Казахстана большой потенциал в сфере эко- и этнотуризма, - Р.Берденов</span>
+    </div>
+    <div class="news-item">
+      <div class="news-item-img">
+        <img src="/img/news.png" alt="">
+        <div class="news-item-img-date">
+          <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
+          <span>05.08.2023</span>
+        </div>
+      </div>
+      <div class="news-item-name">
+        <span class="">Партия Respublica начала акцию "Абай айлығы"</span>
+      </div>
+      <div class="news-item-line"></div>
+      <span class="news-item-text">У Казахстана большой потенциал в сфере эко- и этнотуризма, - Р.Берденов</span>
+    </div>
+  </div>
 </template>
-<script setup lang="ts">
-import SvgIcon from '../../../components/common/SvgIcon.vue'
-</script>
-<style scoped lang="scss">
-.newsSlider {
-  &-items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 40px;
+<style  scoped lang="scss">
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & span {
+    color: #042051;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
   }
 
-  &-item {
-    display: flex;
-    border-radius: 10px;
-    background: #FFF;
-    padding: 25px;
-    margin-right: 25px;
+  &-link {
+    display: inline-flex;
+    align-items: center;
+    grid-gap: 10px;
 
-    &-preview {
-      width: 223px;
-      height: 161px;
+    & span {
+      color: var(--primary-color);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    & svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--primary-color);
+    }
+  }
+
+}
+
+.news-items {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 60px 50px;
+}
+
+.news-item {
+
+  &-img {
+    width: 463px;
+    height: 330px;
+    position: relative;
+
+
+    & img {
+      width: 463px;
+      height: 330px;
       border-radius: 10px;
-    }
-
-    &-text {
-      width: 446px;
-      margin-left: 25px;
-
-    }
-
-    &-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-
-    &-description {
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-    }
-
-    &-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 25px;
     }
 
     &-date {
       display: flex;
       grid-gap: 5px;
-
-      padding: 5px 10px;
-      border-radius: 3px;
-      border: 1px solid rgba(129, 143, 167, 0.50);
+      align-items: center;
+      background-color: #042051;
+      padding: 5px 15px;
+      width: 137px;
+      height: 30px;
+      border-radius: 0px 10px;
+      position: absolute;
+      bottom: 0;
 
       & svg {
-        width: 28px;
+        width: 24px;
         height: 24px;
-        fill: var(--accent-color);
+        fill: var(--white-color);
       }
 
       & span {
-        color: var(--light-gray-color);
-        font-size: 16px;
-        font-weight: 500;
-      }
-    }
-
-    &-comment {
-      display: flex;
-
-      & span {
-        color: var(--light-gray-color);
-        font-size: 16px;
-        font-weight: 500;
+        color: var(--white-color);
       }
 
-      & svg {
-        width: 28px;
-        height: 24px;
-        fill: var(--accent-color);
-      }
     }
 
   }
-}
-.svg-btn{
-  width: 24px;
-  height: 24px;
-  fill: #818FA7;
-  margin-left: 10px;
-}
-.content-centre {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 50px;
+
+  &-name {
+    margin-top: 15px;
+
+    & span {
+      color: var(--primary-color);
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+
+  &-text {
+    display: block;
+    width: 461px;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(4, 32, 81, 0.80);
+
+  }
+
+  &-line {
+    width: 54px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin-bottom: 15px;
+    margin-top: 20px;
+  }
 }
 </style>

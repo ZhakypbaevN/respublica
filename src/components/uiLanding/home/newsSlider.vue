@@ -3,7 +3,7 @@
     <div class="wrapper landing-wrapper">
       <div class="title-wrapper">
         <h2 class="landing-title">Новости</h2>
-      <RouterLink to="/news" class="newsSlider-item-link">
+      <RouterLink to="/news-all" class="newsSlider-item-link">
               <span>Смотреть все</span>
               <SvgIcon
                 name="double-arrow-right"

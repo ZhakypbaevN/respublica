@@ -8,27 +8,49 @@
             <div class="left-menu-about">
               <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
               <span>О партии</span>
-
             </div>
             <div class="left-menu-list">
               <ul>
-                <li>Новости</li>
-                <li>Пресса о нас</li>
-                <li>Видеогалерея</li>
-                <li>Фотогалерея</li>
-                <li>Анонсы, объявления</li>
+                <a href="#newsList">
+                  <li>Новости</li>
+                </a>
+                <a href="#pressAboutUS">
+                  <li>Пресса о нас</li>
+                </a>
+                <a href="#videoGallery">
+                  <li>Видеогалерея</li>
+                </a>
+                <a href="#photoGallery">
+                  <li>Фотогалерея</li>
+                </a>
+                <a href="#announcements">
+                  <li>Анонсы, объявления</li>
+                </a>
               </ul>
             </div>
           </div>
         </div>
-        <section class="landing-block">
-          <div class="wrapper landing-wrapper">
-            <h2 class="landing-title">Новости</h2>
-            <NewsList />
-
-            <PressAboutUS />
-
-
+        <section class="landing-block-content">
+          <div class="wrapper wrapper-news">
+            <div id="newsList" class="scroll-top">
+              <NewsList />
+            </div>
+            
+            <div id="pressAboutUS" class="scroll-top">
+              <PressAboutUS />
+            </div>
+           
+            <div id="videoGallery" class="scroll-top">
+              <VideoGallery />
+            </div>
+            
+            <div id="photoGallery" class="scroll-top">
+              <PhotoGallery />
+            </div>
+            
+            <div id="announcements" >
+              <Announcements />
+            </div>
           </div>
         </section>
       </div>
@@ -42,7 +64,10 @@
 import Header from '../../components/uiLanding/layouts/header.vue';
 import Footer from '../../components/uiLanding/layouts/footer.vue';
 import NewsList from '../../components/uiLanding/news/newsList.vue';
-import PressAboutUS from '../../components/uiLanding/news/pressAboutUS.vue';
+import PressAboutUS from '../../components/uiLanding/news/pressAboutUs.vue';
+import VideoGallery from '../../components/uiLanding/news/videoGallery.vue';
+import PhotoGallery from '../../components/uiLanding/news/photoGallery.vue';
+import Announcements from '../../components/uiLanding/news/announcements.vue';
 </script>
 
 <style scoped lang="scss">
@@ -51,20 +76,28 @@ import PressAboutUS from '../../components/uiLanding/news/pressAboutUS.vue';
 
 }
 
-.landing-block {
-  margin-left: 40px;
+.wrapper-news {
+  width: 1540px;
+}
+
+.landing-block-content {
+margin: 50px 0 50px 50px;
 }
 
 .content {
   display: flex;
+  max-width: 1920px;
+  margin: 0 auto;
 
 }
+
 .wrapper-menu {
   width: 325px;
   background: #042051;
 }
+
 .left-menu {
-  top: 20px;
+  top: 70px;
 
 
   height: 300px;
@@ -110,6 +143,9 @@ import PressAboutUS from '../../components/uiLanding/news/pressAboutUS.vue';
     }
   }
 
+}
+.scroll-top {
+  scroll-margin-top: 9.2rem;
 }
 
 .landing-title {
