@@ -9,7 +9,7 @@
         v-for="item of list"
         :key="item.title"
       >
-        <div class="announcement-preview" :style="`background-image: url('${item.img}');`"></div>
+        <div class="announcement-preview bg-cover" :style="`background-image: url('${item.img}');`"></div>
 
         <div class="announcement-content">
           <h4 class="announcement-title">{{ item.title }}</h4>
