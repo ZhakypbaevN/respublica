@@ -1,85 +1,86 @@
 <template>
-    <div class="title">
-        <span>Анонсы, объявления</span>
-    </div>
-    <div class="announcements">
-        <div class="announcement">
-            <img src="/img/announcement.png" alt="">
-            <span class="announcement-title">Обьяление</span>
-            <span class="announcement-text">Интенсивный онлайн-курс, который поможет вам подготовиться к собеседованию в
-                топовые IT компании, прокачать свои soft скиллы, научиться</span>
-        </div>
-        <div class="announcement">
-            <img src="/img/announcement.png" alt="">
-            <span class="announcement-title">Обьяление</span>
-            <span class="announcement-text">Интенсивный онлайн-курс, который поможет вам подготовиться к собеседованию в
-                топовые IT компании, прокачать свои soft скиллы, научиться</span>
-        </div>
-        <div class="announcement">
-            <img src="/img/announcement.png" alt="">
-            <span class="announcement-title">Обьяление</span>
-            <span class="announcement-text">Интенсивный онлайн-курс, который поможет вам подготовиться к собеседованию в
-                топовые IT компании, прокачать свои soft скиллы, научиться</span>
-        </div>
+<section class="landing-block" id="announcements">
+  <div :class="`wrapper ${landing ? 'landing-wrapper' : ''}`">
+    <h2 class="landing-title">Анонсы, объявления</h2>
+    <div class="landing-items">
 
+      <div
+        class="announcement-item"
+        v-for="item of list"
+        :key="item.title"
+      >
+        <div class="announcement-preview" :style="`background-image: url('${item.img}');`"></div>
+
+        <div class="announcement-content">
+          <h4 class="announcement-title">{{ item.title }}</h4>
+          <p class="announcement-text">
+            {{ item.description }}
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 </template>
+
+<script setup lang="ts">
+
+interface IProps {
+  landing: boolean
+}
+
+withDefaults(defineProps<IProps>(), {
+  landing: false
+})
+
+const list = [
+  {
+    title: 'Обьяление',
+    img: '/img/announcement.png',
+    description: 'Интенсивный онлайн-курс, который поможет вам подготовиться к собеседованию в топовые IT компании, прокачать свои soft скиллы, научиться'
+  },
+  {
+    title: 'Обьяление',
+    img: '/img/announcement.png',
+    description: 'Интенсивный онлайн-курс, который поможет вам подготовиться к собеседованию в топовые IT компании, прокачать свои soft скиллы, научиться'
+  },
+  {
+    title: 'Обьяление',
+    img: '/img/announcement.png',
+    description: 'Интенсивный онлайн-курс, который поможет вам подготовиться к собеседованию в топовые IT компании, прокачать свои soft скиллы, научиться'
+  }
+]
+</script>
+
 <style  scoped lang="scss">
-.title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 50px;
-
-    & span {
-        color: #042051;
-        text-align: center;
-        font-size: 36px;
-        font-weight: 600;
-    }
-}
-
-.announcements {
-
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 50px;
-}
-
 .announcement {
+  &-item {
     display: flex;
     flex-direction: column;
-    width: 463px;
-    height: 417px;
     background-color: var(--white-color);
     border: 1px solid var(--border-light-gray);
     border-radius: 10px;
+  }
 
+  &-preview {
+    padding-bottom: 44%;
+    border-radius: 10px;
+  }
 
+  &-content {
+    padding: 25px 25px 30px;
+  }
 
-    & img {
-        width: 463px;
-        height: 222px;
-        border-radius: 10px;
-    }
+  &-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+  }
 
-    &-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--primary-color);
-        margin-top: 25px;
-        margin-left: 25px;
-    }
-
-    &-text {
-        font-size: 20px;
-        font-weight: 400;
-        margin-top: 15px;
-        margin-left: 25px;
-        margin-right: 28px;
-        margin-bottom: 30px;
-
-    }
+  &-text {
+    font-size: 20px;
+    font-weight: 400;
+  }
 }
 </style>

@@ -1,6 +1,32 @@
 .landing {
   &-block {
-    margin: 120px 0;
+    padding: 60px 0;
+    scroll-margin-top: 9.4rem;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-link {
+      display: inline-flex;
+      align-items: center;
+      grid-gap: 10px;
+
+      & span {
+        color: var(--primary-color);
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      & svg {
+        width: 24px;
+        height: 24px;
+        fill: var(--primary-color);
+      }
+    }
+
   }
 
   &-title {
@@ -11,5 +37,72 @@
 
   &-wrapper {
     max-width: 1400px;
+    padding: 0 20px;
+  }
+
+  &-link.with-line {
+    display: flex;
+    align-items: center;
+    grid-gap: 36px;
+
+    padding: 5px 0 5px 20px;
+    margin-bottom: 20px;
+
+    position: relative;
+
+    &::before {
+      content: '';
+
+      display: block;
+      height: 100%;
+      width: 5px;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 0;
+
+      background-color: var(--accent-color);
+
+      transition: all .2s ease-in-out;
+    }
+
+    & span {
+      font-size: 36px;
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+
+      transition: all .2s ease-in-out;
+    }
+
+    & svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--accent-color);
+
+      transition: all .2s ease-in-out;
+    }
+
+    &:hover {
+      &::before {
+        width: 700px;
+        background-color: var(--accent-color);
+      }
+
+      & span {
+        color: white;
+      }
+
+      & svg {
+        fill: white;
+      }
+    }
+  }
+
+  &-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
   }
 }

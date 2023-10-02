@@ -16,7 +16,7 @@
     <Transition>
       <Loading v-if="loading" />
     </Transition>
-    <span>{{ name }}</span>
+    <span :class="{bigText: uppercase}">{{ name }}</span>
     <slot v-if="!loading" />
   </button>
 </template>
@@ -31,7 +31,8 @@ interface IProps {
   type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'  | 'outline-grey'
   loading?: boolean
   htmlType?: 'button' | 'submit' | 'reset',
-  disabled?: boolean
+  disabled?: boolean,
+  uppercase?: boolean,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -61,6 +62,10 @@ button {
     font-family: 'Tilda Sans';
     line-height: 1;
     transition: all .2s linear;
+
+    &.bigText {
+      text-transform: uppercase;
+    }
   }
 
   &[disabled] {

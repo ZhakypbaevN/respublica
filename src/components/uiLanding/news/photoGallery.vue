@@ -1,15 +1,18 @@
 <template>
-    <div class="title">
-        <span>Фотогалерея</span>
-        <div>
-            <RouterLink to="/photo-gallery" class="title-link">
-                <span>Перейти в галерею</span>
-                <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
-            </RouterLink>
-        </div>
-    </div>
+  <section class="photoGallery landing-block" id="photoGallery">
+    <div class="wrapper">
+      <div class="landing-header">
+        <h2 class="landing-title">
+          Фотогалерея
+        </h2>
 
-    <div class="gallery">
+        <RouterLink to="photo-gallery" class="landing-header-link">
+          <span>Смотреть все</span>
+          <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
+        </RouterLink>
+      </div>
+      
+      <div class="gallery">
         <div class="gallery-photos">
             <div class="gallery-photo">
                 <img src="/img/uiLanding/events-2.jpg" alt="">
@@ -96,7 +99,9 @@
                 </div>
             </div>
         </div>
+      </div>
     </div>
+  </section>
 </template>
 <style  scoped lang="scss">
 .title {
@@ -133,9 +138,8 @@
 }
 
 .gallery {
+  width: 100%;
     display: flex;
-    margin-top: 40px;
-
     &-photos {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

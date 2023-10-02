@@ -1,169 +1,175 @@
 <template>
-  <div class="wrapper-main">
-    <div>
-      <Header />
-      <div class="content">
-        <div class="title">
-          <span>Часто задаваемые вопросы и ответы</span>
-        </div>
-        <div v-for="(item, idx) of itemsList">
-          <div @click="toggle(idx)" class="accordion" :class="{ border: item.active }">
-            {{ item.title }}
-            <div class="arrow">
-              <SvgIcon
-                :class="{ rotate: item.active }"
-                name="arrow-ouyline-down"
-                :viewboxWidth="32"
-                :viewboxHeight="32"
-              />
+<div class="wrapper-main">
+  <div>
+  <Header />
+  <section class="faq-block landing-block">
+    <div class="wrapper landing-wrapper">
+      <h2 class="landing-title">Часто задаваемые вопросы и ответы</h2>
+
+      <div class="faq-items">
+        <div
+          class="faq-item"
+          v-for="(faqItem, idx) of faqList"
+          :key="faqItem.question"
+          :class="{active: faqItem.active}"
+        >
+          <button class="faq-item-btn" @click="() => toggleShow(idx)">
+            <h4 class="faq-item-title">{{ faqItem.question }}</h4>
+
+            <SvgIcon
+              class="faq-item-btn-arrow"
+              name="arrow-outline-down"
+              :viewboxWidth="32"
+              :viewboxHeight="32"
+            />
+          </button>
+          <Transition>
+            <div v-if="faqItem.active" v-collapse>
+              <p class="faq-item-answer">{{ faqItem.answer }}</p>
             </div>
-          </div>
-          <div class="panel" :class="{ active: item.active }">{{ item.content }}</div>
+          </Transition>
         </div>
       </div>
     </div>
-    <Footer />
+  </section>
   </div>
-</template>
-<script setup lang="ts">
-import { reactive } from "vue";
-import Header from "../../components/uiLanding/layouts/header.vue";
-import Footer from "../../components/uiLanding/layouts/footer.vue";
 
-const itemsList = reactive([
+  <Footer /> 
+</div>
+</template>
+
+<script setup lang="ts">
+import Header from '../../components/uiLanding/layouts/header.vue';
+import Footer from '../../components/uiLanding/layouts/footer.vue';
+
+import { reactive } from 'vue';
+
+const faqList = reactive([
   {
-    title: "Что нужно для вступления в партию?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
+    question: 'Что нужно для вступления в партию?',
+    answer: 'Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии. Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет. Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.',
+    active: false
   },
   {
-    title: "Как записаться на прием руководства партии, депутатов фракции партии «Respublica»?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
-  },{
-    title: "Каковы главная цель и задачи партии?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
-  },{
-    title: "Подскажите адрес и контакты филиала партии в регионе?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
-  },{
-    title: "Есть ли у партии депутаты в регионах? Можно ли к ним обратиться?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
-  },{
-    title: "Что нужно для вступления в партию?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
-  },{
-    title: "Могу ли я получить помощь от партии в решении своего вопроса?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
-  },{
-    title: "Можно ли, не вступая в партию, участвовать в ваших мероприятиях?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
-  },{
-    title: "В нашем городе существует проблема. Может ли партия помочь в ее решении?",
-    content:
-      "Для вступления в партию нужно ваше желание, а также подтверждение того, что вы не являетесь членом другой партии.Вы можете направить онлайн заявление на вступление в партию. Для этого необходимо ввести ваши ФИО, ИИН, регион, номер контактного телефона. На указанный номер вам придет СМС-уведомление и электронная ссылка на партийный билет.Кроме того, заявление на членство в партию можно подать в региональном филиале партии Respublica.",
-    active: false,
+    question: 'Как записаться на прием руководства партии, депутатов фракции партии «Respublica»?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
+  },
+  {
+    question: 'Каковы главная цель и задачи партии?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
+  },
+  {
+    question: 'Подскажите адрес и контакты филиала партии в регионе?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
+  },
+  {
+    question: 'Есть ли у партии депутаты в регионах? Можно ли к ним обратиться?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
+  },
+  {
+    question: 'Куда направлять обращение?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
+  },
+  {
+    question: 'Могу ли я получить помощь от партии в решении своего вопроса?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
+  },
+  {
+    question: 'Можно ли, не вступая в партию, участвовать в ваших мероприятиях?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
+  },
+  {
+    question: 'В нашем городе существует проблема. Может ли партия помочь в ее решении?',
+    answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting',
+    active: false
   }
-]);
+])
 
-const toggle = (idx: any) => {
-  itemsList[idx].active = !itemsList[idx].active;
-};
+const toggleShow = (idx: number) => {
+  if (faqList[idx].active) faqList[idx].active = false;
+  else {
+    for (let i = 0; i < faqList.length; i++) {
+      faqList[i].active = false;
+    }
+    faqList[idx].active = true;
+  }
+}
 </script>
+
 <style scoped lang="scss">
 .wrapper-main {
-  background-color: #f6f9fd;
+  background-color: var(--accent-color-op05);
 }
-.content {
-  max-width: 1920px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 100px;
-}
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 0;
 
-  & span {
-    color: var(--primary-color);
-    text-align: center;
-    font-size: 36px;
-    font-weight: 700;
+.landing-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.faq {
+  &-block {
+    margin-top: 50px;
   }
-}
-.answers {
-  margin-top: 100px;
-}
-.accordion {
-  background-color: var(--white-color);
-  color: var(--primary-color);
-  cursor: pointer;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 25px;
-  width: 1400px;
-  height: 85px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 30px;
-  border-radius: 10px;
-  margin-top: 15px;
-}
+  &-item {
+    border-radius: 10px;
+    background: #FFF;
+    margin-bottom: 15px;
 
-.accordion:hover {
-  /*background-color: #ccc;*/
-  color: var(--accent-color);
-}
+    &.active .faq-item-btn-arrow {
+      transform: rotate(-180deg);
+    }
 
-.panel {
-  display: none;
-  width: 1400px;
-  background-color: var(--white-color);
-  overflow: hidden;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 28px;
-  color: rgba(4, 32, 81, 0.8);
-  padding: 10px 90px 30px 30px;
-  border-radius: 0 0 10px 10px;
-  transition: max-height 0.4s ease-out;
-}
+    &-btn {
+      padding: 28px 30px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      grid-gap: 80px;
 
-.active {
-  display: block;
-}
-.arrow {
-  margin: 26px 30px 27px 0;
-  & svg {
-    width: 32px;
-    height: 32px;
+      &-arrow {
+        height: 32px;
+        width: 32px;
+        stroke: var(--primary-color);
+
+        transition:  .3s ease-in-out;
+      }
+
+      &:hover {
+        & .faq-item-title {
+          color: var(--accent-color);
+        }
+
+        & .faq-item-btn-arrow {
+          stroke: var(--accent-color);
+        }
+      }
+    }
+
+    &-title {
+      font-size: 25px;
+      font-weight: 500;
+      line-height: 1.2;
+
+      transition: color .3s ease-in-out;
+    }
+
+    &-answer {
+      display: inline-block;
+
+      font-size: 20px;
+      line-height: 1.4;
+
+      padding: 2px 30px 30px;
+      margin-bottom: 0px !important;
+    }
   }
-}
-.rotate {
-  transform: rotate(180deg);
-}
-.border {
-  border-radius: 10px 10px 0 0;
 }
 </style>

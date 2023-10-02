@@ -2,9 +2,11 @@
   <section class="aboutUs landing-block">
     <div class="wrapper landing-wrapper">
       <h2 class="aboutUs-title">
-        <span>Мы</span> Демократическая партия.
+        <span>Новые люди</span> новые возможности!
       </h2>
-      <p class="aboutUs-description">Мы боремся за более светлое и равноправное будущее: закатываем рукава и организуемся повсюду, чтобы построить лучшую Америку для всех.</p>
+      <p class="aboutUs-description">
+        Партия Respublica – это МЕТА-партия. Мы нацелены на структурные преобразования во всех сферах общественной жизни. Мы являемся людьми нового Казахстана, цифровыми номадами!
+      </p>
 
       <div class="aboutUs-inner">
         <div class="aboutUs-items">
@@ -14,21 +16,16 @@
             :key="item.title"
           >
             <h4 class="aboutUs-item-title">{{ item.title }}</h4>
-            <p class="aboutUs-item-description">{{ item.text }}</p>
+            <p class="aboutUs-item-description" v-html="item.text"></p>
             <RouterLink to="/" class="aboutUs-item-link">
-              <span>{{ item.btn }}</span>
-              <SvgIcon
-                name="double-arrow-right"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
-              />
+              <span>{{ item.btn }} &#8594;</span>
             </RouterLink>
           </div>
         </div>
 
         <div class="aboutUs-links">
-          <Router-link to="/" class="aboutUs-links-item">
-            <span>События</span>
+          <Router-link to="/news" class="aboutUs-links-item">
+            <span>Новости</span>
             <SvgIcon
               name="arrow-with-line-right-top"
               :viewboxWidth="32"
@@ -37,7 +34,7 @@
           </Router-link>
 
           <Router-link to="/" class="aboutUs-links-item">
-            <span>Все новости</span>
+            <span>Вступить в партию</span>
             <SvgIcon
               name="arrow-with-line-right-top"
               :viewboxWidth="32"
@@ -46,7 +43,16 @@
           </Router-link>
 
           <Router-link to="/" class="aboutUs-links-item red">
-            <span>Действовать</span>
+            <span>Направить обращение</span>
+            <SvgIcon
+              name="arrow-with-line-right-top"
+              :viewboxWidth="32"
+              :viewboxHeight="32"
+            />
+          </Router-link>
+          
+          <Router-link to="/news" class="aboutUs-links-item">
+            <span>Записаться на прием</span>
             <SvgIcon
               name="arrow-with-line-right-top"
               :viewboxWidth="32"
@@ -64,27 +70,30 @@
 let aboutUsList = [
   {
     title: 'Что мы делаем',
-    text: 'DNC стремится развивать наши победы в 2020 и 2022 годах. Мы прилагаем все усилия, чтобы избирать демократов вверх и вниз в бюллетенях, расширяя возможности активистов на низовом уровне, мобилизуя избирателей и организуясь в каждом почтовом индексе.',
+    text: 'Партия Respublica – это партия людей дела. Мы опытные и эффективные управленцы, лидеры с опытом преодоления преград и решения сложных задач.\n\n Мы связываем свое будущее с Казахстаном.',
     btn: 'Узнать больше',
   },
   {
-    title: 'Байден-Харрис демократы',
-    text: 'Президент Байден работает над тем, чтобы сделать Америку лучше, инвестируя в средний класс и сокращая расходы для работающих семей. Вместе мы построим нашу экономику снизу вверх и от середины к краю.',
+    title: 'Кто мы',
+    text: 'Мы не чиновники. Мы – созидатели. Каждый из нас создает тысячи рабочих мест. За каждым – личная история успеха и помощь множеству сограждан найти себя и обрести веру в будущее. Мы молоды, амбициозны и сильны. С нами необходимо считаться, мы создаем тысячи рабочих мест, мы платим налоги.',
     btn: 'Узнать больше',
   },
   {
-    title: 'Пожертвуйте, чтобы помочь избранным демократам',
-    text: 'DNC - единственный партийный комитет, ответственный за избрание демократов на всех уровнях по всей стране. Ваша поддержка будет направлена ​​на организацию на местах, усилия по защите избирателей и многое другое.',
-    btn: 'Нажмите здесь, чтобы сделать пожертвование ',
+    title: 'Внесите свой вклад',
+    text: 'На территории всей страны у партии Respublica есть филиалы и действуют депутаты в Мажилисе Парламента и маслихатах всех уровней. Ваша подержка будет направлена на организацию работы на местах, усилия по защите избирателей и другие приоритеты.',
+    btn: 'Нажмите здесь, чтобы сделать пожертвование',
   }
 ]
 </script>
 
 <style scoped lang="scss">
 .aboutUs {
+  margin-top: 70px;
+
   &-title {
     text-align: center;
     font-family: 'Montserrat';
+    text-transform: uppercase;
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 30px;
@@ -112,6 +121,7 @@ let aboutUsList = [
   }
 
   &-item {
+    max-width: 318px;
     &-title {
       font-size: 28px;
       font-weight: 700;
@@ -175,11 +185,12 @@ let aboutUsList = [
         font-style: normal;
         font-weight: 600;
         line-height: 1.8;
+        text-wrap: nowrap;
       }
 
       & svg {
-        height: 42px;
-        width: 42px;
+        height: 32px;
+        width: 32px;
         fill: var(--accent-color);
       }
     }

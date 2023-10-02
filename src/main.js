@@ -16,6 +16,8 @@ import Input from './components/common/Input.vue'
 import Form from './components/common/Form.vue';
 import Modal from './components/common/Modal.vue';
 
+import LandingLayout from './components/uiLanding/layouts/LandingLayout.vue';
+
 import Collapse from './directives/collapse.js'
 import clickOutside from './directives/clickOutside'
 import loading from './directives/loading.js'
@@ -31,4 +33,5 @@ createApp(App)
   .component('Input', Input)
   .component('Form', Form)
   .component('Modal', Modal)
+  .component('LandingLayout', LandingLayout)
   .mount('#app')

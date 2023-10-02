@@ -7,8 +7,9 @@ import NotFound from '../views/404NotFound.vue'
 import Home from '../views/uiLanding/Home.vue'
 import Feedback from '../views/uiLanding/Feedback.vue'
 import News from '../views/uiLanding/News.vue'
-import About from '../views/uiLanding/About.vue'
+import AboutParty from '../views/uiLanding/AboutParty.vue'
 import NewsAll from '../views/uiLanding/NewsAll.vue'
+import Videos from '../views/uiLanding/Videos.vue'
 import NewsInFull from '../views/uiLanding/NewsInFull.vue'
 import PressAll from '../views/uiLanding/PressAll.vue'
 import PressInFull from '../views/uiLanding/PressInFull.vue'
@@ -36,6 +37,11 @@ const routes = [
     component: Home,
   },
   {
+    path: '/about-party',
+    name: 'AboutParty',
+    component: AboutParty,
+  },
+  {
     path: '/feedback',
     name: 'Feedback',
     component: Feedback,
@@ -49,6 +55,11 @@ const routes = [
     path: '/news-all',
     name: 'NewsAll',
     component: NewsAll,
+  },
+  {
+    path: '/videos',
+    name: 'Videos',
+    component: Videos,
   },
   {
     path: '/news-in-full',
@@ -105,11 +116,6 @@ const routes = [
     path: '/main-db',
     name: 'MainDB',
     component: MainDB,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
   }
 ]
 

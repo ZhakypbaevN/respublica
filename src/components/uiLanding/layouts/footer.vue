@@ -3,7 +3,7 @@
     <div class="wrapper landing-wrapper">
       <div class="footer-main">
         <div class="footer-mainForm">
-          <h3 class="footer-mainForm-title">Присоединяйтесь к движению</h3>
+          <h3 class="footer-mainForm-title">Присоединяйтесь к партии</h3>
           <RouterLink to="/" class="footer-mainForm-logo">
             <SvgIcon
               name="logo-light"
@@ -46,15 +46,30 @@
             </a>
           </div>
 
+          <div class="footer-mainForm-btns">
+            <Button name="ОБРАТНАЯ СВЯЗЬ" type="default-blue" uppercase />
+            <Button
+              name="ПОЖЕРТВОВАТЬ СЕЙЧАС"
+              class="footer-mainNavs-donatBtn"
+              type="default-red"
+              uppercase
+            >
+              <SvgIcon
+                name="donat-arrow-white"
+                :viewboxWidth="24"
+                :viewboxHeight="24"
+              />
+            </Button>
+          </div>
 
-          <Button name="Заказать обратный звонок" type="default-blue" />
+
         </div>
 
         <div class="footer-mainNavs">
           <div class="footer-mainNavs-item">
-            <h4 class="footer-mainNavs-title">ПАРТИЯ РЕСПУБЛИКА</h4>
+            <h4 class="footer-mainNavs-title">ПАРТИЯ Respublica</h4>
             <div class="footer-mainNavs-links">
-              <RouterLink to="/" class="footer-mainNavs-link">О партии</RouterLink>
+              <RouterLink to="/about-party" class="footer-mainNavs-link">О партии</RouterLink>
               <RouterLink to="/" class="footer-mainNavs-link">Партийная фракция</RouterLink>
               <RouterLink to="/" class="footer-mainNavs-link">Пресс-центр</RouterLink>
               <RouterLink to="/" class="footer-mainNavs-link">Контакты</RouterLink>
@@ -66,32 +81,18 @@
             <div class="footer-mainNavs-item team">
               <h4 class="footer-mainNavs-title">КОМАНДА</h4>
               <div class="footer-mainNavs-links">
-                <RouterLink to="/" class="footer-mainNavs-link">Айдарбек Ходжаназаров</RouterLink>
-                <RouterLink to="/" class="footer-mainNavs-link">Ваши депутаты-либералы</RouterLink>
+                <RouterLink to="/" class="footer-mainNavs-link">Депутаты Мажилиса</RouterLink>
+                <RouterLink to="/" class="footer-mainNavs-link">Депутаты маслихатов</RouterLink>
+                <RouterLink to="/" class="footer-mainNavs-link">Центральный аппарат</RouterLink>
+                <RouterLink to="/" class="footer-mainNavs-link">Филиалы</RouterLink>
               </div>
-            </div>
-
-
-            <div class="footer-mainNavs-item">
-              <h4 class="footer-mainNavs-title">БУДЬТЕ ЧАСТЬЮ ЭТОГО</h4>
-              <Button
-                name="ПОЖЕРТВОВАТЬ СЕЙЧАС"
-                type="default-red"
-                class="footer-mainNavs-donatBtn"
-              >
-                <SvgIcon
-                  name="donat-arrow-white"
-                  :viewboxWidth="24"
-                  :viewboxHeight="24"
-                />
-              </Button>
             </div>
           </div>
 
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-bottom-copyright">© 2023 партия RESPUBLICA</p>
+        <p class="footer-bottom-copyright">© 2023 партия RESPUBLICA.</p>
         <button class="footer-bottom-siteRightBtn">Все права защищены.</button>
       </div>
     </div>
@@ -115,33 +116,33 @@ import { RouterLink } from 'vue-router';
 
   &-main {
     display: grid;
-    grid-template-columns: 560px 1fr;
+    grid-template-columns: 590px 1fr;
     grid-gap: 180px;
-    margin-bottom: 30px;
+    margin-bottom: 65px;
   }
 
   &-mainForm {
     &-title {
       font-size: 40px;
       font-weight: 600;
-      margin-bottom: 15px;
+      margin-bottom: 32px;
     }
 
     &-logo {
       display: block;
       width: 330px;
-      margin-bottom: 32px;
+      margin-bottom: 45px;
     }
 
     &-snList {
       display: flex;
       grid-gap: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 51px;
 
       &-item {
         display: block;
-        height: 32px;
-        width: 32px;
+        height: 44px;
+        width: 44px;
 
         & svg {
           width: 100%;
@@ -149,15 +150,16 @@ import { RouterLink } from 'vue-router';
         }
       }
     }
+
+    &-btns {
+      display: flex;
+      grid-gap: 20px;
+    }
   }
 
   &-mainNavs {
     display: flex;
     grid-gap: 90px;
-
-    &-item.team {
-      margin-bottom: 90px;
-    }
 
     &-title {
       font-size: 24px;

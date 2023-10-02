@@ -1,123 +1,127 @@
 <template>
-    <h2 class="title">Состав фракции партии RESPUBLICA</h2>
+  <section class="fractionComposition landing-block" id="fraction-composition">
+    <div class="wrapper">
+      <h2 class="landing-title">Состав фракции партии RESPUBLICA</h2>
+   
+      <div class="fraction-items">
+          <div class="fraction-item">
+              <img src="/img/fraction/khodzhanazarov.png" alt="khodzhanazarov">
+              <div class="fraction-item-name">ХОДЖАНАЗАРОВ Айдарбек</div>
+              <div class="fraction-item-description">
+                  <div class="fraction-item-description-text">Руководитель фракции,<br>
+                      член Комитета по аграрным вопросам</div>
+                  <div class="fraction-item-social">
+                      <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
 
-    <div class="fraction-items">
-        <div class="fraction-item">
-            <img src="/img/fraction/khodzhanazarov.png" alt="khodzhanazarov">
-            <div class="fraction-item-name">ХОДЖАНАЗАРОВ Айдарбек</div>
-            <div class="fraction-item-description">
-                <div class="fraction-item-description-text">Руководитель фракции,<br>
-                    член Комитета по аграрным вопросам</div>
-                <div class="fraction-item-social">
-                    <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
+                      <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
+                  </div>
+              </div>
+          </div>
 
-                    <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
-                </div>
-            </div>
-        </div>
+          <div class="fraction-item">
+              <img src="/img/fraction/berdenov.png" alt="berdenov">
+              <div class="fraction-item-name">БЕРДЕНОВ Руслан</div>
+              <div class="fraction-item-description">
+                  <div class="fraction-item-description-text">Член Комитета по финансам и бюджету</div>
+                  <div class="fraction-item-social">
+                      <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
 
-        <div class="fraction-item">
-            <img src="/img/fraction/berdenov.png" alt="berdenov">
-            <div class="fraction-item-name">БЕРДЕНОВ Руслан</div>
-            <div class="fraction-item-description">
-                <div class="fraction-item-description-text">Член Комитета по финансам и бюджету</div>
-                <div class="fraction-item-social">
-                    <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
+                      <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
+                  </div>
+              </div>
+          </div>
 
-                    <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
-                </div>
-            </div>
-        </div>
+          <div class="fraction-item">
+              <img src="/img/fraction/kuspekov.png" alt="kuspekov">
+              <div class="fraction-item-name">КУСПЕКОВ Олжас</div>
+              <div class="fraction-item-description">
+                  <div class="fraction-item-description-text">Член Комитета по международным делам, обороне и безопасности</div>
+                  <div class="fraction-item-social">
+                      <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
 
-        <div class="fraction-item">
-            <img src="/img/fraction/kuspekov.png" alt="kuspekov">
-            <div class="fraction-item-name">КУСПЕКОВ Олжас</div>
-            <div class="fraction-item-description">
-                <div class="fraction-item-description-text">Член Комитета по международным делам, обороне и безопасности</div>
-                <div class="fraction-item-social">
-                    <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
+                      <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="fraction-item">
+              <img src="/img/fraction/naumova.png" alt="naumova">
+              <div class="fraction-item-name">НАУМОВА Динара</div>
+              <div class="fraction-item-description">
+                  <div class="fraction-item-description-text">член Комитета по законодательству и судебно-правовой реформе</div>
+                  <div class="fraction-item-social">
+                      <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
 
-                    <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="fraction-item">
-            <img src="/img/fraction/naumova.png" alt="naumova">
-            <div class="fraction-item-name">НАУМОВА Динара</div>
-            <div class="fraction-item-description">
-                <div class="fraction-item-description-text">член Комитета по законодательству и судебно-правовой реформе</div>
-                <div class="fraction-item-social">
-                    <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
+                      <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
+                  </div>
+              </div>
+          </div>
+                  
+          <div class="fraction-item">
+              <img src="/img/fraction/tau.png" alt="tau">
+              <div class="fraction-item-name">ТАУ Нургул</div>
+              <div class="fraction-item-description">
+                  <div class="fraction-item-description-text">Член Комитета по социальнокультурному развитию</div>
+                  <div class="fraction-item-social">
+                      <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
 
-                    <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
-                </div>
-            </div>
-        </div>
-                
-        <div class="fraction-item">
-            <img src="/img/fraction/tau.png" alt="tau">
-            <div class="fraction-item-name">ТАУ Нургул</div>
-            <div class="fraction-item-description">
-                <div class="fraction-item-description-text">Член Комитета по социальнокультурному развитию</div>
-                <div class="fraction-item-social">
-                    <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
+                      <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
+                  </div>
+              </div>
+          </div>
 
-                    <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
-                </div>
-            </div>
-        </div>
+                          
+          <div class="fraction-item">
+              <img src="/img/fraction/shukizhanova.png" alt="shukizhanova">
+              <div class="fraction-item-name">ШУКИЖАНОВА Динара</div>
+              <div class="fraction-item-description">
+                  <div class="fraction-item-description-text">Член Комитета по экономической реформе и региональному развитию</div>
+                  <div class="fraction-item-social">
+                      <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
 
-                        
-        <div class="fraction-item">
-            <img src="/img/fraction/shukizhanova.png" alt="shukizhanova">
-            <div class="fraction-item-name">ШУКИЖАНОВА Динара</div>
-            <div class="fraction-item-description">
-                <div class="fraction-item-description-text">Член Комитета по экономической реформе и региональному развитию</div>
-                <div class="fraction-item-social">
-                    <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
-
-                    <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
-                        class="header-top-snList-item">
-                        <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
-                    </a>
-                </div>
-            </div>
-        </div>
+                      <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
+                          class="header-top-snList-item">
+                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
+  </section>
 </template>
 <style scoped lang="scss">
 .title {

@@ -37,6 +37,12 @@ body {
 .disabled {
   pointer-events: none;
 }
+.bg-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #E1E8EF;
+}
 /*ScrollBar
 /////////////////////*/
 ::-webkit-scrollbar {

@@ -36,14 +36,20 @@
           </a>
         </div>
 
-        <button class="header-top-btnVisuallyImpaired">
-          <SvgIcon
-            name="eye-slashed"
-            :viewboxHeight="24"
-            :viewboxWidth="24"
-          />
-          <span>Версия для слабовидящих</span>
-        </button>
+        <div class="header-top-right">
+          <button class="header-top-btnVisuallyImpaired">
+            <SvgIcon
+              name="eye-slashed"
+              :viewboxHeight="24"
+              :viewboxWidth="24"
+            />
+            <span>Версия для слабовидящих</span>
+          </button>
+
+          <button class="header-main-lang">
+            <span>РУ</span>
+          </button>
+        </div>
       </div>
     </div>
     <div class="header-main" id="header-main">
@@ -66,7 +72,7 @@
           </Router-link>
 
           <nav class="header-main-navs" v-if="!withoutTopAndNavs">
-            <Router-link to="/about" class="header-main-navs-item">
+            <Router-link to="/about-party" class="header-main-navs-item">
               О партии
             </Router-link>
 
@@ -85,27 +91,6 @@
             <Router-link to="/faq" class="header-main-navs-item">
               FAQ
             </Router-link>
-          </nav>
-         
-          <div class="header-main-right">
-            <Router-link to="/donations">
-            <Button
-              name="ДОНАТЫ"
-              type="outline-red"
-              class="header-main-donatBtn"
-            >
-              <SvgIcon
-                name="donat-arrow-red"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
-              />
-            </Button>
-          </Router-link>
-
-            <button class="header-main-lang">
-              <span>РУ</span>
-            </button>
-
             <button class="header-main-search">
               <SvgIcon
                 name="search"
@@ -113,10 +98,25 @@
                 :viewboxHeight="44"
               />
             </button>
-
-            <RouterLink to="/feedback">
+          </nav>
+         
+          <div class="header-main-right">
+            <Router-link to="/donations">
               <Button
-                v-if="withoutTopAndNavs"
+                name="ДОНАТЫ"
+                type="outline-red"
+                class="header-main-donatBtn"
+              >
+                <SvgIcon
+                  name="donat-arrow-red"
+                  :viewboxWidth="24"
+                  :viewboxHeight="24"
+                />
+              </Button>
+            </Router-link>
+
+            <RouterLink v-if="withoutTopAndNavs" to="/feedback">
+              <Button
                 name="Обратная связь"
                 type="outline-default"
                 class="header-main-callBtn"
@@ -206,9 +206,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped lang="scss">
-
 .header {
-  background-color: #F6F9FD;
+  background-color: var(--accent-color-op05);
 
   &.sticky {
     & .header-main {
@@ -219,6 +218,11 @@ onBeforeUnmount(() => {
       z-index: 9999;
 
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+      &-logo {
+        width: 95px;
+        border-radius: 50%;
+      }
 
       & svg.logo-big {
         opacity: 0;
@@ -238,6 +242,12 @@ onBeforeUnmount(() => {
     align-items: center;
 
     padding: 10px 0;
+
+    &-right {
+      display: flex;
+      align-items: center;
+      grid-gap: 20px;
+    }
 
     &-snList {
       display: flex;
@@ -287,21 +297,32 @@ onBeforeUnmount(() => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      grid-gap: 40px;
+      grid-gap: 55px;
+
+      &-right {
+        display: flex;
+        align-items: center;
+        grid-gap: 55px;
+      }
     }
 
     &-logo {
       display: block;
       height: 95px;
       width: 260px;
+      border-radius: 0%;
+      overflow: hidden;
+
       position: relative;
+        
+      transition: width .2s ease-in-out;
 
       & svg {
         position: absolute;
         left: 0;
         top: 0;
         opacity: 0;
-
+        
         transition: opacity .4s ease-in-out;
       }
 
@@ -321,12 +342,13 @@ onBeforeUnmount(() => {
 
     &-navs {
       display: flex;
-      grid-gap: 60px;
+      align-items: center;
+      grid-gap: 55px;
 
       &-item {
         color: var(--primary-color);
-        font-size: 18px;
-        font-weight: 700;
+        font-size: 20px;
+        font-weight: 600;
         text-transform: uppercase;
       }
     }
@@ -334,7 +356,7 @@ onBeforeUnmount(() => {
     &-right {
       display: flex;
       align-items: center;
-      grid-gap: 30px;
+      grid-gap: 20px;
     }
 
     &-donatBtn,

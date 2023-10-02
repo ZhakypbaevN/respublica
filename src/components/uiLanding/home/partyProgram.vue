@@ -8,7 +8,7 @@
       <div class="wrapper partyProgram-items-block">
         <div class="partyProgram-items">
           <div class="partyProgram-item">
-            <h4 class="partyProgram-item-title">Программа партии Respublica </h4>
+            <h4 class="partyProgram-item-title">Програма партии Respublica</h4>
             <RouterLink to="/">
               <Button
                 name="Посмотреть"
@@ -25,7 +25,7 @@
           </div>
           
           <div class="partyProgram-item">
-            <h4 class="partyProgram-item-title">Программа партии Respublica </h4>
+            <h4 class="partyProgram-item-title">Предвыборная программа</h4>
             <RouterLink to="/">
               <Button
                 name="Посмотреть"
