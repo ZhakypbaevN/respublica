@@ -90,20 +90,24 @@ import Announcements from '../../components/uiLanding/news/announcements.vue';
 
 const sideBarlinks = [
   {
-    title: 'Депутаты',
-    link: "#fraction-composition"
+    title: 'Новости',
+    link: "#newsList"
   },
   {
-    title: 'Депутатские запросы',
-    link: "#deputy-requests"
+    title: 'Пресса о нас',
+    link: "#pressAboutUS"
   },
   {
-    title: 'Встречи с избирателями',
-    link: "#meetings-with-voters"
+    title: 'Видеогалерея',
+    link: "#videoGallery"
   },
   {
-    title: 'Направить обращение',
-    link: "#send-an-appeal"
+    title: 'Фотогалерея',
+    link: "#photoGallery"
+  },
+  {
+    title: 'Анонсы, объявления',
+    link: "#announcements"
   }
 ]
 </script>
