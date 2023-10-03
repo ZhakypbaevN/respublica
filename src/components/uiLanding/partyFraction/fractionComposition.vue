@@ -13,12 +13,12 @@
                   <div class="fraction-item-social">
                       <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="facebook-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
 
                       <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="instagram-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
                   </div>
               </div>
@@ -32,12 +32,12 @@
                   <div class="fraction-item-social">
                       <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="facebook-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
 
                       <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="instagram-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
                   </div>
               </div>
@@ -51,12 +51,12 @@
                   <div class="fraction-item-social">
                       <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="facebook-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
 
                       <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="instagram-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
                   </div>
               </div>
@@ -70,12 +70,12 @@
                   <div class="fraction-item-social">
                       <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="facebook-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
 
                       <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="instagram-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
                   </div>
               </div>
@@ -89,12 +89,12 @@
                   <div class="fraction-item-social">
                       <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="facebook-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
 
                       <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="instagram-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
                   </div>
               </div>
@@ -109,12 +109,12 @@
                   <div class="fraction-item-social">
                       <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="facebook-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
 
                       <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank"
                           class="header-top-snList-item">
-                          <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
+                          <SvgIcon name="instagram-blue" :viewboxHeight="44" :viewboxWidth="44" />
                       </a>
                   </div>
               </div>

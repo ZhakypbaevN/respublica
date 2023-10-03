@@ -104,7 +104,7 @@
             <div class="footer-mainNavs-links">
               <RouterLink to="/about-party" class="footer-mainNavs-link">О партии</RouterLink>
               <RouterLink to="/party-fraction" class="footer-mainNavs-link">Партийная фракция</RouterLink>
-              <RouterLink to="/about-party" class="footer-mainNavs-link">Регионы</RouterLink>
+              <RouterLink to="/regions" class="footer-mainNavs-link">Регионы</RouterLink>
               <RouterLink to="/news" class="footer-mainNavs-link">Пресс-центр</RouterLink>
               <RouterLink to="/contacts" class="footer-mainNavs-link">Контакты</RouterLink>
               <RouterLink to="/faq" class="footer-mainNavs-link">FAQ</RouterLink>
@@ -229,8 +229,15 @@ import { RouterLink } from 'vue-router';
       font-weight: 700;
       text-transform: uppercase;
 
+      transition: all .3s ease-in-out;
+
       &::before {
         content: ' ∙ ';
+      }
+
+      &:hover,
+      &.router-link-active  {
+        color: var(--accent-color);
       }
     }
 

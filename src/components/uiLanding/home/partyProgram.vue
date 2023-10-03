@@ -58,7 +58,7 @@
 
   &-preview {
     padding-top: 34%;
-    background: url('/img/uiLanding/party-program-bg.jpg') center no-repeat;
+    background: url('/img/uiLanding/slides/slider-3.jpg') center no-repeat;
     background-size: cover;
   }
 

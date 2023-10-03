@@ -88,7 +88,7 @@
               Партийная фракция
             </Router-link>
 
-            <Router-link to="/news" class="header-main-navs-item">
+            <Router-link to="/regions" class="header-main-navs-item">
               Регионы
             </Router-link>
 
@@ -186,8 +186,6 @@ const handleScroll = () => {
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
   const headerMain = document.querySelector('#header-main');
-  const sideBar = document.querySelector('#sideBar');
-  sideBar?.classList.add('fixed');
 
   headerOffsetTop.value = headerMain!.offsetTop;
 });
@@ -368,6 +366,33 @@ onBeforeUnmount(() => {
         font-size: 20px;
         font-weight: 600;
         text-transform: uppercase;
+        transition: all .3s ease-in-out;
+
+        position: relative;
+
+        &::after {
+          content: '';
+
+          position: absolute;
+          top: 75px;
+          left: 50%;
+          transform: translateX(-50%);
+
+          display: block;
+          width: 0px;
+          height: 5px;
+
+          background-color: var(--accent-color);
+          transition: all .3s ease-in-out;
+        }
+
+        &:hover,
+        &.router-link-active {
+          color: var(--accent-color);
+          &::after {
+            width: 120%;
+          }
+        }
       }
     }
 

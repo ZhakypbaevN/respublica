@@ -42,7 +42,8 @@
         </div>
       </div>
     </div>
-    <RouterLink to="/branch-contacts" class="contacts-link">
+
+    <RouterLink to="/branch-contacts" class="landing-link with-line contacts-link" id="meetings-with-voters">
       <span>Контакты филиалов</span>
       <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
     </RouterLink>

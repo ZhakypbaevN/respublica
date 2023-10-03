@@ -3,7 +3,13 @@
     <div>
       <Header />
 
-      <section class="intro">
+      <section class="intro withZoomPreview-preview">
+        <div
+          class="intro-preview bg-cover withZoomPreview-preview-img"
+          v-for="slide of slides"
+          :key="slide"
+          :style="`background-image: url('${slide}');`"
+        ></div>
         <div class="wrapper landing-wrapper">
           <div class="intro-btns">
             <Button name="ВСТУПИТЬ В ПАРТИЮ" type="default-blue" />
@@ -60,6 +66,13 @@ import PartyProgram from '../../components/uiLanding/home/partyProgram.vue'
 import AboutParty from '../../components/uiLanding/home/aboutParty.vue'
 import Announcements from '../../components/uiLanding/news/announcements.vue';
 
+const slides = [
+  '/img/uiLanding/slides/slider-1.jpg',
+  '/img/uiLanding/slides/slider-2.jpg',
+  '/img/uiLanding/slides/slider-3.jpg',
+  '/img/uiLanding/slides/slider-4.jpg',
+]
+
 const youtubeVideos = [
   `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NWPdwjlhk8E?si=IEuuidab_4uKs3pl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
   `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/f6atkSucpRI?si=yFDSiVThhj19Iant&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
@@ -83,10 +96,34 @@ const youtubeVideos = [
 <style scoped lang="scss">
 .intro {
   padding-top: 34%;
-  background: url('/img/uiLanding/intro-preview.jpg') center no-repeat;
-  background-size: cover;
-
   position: relative;
+
+  &-preview {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    opacity: 0;
+  }
+
+  &-preview:nth-child(1) {
+    animation: slideAnimation 12s infinite;
+  }
+
+  &-preview:nth-child(2) {
+    animation: slideAnimation 12s infinite 5s;
+  }
+
+  &-preview:nth-child(3) {
+    animation: slideAnimation 12s infinite 8s;
+  }
+
+  &-preview:nth-child(4) {
+    animation: slideAnimation 12s infinite 11s;
+  }
 
   &-btns {
     display: flex;
@@ -98,12 +135,27 @@ const youtubeVideos = [
     transform: translateX(-50%);
 
     & button.last {
-      background-color: #042051;
+      background-color: #0044C9;
     }
   }
 }
 
 .videos {
   margin-bottom: 120px;
+}
+
+@keyframes slideAnimation {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>
