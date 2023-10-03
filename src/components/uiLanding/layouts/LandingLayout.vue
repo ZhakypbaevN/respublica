@@ -5,7 +5,7 @@
   
       <div class="content">
         <div class="wrapper-menu">
-          <div class="left-menu">
+          <div class="left-menu" id="sideBar">
             <div class="left-menu-list">
               <ul>
                 <a
@@ -57,19 +57,23 @@ withDefaults(defineProps<IProps>(), {})
 
 .left-menu {
   top: 70px;
-  height: 510px;
   position: sticky;
-  padding-top: 60px;
+  padding-top: 50px;
+  transition: all .3s ease-in-out;
+  overflow-y: auto;
+
+  &.fixed {
+    padding-top: 90px;
+  }
 
   &-list {
-    margin-top: 27px;
     margin-left: 47px;
 
     & ul li {
       color: #FFF;
       font-size: 18px;
       font-weight: 400;
-      margin-top: 20px;
+      margin-bottom: 41px;
       word-wrap: break-word;
       width: 210px;
       cursor: pointer;

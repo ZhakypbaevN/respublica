@@ -11,10 +11,8 @@
           </RouterLink>
         </div>
         <div>
-          <div class="title">
-            <span>Видеогалерея</span>
-          </div>
-          <div class="news-items">
+          <h2 class="landing-title center">Видеогалерея</h2>
+          <div class="landing-items">
             <YoutubeVideo
               v-for="vidoe of youtubeVideos"
               :key="vidoe"
@@ -100,13 +98,6 @@ const youtubeVideos = [
     }
 
 
-}
-
-.news-items {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 60px 30px;
 }
 
 .news-item {

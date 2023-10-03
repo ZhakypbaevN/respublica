@@ -7,7 +7,7 @@
           <RouterLink to="/" class="footer-mainForm-logo">
             <SvgIcon
               name="logo-light"
-              :viewboxWidth="329"
+              :viewboxWidth="449"
               :viewboxHeight="62"
             />
           </RouterLink>
@@ -16,32 +16,65 @@
             <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank" class="footer-mainForm-snList-item">
               <SvgIcon
                 name="facebook-light"
-                :viewboxHeight="32"
-                :viewboxWidth="32"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
+              />
+              <SvgIcon
+                name="facebook"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
               />
             </a>
             
             <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank" class="footer-mainForm-snList-item">
               <SvgIcon
                 name="instagram-light"
-                :viewboxHeight="32"
-                :viewboxWidth="32"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
+              />
+              <SvgIcon
+                name="instagram"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
               />
             </a>
             
-            <a href="#" class="footer-mainForm-snList-item">
+            <a href="https://t.me/respublica_partiyasy" target="_blank" class="footer-mainForm-snList-item">
               <SvgIcon
-                name="whatsapp-light"
-                :viewboxHeight="32"
-                :viewboxWidth="32"
+                name="telegram-light"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
+              />
+              <SvgIcon
+                name="telegram"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
+              />
+            </a>
+            
+            <a href="https://www.tiktok.com/@respublica_partiyasy" target="_blank" class="footer-mainForm-snList-item">
+              <SvgIcon
+                name="tiktok-light"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
+              />
+              <SvgIcon
+                name="tiktok"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
               />
             </a>
 
             <a href="https://youtube.com/@respublica_partiyasy?si=lu_6apPVAJCFtd0z" target="_blank" class="footer-mainForm-snList-item">
               <SvgIcon
                 name="youtube-light"
-                :viewboxHeight="32"
-                :viewboxWidth="32"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
+              />
+              <SvgIcon
+                name="youtube"
+                :viewboxHeight="44"
+                :viewboxWidth="44"
               />
             </a>
           </div>
@@ -49,7 +82,7 @@
           <div class="footer-mainForm-btns">
             <Button name="ОБРАТНАЯ СВЯЗЬ" type="default-blue" uppercase />
             <Button
-              name="ПОЖЕРТВОВАТЬ СЕЙЧАС"
+              name="ДОНАТЫ"
               class="footer-mainNavs-donatBtn"
               type="default-red"
               uppercase
@@ -70,10 +103,11 @@
             <h4 class="footer-mainNavs-title">ПАРТИЯ Respublica</h4>
             <div class="footer-mainNavs-links">
               <RouterLink to="/about-party" class="footer-mainNavs-link">О партии</RouterLink>
-              <RouterLink to="/" class="footer-mainNavs-link">Партийная фракция</RouterLink>
-              <RouterLink to="/" class="footer-mainNavs-link">Пресс-центр</RouterLink>
-              <RouterLink to="/" class="footer-mainNavs-link">Контакты</RouterLink>
-              <RouterLink to="/" class="footer-mainNavs-link">FAQ</RouterLink>
+              <RouterLink to="/party-fraction" class="footer-mainNavs-link">Партийная фракция</RouterLink>
+              <RouterLink to="/about-party" class="footer-mainNavs-link">Регионы</RouterLink>
+              <RouterLink to="/news" class="footer-mainNavs-link">Пресс-центр</RouterLink>
+              <RouterLink to="/contacts" class="footer-mainNavs-link">Контакты</RouterLink>
+              <RouterLink to="/faq" class="footer-mainNavs-link">FAQ</RouterLink>
             </div>
           </div>
 
@@ -125,7 +159,7 @@ import { RouterLink } from 'vue-router';
     &-title {
       font-size: 40px;
       font-weight: 600;
-      margin-bottom: 32px;
+      margin-bottom: 44px;
     }
 
     &-logo {
@@ -143,10 +177,26 @@ import { RouterLink } from 'vue-router';
         display: block;
         height: 44px;
         width: 44px;
+        
+        position: relative;
 
         & svg {
           width: 100%;
           height: 100%;
+        }
+
+        & svg:first-of-type {
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 2;
+          
+          opacity: 1;
+          transition: all .3s ease-in-out;
+        }
+
+        &:hover svg:first-of-type {
+          opacity: 0;
         }
       }
     }

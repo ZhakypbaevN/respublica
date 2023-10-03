@@ -3,6 +3,7 @@ import './assets/scss/Normalize.scss';
 import './assets/scss/Variables.scss';
 import './assets/scss/Wrapper.scss';
 import './assets/scss/Landing.scss';
+import './assets/scss/Helpers.scss';
 import './assets/fonts/stylesheet.css';
 
 import App from './App.vue'

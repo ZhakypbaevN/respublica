@@ -4,12 +4,15 @@
     <h2 class="landing-title">Анонсы, объявления</h2>
     <div class="landing-items">
 
-      <div
-        class="announcement-item"
+      <RouterLink
+        class="announcement-item withZoomPreview"
         v-for="item of list"
         :key="item.title"
+        to="/news/1"
       >
-        <div class="announcement-preview bg-cover" :style="`background-image: url('${item.img}');`"></div>
+        <div class="announcement-preview withZoomPreview-preview">
+          <div class="announcement-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url('${item.img}');`"></div>
+        </div>
 
         <div class="announcement-content">
           <h4 class="announcement-title">{{ item.title }}</h4>
@@ -17,7 +20,7 @@
             {{ item.description }}
           </p>
         </div>
-      </div>
+      </RouterLink>
     </div>
   </div>
 </section>
@@ -26,7 +29,7 @@
 <script setup lang="ts">
 
 interface IProps {
-  landing: boolean
+  landing?: boolean
 }
 
 withDefaults(defineProps<IProps>(), {
@@ -59,16 +62,37 @@ const list = [
     flex-direction: column;
     background-color: var(--white-color);
     border: 1px solid var(--border-light-gray);
+    filter: drop-shadow(0px 4px 13px rgba(74, 120, 236, 0.0));
     border-radius: 10px;
+
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      border-color: var(--accent-color);
+      filter: drop-shadow(0px 4px 13px rgba(74, 120, 236, 0.10));
+      & .announcement-title {
+        color: var(--accent-color);
+      }
+
+      & .announcement-content {
+        background-color: var(--accent-color-op05);
+      }
+    }
   }
 
   &-preview {
-    padding-bottom: 44%;
     border-radius: 10px;
+    
+    &-img {
+      padding-bottom: 44%;
+    }
   }
 
   &-content {
     padding: 25px 25px 30px;
+    background-color: transparent;
+
+    transition: all .3s ease-in-out
   }
 
   &-title {
@@ -76,6 +100,8 @@ const list = [
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 15px;
+
+    transition: all .3s ease-in-out
   }
 
   &-text {

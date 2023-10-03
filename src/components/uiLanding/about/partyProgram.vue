@@ -2,7 +2,7 @@
   <section class="partyProgram landing-block" id="party-program">
     <div class="wrapper">
       <div class="partyProgram-item">
-        <img src="/img/about/program-two.png" alt="">
+        <img src="/img/about/program-one.jpg" alt="">
         <span class="partyProgram-title">Restart. Reforma. Respublica </span>
         <span class="partyProgram-sub-title">программа партии</span>
         
@@ -14,7 +14,7 @@
       </div>
       
       <div class="partyProgram-item">
-        <img src="/img/about/program-one.png" alt="">
+        <img src="/img/about/program-two.jpg" alt="">
         <span class="partyProgram-title">Это Новый Казахстан!</span>
         <span class="partyProgram-sub-title">предвыборная программа партии</span>
         

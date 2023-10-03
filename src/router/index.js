@@ -9,11 +9,10 @@ import Feedback from '../views/uiLanding/Feedback.vue'
 import News from '../views/uiLanding/News.vue'
 import AboutParty from '../views/uiLanding/AboutParty.vue'
 import NewsAll from '../views/uiLanding/NewsAll.vue'
-import Videos from '../views/uiLanding/Videos.vue'
 import NewsInFull from '../views/uiLanding/NewsInFull.vue'
 import PressAll from '../views/uiLanding/PressAll.vue'
 import PressInFull from '../views/uiLanding/PressInFull.vue'
-import VideoGalleryAll from '../views/uiLanding/VideoGalleryAll.vue'
+import VideoGallery from '../views/uiLanding/VideoGallery.vue'
 import PhotoGalleryAll from '../views/uiLanding/PhotoGalleryAll.vue'
 import Contacts from '../views/uiLanding/Contacts.vue'
 import ContactsBranch from '../views/uiLanding/ContactsBranch.vue'
@@ -57,12 +56,7 @@ const routes = [
     component: NewsAll,
   },
   {
-    path: '/videos',
-    name: 'Videos',
-    component: Videos,
-  },
-  {
-    path: '/news-in-full',
+    path: '/news/:news_id',
     name: 'NewsInFull',
     component: NewsInFull,
   },
@@ -78,8 +72,8 @@ const routes = [
   },
   {
     path: '/video-gallery',
-    name: 'VideoGalleryAll',
-    component: VideoGalleryAll,
+    name: 'VideoGallery',
+    component: VideoGallery,
   },
   {
     path: '/photo-gallery',

@@ -55,17 +55,23 @@ button {
   border-radius: 10px;
   position: relative;
 
+  transition: all .3s ease-in-out;
+
   & span {
     color: #FFFFFF;
     font-size: 18px;
     font-weight: 700;
     font-family: 'Tilda Sans';
     line-height: 1;
-    transition: all .2s linear;
+    transition: all .3s ease-in-out;
 
     &.bigText {
       text-transform: uppercase;
     }
+  }
+
+  & svg {
+    transition: all .3s ease-in-out;
   }
 
   &[disabled] {
@@ -88,6 +94,10 @@ button {
 
     &-blue {
       background: var(--accent-color);
+
+      &:hover {
+        background: darken(#4A78EC, 6);
+      }
     }
 
     &-green {
@@ -130,7 +140,16 @@ button {
       & span {
         color: var(--accent-color);
       }
+
+      &:hover {
+        background-color: var(--accent-color);
+
+        & span {
+          color: white;
+        }
+      }
     }
+
     &-grey {
       display: flex;
       border-color: var(--light-gray-color);

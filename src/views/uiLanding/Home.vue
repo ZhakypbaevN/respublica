@@ -7,7 +7,7 @@
         <div class="wrapper landing-wrapper">
           <div class="intro-btns">
             <Button name="ВСТУПИТЬ В ПАРТИЮ" type="default-blue" />
-            <Button name="ПОДАТЬ ОБРАЩЕНИЕ" type="default-blue" />
+            <Button class="last" name="ПОДАТЬ ОБРАЩЕНИЕ" type="default-blue" />
           </div>
         </div>
       </section>
@@ -28,7 +28,7 @@
 
       <section class="videos landing-block">
         <div class="wrapper landing-wrapper">
-          <Slider title="Видеогалерея" link="/videos">
+          <Slider title="Видеогалерея" link="/video-gallery">
             <YoutubeVideo
               v-for="vidoe of youtubeVideos"
               :key="vidoe"
@@ -96,6 +96,14 @@ const youtubeVideos = [
     left: 50%;
     bottom: 50px;
     transform: translateX(-50%);
+
+    & button.last {
+      background-color: #042051;
+    }
   }
+}
+
+.videos {
+  margin-bottom: 120px;
 }
 </style>

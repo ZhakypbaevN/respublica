@@ -7,7 +7,7 @@
           Новости
         </h2>
 
-        <RouterLink to="news-all" class="landing-header-link">
+        <RouterLink to="/news-all" class="landing-header-link">
           <span>Смотреть все</span>
           <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
         </RouterLink>
@@ -32,20 +32,20 @@
           Пресса о нас
         </h2>
 
-        <RouterLink to="news-all" class="landing-header-link">
+        <RouterLink to="/news-all" class="landing-header-link">
           <span>Смотреть все</span>
           <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
         </RouterLink>
       </div>
       
       <div class="landing-items">
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
+        <NewsItem pressAboutUs />
+        <NewsItem pressAboutUs />
+        <NewsItem pressAboutUs />
 
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
+        <NewsItem pressAboutUs />
+        <NewsItem pressAboutUs />
+        <NewsItem pressAboutUs />
       </div>
     </div>
   </section>
@@ -57,20 +57,18 @@
           Видеогалерея
         </h2>
 
-        <RouterLink to="news-all" class="landing-header-link">
+        <RouterLink to="/video-gallery" class="landing-header-link">
           <span>Смотреть все</span>
           <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
         </RouterLink>
       </div>
       
       <div class="landing-items">
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
-
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
+        <YoutubeVideo
+          v-for="vidoe of youtubeVideos"
+          :key="vidoe"
+          :vidoe="vidoe"
+        ></YoutubeVideo>
       </div>
     </div>
   </section>
@@ -79,11 +77,32 @@
   
   <Announcements />
 
+  <section class="contacts landing-block" id="contacts">
+    <div class="wrapper">
+      <div class="contacts-inner">
+        <h2 class="contacts-title">
+          Пресс-служба партии Respublica
+        </h2>
+
+        <a class="contacts-link" href="tel:+77017228251">
+          <SvgIcon name="call-white" :viewboxWidth="52" :viewboxHeight="52" />
+          <span>8 701 722 8251</span>
+        </a>
+
+        <a class="contacts-link" href="mailto:akparat2020@gmail.com">
+          <SvgIcon name="mail-white" :viewboxWidth="52" :viewboxHeight="52" />
+          <span>akparat2020@gmail.com</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
 </LandingLayout>
 </template>
 
 <script setup lang="ts">
 import NewsItem from '../../components/uiLanding/news/newsItem.vue'
+import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
 
 import PhotoGallery from '../../components/uiLanding/news/photoGallery.vue';
 import Announcements from '../../components/uiLanding/news/announcements.vue';
@@ -108,91 +127,54 @@ const sideBarlinks = [
   {
     title: 'Анонсы, объявления',
     link: "#announcements"
+  },
+  {
+    title: 'Контакты пресс-службы',
+    link: "#contacts"
   }
+]
+
+const youtubeVideos = [
+  `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NWPdwjlhk8E?si=IEuuidab_4uKs3pl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+  `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/f6atkSucpRI?si=yFDSiVThhj19Iant&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+  `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/exuF3jsEE90?si=LGYdxg8tws2QvHDh&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+  `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/aJCMDFBN3fs?si=vrV7dQSHErof1VVI&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+  `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/qjM1eRjdcJU?si=pHwlKnwr0UuJHpum&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+  `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/7U4tuGk7zcM?si=BIpEuleVi90nvMDA&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
 ]
 </script>
 
 <style scoped lang="scss">
-.wrapper-main {
-  background-color: #F6F9FD;
-
-}
-
-.wrapper-news {
-  width: 1540px;
-}
-
-.landing-block-content {
-margin: 50px 0 50px 50px;
-}
-
-.content {
-  display: flex;
-  max-width: 1920px;
-  margin: 0 auto;
-
-}
-
-.wrapper-menu {
-  width: 325px;
-  background: #042051;
-}
-
-.left-menu {
-  top: 70px;
-
-
-  height: 300px;
-  position: sticky;
-
-
-  &-about {
-    width: 285px;
-    height: 56px;
-    border-radius: 10px;
-    background: #0B2960;
-    margin-left: 20px;
-    margin-top: 40px;
+.contacts {
+  background-color: var(--accent-color);
+  
+  &-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
+    grid-gap: 60px;
+  }
 
-    & span {
-      color: #FFF;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 700;
-    }
+  &-title {
+    color: white;
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  &-link {
+    display: flex;
+    align-items: center;
+    grid-gap: 20px;
 
     & svg {
-      width: 44px;
-      height: 44px;
-      fill: var(--accent-color);
+      height: 52px;
+      width: 52px;
+    }
+
+    & span {
+      color: white;
+      font-size: 28px;
+      font-weight: 600;
     }
   }
-
-  &-list {
-    margin-top: 27px;
-    margin-left: 47px;
-
-    & ul {
-      & li {
-        color: #FFF;
-        font-size: 18px;
-        font-weight: 400;
-        margin-top: 20px;
-      }
-    }
-  }
-
 }
-.scroll-top {
-  scroll-margin-top: 9.2rem;
-}
-
-.landing-title {
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 700;
-  color: #042051;
-}</style>
+</style>

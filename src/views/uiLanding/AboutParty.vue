@@ -48,16 +48,24 @@ const sideBarlinks = [
     link: "#party-program"
   },
   {
+    title: 'Это Новый Казахстан! (предвыборная программа партии)',
+    link: "#party-program"
+  },
+  {
+    title: 'История',
+    link: "#history"
+  },
+  {
     title: 'Организационная структура',
     link: "#party-structure"
   },
   {
-    title: 'Это Новый Казахстан! (предвыборная программа партии) История',
-    link: "#history"
-  },
-  {
     title: 'Лидеры партии',
     link: "#party-leaders"
+  },
+  {
+    title: 'Respublica jastary',
+    link: "#"
   }
 ]
 </script>
@@ -68,7 +76,7 @@ const sideBarlinks = [
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 54px 80px 54px 140px;
+  padding: 54px 140px 54px 80px;
   
   background: url('/img/about/people.png') center no-repeat;
   background-size: cover;

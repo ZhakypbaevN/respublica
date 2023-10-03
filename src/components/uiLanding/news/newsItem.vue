@@ -1,7 +1,12 @@
 <template>
-  <div class="newsItem-item">
-    <div class="newsItem-item-preview">
-      <div class="newsItem-item-date">
+  <RouterLink
+    class="newsItem withZoomPreview"
+    :class="{pressAboutUs: pressAboutUs}"
+    to="/news/1"
+  >
+    <div class="newsItem-preview withZoomPreview-preview">
+      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img"></div>
+      <div class="newsItem-date">
         <SvgIcon
           name="calendar-check"
           :viewboxWidth="16"
@@ -10,12 +15,21 @@
         <span>12:30, 5 июля 2023</span>
       </div>
     </div>
-    <h4 class="newsItem-item-title">Полный запрет вейпов будет введен в Казахстане</h4>
 
-    <div class="newsItem-item-line"></div>
+    <div v-if="pressAboutUs">
+      <a href="kazinform.kz" class="newsItem-author">kazinform.kz</a>
 
-    <p class="newsItem-item-description">Этому предшествовала большая работа фракции партии Respublica, государственных и общественных организаций.</p>
-  </div>
+      <h4 class="newsItem-title">Полный запрет вейпов будет введен в Казахстане</h4>
+    </div>
+
+    <div v-else>
+      <h4 class="newsItem-title">Полный запрет вейпов будет введен в Казахстане</h4>
+      
+      <div class="newsItem-line"></div>
+
+      <p class="newsItem-description">Этому предшествовала большая работа фракции партии Respublica, государственных и общественных организаций.</p>
+    </div>
+  </RouterLink>
   
   <!-- <div class="newsItemMini">
     <img class="newsItemMini-preview" src="/img/uiLanding/news-example.jpg" alt="">
@@ -40,19 +54,45 @@
 </template>
 
 <script setup lang="ts">
+interface IProps {
+  pressAboutUs?: boolean
+}
+
+withDefaults(defineProps<IProps>(), {
+  pressAboutUs: false
+})
+
+
 </script>
 
 <style scoped lang="scss">
-.newsItem-item {
-  &-preview {
-    padding-bottom: 70%;
-    margin-bottom: 15px;
-    
-    background: var(--accent-color) url('/img/uiLanding/news-example.jpg') center no-repeat;
-    background-size: cover;
-    border-radius: 10px;
+.newsItem {
+  &.pressAboutUs {
+    & .newsItem-preview {
+      padding-bottom: 44%;;
+    }
+  }
 
+  &:hover {
+    & .newsItem-title {
+      color: var(--accent-color);
+    }
+
+    & .newsItem-line {
+      max-width: 100%;
+    }
+  }
+
+  &-preview {
+    border-radius: 10px;
+    
+    margin-bottom: 15px;
     position: relative;
+    
+    &-img {
+      padding-bottom: 70%;
+      background-image: url('/img/uiLanding/news-example.jpg');
+    }
   }
 
   &-date {
@@ -82,19 +122,30 @@
     }
   }
 
+  &-author {
+    display: inline-block;
+    color: var(--light-gray-color);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
   &-title {
     font-size: 20px;
     font-weight: 700;
 
     margin-bottom: 20px;
+    transition: all .3s ease-in-out;
   }
 
   &-line {
-    width: 54px;
+    width: 100%;
+    max-width: 54px;
     height: 3px;
 
     background-color: var(--accent-color);
     margin-bottom: 15px;
+    transition: all .3s ease-in-out;
   }
 
   &-description {

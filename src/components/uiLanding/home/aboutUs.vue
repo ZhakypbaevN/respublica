@@ -2,10 +2,12 @@
   <section class="aboutUs landing-block">
     <div class="wrapper landing-wrapper">
       <h2 class="aboutUs-title">
-        <span>Новые люди</span> новые возможности!
+        <span>Новые люди -</span> новые возможности!
       </h2>
       <p class="aboutUs-description">
         Партия Respublica – это МЕТА-партия. Мы нацелены на структурные преобразования во всех сферах общественной жизни. Мы являемся людьми нового Казахстана, цифровыми номадами!
+        <br>
+        Алға, Қазақстан! Алға, Recpublica!
       </p>
 
       <div class="aboutUs-inner">
@@ -18,7 +20,7 @@
             <h4 class="aboutUs-item-title">{{ item.title }}</h4>
             <p class="aboutUs-item-description" v-html="item.text"></p>
             <RouterLink to="/" class="aboutUs-item-link">
-              <span>{{ item.btn }} &#8594;</span>
+              <span>{{ item.btn }}</span>
             </RouterLink>
           </div>
         </div>
@@ -42,7 +44,7 @@
             />
           </Router-link>
 
-          <Router-link to="/" class="aboutUs-links-item red">
+          <Router-link to="/" class="aboutUs-links-item">
             <span>Направить обращение</span>
             <SvgIcon
               name="arrow-with-line-right-top"
@@ -100,6 +102,7 @@ let aboutUsList = [
 
     & span {
       color: var(--accent-color);
+      font-family: 'Montserrat';
     }
   }
   &-description {
@@ -139,11 +142,27 @@ let aboutUsList = [
       align-items: center;
       grid-gap: 10px;
 
+      &:hover {
+        & span::after {
+          left: 10px;
+        }
+      }
+
       & span {
         color: var(--accent-color);
         font-size: 20px;
         font-weight: 600;
         line-height: 1;
+
+        &::after {
+          content: ' \2192';
+
+          position: relative;
+          top: 3px;
+          left: 0;
+
+          transition: all .3s ease-in-out;
+        }
       }
 
       & svg {
@@ -168,16 +187,6 @@ let aboutUsList = [
       display: inline-flex;
       align-items: center;
       grid-gap: 7px;
-
-      &.red {
-        & span {
-          color: var(--red-color);
-        }
-
-        & svg {
-          fill: var(--red-color);
-        }
-      }
 
       & span {
         color: var(--accent-color);

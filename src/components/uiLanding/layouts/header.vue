@@ -5,33 +5,41 @@
         <div class="header-top-snList">
           <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank" class="header-top-snList-item">
             <SvgIcon
-              name="facebook"
-              :viewboxHeight="32"
-              :viewboxWidth="32"
+              name="facebook-blue"
+              :viewboxHeight="44"
+              :viewboxWidth="44"
             />
           </a>
           
           <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank" class="header-top-snList-item">
             <SvgIcon
-              name="instagram"
-              :viewboxHeight="32"
-              :viewboxWidth="32"
+              name="instagram-blue"
+              :viewboxHeight="44"
+              :viewboxWidth="44"
             />
           </a>
           
-          <a href="#" class="header-top-snList-item">
+          <a href="https://t.me/respublica_partiyasy" class="header-top-snList-item">
             <SvgIcon
-              name="whatsapp"
-              :viewboxHeight="32"
-              :viewboxWidth="32"
+              name="telegram-blue"
+              :viewboxHeight="44"
+              :viewboxWidth="44"
+            />
+          </a>
+          
+          <a href="https://www.tiktok.com/@respublica_partiyasy " class="header-top-snList-item">
+            <SvgIcon
+              name="tiktok-blue"
+              :viewboxHeight="44"
+              :viewboxWidth="44"
             />
           </a>
 
           <a href="https://youtube.com/@respublica_partiyasy?si=lu_6apPVAJCFtd0z" target="_blank" class="header-top-snList-item">
             <SvgIcon
-              name="youtube"
-              :viewboxHeight="32"
-              :viewboxWidth="32"
+              name="youtube-blue"
+              :viewboxHeight="44"
+              :viewboxWidth="44"
             />
           </a>
         </div>
@@ -78,6 +86,10 @@
 
             <Router-link to="/party-fraction" class="header-main-navs-item">
               Партийная фракция
+            </Router-link>
+
+            <Router-link to="/news" class="header-main-navs-item">
+              Регионы
             </Router-link>
 
             <Router-link to="/news" class="header-main-navs-item">
@@ -158,19 +170,25 @@ const paddingBottom = ref('0px');
 
 const handleScroll = () => {
   const headerMain = document.querySelector('#header-main');
-  console.log('acsdcsd', headerMain!.offsetHeight);
+  const sideBar = document.querySelector('#sideBar');
+
   if (window.pageYOffset >= headerOffsetTop.value) {
     isSticky.value = true;
     paddingBottom.value = headerMain!.offsetHeight + 'px';
+    sideBar?.classList.add('fixed');
   } else {
     isSticky.value = false;
     paddingBottom.value = '0px';
+    sideBar?.classList.remove('fixed');
   }
 };
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
   const headerMain = document.querySelector('#header-main');
+  const sideBar = document.querySelector('#sideBar');
+  sideBar?.classList.add('fixed');
+
   headerOffsetTop.value = headerMain!.offsetTop;
 });
 
