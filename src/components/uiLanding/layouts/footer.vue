@@ -115,10 +115,10 @@
             <div class="footer-mainNavs-item team">
               <h4 class="footer-mainNavs-title">КОМАНДА</h4>
               <div class="footer-mainNavs-links">
-                <RouterLink to="/" class="footer-mainNavs-link">Депутаты Мажилиса</RouterLink>
-                <RouterLink to="/" class="footer-mainNavs-link">Депутаты маслихатов</RouterLink>
-                <RouterLink to="/" class="footer-mainNavs-link">Центральный аппарат</RouterLink>
-                <RouterLink to="/" class="footer-mainNavs-link">Филиалы</RouterLink>
+                <RouterLink to="/0980" class="footer-mainNavs-link">Депутаты Мажилиса</RouterLink>
+                <RouterLink to="/0980" class="footer-mainNavs-link">Депутаты маслихатов</RouterLink>
+                <RouterLink to="/0980" class="footer-mainNavs-link">Центральный аппарат</RouterLink>
+                <RouterLink to="/0980" class="footer-mainNavs-link">Филиалы</RouterLink>
               </div>
             </div>
           </div>
