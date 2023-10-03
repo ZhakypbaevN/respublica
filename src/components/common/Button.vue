@@ -51,6 +51,7 @@ const hasError = props.htmlType === 'submit' ? inject('hasError') : {}
 <style scoped lang="scss">
 button {
   padding: 20px 30px;
+  background-color: transparent;
   border: 1px solid transparent;
   border-radius: 10px;
   position: relative;
@@ -88,8 +89,16 @@ button {
   &.default {
     background: var(--primary-color);
 
+    &:hover {
+      background: darken(#042051, 6);
+    }
+
     &-red {
       background: var(--red-color);
+
+      &:hover {
+        background: darken(#F70531, 6);
+      }
     }
 
     &-blue {
@@ -105,6 +114,10 @@ button {
 
       & span {
         text-align: left;
+      }
+
+      &:hover {
+        background: var(--green-color);
       }
     }
   }
@@ -131,6 +144,10 @@ button {
 
       & span {
         color: var(--red-color);
+      }
+
+      &:hover {
+        background-color: var(--red-color-op5);
       }
     }
 

@@ -68,7 +68,7 @@ withDefaults(defineProps<IProps>(), {
 <style scoped lang="scss">
 .newsItem {
   &.pressAboutUs {
-    & .newsItem-preview {
+    & .newsItem-preview-img {
       padding-bottom: 44%;;
     }
   }
