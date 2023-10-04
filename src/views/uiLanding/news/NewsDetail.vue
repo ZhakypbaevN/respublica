@@ -4,7 +4,6 @@
             <Header />
             <div class="wrapper-page">
                 <div class="news">
-                    <div class="news-link">kazinform.kz</div>
 
                     <div class="news-title">Республиканцы посетили Жамбылскую область</div>
                     <div class="news-text">Депутат Мажилиса Парламента Республики Казахстан, председатель партии Respublica
@@ -85,8 +84,6 @@
     </div>
 </template>
 <script setup lang="ts">
-import Header from '../../components/uiLanding/layouts/header.vue';
-import Footer from '../../components/uiLanding/layouts/footer.vue';
 </script>
 <style scoped lang="scss">
 .wrapper-page {
@@ -97,14 +94,6 @@ import Footer from '../../components/uiLanding/layouts/footer.vue';
 .news {
     max-width: 920px;
     margin-top: 50px;
-
-    &-link {
-        color: var(--accent-color);
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 16px;
-        cursor: pointer;
-    }
 
     &-title {
         color: var(--primary-color);

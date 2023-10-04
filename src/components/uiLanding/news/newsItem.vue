@@ -90,7 +90,7 @@ withDefaults(defineProps<IProps>(), {
     position: relative;
     
     &-img {
-      padding-bottom: 70%;
+      padding-bottom: 60%;
       background-image: url('/img/uiLanding/news-example.jpg');
     }
   }

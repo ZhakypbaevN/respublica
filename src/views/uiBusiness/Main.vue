@@ -74,8 +74,8 @@ const usersList = ref()
 const usersListEgov = ref()
 
 onMounted(() => {
-  const url = `https://tri.codetau.com/users`;
-  const urlEgov = `https://tri.codetau.com/usersInEgov`;
+  const url = `http://localhost:3000/users`;
+  const urlEgov = `http://localhost:3000/usersInEgov`;
 
   axios({
     method: "get",

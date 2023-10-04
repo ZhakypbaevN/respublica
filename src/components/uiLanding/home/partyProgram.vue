@@ -9,7 +9,7 @@
         <div class="partyProgram-items">
           <div class="partyProgram-item">
             <h4 class="partyProgram-item-title">Программа партии Respublica</h4>
-            <RouterLink to="/">
+            <a href="/doc/Программа партии_.pdf" target="_blank">
               <Button
                 name="Посмотреть"
                 type="outline-blue"
@@ -21,12 +21,12 @@
                   :viewboxHeight="24"
                 />
               </Button>
-            </RouterLink>
+            </a>
           </div>
           
           <div class="partyProgram-item">
             <h4 class="partyProgram-item-title">Предвыборная программа партии Respublica</h4>
-            <RouterLink to="/">
+            <a href="/doc/Respublica.pdf" target="_blank">
               <Button
                 name="Посмотреть"
                 type="outline-blue"
@@ -38,7 +38,7 @@
                   :viewboxHeight="24"
                 />
               </Button>
-            </RouterLink>
+            </a>
           </div>
         </div>
       </div>

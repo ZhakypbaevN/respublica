@@ -1,5 +1,5 @@
 <template>
-  <header class="header" :class="{ 'sticky': isSticky }" :style="{paddingBottom: paddingBottom}">
+  <header class="header" :class="{ sticky: isSticky, logoBig: withoutTopAndNavs }" :style="{paddingBottom: paddingBottom}">
     <div class="wrapper" v-if="!withoutTopAndNavs">
       <div class="header-top">
         <div class="header-top-snList">
@@ -112,7 +112,7 @@
             </button>
           </nav>
          
-          <div class="header-main-right">
+          <div class="header-main-right" v-if="!withoutTopAndNavs">
             <Router-link to="/donations">
               <Button
                 name="ДОНАТЫ"
@@ -127,25 +127,22 @@
               </Button>
             </Router-link>
 
-            <RouterLink v-if="withoutTopAndNavs" to="/feedback">
-              <Button
-                name="Обратная связь"
-                type="outline-default"
-                class="header-main-callBtn"
-                v-slot:left
-              >
-                <SvgIcon
-                  name="call-dark"
-                  :viewboxWidth="24"
-                  :viewboxHeight="24"
-                />
-              </Button>
-            </RouterLink>
-
             <RouterLink to="/auth">
               <Button name="Авторизация" />
             </RouterLink>
           </div>
+
+          <button
+            v-else
+            class="header-main-close"
+            @click="back"
+          >
+            <SvgIcon
+              name="close"
+              :viewboxHeight="37"
+              :viewboxWidth="37"
+            />
+          </button>
         </div>
       </div>
     </div>
@@ -153,9 +150,14 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '../../../components/common/SvgIcon.vue'
-import Button from '../../../components/common/Button.vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const back = () => {
+  router.go(-1)
+}
 
 defineProps({
   withoutTopAndNavs: {
@@ -249,6 +251,21 @@ onBeforeUnmount(() => {
         animation: spin 3s ease 0.2s, zoom 1s ease-in-out 3s;
         transform: rotate(0deg);
       }
+    }
+  }
+
+  &.logoBig .header-main {
+    &-logo {
+      width: 260px !important;
+      border-radius: 0% !important;
+    }
+
+    & svg.logo-big {
+      opacity: 1 !important;
+    }
+
+    & svg.logo-mini {
+      opacity: 0 !important;
     }
   }
 
@@ -402,8 +419,7 @@ onBeforeUnmount(() => {
       grid-gap: 20px;
     }
 
-    &-donatBtn,
-    &-callBtn {
+    &-donatBtn {
       display: flex;
       align-items: center;
       grid-gap: 10px;
@@ -430,6 +446,20 @@ onBeforeUnmount(() => {
       & svg {
         height: 100%;
         width: 100%;
+      }
+    }
+
+    &-close {
+      & svg {
+        width: 40px;
+        height: 40px;
+        fill: var(--primary-color);
+
+        transition: all .3s ease-in-out;
+      }
+
+      &:hover svg {
+        fill: var(--accent-color);
       }
     }
   }

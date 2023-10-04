@@ -111,8 +111,6 @@
     </div>
 </template>
 <script setup lang="ts">
-import Header from '../../components/uiLanding/layouts/header.vue';
-import Footer from '../../components/uiLanding/layouts/footer.vue';
 </script>
 <style scoped lang="scss">
 .wrapper-main {

@@ -6,21 +6,38 @@ import NotFound from '../views/404NotFound.vue'
 
 import Home from '../views/uiLanding/Home.vue'
 import Feedback from '../views/uiLanding/Feedback.vue'
-import News from '../views/uiLanding/News.vue'
 import AboutParty from '../views/uiLanding/AboutParty.vue'
-import NewsAll from '../views/uiLanding/NewsAll.vue'
-import NewsInFull from '../views/uiLanding/NewsInFull.vue'
-import PressAll from '../views/uiLanding/PressAll.vue'
-import PressInFull from '../views/uiLanding/PressInFull.vue'
-import VideoGallery from '../views/uiLanding/VideoGallery.vue'
-import PhotoGalleryAll from '../views/uiLanding/PhotoGalleryAll.vue'
-import Contacts from '../views/uiLanding/Contacts.vue'
-import ContactsBranch from '../views/uiLanding/ContactsBranch.vue'
+import News from '../views/uiLanding/News.vue'
 import PartyFraction from '../views/uiLanding/PartyFraction.vue'
+
+// News
+import NewsList from '../views/uiLanding/news/NewsList.vue'
+import NewsDetail from '../views/uiLanding/news/NewsDetail.vue'
+
+// Press About Us
+import PressAboutUsList from '../views/uiLanding/news/PressAboutUsList.vue'
+import PressAboutUsDetail from '../views/uiLanding/news/PressAboutUsDetail.vue'
+
+// Contacts
+import Contacts from '../views/uiLanding/contacts/Contacts.vue'
+import ContactsBranch from '../views/uiLanding/contacts/ContactsBranch.vue'
+
+// Gallery
+import VideoGallery from '../views/uiLanding/gallery/VideoGallery.vue'
+import PhotoGalleryAll from '../views/uiLanding/gallery/PhotoGalleryAll.vue'
+
 import Faq from '../views/uiLanding/Faq.vue'
 import Donations from '../views/uiLanding/Donations.vue'
 
+
+// UI Bussiness
 import MainDB from '../views/uiBusiness/Main.vue'
+
+// UI Client
+import MyRequests from '../views/uiClient/MyRequests.vue'
+import MyRequestDetail from '../views/uiClient/MyRequestDetail.vue'
+
+const MainLayoutManager = () => import('../components/uiManager/layouts/MainLayoutManager.vue')
 
 const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
@@ -52,23 +69,23 @@ const routes = [
   },
   {
     path: '/news-all',
-    name: 'NewsAll',
-    component: NewsAll,
+    name: 'NewsList',
+    component: NewsList,
   },
   {
     path: '/news/:news_id',
-    name: 'NewsInFull',
-    component: NewsInFull,
+    name: 'NewsDetail',
+    component: NewsDetail,
   },
   {
-    path: '/press-all',
-    name: 'PressAll',
-    component: PressAll,
+    path: '/press-about-us-list',
+    name: 'PressAboutUsList',
+    component: PressAboutUsList,
   },
   {
     path: '/press-in-full',
-    name: 'PressInFull',
-    component: PressInFull,
+    name: 'PressAboutUsDetail',
+    component: PressAboutUsDetail,
   },
   {
     path: '/video-gallery',
@@ -100,7 +117,6 @@ const routes = [
     name: 'Faq',
     component: Faq,
   },
-  
   {
     path: '/donations',
     name: 'Donations',
@@ -110,6 +126,35 @@ const routes = [
     path: '/main-db',
     name: 'MainDB',
     component: MainDB,
+  },
+  {
+    path: '/my-requests',
+    name: 'MyRequests',
+    component: MyRequests
+  },
+  {
+    path: '/my-requests/:request_id',
+    name: 'MyRequestDetail',
+    component: MyRequestDetail
+  },
+
+
+  // UI Manager
+  {
+    path: '/manager',
+    name: 'Manager',
+    component: MainLayoutManager,
+    meta: { title: 'manager', requiresAuth: true },
+    redirect: to => {
+      return '/requests'
+    },
+    children: [
+      {
+        path: '/requests',
+        name: 'Requests',
+        component: MyRequests
+      }
+    ]
   }
 ]
 

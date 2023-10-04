@@ -31,7 +31,7 @@ const list = [
   {
     img: '/img/liders/Rectangle 4507.jpg',
     fullName: 'Ходжаназаров Айдарбек',
-    instagram: '',
+    instagram: 'https://instagram.com/a1darbek?igshid=NTc4MTIwNjQ2YQ==',
     description: `
       Депутат Мажилиса Парламента Республики Казахстан Член Комитета по аграрным вопросам.<br>
       Руководитель партийной фракции
@@ -60,7 +60,7 @@ const list = [
   {
     img: '/img/liders/Rectangle 4514.jpg',
     fullName: 'Руслан Берденов',
-    instagram: '',
+    instagram: 'https://instagram.com/ruslan_berdenov?igshid=NTc4MTIwNjQ2YQ==',
     description: `
       Сопредседатель партии.<br>
       Депутат Мажилиса Парламента Республики Казахстан Член Комитета по финансам и бюджету
@@ -96,7 +96,7 @@ const list = [
   {
     img: '/img/liders/Rectangle 4513.jpg',
     fullName: 'Динара Шукижанова',
-    instagram: '',
+    instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ==',
     description: `
       Сопредседатель партии.<br>
       Депутат Мажилиса Парламента Республики Казахстан

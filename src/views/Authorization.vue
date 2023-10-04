@@ -41,17 +41,13 @@
         </TransitionGroup>
       </div>
     </div>
-
-    <FooterMini />
+    <div></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-
-import Header from '../components/uiLanding/layouts/header.vue';
-import FooterMini from '../components/uiLanding/layouts/footer-mini.vue';
 
 import LoginForm from '../components/authorization/loginForm.vue';
 import RegisterForm from '../components/authorization/registerForm.vue';

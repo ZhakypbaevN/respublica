@@ -40,15 +40,10 @@
       :show="showModals.orserACall"
       @hide="() => showModals.orserACall = false"
     />
-
-    <FooterMini />
   </div>
 </template>
 
 <script setup lang="ts">
-import Header from '../../components/uiLanding/layouts/header.vue';
-import FooterMini from '../../components/uiLanding/layouts/footer-mini.vue';
-
 import OrderACallModal from '../../components/uiLanding/feedback/OrderACallModal.vue';
 
 import { reactive } from 'vue';

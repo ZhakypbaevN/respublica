@@ -6,20 +6,37 @@
         type="tel"
         light
         name="phone"
-        placeholder="Ваш номер телефона"
+        placeholder="ИИН"
         :min="17"
+        required
+      />
+
+      <Input
+        light
+        type="password"
+        name="password"
+        placeholder="Пароль"
         required
       />
     </div>
 
-    <div class="modal-btn">
-      <Button
-        name="Получить код"
-        type="default-blue"
-        :loading="loading"
-        htmlType="submit"
-      />
+    <div class="modal-helperBtns">
+      <div class="modal-helperBtns-checkbox">
+        <input type="checkbox" name="remember" id="remember" />
+        <label for="remember">Запомнить меня</label>
+      </div>
+      <RouterLink to="">
+        Забыли пароль? 
+      </RouterLink>
     </div>
+
+    <Button
+      name="Войти в систему"
+      type="default-blue"
+      class="modal-btn"
+      :loading="loading"
+      htmlType="submit"
+    />
 
     <div class="modal-message">
       <h4 class="modal-message-title">У вас нет аккаунта?  </h4>
@@ -65,7 +82,7 @@ function generateVerificationCode() {
 }
 
 const postFeedback = ({ phone }: { phone: string }) => {
-  const url = `https://tri.codetau.com/users`;
+  const url = `http://localhost:3000/users`;
   // const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
 
   axios({
@@ -112,10 +129,22 @@ const postFeedback = ({ phone }: { phone: string }) => {
     display: flex;
     flex-direction: column;
     grid-gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
+  }
+
+  &-helperBtns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+
+    &-checkbox {
+      display: inline-flex;
+      grid-gap: 10px;
+    }
   }
 
   &-btn {
+    width: 100%;
     margin-bottom: 50px;
   }
 

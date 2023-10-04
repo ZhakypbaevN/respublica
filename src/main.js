@@ -18,6 +18,8 @@ import Form from './components/common/Form.vue';
 import Modal from './components/common/Modal.vue';
 
 import LandingLayout from './components/uiLanding/layouts/LandingLayout.vue';
+import Header from './components/uiLanding/layouts/Header.vue';
+import Footer from './components/uiLanding/layouts/Footer.vue';
 
 import Collapse from './directives/collapse.js'
 import clickOutside from './directives/clickOutside'
@@ -35,4 +37,6 @@ createApp(App)
   .component('Form', Form)
   .component('Modal', Modal)
   .component('LandingLayout', LandingLayout)
+  .component('Header', Header)
+  .component('Footer', Footer)
   .mount('#app')

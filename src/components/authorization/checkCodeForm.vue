@@ -17,16 +17,15 @@
     </div>
 
     <div class="modal-inputs">
-      <Input
-        light
+      <input
+        type="tel"
         name="code"
-        placeholder="Введите код"
-        validation="sameAs"
-        :sameAs="checkCode"
-        mask="######"
-        :min="4"
-        required
-      />
+        maxlength="1"
+        @input="inputHandler(i)"
+        v-for="i in 6" :key="i"
+        :class="'input-code-' + i"
+        autocomplete="off"
+      >
     </div>
 
     <div class="modal-message">
@@ -85,8 +84,53 @@ interface Emits {
 withDefaults(defineProps<IProps>(), {})
 defineEmits<Emits>()
 
+const verificationCode = ref('')
 const timeLeft = ref('01:00')
 const loading = ref(false)
+
+const inputHandler = (inputId: number) => {
+  const previousInput = document.querySelector(`.input-code-${inputId - 1}`)
+  const currentInput = document.querySelector(`.input-code-${inputId}`)
+  const nextInput = document.querySelector(`.input-code-${inputId + 1}`)
+  verificationCode.value = ''
+  const inputs = document.querySelectorAll('input[name="code"]')
+  for (const i of inputs) {
+    verificationCode.value = verificationCode.value + i.value;
+  }
+  const btn = document.querySelectorAll('button[type="submit"]')
+  if (verificationCode.value.length === 6) {
+    for (const el of btn) {
+      el.classList.remove('disabled')
+    }
+  } else {
+    document.querySelectorAll('button[type="submit"]')
+    for (const el of btn) {
+      el.classList.add('disabled')
+    }
+  }
+  if (currentInput.value.length > 0 && inputId !== 6) {
+    nextInput.focus()
+  }
+  const backSpace = event => {
+    if (event.keyCode === 8) {
+      currentInput.value = null
+      if (inputId !== 1) {
+        previousInput.focus()
+      }
+    }
+    if (verificationCode.value.length === 6) {
+      for (const el of btn) {
+        el.classList.remove('disabled')
+      }
+    } else {
+      document.querySelectorAll('button[type="submit"]')
+      for (const el of btn) {
+        el.classList.add('disabled')
+      }
+    }
+  }
+  currentInput.addEventListener('keydown', backSpace)
+}
 
 const time = ref(60);
 const timer = setInterval(() => {
@@ -107,11 +151,23 @@ const newCode = () => {
 <style scoped lang="scss">
 .modal {
   &-inputs {
-    width: 100%;
     display: flex;
-    flex-direction: column;
-    grid-gap: 15px;
-    margin-bottom: 30px;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+
+    & input[name="code"] {
+      display: block;
+      width: 72px;
+      height: 60px;
+
+      padding: 10px;
+      font-size: 3em;
+
+      border-radius: 10px;
+      border: 1px solid white;
+      background-color: transparent;
+    }
   }
 
   &-btn {

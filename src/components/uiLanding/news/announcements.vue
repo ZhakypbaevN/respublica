@@ -90,6 +90,7 @@ const list = [
 
   &-content {
     padding: 25px 25px 30px;
+    border-radius: 10px;
     background-color: transparent;
 
     transition: all .3s ease-in-out

@@ -13,7 +13,7 @@
         <div class="wrapper landing-wrapper">
           <div class="intro-btns">
             <Button name="ВСТУПИТЬ В ПАРТИЮ" type="default-blue" />
-            <Button class="last" name="ПОДАТЬ ОБРАЩЕНИЕ" type="default-blue" />
+            <Button name="ПОДАТЬ ОБРАЩЕНИЕ" type="default-blue" />
           </div>
         </div>
       </section>
@@ -55,8 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import Header from '../../components/uiLanding/layouts/header.vue';
-import Footer from '../../components/uiLanding/layouts/footer.vue';
 import Slider from '../../components/common/Slider.vue';
 
 import AboutUs from '../../components/uiLanding/home/aboutUs.vue'
@@ -114,15 +112,15 @@ const youtubeVideos = [
   }
 
   &-preview:nth-child(2) {
-    animation: slideAnimation 12s infinite 5s;
+    animation: slideAnimation 12s infinite 3s;
   }
 
   &-preview:nth-child(3) {
-    animation: slideAnimation 12s infinite 8s;
+    animation: slideAnimation 12s infinite 6s;
   }
 
   &-preview:nth-child(4) {
-    animation: slideAnimation 12s infinite 11s;
+    animation: slideAnimation 12s infinite 9s;
   }
 
   &-btns {
@@ -133,10 +131,6 @@ const youtubeVideos = [
     left: 50%;
     bottom: 50px;
     transform: translateX(-50%);
-
-    & button.last {
-      background-color: #0044C9;
-    }
   }
 }
 

@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import Header from '../components/uiLanding/layouts/header.vue';
 </script>
 
 <style scoped lang="scss">

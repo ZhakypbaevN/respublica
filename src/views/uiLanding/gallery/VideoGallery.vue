@@ -27,10 +27,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import Header from '../../components/uiLanding/layouts/header.vue';
-import Footer from '../../components/uiLanding/layouts/footer.vue';
-
-import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
+import YoutubeVideo from '../../../components/uiLanding/news/youtubeVideo.vue'
 
 const youtubeVideos = [
   `<iframe width="440" height="248" src="https://www.youtube-nocookie.com/embed/NWPdwjlhk8E?si=IEuuidab_4uKs3pl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,

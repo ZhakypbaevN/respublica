@@ -12,72 +12,7 @@
             />
           </RouterLink>
 
-          <div class="footer-mainForm-snList">
-            <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank" class="footer-mainForm-snList-item">
-              <SvgIcon
-                name="facebook-light"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-              <SvgIcon
-                name="facebook"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-            </a>
-            
-            <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank" class="footer-mainForm-snList-item">
-              <SvgIcon
-                name="instagram-light"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-              <SvgIcon
-                name="instagram"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-            </a>
-            
-            <a href="https://t.me/respublica_partiyasy" target="_blank" class="footer-mainForm-snList-item">
-              <SvgIcon
-                name="telegram-light"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-              <SvgIcon
-                name="telegram"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-            </a>
-            
-            <a href="https://www.tiktok.com/@respublica_partiyasy" target="_blank" class="footer-mainForm-snList-item">
-              <SvgIcon
-                name="tiktok-light"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-              <SvgIcon
-                name="tiktok"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-            </a>
-
-            <a href="https://youtube.com/@respublica_partiyasy?si=lu_6apPVAJCFtd0z" target="_blank" class="footer-mainForm-snList-item">
-              <SvgIcon
-                name="youtube-light"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-              <SvgIcon
-                name="youtube"
-                :viewboxHeight="44"
-                :viewboxWidth="44"
-              />
-            </a>
-          </div>
+          <SocialNetworks />
 
           <div class="footer-mainForm-btns">
             <Button name="ОБРАТНАЯ СВЯЗЬ" type="default-blue" uppercase />
@@ -134,8 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '../../../components/common/SvgIcon.vue'
-import Button from '../../../components/common/Button.vue'
+import SocialNetworks from './SocialNetworks.vue';
 import { RouterLink } from 'vue-router';
 </script>
 
@@ -166,39 +100,6 @@ import { RouterLink } from 'vue-router';
       display: block;
       width: 330px;
       margin-bottom: 45px;
-    }
-
-    &-snList {
-      display: flex;
-      grid-gap: 20px;
-      margin-bottom: 51px;
-
-      &-item {
-        display: block;
-        height: 44px;
-        width: 44px;
-        
-        position: relative;
-
-        & svg {
-          width: 100%;
-          height: 100%;
-        }
-
-        & svg:first-of-type {
-          position: absolute;
-          left: 0;
-          top: 0;
-          z-index: 2;
-          
-          opacity: 1;
-          transition: all .3s ease-in-out;
-        }
-
-        &:hover svg:first-of-type {
-          opacity: 0;
-        }
-      }
     }
 
     &-btns {
