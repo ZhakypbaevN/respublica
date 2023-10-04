@@ -42,13 +42,8 @@
     margin-bottom: 40px;
 
     & span {
-      cursor: pointer;
       color: var(--accent-color);
       margin-bottom: 40px;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 

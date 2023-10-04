@@ -1,14 +1,13 @@
 <template>
   <div class="wrapper-main">
     <section class="myRequests">
-      <div class="wrapper landing-wrapper">
-        <h2 class="landing-title">Пользователи с доступом на портал (Авторизованные)</h2>
-
+      <div class="wrapper">
         <table class="myRequests-table">
           <thead>
             <tr class="myRequests-head">
+              <th>№</th>
+              <th>Вид</th>
               <th>Категория</th>
-              <th>Название</th>
               <th>Дата</th>
               <th>Файлы</th>
               <th>Локация</th>
@@ -22,13 +21,14 @@
               v-for="request in requestsList"
               :key="request.id"
             >
+              <td class="myRequests-item-date">Т0000{{ request.id }}</td>
               <td>
-                <div class="myRequests-item-category">{{ request.category }}</div>
-              </td>
-              <td>
-                <RouterLink class="myRequests-item-title" :to="`/my-requests/${request.id}`">
+                <RouterLink class="myRequests-item-title" :to="`/client/my-requests/${request.id}`">
                   {{ request.title }}
                 </RouterLink>
+              </td>
+              <td>
+                <div class="myRequests-item-category">{{ request.category }}</div>
               </td>
               <td class="myRequests-item-date">{{ request.date }}</td>
               <td class="myRequests-item-fileCount">{{ request.fileCount }}</td>
@@ -86,6 +86,7 @@ const requestsList = [
 <style scoped lang="scss">
 .wrapper-main {
   background-color: var(--accent-color-op05);
+  padding-top: 40px;
 }
 
 .myRequests {

@@ -81,7 +81,6 @@ const historylist = [
 }
 
 .timeline {
-
   &-block {
     text-align: center;
     font-size: 1.4rem;
@@ -118,6 +117,10 @@ const historylist = [
     &:last-child {
       border-bottom: none;
     }
+  }
+
+  &-block:last-of-type {
+    padding-bottom: 0px !important;
   }
   
   &-item {

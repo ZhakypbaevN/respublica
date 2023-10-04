@@ -15,6 +15,7 @@
           <Button
             name="ЗАПИСАТЬСЯ НА ПРИЕМ"
             type="default-blue"
+            @click="() => showModals.makeAnAppointment = true"
           />
           <Button
             name="ПОДАТЬ ОБРАЩЕНИЕ"
@@ -35,21 +36,30 @@
         </RouterLink>
       </div>
     </div>
+    <div></div>
 
     <OrderACallModal
       :show="showModals.orserACall"
       @hide="() => showModals.orserACall = false"
     />
+
+    <MakeAnAppointment
+      :show="showModals.makeAnAppointment"
+      @hide="() => showModals.makeAnAppointment = false"
+    />
+
   </div>
 </template>
 
 <script setup lang="ts">
 import OrderACallModal from '../../components/uiLanding/feedback/OrderACallModal.vue';
+import MakeAnAppointment from '../../components/uiLanding/feedback/MakeAnAppointment.vue';
 
 import { reactive } from 'vue';
 
 const showModals = reactive({
-  orserACall: false
+  orserACall: false,
+  makeAnAppointment: true
 });
 </script>
 

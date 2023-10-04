@@ -74,8 +74,6 @@
   </section>
   
   <PhotoGallery />
-  
-  <Announcements />
 
   <section class="contacts landing-block" id="contacts">
     <div class="wrapper">
@@ -105,7 +103,6 @@ import NewsItem from '../../components/uiLanding/news/newsItem.vue'
 import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
 
 import PhotoGallery from '../../components/uiLanding/news/photoGallery.vue';
-import Announcements from '../../components/uiLanding/news/announcements.vue';
 
 const sideBarlinks = [
   {
@@ -146,6 +143,7 @@ const youtubeVideos = [
 
 <style scoped lang="scss">
 .contacts {
+  margin-top: 120px;
   background-color: var(--accent-color);
   
   &-inner {

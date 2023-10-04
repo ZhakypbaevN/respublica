@@ -21,17 +21,6 @@
     </div>
   </section>
 
-  <section class="deputyRequests landing-block" id="deputy-requests">
-    <div class="wrapper">
-      <div class="party-program">
-        <span>Программа партии</span>
-        <a href="/doc/Программа партии_.pdf" target="_blank">
-          <Button class="party-charter-download" name="Открыть" type="default-blue" uppercase />
-        </a>
-      </div>
-    </div>
-  </section>
-
 </LandingLayout>
 </template>
   
@@ -51,10 +40,6 @@ const sideBarlinks = [
   {
     title: 'Встречи с избирателями',
     link: "#meetings-with-voters"
-  },
-  {
-    title: 'Направить обращение',
-    link: "#send-an-appeal"
   }
 ]
 </script>
@@ -65,24 +50,6 @@ const sideBarlinks = [
   flex-direction: column;
   align-items: flex-start;
   padding-left: 32%;
-}
-
-.party-program {
-  background-color: var(--primary-color);
-  width: 1490px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 50px 100px;
-
-  & span {
-    color: var(--white-color);
-    font-size: 36px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
 }
 </style>
   

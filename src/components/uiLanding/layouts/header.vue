@@ -2,47 +2,7 @@
   <header class="header" :class="{ sticky: isSticky, logoBig: withoutTopAndNavs }" :style="{paddingBottom: paddingBottom}">
     <div class="wrapper" v-if="!withoutTopAndNavs">
       <div class="header-top">
-        <div class="header-top-snList">
-          <a href="https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr" target="_blank" class="header-top-snList-item">
-            <SvgIcon
-              name="facebook-blue"
-              :viewboxHeight="44"
-              :viewboxWidth="44"
-            />
-          </a>
-          
-          <a href="https://instagram.com/respublica_partiyasy?igshid=MzRlODBiNWFlZA==" target="_blank" class="header-top-snList-item">
-            <SvgIcon
-              name="instagram-blue"
-              :viewboxHeight="44"
-              :viewboxWidth="44"
-            />
-          </a>
-          
-          <a href="https://t.me/respublica_partiyasy" class="header-top-snList-item">
-            <SvgIcon
-              name="telegram-blue"
-              :viewboxHeight="44"
-              :viewboxWidth="44"
-            />
-          </a>
-          
-          <a href="https://www.tiktok.com/@respublica_partiyasy " class="header-top-snList-item">
-            <SvgIcon
-              name="tiktok-blue"
-              :viewboxHeight="44"
-              :viewboxWidth="44"
-            />
-          </a>
-
-          <a href="https://youtube.com/@respublica_partiyasy?si=lu_6apPVAJCFtd0z" target="_blank" class="header-top-snList-item">
-            <SvgIcon
-              name="youtube-blue"
-              :viewboxHeight="44"
-              :viewboxWidth="44"
-            />
-          </a>
-        </div>
+        <SocialNetworks light />
 
         <div class="header-top-right">
           <button class="header-top-btnVisuallyImpaired">
@@ -88,9 +48,9 @@
               Партийная фракция
             </Router-link>
 
-            <Router-link to="/regions" class="header-main-navs-item">
+            <!-- <Router-link to="/regions" class="header-main-navs-item">
               Регионы
-            </Router-link>
+            </Router-link> -->
 
             <Router-link to="/news" class="header-main-navs-item">
               Пресс-центр
@@ -150,6 +110,8 @@
 </template>
 
 <script setup lang="ts">
+import SocialNetworks from './SocialNetworks.vue';
+
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router'
 
@@ -282,21 +244,6 @@ onBeforeUnmount(() => {
       grid-gap: 20px;
     }
 
-    &-snList {
-      display: flex;
-      grid-gap: 20px;
-
-      &-item {
-        display: block;
-        height: 32px;
-        width: 32px;
-
-        & svg {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
     &-btnVisuallyImpaired {
       display: inline-flex;
       justify-content: center;

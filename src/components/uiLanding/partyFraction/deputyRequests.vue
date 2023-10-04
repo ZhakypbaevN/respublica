@@ -5,32 +5,32 @@
     <div class="request-wrapper">
         <div class="deputies">
             <div class="deputies-deputy active">
-                <img src="/img/fraction/khodzhanazarov.png" alt="khodzhanazarov">
+                <img src="/img/uiLanding/fraction/khodzhanazarov.jpg" alt="khodzhanazarov">
                 <span>Ходжаназаров А.</span>
             </div>
 
             <div class="deputies-deputy">
-                <img src="/img/fraction/berdenov.png" alt="berdenov">
+                <img src="/img/uiLanding/fraction/berdenov.jpg" alt="berdenov">
                 <span>БЕРДЕНОВ Р.</span>
             </div>
 
             <div class="deputies-deputy">
-                <img src="/img/fraction/kuspekov.png" alt="kuspekov">
+                <img src="/img/uiLanding/fraction/kuspekov.jpg" alt="kuspekov">
                 <span>КУСПЕКОВ О.</span>
             </div>
 
             <div class="deputies-deputy">
-                <img src="/img/fraction/naumova.png" alt="naumova">
+                <img src="/img/uiLanding/fraction/naumova.jpg" alt="naumova">
                 <span>НАУМОВА Д.</span>
             </div>
 
             <div class="deputies-deputy">
-                <img src="/img/fraction/tau.png" alt="tau">
+                <img src="/img/uiLanding/fraction/tau.jpg" alt="tau">
                 <span>ТАУ Н.</span>
             </div>
 
             <div class="deputies-deputy">
-                <img src="/img/fraction/shukizhanova.png" alt="shukizhanova">
+                <img src="/img/uiLanding/fraction/shukizhanova.jpg" alt="shukizhanova">
                 <span>ШУКИЖАНОВА Д.</span>
             </div>
         </div>

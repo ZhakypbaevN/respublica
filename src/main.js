@@ -11,6 +11,7 @@ import router from './router/index'
 
 import VueTheMask from 'vue-the-mask'
 
+import Select from './components/common/select/index.vue';
 import SvgIcon from './components/common/SvgIcon.vue'
 import Button from './components/common/Button.vue'
 import Input from './components/common/Input.vue'
@@ -32,6 +33,7 @@ createApp(App)
   .directive('collapse', Collapse)
   .directive('loading', loading())
   .component('SvgIcon', SvgIcon)
+  .component('Select', Select)
   .component('Button', Button)
   .component('Input', Input)
   .component('Form', Form)

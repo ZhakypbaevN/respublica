@@ -34,9 +34,13 @@ import Donations from '../views/uiLanding/Donations.vue'
 import MainDB from '../views/uiBusiness/Main.vue'
 
 // UI Client
-import MyRequests from '../views/uiClient/MyRequests.vue'
-import MyRequestDetail from '../views/uiClient/MyRequestDetail.vue'
+import MyRequests from '../views/uiClient/requests/MyRequests.vue'
+import MyRequestDetail from '../views/uiClient/requests/MyRequestDetail.vue'
 
+import ExitParty from '../views/uiClient/ExitParty.vue'
+
+// Layouts
+const MainLayoutClient = () => import('../components/uiClient/layouts/MainLayoutClient.vue')
 const MainLayoutManager = () => import('../components/uiManager/layouts/MainLayoutManager.vue')
 
 const routes = [
@@ -127,15 +131,34 @@ const routes = [
     name: 'MainDB',
     component: MainDB,
   },
+
+
+  // UI Client
   {
-    path: '/my-requests',
-    name: 'MyRequests',
-    component: MyRequests
-  },
-  {
-    path: '/my-requests/:request_id',
-    name: 'MyRequestDetail',
-    component: MyRequestDetail
+    path: '/client',
+    name: 'Client',
+    component: MainLayoutClient,
+    meta: { title: 'client', requiresAuth: true },
+    redirect: to => {
+      return '/client/my-requests'
+    },
+    children: [
+      {
+        path: 'my-requests',
+        name: 'MyRequests',
+        component: MyRequests,
+      },
+      {
+        path: 'my-requests/:request_id',
+        name: 'MyRequestDetail',
+        component: MyRequestDetail
+      },
+      {
+        path: 'exit-party',
+        name: 'ExitParty',
+        component: ExitParty
+      }
+    ]
   },
 
 

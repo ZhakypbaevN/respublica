@@ -20,12 +20,12 @@
                 <div class="fraction-item-social">
                   <a :href="fraction.facebook" target="_blank"
                     class="header-top-snList-item">
-                    <SvgIcon name="facebook-blue" :viewboxHeight="44" :viewboxWidth="44" />
+                    <SvgIcon name="facebook-line-blue" :viewboxHeight="44" :viewboxWidth="44" />
                   </a>
 
                   <a :href="fraction.instagram" target="_blank"
                     class="header-top-snList-item">
-                    <SvgIcon name="instagram-blue" :viewboxHeight="44" :viewboxWidth="44" />
+                    <SvgIcon name="instagram-line-blue" :viewboxHeight="44" :viewboxWidth="44" />
                   </a>
                 </div>
               </div>
@@ -142,8 +142,7 @@ const fractionList = [
       display: flex;
       grid-gap: 20px;
 
-      & a {
-        display: block;
+      & a svg {
         height: 32px;
         width: 32px;
       }

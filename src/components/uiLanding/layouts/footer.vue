@@ -15,19 +15,23 @@
           <SocialNetworks />
 
           <div class="footer-mainForm-btns">
-            <Button name="ОБРАТНАЯ СВЯЗЬ" type="default-blue" uppercase />
-            <Button
-              name="ДОНАТЫ"
-              class="footer-mainNavs-donatBtn"
-              type="default-red"
-              uppercase
-            >
-              <SvgIcon
-                name="donat-arrow-white"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
-              />
-            </Button>
+            <RouterLink to="/feedback">
+              <Button name="ОБРАТНАЯ СВЯЗЬ" type="default-blue" uppercase />
+            </RouterLink>
+            <RouterLink to="/donations">
+              <Button
+                name="ДОНАТЫ"
+                class="footer-mainNavs-donatBtn"
+                type="default-red"
+                uppercase
+              >
+                <SvgIcon
+                  name="donat-arrow-white"
+                  :viewboxWidth="24"
+                  :viewboxHeight="24"
+                />
+              </Button>
+            </RouterLink>
           </div>
 
 
@@ -39,7 +43,7 @@
             <div class="footer-mainNavs-links">
               <RouterLink to="/about-party" class="footer-mainNavs-link">О партии</RouterLink>
               <RouterLink to="/party-fraction" class="footer-mainNavs-link">Партийная фракция</RouterLink>
-              <RouterLink to="/regions" class="footer-mainNavs-link">Регионы</RouterLink>
+              <!-- <RouterLink to="/regions" class="footer-mainNavs-link">Регионы</RouterLink> -->
               <RouterLink to="/news" class="footer-mainNavs-link">Пресс-центр</RouterLink>
               <RouterLink to="/contacts" class="footer-mainNavs-link">Контакты</RouterLink>
               <RouterLink to="/faq" class="footer-mainNavs-link">FAQ</RouterLink>

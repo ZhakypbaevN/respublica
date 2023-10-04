@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
 
-  background: url('/img/landing/travel-ideas.jpg') no-repeat center;
+  /* background: url('/img/landing/travel-ideas.jpg') no-repeat center; */
   background-size: cover;
 }
 

@@ -3,21 +3,14 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="feedbackModal"
-    title="Заказать звонок"
+    title="Записаться на прием"
   >
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
-        <Input
-          type="text"
-          name="name"
-          placeholder="Ваше имя"
-          required
-          autofocus
-        />
-
+      <label>Принимающее должностное лицо</label>
         <Select
           name="region"
-          placeholder="Выберите регион"
+          placeholder="Выберите из списка принимающее должностное лицо"
           :options="[
             {label: 'Алматы', value: 'Алматы'},
             {label: 'Астана', value: 'Астана'},
@@ -26,21 +19,26 @@
           required
         />
 
-        <Input
-          type="tel"
-          name="phone"
-          placeholder="Ваш номер телефона"
+        <label>Категория вопроса/обращения</label>
+        <Select
+          name="region"
+          placeholder="Выберите категорию вопроса/обращения"
+          :options="[
+            {label: 'Алматы', value: 'Алматы'},
+            {label: 'Астана', value: 'Астана'},
+            {label: 'Караганда', value: 'Караганда'},
+          ]"
           required
         />
       </div>
       
       <p class="feedbackModal-description">
-        Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
+        Мы Вам направим точную дату и время за 3 рабочих дня до даты проведения приема.
       </p>
 
       <div>
         <Button
-          name="Заказать обратный звонок"
+          name="Записаться на прием"
           :loading="loading"
           htmlType="submit"
         />
@@ -116,8 +114,10 @@ const postFeedback = ({ name, phone, comment }: { name: string, phone: string, c
   }
 
   &-description {
-    color: var(--light-gray-color);
-    margin-bottom: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent-color);
+    margin-bottom: 44px;
   }
 
   & button {

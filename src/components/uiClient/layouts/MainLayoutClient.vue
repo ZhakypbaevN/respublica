@@ -1,6 +1,6 @@
 <template>
   <div class="managerLayout">
-    <HeaderManager />
+    <HeaderClient />
 
     <div class="managerLayout-inner">
       <SideBar :list="sideBarlinks"></SideBar>
@@ -20,40 +20,40 @@
 
 <script setup>
 import SideBar from '../../common/SideBar.vue';
-import HeaderManager from './HeaderManager.vue';
+import HeaderClient from './HeaderClient.vue';
 
 const sideBarlinks = [
   {
     title: 'История обращений',
-    link: "#"
+    link: "/client/my-requests"
   },
   {
     title: 'Личные данные',
-    link: "#"
+    link: "/client/test"
   },
   {
     title: 'Записаться на прием',
-    link: "#"
+    link: "/client/test"
   },
   {
     title: 'Подать обращение',
-    link: "#"
+    link: "/client/test"
   },
   {
     title: 'Донаты',
-    link: "#"
+    link: "/client/test"
   },
   {
     title: 'Скачать партбилет',
-    link: "#"
+    link: "/client/test"
   },
   {
     title: 'Новости',
-    link: "#"
+    link: "/client/test"
   },
   {
     title: 'Выйти из партии',
-    link: "#"
+    link: "/client/exit-party"
   },
 ]
 </script>
@@ -69,7 +69,7 @@ const sideBarlinks = [
   }
 
   &-content {
-
+    overflow-y: auto;
   }
 }
 </style>

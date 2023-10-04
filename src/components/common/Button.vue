@@ -28,7 +28,7 @@ import handleError from '../../helpers/handleError'
 
 interface IProps {
   name?: string
-  type?: 'default' | 'default-blue' | 'default-red' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'  | 'outline-grey'
+  type?: 'default' | 'default-blue' | 'default-red' | 'default-grey' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'  | 'outline-grey'
   loading?: boolean
   htmlType?: 'button' | 'submit' | 'reset',
   disabled?: boolean,
@@ -120,6 +120,14 @@ button {
         background: var(--green-color);
       }
     }
+
+    &-grey {
+      background-color: var(--light-gray-color-op5);
+
+      &:hover {
+        background-color: var(--light-gray-color);
+      }
+    }
   }
 
   &.outline {
@@ -159,11 +167,7 @@ button {
       }
 
       &:hover {
-        background-color: var(--accent-color);
-
-        & span {
-          color: white;
-        }
+        background-color: var(--accent-color-op1);
       }
     }
 

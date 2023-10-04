@@ -96,6 +96,7 @@
 <style scoped lang="scss">
 .wrapper-main {
   background-color: var(--accent-color-op05);
+  padding-top: 40px;
 }
 
 .myRequestDetail {

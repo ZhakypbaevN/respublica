@@ -105,12 +105,6 @@
         width: 24px;
         fill: var(--accent-color);
       }
-
-      &:hover {
-        & svg {
-          fill: white;
-        }
-      }
     }
   }
 }

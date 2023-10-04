@@ -31,9 +31,6 @@
 </template>
   
 <script setup lang="ts">
-import Header from './header.vue';
-import Footer from './footer.vue';
-
 interface IProps {
   list: Array<any>,
 }

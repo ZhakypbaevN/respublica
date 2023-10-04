@@ -133,7 +133,7 @@ interface IProps {
   value?: string | number,
   name?: string,
   type?: 'text' | 'tel' | 'email' | 'number' | 'editor' | 'password' | 'textarea' | 'disabled',
-  light: boolean,
+  light?: boolean,
   placeholder?: string,
   required?: boolean,
   validation?: any,

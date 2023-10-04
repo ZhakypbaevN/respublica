@@ -1,5 +1,5 @@
 <template>
-  <div class="snList">
+  <div class="snList" :class="{light: light}">
     <a
       v-for="sn of snList"
       :href="sn.link"
@@ -8,13 +8,13 @@
     >
       <SvgIcon
         :name="sn.icon_withOutColor"
-        :viewboxHeight="44"
-        :viewboxWidth="44"
+        :viewboxHeight="32"
+        :viewboxWidth="32"
       />
       <SvgIcon
         :name="sn.icon"
-        :viewboxHeight="44"
-        :viewboxWidth="44"
+        :viewboxHeight="32"
+        :viewboxWidth="32"
       />
     </a>
 
@@ -22,6 +22,14 @@
 </template>
 
 <script setup lang="ts">
+interface IProps {
+  light?: boolean,
+}
+
+withDefaults(defineProps<IProps>(), {
+  light: false
+})
+
 const snList = [
   {
     link: 'https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr',
@@ -57,16 +65,37 @@ const snList = [
   grid-gap: 20px;
   margin-bottom: 51px;
 
+  &.light {
+    margin-bottom: 0px !important;
+
+    & .snList-item {
+      & svg:last-child {
+        fill: var(--accent-color-op05) !important;
+        opacity: .5 !important;
+      }
+  
+      & svg:first-of-type {
+        opacity: 0 !important;
+      }
+
+      &:hover svg:last-child {
+        opacity: 1 !important;
+      }
+    }
+  }
+
   &-item {
     display: block;
-    height: 44px;
-    width: 44px;
+    height: 32px;
+    width: 32px;
     
     position: relative;
 
     & svg {
       width: 100%;
       height: 100%;
+      fill: var(--primary-color);
+      transition: all .3s ease-in-out;
     }
 
     & svg:first-of-type {
@@ -76,7 +105,6 @@ const snList = [
       z-index: 2;
       
       opacity: 1;
-      transition: all .3s ease-in-out;
     }
 
     &:hover svg:first-of-type {
