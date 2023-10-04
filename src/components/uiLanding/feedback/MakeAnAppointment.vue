@@ -7,29 +7,33 @@
   >
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
-      <label>Принимающее должностное лицо</label>
-        <Select
-          name="region"
-          placeholder="Выберите из списка принимающее должностное лицо"
-          :options="[
-            {label: 'Алматы', value: 'Алматы'},
-            {label: 'Астана', value: 'Астана'},
-            {label: 'Караганда', value: 'Караганда'},
-          ]"
-          required
-        />
+        <div>
+          <label for="position">Принимающее должностное лицо</label>
+          <Select
+            name="position"
+            placeholder="Выберите из списка принимающее должностное лицо"
+            :options="[
+              {label: 'Алматы', value: 'Алматы'},
+              {label: 'Астана', value: 'Астана'},
+              {label: 'Караганда', value: 'Караганда'},
+            ]"
+            required
+          />
+        </div>
 
-        <label>Категория вопроса/обращения</label>
-        <Select
-          name="region"
-          placeholder="Выберите категорию вопроса/обращения"
-          :options="[
-            {label: 'Алматы', value: 'Алматы'},
-            {label: 'Астана', value: 'Астана'},
-            {label: 'Караганда', value: 'Караганда'},
-          ]"
-          required
-        />
+        <div>
+          <label for="category">Категория вопроса/обращения</label>
+          <Select
+            name="category"
+            placeholder="Выберите категорию вопроса/обращения"
+            :options="[
+              {label: 'Алматы', value: 'Алматы'},
+              {label: 'Астана', value: 'Астана'},
+              {label: 'Караганда', value: 'Караганда'},
+            ]"
+            required
+          />
+        </div>
       </div>
       
       <p class="feedbackModal-description">
@@ -111,6 +115,14 @@ const postFeedback = ({ name, phone, comment }: { name: string, phone: string, c
     flex-direction: column;
     grid-gap: 15px;
     margin-bottom: 30px;
+
+    & label {
+      display: block;
+      color: var(--light-gray-color);
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
   }
 
   &-description {

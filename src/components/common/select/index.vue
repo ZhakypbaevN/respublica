@@ -213,7 +213,7 @@ const locatedAbove = computed(() => list.value.offsetTop + 300 < document.docume
     right: 24px;
     top: 50%;
     height: 20px;
-    weight: 20px;
+    width: 20px;
   }
   & .input{
     margin-bottom: 0;
