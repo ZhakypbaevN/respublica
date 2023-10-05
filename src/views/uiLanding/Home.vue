@@ -103,16 +103,16 @@
 
 <script setup lang="ts">
 import Slider from '../../components/common/Slider.vue';
-import JoinPartyModal from '../../components/uiLanding/feedback/JoinPartyModal.vue';
-import SubmitAnAppealModal from '../../components/uiLanding/feedback/SubmitAnAppealModal.vue';
-import MakeAnAppointmentModal from '../../components/uiLanding/feedback/MakeAnAppointmentModal.vue';
+import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.vue';
+import SubmitAnAppealModal from '../../components/uiLanding/feedback/submitAnAppealModal.vue';
+import MakeAnAppointmentModal from '../../components/uiLanding/feedback/makeAnAppointmentModal.vue';
 
-import AboutUs from '../../components/uiLanding/home/AboutUs.vue'
-import NewsItem from '../../components/uiLanding/news/NewsItem.vue'
-import YoutubeVideo from '../../components/uiLanding/news/YoutubeVideo.vue'
-import PartyProgram from '../../components/uiLanding/home/PartyProgram.vue'
-import AboutParty from '../../components/uiLanding/home/AboutParty.vue'
-import AnnounceItem from '../../components/uiLanding/news/AnnounceItem.vue';
+import AboutUs from '../../components/uiLanding/home/aboutUs.vue'
+import NewsItem from '../../components/uiLanding/news/newsItem.vue'
+import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
+import PartyProgram from '../../components/uiLanding/home/partyProgram.vue'
+import AboutParty from '../../components/uiLanding/home/aboutParty.vue'
+import AnnounceItem from '../../components/uiLanding/news/announceItem.vue';
 
 
 import { reactive } from 'vue';

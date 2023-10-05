@@ -40,8 +40,8 @@ import MyRequestDetail from '../views/uiClient/requests/MyRequestDetail.vue'
 import ExitParty from '../views/uiClient/ExitParty.vue'
 
 // Layouts
-const MainLayoutClient = () => import('../components/uiClient/layouts/MainLayoutClient.vue')
-const MainLayoutManager = () => import('../components/uiManager/layouts/MainLayoutManager.vue')
+const MainLayoutClient = () => import('../components/uiClient/layouts/mainLayoutClient.vue')
+const MainLayoutManager = () => import('../components/uiManager/layouts/mainLayoutManager.vue')
 
 const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
@@ -56,129 +56,129 @@ const routes = [
     name: 'Home',
     component: Home,
   },
-  // {
-  //   path: '/about-party',
-  //   name: 'AboutParty',
-  //   component: AboutParty,
-  // },
-  // {
-  //   path: '/feedback',
-  //   name: 'Feedback',
-  //   component: Feedback,
-  // },
-  // {
-  //   path: '/news',
-  //   name: 'News',
-  //   component: News,
-  // },
-  // {
-  //   path: '/news-all',
-  //   name: 'NewsList',
-  //   component: NewsList,
-  // },
-  // {
-  //   path: '/news/:news_id',
-  //   name: 'NewsDetail',
-  //   component: NewsDetail,
-  // },
-  // {
-  //   path: '/press-about-us-list',
-  //   name: 'PressAboutUsList',
-  //   component: PressAboutUsList,
-  // },
-  // {
-  //   path: '/press-in-full',
-  //   name: 'PressAboutUsDetail',
-  //   component: PressAboutUsDetail,
-  // },
-  // {
-  //   path: '/video-gallery',
-  //   name: 'VideoGallery',
-  //   component: VideoGallery,
-  // },
-  // {
-  //   path: '/photo-gallery',
-  //   name: 'PhotoGalleryAll',
-  //   component: PhotoGalleryAll,
-  // },
-  // {
-  //   path: '/contacts',
-  //   name: 'Contacts',
-  //   component: Contacts,
-  // },
-  // {
-  //   path: '/branch-contacts',
-  //   name: 'ContactsBranch',
-  //   component: ContactsBranch,
-  // },
-  // {
-  //   path: '/party-fraction',
-  //   name: 'PartyFraction',
-  //   component: PartyFraction,
-  // },
-  // {
-  //   path: '/faq',
-  //   name: 'Faq',
-  //   component: Faq,
-  // },
-  // {
-  //   path: '/donations',
-  //   name: 'Donations',
-  //   component: Donations,
-  // },
-  // {
-  //   path: '/main-db',
-  //   name: 'MainDB',
-  //   component: MainDB,
-  // },
+  {
+    path: '/about-party',
+    name: 'AboutParty',
+    component: AboutParty,
+  },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: Feedback,
+  },
+  {
+    path: '/news',
+    name: 'News',
+    component: News,
+  },
+  {
+    path: '/news-all',
+    name: 'NewsList',
+    component: NewsList,
+  },
+  {
+    path: '/news/:news_id',
+    name: 'NewsDetail',
+    component: NewsDetail,
+  },
+  {
+    path: '/press-about-us-list',
+    name: 'PressAboutUsList',
+    component: PressAboutUsList,
+  },
+  {
+    path: '/press-in-full',
+    name: 'PressAboutUsDetail',
+    component: PressAboutUsDetail,
+  },
+  {
+    path: '/video-gallery',
+    name: 'VideoGallery',
+    component: VideoGallery,
+  },
+  {
+    path: '/photo-gallery',
+    name: 'PhotoGalleryAll',
+    component: PhotoGalleryAll,
+  },
+  {
+    path: '/contacts',
+    name: 'Contacts',
+    component: Contacts,
+  },
+  {
+    path: '/branch-contacts',
+    name: 'ContactsBranch',
+    component: ContactsBranch,
+  },
+  {
+    path: '/party-fraction',
+    name: 'PartyFraction',
+    component: PartyFraction,
+  },
+  {
+    path: '/faq',
+    name: 'Faq',
+    component: Faq,
+  },
+  {
+    path: '/donations',
+    name: 'Donations',
+    component: Donations,
+  },
+  {
+    path: '/main-db',
+    name: 'MainDB',
+    component: MainDB,
+  },
 
 
   // UI Client
-  // {
-  //   path: '/client',
-  //   name: 'Client',
-  //   component: MainLayoutClient,
-  //   meta: { title: 'client', requiresAuth: true },
-  //   redirect: to => {
-  //     return '/client/my-requests'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'my-requests',
-  //       name: 'MyRequests',
-  //       component: MyRequests,
-  //     },
-  //     {
-  //       path: 'my-requests/:request_id',
-  //       name: 'MyRequestDetail',
-  //       component: MyRequestDetail
-  //     },
-  //     {
-  //       path: 'exit-party',
-  //       name: 'ExitParty',
-  //       component: ExitParty
-  //     }
-  //   ]
-  // },
+  {
+    path: '/client',
+    name: 'Client',
+    component: MainLayoutClient,
+    meta: { title: 'client', requiresAuth: true },
+    redirect: to => {
+      return '/client/my-requests'
+    },
+    children: [
+      {
+        path: 'my-requests',
+        name: 'MyRequests',
+        component: MyRequests,
+      },
+      {
+        path: 'my-requests/:request_id',
+        name: 'MyRequestDetail',
+        component: MyRequestDetail
+      },
+      {
+        path: 'exit-party',
+        name: 'ExitParty',
+        component: ExitParty
+      }
+    ]
+  },
 
 
-  // // UI Manager
-  // {
-  //   path: '/manager',
-  //   name: 'Manager',
-  //   component: MainLayoutManager,
-  //   meta: { title: 'manager', requiresAuth: true },
-  //   redirect: to => {
-  //     return '/requests'
-  //   },
-  //   children: [
-  //     {
-  //       path: '/requests',
-  //       name: 'Requests',
-  //       component: MyRequests
-  //     }
-  //   ]
-  // }
+  // UI Manager
+  {
+    path: '/manager',
+    name: 'Manager',
+    component: MainLayoutManager,
+    meta: { title: 'manager', requiresAuth: true },
+    redirect: to => {
+      return '/requests'
+    },
+    children: [
+      {
+        path: '/requests',
+        name: 'Requests',
+        component: MyRequests
+      }
+    ]
+  }
 ]
 
 const router = createRouter({

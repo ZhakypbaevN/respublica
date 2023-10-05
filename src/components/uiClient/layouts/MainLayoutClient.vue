@@ -20,7 +20,7 @@
 
 <script setup>
 import SideBar from '../../common/SideBar.vue';
-import HeaderClient from './HeaderClient.vue';
+import HeaderClient from './headerClient.vue';
 
 const sideBarlinks = [
   {

@@ -31,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import NewsItem from '../../../components/uiLanding/news/newsItem.vue'
 </script>
 
 <style scoped lang="scss">

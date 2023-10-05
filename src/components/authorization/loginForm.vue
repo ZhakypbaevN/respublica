@@ -81,10 +81,21 @@ function generateVerificationCode() {
   return (Math.floor(Math.random() * 90000) + 10000).toString();
 }
 
-const postFeedback = ({ phone }: { phone: string }) => {
+const postFeedback = ({ phone, password }: { phone: string, password: string }) => {
   const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
   // const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
 
+  axios.post(url, {
+    username: phone,
+    password: password
+  })
+    .then(response => {
+      // Handle response
+    })
+    .catch(error => {
+      // Handle error
+    });
+    
   axios({
     method: "get",
     url: url,

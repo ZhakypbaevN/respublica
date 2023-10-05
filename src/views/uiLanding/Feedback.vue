@@ -64,10 +64,10 @@
 </template>
 
 <script setup lang="ts">
-import SubmitAnAppealModal from '../../components/uiLanding/feedback/SubmitAnAppealModal.vue';
-import JoinPartyModal from '../../components/uiLanding/feedback/JoinPartyModal.vue';
-import OrderACallModal from '../../components/uiLanding/feedback/OrderACallModal.vue';
-import MakeAnAppointmentModal from '../../components/uiLanding/feedback/MakeAnAppointmentModal.vue';
+import SubmitAnAppealModal from '../../components/uiLanding/feedback/submitAnAppealModal.vue';
+import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.vue';
+import OrderACallModal from '../../components/uiLanding/feedback/orderACallModal.vue';
+import MakeAnAppointmentModal from '../../components/uiLanding/feedback/makeAnAppointmentModal.vue';
 
 import { reactive } from 'vue';
 
