@@ -45,7 +45,7 @@ const sliderStyle = computed(() => {
   return {
     width: document.body.clientWidth + 'px',
     margin: `0px ${-Math.abs(margins.value)}px`,
-    padding: `10px ${margins.value}px`
+    padding: `0px ${margins.value}px`
   }
 })
 

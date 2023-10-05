@@ -137,16 +137,18 @@ const list = [
       left: 10px;
       bottom: 10px;
 
+      opacity: .5;
       transform: scale(1);
       transition: all .3s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
 
       & svg {
         height: 34px;
         width: 34px;
-      }
-
-      &:hover {
-        transform: scale(1.3);
       }
     }
   }

@@ -7,9 +7,14 @@
       <div class="partyProgram-preview"></div>
       <div class="wrapper partyProgram-items-block">
         <div class="partyProgram-items">
-          <div class="partyProgram-item">
-            <h4 class="partyProgram-item-title">Программа партии Respublica</h4>
-            <a href="/doc/Программа партии_.pdf" target="_blank">
+
+          <div
+            class="partyProgram-item"
+            v-for="block of blockList"
+            :key="block.title"
+          >
+            <h4 class="partyProgram-item-title">{{ block.title }}</h4>
+            <a :href="block.pdf" target="_blank">
               <Button
                 name="Посмотреть"
                 type="outline-blue"
@@ -23,23 +28,7 @@
               </Button>
             </a>
           </div>
-          
-          <div class="partyProgram-item">
-            <h4 class="partyProgram-item-title">Предвыборная программа партии Respublica</h4>
-            <a href="/doc/Respublica.pdf" target="_blank">
-              <Button
-                name="Посмотреть"
-                type="outline-blue"
-                class="partyProgram-item-link"
-              >
-                <SvgIcon
-                  name="double-arrow-right"
-                  :viewboxWidth="24"
-                  :viewboxHeight="24"
-                />
-              </Button>
-            </a>
-          </div>
+
         </div>
       </div>
     </div>
@@ -47,6 +36,16 @@
 </template>
 
 <script setup lang="ts">
+const blockList = [
+  {
+    title: 'Программа партии Respublica',
+    pdf: '/doc/ru/Программа партии_.pdf'
+  },
+  {
+    title: 'Предвыборная программа партии Respublica',
+    pdf: '/doc/ru/Программа предвыборная рус..pptx'
+  }
+]
 </script>
 
 <style scoped lang="scss">
@@ -104,6 +103,14 @@
         height: 24px;
         width: 24px;
         fill: var(--accent-color);
+        position: relative;
+        right: 0;
+
+        transition: all .3s ease-in-out;
+      }
+
+      &:hover svg {
+        right: -8px;
       }
     }
   }

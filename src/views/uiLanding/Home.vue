@@ -12,13 +12,25 @@
         ></div>
         <div class="wrapper landing-wrapper">
           <div class="intro-btns">
-            <Button name="ВСТУПИТЬ В ПАРТИЮ" type="default-blue" />
-            <Button name="ПОДАТЬ ОБРАЩЕНИЕ" type="default-blue" />
+            <Button
+              name="ВСТУПИТЬ В ПАРТИЮ"
+              type="default-blue"
+              @click="() => showModals.joinPartyModal = true"
+            />
+            <Button
+              name="ПОДАТЬ ОБРАЩЕНИЕ"
+              type="default-blue"
+              @click="() => showModals.submitAnAppeal = true"
+            />
           </div>
         </div>
       </section>
 
-      <AboutUs />
+      <AboutUs
+        @showJoinPartyModal="() => showModals.joinPartyModal = true"
+        @showSubmitAnAppeal="() => showModals.submitAnAppeal = true"
+        @showMakeAnAppointment="() => showModals.makeAnAppointment = true"
+      />
 
       <section class="news landing-block">
         <div class="wrapper landing-wrapper">
@@ -44,25 +56,72 @@
         </div>
       </section>
 
-      <AboutParty />
+      <AboutParty
+        @showJoinPartyModal="() => showModals.joinPartyModal = true"
+      />
 
-      <Announcements landing />
+      <section class="landing-block">
+        <div class="wrapper landing-wrapper">
+          <div class="landing-header">
+            <h2 class="landing-title">Анонсы, объявления</h2>
+            
+            <RouterLink to="news-all" class="landing-header-link">
+              <span>Смотреть все</span>
+              <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
+            </RouterLink>
+          </div>
+
+          <div class="landing-items">
+            <AnnounceItem />
+            <AnnounceItem />
+            <AnnounceItem />
+          </div>
+        </div>
+      </section>
 
     </div>
 
     <Footer /> 
   </div>
+
+  <SubmitAnAppealModal
+    :show="showModals.submitAnAppeal"
+    @hide="() => showModals.submitAnAppeal = false"
+  />
+
+  <JoinPartyModal
+    :show="showModals.joinPartyModal"
+    @hide="() => showModals.joinPartyModal = false"
+  />
+
+  <MakeAnAppointmentModal
+    :show="showModals.makeAnAppointment"
+    @hide="() => showModals.makeAnAppointment = false"
+  />
+
 </template>
 
 <script setup lang="ts">
 import Slider from '../../components/common/Slider.vue';
+import JoinPartyModal from '../../components/uiLanding/feedback/JoinPartyModal.vue';
+import SubmitAnAppealModal from '../../components/uiLanding/feedback/SubmitAnAppealModal.vue';
+import MakeAnAppointmentModal from '../../components/uiLanding/feedback/MakeAnAppointmentModal.vue';
 
-import AboutUs from '../../components/uiLanding/home/aboutUs.vue'
-import NewsItem from '../../components/uiLanding/news/newsItem.vue'
-import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
-import PartyProgram from '../../components/uiLanding/home/partyProgram.vue'
-import AboutParty from '../../components/uiLanding/home/aboutParty.vue'
-import Announcements from '../../components/uiLanding/news/announcements.vue';
+import AboutUs from '../../components/uiLanding/home/AboutUs.vue'
+import NewsItem from '../../components/uiLanding/news/NewsItem.vue'
+import YoutubeVideo from '../../components/uiLanding/news/YoutubeVideo.vue'
+import PartyProgram from '../../components/uiLanding/home/PartyProgram.vue'
+import AboutParty from '../../components/uiLanding/home/AboutParty.vue'
+import AnnounceItem from '../../components/uiLanding/news/AnnounceItem.vue';
+
+
+import { reactive } from 'vue';
+
+const showModals = reactive({
+  joinPartyModal: false,
+  submitAnAppeal: false,
+  makeAnAppointment: false,
+});
 
 const slides = [
   '/img/uiLanding/slides/slider-1.jpg',

@@ -107,22 +107,9 @@ const postFeedback = ({ name, phone, comment }: { name: string, phone: string, c
 
 <style scoped lang="scss">
 .feedbackModal {
-  &-inputs {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    grid-gap: 15px;
-    margin-bottom: 30px;
-  }
-
   &-description {
     color: var(--light-gray-color);
     margin-bottom: 50px;
-  }
-
-  & button {
-    width: 100%;
-    padding: 26px;
   }
 }
 

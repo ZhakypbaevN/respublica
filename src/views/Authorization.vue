@@ -54,7 +54,6 @@ import RegisterForm from '../components/authorization/registerForm.vue';
 import RegisterFinishForm from '../components/authorization/registerFinishForm.vue';
 import CheckCodeForm from '../components/authorization/checkCodeForm.vue';
 
-
 const router = useRouter()
 
 interface ShowForm {

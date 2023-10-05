@@ -7,10 +7,11 @@
         <h2 class="wrapper-darkMain-title">Выберите тему для обращения</h2>
         <p class="wrapper-darkMain-description">Функция “обратная связь”, позволяет пользователям связаться с партией по различным вопросам</p>
 
-        <div class="feedback-mainBtns">
+        <div class="feedbackModal-mainBtns">
           <Button
             name="ВСТУПЛЕНИЕ В ПАРИЮ"
             type="default-blue"
+            @click="() => showModals.joinPartyModal = true"
           />
           <Button
             name="ЗАПИСАТЬСЯ НА ПРИЕМ"
@@ -20,6 +21,7 @@
           <Button
             name="ПОДАТЬ ОБРАЩЕНИЕ"
             type="default-blue"
+            @click="() => showModals.submitAnAppeal = true"
           />
           <Button
             name="ЗАКАЗАТЬ ЗВОНОК"
@@ -38,12 +40,22 @@
     </div>
     <div></div>
 
+    <SubmitAnAppealModal
+      :show="showModals.submitAnAppeal"
+      @hide="() => showModals.submitAnAppeal = false"
+    />
+
+    <JoinPartyModal
+      :show="showModals.joinPartyModal"
+      @hide="() => showModals.joinPartyModal = false"
+    />
+
     <OrderACallModal
       :show="showModals.orserACall"
       @hide="() => showModals.orserACall = false"
     />
 
-    <MakeAnAppointment
+    <MakeAnAppointmentModal
       :show="showModals.makeAnAppointment"
       @hide="() => showModals.makeAnAppointment = false"
     />
@@ -52,19 +64,73 @@
 </template>
 
 <script setup lang="ts">
+import SubmitAnAppealModal from '../../components/uiLanding/feedback/SubmitAnAppealModal.vue';
+import JoinPartyModal from '../../components/uiLanding/feedback/JoinPartyModal.vue';
 import OrderACallModal from '../../components/uiLanding/feedback/OrderACallModal.vue';
-import MakeAnAppointment from '../../components/uiLanding/feedback/MakeAnAppointment.vue';
+import MakeAnAppointmentModal from '../../components/uiLanding/feedback/MakeAnAppointmentModal.vue';
 
 import { reactive } from 'vue';
 
 const showModals = reactive({
+  joinPartyModal: false,
+  submitAnAppeal: false,
   orserACall: false,
-  makeAnAppointment: true
+  makeAnAppointment: false,
 });
 </script>
 
-<style scoped lang="scss">
-.feedback {
+<style lang="scss">
+.feedbackModal {
+  &-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  &-checkboxList {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+
+    margin-bottom: 38px;
+
+    &-block {
+      display: flex;
+      grid-gap: 40px;
+
+      border-bottom: 1px solid var(--light-gray-color);
+
+      padding-bottom: 30px;
+      margin-bottom: 10px;
+
+      & .feedbackModal-checkboxList {
+        margin-bottom: 0px !important;
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: flex-start;
+      grid-gap: 10px;
+      margin-bottom: 0px !important;
+
+      
+      & span,
+      & a {
+        color: var(--light-gray-color);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.1;
+      }
+      
+      & a {
+        text-decoration-line: underline;
+      }
+    }
+  }
+
   &-mainBtns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

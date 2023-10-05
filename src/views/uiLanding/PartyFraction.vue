@@ -12,22 +12,35 @@
             <span>ВСТРЕЧИ с избирателями</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
           </RouterLink>
-          <RouterLink to="/" class="landing-link with-line" id="send-an-appeal">
+          <button 
+            class="landing-link with-line"
+            id="send-an-appeal"
+            @click="() => showSubmitAnAppeal = true"
+          >
             <span>Направить обращение</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
-          </RouterLink>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
+  <SubmitAnAppealModal
+    :show="showSubmitAnAppeal"
+    @hide="() => showSubmitAnAppeal = false"
+  />
+
 </LandingLayout>
 </template>
   
 <script setup lang="ts">
-import FractionComposition from '../../components/uiLanding/partyFraction/fractionComposition.vue';
-import DeputyRequests from '../../components/uiLanding/partyFraction/deputyRequests.vue';
+import FractionComposition from '../../components/uiLanding/partyFraction/FractionComposition.vue';
+import DeputyRequests from '../../components/uiLanding/partyFraction/DeputyRequests.vue';
+import SubmitAnAppealModal from '../../components/uiLanding/feedback/SubmitAnAppealModal.vue';
 
+import { ref } from 'vue';
+
+const showSubmitAnAppeal = ref(false);
 const sideBarlinks = [
   {
     title: 'Депутаты',
@@ -50,6 +63,10 @@ const sideBarlinks = [
   flex-direction: column;
   align-items: flex-start;
   padding-left: 32%;
+}
+
+.deputyRequests {
+  padding-bottom: 100px;
 }
 </style>
   

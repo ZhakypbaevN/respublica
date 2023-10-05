@@ -14,18 +14,20 @@
                 <div class="fraction-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url('${fraction.img}');`"></div>
               </div>
               
-              <h4 class="fraction-item-name">{{ fraction.fullName }}</h4>
+              <h4 class="fraction-item-name">
+                <span>{{ fraction.fullName }}</span>
+              </h4>
               <div class="fraction-item-description">
                 <div class="fraction-item-description-text">Член Комитета по экономической реформе и региональному развитию</div>
                 <div class="fraction-item-social">
                   <a :href="fraction.facebook" target="_blank"
                     class="header-top-snList-item">
-                    <SvgIcon name="facebook-line-blue" :viewboxHeight="44" :viewboxWidth="44" />
+                    <SvgIcon name="facebook" :viewboxHeight="32" :viewboxWidth="32" />
                   </a>
 
                   <a :href="fraction.instagram" target="_blank"
                     class="header-top-snList-item">
-                    <SvgIcon name="instagram-line-blue" :viewboxHeight="44" :viewboxWidth="44" />
+                    <SvgIcon name="instagram" :viewboxHeight="32" :viewboxWidth="32" />
                   </a>
                 </div>
               </div>
@@ -101,7 +103,6 @@ const fractionList = [
     display: grid;
     grid-gap: 50px;
     grid-template-columns: repeat(3, 1fr);
-    margin: 50px 250px;
   }
 
   &-item {
@@ -110,15 +111,19 @@ const fractionList = [
     }
 
     &-name {
-      display: block;
-
-      color: white;
+      display: flex;
+      align-items: center;
+      height: 80px;
+      
+      padding: 6px 20px 9px;
       background-color: var(--accent-color);
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 1.4;
 
-      padding: 9px 20px 6px;
+      & span {
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.8;
+      }
     }
 
     &-description {
@@ -142,9 +147,21 @@ const fractionList = [
       display: flex;
       grid-gap: 20px;
 
-      & a svg {
-        height: 32px;
-        width: 32px;
+      & a {
+        opacity: .5;
+        transform: scale(1);
+        transition: all .3s ease-in-out;
+
+        &:hover {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+
+        svg {
+          height: 32px;
+          width: 32px;
+          fill: white;
+        }
       }
     }
   }

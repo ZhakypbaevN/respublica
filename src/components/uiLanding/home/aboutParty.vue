@@ -19,13 +19,23 @@
           <span>Примите участие в нашем собществе, чтобы изменить свою жизнь и жизнь ваших близких.</span>
         </p>
 
-        <Button name="Вступить в партию" type="default-blue" uppercase />
+        <Button
+          name="Вступить в партию"
+          type="default-blue"
+          uppercase
+          @click="() => $emit('showJoinPartyModal')"
+        />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+interface Emits {
+  (event: 'showJoinPartyModal', value: Function): void,
+}
+
+defineEmits<Emits>()
 </script>
 
 <style scoped lang="scss">

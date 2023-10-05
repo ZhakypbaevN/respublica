@@ -8,7 +8,7 @@
         Партия Respublica – это МЕТА-партия. Мы нацелены на структурные преобразования во всех сферах общественной жизни. Мы являемся людьми нового Казахстана, цифровыми номадами!
         <br>
         <br>
-        Алға, Қазақстан! Алға, Recpublica!
+        Алға, Қазақстан! Алға, Respublica!
       </p>
 
       <div class="aboutUs-inner">
@@ -20,14 +20,17 @@
           >
             <h4 class="aboutUs-item-title">{{ item.title }}</h4>
             <p class="aboutUs-item-description" v-html="item.text"></p>
-            <RouterLink to="/" class="aboutUs-item-link">
+            <RouterLink :to="item.link" class="aboutUs-item-link">
               <span>{{ item.btn }}</span>
             </RouterLink>
           </div>
         </div>
 
         <div class="aboutUs-links">
-          <Router-link to="/news" class="aboutUs-links-item">
+          <Router-link
+            to="/news-all"
+            class="aboutUs-links-item"
+          >
             <span>Новости</span>
             <SvgIcon
               name="arrow-with-line-right-top"
@@ -36,32 +39,19 @@
             />
           </Router-link>
 
-          <Router-link to="/" class="aboutUs-links-item">
-            <span>Вступить в партию</span>
+          <button
+            v-for="item of btnList"
+            :key="item.title"
+            @click="item.func"
+            class="aboutUs-links-item"
+          >
+            <span>{{ item.title }}</span>
             <SvgIcon
               name="arrow-with-line-right-top"
               :viewboxWidth="32"
               :viewboxHeight="32"
             />
-          </Router-link>
-
-          <Router-link to="/" class="aboutUs-links-item">
-            <span>Направить обращение</span>
-            <SvgIcon
-              name="arrow-with-line-right-top"
-              :viewboxWidth="32"
-              :viewboxHeight="32"
-            />
-          </Router-link>
-          
-          <Router-link to="/news" class="aboutUs-links-item">
-            <span>Записаться на прием</span>
-            <SvgIcon
-              name="arrow-with-line-right-top"
-              :viewboxWidth="32"
-              :viewboxHeight="32"
-            />
-          </Router-link>
+          </button>
         </div>
       </div>
     </div>
@@ -69,22 +59,57 @@
 </template>
 
 <script setup lang="ts">
+interface Emits {
+  (event: 'showJoinPartyModal', value: Function): void,
+  (event: 'showSubmitAnAppeal', value: Function): void,
+  (event: 'showMakeAnAppointment', value: Function): void,
+}
 
-let aboutUsList = [
+const emits = defineEmits<Emits>()
+
+const btnList = [
+  {
+    title: 'Вступить в партию',
+    func: () => emits('showJoinPartyModal')
+  },
+  {
+    title: 'Направить обращение',
+    func: () => emits('showSubmitAnAppeal')
+  },
+  {
+    title: 'Записаться на прием',
+    func: () => emits('showMakeAnAppointment')
+  }
+]
+
+const aboutUsList = [
   {
     title: 'Что мы делаем',
-    text: 'Партия Respublica – это партия людей дела. Мы опытные и эффективные управленцы, лидеры с опытом преодоления преград и решения сложных задач.\n\n Мы связываем свое будущее с Казахстаном.',
+    text: `
+      Партия Respublica – это партия людей дела. Мы опытные и эффективные управленцы, лидеры с опытом преодоления преград и решения сложных задач.<br>
+      Мы связываем свое будущее с Казахстаном.
+    `,
     btn: 'Узнать больше',
+    link: '/about-party#who-are-we'
   },
   {
     title: 'Кто мы',
-    text: 'Мы не чиновники. Мы – созидатели. Каждый из нас создает тысячи рабочих мест. За каждым – личная история успеха и помощь множеству сограждан найти себя и обрести веру в будущее. Мы молоды, амбициозны и сильны. С нами необходимо считаться, мы создаем тысячи рабочих мест, мы платим налоги.',
+    text: `
+      Мы не чиновники.<br>
+      Мы – созидатели. Каждый из нас создает тысячи рабочих мест. За каждым – личная история успеха и помощь множеству сограждан найти себя и обрести веру в будущее.<br>
+      Мы молоды, амбициозны и сильны. С нами необходимо считаться, мы создаем тысячи рабочих мест, мы платим налоги.
+    `,
     btn: 'Узнать больше',
+    link: '/about-party#who-are-we'
   },
   {
     title: 'Внесите свой вклад',
-    text: 'На территории всей страны у партии Respublica есть филиалы и действуют депутаты в Мажилисе Парламента и маслихатах всех уровней. Ваша подержка будет направлена на организацию работы на местах, усилия по защите избирателей и другие приоритеты.',
+    text: `
+      На территории всей страны у партии Respublica есть филиалы и действуют депутаты в Мажилисе Парламента и маслихатах всех уровней.<br>
+      Ваша поддержка будет направлена на организацию работы на местах, усилия по защите избирателей и другие приоритеты.
+    `,
     btn: 'Нажмите здесь, чтобы сделать пожертвование',
+    link: '/donations'
   }
 ]
 </script>
@@ -179,6 +204,7 @@ let aboutUsList = [
     
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     grid-gap: 25px;
 
     padding: 10px 0 20px 40px;
@@ -189,10 +215,38 @@ let aboutUsList = [
       align-items: center;
       grid-gap: 7px;
 
+      position: relative;
+
+      &::after {
+        content: '';
+
+        display: block;
+        width: 0;
+        height: 0;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 2;
+
+        border-bottom: 3.6px solid var(--accent-color);
+        transition: all .3s ease-in-out;
+      }
+
+      &:hover {
+        &::after {
+          width: 100%;
+        }
+
+        & svg {
+          right: -8px;
+          bottom: 3px;
+        }
+      }
+
       & span {
         color: var(--accent-color);
         font-size: 28px;
-        font-style: normal;
         font-weight: 600;
         line-height: 1.8;
         text-wrap: nowrap;
@@ -202,6 +256,11 @@ let aboutUsList = [
         height: 32px;
         width: 32px;
         fill: var(--accent-color);
+
+        position: relative;
+        right: 0;
+        bottom: 0;
+        transition: all .3s ease-in-out;
       }
     }
   }

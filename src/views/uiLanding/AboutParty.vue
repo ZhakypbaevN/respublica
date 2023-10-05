@@ -7,9 +7,9 @@
       <div class="party-charter">
         <div class="party-charter-text">
           <span class="party-charter-title">Устав партии</span>
-          <span class="party-charter-title-upper">Алға, Қазақстан! Алға, Recpublica!</span>
+          <span class="party-charter-title-upper">Алға, Қазақстан! Алға, Respublica!</span>
         </div>
-        <a href="/doc/Respublica.pdf" target="_blank">
+        <a href="/doc/ru/Respublica.pdf" target="_blank">
           <Button class="party-charter-download" name="СКАЧАТЬ УСТАВ" type="default-blue" />
         </a>
       </div>
@@ -33,10 +33,10 @@
 </template>
   
 <script setup lang="ts">
-import AboutUs from '../../components/uiLanding/about/aboutUs.vue';
+import AboutUs from '../../components/uiLanding/about/AboutUs.vue';
 import PartyLeaders from '../../components/uiLanding/about/PartyLeaders.vue';
 import PartyProgram from '../../components/uiLanding/about/partyProgram.vue';
-import History from '../../components/uiLanding/about/history.vue';
+import History from '../../components/uiLanding/about/History.vue';
 
 const sideBarlinks = [
   {

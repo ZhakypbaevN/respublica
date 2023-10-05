@@ -97,6 +97,7 @@ import { RouterLink } from 'vue-router';
     &-title {
       font-size: 40px;
       font-weight: 600;
+      line-height: .8;
       margin-bottom: 44px;
     }
 
