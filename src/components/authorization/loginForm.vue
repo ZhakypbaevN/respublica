@@ -6,7 +6,7 @@
         type="tel"
         light
         name="phone"
-        placeholder="ИИН"
+        placeholder="Ваш номер телефона"
         :min="17"
         required
       />
@@ -82,7 +82,7 @@ function generateVerificationCode() {
 }
 
 const postFeedback = ({ phone }: { phone: string }) => {
-  const url = `http://localhost:3000/users`;
+  const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
   // const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
 
   axios({

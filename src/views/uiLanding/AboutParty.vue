@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import AboutUs from '../../components/uiLanding/about/AboutUs.vue';
 import PartyLeaders from '../../components/uiLanding/about/PartyLeaders.vue';
-import PartyProgram from '../../components/uiLanding/about/partyProgram.vue';
+import PartyProgram from '../../components/uiLanding/about/PartyProgram.vue';
 import History from '../../components/uiLanding/about/History.vue';
 
 const sideBarlinks = [

@@ -4,8 +4,6 @@
       <h2 class="landing-title">Состав фракции партии RESPUBLICA</h2>
    
       <div class="fraction-items">
-
-                          
           <div
             class="fraction-item"
             v-for="fraction of fractionList"

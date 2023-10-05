@@ -99,10 +99,10 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from '../../components/uiLanding/news/newsItem.vue'
-import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
+import NewsItem from '../../components/uiLanding/news/NewsItem.vue'
+import YoutubeVideo from '../../components/uiLanding/news/YoutubeVideo.vue'
 
-import PhotoGallery from '../../components/uiLanding/news/photoGallery.vue';
+import PhotoGallery from '../../components/uiLanding/news/PhotoGallery.vue';
 
 const sideBarlinks = [
   {
