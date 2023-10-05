@@ -1,5 +1,5 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="$emit('toNext')">
+  <Form class="wrapper-darkMain-form" @finish="postCheckCode">
     <h2 class="wrapper-darkMain-title">Введите код</h2>
 
     <div class="modal-message">
@@ -66,14 +66,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import axios from 'axios'
 // import axios from 'axios'
 // import { useToast } from '../../modules/toast'
 
 // const { toast } = useToast()
 
 interface IProps {
-  phone: string,
-  checkCode: string,
+  token: string
+  phone: string
 }
 interface Emits {
   (event: 'toBack', value: Function): void,
@@ -144,6 +145,39 @@ const timer = setInterval(() => {
 
 const newCode = () => {
   clearInterval(timer);
+}
+
+const postCheckCode = ({ phone, password }: { phone: string, password: string }) => {
+  loading.value = true;
+  const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
+    
+  axios({
+    method: "post",
+    url: url,
+    data: {
+      "phone": formatPhone(phone),
+      "password": password
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      toast({
+        message: 'Успешно авторизованы',
+        type: 'success'
+      })
+      
+
+      emit('toNext')
+      loading.value = false
+    })
+    .catch((err) => {
+      console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+      loading.value = false
+    });
 }
 
 </script>

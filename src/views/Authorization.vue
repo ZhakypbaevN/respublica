@@ -7,17 +7,14 @@
         <TransitionGroup>
           <LoginForm
             v-if="showForm.login"
-            v-model:phone="checkData.phone"
-            v-model:code="checkData.code"
             @toReg="showRegistrationForm"
-            @toCheck="showCheckForm"
           />
 
 
           <RegisterForm
             v-if="showForm.register"
             v-model:phone="checkData.phone"
-            v-model:code="checkData.code"
+            v-model:token="checkData.token"
             @toLogin="showLoginForm"
             @toCheck="showCheckForm"
           />
@@ -26,7 +23,7 @@
           <CheckCodeForm
             v-if="showForm.checkCode"
             :phone="checkData.phone"
-            :checkCode="checkData.code"
+            :token="checkData.token"
             @toBack="() => {fromLogin ? showLoginForm() : showRegistrationForm()}"
             @toLogin="showLoginForm"
             @toNext="() => {fromLogin ? loginFinish() : showFinishRegistrationForm()}"
@@ -36,6 +33,7 @@
           <RegisterFinishForm
             v-if="showForm.registerFinish"
             v-model:phone="checkData.phone"
+            :token="checkData.token"
             @toLogin="showLoginForm"
           />
         </TransitionGroup>
@@ -70,7 +68,7 @@ const showForm = reactive<ShowForm>({
 
 const checkData = reactive({
   phone: '',
-  code: ''
+  token: ''
 });
 const fromLogin = ref(false);
 

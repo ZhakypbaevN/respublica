@@ -5,14 +5,14 @@
         <SocialNetworks light />
 
         <div class="header-top-right">
-          <button class="header-top-btnVisuallyImpaired">
+          <!-- <button class="header-top-btnVisuallyImpaired">
             <SvgIcon
               name="eye-slashed"
               :viewboxHeight="24"
               :viewboxWidth="24"
             />
             <span>Версия для слабовидящих</span>
-          </button>
+          </button> -->
 
           <button class="header-main-lang">
             <span>РУ</span>

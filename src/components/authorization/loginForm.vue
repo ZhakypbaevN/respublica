@@ -1,5 +1,5 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postFeedback">
+  <Form class="wrapper-darkMain-form" @finish="postLogin">
     <h2 class="wrapper-darkMain-title">Войти</h2>
     <div class="modal-inputs">
       <Input
@@ -57,46 +57,32 @@ import axios from 'axios'
 import { useToast } from '../../modules/toast'
 import { useRouter } from 'vue-router';
 
+import formatPhone from '../../helpers/formatPhone.js'
+
 const { toast } = useToast()
 const router = useRouter()
 
-interface IProps {
-  phone: string,
-  code: string
-}
-
 interface Emits {
-  (event: 'update:phone', value: string): void,
-  (event: 'update:code', value: string): void,
   (event: 'toReg', value: Function): void,
-  (event: 'toCheck'): Function,
 }
 
-console.log('window.location.hostname', window.location.hostname);
-console.log('window.location.protocol', window.location.protocol);
-
-defineProps<IProps>()
 const emit = defineEmits<Emits>()
 
 const loading = ref(false)
 
-const postFeedback = ({ phone, password }: { phone: string, password: string }) => {
+const postLogin = ({ phone, password }: { phone: string, password: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
-  // const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
-
-  console.log('phone', phone);
     
   axios({
     method: "post",
     url: url,
     data: {
-      "phone": phone,
+      "phone": formatPhone(phone),
       "password": password
     }
   })
     .then((response) => {
-      console.log('url', url);
       console.log('response', response);
 
       toast({
@@ -105,7 +91,7 @@ const postFeedback = ({ phone, password }: { phone: string, password: string }) 
       })
       
       setTimeout(() => {
-        router.push('/main-db')
+        router.push('/client')
       }, 5000);
       loading.value = false
     })
