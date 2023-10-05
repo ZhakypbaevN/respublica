@@ -137,7 +137,7 @@ const list = [
       left: 10px;
       bottom: 10px;
 
-      opacity: .5;
+      opacity: .8;
       transform: scale(1);
       transition: all .3s ease-in-out;
 
