@@ -55,8 +55,11 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../modules/toast'
+import { useRouter } from 'vue-router';
 
 const { toast } = useToast()
+const router = useRouter()
+
 interface IProps {
   phone: string,
   code: string
@@ -77,50 +80,33 @@ const emit = defineEmits<Emits>()
 
 const loading = ref(false)
 
-function generateVerificationCode() {
-  return (Math.floor(Math.random() * 90000) + 10000).toString();
-}
-
 const postFeedback = ({ phone, password }: { phone: string, password: string }) => {
+  loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
   // const url = `${window.location.protocol}//${window.location.hostname}:3000/users`;
 
-  axios.post(url, {
-    username: phone,
-    password: password
-  })
-    .then(response => {
-      // Handle response
-    })
-    .catch(error => {
-      // Handle error
-    });
+  console.log('phone', phone);
     
   axios({
-    method: "get",
+    method: "post",
     url: url,
+    data: {
+      "phone": phone,
+      "password": password
+    }
   })
     .then((response) => {
       console.log('url', url);
       console.log('response', response);
-      response.data.forEach(userData => {
-        if (userData.phone === phone) {
 
-          toast({
-            message: 'На ваш номер был отправлен код для подтверждение',
-            type: 'success'
-          })
-
-          const code = generateVerificationCode();
-          emit('update:phone', phone);
-          emit('update:code', code);
-          emit('toCheck');
-
-          setTimeout(() => {
-            alert('Код для подтверждения ' + code)
-          }, 5000);
-        }
-      });
+      toast({
+        message: 'Успешно авторизованы',
+        type: 'success'
+      })
+      
+      setTimeout(() => {
+        router.push('/main-db')
+      }, 5000);
       loading.value = false
     })
     .catch((err) => {

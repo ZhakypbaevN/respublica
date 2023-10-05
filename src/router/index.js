@@ -169,11 +169,11 @@ const routes = [
     component: MainLayoutManager,
     meta: { title: 'manager', requiresAuth: true },
     redirect: to => {
-      return '/requests'
+      return '/manager/requests'
     },
     children: [
       {
-        path: '/requests',
+        path: 'requests',
         name: 'Requests',
         component: MyRequests
       }
