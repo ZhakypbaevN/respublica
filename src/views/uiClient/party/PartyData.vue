@@ -19,7 +19,7 @@
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Дата рождения:</span>
-                  {{ partyData.birthday }}
+                  {{ partyData.birthday ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item checked">
@@ -29,58 +29,58 @@
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>E-mail:</span>
-                  {{ partyData.email }}
+                  {{ partyData.email ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Пол:</span>
-                  {{ partyData.gender }}
+                  {{ partyData.gender ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Образование:</span>
-                  {{ partyData.educationlevel }}
+                  {{ partyData.educationlevel ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Специальность:</span>
-                  {{ partyData.specialization }}
+                  {{ partyData.specialization ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Место работы:</span>
-                  {{ partyData.workPlace }}
+                  {{ partyData.workPlace ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Должность:</span>
-                  {{ partyData.role }}
+                  {{ partyData.role ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Укажите область:</span>
-                  {{ partyData.region }}
+                  {{ partyData.region ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Населенный пункт:</span>
-                  {{ partyData.city }}
+                  {{ partyData.city ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Улица/Проспект/Мкр:</span>
-                  {{ partyData.streat }}
+                  {{ partyData.streat ?? '-' }}
                 </h4>
 
                 <div class="partyData-content-infoBlock-bottom">
                   <h4 class="partyData-content-infoBlock-item">
                     <span>Дом:</span>
-                    {{ partyData.home }}
+                    {{ partyData.home ?? '-' }}
                   </h4>
 
                   <h4 class="partyData-content-infoBlock-item">
                     <span>Кв.:</span>
-                    {{ partyData.apartment }}
+                    {{ partyData.apartment ?? '-' }}
                   </h4>
                 </div>
 
@@ -120,7 +120,7 @@
                   
                     <h4 class="partyData-cardInfo-info number">
                       <span>Партийный билет</span>
-                      №{{ partyData.number }}
+                      №{{ partyData.id }}
                     </h4>
 
 
@@ -153,7 +153,7 @@
                   
                     <h4 class="partyData-cardInfo-info number">
                       <span>Партиялық билет</span>
-                      №{{ partyData.number }}
+                      №{{ partyData.id }}
                     </h4>
 
 
@@ -180,7 +180,6 @@
                   <img src="/img/icons/party-card.svg" alt="">
                 </div>
               </div>
-
 
               <Button
                 class="partyData-btn"
@@ -230,9 +229,10 @@ import { useToast } from '../../../modules/toast'
 const { toast } = useToast()
 
 const partyData = ref(null);
+const userID = localStorage.getItem('USER_ID');
 
 onMounted(() => {
-  const url = `http://localhost:3000/partyCards?userID=1`;
+  const url = `https://tri.codetau.com/partyCards?userID=${userID}`;
   axios({
     method: "get",
     url: url,

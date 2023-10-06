@@ -52,10 +52,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../modules/toast'
 import { useRouter } from 'vue-router';
+import moment from 'moment'
 
 import formatPhone from '../../helpers/formatPhone.js'
 
@@ -69,10 +70,12 @@ interface Emits {
 const emit = defineEmits<Emits>()
 
 const loading = ref(false)
+const token = ref();
 
 const postLogin = ({ phone, password }: { phone: string, password: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
+
   const formData = new FormData();
   formData.append("username", formatPhone(phone));
   formData.append("password", password);
@@ -92,8 +95,13 @@ const postLogin = ({ phone, password }: { phone: string, password: string }) => 
       
       setTimeout(() => {
         router.push('/client')
-      }, 5000);
-      loading.value = false
+      }, 300);
+      
+      token.value = response.data['access_token'];
+      localStorage.setItem('TOKEN', token.value);
+
+      getUserData();
+      loading.value = false;
     })
     .catch((err) => {
       console.log('err', err);
@@ -103,6 +111,94 @@ const postLogin = ({ phone, password }: { phone: string, password: string }) => 
       loading.value = false
     });
 }
+
+onMounted(() => {
+  const dateNow = moment().format('DD.M.YYYY');
+  console.log('dateNow', dateNow);
+})
+
+const getUserData = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/users/me`;
+  console.log('token.value', token.value);
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token.value
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+      
+
+
+      localStorage.setItem('USER_ID', response.data['id']);
+      // postParty(response.data)
+    })
+    .catch((err) => {
+      console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    });
+}
+
+// const postParty = (data) => {
+//   loading.value = true;
+//   const url = `https://tri.codetau.com/partyCards`;
+
+//   axios({
+//     method: "post",
+//     url: url,
+//     data: {
+//       "userID": data['id'],
+//       "dayOfAcceptance": Date.now,
+//       "dayOfRegistration": Date.now,
+    
+//       "dayOfRequestToExitParty": null,
+//       "deleted": false,
+    
+//       "name": data['first_name'],
+//       "lastName": data['last_name'],
+//       "middleName": data['middle_name'],
+    
+//       "iin": data['iin'],
+//       "birthday": null,
+//       "phone": data['phone'],
+//       "email": null,
+//       "gender": null,
+//       "educationlevel": null,
+//       "specialization": null,
+//       "workPlace": null,
+//       "role": null,
+    
+//       "region": null,
+//       "city": null,
+//       "streat": null,
+//       "home": null,
+//       "apartment": null,
+    
+//       status: [
+//       ]
+//     }
+//   })
+//     .then((response) => {
+//       console.log('response', response);
+
+//       token.value = response.data['access_token'];
+//       localStorage.setItem('TOKEN', token.value);
+      
+//       getUserData();
+//     })
+//     .catch((err) => {
+//       console.log('err', err);
+//       toast({
+//         message: 'Возникли ошибки при запросе'
+//       })
+//       loading.value = false
+//     });
+// }
 </script>
 
 <style scoped lang="scss">

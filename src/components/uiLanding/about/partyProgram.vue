@@ -18,7 +18,7 @@
         <span class="partyProgram-title">Это Новый Казахстан!</span>
         <span class="partyProgram-sub-title">предвыборная программа партии</span>
         
-        <a href="/doc/ru/Программа предвыборная рус..pptx" target="_blank">
+        <a href="/doc/ru/Программа предвыборная рус.pdf" target="_blank">
           <Button name="Скачать PDF" type="outline-blue" class="partyProgram-btn">
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>

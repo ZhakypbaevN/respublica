@@ -25,7 +25,7 @@
               v-for="party in partyDataList"
               :key="party.id"
             >
-              <td class="party-item">{{ party.number }}</td>
+              <td class="party-item">{{ party.id }}</td>
               <td>
                 <RouterLink class="party-item-title" :to="`/manager/party-data/${party.id}`">
                   {{ `${party.lastName} ${party.name} ${party.middleName}` }}
@@ -34,8 +34,8 @@
               <td class="party-item">
                 {{ party.dayOfAcceptance }}
               </td>
-              <td class="party-item">{{ party.region }}</td>
-              <td class="party-item">{{ party.city }}</td>
+              <td class="party-item">{{ party.region ?? '-' }}</td>
+              <td class="party-item">{{ party.city ?? '-' }}</td>
               <td
                 v-if="party.status.length"
                 v-for="status of party.status"
@@ -74,7 +74,8 @@ const route = useRoute()
 const partyDataList = ref([]);
 
 onMounted(() => {
-  const url = `http://localhost:3000/partyCards`;
+  // https://tri.codetau.com/partyCards
+  const url = `https://tri.codetau.com/partyCards`;
   axios({
     method: "get",
     url: url,

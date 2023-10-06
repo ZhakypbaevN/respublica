@@ -3,23 +3,26 @@
     <div class="header-main" id="header-main">
       <div class="wrapper">
         <div class="header-main-inner">
-          <Router-link to="/" class="header-main-logo">
+          <RouterLink to="/" class="header-main-logo">
             <SvgIcon
               class="logo-big"
               name="logo"
               :viewboxWidth="260"
               :viewboxHeight="49"
             />
-          </Router-link>
+          </RouterLink>
          
           <div class="header-main-right">
-            <Router-link to="/donations">
+            <button
+              @click="() => showJoinPartyModal = true"
+              class="header-main-logo"
+            >
               <Button
                 name="Создать члена партии"
                 type="default-blue"
               />
-            </Router-link>
-
+            </button>
+            
             <button class="header-main-lang">
               <span>РУ</span>
             </button>
@@ -27,10 +30,20 @@
         </div>
       </div>
     </div>
+
+    <JoinPartyModal
+      :show="showJoinPartyModal"
+      @hide="() => showJoinPartyModal = false"
+    />
   </header>
 </template>
 
 <script setup lang="ts">
+import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
+
+import { ref } from 'vue';
+
+const showJoinPartyModal = ref(false);
 </script>
 
 <style scoped lang="scss">

@@ -43,37 +43,58 @@
   "partyCards": [
     {
       "id": 1,
-      "userID": 1,
+      "userID": 0,
       "dayOfAcceptance": "15.05.2023",
       "dayOfRegistration": "15.05.2023",
-    
       "dayOfRequestToExitParty": null,
-    
+      "deleted": false,
       "number": "Z0003133",
-    
       "name": "АЙГЕРИМ",
       "lastName": "САРСЕНОВА",
       "middleName": "БАУБЕКОВНА",
-    
       "iin": "930512589658",
       "birthday": "17.05.86",
       "phone": "+7 700 855 85 85",
       "email": "sarsenova@gmail.com",
       "gender": "Женщина",
       "educationlevel": "Высшее",
-      "specialization":"Экономика",
+      "specialization": "Экономика",
       "workPlace": "TOO Codetau",
       "role": "Директор",
-    
       "region": "Алматинская",
       "city": "г. Алматы",
       "streat": "Достык",
       "home": "50",
       "apartment": "85",
-    
       "status": [
         "Находящиеся в отпуске по уходу за детьми"
       ]
+    },
+    {
+      "userID": 1,
+      "dayOfAcceptance": "15.05.2023",
+      "dayOfRegistration": "15.05.2023",
+      "dayOfRequestToExitParty": null,
+      "deleted": false,
+      "name": "Nurzhigit",
+      "lastName": "Zhakypbayev",
+      "middleName": "Adletuly",
+      "iin": "030905501046",
+      "birthday": null,
+      "phone": "+77477154489",
+      "email": null,
+      "gender": null,
+      "educationlevel": null,
+      "specialization": null,
+      "workPlace": null,
+      "role": null,
+      "region": null,
+      "city": null,
+      "streat": null,
+      "home": null,
+      "apartment": null,
+      "status": [],
+      "id": 2
     }
   ]
 }

@@ -12,18 +12,9 @@
             />
           </Router-link>
          
-          <div class="header-main-right">
-            <Router-link to="/donations">
-              <Button
-                name="Создать члена партии"
-                type="default-blue"
-              />
-            </Router-link>
-
-            <button class="header-main-lang">
-              <span>РУ</span>
-            </button>
-          </div>
+          <button class="header-main-lang">
+            <span>РУ</span>
+          </button>
         </div>
       </div>
     </div>

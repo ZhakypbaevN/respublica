@@ -43,7 +43,7 @@ const blockList = [
   },
   {
     title: 'Предвыборная программа партии Respublica',
-    pdf: '/doc/ru/Программа предвыборная рус..pptx'
+    pdf: '/doc/ru/Программа предвыборная рус.pdf'
   }
 ]
 </script>

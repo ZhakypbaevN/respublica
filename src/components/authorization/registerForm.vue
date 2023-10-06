@@ -79,7 +79,7 @@ const postRegister = ({ phone }: { phone: string }) => {
         message: 'На ваш номер был отправлен код для подтверждение',
         type: 'success'
       })
-      emit('update:phone', phone);
+      emit('update:phone', formatPhone(phone));
       emit('update:token', response.data.token);
       emit('toCheck');
 
