@@ -278,7 +278,7 @@ const getUserData = () => {
 }
 
 const getPartData = () => {
-  const url = `https://tri.codetau.com/partyCards?userID=${12}`;
+  const url = `https://tri.codetau.com/partyCards?userID=${userID}`;
   axios({
     method: "get",
     url: url,
