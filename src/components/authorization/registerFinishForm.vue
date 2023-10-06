@@ -1,88 +1,64 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postFeedback">
+  <Form class="wrapper-darkMain-form" @finish="postRegister">
     <h2 class="wrapper-darkMain-title">Введите ваши данные</h2>
 
     <div class="modal-inputs">
       <Input
         light
-        v-model="formValue.iin"
-        placeholder="Введите ваш ИИН"
-        mask="######-######"
+        name="iin"
+        placeholder="ИИН*"
+        mask="############"
         required
       />
 
-      <Transition>
-        <div class="modal-userData" v-if="userData" v-collapse>
-          <h4 class="modal-userData-title">ФИО:</h4>
-          <h4 class="modal-userData-value">
-            {{ userData?.name }}
-            {{ userData?.surname }}
-            {{ userData?.patronymic }}
-          </h4>
+      <Input
+        light
+        name="lastname"
+        placeholder="Фамилия*"
+        required
+      />
 
-          <p class="modal-userData-title">Статус:</p>
-          <p :class="`modal-userData-value status ${!userData?.inParty ? 'error' : ''}`">
-            {{!userData?.inParty ? 'Не подтвержденная личность' : 'Подтверждена личность'}}
-          </p>
-        </div>
-      </Transition>
+      <Input
+        light
+        name="name"
+        placeholder="Имя*"
+        required
+      />
 
-      <Transition>
-        <div
-          class="modal-inputs-passwords"
-          v-if="userData && userData?.inParty"
-          v-collapse
-        >
-          <Input
-            light
-            type="password"
-            name="password"
-            v-model="password"
-            placeholder="Придумайте пароль"
-            required
-          />
+      <Input
+        light
+        name="middleName"
+        placeholder="Отчество*"
+        required
+      />
 
-          <Input
-            light
-            type="password"
-            validation="sameAs"
-            :sameAs="password"
-            placeholder="Повторите пароль"
-            required
-          />
-        </div>
-      </Transition>
+     
+      <Input
+        light
+        type="password"
+        name="password"
+        v-model="firstPassword"
+        placeholder="Придумайте пароль"
+        required
+      />
+
+      <Input
+        light
+        type="password"
+        validation="sameAs"
+        :sameAs="firstPassword"
+        placeholder="Повторите пароль"
+        required
+      />
     </div>
 
-    <div class="modal-bottom">
-      <Transition>
-        <div class="modal-error" v-if="userData && !userData?.inParty" v-collapse>
-          <div class="modal-error-message">
-            Вам необходимо пройти регистрацию на egov
-          </div>
-
-          <a href="https://egov.kz/cms/ru/articles/mobilecitizen" target="_blank">
-            <Button
-              name="Инструкция по регистрация на egov"
-              class="modal-error-toEgov"
-              type="default-green"
-              :loading="loading"
-            />
-          </a>
-        </div>
-      </Transition>
-      <Transition>
-        <Button
-          v-if="userData && userData?.inParty"
-          v-collapse
-          class="modal-btn"
-          name="Зарегистрироваться"
-          type="default-blue"
-          :loading="loading"
-          htmlType="submit"
-        />
-      </Transition>
-    </div>
+    <Button
+      class="modal-btn"
+      name="Зарегистрироваться"
+      type="default-blue"
+      :loading="loading"
+      htmlType="submit"
+    />
 
     <div class="modal-message">
       <h4 class="modal-message-title">У вас есть аккаунт? </h4>
@@ -98,91 +74,60 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../modules/toast'
-import { useRouter } from 'vue-router';
 
 const { toast } = useToast()
-const router = useRouter()
 
 interface IProps {
-  phone: string
+  phone: string,
+  token: string
 }
 interface Emits {
   (event: 'toLogin', value: Function): void,
 }
 
 const props = defineProps<IProps>()
-defineEmits<Emits>()
+const emit = defineEmits<Emits>()
 
 const loading = ref(false)
-const password = ref('');
-
-const userData = ref<any>(null);
-
-const formValue = reactive({
-  iin: ''
-})
-
-watch(
-  () => formValue.iin,
-  () => {
-    const url = `http://localhost:3000/usersInEgov`;
-    axios({
-      method: "get",
-      url: url,
-    })
-      .then((response) => {
-        userData.value = null;
-        console.log('url', url);
-        console.log('response', response);
+const firstPassword = ref('');
 
 
-
-        response.data.forEach(user => {
-          if (user.iin === formValue.iin) {
-            userData.value = user;
-            // if () checkError = true;
-          }
-        });
-        loading.value = false
-      })
-      .catch((err) => {
-        console.log('err', err);
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-        loading.value = false
-      });
-  },
-  {
-    deep: true
-  }
-)
-
-const postFeedback = ({ password }: { password: string }) => {
-  const url = `http://localhost:3000/users`;
+console.log('iin', Number('030905-501046'));
+const postRegister = (
+    { iin, name, lastname, middleName, password }:
+    {
+      iin: string,
+      name: string,
+      lastname: string,
+      middleName: string,
+      password: string,
+    }
+  ) => {
+  loading.value = true;
+  const url = `https://api.respublica.codetau.com/api/v1/auth/register/extra`;
   axios({
     method: "post",
     url: url,
     data: {
-      "phone": props.phone,
-      "password": password
+      "token": props.token,
+      "password": password,
+      "first_name": name,
+      "last_name": lastname,
+      "middle_name": middleName,
+      "iin": iin
     }
   })
-    .then((response) => {
-      console.log('url', url);
+  .then((response) => {
       console.log('response', response);
-
       toast({
-        message: 'Успешно зарегистрированы',
+        message: 'Вы успешно зарегистрировались',
         type: 'success'
       })
       
-      setTimeout(() => {
-        router.push('/main-db')
-      }, 5000);
+      emit('toLogin')
       loading.value = false
     })
     .catch((err) => {
@@ -190,6 +135,7 @@ const postFeedback = ({ password }: { password: string }) => {
       toast({
         message: 'Возникли ошибки при запросе'
       })
+
       loading.value = false
     });
 }
@@ -203,56 +149,10 @@ const postFeedback = ({ password }: { password: string }) => {
     flex-direction: column;
     grid-gap: 15px;
     margin-bottom: 30px;
-
-    &-passwords {
-      padding-top: 30px;
-    }
-  }
-
-  &-userData {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-gap: 8px 12px;
-
-    &-title,
-    &-value {
-      font-size: 18px;
-      text-align: left;
-    }
-
-    &-value.status {
-      color: var(--green-color);
-
-      &.error {
-        color: var(--red-color);
-      }
-    }
   }
 
   &-btn {
     width: 100%;
-  }
-
-  &-error {
-    &-message {
-      color: var(--red-color);
-      font-size: 18px;
-      font-weight: 500;
-
-      padding: 19px 30px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 0, 54, 0.50);
-      background: rgba(255, 0, 54, 0.20);
-
-      margin-bottom: 16px;
-    }
-
-    &-toEgov {
-      width: 100%;
-    }
-  }
-  
-  &-bottom {
     margin-bottom: 50px;
   }
 
@@ -268,16 +168,5 @@ const postFeedback = ({ password }: { password: string }) => {
       color: var(--accent-color);
     }
   }
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.2s ease;
-}
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-.v-leave-active {
 }
 </style>

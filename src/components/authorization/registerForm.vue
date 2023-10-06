@@ -80,8 +80,9 @@ const postRegister = ({ phone }: { phone: string }) => {
         type: 'success'
       })
       emit('update:phone', phone);
-      emit('update:token', response.token);
+      emit('update:token', response.data.token);
       emit('toCheck');
+
       loading.value = false
     })
     .catch((err) => {

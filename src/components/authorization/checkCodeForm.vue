@@ -65,16 +65,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import axios from 'axios'
-// import axios from 'axios'
-// import { useToast } from '../../modules/toast'
+import { ref } from 'vue'
+import { useToast } from '../../modules/toast'
 
-// const { toast } = useToast()
+const { toast } = useToast()
 
 interface IProps {
   token: string
-  phone: string
 }
 interface Emits {
   (event: 'toBack', value: Function): void,
@@ -82,8 +80,8 @@ interface Emits {
   (event: 'toNext', value: Function): void,
 }
 
-withDefaults(defineProps<IProps>(), {})
-defineEmits<Emits>()
+const props = withDefaults(defineProps<IProps>(), {})
+const emit = defineEmits<Emits>()
 
 const verificationCode = ref('')
 const timeLeft = ref('01:00')
@@ -147,26 +145,25 @@ const newCode = () => {
   clearInterval(timer);
 }
 
-const postCheckCode = ({ phone, password }: { phone: string, password: string }) => {
+const postCheckCode = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
+  const url = `https://api.respublica.codetau.com/api/v1/auth/register/phone-confirm`;
     
   axios({
     method: "post",
     url: url,
     data: {
-      "phone": formatPhone(phone),
-      "password": password
+      "code": verificationCode.value,
+      "token": props.token
     }
   })
     .then((response) => {
       console.log('response', response);
 
       toast({
-        message: 'Успешно авторизованы',
+        message: 'Код успешно подтвержден',
         type: 'success'
       })
-      
 
       emit('toNext')
       loading.value = false

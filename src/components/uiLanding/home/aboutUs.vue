@@ -90,7 +90,7 @@ const aboutUsList = [
       Мы связываем свое будущее с Казахстаном.
     `,
     btn: 'Узнать больше',
-    link: '/about-party#who-are-we'
+    link: '/about-party'
   },
   {
     title: 'Кто мы',
@@ -100,7 +100,7 @@ const aboutUsList = [
       Мы молоды, амбициозны и сильны. С нами необходимо считаться, мы создаем тысячи рабочих мест, мы платим налоги.
     `,
     btn: 'Узнать больше',
-    link: '/about-party#who-are-we'
+    link: '/about-party'
   },
   {
     title: 'Внесите свой вклад',

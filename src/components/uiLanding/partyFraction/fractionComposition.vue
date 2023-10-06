@@ -98,9 +98,13 @@ const fractionList = [
 <style scoped lang="scss">
 .fraction {
   &-items {
+    max-width: 1000px;
+
     display: grid;
     grid-gap: 50px;
     grid-template-columns: repeat(3, 1fr);
+
+    margin: 0 auto;
   }
 
   &-item {
@@ -120,7 +124,7 @@ const fractionList = [
         color: white;
         font-size: 20px;
         font-weight: 700;
-        line-height: 1.8;
+        line-height: 1.4;
       }
     }
 

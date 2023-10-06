@@ -5,7 +5,7 @@
     <div class="managerLayout-inner">
       <SideBar :list="sideBarlinks"></SideBar>
 
-      <div class="managerLayout-content">
+      <div class="managerLayout-content" id="managerLayout-content">
         <router-view v-slot="{ Component }">
           <transition mode="out-in">
             <!-- <keep-alive> -->
@@ -19,57 +19,47 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 import SideBar from '../../common/SideBar.vue';
 import HeaderManager from './HeaderManager.vue';
 
+onMounted(() => {
+  document.body.style ='height:100vh;overflow:hidden;';
+})
+
 const sideBarlinks = [
   {
-    title: 'История обращений',
-    link: "#"
+    title: 'Члены партии',
+    link: "/manager/party-list/confirm"
   },
   {
-    title: 'Личные данные',
-    link: "#"
+    title: 'Заявки на удаление',
+    link: "/manager/party-list/exit-request"
   },
   {
-    title: 'Записаться на прием',
-    link: "#"
-  },
-  {
-    title: 'Подать обращение',
-    link: "#"
-  },
-  {
-    title: 'Донаты',
-    link: "#"
-  },
-  {
-    title: 'Скачать партбилет',
-    link: "#"
-  },
-  {
-    title: 'Новости',
-    link: "#"
-  },
-  {
-    title: 'Выйти из партии',
-    link: "#"
-  },
+    title: 'Удаленные',
+    link: "/manager/party-list/deleted"
+  }
 ]
 </script>
 
 <style scoped lang="scss">
 .managerLayout {
   height: 100vh;
-  overflow: hidden;
+  display: grid;
+  flex-direction: column;
+  grid-template-rows: 100px 1fr;
 
   &-inner {
     display: grid;
+    align-items: stretch;
     grid-template-columns: 325px 1fr;
   }
 
   &-content {
-
+    height: calc(100vh - 100px);
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 </style>

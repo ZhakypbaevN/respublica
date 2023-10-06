@@ -73,20 +73,20 @@ const loading = ref(false)
 const postLogin = ({ phone, password }: { phone: string, password: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
-    
+  const formData = new FormData();
+  formData.append("username", formatPhone(phone));
+  formData.append("password", password);
+
   axios({
     method: "post",
     url: url,
-    data: {
-      "phone": formatPhone(phone),
-      "password": password
-    }
+    data: formData
   })
     .then((response) => {
       console.log('response', response);
 
       toast({
-        message: 'Успешно авторизованы',
+        message: 'Вы успешно авторизованы',
         type: 'success'
       })
       

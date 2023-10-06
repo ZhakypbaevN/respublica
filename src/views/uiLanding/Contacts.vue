@@ -49,10 +49,17 @@
             </div>
           </div>
 
-          <RouterLink to="/branch-contacts" class="landing-link with-line" id="meetings-with-voters">
-            <span>Филиалы партии «Respublica» в регионах</span>
+          <button
+            class="landing-link with-line"
+            @click="() => showContactsBranch = !showContactsBranch"
+          >
+            <span>Филиалы</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
-          </RouterLink>
+          </button>
+
+          <div v-if="showContactsBranch" v-collapse>
+            <ContactsBranch />
+          </div>
         </div>
       </section>
     </div>
@@ -62,6 +69,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import ContactsBranch from '../../components/uiLanding/contacts/contactsBranch.vue';
+
+const showContactsBranch = ref(false);
 </script>
 
 <style scoped lang="scss">

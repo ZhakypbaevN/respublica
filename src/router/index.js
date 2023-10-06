@@ -8,6 +8,7 @@ import Home from '../views/uiLanding/Home.vue'
 import Feedback from '../views/uiLanding/Feedback.vue'
 import AboutParty from '../views/uiLanding/AboutParty.vue'
 import News from '../views/uiLanding/News.vue'
+import Contacts from '../views/uiLanding/Contacts.vue'
 import PartyFraction from '../views/uiLanding/PartyFraction.vue'
 
 // News
@@ -18,10 +19,6 @@ import NewsDetail from '../views/uiLanding/news/NewsDetail.vue'
 import PressAboutUsList from '../views/uiLanding/news/PressAboutUsList.vue'
 import PressAboutUsDetail from '../views/uiLanding/news/PressAboutUsDetail.vue'
 
-// Contacts
-import Contacts from '../views/uiLanding/contacts/Contacts.vue'
-import ContactsBranch from '../views/uiLanding/contacts/ContactsBranch.vue'
-
 // Gallery
 import VideoGallery from '../views/uiLanding/gallery/VideoGallery.vue'
 import PhotoGalleryAll from '../views/uiLanding/gallery/PhotoGalleryAll.vue'
@@ -30,14 +27,20 @@ import Faq from '../views/uiLanding/Faq.vue'
 import Donations from '../views/uiLanding/Donations.vue'
 
 
-// UI Bussiness
+// ------------------ UI Bussiness ------------------
 import MainDB from '../views/uiBusiness/Main.vue'
 
-// UI Client
+// ------------------ UI Manager ------------------
+import PartyDataList from '../views/uiManager/party/PartyDataList.vue'
+import ManagerPartyData from '../views/uiManager/party/PartyData.vue'
+
+
+// ------------------ UI Client ------------------
 import MyRequests from '../views/uiClient/requests/MyRequests.vue'
 import MyRequestDetail from '../views/uiClient/requests/MyRequestDetail.vue'
 
-import ExitParty from '../views/uiClient/ExitParty.vue'
+import PartyData from '../views/uiClient/party/PartyData.vue'
+import ExitParty from '../views/uiClient/party/ExitParty.vue'
 
 // Layouts
 const MainLayoutClient = () => import('../components/uiClient/layouts/mainLayoutClient.vue')
@@ -107,11 +110,6 @@ const routes = [
     component: Contacts,
   },
   {
-    path: '/branch-contacts',
-    name: 'ContactsBranch',
-    component: ContactsBranch,
-  },
-  {
     path: '/party-fraction',
     name: 'PartyFraction',
     component: PartyFraction,
@@ -154,7 +152,12 @@ const routes = [
         component: MyRequestDetail
       },
       {
-        path: 'exit-party',
+        path: 'party-data',
+        name: 'PartyData',
+        component: PartyData,
+      },
+      {
+        path: 'party-data/exit-party',
         name: 'ExitParty',
         component: ExitParty
       }
@@ -169,13 +172,23 @@ const routes = [
     component: MainLayoutManager,
     meta: { title: 'manager', requiresAuth: true },
     redirect: to => {
-      return '/manager/requests'
+      return '/manager/party-list/confirm'
     },
     children: [
       {
         path: 'requests',
         name: 'Requests',
         component: MyRequests
+      },
+      {
+        path: 'party-list/:filter',
+        name: 'PartyDataList',
+        component: PartyDataList
+      },
+      {
+        path: 'party-data/:party_id',
+        name: 'ManagerPartyData',
+        component: ManagerPartyData
       }
     ]
   }

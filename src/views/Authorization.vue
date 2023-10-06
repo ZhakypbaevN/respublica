@@ -22,7 +22,6 @@
 
           <CheckCodeForm
             v-if="showForm.checkCode"
-            :phone="checkData.phone"
             :token="checkData.token"
             @toBack="() => {fromLogin ? showLoginForm() : showRegistrationForm()}"
             @toLogin="showLoginForm"

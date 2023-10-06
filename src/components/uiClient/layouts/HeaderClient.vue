@@ -48,7 +48,6 @@
   }
   
   &-main {
-    padding: 6px 0;
     background: white;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
     transition: box-shadow .2s ease-in-out;

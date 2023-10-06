@@ -29,7 +29,7 @@ const sideBarlinks = [
   },
   {
     title: 'Личные данные',
-    link: "/client/test"
+    link: "/client/party-data"
   },
   {
     title: 'Записаться на прием',
@@ -50,25 +50,26 @@ const sideBarlinks = [
   {
     title: 'Новости',
     link: "/client/test"
-  },
-  {
-    title: 'Выйти из партии',
-    link: "/client/exit-party"
-  },
+  }
 ]
 </script>
 
 <style scoped lang="scss">
 .managerLayout {
   height: 100vh;
-  overflow: hidden;
+  display: grid;
+  flex-direction: column;
+  grid-template-rows: 100px 1fr;
 
   &-inner {
     display: grid;
+    align-items: stretch;
     grid-template-columns: 325px 1fr;
   }
 
   &-content {
+    height: calc(100vh - 100px);
+    overflow-x: hidden;
     overflow-y: auto;
   }
 }
