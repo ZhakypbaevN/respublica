@@ -421,6 +421,12 @@ input, textarea, select {
   line-height: 16.71px;
   font-size: 18px;
 }
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
 input.with-error,
 textarea.with-error,
 select.with-error {
@@ -451,6 +457,7 @@ textarea::placeholder {
   cursor: pointer;
   overflow: hidden;
 }
+
 .reset {
   position: absolute;
   right: 15px;

@@ -115,9 +115,9 @@ const fractionList = [
     &-name {
       display: flex;
       align-items: center;
-      height: 80px;
+      height: 64px;
       
-      padding: 6px 20px 9px;
+      padding: 6px 20px 6px;
       background-color: var(--accent-color);
 
       & span {

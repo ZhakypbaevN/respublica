@@ -57,12 +57,12 @@ const showModal = () => {
 }
 
 onMounted(() => {
-  document.addEventListener('keydown', hideModalOnEsc)
+  // document.addEventListener('keydown', hideModalOnEsc)
   showModal();
   document.body.style.overflow = 'hidden'
 })
 onUnmounted(() => {
-  document.removeEventListener('keydown', hideModalOnEsc)
+  // document.removeEventListener('keydown', hideModalOnEsc)
   document.body.style.overflow = 'overlay'
 })
 

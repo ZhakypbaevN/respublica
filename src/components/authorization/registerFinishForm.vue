@@ -77,7 +77,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../modules/toast'
-import moment from 'moment'
 
 const { toast } = useToast()
 
@@ -124,125 +123,13 @@ const postRegister = (
   .then((response) => {
       console.log('response', response);
 
-      postLogin();
-      // toast({
-      //   message: 'Вы успешно зарегистрировались',
-      //   type: 'success'
-      // })
-      
-      // emit('toLogin')
-      // loading.value = false
-    })
-    .catch((err) => {
-      console.log('err', err);
       toast({
-        message: 'Возникли ошибки при запросе'
+        message: 'Вы успешно зарегистрировались',
+        type: 'success'
       })
+      
+      emit('toLogin')
       loading.value = false
-    });
-}
-
-const postLogin = () => {
-  loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
-
-  const formData = new FormData();
-  formData.append("username", props.phone);
-  formData.append("password", firstPassword.value);
-
-  axios({
-    method: "post",
-    url: url,
-    data: formData
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      token.value = response.data['access_token'];
-      localStorage.setItem('TOKEN', token.value);
-      
-      getUserData();
-    })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-      loading.value = false
-    });
-}
-
-const getUserData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/users/me`;
-  console.log('token.value', token.value);
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token.value
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      postParty(response.data)
-    })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-}
-
-const postParty = (data) => {
-  loading.value = true;
-  const url = `https://tri.codetau.com/partyCards`;
-  const dateNow = moment().format('DD.M.YYYY');
-
-  axios({
-    method: "post",
-    url: url,
-    data: {
-      "userID": data['id'],
-      "dayOfAcceptance": dateNow,
-      "dayOfRegistration": dateNow,
-    
-      "dayOfRequestToExitParty": null,
-      "deleted": false,
-    
-      "name": data['first_name'],
-      "lastName": data['last_name'],
-      "middleName": data['middle_name'],
-    
-      "iin": data['iin'],
-      "birthday": null,
-      "phone": data['phone'],
-      "email": null,
-      "gender": null,
-      "educationlevel": null,
-      "specialization": null,
-      "workPlace": null,
-      "role": null,
-    
-      "region": null,
-      "city": null,
-      "streat": null,
-      "home": null,
-      "apartment": null,
-    
-      status: [
-      ]
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      token.value = response.data['access_token'];
-      localStorage.setItem('TOKEN', token.value);
-      
-      getUserData();
     })
     .catch((err) => {
       console.log('err', err);

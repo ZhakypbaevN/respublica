@@ -66,7 +66,7 @@ const sideBarlinks = [
 }
 
 .deputyRequests {
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 }
 </style>
   

@@ -56,12 +56,12 @@ const sideBarlinks = [
     link: "#party-program"
   },
   {
-    title: 'История',
-    link: "#history"
-  },
-  {
     title: 'Организационная структура',
     link: "#party-structure"
+  },
+  {
+    title: 'История',
+    link: "#history"
   },
   {
     title: 'Лидеры партии',

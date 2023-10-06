@@ -5,11 +5,12 @@
     class="feedbackModal"
     title="Вступить в партию"
   >
-    <Form @finish="postFeedback">
+    <Form @finish="postJoinParty">
       <div class="feedbackModal-inputs">
         <Input
           name="iin"
           placeholder="ИИН"
+          mask="############"
           required
         />
 
@@ -31,13 +32,33 @@
           required
         />
 
+        <div class="feedbackModal-inputs-gender">
+          <Input
+            type="date"
+            name="dateBirthday"
+            placeholder="Дата рождения"
+            required
+          />
+
+          <Button
+            name="Женщина"
+            :type="gender === 'Женщина' ?  'default-blue' : 'outline-grey'"
+            @click="() => gender = 'Женщина'"
+          />
+
+          <Button
+            name="Мужчина"
+            :type="gender === 'Мужчина' ?  'default-blue' : 'outline-grey'"
+            @click="() => gender = 'Мужчина'"
+          />
+        </div>
+
         <Select
           name="education"
           placeholder="Укажите ваше образование"
           :options="[
-            {label: 'Алматы', value: 'Алматы'},
-            {label: 'Астана', value: 'Астана'},
-            {label: 'Караганда', value: 'Караганда'},
+            {label: 'Высшее', value: 'Высшее'},
+            {label: 'Среднее', value: 'Среднее'},
           ]"
           required
         />
@@ -75,7 +96,13 @@
           required
         />
 
-        <Select
+        <Input
+          name="region"
+          placeholder="Укажите область"
+          required
+        />
+
+        <!-- <Select
           name="region"
           placeholder="Укажите область"
           :options="[
@@ -84,9 +111,14 @@
             {label: 'Караганда', value: 'Караганда'},
           ]"
           required
-        />
+        /> -->
 
-        <Select
+        <Input
+          name="locality"
+          placeholder="Населенный пункт"
+          required
+        />
+        <!-- <Select
           name="locality"
           placeholder="Населенный пункт"
           :options="[
@@ -95,23 +127,23 @@
             {label: 'Караганда', value: 'Караганда'},
           ]"
           required
-        />
+        /> -->
 
         <div class="feedbackModal-inputs-home">
           <Input
-            name="name"
+            name="streat"
             placeholder="Улица/Проспект/Мкр"
             required
           />
 
           <Input
-            name="name"
+            name="home"
             placeholder="Дом"
             required
           />
 
           <Input
-            name="name"
+            name="apartment"
             placeholder="Кв."
             required
           />
@@ -126,14 +158,14 @@
           <div class="feedbackModal-checkboxList-block">
             <div class="feedbackModal-checkboxList">
               <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox">
+                <input type="checkbox" @change="changeStatus('Пенсионеры')">
                 <span>
                   Пенсионеры
                 </span>
               </label>
 
               <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox">
+                <input type="checkbox" @change="changeStatus('Инвалиды')">
                 <span>
                   Инвалиды
                 </span>
@@ -142,14 +174,14 @@
 
             <div class="feedbackModal-checkboxList">
               <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox">
+                <input type="checkbox" @change="changeStatus('Безработные')">
                 <span>
                   Безработные
                 </span>
               </label>
 
               <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox">
+                <input type="checkbox" @change="changeStatus('Находящиеся в отпуске по уходу за детьми')">
                 <span>
                   Находящиеся в отпуске по уходу за детьми
                 </span>
@@ -194,10 +226,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-// import axios from 'axios'
-// import { useToast } from '../../../modules/toast'
-// const { toast } = useToast()
+
+const { toast } = useToast()
+import { reactive, ref } from 'vue'
+import moment from 'moment'
+import axios from 'axios'
+import { useToast } from '../../../modules/toast'
+import formatPhone from '../../../helpers/formatPhone';
 
 interface IProps {
   show: boolean,
@@ -209,43 +244,106 @@ interface Emits {
 const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
-
 const loading = ref(false)
+const gender = ref('Женщина');
+const userID = localStorage.getItem('USER_ID');
+const data = reactive({
+  status: []
+});
 
-const postFeedback = ({ name, phone, comment }: { name: string, phone: string, comment: string }) => {
-  console.log('name', name);
-  console.log('name', phone);
-  console.log('name', comment);
-  // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
-  // const bodyFormData = {
-  //   title: name,
-  //   message: `Телефон номер: ${phone},\r\nКомментарий: ${comment}`,
-  //   priority: 5,
-  // };
+const changeStatus = (val: string) => {
+  console.log('val', val);
+  console.log('data.status', data.status);
+  if (data.status.indexOf(val) !== -1) data.status.push(val);
+  else data.status.splice(data.status.indexOf(val), 1);
+  console.log('data.status', data.status);
+}
 
-  // const formData = new FormData();
-  // Object.keys(bodyFormData).forEach(key => formData.append(key, bodyFormData[key]));
+const postJoinParty = (
+    {
+      iin, lastname, name, middleName, education, specialization, workPlace, post, phone, email, region, locality, streat, home, apartment, dateBirthday
+    }:
+    {
+      iin: string,
+      lastname: string,
+      name: string,
+      middleName: string,
+      education: string,
+      specialization: string,
+      workPlace: string,
+      dateBirthday: string,
+      post: string,
+      phone: string,
+      email: string,
+      region: string,
+      locality: string,
+      streat: string,
+      home: string,
+      apartment: string
+    }
+  ) => {
+  const dateNow = moment().format('DD.M.YYYY');
 
-  // loading.value = true
-  // // Simple POST request with a JSON body using axios
-  // axios({
-  //   method: "post",
-  //   url: url,
-  //   data: formData,
-  // })
-  //   .then((response) => {
-  //     toast({
-  //       message: 'Ваша заявка успешно отправлена'
-  //     })
-  //     loading.value = false
-  //     emits('hide')
-  //   })
-  //   .catch((err) => {
-  //     toast({
-  //       message: 'Возникли ошибки при запросе'
-  //     })
-  //     loading.value = false
-  //   });
+  const data = {
+    "userID": userID,
+    "dayOfAcceptance": dateNow,
+    "dayOfRegistration": dateNow,
+  
+    "dayOfRequestToExitParty": null,
+    "deleted": false,
+  
+    "name": name,
+    "lastName": lastname,
+    "middleName": middleName,
+  
+    "iin": iin,
+    "birthday": moment(dateBirthday).format('DD.M.YYYY'), 
+    "phone": formatPhone(phone),
+    "email": email,
+
+    "gender": gender.value,
+    "educationlevel": education,
+    "specialization": specialization,
+    "workPlace": workPlace,
+    "role": post,
+  
+    "region": region,
+    "city": locality,
+    "streat": streat,
+    "home": home,
+    "apartment": apartment,
+  
+    status: [
+    ]
+  };
+
+  console.log('data', data);
+  postParty(data);
+}
+
+const postParty = (data) => {
+  loading.value = true;
+  const url = `https://tri.codetau.com/partyCards`;
+
+  axios({
+    method: "post",
+    url: url,
+    data: data
+  })
+    .then((response) => {
+      console.log('response', response);
+      toast({
+        message: 'Вы успешно вступили в парию'
+      })
+
+    })
+    .catch((err) => {
+      console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+      loading.value = false
+    });
 }
 </script>
 
@@ -262,6 +360,16 @@ const postFeedback = ({ name, phone, comment }: { name: string, phone: string, c
       font-size: 20px;
       font-weight: 500;
       margin-bottom: 10px;
+    }
+
+    &-gender {
+      display: grid;
+      grid-template-columns: 1fr 140px 140px;
+      grid-gap: 20px;
+
+      & button {
+        height: 60px;
+      }
     }
   }
 
