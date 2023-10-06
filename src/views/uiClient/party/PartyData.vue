@@ -211,11 +211,6 @@
               type="outline-red"
               v-slot:left
             >
-              <!-- <SvgIcon
-                name="trash"
-                :viewboxWidth="32"
-                :viewboxHeight="32"
-              /> -->
               <SvgIcon
                 name="logout"
                 :viewboxWidth="24"

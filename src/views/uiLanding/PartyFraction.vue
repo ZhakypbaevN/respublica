@@ -4,7 +4,10 @@
 
   <DeputyRequests />
 
-  <section class="deputyRequests landing-block" id="deputy-requests">
+  <section
+    class="partyFraction-links landing-block"
+    id="send-an-appeal"
+  >
     <div class="wrapper">
       <div class="links-wrapper scroll-top" id="links">
         <div class="links">
@@ -14,7 +17,6 @@
           </RouterLink>
           <button 
             class="landing-link with-line"
-            id="send-an-appeal"
             @click="() => showSubmitAnAppeal = true"
           >
             <span>Направить обращение</span>
@@ -63,10 +65,14 @@ const sideBarlinks = [
   flex-direction: column;
   align-items: flex-start;
   padding-left: 32%;
+
+  & .landing-link:last-child {
+    margin-bottom: 0px;
+  }
 }
 
-.deputyRequests {
-  padding-bottom: 50px;
+.partyFraction-links {
+  padding-bottom: 100px;
 }
 </style>
   

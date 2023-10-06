@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" :class="{withOutMT: withOutMT}">
     <div class="wrapper landing-wrapper">
       <div class="footer-main">
         <div class="footer-mainForm">
@@ -75,12 +75,26 @@
 <script setup lang="ts">
 import SocialNetworks from './SocialNetworks.vue';
 import { RouterLink } from 'vue-router';
+
+interface IProps {
+  withOutMT: boolean,
+}
+
+withDefaults(defineProps<IProps>(), {
+  withOutMT: false
+})
+
 </script>
 
 <style scoped lang="scss">
 .footer {
   padding: 80px 0 50px;
   background-color: var(--primary-color);
+  margin-top: 50px;
+
+  &.withOutMT {
+    margin-top: 0px !important;
+  }
 
   & * {
     color: white;

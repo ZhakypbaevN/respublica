@@ -22,10 +22,15 @@
     <div class="wrapper">
       <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
     
-      <div class="partyStructure-items">
-        <img src="/img/about/party-structure-1.svg" alt="">
-        <img src="/img/about/party-structure-2.svg" alt="">
-      </div>
+      <img src="/img/about/party-structure-1.svg" alt="">
+    </div>
+  </section>
+
+  <section class="partyStructure landing-block">
+    <div class="wrapper">
+      <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
+    
+      <img src="/img/about/party-structure-2.svg" alt="">
     </div>
   </section>
 
@@ -115,6 +120,9 @@ const sideBarlinks = [
   border-radius: 10px;
   margin: 0 50px;
 
+  border-radius: 20px;
+  background: white;
+
   & .wrapper {
     display: flex;
     flex-direction: column;
@@ -136,7 +144,10 @@ const sideBarlinks = [
   }
 }
 
-.party-structure,
+.partyStructure#party-structure {
+  margin-bottom: 35px;
+}
+
 .party-leaders {
   background-color: white;
 }

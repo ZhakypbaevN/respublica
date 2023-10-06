@@ -26,7 +26,7 @@
       </div>
     </div>
   
-    <Footer />
+    <Footer withOutMT />
   </div>
 </template>
   

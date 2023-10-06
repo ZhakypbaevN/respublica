@@ -63,6 +63,7 @@ const showBlock = reactive({
 }
 
 .wrapper  {
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   grid-gap: 20px;
