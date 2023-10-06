@@ -10,6 +10,8 @@ import AboutParty from '../views/uiLanding/AboutParty.vue'
 import News from '../views/uiLanding/News.vue'
 import Contacts from '../views/uiLanding/Contacts.vue'
 import PartyFraction from '../views/uiLanding/PartyFraction.vue'
+import DeputiesOfMajilis from '../views/uiLanding/DeputiesOfMajilis.vue';
+
 
 // News
 import NewsList from '../views/uiLanding/news/NewsList.vue'
@@ -129,6 +131,11 @@ const routes = [
     name: 'MainDB',
     component: MainDB,
   },
+  {
+    path: '/deputies-of-majilis',
+    name: 'DeputiesOfMajilis',
+    component: DeputiesOfMajilis
+  },
 
 
   // UI Client
@@ -160,7 +167,7 @@ const routes = [
         path: 'party-data/exit-party',
         name: 'ExitParty',
         component: ExitParty
-      }
+      },
     ]
   },
 

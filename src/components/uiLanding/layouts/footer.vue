@@ -54,7 +54,7 @@
             <div class="footer-mainNavs-item team">
               <h4 class="footer-mainNavs-title">КОМАНДА</h4>
               <div class="footer-mainNavs-links">
-                <RouterLink to="/0980" class="footer-mainNavs-link">Депутаты Мажилиса</RouterLink>
+                <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">Депутаты Мажилиса</RouterLink>
                 <RouterLink to="/0980" class="footer-mainNavs-link">Депутаты маслихатов</RouterLink>
                 <RouterLink to="/0980" class="footer-mainNavs-link">Центральный аппарат</RouterLink>
                 <RouterLink to="/0980" class="footer-mainNavs-link">Филиалы</RouterLink>
@@ -90,7 +90,7 @@ withDefaults(defineProps<IProps>(), {
 .footer {
   padding: 80px 0 50px;
   background-color: var(--primary-color);
-  margin-top: 50px;
+  margin-top: 70px;
 
   &.withOutMT {
     margin-top: 0px !important;

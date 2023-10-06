@@ -1,7 +1,8 @@
 <template>
-  <section class="fractionComposition landing-block" id="fraction-composition">
-    <div class="wrapper">
-      <h2 class="landing-title">Состав фракции партии RESPUBLICA</h2>
+  <section class="fractionComposition landing-block" id="fraction-composition" :class="{single: single}">
+    <div class="wrapper" :class="{'landing-wrapper': single}">
+      <h2 v-if="single" class="landing-title center">Депутаты мажилиса</h2>
+      <h2 v-else class="landing-title">Состав фракции партии RESPUBLICA</h2>
    
       <div class="fraction-items">
           <div
@@ -36,6 +37,14 @@
 </template>
 
 <script setup lang="ts">
+interface IProps {
+  single: boolean,
+}
+
+withDefaults(defineProps<IProps>(), {
+  single: false
+})
+
 const fractionList = [
   {
     fullName: 'ХОДЖАНАЗАРОВ Айдарбек',
