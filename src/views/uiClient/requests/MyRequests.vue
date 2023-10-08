@@ -126,7 +126,7 @@ const requestsList = [
     z-index: 2;
 
     & th {
-      border-bottom: .5px solid var(--light-gray-color-op5);
+      border-bottom: .5px solid var(--light-gray-color-op50);
     }
 
     & th:first-child {

@@ -103,7 +103,6 @@
               </div>
               <Button
                 class="partyData-content-editBtn"
-                name=""
                 type="outline-grey"
               >
                 <SvgIcon
@@ -316,7 +315,7 @@ onMounted(() => {
       padding-bottom: 20px;
       margin-bottom: 20px;
 
-      border-bottom: 1px solid var(--light-gray-color-op5);
+      border-bottom: 1px solid var(--light-gray-color-op50);
 
       &-item {
         font-size: 20px;
@@ -369,7 +368,7 @@ onMounted(() => {
         padding: 10px 15px;
 
         border-radius: 60px;
-        background: var(--accent-color-op1);
+        background: var(--accent-color-op10);
       }
     }
   }

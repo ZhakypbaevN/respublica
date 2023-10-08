@@ -28,7 +28,7 @@ import handleError from '../../helpers/handleError'
 
 interface IProps {
   name?: string
-  type?: 'default' | 'default-blue' | 'default-red' | 'default-grey' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'  | 'outline-grey'
+  type?: 'default' | 'default-blue' | 'default-light-blue' | 'default-red' | 'default-grey' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'  | 'outline-grey'
   loading?: boolean
   htmlType?: 'button' | 'submit' | 'reset',
   disabled?: boolean,
@@ -122,10 +122,32 @@ button {
     }
 
     &-grey {
-      background-color: var(--light-gray-color-op5);
+      background-color: var(--light-gray-color-op50);
 
       &:hover {
         background-color: var(--light-gray-color);
+      }
+    }
+
+    &-light {
+      &-blue {
+        background-color: var(--accent-color-op15);
+
+        & span {
+          color: var(--accent-color);
+        }
+
+        &:hover {
+          background-color: var(--accent-color-op30);
+        }
+      }
+
+      &-grey {
+        background-color: var(--light-gray-color-op10);
+
+        &:hover {
+          background-color: var(--light-gray-color-op20);
+        }
       }
     }
   }
@@ -155,7 +177,7 @@ button {
       }
 
       &:hover {
-        background-color: var(--red-color-op5);
+        background-color: var(--red-color-op05);
       }
     }
 
@@ -167,7 +189,7 @@ button {
       }
 
       &:hover {
-        background-color: var(--accent-color-op1);
+        background-color: var(--accent-color-op10);
       }
     }
 

@@ -77,7 +77,7 @@ import SocialNetworks from './SocialNetworks.vue';
 import { RouterLink } from 'vue-router';
 
 interface IProps {
-  withOutMT: boolean,
+  withOutMT?: boolean,
 }
 
 withDefaults(defineProps<IProps>(), {

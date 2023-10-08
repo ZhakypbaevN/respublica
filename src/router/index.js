@@ -32,6 +32,7 @@ import Donations from '../views/uiLanding/Donations.vue'
 // ------------------ UI Bussiness ------------------
 import MainDB from '../views/uiBusiness/Main.vue'
 
+
 // ------------------ UI Manager ------------------
 import PartyDataList from '../views/uiManager/party/PartyDataList.vue'
 import ManagerPartyData from '../views/uiManager/party/PartyData.vue'
@@ -44,9 +45,16 @@ import MyRequestDetail from '../views/uiClient/requests/MyRequestDetail.vue'
 import PartyData from '../views/uiClient/party/PartyData.vue'
 import ExitParty from '../views/uiClient/party/ExitParty.vue'
 
+
+// ------------------ UI Media ------------------
+import MediaNewsList from '../views/uiMedia/NewsList.vue'
+import MediaNewsEdit from '../views/uiMedia/NewsEdit.vue'
+
+
 // Layouts
 const MainLayoutClient = () => import('../components/uiClient/layouts/mainLayoutClient.vue')
 const MainLayoutManager = () => import('../components/uiManager/layouts/mainLayoutManager.vue')
+const MainLayoutMedia = () => import('../components/uiMedia/layouts/mainLayoutMedia.vue')
 
 const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
@@ -196,6 +204,30 @@ const routes = [
         path: 'party-data/:party_id',
         name: 'ManagerPartyData',
         component: ManagerPartyData
+      }
+    ]
+  },
+
+
+  // UI Media
+  {
+    path: '/media',
+    name: 'Media',
+    component: MainLayoutMedia,
+    meta: { title: 'media', requiresAuth: true },
+    redirect: to => {
+      return '/media/news-list'
+    },
+    children: [
+      {
+        path: 'news-list',
+        name: 'MediaNewsList',
+        component: MediaNewsList,
+      },
+      {
+        path: 'news-edit/:news_id',
+        name: 'MediaNewsEdit',
+        component: MediaNewsEdit
       }
     ]
   }

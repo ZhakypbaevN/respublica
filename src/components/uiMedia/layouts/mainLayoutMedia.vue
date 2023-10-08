@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <HeaderManager />
+    <HeaderMedia />
 
     <div class="layout-inner">
       <SideBar :list="sideBarlinks"></SideBar>
@@ -21,7 +21,7 @@
 <script setup>
 import { onMounted } from 'vue';
 import SideBar from '../../common/SideBar.vue';
-import HeaderManager from './headerManager.vue';
+import HeaderMedia from './headerMedia.vue';
 
 onMounted(() => {
   document.body.style ='height:100vh;overflow:hidden;';
@@ -29,16 +29,28 @@ onMounted(() => {
 
 const sideBarlinks = [
   {
-    title: 'Члены партии',
-    link: "/manager/party-list/confirm"
+    title: 'Новости',
+    link: "/media/news-list"
   },
   {
-    title: 'Заявки на удаление',
-    link: "/manager/party-list/exit-request"
+    title: 'Пресса о нас',
+    link: "/media/party-list/exit-request"
   },
   {
-    title: 'Удаленные',
-    link: "/manager/party-list/deleted"
+    title: 'Видеогалерея',
+    link: "/media/party-list/deleted"
+  },
+  {
+    title: 'Фотогалерея',
+    link: "/media/party-list/deleted"
+  },
+  {
+    title: 'Анонсы, объявления',
+    link: "/media/party-list/deleted"
+  },
+  {
+    title: 'Создать закуп',
+    link: "/media/party-list/deleted"
   }
 ]
 </script>

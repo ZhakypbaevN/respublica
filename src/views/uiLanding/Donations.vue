@@ -272,7 +272,7 @@ const backStep = () => {
         bottom: 25px;
         z-index: -1;
 
-        background-color: var(--light-gray-color-op5);
+        background-color: var(--light-gray-color-op50);
         transition: all .3s ease-in-out;
       }
 

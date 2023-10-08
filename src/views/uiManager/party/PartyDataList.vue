@@ -153,7 +153,7 @@ onMounted(() => {
       z-index: 2;
 
       & th {
-        border-bottom: .5px solid var(--light-gray-color-op5);
+        border-bottom: .5px solid var(--light-gray-color-op50);
       }
 
       & th:first-child {
@@ -200,10 +200,10 @@ onMounted(() => {
         align-items: center;
 
         border-radius: 8px;
-        background-color: var(--red-color-op5);
+        background-color: var(--red-color-op05);
 
         &:hover {
-          background-color: var(--red-color-op7);
+          background-color: var(--red-color-op07);
         }
 
         & svg {

@@ -11,7 +11,7 @@
     }">
 
     <span class="placeholder" v-if="type !== 'editor' && !staticPlaceholder">{{ placeholder }}</span>
-    <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ 255 - (input.value ? String(input.value).length : 0) }}</span>
+    <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ maxSymbol - (input.value ? String(input.value).length : 0) }}</span>
 
     <input
       :type="input.eyeState ? input.eyeState : type"
@@ -421,6 +421,9 @@ input, textarea, select {
   line-height: 16.71px;
   font-size: 18px;
 }
+textarea {
+  min-height: 120px;
+}
 input[type=date]:required:invalid::-webkit-datetime-edit {
     color: transparent;
 }
@@ -445,7 +448,7 @@ textarea.with-error::placeholder {
 input::placeholder,
 textarea::placeholder {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 16.71px;
   color: var(--light-gray-color);
 }

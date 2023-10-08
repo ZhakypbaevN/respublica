@@ -17,7 +17,6 @@
         :viewboxWidth="32"
       />
     </a>
-
   </div>
 </template>
 
@@ -70,7 +69,7 @@ const snList = [
 
     & .snList-item {
       & svg:last-child {
-        fill: var(--accent-color-op05) !important;
+        fill: white !important;
         opacity: .5 !important;
       }
   

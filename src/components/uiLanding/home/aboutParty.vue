@@ -79,7 +79,7 @@ defineEmits<Emits>()
       z-index: -1;
       transform: translateX(-50%);
       
-      background-color: var(--accent-color-op1);
+      background-color: var(--accent-color-op10);
     }
 
     & .aboutParty-item:first-child,
