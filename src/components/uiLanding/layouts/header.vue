@@ -87,9 +87,14 @@
               </Button>
             </Router-link>
 
-            <RouterLink to="/auth">
+            <RouterLink
+              v-if="!userType"
+              to="/auth"
+            >
               <Button name="Авторизация" />
             </RouterLink>
+
+            <Avatar v-else />
           </div>
 
           <button
@@ -111,11 +116,13 @@
 
 <script setup lang="ts">
 import SocialNetworks from './SocialNetworks.vue';
+import Avatar from '../../../components/common/Avatar.vue';
 
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const userType = localStorage.getItem('USER_TYPE');
 
 const back = () => {
   router.go(-1)

@@ -26,6 +26,8 @@
             <button class="header-main-lang">
               <span>РУ</span>
             </button>
+
+            <Avatar />
           </div>
         </div>
       </div>
@@ -40,6 +42,7 @@
 
 <script setup lang="ts">
 import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
+import Avatar from '../../../components/common/Avatar.vue';
 
 import { ref } from 'vue';
 

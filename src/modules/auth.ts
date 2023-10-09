@@ -1,3 +1,4 @@
+// import { ILoggedUser } from '@/types/user'
 import { ref, watch } from 'vue'
 
 import api from './api'
@@ -6,7 +7,7 @@ import { useToast } from './toast.js'
 
 const { toast } = useToast()
 
-const user = ref<{ data }>({
+const user = ref<{ data?: any }>({
   data: {
     name: '...'
   }
@@ -15,6 +16,14 @@ let hookCallbacks: Function[] = [() => null]
 const onChange = callback => {
   hookCallbacks = [...hookCallbacks, callback]
 }
+export const getSelectedSchool = () => {
+  try {
+    return JSON.parse(localStorage.getItem('selected_school'))
+  } catch (error) {
+    return null
+  }
+}
+export const selectedSchool = ref(getSelectedSchool())
 
 export const getUser = () => {
   try {
@@ -24,6 +33,29 @@ export const getUser = () => {
     return {}
   }
 }
+
+watch(
+  () => selectedSchool.value,
+  () => { localStorage.setItem('selected_school', JSON.stringify(selectedSchool.value)) },
+  {
+    deep: true
+  }
+)
+watch(
+  () => user.value,
+  () => {
+    hookCallbacks.forEach(callback => callback(user.value.data))
+    localStorage.setItem('user', JSON.stringify(user.value.data))
+    if (user.value.data?.schools?.length && selectedSchool.value?.id) {
+      user.value.data.schools.forEach(school => {
+        if (school.id === selectedSchool.value.id) selectedSchool.value = school
+      })
+    }
+  },
+  {
+    deep: true
+  }
+)
 
 const loaded = ref(false)
 
@@ -95,6 +127,7 @@ export const useAuth = () => {
 
   return {
     user,
+    selectedSchool,
     loaded,
     getUser,
     setUser,

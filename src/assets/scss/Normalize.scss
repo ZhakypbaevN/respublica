@@ -27,6 +27,10 @@ body {
   color: #000;
   overflow-x: hidden;
 }
+header {
+  position: relative;
+  z-index: 100;
+}
 .disabled {
   pointer-events: none;
 }

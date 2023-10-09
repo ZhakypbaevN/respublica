@@ -24,6 +24,7 @@
     "vue-the-mask": "^0.11.1"
   },
   "devDependencies": {
+    "@types/node": "^20.8.3",
     "@types/vue-the-mask": "^0.11.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "@volar/vue-language-core": "1.6.3",

@@ -93,7 +93,6 @@ const emit = defineEmits<Emits>()
 
 const loading = ref(false)
 const firstPassword = ref('');
-const token = ref()
 
 console.log('iin', Number('030905-501046'));
 const postRegister = (
