@@ -81,7 +81,8 @@ const bottomStyle = computed(() => props.locatedAbove ? 'none' : 'calc(100% + 3p
   &__list {
     min-width: 100%;
     max-height: 270px;
-    overflow-y: overlay;
+    overflow-y: auto !important;
+
     position: absolute;
     top: v-bind(topStyle);
     bottom: v-bind(bottomStyle);

@@ -13,9 +13,16 @@
             class="timeline-item" 
             :class="{withOutImg: !history.img}"
           >
-            <div v-if="history.img" class="timeline-item-preview withZoomPreview-preview">
+            <div v-if="history.img && !history.logoSvg" class="timeline-item-preview withZoomPreview-preview">
               <div class="timeline-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url('${history.img}');`"></div>
             </div>
+            <SvgIcon
+              v-else-if="history.logoSvg"
+              class="timeline-item-logo"
+              name="logo"
+              :viewboxWidth="260"
+              :viewboxHeight="49"
+            />
             <p class="timeline-item-content" v-html="history.text"></p>
           </div>
         </li>
@@ -38,6 +45,8 @@ const historylist = [
   },
   {
     date: '2023, 18 января',
+    img: '/img/about/history/История 1 съезд (2).jpg',
+    logoSvg: true,
     text: `
       Общественное объединение «Партия «Respublica» зарегистрировано в Министерстве юстиции Республики Казахстан 18 января 2023 года. Начата регистрация филиалов партии.
     `

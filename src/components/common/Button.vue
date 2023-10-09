@@ -28,7 +28,7 @@ import handleError from '../../helpers/handleError'
 
 interface IProps {
   name?: string
-  type?: 'default' | 'default-blue' | 'default-light-blue' | 'default-red' | 'default-grey' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'default-green'  | 'outline-grey'
+  type?: 'default' | 'default-blue' | 'default-green' | 'default-light-blue' | 'default-red' | 'default-grey' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'outline-grey'
   loading?: boolean
   htmlType?: 'button' | 'submit' | 'reset',
   disabled?: boolean,
