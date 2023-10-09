@@ -31,6 +31,8 @@ import Donations from '../views/uiLanding/Donations.vue'
 
 // ------------------ UI Bussiness ------------------
 import MainDB from '../views/uiBusiness/Main.vue'
+import BusinessAppealList from '../views/uiBusiness/appeal/AppealList.vue'
+import BusinessAppealDetail from '../views/uiBusiness/appeal/AppealDetail.vue'
 
 
 // ------------------ UI Manager ------------------
@@ -56,6 +58,7 @@ import MediaPressEdit from '../views/uiMedia/press/PressEdit.vue'
 
 
 // Layouts
+const MainLayoutBusiness = () => import('../components/uiBusiness/layouts/mainLayoutBusiness.vue')
 const MainLayoutClient = () => import('../components/uiClient/layouts/mainLayoutClient.vue')
 const MainLayoutManager = () => import('../components/uiManager/layouts/mainLayoutManager.vue')
 const MainLayoutMedia = () => import('../components/uiMedia/layouts/mainLayoutMedia.vue')
@@ -183,6 +186,30 @@ const routes = [
     ]
   },
 
+  // UI Business
+  {
+    path: '/business',
+    name: 'Business',
+    component: MainLayoutBusiness,
+    meta: { title: 'business', requiresAuth: true },
+    redirect: to => {
+      return '/business/appeal-list/new'
+    },
+    children: [
+      {
+        path: 'appeal-list/:filter',
+        name: 'BusinessAppealList',
+        component: BusinessAppealList
+      },
+      {
+        path: 'appeal-data/:appeal_id',
+        name: 'BusinessAppealDetail',
+        component: BusinessAppealDetail
+      }
+    ]
+  },
+
+
 
   // UI Manager
   {
@@ -239,7 +266,6 @@ const routes = [
         component: MediaNewsEdit
       },
       
-
       {
         path: 'press-list',
         name: 'MediaPressList',

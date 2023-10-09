@@ -67,5 +67,24 @@
       "status": [],
       "id": 2
     }
+  ],
+  "appealList": [
+    {
+      "userID": "1",
+      "dayOfAcceptance": "09.10.2023",
+      "appleanType": "Предложения и инициативы",
+      "appleanCategory": "Экология, природопользование и окружающая среда",
+      "messege": "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
+      "region": "Алматы",
+      "locality": "Талгар",
+      "streat": "Abay",
+      "house": "24",
+      "appartment": "c12",
+      "status": "Новое",
+      "name": "Nurzhigit",
+      "lastName": "Zhakypbayev",
+      "middleName": "Adletuly",
+      "id": 1
+    }
   ]
 }

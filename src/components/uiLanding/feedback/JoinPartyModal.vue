@@ -226,13 +226,14 @@
 </template>
 
 <script setup lang="ts">
-
-const { toast } = useToast()
 import { reactive, ref } from 'vue'
 import moment from 'moment'
 import axios from 'axios'
+
 import { useToast } from '../../../modules/toast'
 import formatPhone from '../../../helpers/formatPhone';
+
+const { toast } = useToast()
 
 interface IProps {
   show: boolean,
@@ -252,11 +253,8 @@ const data = reactive({
 });
 
 const changeStatus = (val: string) => {
-  console.log('val', val);
-  console.log('data.status', data.status);
   if (data.status.indexOf(val) !== -1) data.status.push(val);
   else data.status.splice(data.status.indexOf(val), 1);
-  console.log('data.status', data.status);
 }
 
 const postJoinParty = (
@@ -335,6 +333,7 @@ const postParty = (data) => {
       toast({
         message: 'Вы успешно вступили в парию'
       })
+      loading.value = false
 
     })
     .catch((err) => {

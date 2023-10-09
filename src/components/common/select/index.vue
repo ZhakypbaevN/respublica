@@ -17,6 +17,7 @@
         :placeholder="placeholder"
         v-model="states.inputValue"
         :disabled="!options"
+        :staticPlaceholder="staticPlaceholder"
       />
 
       <!-- -------- Multi Select -------- -->
@@ -58,7 +59,7 @@
         @click="states.visible = !states.visible"
       />
       <Transition>
-        <div class="ac-select__list" v-if="states.visible && (disabledText || options.length === 0)">
+        <div class="ac-select__list" v-if="states.visible && (disabledText || options!.length === 0)">
           <div v-if="disabledText" class="li">{{ disabledText }}</div>
           <div  v-else class="li">{{ emptyText }}</div>
         </div>
@@ -92,17 +93,19 @@ interface IProps {
   name?: string,
   modelValue?: any,
   placeholder?: string,
-  options?: IOption[]
+  options?: IOption[] | null
   required?: boolean,
   multiple?: boolean,
   disabledText?: string,
-  emptyText?: string
+  emptyText?: string,
+  staticPlaceholder?: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   name: '',
-  modelValue: '',
-  options: null
+  modelValue: null,
+  options: null,
+  staticPlaceholder: false
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -117,6 +120,7 @@ const formValue = props.name ? inject('formData') : {}
 const useForm = () => {
   if (!props.required && !props.name) return
   formValue[props.name] = selectedOptions.value
+
   if (!props.multiple) hasError[props.name] = selectedOptions.value === null
   else hasError[props.name] = selectedOptions.value?.length === 0
 }

@@ -18,35 +18,35 @@
                     <div class="gallery">
                         <div class="gallery-photos">
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
 
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
                             <div class="gallery-photo">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                             </div>
 
                         </div>
                         <div class="gallery-albums">
                             <div class="gallery-album">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                                 <div class="gallery-album-info">
                                     <span class="gallery-album-info-name">Выборы</span>
                                     <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="gallery-album active">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                                 <div class="gallery-album-info">
                                     <span class="gallery-album-info-name">Выборы</span>
                                     <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="gallery-album">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                                 <div class="gallery-album-info">
                                     <span class="gallery-album-info-name">Выборы</span>
                                     <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="gallery-album">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                                 <div class="gallery-album-info">
                                     <span class="gallery-album-info-name">Выборы</span>
                                     <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="gallery-album">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                                 <div class="gallery-album-info">
                                     <span class="gallery-album-info-name">Выборы</span>
                                     <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                             <div class="gallery-album">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                                 <div class="gallery-album-info">
                                     <span class="gallery-album-info-name">Выборы</span>
                                     <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="gallery-album">
-                                <img src="/img/uiLanding/events-2.jpg" alt="">
+                                <img src="https://demo.akorda.kz/assets/media/kz-2_mediumThumb.jpg" alt="">
                                 <div class="gallery-album-info">
                                     <span class="gallery-album-info-name">Выборы</span>
                                     <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>

@@ -13,13 +13,10 @@
           </label>
 
           <Select
-            name="region"
+            name="appleanType"
             placeholder="Выберите категорию обращения"
-            :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
-            ]"
+            :options="appleanTypeList"
+            staticPlaceholder
             required
           />
         </div>
@@ -31,13 +28,10 @@
           </label>
 
           <Select
-            name="region"
+            name="appleanCategory"
             placeholder="Выберите категорию обращения"
-            :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
-            ]"
+            :options="appleanCategoryList"
+            staticPlaceholder
             required
           />
         </div>
@@ -47,16 +41,16 @@
             Текст обращения<span>*</span>
           </label>
           <Input
+            name="messege"
             type="textarea"
-            name="name"
             placeholder="Введите текст обращения"
+            staticPlaceholder
+            :maxSymbol="200"
             required
-            autofocus
-            max
           />
         </div>
 
-
+        <!-- File -->
         <div>
           <label>
             Файлы
@@ -104,36 +98,45 @@
               {label: 'Астана', value: 'Астана'},
               {label: 'Караганда', value: 'Караганда'},
             ]"
+            staticPlaceholder
             required
           />
 
           <Select
-            name="region"
+            name="locality"
             placeholder="Населенный пункт"
             :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
+              {label: 'Есик', value: 'Есик'},
+              {label: 'Жаркент', value: 'Жаркент'},
+              {label: 'Талгар', value: 'Талгар'},
+              {label: 'Каскелен', value: 'Каскелен'},
+              {label: 'Сарканд', value: 'Сарканд'},
+              {label: 'Ушарал', value: 'Ушарал'},
+              {label: 'Уштобе', value: 'Уштобе'},
             ]"
+            staticPlaceholder
             required
           />
 
           <div class="feedbackModal-inputs-home">
             <Input
-              name="name"
+              name="streat"
               placeholder="Улица"
+              staticPlaceholder
               required
             />
 
             <Input
-              name="name"
+              name="house"
               placeholder="Дом/корпус"
+              staticPlaceholder
               required
             />
 
             <Input
-              name="name"
+              name="appartment"
               placeholder="Квартира"
+              staticPlaceholder
               required
             />
           </div>
@@ -141,19 +144,21 @@
       </div>
 
       <div class="feedbackModal-checkboxList">
-        <label class="feedbackModal-checkboxList-item">
-          <input type="checkbox">
-          <span>
-            Я, как пользователь Сервиса, даю <a href="https://eotinish.kz/ru/agreement" target="_blank">согласие на сбор и обработку моих персональных данных</a>
-          </span>
-        </label>
+        <Checkbox
+          name="confirm-1"
+          class="feedbackModal-checkboxList-item"
+          required
+        >
+          Я, как пользователь Сервиса, даю <a href="https://eotinish.kz/ru/agreement" target="_blank">согласие на сбор и обработку моих персональных данных</a>
+        </Checkbox>
 
-        <label class="feedbackModal-checkboxList-item">
-          <input type="checkbox">
-          <span>
-            Я, согласен(на) с <a href="https://eotinish.kz/ru/privacy" target="_blank">политикой конфиденциальности</a>
-          </span>
-        </label>
+        <Checkbox
+          name="confirm-2"
+          class="feedbackModal-checkboxList-item"
+          required
+        >
+          Я, согласен(на) с <a href="https://eotinish.kz/ru/privacy" target="_blank">политикой конфиденциальности</a>
+        </Checkbox>
       </div>
       
 
@@ -176,9 +181,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-// import axios from 'axios'
-// import { useToast } from '../../../modules/toast'
-// const { toast } = useToast()
+import moment from 'moment'
+import axios from 'axios'
+import { useToast } from '../../../modules/toast'
+
+const { toast } = useToast()
 
 interface IProps {
   show: boolean,
@@ -192,42 +199,102 @@ const emits = defineEmits<Emits>()
 
 
 const loading = ref(false)
+const userID = localStorage.getItem('USER_ID');
 
-const postFeedback = ({ name, phone, comment }: { name: string, phone: string, comment: string }) => {
-  console.log('name', name);
-  console.log('name', phone);
-  console.log('name', comment);
-  // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
-  // const bodyFormData = {
-  //   title: name,
-  //   message: `Телефон номер: ${phone},\r\nКомментарий: ${comment}`,
-  //   priority: 5,
-  // };
+const postFeedback = (
+    { appleanType, appleanCategory, messege, region, locality, streat, house, appartment }:
+    {
+      appleanType: string,
+      appleanCategory: string,
+      messege: string,
+      region: string,
+      locality: string,
+      streat: string,
+      house: string,
+      appartment: string,
+    }
+  ) => {
+  const dateNow = moment().format('DD.M.YYYY');
 
-  // const formData = new FormData();
-  // Object.keys(bodyFormData).forEach(key => formData.append(key, bodyFormData[key]));
+  const fromData = {
+    "status": 'new',
 
-  // loading.value = true
-  // // Simple POST request with a JSON body using axios
-  // axios({
-  //   method: "post",
-  //   url: url,
-  //   data: formData,
-  // })
-  //   .then((response) => {
-  //     toast({
-  //       message: 'Ваша заявка успешно отправлена'
-  //     })
-  //     loading.value = false
-  //     emits('hide')
-  //   })
-  //   .catch((err) => {
-  //     toast({
-  //       message: 'Возникли ошибки при запросе'
-  //     })
-  //     loading.value = false
-  //   });
+    "userID": userID,
+    "dayOfAcceptance": dateNow,
+
+    "appleanType": appleanType,
+    "appleanCategory": appleanCategory,
+
+    "messege": messege,
+
+    "region": region,
+    "locality": locality,
+
+    "streat": streat,
+    "house": house,
+    "appartment": appartment
+  }
+
+  loading.value = true;
+  // const url = `https://tri.codetau.com/appealList`;
+  const url = 'http://localhost:3000/appealList';
+
+  axios({
+    method: "post",
+    url: url,
+    data: fromData
+  })
+    .then((response) => {
+      console.log('response', response);
+      toast({
+        message: 'Вы успешно вступили в парию'
+      })
+      loading.value = false
+    })
+    .catch((err) => {
+      console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+      loading.value = false
+    });
 }
+
+
+const appleanTypeList = [
+  {label: 'Заявление', value: 'Заявление'},
+  {label: 'Жалоба', value: 'Жалоба'},
+  {label: 'Предложения и инициативы', value: 'Предложения и инициативы'},
+  {label: 'Запрос на информацию', value: 'Запрос на информацию'},
+  {label: 'Отклик', value: 'Отклик'},
+  {label: 'Благодарности и отзывы', value: 'Благодарности и отзывы'},
+  {label: 'Запрос на конультацию', value: 'Запрос на конультацию'},
+  {label: 'Разные', value: 'Разные'},
+];
+
+
+const appleanCategoryList = [
+  {label: 'Социальные вопросы', value: 'Социальные вопросы'},
+  {label: 'Здравоохранение', value: 'Здравоохранение'},
+  {label: 'Образование', value: 'Образование'},
+  {label: 'Жилищные и коммунальные вопросы', value: 'Жилищные и коммунальные вопросы'},
+  {label: 'Экология, природопользование и окружающая среда', value: 'Экология, природопользование и окружающая среда'},
+  {label: 'Экономика и трудоустройство', value: 'Экономика и трудоустройство'},
+  {label: 'Закон и правопорядок', value: 'Закон и правопорядок'},
+  {label: 'Иммиграция и миграция', value: 'Иммиграция и миграция'},
+  {label: 'Инфраструктура и городская среда', value: 'Инфраструктура и городская среда'},
+  {label: 'Культура и искусство', value: 'Культура и искусство'},
+  {label: 'Спорт и развлечения', value: 'Спорт и развлечения'},
+  {label: 'Государственный язык', value: 'Государственный язык'},
+  {label: 'Предпринимательство', value: 'Предпринимательство'},
+  {label: 'Агропромышленный комплекс', value: 'Агропромышленный комплекс'},
+  {label: 'Судебная и правоохранительная система', value: 'Судебная и правоохранительная система'},
+  {label: 'Банки и иные кредитные организации', value: 'Банки и иные кредитные организации'},
+  {label: 'Религия', value: 'Религия'},
+  {label: 'Земельные вопросы', value: 'Земельные вопросы'},
+  {label: 'Партия', value: 'Партия'},
+  {label: 'Другие вопросы', value: 'Другие вопросы'},
+];
 </script>
 
 <style scoped lang="scss">
