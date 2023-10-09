@@ -1,9 +1,9 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import { useToast } from '../modules/toast.js'
-import { useAuth } from './auth'
+// import { useAuth } from './auth.ts'
 
 const { toast } = useToast()
-const { logout } = useAuth()
+// const { logout } = useAuth()
 
 type Request = <T = any>(
   url: string,
@@ -68,7 +68,7 @@ const request = function (
       }
     })
     .catch(function (error) {
-      if (error.response.status === 401) logout()
+      // if (error.response.status === 401) logout()
 
       if (!muteError) {
         if (!error.response) {
