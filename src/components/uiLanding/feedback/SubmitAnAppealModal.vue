@@ -8,9 +8,7 @@
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
         <div>
-          <label>
-            Вид обращения<span>*</span>
-          </label>
+          <label> Вид обращения<span>*</span> </label>
 
           <Select
             name="appleanType"
@@ -37,9 +35,22 @@
         </div>
 
         <div>
-          <label>
-            Текст обращения<span>*</span>
-          </label>
+          <label> Категория обращения<span>*</span> </label>
+
+          <Select
+            name="region"
+            placeholder="Выберите категорию обращения"
+            :options="[
+              { label: 'Алматы', value: 'Алматы' },
+              { label: 'Астана', value: 'Астана' },
+              { label: 'Караганда', value: 'Караганда' },
+            ]"
+            required
+          />
+        </div>
+
+        <div>
+          <label> Текст обращения<span>*</span> </label>
           <Input
             name="messege"
             type="textarea"
@@ -52,14 +63,12 @@
 
         <!-- File -->
         <div>
-          <label>
-            Файлы
-          </label>
+          <label> Файлы </label>
 
           <p class="feedbackModal-description">
-            Прикрепите фото и документы, которые могут помочь или выступить доказательством
+            Прикрепите фото и документы, которые могут помочь или выступить
+            доказательством
           </p>
-
 
           <Button
             class="feedbackModal-addFileBtn"
@@ -67,36 +76,28 @@
             type="outline-blue"
             v-slot:left
           >
-            <SvgIcon
-              name="plus"
-              :viewboxWidth="24"
-              :viewboxHeight="24"
-            />
+            <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
 
           <p class="feedbackModal-description">
-            Максимальный размер одного файла 19 мб.<br>
-            Общий размер файлов не более 80 мб, количество до 10 файлов.Форматы: png, pdf, jpg, jpeg, gif, tiff, bmp, doc, docx, xls, xlsx.
+            Максимальный размер одного файла 19 мб.<br />
+            Общий размер файлов не более 80 мб, количество до 10 файлов.Форматы: png, pdf,
+            jpg, jpeg, gif, tiff, bmp, doc, docx, xls, xlsx.
           </p>
         </div>
 
-
         <div>
-          <label>
-            Фактический адрес<span>*</span>
-          </label>
+          <label> Фактический адрес<span>*</span> </label>
 
-          <p class="feedbackModal-description">
-            Введите адрес фактического проживания
-          </p>
+          <p class="feedbackModal-description">Введите адрес фактического проживания</p>
 
           <Select
             name="region"
             placeholder="Укажите область"
             :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
+              { label: 'Алматы', value: 'Алматы' },
+              { label: 'Астана', value: 'Астана' },
+              { label: 'Караганда', value: 'Караганда' },
             ]"
             staticPlaceholder
             required
@@ -160,20 +161,11 @@
           Я, согласен(на) с <a href="https://eotinish.kz/ru/privacy" target="_blank">политикой конфиденциальности</a>
         </Checkbox>
       </div>
-      
 
       <div class="feedbackModal-btns">
-        <Button
-          name="Отправить"
-          :loading="loading"
-          htmlType="submit"
-        />
+        <Button name="Отправить" :loading="loading" htmlType="submit" />
 
-        <Button
-          type="default-grey"
-          name="Отмена"
-          @click="emits('hide')"
-        />
+        <Button type="default-grey" name="Отмена" @click="emits('hide')" />
       </div>
     </Form>
   </Modal>
@@ -188,15 +180,16 @@ import { useToast } from '../../../modules/toast'
 const { toast } = useToast()
 
 interface IProps {
-  show: boolean,
+  show: boolean;
 }
 interface Emits {
-  (event: 'hide'): Function
+  (event: "hide"): Function;
 }
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+const props = defineProps<IProps>();
+const emits = defineEmits<Emits>();
 
+const loading = ref(false);
 
 const loading = ref(false)
 const userID = localStorage.getItem('USER_ID');
@@ -340,5 +333,4 @@ const appleanCategoryList = [
     grid-gap: 20px;
   }
 }
-
 </style>
