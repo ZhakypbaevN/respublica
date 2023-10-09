@@ -90,8 +90,6 @@
         <SvgIcon
           v-if="input.eyeState === 'text'"
           name="password-eye-on"
-          :height="24"
-          :width="24"
           :viewboxHeight="56"
           :viewboxWidth="56"
           @click="input.eyeState = 'password'"
@@ -100,8 +98,6 @@
         <SvgIcon
           v-else
           name="password-eye-off"
-          :height="24"
-          :width="24"
           :viewboxHeight="56"
           :viewboxWidth="56"
           @click="input.eyeState = 'text'"
@@ -455,10 +451,16 @@ textarea::placeholder {
 .input__eye {
   position: absolute;
   right: 20px;
-  top: 14px;
+  top: 18px;
   display: inline-block;
   cursor: pointer;
   overflow: hidden;
+
+  & svg {
+    height: 24px;
+    width: 24px;
+    fill: white !important;
+  }
 }
 
 .reset {

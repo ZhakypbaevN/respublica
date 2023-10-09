@@ -6,6 +6,7 @@
         <NewsItem />
         <NewsItem />
         <NewsItem />
+        
         <NewsItem />
         <NewsItem />
         <NewsItem />
@@ -15,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from "../../components/uiMedia/news/newsItem.vue"
+import NewsItem from "../../../components/uiMedia/news/newsItem.vue"
 </script>
 
 <style scoped lang="scss">

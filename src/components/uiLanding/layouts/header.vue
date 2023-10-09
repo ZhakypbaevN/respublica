@@ -152,6 +152,7 @@ onMounted(() => {
   const headerMain = document.querySelector('#header-main');
 
   headerOffsetTop.value = headerMain!.offsetTop;
+  document.body.style ='height:auto;overflow:auto;';
 });
 
 onBeforeUnmount(() => {

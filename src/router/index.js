@@ -47,8 +47,12 @@ import ExitParty from '../views/uiClient/party/ExitParty.vue'
 
 
 // ------------------ UI Media ------------------
-import MediaNewsList from '../views/uiMedia/NewsList.vue'
-import MediaNewsEdit from '../views/uiMedia/NewsEdit.vue'
+import MediaNewsList from '../views/uiMedia/news/News.vue'
+import MediaNewsFractionList from '../views/uiMedia/news/NewsFraction.vue'
+import MediaNewsEdit from '../views/uiMedia/news/NewsEdit.vue'
+
+import MediaPressList from '../views/uiMedia/press/Press.vue'
+import MediaPressEdit from '../views/uiMedia/press/PressEdit.vue'
 
 
 // Layouts
@@ -225,9 +229,26 @@ const routes = [
         component: MediaNewsList,
       },
       {
+        path: 'news-fraction-list',
+        name: 'MediaNewsFractionList',
+        component: MediaNewsFractionList,
+      },
+      {
         path: 'news-edit/:news_id',
         name: 'MediaNewsEdit',
         component: MediaNewsEdit
+      },
+      
+
+      {
+        path: 'press-list',
+        name: 'MediaPressList',
+        component: MediaPressList,
+      },
+      {
+        path: 'press-edit/:press_id',
+        name: 'MediaPressEdit',
+        component: MediaPressEdit
       }
     ]
   }

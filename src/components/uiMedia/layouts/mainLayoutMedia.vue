@@ -33,8 +33,12 @@ const sideBarlinks = [
     link: "/media/news-list"
   },
   {
+    title: 'Новости для фракции',
+    link: "/media/news-fraction-list"
+  },
+  {
     title: 'Пресса о нас',
-    link: "/media/party-list/exit-request"
+    link: "/media/press-list"
   },
   {
     title: 'Видеогалерея',

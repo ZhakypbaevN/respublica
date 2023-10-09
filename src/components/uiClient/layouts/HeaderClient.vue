@@ -25,6 +25,9 @@
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  max-width: 100%;
+}
 .header {
   background-color: var(--accent-color-op05);
 
