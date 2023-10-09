@@ -1,7 +1,7 @@
 <template>
   <div class="contacts">
     <div class="contacts-items">
-      <h4 class="contacts-items-title">Наш адрес:</h4>
+      <h4 class="contacts-items-title">Наш адрес</h4>
 
       <a class="contacts-item" href="https://go.2gis.com/yd0lu">
         <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />

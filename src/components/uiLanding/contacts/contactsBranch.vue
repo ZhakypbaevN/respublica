@@ -16,7 +16,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">г. Алматы:</span>
+        <span class="contacts-address-block-field">г. Алматы</span>
         <span class="contacts-address-block-data"
           >г.Алматы, ул. Жарокова, 41, 1 этаж</span
         >
@@ -26,7 +26,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Область Абай:</span>
+        <span class="contacts-address-block-field">Область Абай</span>
         <span class="contacts-address-block-data"
           >г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199</span
         >
@@ -36,7 +36,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Акмолинская область:</span>
+        <span class="contacts-address-block-field">Акмолинская область</span>
         <span class="contacts-address-block-data"></span>
         <a href="tel:+77751888881" class="contacts-address-block-data">+7 775 188 8881</a>
         <a href="mailto:" class="contacts-address-block-data"></a>
@@ -44,7 +44,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Актюбинская область:</span>
+        <span class="contacts-address-block-field">Актюбинская область</span>
         <span class="contacts-address-block-data"
           >г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж</span
         >
@@ -54,7 +54,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Алматинская область:</span>
+        <span class="contacts-address-block-field">Алматинская область</span>
         <span class="contacts-address-block-data">г. Конаев, мкр-н 1, уч. 35/10</span>
         <a href="tel:" class="contacts-address-block-data"></a>
         <a href="mailto:" class="contacts-address-block-data"></a>
@@ -62,7 +62,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Атырауская область:</span>
+        <span class="contacts-address-block-field">Атырауская область</span>
         <span class="contacts-address-block-data"
           >г. Атырау, пр. Султан Бейбарыс, 450</span
         >
@@ -72,7 +72,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Восточно-Казахстанская область:</span>
+        <span class="contacts-address-block-field">Восточно-Казахстанская область</span>
         <span class="contacts-address-block-data"
           >г. Усть-Каменогорск, ул. Чехова, 69, кв.1</span
         >
@@ -81,7 +81,7 @@
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Жамбылская область:</span>
+        <span class="contacts-address-block-field">Жамбылская область</span>
         <span class="contacts-address-block-data"
           >г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж</span
         >
@@ -90,7 +90,7 @@
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Область Жетісу:</span>
+        <span class="contacts-address-block-field">Область Жетісу</span>
         <span class="contacts-address-block-data">Талдыкорган, ул. Абылай хана, 186</span>
         <a href="tel:" class="contacts-address-block-data"></a>
         <a href="mailto:" class="contacts-address-block-data"></a>
@@ -99,7 +99,7 @@
     <div class="contacts-address">
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Западно-Казахстанская область:</span>
+        <span class="contacts-address-block-field">Западно-Казахстанская область</span>
         <span class="contacts-address-block-data"
           >г. Уральск, с. Желаево, ул.Трудовая, 6/3</span
         >
@@ -108,7 +108,7 @@
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Карагандинская область:</span>
+        <span class="contacts-address-block-field">Карагандинская область</span>
         <span class="contacts-address-block-data"
           >г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46</span
         >
@@ -117,7 +117,7 @@
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Костанайская область:</span>
+        <span class="contacts-address-block-field">Костанайская область</span>
         <span class="contacts-address-block-data"
           >г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN</span
         >
@@ -126,7 +126,7 @@
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Кызылординская область:</span>
+        <span class="contacts-address-block-field">Кызылординская область</span>
         <span class="contacts-address-block-data"
           >г. Кызылорда, ул. Конаева, 19-а, 1 этаж</span
         >
@@ -135,7 +135,7 @@
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Мангистауская область:</span>
+        <span class="contacts-address-block-field">Мангистауская область</span>
         <span class="contacts-address-block-data"
           >г. Актау, 16 мкрн, д. 25, БЦ Prime</span
         >
@@ -144,7 +144,7 @@
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Павлодарская область:</span>
+        <span class="contacts-address-block-field">Павлодарская область</span>
         <span class="contacts-address-block-data"
           >г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908</span
         >
@@ -154,7 +154,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Северо-Казахстанская область:</span>
+        <span class="contacts-address-block-field">Северо-Казахстанская область</span>
         <span class="contacts-address-block-data"
           >г. Петропавловск, ул. Алтынсарина, 168-б</span
         >
@@ -164,7 +164,7 @@
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Туркестанская область:</span>
+        <span class="contacts-address-block-field">Туркестанская область</span>
         <span class="contacts-address-block-data"
           >г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13</span
         >
