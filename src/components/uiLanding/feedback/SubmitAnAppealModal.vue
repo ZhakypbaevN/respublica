@@ -189,8 +189,6 @@ interface Emits {
 const props = defineProps<IProps>();
 const emits = defineEmits<Emits>();
 
-const loading = ref(false);
-
 const loading = ref(false)
 const userID = localStorage.getItem('USER_ID');
 

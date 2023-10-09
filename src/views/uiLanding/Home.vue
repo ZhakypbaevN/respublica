@@ -113,8 +113,6 @@
 </template>
 
 <script setup lang="ts">
-import 'youtube-video-js';
-
 import Slider from '../../components/common/Slider.vue';
 import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.vue';
 import SubmitAnAppealModal from '../../components/uiLanding/feedback/submitAnAppealModal.vue';
