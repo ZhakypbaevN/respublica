@@ -5,7 +5,10 @@
 
       <a class="contacts-item" href="https://go.2gis.com/yd0lu">
         <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">г.Астана, пр. Мангилик ел, 33/1Бизнес-центр IPLAZA, 9 этаж</h4>
+        <h4 class="contacts-item-title">
+          г.Астана, пр. Мангилик ел, 33/1 <br />
+          Бизнес-центр IPLAZA, 9 этаж
+        </h4>
       </a>
       <a class="contacts-item" href="tel:+7 7172 640 777">
         <SvgIcon name="call-gery" :viewboxWidth="28" :viewboxHeight="28" />
@@ -20,23 +23,21 @@
     <div class="contacts-items">
       <h4 class="contacts-items-title">Пресс-служба (для СМИ)</h4>
 
-      <a class="contacts-item" href="tel:+7 7172 640 777">
+      <a class="contacts-item" href="tel:+7 701 722 8251">
         <SvgIcon name="call-gery" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">+7 7172 640 777</h4>
+        <h4 class="contacts-item-title">+7 701 722 8251</h4>
       </a>
-      <a class="contacts-item" href="mailto:info@respublica-partiyasy.kz">
+      <a class="contacts-item" href="mailto:akparat2020@gmail.com">
         <SvgIcon name="envelope-grey" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">info@respublica-partiyasy.kz</h4>
+        <h4 class="contacts-item-title">akparat2020@gmail.com</h4>
       </a>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
-
 .contacts {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -44,7 +45,7 @@
 
   padding-bottom: 70px;
 
-  &-items{
+  &-items {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -78,7 +79,7 @@
       font-size: 20px;
       font-weight: 600;
 
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
   }
 }
