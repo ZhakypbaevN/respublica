@@ -8,44 +8,37 @@
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
         <div>
-          <label>
-            Вид обращения<span>*</span>
-          </label>
+          <label> Вид обращения<span>*</span> </label>
 
           <Select
             name="region"
             placeholder="Выберите категорию обращения"
             :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
-            ]"
-            required
-          />
-        </div>
-
-
-        <div>
-          <label>
-            Категория обращения<span>*</span>
-          </label>
-
-          <Select
-            name="region"
-            placeholder="Выберите категорию обращения"
-            :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
+              { label: 'Алматы', value: 'Алматы' },
+              { label: 'Астана', value: 'Астана' },
+              { label: 'Караганда', value: 'Караганда' },
             ]"
             required
           />
         </div>
 
         <div>
-          <label>
-            Текст обращения<span>*</span>
-          </label>
+          <label> Категория обращения<span>*</span> </label>
+
+          <Select
+            name="region"
+            placeholder="Выберите категорию обращения"
+            :options="[
+              { label: 'Алматы', value: 'Алматы' },
+              { label: 'Астана', value: 'Астана' },
+              { label: 'Караганда', value: 'Караганда' },
+            ]"
+            required
+          />
+        </div>
+
+        <div>
+          <label> Текст обращения<span>*</span> </label>
           <Input
             type="textarea"
             name="name"
@@ -56,16 +49,13 @@
           />
         </div>
 
-
         <div>
-          <label>
-            Файлы
-          </label>
+          <label> Файлы </label>
 
           <p class="feedbackModal-description">
-            Прикрепите фото и документы, которые могут помочь или выступить доказательством
+            Прикрепите фото и документы, которые могут помочь или выступить
+            доказательством
           </p>
-
 
           <Button
             class="feedbackModal-addFileBtn"
@@ -73,36 +63,28 @@
             type="outline-blue"
             v-slot:left
           >
-            <SvgIcon
-              name="plus"
-              :viewboxWidth="24"
-              :viewboxHeight="24"
-            />
+            <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
 
           <p class="feedbackModal-description">
-            Максимальный размер одного файла 19 мб.<br>
-            Общий размер файлов не более 80 мб, количество до 10 файлов.Форматы: png, pdf, jpg, jpeg, gif, tiff, bmp, doc, docx, xls, xlsx.
+            Максимальный размер одного файла 19 мб.<br />
+            Общий размер файлов не более 80 мб, количество до 10 файлов.Форматы: png, pdf,
+            jpg, jpeg, gif, tiff, bmp, doc, docx, xls, xlsx.
           </p>
         </div>
 
-
         <div>
-          <label>
-            Фактический адрес<span>*</span>
-          </label>
+          <label> Фактический адрес<span>*</span> </label>
 
-          <p class="feedbackModal-description">
-            Введите адрес фактического проживания
-          </p>
+          <p class="feedbackModal-description">Введите адрес фактического проживания</p>
 
           <Select
             name="region"
             placeholder="Укажите область"
             :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
+              { label: 'Алматы', value: 'Алматы' },
+              { label: 'Астана', value: 'Астана' },
+              { label: 'Караганда', value: 'Караганда' },
             ]"
             required
           />
@@ -111,92 +93,84 @@
             name="region"
             placeholder="Населенный пункт"
             :options="[
-              {label: 'Алматы', value: 'Алматы'},
-              {label: 'Астана', value: 'Астана'},
-              {label: 'Караганда', value: 'Караганда'},
+              { label: 'Алматы', value: 'Алматы' },
+              { label: 'Астана', value: 'Астана' },
+              { label: 'Караганда', value: 'Караганда' },
             ]"
             required
           />
 
           <div class="feedbackModal-inputs-home">
-            <Input
-              name="name"
-              placeholder="Улица"
-              required
-            />
+            <Input name="name" placeholder="Улица" required />
 
-            <Input
-              name="name"
-              placeholder="Дом/корпус"
-              required
-            />
+            <Input name="name" placeholder="Дом/корпус" required />
 
-            <Input
-              name="name"
-              placeholder="Квартира"
-              required
-            />
+            <Input name="name" placeholder="Квартира" required />
           </div>
         </div>
       </div>
 
       <div class="feedbackModal-checkboxList">
         <label class="feedbackModal-checkboxList-item">
-          <input type="checkbox">
+          <input type="checkbox" />
           <span>
-            Я, как пользователь Сервиса, даю <a href="https://eotinish.kz/ru/agreement" target="_blank">согласие на сбор и обработку моих персональных данных</a>
+            Я как пользователь Сервиса, даю
+            <a href="https://eotinish.kz/ru/agreement" target="_blank"
+              >согласие на сбор и обработку моих персональных данных</a
+            >
           </span>
         </label>
 
         <label class="feedbackModal-checkboxList-item">
-          <input type="checkbox">
+          <input type="checkbox" />
           <span>
-            Я, согласен(на) с <a href="https://eotinish.kz/ru/privacy" target="_blank">политикой конфиденциальности</a>
+            Я согласен(на) с
+            <a href="https://eotinish.kz/ru/privacy" target="_blank"
+              >политикой конфиденциальности</a
+            >
           </span>
         </label>
       </div>
-      
 
       <div class="feedbackModal-btns">
-        <Button
-          name="Отправить"
-          :loading="loading"
-          htmlType="submit"
-        />
+        <Button name="Отправить" :loading="loading" htmlType="submit" />
 
-        <Button
-          type="default-grey"
-          name="Отмена"
-          @click="emits('hide')"
-        />
+        <Button type="default-grey" name="Отмена" @click="emits('hide')" />
       </div>
     </Form>
   </Modal>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 // import axios from 'axios'
 // import { useToast } from '../../../modules/toast'
 // const { toast } = useToast()
 
 interface IProps {
-  show: boolean,
+  show: boolean;
 }
 interface Emits {
-  (event: 'hide'): Function
+  (event: "hide"): Function;
 }
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+const props = defineProps<IProps>();
+const emits = defineEmits<Emits>();
 
+const loading = ref(false);
 
-const loading = ref(false)
-
-const postFeedback = ({ name, phone, comment }: { name: string, phone: string, comment: string }) => {
-  console.log('name', name);
-  console.log('name', phone);
-  console.log('name', comment);
+const postFeedback = ({
+  name,
+  phone,
+  comment,
+}: {
+  name: string;
+  phone: string;
+  comment: string;
+}) => {
+  console.log("name", name);
+  console.log("name", phone);
+  console.log("name", comment);
   // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
   // const bodyFormData = {
   //   title: name,
@@ -227,7 +201,7 @@ const postFeedback = ({ name, phone, comment }: { name: string, phone: string, c
   //     })
   //     loading.value = false
   //   });
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -273,5 +247,4 @@ const postFeedback = ({ name, phone, comment }: { name: string, phone: string, c
     grid-gap: 20px;
   }
 }
-
 </style>
