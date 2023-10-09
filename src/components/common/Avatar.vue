@@ -50,8 +50,12 @@ const exit = () => {
     message: 'Вы успешно вышли из аккаунта!',
     type: 'success'
   })
-
-  router.push(`/`)
+  
+  if (router.currentRoute.value.name === 'Home') {
+    location.reload();
+  } else {
+    router.push(`/`);
+  }
 }
 </script>
 
