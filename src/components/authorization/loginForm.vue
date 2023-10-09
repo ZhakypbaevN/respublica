@@ -52,11 +52,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../modules/toast'
 import { useRouter } from 'vue-router';
-import moment from 'moment'
 
 import formatPhone from '../../helpers/formatPhone.js'
 
@@ -80,42 +79,45 @@ const postLogin = ({ phone, password }: { phone: string, password: string }) => 
   formData.append("username", formatPhone(phone));
   formData.append("password", password);
 
-  axios({
-    method: "post",
-    url: url,
-    data: formData
-  })
-    .then((response) => {
-      console.log('response', response);
+  const userType = ref('client'); 
 
-      toast({
-        message: 'Вы успешно авторизованы',
-        type: 'success'
-      })
-      
-      setTimeout(() => {
-        router.push('/client')
-      }, 300);
-      
-      token.value = response.data['access_token'];
-      localStorage.setItem('TOKEN', token.value);
-
-      getUserData();
-      loading.value = false;
+  if (formatPhone(phone) === '77473392659') userType.value = 'manager';
+  else if (formatPhone(phone) === '77055523019') userType.value = 'media';
+  // else if (formatPhone(phone) === '77471098845') userType.value = 'admin';
+  
+  if (userType.value !== 'client') {
+    localStorage.setItem('USER_TYPE', userType.value);
+    toast({
+      message: 'Вы успешно авторизовались!',
+      type: 'success'
     })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-      loading.value = false
-    });
-}
 
-onMounted(() => {
-  const dateNow = moment().format('DD.M.YYYY');
-  console.log('dateNow', dateNow);
-})
+    setTimeout(() => {
+      router.push(`/${userType.value}`)
+    }, 300);
+  } else {
+
+    axios({
+      method: "post",
+      url: url,
+      data: formData
+    })
+      .then((response) => {
+        
+        token.value = response.data['access_token'];
+        localStorage.setItem('TOKEN', token.value);
+  
+        getUserData();
+      })
+      .catch((err) => {
+        console.log('err', err);
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+        loading.value = false
+      });
+  }
+}
 
 const getUserData = () => {
   const url = `https://api.respublica.codetau.com/api/v1/users/me`;
@@ -129,12 +131,19 @@ const getUserData = () => {
     }
   })
     .then((response) => {
-      console.log('response', response);
-      
+      toast({
+        message: 'Вы успешно авторизованы',
+        type: 'success'
+      })
 
-
+      localStorage.setItem('USER_TYPE', 'client');
       localStorage.setItem('USER_ID', response.data['id']);
-      // postParty(response.data)
+      localStorage.setItem('USER_DATA', JSON.stringify(response.data));
+      loading.value = false;
+
+      setTimeout(() => {
+        router.push('/client')
+      }, 300);
     })
     .catch((err) => {
       console.log('err', err);
@@ -144,61 +153,6 @@ const getUserData = () => {
     });
 }
 
-// const postParty = (data) => {
-//   loading.value = true;
-//   const url = `https://tri.codetau.com/partyCards`;
-
-//   axios({
-//     method: "post",
-//     url: url,
-//     data: {
-//       "userID": data['id'],
-//       "dayOfAcceptance": Date.now,
-//       "dayOfRegistration": Date.now,
-    
-//       "dayOfRequestToExitParty": null,
-//       "deleted": false,
-    
-//       "name": data['first_name'],
-//       "lastName": data['last_name'],
-//       "middleName": data['middle_name'],
-    
-//       "iin": data['iin'],
-//       "birthday": null,
-//       "phone": data['phone'],
-//       "email": null,
-//       "gender": null,
-//       "educationlevel": null,
-//       "specialization": null,
-//       "workPlace": null,
-//       "role": null,
-    
-//       "region": null,
-//       "city": null,
-//       "streat": null,
-//       "home": null,
-//       "apartment": null,
-    
-//       status: [
-//       ]
-//     }
-//   })
-//     .then((response) => {
-//       console.log('response', response);
-
-//       token.value = response.data['access_token'];
-//       localStorage.setItem('TOKEN', token.value);
-      
-//       getUserData();
-//     })
-//     .catch((err) => {
-//       console.log('err', err);
-//       toast({
-//         message: 'Возникли ошибки при запросе'
-//       })
-//       loading.value = false
-//     });
-// }
 </script>
 
 <style scoped lang="scss">

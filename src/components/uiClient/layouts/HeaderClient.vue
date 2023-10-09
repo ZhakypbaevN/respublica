@@ -11,10 +11,14 @@
               :viewboxHeight="49"
             />
           </Router-link>
-         
-          <button class="header-main-lang">
-            <span>РУ</span>
-          </button>
+
+          <div class="header-main-right">
+            <button class="header-main-lang">
+              <span>РУ</span>
+            </button>
+
+            <Avatar />
+          </div>
         </div>
       </div>
     </div>
@@ -22,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import Avatar from '../../../components/common/Avatar.vue';
 </script>
 
 <style scoped lang="scss">

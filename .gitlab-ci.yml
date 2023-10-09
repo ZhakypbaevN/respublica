@@ -23,7 +23,7 @@ deploy_to_production:
     - ssh -i key.pem -o 'StrictHostKeyChecking no' $SSH_P git -C $PATH_P/$URL_P pull origin main
     - ssh -i key.pem -o 'StrictHostKeyChecking no' $SSH_P "docker restart node"
     - sleep 10
-    - ssh -i key.pem -o 'StrictHostKeyChecking no' $SSH_P "docker exec node json-server --watch /var/www/respublica/server/db.json --host 0.0.0.0 --port 3000"
+    - ssh -i key.pem -o 'StrictHostKeyChecking no' $SSH_P "docker exec node json-server --watch /var/www/respublica/server/db.json --host 0.0.0.0 --port 3000 > /dev/null"
     - ssh -i key.pem -o 'StrictHostKeyChecking no' $SSH_P "docker restart nginx"
   after_script:
     - rm key.pem
