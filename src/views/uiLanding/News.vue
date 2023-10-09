@@ -67,7 +67,7 @@
         <YoutubeVideo
           v-for="vidoe of youtubeVideos"
           :key="vidoe"
-          :vidoe="vidoe"
+          :src="vidoe"
         ></YoutubeVideo>
       </div>
     </div>

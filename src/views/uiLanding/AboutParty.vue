@@ -22,7 +22,7 @@
     <div class="wrapper">
       <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
     
-      <img src="/img/about/party-structure-1.svg" alt="">
+      <img src="/img/icons/party-structure-1.svg" alt="">
     </div>
   </section>
 
@@ -30,7 +30,7 @@
     <div class="wrapper">
       <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
     
-      <img src="/img/about/party-structure-2.svg" alt="">
+      <img src="/img/icons/party-structure-2.svg" alt="">
     </div>
   </section>
 

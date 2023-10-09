@@ -105,28 +105,8 @@ const showModals = reactive({
       padding-bottom: 30px;
       margin-bottom: 10px;
 
-      & .feedbackModal-checkboxList {
+      & .feedbackModal-checkboxList-item {
         margin-bottom: 0px !important;
-      }
-    }
-
-    &-item {
-      display: flex;
-      align-items: flex-start;
-      grid-gap: 10px;
-      margin-bottom: 0px !important;
-
-      
-      & span,
-      & a {
-        color: var(--light-gray-color);
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 1.1;
-      }
-      
-      & a {
-        text-decoration-line: underline;
       }
     }
   }

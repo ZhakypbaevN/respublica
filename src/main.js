@@ -15,6 +15,7 @@ import Select from './components/common/select/index.vue';
 import SvgIcon from './components/common/SvgIcon.vue'
 import Button from './components/common/Button.vue'
 import Input from './components/common/Input.vue'
+import Checkbox from './components/common/Checkbox.vue'
 import Form from './components/common/Form.vue';
 import Modal from './components/common/Modal.vue';
 
@@ -32,6 +33,7 @@ createApp(App)
   .directive('click-outside', clickOutside())
   .directive('collapse', Collapse)
   .directive('loading', loading())
+  .component('Checkbox', Checkbox)
   .component('SvgIcon', SvgIcon)
   .component('Select', Select)
   .component('Button', Button)
