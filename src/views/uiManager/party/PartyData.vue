@@ -212,14 +212,14 @@
           <RouterLink to="/client/party-data/exit-party">
             <Button
               class="partyData-btn exit"
-              name="Выйти из партии"
+              name="Удалить из партии"
               type="outline-red"
               v-slot:left
             >
               <SvgIcon
-                name="logout"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
+                name="trash"
+                :viewboxWidth="32"
+                :viewboxHeight="32"
               />
             </Button>
           </RouterLink>

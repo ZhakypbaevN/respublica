@@ -60,21 +60,6 @@
         </div>
 
         <div>
-          <label> Категория обращения<span>*</span> </label>
-
-          <Select
-            name="region"
-            placeholder="Выберите категорию обращения"
-            :options="[
-              { label: 'Алматы', value: 'Алматы' },
-              { label: 'Астана', value: 'Астана' },
-              { label: 'Караганда', value: 'Караганда' },
-            ]"
-            required
-          />
-        </div>
-
-        <div>
           <label> Текст обращения<span>*</span> </label>
           <Input
             name="messege"
@@ -273,7 +258,7 @@ const postFeedback = (
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Вы успешно вступили в парию'
+        message: 'Вы успешно подали обращение'
       })
       loading.value = false
     })

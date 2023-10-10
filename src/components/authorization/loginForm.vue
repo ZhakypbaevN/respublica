@@ -82,7 +82,7 @@ const postLogin = ({ phone, password }: { phone: string, password: string }) => 
 
   if (formatPhone(phone) === '77473392659') userType.value = 'manager';
   else if (formatPhone(phone) === '77055523019') userType.value = 'media';
-  // else if (formatPhone(phone) === '77471098845') userType.value = 'admin';
+  else if (formatPhone(phone) === '77471098845') userType.value = 'business';
   
   if (userType.value !== 'client') {
     localStorage.setItem('USER_TYPE', userType.value);
