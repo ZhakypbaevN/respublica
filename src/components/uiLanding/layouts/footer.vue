@@ -56,8 +56,8 @@
               <div class="footer-mainNavs-links">
                 <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">Депутаты Мажилиса</RouterLink>
                 <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">Депутаты маслихатов</RouterLink>
-                <RouterLink to="/0980" class="footer-mainNavs-link">Центральный аппарат</RouterLink>
-                <RouterLink to="/0980" class="footer-mainNavs-link">Филиалы</RouterLink>
+                <!-- <RouterLink to="/0980" class="footer-mainNavs-link">Центральный аппарат</RouterLink> -->
+                <RouterLink to="/contacts?filials" class="footer-mainNavs-link">Филиалы</RouterLink>
               </div>
             </div>
           </div>

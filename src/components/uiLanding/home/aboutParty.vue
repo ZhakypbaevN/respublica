@@ -101,6 +101,7 @@ defineEmits<Emits>()
       z-index: 1;
       opacity: 0;
       animation: slideshow 10s infinite;
+      
     }
 
     & img:nth-child(1) {

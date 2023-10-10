@@ -19,6 +19,7 @@ import DeputiesOfMaslikhat from '../views/uiLanding/deputies/DeputiesOfMaslikhat
 import NewsList from '../views/uiLanding/news/NewsList.vue'
 import NewsDetail from '../views/uiLanding/news/NewsDetail.vue'
 import AnnounceDetail from '../views/uiLanding/news/AnnounceDetail.vue'
+import MeetingWithVoters from '../views/uiLanding/news/MeetingWithVoters.vue'
 
 // Press About Us
 import PressAboutUsList from '../views/uiLanding/news/PressAboutUsList.vue'
@@ -164,6 +165,11 @@ const routes = [
     name: 'DeputiesOfMaslikhat',
     component: DeputiesOfMaslikhat
   },
+  {
+    path: '/meeting-with-voters/:meetingWithVoters_id',
+    name: 'MeetingWithVoters',
+    component: MeetingWithVoters
+  },
 
 
   // UI Client
@@ -288,7 +294,7 @@ const routes = [
         path: 'press-edit/:press_id',
         name: 'MediaPressEdit',
         component: MediaPressEdit
-      }
+      },
     ]
   }
 ]

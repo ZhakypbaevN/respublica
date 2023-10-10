@@ -18,14 +18,6 @@
 
   <PartyProgram />
 
-  <section class="partyStructure landing-block" id="party-structure">
-    <div class="wrapper">
-      <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
-    
-      <img src="/img/icons/party-structure-1.svg" alt="">
-    </div>
-  </section>
-
   <section class="partyStructure landing-block">
     <div class="wrapper">
       <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
@@ -146,10 +138,6 @@ const sideBarlinks = [
     width: 100%;
     padding: 0 70px;
   }
-}
-
-.partyStructure#party-structure {
-  margin-bottom: 35px;
 }
 
 .party-leaders {

@@ -1,12 +1,37 @@
 <template>
+  <LogInFirstModal
+    title="Для подачи обращения Вам необходимо войти в личный кабинет или пройти регистрацию"
+    @hide="emits('hide')"
+    :show="props.show && !userType"
+  />
+
   <Modal
-    v-if="props.show"
+    v-if="props.show && userType"
     @hide="emits('hide')"
     class="feedbackModal"
     title="Подать обращение"
   >
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
+
+        <Input
+          name="lastname"
+          placeholder="Фамилия"
+          required
+        />
+
+        <Input
+          name="name"
+          placeholder="Имя"
+          required
+        />
+
+        <Input
+          name="middleName"
+          placeholder="Отчество"
+          required
+        />
+
         <div>
           <label> Вид обращения<span>*</span> </label>
 
@@ -172,6 +197,8 @@
 </template>
 
 <script setup lang="ts">
+import LogInFirstModal from './logInFirstModal.vue';
+
 import { ref } from 'vue'
 import moment from 'moment'
 import axios from 'axios'
@@ -191,10 +218,14 @@ const emits = defineEmits<Emits>();
 
 const loading = ref(false)
 const userID = localStorage.getItem('USER_ID');
+const userType = localStorage.getItem('USER_TYPE');
 
 const postFeedback = (
-    { appleanType, appleanCategory, messege, region, locality, streat, house, appartment }:
+    { lastname, name, middleName, appleanType, appleanCategory, messege, region, locality, streat, house, appartment }:
     {
+      lastname: string,
+      name: string,
+      middleName: string,
       appleanType: string,
       appleanCategory: string,
       messege: string,
@@ -215,6 +246,10 @@ const postFeedback = (
 
     "appleanType": appleanType,
     "appleanCategory": appleanCategory,
+  
+    "name": name,
+    "lastName": lastname,
+    "middleName": middleName,
 
     "messege": messege,
 
