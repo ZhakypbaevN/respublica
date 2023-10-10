@@ -8,16 +8,17 @@
             Сделайте пожертвование, чтобы проголосовать за демократов по всей стране
           </div>
           <div class="donations-left-text-description">
-            Демократическая партия рассчитывает на вашу поддержку в борьбе за повестку дня
-            Байдена-Харриса, привлечении к ответственности Республиканской партии и
-            избрании большего числа демократов по всей стране.
-          </div>
-
-          <div class="donations-left-text-description">
-            Сделайте пожертвование DNC сегодня, чтобы инвестировать в организацию на
-            местах, общенациональные усилия по защите избирателей и многое другое, на что
-            наши кандидаты полагаются, чтобы конкурировать и побеждать в каждом почтовом
-            индексе.
+            Правила внесения пожертвований: <br />
+            1. Я являюсь гражданином Республики Казахстан, достигшим восемнадцатилетнего
+            возраста; <br />
+            2. Я не являюсь иностранцем или лицом без гражданства; <br />
+            3. Я вношу пожертвования, которые не относятся к источникам финансирования от
+            иностранных государств, иностранных юридических лиц, юридических лиц с
+            иностранным участием и международных организаций, граждан или
+            негосударственных организаций Республики Казахстан, получающих гранты и иные
+            средства от международных или иностранных неправительственных организаций,
+            государственных органов и государственных организаций, религиозных объединений
+            и благотворительных организаций;
           </div>
         </div>
         <div class="donations-right-block">
@@ -30,7 +31,9 @@
               class="donations-right-block-steps-circles"
               :class="{ 'current-step': step.num === currentStep }"
             >
-              <span class="donations-right-block-steps-circles-text">{{ step.title }}</span>
+              <span class="donations-right-block-steps-circles-text">{{
+                step.title
+              }}</span>
               <div class="donations-right-block-steps-circles-number">{{ step.num }}</div>
             </div>
           </div>
@@ -44,90 +47,70 @@
             <div class="donations-right-block-inputs">
               <Input
                 name="sum"
-                type="number" 
+                type="number"
                 placeholder="Введите сумму, тенге"
                 required
               />
             </div>
             <div class="donations-right-block-pay">
-              <Button
-                htmlType="submit"
-                name="Оплатить картой"
-                v-slot:left
-              >
+              <Button htmlType="submit" name="Оплатить картой" v-slot:left>
                 <img src="/public/img/visa-mastercard.png" alt="visa-mastercard" />
               </Button>
             </div>
           </Form>
 
           <Form v-else-if="currentStep === 2" @finish="enterFullName">
-            <div class="donations-right-block-title">Завершите свой взнос в размере {{ formData.sum }} тенге KZ</div>
+            <div class="donations-right-block-title">
+              Завершите свой взнос в размере {{ formData.sum }} тенге KZ
+            </div>
             <div class="donations-right-block-description grey">
               *Все поля обязательны для заполнения, если не указано иное.
             </div>
             <div class="donations-right-block-inputs">
-              <Input
-                placeholder="Фамилия"
-                name="lastName"
-                required
-              />
-              <Input
-                placeholder="Имя" 
-                name="name"
-                required
-              />
+              <Input placeholder="Фамилия" name="lastName" required />
+              <Input placeholder="Имя" name="name" required />
             </div>
 
             <div class="donations-right-block-confirm">
-              <input type="checkbox" id="confirm">
+              <input type="checkbox" id="confirm" />
               <label for="confirm">
-                Я подтверждаю, что я гражданин или постоянный житель Казахстана, делая это пожертвование из моих личных средств, а не деловых или корпоративных средств. Никакое физическое или юридическое лицо не возместит мне.
+                Я подтверждаю, что я гражданин или постоянный житель Казахстана, делая это
+                пожертвование из моих личных средств, а не деловых или корпоративных
+                средств. Никакое физическое или юридическое лицо не возместит мне.
               </label>
             </div>
 
             <div class="donations-right-block-btns">
-              <Button
-                type="outline-default"
-                name="Назад"
-                @click="backStep"
-              />
+              <Button type="outline-default" name="Назад" @click="backStep" />
 
-              <Button
-                type="default-blue"
-                htmlType="submit"
-                name="Сделующий"
-              />
+              <Button type="default-blue" htmlType="submit" name="Сделующий" />
             </div>
           </Form>
 
-          <img v-else src="/img/pay-test.jpg">
-
+          <img v-else src="/img/pay-test.jpg" />
         </div>
       </div>
 
       <div class="donations-rules">
-        Правила внесения взносов <br />
-        Я являюсь гражданином США или законно признанным постоянным жителем (т.е.
-        обладателем грин-карты). <br />
-        Этот взнос сделан из моих собственных средств, и средства не предоставляются мне
-        другим физическим или юридическим лицом с целью внесения этого взноса. <br />
-        Мне по меньшей мере восемнадцать лет. <br />
-        Я не федеральный подрядчик. <br />
-        Я вношу этот взнос с помощью своей личной кредитной карты, а не с помощью
-        корпоративной или бизнес-кредитной карты или карты, выданной другому лицу. <br />
-        Примечание: Американцев, проживающих за границей, попросят предоставить копию
-        страницы с фотографией в их паспорте, чтобы обеспечить соответствие федеральному
-        закону о выборах.
         <br />
         <br />
-        <br />
-        Взносы или подарки Национальному комитету Демократической партии не облагаются
-        налогом. Оплачено Национальным комитетом Демократической партии, democrats.org .
-        Не санкционировано ни одним кандидатом или кандидатским комитетом.
-        <br /><br />
-        Вводя свой номер телефона, вы даете согласие на получение повторяющихся
-        автоматических текстовых сообщений и звонков от DNC с новостями и информацией о
-        нашей работе. Для SMS, сообщений и скорости передачи данных ma
+
+        Информация для лиц желающих внести пожертвования: В качестве лиц, оказывающих
+        помощь партии в виде пожертвований, с целью поддержания её уставной деятельности,
+        могут выступать казахстанские юридические лица и совершеннолетние физические лица
+        являющиеся гражданами Республики Казахстан. Не допускаются пожертвования
+        политической партии и ее структурным подразделениям (филиалам и
+        представительствам) от:<br />
+        1) иностранных государств, иностранных юридических лиц и международных
+        организаций;<br />
+        2) иностранцев и лиц без гражданства;<br />
+        3) юридических лиц с иностранным участием;<br />
+        4) государственных органов и государственных организаций;<br />
+        5) религиозных объединений и благотворительных организаций;<br />
+        6) анонимных пожертвователей;<br />
+        7) от граждан или негосударственных организаций Республики Казахстан, получающих
+        гранты и иные средства от международных или иностранных неправительственных
+        организаций.
       </div>
     </div>
 
@@ -136,45 +119,44 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref } from "vue";
 
 const formData = reactive({
   sum: 0,
-  name: '',
-  lastName: '',
-  confirm: false
-})
+  name: "",
+  lastName: "",
+  confirm: false,
+});
 const currentStep = ref(1);
 const steps = [
   {
-    title: 'Сумма',
-    num: 1
+    title: "Сумма",
+    num: 1,
   },
   {
-    title: 'Детали',
-    num: 2
+    title: "Детали",
+    num: 2,
   },
   {
-    title: 'Оплата',
-    num: 3
-  }
-]
-
+    title: "Оплата",
+    num: 3,
+  },
+];
 
 const enterSum = (data: any) => {
   formData.sum = data.sum;
   currentStep.value = 2;
-}
+};
 
 const enterFullName = (data: any) => {
   formData.name = data.name;
   formData.lastName = data.lastName;
   currentStep.value = 3;
-}
+};
 
 const backStep = () => {
   currentStep.value--;
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -261,7 +243,7 @@ const backStep = () => {
       position: relative;
 
       &::after {
-        content: '';
+        content: "";
 
         display: block;
         height: 1.2px;
@@ -273,7 +255,7 @@ const backStep = () => {
         z-index: -1;
 
         background-color: var(--light-gray-color-op50);
-        transition: all .3s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
 
       &-circles {

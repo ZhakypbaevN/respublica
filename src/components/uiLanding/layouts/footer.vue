@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import SocialNetworks from './SocialNetworks.vue';
+import SocialNetworks from './socialNetworks.vue';
 import { RouterLink } from 'vue-router';
 
 interface IProps {

@@ -6,7 +6,7 @@
       <a class="contacts-item" href="https://go.2gis.com/yd0lu">
         <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
         <h4 class="contacts-item-title">
-          г.Астана, пр. Мангилик ел, 33/1 <br />
+          Республика Казахстан, г.Астана, пр. Мангилик ел, 33/1 <br />
           Бизнес-центр IPLAZA, 9 этаж
         </h4>
       </a>
