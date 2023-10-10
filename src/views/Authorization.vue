@@ -43,8 +43,8 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { onMounted, reactive, ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 import LoginForm from '../components/authorization/loginForm.vue';
 import RegisterForm from '../components/authorization/registerForm.vue';
@@ -52,6 +52,7 @@ import RegisterFinishForm from '../components/authorization/registerFinishForm.v
 import CheckCodeForm from '../components/authorization/checkCodeForm.vue';
 
 const router = useRouter()
+const route = useRoute()
 
 interface ShowForm {
   [key: string]: boolean;
@@ -103,6 +104,11 @@ const showFinishRegistrationForm = () => {
 const loginFinish = () => {
   router.push('/main-db')
 }
+
+onMounted(() => {
+  if (route.params.logOrReg === 'login') showLoginForm()
+  else if (route.params.logOrReg === 'register') showRegistrationForm()
+})
 </script>
 
 <style scoped lang="scss">

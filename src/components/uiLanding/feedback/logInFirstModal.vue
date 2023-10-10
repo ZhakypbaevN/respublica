@@ -7,14 +7,14 @@
     big
   >
     <div class="logInFirst-btns">
-      <RouterLink to="/auth?login">
+      <RouterLink to="/auth/login">
         <Button
           name="Войти"
           type="default-blue"
         />
       </RouterLink>
 
-      <RouterLink to="/auth?register">
+      <RouterLink to="/auth/register">
         <Button
           name="Регистрация"
           type="default-blue"

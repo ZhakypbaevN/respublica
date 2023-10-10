@@ -71,7 +71,7 @@ const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   // ------------- UI Landing Pages ---------------
   {
-    path: '/auth',
+    path: '/auth/:logOrReg?',
     name: 'Authorization',
     component: Authorization,
   },
@@ -131,7 +131,7 @@ const routes = [
     component: PhotoGalleryAll,
   },
   {
-    path: '/contacts',
+    path: '/contacts/:centralOfficeOrBranches?',
     name: 'Contacts',
     component: Contacts,
   },

@@ -47,13 +47,20 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 import ContactsBranch from '../../components/uiLanding/contacts/contactsBranch.vue';
 import ContactsCentralOffice from '../../components/uiLanding/contacts/contactsCentralOffice.vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
 
 const showBlock = reactive({
   contactsCentralOffice: false,
   contactsBranch: false
+})
+
+onMounted(() => {
+  if (route.params.centralOfficeOrBranches === 'filials') showBlock.contactsBranch = true;
 })
 </script>
 
