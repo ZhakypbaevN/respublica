@@ -11,7 +11,7 @@
 </template>
   
 <script setup lang="ts">
-import FractionComposition from '../../components/uiLanding/partyFraction/fractionComposition.vue';
+import FractionComposition from '../../../components/uiLanding/partyFraction/fractionComposition.vue';
 </script>
   
 <style scoped lang="scss">

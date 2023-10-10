@@ -298,7 +298,7 @@ const onBlur = ({e}: {e: KeyboardEvent}) => {
 
   if (props.validation && !input.withError) {
     const validate = validation()
-    input.withError = validate(input.value) as boolean
+    input.withError = validate(input.value)
   }
 }
 

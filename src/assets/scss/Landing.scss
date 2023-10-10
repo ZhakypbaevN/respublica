@@ -65,6 +65,10 @@
   &-wrapper {
     max-width: 1400px;
     padding: 0 20px;
+
+    &.litle {
+      max-width: 920px;
+    }
   }
 
   &-link.with-line {

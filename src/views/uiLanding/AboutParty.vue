@@ -36,8 +36,11 @@
 
   <History />
 
-
   <PartyLeaders />
+
+  <RespublicaJastary />
+
+
 </LandingLayout>
 </template>
   
@@ -45,6 +48,7 @@
 import AboutUs from '../../components/uiLanding/about/aboutUs.vue';
 import PartyLeaders from '../../components/uiLanding/about/partyLeaders.vue';
 import PartyProgram from '../../components/uiLanding/about/partyProgram.vue';
+import RespublicaJastary from '../../components/uiLanding/about/respublicaJastary.vue';
 import History from '../../components/uiLanding/about/history.vue';
 
 const sideBarlinks = [
@@ -74,7 +78,7 @@ const sideBarlinks = [
   },
   {
     title: 'Respublica jastary',
-    link: "#"
+    link: "#respublica-jastary"
   }
 ]
 </script>

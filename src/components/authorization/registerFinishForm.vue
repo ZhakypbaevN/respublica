@@ -32,11 +32,21 @@
         required
       />
 
+      <Input
+        light
+        type="email"
+        name="email"
+        placeholder="Email*"
+        validation="email"
+        required
+      />
+
      
       <Input
         light
         type="password"
         name="password"
+        validation="password"
         v-model="firstPassword"
         placeholder="Придумайте пароль"
         required
@@ -94,7 +104,6 @@ const emit = defineEmits<Emits>()
 const loading = ref(false)
 const firstPassword = ref('');
 
-console.log('iin', Number('030905-501046'));
 const postRegister = (
     { iin, name, lastname, middleName, password }:
     {

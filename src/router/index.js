@@ -10,12 +10,15 @@ import AboutParty from '../views/uiLanding/AboutParty.vue'
 import News from '../views/uiLanding/News.vue'
 import Contacts from '../views/uiLanding/Contacts.vue'
 import PartyFraction from '../views/uiLanding/PartyFraction.vue'
-import DeputiesOfMajilis from '../views/uiLanding/DeputiesOfMajilis.vue';
 
+// Deputies
+import DeputiesOfMajilis from '../views/uiLanding/deputies/DeputiesOfMajilis.vue';
+import DeputiesOfMaslikhat from '../views/uiLanding/deputies/DeputiesOfMaslikhat.vue';
 
 // News
 import NewsList from '../views/uiLanding/news/NewsList.vue'
 import NewsDetail from '../views/uiLanding/news/NewsDetail.vue'
+import AnnounceDetail from '../views/uiLanding/news/AnnounceDetail.vue'
 
 // Press About Us
 import PressAboutUsList from '../views/uiLanding/news/PressAboutUsList.vue'
@@ -97,6 +100,11 @@ const routes = [
     component: NewsList,
   },
   {
+    path: '/announce/:announce_id',
+    name: 'AnnounceDetail',
+    component: AnnounceDetail,
+  },
+  {
     path: '/news/:news_id',
     name: 'NewsDetail',
     component: NewsDetail,
@@ -150,6 +158,11 @@ const routes = [
     path: '/deputies-of-majilis',
     name: 'DeputiesOfMajilis',
     component: DeputiesOfMajilis
+  },
+  {
+    path: '/deputies-of-maslikhat',
+    name: 'DeputiesOfMaslikhat',
+    component: DeputiesOfMaslikhat
   },
 
 

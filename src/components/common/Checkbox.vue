@@ -1,5 +1,5 @@
 <template>
-  <label class="checkboxBlock" :for="name">
+  <label class="checkboxBlock" :class="{light: light}" :for="name">
     <input type="checkbox" :id="name" v-model="input.value">
     <span>
       <slot />
@@ -70,9 +70,17 @@ onMounted(onChangeValue)
   grid-template-columns: 20px 1fr;
   align-items: flex-start;
   grid-gap: 10px;
+
+  cursor: pointer;
+
   margin-bottom: 0px !important;
 
-  
+  &.light {
+    & span {
+      color: white;
+    }
+  }
+
   & span,
   & a {
     display: inline;

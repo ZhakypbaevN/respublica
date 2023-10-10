@@ -124,7 +124,7 @@ const appealData = ref(null);
 
 onMounted(() => {
 
-  const url = `http://localhost:3000/appealList?id=${route.params.appeal_id}`;
+  const url = `https://tri.codetau.com/appealList?id=${route.params.appeal_id}`;
   axios({
     method: "get",
     url: url,

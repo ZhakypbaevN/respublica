@@ -83,9 +83,11 @@
           </div>
 
           <div class="landing-items">
-            <AnnounceItem />
-            <AnnounceItem />
-            <AnnounceItem />
+            <AnnounceItem
+              v-for="announce of announceList"
+              :key="announce.title"
+              :data="announce"
+            />
           </div>
         </div>
       </section>
@@ -126,7 +128,36 @@ import AboutParty from '../../components/uiLanding/home/aboutParty.vue'
 import AnnounceItem from '../../components/uiLanding/news/announceItem.vue';
 
 
-import { reactive } from 'vue';
+import axios from 'axios';
+import { reactive, onMounted, ref } from 'vue';
+import { useToast } from '../../modules/toast'
+
+const { toast } = useToast()
+
+const announceList = ref(null);
+
+onMounted(() => {
+  getAnnounce();
+})
+
+const getAnnounce = () => {
+  const url = `https://tri.codetau.com/announceList`;
+  axios({
+    method: "get",
+    url: url,
+  })
+    .then((response) => {
+      announceList.value = null;
+
+      announceList.value = response.data;
+    })
+    .catch((err) => {
+      console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    });
+}
 
 const showModals = reactive({
   joinPartyModal: false,

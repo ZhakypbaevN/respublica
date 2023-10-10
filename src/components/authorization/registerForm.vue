@@ -7,6 +7,7 @@
         light
         name="phone"
         placeholder="Ваш номер телефона"
+        validation="phone"
         :min="17"
         required
       />
