@@ -165,6 +165,11 @@ const historylist = [
       line-height: 25px;
     }
 
+    &-logo {
+      width: 225px;
+      height: 41px;
+    }
+
   }
 }
 </style>

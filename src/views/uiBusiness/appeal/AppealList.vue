@@ -63,7 +63,7 @@ const appealDataList = ref([]);
 
 onMounted(() => {
   // https://tri.codetau.com/appealCards
-  const url = `http://localhost:3000/appealList`;
+  const url = `https://tri.codetau.com/appealList`;
   axios({
     method: "get",
     url: url,
