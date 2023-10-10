@@ -9,7 +9,7 @@
 
         <div class="feedbackModal-mainBtns">
           <Button
-            name="ВСТУПЛЕНИЕ В ПАРИЮ"
+            name="ВСТУПЛЕНИЕ В ПАРТИЮ"
             type="default-blue"
             @click="() => showModals.joinPartyModal = true"
           />

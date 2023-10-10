@@ -341,7 +341,7 @@ const postParty = (data) => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Вы успешно вступили в парию'
+        message: 'Вы успешно вступили в партию'
       })
       loading.value = false
 
