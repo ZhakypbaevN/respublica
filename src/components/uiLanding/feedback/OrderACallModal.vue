@@ -30,6 +30,7 @@
           type="tel"
           name="phone"
           placeholder="Ваш номер телефона"
+          validation="phone"
           required
         />
       </div>

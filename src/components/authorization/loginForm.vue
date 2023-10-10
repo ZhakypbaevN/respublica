@@ -7,6 +7,7 @@
         light
         name="phone"
         placeholder="Ваш номер телефона"
+        validation="phone"
         :min="17"
         required
       />
@@ -21,10 +22,7 @@
     </div>
 
     <div class="modal-helperBtns">
-      <div class="modal-helperBtns-checkbox">
-        <input type="checkbox" name="remember" id="remember" />
-        <label for="remember">Запомнить меня</label>
-      </div>
+      <Checkbox light name="remember">Запомнить меня</Checkbox>
       <RouterLink to="">
         Забыли пароль? 
       </RouterLink>
@@ -58,6 +56,7 @@ import { useToast } from '../../modules/toast'
 import { useRouter } from 'vue-router';
 
 import formatPhone from '../../helpers/formatPhone.js'
+import Checkbox from '../common/Checkbox.vue';
 
 const { toast } = useToast()
 const router = useRouter()
@@ -169,11 +168,6 @@ const getUserData = () => {
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
-
-    &-checkbox {
-      display: inline-flex;
-      grid-gap: 10px;
-    }
   }
 
   &-btn {
