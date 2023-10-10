@@ -2,7 +2,7 @@
   <Transition appear>
     <div class="modal-back" :style="{opacity: opacity}">
       <div class="modal-inner" @mousedown.stop :style="container">
-        <div class="modal-form">
+        <div class="modal-form" :class="{big: big}">
           <div class="modal-form-inner">
             <div class="modal-header">
               <h2 class="modal-title" v-if="title">{{ title }}</h2>
@@ -29,6 +29,7 @@ import { onMounted, onUnmounted, reactive, ref } from 'vue'
 interface IProps {
   title?: string,
   subtitle?: string,
+  big?: boolean
 }
 
 interface Emits {
@@ -38,6 +39,7 @@ interface Emits {
 withDefaults(defineProps<IProps>(), {
   title: undefined,
   subtitle: undefined,
+  big: false,
 })
 const emits = defineEmits<Emits>()
 
@@ -139,6 +141,14 @@ const hideModalOnEsc = () => {
     &-inner {
       width: 100%;
       max-width: 600px;
+    }
+
+    &.big {
+      min-width: 1500px;
+
+      & .modal-form-inner {
+        max-width: 900px;
+      }
     }
   }
 

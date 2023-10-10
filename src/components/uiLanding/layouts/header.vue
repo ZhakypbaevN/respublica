@@ -115,7 +115,7 @@
 </template>
 
 <script setup lang="ts">
-import SocialNetworks from './SocialNetworks.vue';
+import SocialNetworks from './socialNetworks.vue';
 import Avatar from '../../../components/common/Avatar.vue';
 
 import { onBeforeUnmount, onMounted, ref } from 'vue';
@@ -218,7 +218,9 @@ onBeforeUnmount(() => {
 
       & svg.logo-mini {
         opacity: 1;
-        animation: spin 3s ease 0.2s, zoom 1s ease-in-out 3s;
+
+        animation: spinAndZoom 12s infinite;
+        
         transform: rotate(0deg);
       }
     }
@@ -420,23 +422,17 @@ onBeforeUnmount(() => {
   }
 }
 
-@keyframes spin {
+@keyframes spinAndZoom {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg) scale(1);
   }
-  100% {
-    transform: rotate(360deg);
+  20% {
+    transform: rotate(360deg) scale(1);
   }
-}
-
-@keyframes zoom {
-  0% {
-    transform: scale(1);
-  }
-  50% {
+  40% {
     transform: scale(1.3);
   }
-  100% {
+  45% {
     transform: scale(1);
   }
 }

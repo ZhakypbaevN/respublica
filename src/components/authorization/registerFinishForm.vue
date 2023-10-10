@@ -37,20 +37,21 @@
         type="email"
         name="email"
         placeholder="Email*"
-        validation="email"
         required
       />
+
+      <!-- validation="email" -->
 
      
       <Input
         light
         type="password"
         name="password"
-        validation="password"
         v-model="firstPassword"
         placeholder="Придумайте пароль"
         required
       />
+        <!-- validation="password" -->
 
       <Input
         light
@@ -105,10 +106,11 @@ const loading = ref(false)
 const firstPassword = ref('');
 
 const postRegister = (
-    { iin, name, lastname, middleName, password }:
+    { iin, name, lastname, middleName, email, password }:
     {
       iin: string,
       name: string,
+      email: string,
       lastname: string,
       middleName: string,
       password: string,
@@ -122,6 +124,7 @@ const postRegister = (
     data: {
       "token": props.token,
       "password": password,
+      "email": email,
       "first_name": name,
       "last_name": lastname,
       "middle_name": middleName,

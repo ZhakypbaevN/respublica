@@ -192,25 +192,23 @@ if (props.name) input.hasError[props.name] = props.required || props.validation
 const inputName = props.name ?? 'example'
 
 const rules = {
-  email: ({str}: {str: string}) => /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$/
-    .test(String(str).toLowerCase()) ? false : 'Введите правильную почту',
+  email: () => /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$/
+    .test(String(input.value).toLowerCase()) ? false : 'Введите правильную почту',
 
-  phone: ({str}: {str: string}) => str && str.length === 17 ? false : 'Введите правильный номер',
+  phone: () => input.value && String(input.value).length === 17 ? false : 'Введите правильный номер',
 
-  password: ({str}: {str: string}) => /^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
-    .test(String(str)) ? false : 'Пароль должен содержать минимум 8 символов. И в нем должны быть минимум, одна цифра,одна большая буква и одна маленькая буква',
+  password: () => /^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+    .test(String(input.value)) ? false : 'Пароль должен содержать минимум 8 символов. И в нем должны быть минимум, одна цифра,одна большая буква и одна маленькая буква',
 
-  sameAs: ({str}: {str: string}) => {
-    console.log('str', str);
-    return input.value.toString() === props.sameAs ? false : 'Поля не совпадают';
-  },
+  sameAs: () => input.value.toString() === props.sameAs ? false : 'Поля не совпадают',
 
-  customRegex: ({str}: {str: string}) => props.validation.test(String(str)) ? false : props.errorText ?? 'Введите поле правильно'
+  customRegex: () => props.validation.test(String(input.value)) ? false : props.errorText ?? 'Введите поле правильно'
 }
 
 const onChangeValue = () => {
   input.formValue[inputName] = input.value
   const validate = validation()
+  
   if (input.isDirty) {
     input.withError = false
     if (props.required) {
@@ -291,6 +289,7 @@ const onBlur = ({e}: {e: KeyboardEvent}) => {
   input.focused = false
 
   if (!input.isDirty) input.isDirty = true
+
   input.withError = false
   if (props.required && !input.value) {
     input.withError = 'Это поле обязателно'

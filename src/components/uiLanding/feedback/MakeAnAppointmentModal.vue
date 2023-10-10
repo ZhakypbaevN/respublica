@@ -1,6 +1,12 @@
 <template>
+  <LogInFirstModal
+    title="Чтобы записаться на прием Вам необходимо авторизоваться на портале или пройти регистрацию"
+    @hide="emits('hide')"
+    :show="props.show && !userType"
+  />
+
   <Modal
-    v-if="props.show"
+    v-if="props.show && userType"
     @hide="emits('hide')"
     class="feedbackModal"
     title="Записаться на прием"
@@ -12,6 +18,7 @@
           <Select
             name="position"
             placeholder="Выберите из списка принимающее должностное лицо"
+            staticPlaceholder
             :options="[
               {label: 'Алматы', value: 'Алматы'},
               {label: 'Астана', value: 'Астана'},
@@ -26,6 +33,7 @@
           <Select
             name="category"
             placeholder="Выберите категорию вопроса/обращения"
+            staticPlaceholder
             :options="[
               {label: 'Алматы', value: 'Алматы'},
               {label: 'Астана', value: 'Астана'},
@@ -52,10 +60,9 @@
 </template>
 
 <script setup lang="ts">
+import LogInFirstModal from './logInFirstModal.vue';
+
 import { ref } from 'vue'
-// import axios from 'axios'
-// import { useToast } from '../../../modules/toast'
-// const { toast } = useToast()
 
 interface IProps {
   show: boolean,
@@ -68,42 +75,13 @@ const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
 
-const loading = ref(false)
+const loading = ref(false);
+const userType = localStorage.getItem('USER_TYPE');
 
 const postFeedback = ({ name, phone, comment }: { name: string, phone: string, comment: string }) => {
   console.log('name', name);
   console.log('name', phone);
   console.log('name', comment);
-  // const url = "https://admin.passepartout.kz/message?token=AZ8uZkEqwncL5fm";
-  // const bodyFormData = {
-  //   title: name,
-  //   message: `Телефон номер: ${phone},\r\nКомментарий: ${comment}`,
-  //   priority: 5,
-  // };
-
-  // const formData = new FormData();
-  // Object.keys(bodyFormData).forEach(key => formData.append(key, bodyFormData[key]));
-
-  // loading.value = true
-  // // Simple POST request with a JSON body using axios
-  // axios({
-  //   method: "post",
-  //   url: url,
-  //   data: formData,
-  // })
-  //   .then((response) => {
-  //     toast({
-  //       message: 'Ваша заявка успешно отправлена'
-  //     })
-  //     loading.value = false
-  //     emits('hide')
-  //   })
-  //   .catch((err) => {
-  //     toast({
-  //       message: 'Возникли ошибки при запросе'
-  //     })
-  //     loading.value = false
-  //   });
 }
 </script>
 

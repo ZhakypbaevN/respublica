@@ -1,6 +1,12 @@
 <template>
+  <LogInFirstModal
+    title="Чтобы вступить в партию Вам необходимо авторизоваться на портале или пройти регистрацию"
+    @hide="emits('hide')"
+    :show="props.show && !userType"
+  />
+  
   <Modal
-    v-if="props.show"
+    v-if="props.show && userType"
     @hide="emits('hide')"
     class="feedbackModal"
     title="Вступить в партию"
@@ -24,7 +30,7 @@
           name="name"
           placeholder="Имя"
           required
-        />
+        /> 
 
         <Input
           name="middleName"
@@ -227,6 +233,8 @@
 </template>
 
 <script setup lang="ts">
+import LogInFirstModal from './logInFirstModal.vue';
+
 import { reactive, ref } from 'vue'
 import moment from 'moment'
 import axios from 'axios'
@@ -249,6 +257,7 @@ const emits = defineEmits<Emits>()
 const loading = ref(false)
 const gender = ref('Женщина');
 const userID = localStorage.getItem('USER_ID');
+const userType = localStorage.getItem('USER_TYPE');
 const data = reactive({
   status: []
 });
