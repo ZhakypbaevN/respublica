@@ -16,11 +16,13 @@
               name="ВСТУПИТЬ В ПАРТИЮ"
               type="default-blue"
               @click="() => showModals.joinPartyModal = true"
+              data-aos="fade-up"
             />
             <Button
               name="ПОДАТЬ ОБРАЩЕНИЕ"
               type="default-blue"
               @click="() => showModals.submitAnAppeal = true"
+              data-aos="fade-up"
             />
           </div>
         </div>
