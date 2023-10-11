@@ -233,13 +233,17 @@
 </template>
 
 <script setup lang="ts">
+// Components
 import LogInFirstModal from './logInFirstModal.vue';
 
 import { reactive, ref } from 'vue'
 import moment from 'moment'
 import axios from 'axios'
 
+// Modules
 import { useToast } from '../../../modules/toast'
+
+// Helpers
 import formatPhone from '../../../helpers/formatPhone';
 
 const { toast } = useToast()
