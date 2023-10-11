@@ -19,7 +19,7 @@ import Checkbox from './components/common/Checkbox.vue'
 import Form from './components/common/Form.vue';
 import Modal from './components/common/Modal.vue';
 
-import LandingLayout from './components/uiLanding/layouts/LandingLayout.vue';
+import LandingLayout from './components/uiLanding/layouts/landingLayout.vue';
 import Header from './components/uiLanding/layouts/header.vue';
 import Footer from './components/uiLanding/layouts/footer.vue';
 
@@ -27,6 +27,11 @@ import Collapse from './directives/collapse.js'
 import clickOutside from './directives/clickOutside'
 import loading from './directives/loading.js'
 
+// AOS
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
 createApp(App)
   .use(router)
   .use(VueTheMask)

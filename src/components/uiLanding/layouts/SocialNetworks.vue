@@ -1,10 +1,12 @@
 <template>
   <div class="snList" :class="{light: light}">
     <a
-      v-for="sn of snList"
+      v-for="(sn, idx) of snList"
       :href="sn.link"
       target="_blank"
       class="snList-item"
+      data-aos="fade-right"
+      :data-aos-delay="`${idx}00`"
     >
       <SvgIcon
         :name="sn.icon_withOutColor"

@@ -63,13 +63,13 @@
             <Router-link to="/faq" class="header-main-navs-item">
               FAQ
             </Router-link>
-            <button class="header-main-search">
+            <!-- <button class="header-main-search">
               <SvgIcon
                 name="search"
                 :viewboxWidth="44"
                 :viewboxHeight="44"
               />
-            </button>
+            </button> -->
           </nav>
          
           <div class="header-main-right" v-if="!withoutTopAndNavs">
