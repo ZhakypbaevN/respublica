@@ -2,9 +2,10 @@
   <section class="aboutUs landing-block">
     <div class="wrapper landing-wrapper">
       <h2 class="aboutUs-title">
-        <span>Новые люди -</span> новые возможности!
+        <span data-aos="zoom-in">Новые люди -</span>
+        <span data-aos="zoom-in">новые возможности!</span> 
       </h2>
-      <p class="aboutUs-description">
+      <p class="aboutUs-description" data-aos="zoom-in">
         Партия Respublica – это МЕТА-партия. Мы нацелены на структурные преобразования во всех сферах общественной жизни. Мы являемся людьми нового Казахстана, цифровыми номадами!
         <br>
         <br>
