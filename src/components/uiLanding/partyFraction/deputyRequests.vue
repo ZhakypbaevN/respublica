@@ -3,181 +3,258 @@
   <div class="wrapper">
     <h2 class="landing-title">Депутатские запросы</h2>
     <div class="request-wrapper">
-        <div class="deputies">
-            <div class="deputies-deputy active">
-                <img src="/img/uiLanding/fraction/khodzhanazarov.jpg" alt="khodzhanazarov">
-                <span>Ходжаназаров А.</span>
-            </div>
+      <div class="deputies">
 
-            <div class="deputies-deputy">
-                <img src="/img/uiLanding/fraction/berdenov.jpg" alt="berdenov">
-                <span>БЕРДЕНОВ Р.</span>
-            </div>
+        <button
+          v-for="(deputy, idx) of deputieslist"
+          :key="deputy.name"
+          class="deputies-deputy withZoomPreview"
+          :class="{active: deputy.active}"
+          @click="() => toggleShow(idx)"
+        >
+          <div class="deputies-deputy-photo withZoomPreview-preview">
+            <div class="deputies-deputy-photo-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img});`"></div>
+          </div>
+          <span>{{ deputy.name }}</span>
+        </button>
+      </div>
 
-            <div class="deputies-deputy">
-                <img src="/img/uiLanding/fraction/kuspekov.jpg" alt="kuspekov">
-                <span>КУСПЕКОВ О.</span>
-            </div>
+      <table class="deputy-requests-table">
+          <thead>
+            <th>Дата и номер запроса, адресант</th>
+            <th>Файл и краткое описание</th>
+            <!-- <th>Выступление</th> -->
+            <th>Ответ</th>
+          </thead>
+          <tbody>
+            <tr
+              v-for="request of tableContentList"
+              :key="request.title"
+            >
+              <td><span>
+                {{ request.title }}
+              </span></td>
+              <td>
+                <a class="text-line" :href="request.docAndDescription!" target="_blank">
+                  <div class="text-line-icon">
+                    <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
+                  </div>
 
-            <div class="deputies-deputy">
-                <img src="/img/uiLanding/fraction/naumova.jpg" alt="naumova">
-                <span>НАУМОВА Д.</span>
-            </div>
+                  <span>
+                    {{ request.docAndDescription }}
+                  </span>
+                </a>
+              </td>
+              <!-- <td>
+                <div class="text-line">
+                  <div class="text-line-icon">
+                    <SvgIcon name="youtube-dark" :viewboxHeight="32" :viewboxWidth="32" />
+                  </div>
+                  <span>Смотреть</span>
+                </div>
+              </td> -->
+              <td>
+                <a
+                  v-if="request.answerDoc"
+                  class="text-line"
+                  :href="request.answerDoc"
+                  target="_blank"
+                >
+                  <div class="text-line-icon">
+                    <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
+                  </div>
+                  <span>
+                    {{ request.answerDoc }}
+                  </span>
+                </a>
 
-            <div class="deputies-deputy">
-                <img src="/img/uiLanding/fraction/tau.jpg" alt="tau">
-                <span>ТАУ Н.</span>
-            </div>
-
-            <div class="deputies-deputy">
-                <img src="/img/uiLanding/fraction/shukizhanova.jpg" alt="shukizhanova">
-                <span>ШУКИЖАНОВА Д.</span>
-            </div>
-        </div>
-
-        <table class="deputy-requests-table">
-            <thead>
-                <th>Дата и номер запроса, адресант</th>
-                <th>Файл и краткое описание</th>
-                <th>Выступление</th>
-                <th>Ответ</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span>16.06.2023 ДС-238
-                            ПРЕМЬЕР-МИНИСТР РЕСПУБЛИКИ КАЗАХСТАН, СМАИЛОВ Алихан Асханович</span></td>
-                    <td>
-                        <div class="text-line">
-
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-
-                            <span>О незаконном импорте и демпинге цен зарубежных поставщиков зерна и молочной
-                                продукции</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="youtube-dark" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>Смотреть</span>
-                        </div>
-
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>ВИЦЕ-МИНИСТР ПРОСВЕЩЕНИЯ РЕСПУБЛИКИ КАЗАХСТАН , ОСПАН Едил Сабырович</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>16.06.2023 ДС-238
-                            ПРЕМЬЕР-МИНИСТР РЕСПУБЛИКИ КАЗАХСТАН, СМАИЛОВ Алихан Асханович</span></td>
-                    <td>
-                        <div class="text-line">
-
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-
-                            <span>О незаконном импорте и демпинге цен зарубежных поставщиков зерна и молочной
-                                продукции</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="youtube-dark" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>Смотреть</span>
-                        </div>
-
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>ВИЦЕ-МИНИСТР ПРОСВЕЩЕНИЯ РЕСПУБЛИКИ КАЗАХСТАН , ОСПАН Едил Сабырович</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>16.06.2023 ДС-238
-                            ПРЕМЬЕР-МИНИСТР РЕСПУБЛИКИ КАЗАХСТАН, СМАИЛОВ Алихан Асханович</span></td>
-                    <td>
-                        <div class="text-line">
-
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-
-                            <span>О незаконном импорте и демпинге цен зарубежных поставщиков зерна и молочной
-                                продукции</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="youtube-dark" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>Смотреть</span>
-                        </div>
-
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>ВИЦЕ-МИНИСТР ПРОСВЕЩЕНИЯ РЕСПУБЛИКИ КАЗАХСТАН , ОСПАН Едил Сабырович</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>16.06.2023 ДС-238
-                            ПРЕМЬЕР-МИНИСТР РЕСПУБЛИКИ КАЗАХСТАН, СМАИЛОВ Алихан Асханович</span></td>
-                    <td>
-                        <div class="text-line">
-
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-
-                            <span>О незаконном импорте и демпинге цен зарубежных поставщиков зерна и молочной
-                                продукции</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="youtube-dark" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>Смотреть</span>
-                        </div>
-
-                    </td>
-                    <td>
-                        <div class="text-line">
-                            <div class="text-line-icon">
-                                <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
-                            </div>
-                            <span>ВИЦЕ-МИНИСТР ПРОСВЕЩЕНИЯ РЕСПУБЛИКИ КАЗАХСТАН , ОСПАН Едил Сабырович</span>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <div v-else class="text-line">
+                  <div class="text-line-icon">
+                    <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
+                  </div>
+                  <span>-</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+      </table>
 
     </div>
   </div>
 </section>
 </template>
+
+<script setup lang="ts">
+import { reactive, ref } from 'vue';
+
+const deputieslist = reactive([
+  {
+    name: 'Ходжаназаров А.',
+    img: '/img/uiLanding/fraction/khodzhanazarov.jpg',
+    active: true,
+    data: [
+      {
+        title: 'Ходжаназаров 12.04.23',
+        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23 жауап.pdf'
+      },
+      {
+        title: 'Ходжаназаров 10.05.23',
+        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 10.05.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 10.05.23 жауап.pdf'
+      },
+      {
+        title: 'Ходжаназаров 24.05.23',
+        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 24.05.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 24.05.23 жауап.pdf'
+      },
+      {
+        title: 'Ходжаназаров 14.06.23',
+        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23 жауап.pdf'
+      }
+    ]
+  },
+
+  {
+    name: 'БЕРДЕНОВ Р.',
+    img: '/img/uiLanding/fraction/berdenov.jpg',
+    active: false,
+    data: [
+      {
+        title: 'Берденов 12.04.23',
+        docAndDescription: '/doc/ru/deputies-requests/berdenov/Берденов 12.04.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/berdenov/Берденов 12.04.23 жауап.pdf'
+      },
+      {
+        title: 'Берденов 21.06.23',
+        docAndDescription: '/doc/ru/deputies-requests/berdenov/Берденов 21.06.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/berdenov/Берденов 21.06.23 жауап.pdf'
+      }
+    ]
+  },
+
+  {
+    name: 'КУСПЕКОВ О.',
+    img: '/img/uiLanding/fraction/kuspekov.jpg',
+    active: false,
+    data: [
+      {
+        title: 'Куспеков 12.04.23',
+        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 12.04.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 12.04.23 жауап.pdf'
+      },
+      {
+        title: 'Куспеков 20.04.23',
+        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 20.04.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 20.04.23 жауап.pdf'
+      },
+      {
+        title: 'Куспеков 3.05.23',
+        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 3.05.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 3.05.23 жауап.pdf'
+      },
+      {
+        title: 'Куспеков 14.05.23 - 16.06.23',
+        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 14.05.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 16.06.23 жауап.pdf'
+      }
+    ]
+  },
+
+  {
+    name: 'НАУМОВА Д.',
+    img: '/img/uiLanding/fraction/naumova.jpg',
+    active: false,
+    data: [
+      {
+        title: 'Наумова 26.04.23',
+        docAndDescription: 'public/doc/ru/deputies-requests/naumova/Наумова 26.04.23.pdf',
+        video: null,
+        answerDoc: null
+      },
+      {
+        title: 'Наумова 15.05.23',
+        docAndDescription: 'public/doc/ru/deputies-requests/naumova/Наумова 15.05.23.pdf',
+        video: null,
+        answerDoc: null
+      }
+    ]
+  },
+
+  {
+    name: 'ТАУ Н.',
+    img: '/img/uiLanding/fraction/tau.jpg',
+    active: false,
+    data: [
+      {
+        title: 'Тау 20.04.23',
+        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 20.04.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/tau/Тау 20.04.23 жауап.pdf'
+      },
+      {
+        title: 'Тау 3.05.23',
+        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 3.05.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/tau/Тау 3.05.23 жауап.pdf'
+      },
+      {
+        title: 'Тау 10.05.23',
+        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 10.05.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/tau/Тау 10.05.23 жауап.pdf'
+      },
+      {
+        title: 'Тау 27.06.23',
+        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 27.06.23.pdf',
+        video: null,
+        answerDoc: null
+      }
+    ]
+  },
+  
+  {
+    name: 'ШУКИЖАНОВА Д.',
+    img: '/img/uiLanding/fraction/shukizhanova.jpg',
+    active: false,
+    data: [
+      {
+        title: 'Шукижанова 20.04.23',
+        docAndDescription: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23 жауап.pdf'
+      },
+      {
+        title: 'Шукижанова 24.05.23',
+        docAndDescription: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23.pdf',
+        video: null,
+        answerDoc: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23 жауап.pdf'
+      }
+    ]
+  }
+]);
+
+const tableContentList = ref(deputieslist[0].data)
+
+const toggleShow = (idx: number) => {
+  for (let i = 0; i < deputieslist.length; i++) {
+    deputieslist[i].active = false;
+  }
+  deputieslist[idx].active = true;
+  tableContentList.value = deputieslist[idx].data;
+}
+</script>
 
 <style scoped lang="scss">
 .title {
@@ -195,16 +272,39 @@
   margin: 50px 0;
 
   &-deputy {
-    display: flex;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    grid-gap: 10px;
     align-items: center;
-    background-color: var(--white-color);
-    border-radius: 200px;
 
-    & img {
-      width: 44px;
-      height: 44px;
-      border-radius: 200px;
-      margin: 10px;
+    padding: 10px 15px 10px 10px;
+
+    border-radius: 200px;
+    border: 2px transparent solid;
+    background-color: var(--white-color);
+
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      border-color: var(--accent-color-op50);
+      background-color: var(--accent-color-op10);
+    }
+
+    &.active {
+      background-color: var(--accent-color);
+
+      & span {
+        color: var(--white-color);
+      }
+    }
+
+
+    &-photo {
+      border-radius: 50%;
+
+      &-img {
+        padding-bottom: 100%;
+      }
     }
 
     & span {
@@ -212,16 +312,8 @@
       font-size: 20px;
       font-weight: 500;
       text-transform: uppercase;
-      padding: 20px 20px 20px 0;
+      transition: all .3s ease-in-out;
     }
-  }
-}
-
-.active {
-  background-color: var(--accent-color);
-
-  & span {
-    color: var(--white-color);
   }
 }
 

@@ -355,5 +355,11 @@
       <path fill-rule="evenodd" clip-rule="evenodd" d="M26.541 25.668H17.4587C14.7856 25.8007 12.4173 27.4335 11.3427 29.8846C10.0465 32.4293 12.6334 34.8346 15.6419 34.8346H28.3579C31.3682 34.8346 33.955 32.4293 32.657 29.8846C31.5824 27.4335 29.2142 25.8007 26.541 25.668Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M27.5 14.668C27.5 17.7055 25.0376 20.168 22 20.168C18.9624 20.168 16.5 17.7055 16.5 14.668C16.5 11.6304 18.9624 9.16797 22 9.16797C23.4587 9.16797 24.8576 9.74743 25.8891 10.7789C26.9205 11.8103 27.5 13.2093 27.5 14.668Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
+
+    <g id="youtube-dark" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M23.5577 25.3369C26.6301 25.4488 29.2137 23.0531 29.3337 19.9809V12.0263C29.2137 8.95409 26.6301 6.55841 23.5577 6.67027H8.44299C5.3705 6.55841 2.78697 8.95409 2.66699 12.0263V19.9809C2.78697 23.0531 5.3705 25.4488 8.44299 25.3369H23.5577Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3447 12.237L19.5593 15.101C19.8324 15.2604 20.0002 15.5528 20.0002 15.869C20.0002 16.1851 19.8324 16.4775 19.5593 16.637L15.3447 19.7703C14.5447 20.313 13.334 19.8503 13.334 19.0023V13.0023C13.334 12.1583 14.546 11.6943 15.3447 12.237Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
   </defs>
 </svg>

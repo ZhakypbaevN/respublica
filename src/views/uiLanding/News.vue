@@ -122,10 +122,6 @@ const sideBarlinks = [
     link: "#photoGallery"
   },
   {
-    title: 'Анонсы, объявления',
-    link: "#announcements"
-  },
-  {
     title: 'Контакты пресс-службы',
     link: "#contacts"
   }
