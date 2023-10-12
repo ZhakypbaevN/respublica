@@ -45,6 +45,7 @@ withDefaults(defineProps<IProps>(), {})
 
 .content {
   display: flex;
+  justify-content: center;
 }
 
 .wrapper-menu {
@@ -78,4 +79,3 @@ withDefaults(defineProps<IProps>(), {})
   }
 }
 </style>
-  

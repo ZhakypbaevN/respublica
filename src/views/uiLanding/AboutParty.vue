@@ -18,7 +18,7 @@
 
   <PartyProgram />
 
-  <section class="partyStructure landing-block">
+  <section class="partyStructure landing-block" id="party-structure">
     <div class="wrapper">
       <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
     

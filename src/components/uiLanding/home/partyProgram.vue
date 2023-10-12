@@ -6,7 +6,7 @@
     <div class="partyProgram-main">
       <div class="partyProgram-preview"></div>
       <div class="partyProgram-items-block">
-        <div class="partyProgram-items">
+        <div class="partyProgram-items" data-aos="fade-up">
           <div class="partyProgram-item" v-for="block of blockList" :key="block.title">
             <h4 class="partyProgram-item-title">{{ block.title }}</h4>
             <a :href="block.pdf" target="_blank">
