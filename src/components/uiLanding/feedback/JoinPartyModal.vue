@@ -115,38 +115,21 @@
           required
         />
 
-        <Input
+        <Select
           name="region"
           placeholder="Укажите область"
+          :options="regionList"
+          v-model="regionID"
           required
         />
 
-        <!-- <Select
-          name="region"
-          placeholder="Укажите область"
-          :options="[
-            {label: 'Алматы', value: 'Алматы'},
-            {label: 'Астана', value: 'Астана'},
-            {label: 'Караганда', value: 'Караганда'},
-          ]"
-          required
-        /> -->
-
-        <Input
+        <Select
           name="locality"
           placeholder="Населенный пункт"
+          :options="locationList"
+          v-model="locationID"
           required
         />
-        <!-- <Select
-          name="locality"
-          placeholder="Населенный пункт"
-          :options="[
-            {label: 'Алматы', value: 'Алматы'},
-            {label: 'Астана', value: 'Астана'},
-            {label: 'Караганда', value: 'Караганда'},
-          ]"
-          required
-        /> -->
 
         <div class="feedbackModal-inputs-home">
           <Input
@@ -250,7 +233,7 @@
 // Components
 import LogInFirstModal from './logInFirstModal.vue';
 
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import moment from 'moment'
 import axios from 'axios'
 
@@ -272,12 +255,67 @@ const emits = defineEmits<Emits>()
 const loading = ref(false)
 const gender = ref('female');
 const token = localStorage.getItem('TOKEN');
-const userData = JSON.parse(localStorage.getItem('USER_DATA'));
+const userData = JSON.parse(localStorage.getItem('USER_DATA')!);
 const userType = localStorage.getItem('USER_TYPE');
+
+const regionList = ref([]);
+const locationList = ref([]);
+
+const regionID = ref(null);
+const locationID = ref(null);
+
+onMounted(() => {
+
+const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
+axios({
+  method: "get",
+  url: url,
+})
+  .then((response) => {
+    response.data.forEach(location => {
+      regionList.value.push(
+        {
+          label: location.name,
+          value: location.id.toString(),
+          childrens: location.childrens
+        }
+      );
+    });
+  })
+  .catch((err) => {
+    console.log('err', err);
+    toast({
+      message: 'Возникли ошибки при запросе'
+    })
+  });
+})
+
+watch(
+  () => regionID.value,
+  () => {
+    locationList.value = [];
+    locationID.value = null;
+
+    regionList.value.forEach(region => {
+      if (Number(region.value) === 245) console.log('Number(region.id) === Number(regionID.value)', Number(region.value) === Number(regionID.value));
+      if (Number(region.value) === Number(regionID.value)) {
+        
+        region.childrens.forEach(location => {
+          locationList.value.push(
+            {
+              label: location.name,
+              value: location.id.toString()
+            }
+          );
+        })
+      }
+    });
+  }
+)
 
 const postJoinParty = (
     {
-      education, specialization, workPlace, post, region, locality, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave
+      education, specialization, workPlace, post, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave
     }:
     {
       education: string,
@@ -285,11 +323,9 @@ const postJoinParty = (
       workPlace: string,
       dateBirthday: string,
       post: string,
-      region: string,
-      locality: string,
       streat: string,
       home: string,
-      apartment: string,
+      apartment: string|null,
       pensioner: boolean,
       disabled: boolean,
       unemployed: boolean,
@@ -306,7 +342,7 @@ const postJoinParty = (
     "workplace": workPlace,
     "position": post,
   
-    "location_id": locality ?? region,
+    "location_id": Number(locationID.value ?? regionID.value),
 
     "street": streat,
     "house": home,
