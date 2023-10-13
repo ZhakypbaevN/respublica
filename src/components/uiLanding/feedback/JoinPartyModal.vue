@@ -392,15 +392,9 @@ const postParty = (data) => {
     })
     .catch((err) => {
       
-      if (err.response.data.detail === 'Duplicate membership is not allowed.') {
-        toast({
-          message: 'Дублирование членства не допускается!'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
 
       console.log('err', err);
       loading.value = false
