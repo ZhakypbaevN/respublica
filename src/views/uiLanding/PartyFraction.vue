@@ -12,7 +12,7 @@
       <div class="links-wrapper scroll-top" id="links">
         <div class="links">
           <RouterLink to="/meeting-with-voters/1" class="landing-link with-line" id="meetings-with-voters">
-            <span>ВСТРЕЧИ с избирателями</span>
+            <span>Встречи с избирателями</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
           </RouterLink>
           <button 
