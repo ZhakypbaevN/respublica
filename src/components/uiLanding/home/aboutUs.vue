@@ -2,7 +2,7 @@
   <section class="aboutUs landing-block">
     <div class="wrapper landing-wrapper">
       <h2 class="aboutUs-title">
-        <span data-aos="zoom-in">Новые люди -</span>
+        <span class="blue" data-aos="zoom-in">Новые люди - </span>
         <span data-aos="zoom-in">новые возможности!</span> 
       </h2>
       <p class="aboutUs-description" data-aos="zoom-in">
@@ -127,7 +127,7 @@ const aboutUsList = [
     font-weight: 700;
     margin-bottom: 30px;
 
-    & span {
+    & span.blue {
       color: var(--accent-color);
       font-family: 'Montserrat';
     }

@@ -7,33 +7,45 @@
         <TransitionGroup>
           <LoginForm
             v-if="showForm.login"
-            @toReg="showRegistrationForm"
+          />
+
+          <!-- Check Code Form -->
+          <CheckCodeForm
+            v-if="showForm.checkCode"
+            :phone="checkData.phone"
+            :token="checkData.token"
+            :fromResetPassword="fromResetPassword"
+            @toNext="() => {fromResetPassword ? showFinishResetPasswordForm() : showFinishRegistrationForm()}"
           />
 
 
+          <!-- Register Form -->
           <RegisterForm
             v-if="showForm.register"
             v-model:phone="checkData.phone"
             v-model:token="checkData.token"
-            @toLogin="showLoginForm"
             @toCheck="showCheckForm"
           />
-
-
-          <CheckCodeForm
-            v-if="showForm.checkCode"
-            :token="checkData.token"
-            @toBack="() => {fromLogin ? showLoginForm() : showRegistrationForm()}"
-            @toLogin="showLoginForm"
-            @toNext="() => {fromLogin ? loginFinish() : showFinishRegistrationForm()}"
-          />
-
 
           <RegisterFinishForm
             v-if="showForm.registerFinish"
             v-model:phone="checkData.phone"
             :token="checkData.token"
-            @toLogin="showLoginForm"
+          />
+
+
+          <!-- Reset Pssword -->
+          <ResetPasswordForm
+            v-if="showForm.resetPassword"
+            v-model:phone="checkData.phone"
+            v-model:token="checkData.token"
+            @toCheck="showCheckForm"
+          />
+
+          <ResetPasswordFinishForm
+            v-if="showForm.resetPasswordFinish"
+            v-model:phone="checkData.phone"
+            :token="checkData.token"
           />
         </TransitionGroup>
       </div>
@@ -43,15 +55,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { onMounted, reactive, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 import LoginForm from '../components/authorization/loginForm.vue';
 import RegisterForm from '../components/authorization/registerForm.vue';
 import RegisterFinishForm from '../components/authorization/registerFinishForm.vue';
 import CheckCodeForm from '../components/authorization/checkCodeForm.vue';
 
-const router = useRouter()
+import ResetPasswordForm from '../components/authorization/resetPasswordForm.vue';
+import ResetPasswordFinishForm from '../components/authorization/resetPasswordFinishForm.vue';
+
 const route = useRoute()
 
 interface ShowForm {
@@ -64,13 +78,16 @@ const showForm = reactive<ShowForm>({
 
   register: false,
   registerFinish: false,
+
+  resetPassword: false,
+  resetPasswordFinish: false
 })
 
 const checkData = reactive({
   phone: '',
   token: ''
 });
-const fromLogin = ref(false);
+const fromResetPassword = ref(false);
 
 const objElementsToFalse = () => {
   for (const key in showForm) {
@@ -80,18 +97,9 @@ const objElementsToFalse = () => {
   }
 }
 
-const showRegistrationForm = () => {
-  objElementsToFalse();
-  showForm.register = true;
-}
-
-const showLoginForm = () => {
-  objElementsToFalse();
-  showForm.login = true;
-}
-
 const showCheckForm = () => {
-  fromLogin.value = showForm.login === true;
+  console.log('checkData', checkData.token);
+  fromResetPassword.value = showForm.resetPassword === true;
   objElementsToFalse();
   showForm.checkCode = true;
 }
@@ -101,14 +109,24 @@ const showFinishRegistrationForm = () => {
   showForm.registerFinish = true;
 }
 
-const loginFinish = () => {
-  router.push('/main-db')
+const showFinishResetPasswordForm = () => {
+  objElementsToFalse();
+  showForm.resetPasswordFinish = true;
 }
 
-onMounted(() => {
-  if (route.params.logOrReg === 'login') showLoginForm()
-  else if (route.params.logOrReg === 'register') showRegistrationForm()
-})
+const checkRoute = () => {
+  objElementsToFalse();
+  if (route.params.logOrReg === 'register') showForm.register = true;
+  else if (route.params.logOrReg === 'reset-password') showForm.resetPassword = true;
+  else showForm.login = true;
+}
+
+onMounted(checkRoute)
+
+watch(
+  () => route.params.logOrReg,
+  checkRoute
+)
 </script>
 
 <style scoped lang="scss">

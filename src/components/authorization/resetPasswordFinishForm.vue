@@ -1,47 +1,8 @@
 <template>
   <Form class="wrapper-darkMain-form" @finish="postRegister">
-    <h2 class="wrapper-darkMain-title">Введите ваши данные</h2>
+    <h2 class="wrapper-darkMain-title">Новый пароль</h2>
 
     <div class="modal-inputs">
-      <Input
-        light
-        name="iin"
-        placeholder="ИИН*"
-        mask="############"
-        required
-      />
-
-      <Input
-        light
-        name="lastname"
-        placeholder="Фамилия*"
-        required
-      />
-
-      <Input
-        light
-        name="name"
-        placeholder="Имя*"
-        required
-      />
-
-      <Input
-        light
-        name="middleName"
-        placeholder="Отчество"
-      />
-
-      <Input
-        light
-        type="email"
-        name="email"
-        placeholder="Email*"
-        required
-      />
-
-      <!-- validation="email" -->
-
-     
       <Input
         light
         type="password"
@@ -64,21 +25,11 @@
 
     <Button
       class="modal-btn"
-      name="Зарегистрироваться"
+      name="Сохранить пароль"
       type="default-blue"
       :loading="loading"
       htmlType="submit"
     />
-
-    <div class="modal-message">
-      <h4 class="modal-message-title">У вас есть аккаунт? </h4>
-      <RouterLink
-        to="/auth/login"
-        class="modal-message-btn"
-      >
-        Войти
-      </RouterLink>
-    </div>
   </Form>
 </template>
 
@@ -86,61 +37,55 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../modules/toast'
+import { useRouter } from 'vue-router';
 
 const { toast } = useToast()
+const router = useRouter()
 
 interface IProps {
   phone: string,
   token: string
 }
+
 const props = defineProps<IProps>()
 
 const loading = ref(false)
 const firstPassword = ref('');
 
 const postRegister = (
-    { iin, name, lastname, middleName, email, password }:
+    { password }:
     {
-      iin: string,
-      name: string,
-      email: string,
-      lastname: string,
-      middleName: string,
       password: string,
     }
   ) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/register/extra`;
+  const url = `https://api.respublica.codetau.com/api/v1/auth/password/reset`;
   axios({
     method: "post",
     url: url,
     data: {
       "token": props.token,
       "password": password,
-      "email": email,
-      "first_name": name,
-      "last_name": lastname,
-      "middle_name": middleName,
-      "iin": iin
     }
   })
   .then((response) => {
       console.log('response', response);
 
       toast({
-        message: 'Вы успешно зарегистрировались',
+        message: 'Пароль успешно изменен!',
         type: 'success'
       })
+
+      setTimeout(() => {
+        router.push('/auth/login')
+      }, 300);
       
       loading.value = false
     })
     .catch((err) => {
+      
       console.log('err', err);
-      if (err.response.data.detail === 'IIN is already registered!') {
-        toast({
-          message: 'ИИН уже зарегистрирован!'
-        })
-      } else if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
+      if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
         toast({
           message: 'Срок обработки истек, повторите заново!'
         })
@@ -167,19 +112,6 @@ const postRegister = (
   &-btn {
     width: 100%;
     margin-bottom: 50px;
-  }
-
-  &-message {
-    &-title,
-    & span {
-      display: inline;
-      font-size: 18px;
-      font-weight: 500;
-    }
-
-    & span {
-      color: var(--accent-color);
-    }
   }
 }
 </style>
