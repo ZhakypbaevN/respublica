@@ -19,7 +19,7 @@
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Дата рождения:</span>
-                  {{ partyData?.birthday ?? '-' }}
+                  {{ partyData?.birth_date ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item checked">
@@ -29,32 +29,32 @@
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>E-mail:</span>
-                  {{ partyData?.email ?? '-' }}
+                  {{ userData?.email ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Пол:</span>
-                  {{ partyData?.gender ?? '-' }}
+                  {{ partyData?.gender === 'male' ? 'Мужчина' : 'Женщина' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Образование:</span>
-                  {{ partyData?.educationlevel ?? '-' }}
+                  {{ partyData?.education === 'higher_education' ? 'Высшее образование' : 'Среднее образование' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Специальность:</span>
-                  {{ partyData?.specialization ?? '-' }}
+                  {{ partyData?.specialty ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Место работы:</span>
-                  {{ partyData?.workPlace ?? '-' }}
+                  {{ partyData?.workplace ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Должность:</span>
-                  {{ partyData?.role ?? '-' }}
+                  {{ partyData?.position ?? '-' }}
                 </h4>
 
                 <h4 class="partyData-content-infoBlock-item">
@@ -69,13 +69,13 @@
 
                 <h4 class="partyData-content-infoBlock-item">
                   <span>Улица/Проспект/Мкр:</span>
-                  {{ partyData?.streat ?? '-' }}
+                  {{ partyData?.street ?? '-' }}
                 </h4>
 
                 <div class="partyData-content-infoBlock-bottom">
                   <h4 class="partyData-content-infoBlock-item">
                     <span>Дом:</span>
-                    {{ partyData?.home ?? '-' }}
+                    {{ partyData?.house ?? '-' }}
                   </h4>
 
                   <h4 class="partyData-content-infoBlock-item">
@@ -85,11 +85,20 @@
                 </div>
 
                 <div class="partyData-content-infoBlock-statusBlock">
-                  <div
-                    class="partyData-content-infoBlock-status"
-                    v-for="status of partyData?.status"
-                  >
-                    {{ status }}
+                  <div v-if="partyData?.is_pensioner" class="partyData-content-infoBlock-status">
+                    Пенсионер
+                  </div>
+
+                  <div v-if="partyData?.is_disabled" class="partyData-content-infoBlock-status">
+                    Инвалид
+                  </div>
+
+                  <div v-if="partyData?.is_unemployed" class="partyData-content-infoBlock-status">
+                    Безработный
+                  </div>
+
+                  <div v-if="partyData?.is_on_childcare_leave" class="partyData-content-infoBlock-status">
+                    Находящиеся в отпуске по уходу за детьми
                   </div>
                 </div>
               </div>
@@ -105,7 +114,7 @@
               <h5 class="partyData-card-subtitle">
                 На сайте с {{ partyData?.dayOfRegistration }}
                 <br>
-                Член партии с {{ partyData?.dayOfAcceptance }}
+                Член партии с {{ partyData?.join_date }}
                 <br>
                 <span v-if="partyData?.dayOfRequestToExitParty">
                   Подано заявление на выход из партий {{ partyData?.dayOfRequestToExitParty }}
@@ -120,27 +129,27 @@
                   
                     <h4 class="partyData-cardInfo-info number">
                       <span>Партийный билет</span>
-                      №{{ partyData?.id }}
+                      №{{ partyData?.ticket_number }}
                     </h4>
 
 
                     <h4 class="partyData-cardInfo-info">
                       <span>Фамилия:</span>
-                      {{ partyData?.lastName }}
+                      {{ userData.last_name }}
                     </h4>
                     <h4 class="partyData-cardInfo-info">
                       <span>Имя:</span>
-                      {{ partyData?.name }}
+                      {{ userData.first_name }}
                     </h4>
                     <h4 class="partyData-cardInfo-info middleName">
                       <span>Отчество:</span>
-                      {{ partyData?.middleName }}
+                      {{ userData.middle_name }}
                     </h4>
 
 
                     <h4 class="partyData-cardInfo-info dayOfAcceptance">
                       <span>Дата выдачи:</span>
-                      {{ partyData?.dayOfAcceptance }}
+                      {{ partyData?.join_date }}
                     </h4>
 
                   </div>
@@ -153,27 +162,27 @@
                   
                     <h4 class="partyData-cardInfo-info number">
                       <span>Партиялық билет</span>
-                      №{{ partyData?.id }}
+                      №{{ partyData?.ticket_number }}
                     </h4>
 
 
                     <h4 class="partyData-cardInfo-info">
                       <span>Тегі:</span>
-                      {{ partyData?.lastName }}
+                      {{ userData.last_name }}
                     </h4>
                     <h4 class="partyData-cardInfo-info">
                       <span>Аты:</span>
-                      {{ partyData?.name }}
+                      {{ userData.first_name }}
                     </h4>
                     <h4 class="partyData-cardInfo-info middleName">
                       <span>Әкесінің аты:</span>
-                      {{ partyData?.middleName }}
+                      {{ userData.middle_name }}
                     </h4>
 
 
                     <h4 class="partyData-cardInfo-info dayOfAcceptance">
                       <span>Берілген күні:</span>
-                      {{ partyData?.dayOfAcceptance }}
+                      {{ partyData?.join_date }}
                     </h4>
 
                   </div>
@@ -241,7 +250,6 @@ const { toast } = useToast()
 const partyData = ref(null);
 const userData = ref(null);
 const showJoinPartyModal = ref(false);
-const userID = localStorage.getItem('USER_ID');
 const token = localStorage.getItem('TOKEN');
 
 onMounted(() => {
@@ -273,17 +281,17 @@ const getUserData = () => {
 }
 
 const getPartData = () => {
-  const url = `https://tri.codetau.com/partyCards?userID=${userID}`;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships`;
   axios({
     method: "get",
     url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
   })
     .then((response) => {
-      partyData.value = null;
-
-      response.data.forEach(user => {
-        partyData.value = user;
-      });
+      partyData.value = response.data;
     })
     .catch((err) => {
       console.log('err', err);
@@ -437,7 +445,7 @@ const getPartData = () => {
         margin-bottom: 12px;
       }
 
-      &.dayOfAcceptance {
+      &.join_date {
         font-size: 13px;
       }
 
