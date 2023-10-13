@@ -17,24 +17,32 @@
           name="iin"
           placeholder="ИИН"
           mask="############"
+          v-model="userData.iin"
+          disabled
           required
         />
 
         <Input
           name="lastname"
           placeholder="Фамилия"
+          v-model="userData.last_name"
+          disabled
           required
         />
 
         <Input
           name="name"
           placeholder="Имя"
+          v-model="userData.first_name"
+          disabled
           required
         /> 
 
         <Input
           name="middleName"
           placeholder="Отчество"
+          v-model="userData.middle_name"
+          disabled
           required
         />
 
@@ -48,14 +56,14 @@
 
           <Button
             name="Женщина"
-            :type="gender === 'Женщина' ?  'default-blue' : 'outline-grey'"
-            @click="() => gender = 'Женщина'"
+            :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
+            @click="() => gender = 'female'"
           />
 
           <Button
             name="Мужчина"
-            :type="gender === 'Мужчина' ?  'default-blue' : 'outline-grey'"
-            @click="() => gender = 'Мужчина'"
+            :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
+            @click="() => gender = 'male'"
           />
         </div>
 
@@ -63,8 +71,8 @@
           name="education"
           placeholder="Укажите ваше образование"
           :options="[
-            {label: 'Высшее', value: 'Высшее'},
-            {label: 'Среднее', value: 'Среднее'},
+            {label: 'Высшее', value: 'higher_education'},
+            {label: 'Среднее', value: 'secondary_special_education'},
           ]"
           required
         />
@@ -92,7 +100,9 @@
           name="phone"
           placeholder="Ваш номер телефона"
           validation="phone"
+          v-model="userData.phone"
           :min="17"
+          disabled
           required
         />
 
@@ -100,6 +110,8 @@
           type="email"
           name="email"
           placeholder="E-mail"
+          v-model="userData.email"
+          disabled
           required
         />
 
@@ -152,73 +164,75 @@
           <Input
             name="apartment"
             placeholder="Кв."
-            required
           />
         </div>
 
 
         <div>
-          <label>
+          <h4 class="feedbackModal-inputs-subtitle">
             Относитесь ли вы к категории:
-          </label>
+          </h4>
 
           <div class="feedbackModal-checkboxList-block">
             <div class="feedbackModal-checkboxList">
-              <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox" @change="changeStatus('Пенсионеры')">
-                <span>
-                  Пенсионеры
-                </span>
-              </label>
+              <Checkbox
+                name="pensioner"
+                class="feedbackModal-checkboxList-item"
+              >
+                Пенсионеры
+              </Checkbox>
 
-              <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox" @change="changeStatus('Инвалиды')">
-                <span>
-                  Инвалиды
-                </span>
-              </label>
+              <Checkbox
+                name="disabled"
+                class="feedbackModal-checkboxList-item"
+              >
+                Инвалиды
+              </Checkbox>
             </div>
 
             <div class="feedbackModal-checkboxList">
-              <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox" @change="changeStatus('Безработные')">
-                <span>
-                  Безработные
-                </span>
-              </label>
+              <Checkbox
+                name="unemployed"
+                class="feedbackModal-checkboxList-item"
+              >
+                Безработные
+              </Checkbox>
 
-              <label class="feedbackModal-checkboxList-item">
-                <input type="checkbox" @change="changeStatus('Находящиеся в отпуске по уходу за детьми')">
-                <span>
-                  Находящиеся в отпуске по уходу за детьми
-                </span>
-              </label>
+              <Checkbox
+                name="onChildcareLeave"
+                class="feedbackModal-checkboxList-item"
+              >
+                Находящиеся в отпуске по уходу за детьми
+              </Checkbox>
             </div>
           </div>
         </div>
       </div>
 
       <div class="feedbackModal-checkboxList">
-        <label class="feedbackModal-checkboxList-item">
-          <input type="checkbox">
-          <span>
-            С Уставом и Программой политической партии «Respublica» ознакомлен(а), поддерживаю их и обязуюсь выполнять.
-          </span>
-        </label>
+        <Checkbox
+          name="confirm-1"
+          class="feedbackModal-checkboxList-item"
+          required
+        >
+          С Уставом и Программой политической партии «Respublica» ознакомлен(а), поддерживаю их и обязуюсь выполнять.
+        </Checkbox>
 
-        <label class="feedbackModal-checkboxList-item">
-          <input type="checkbox">
-          <span>
-            Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
-          </span>
-        </label>
+        <Checkbox
+          name="confirm-2"
+          class="feedbackModal-checkboxList-item"
+          required
+        >
+          Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
+        </Checkbox>
 
-        <label class="feedbackModal-checkboxList-item">
-          <input type="checkbox">
-          <span>
-            Подтверждаю, что не являюсь членом другой политической партии
-          </span>
-        </label>
+        <Checkbox
+          name="confirm-3"
+          class="feedbackModal-checkboxList-item"
+          required
+        >
+          Подтверждаю, что не являюсь членом другой политической партии
+        </Checkbox>
       </div>
       
 
@@ -236,15 +250,12 @@
 // Components
 import LogInFirstModal from './logInFirstModal.vue';
 
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import moment from 'moment'
 import axios from 'axios'
 
 // Modules
 import { useToast } from '../../../modules/toast'
-
-// Helpers
-import formatPhone from '../../../helpers/formatPhone';
 
 const { toast } = useToast()
 
@@ -259,88 +270,69 @@ const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
 const loading = ref(false)
-const gender = ref('Женщина');
-const userID = localStorage.getItem('USER_ID');
+const gender = ref('female');
+const token = localStorage.getItem('TOKEN');
+const userData = JSON.parse(localStorage.getItem('USER_DATA'));
 const userType = localStorage.getItem('USER_TYPE');
-const data = reactive({
-  status: []
-});
-
-const changeStatus = (val: string) => {
-  if (data.status.indexOf(val) !== -1) data.status.push(val);
-  else data.status.splice(data.status.indexOf(val), 1);
-}
 
 const postJoinParty = (
     {
-      iin, lastname, name, middleName, education, specialization, workPlace, post, phone, email, region, locality, streat, home, apartment, dateBirthday
+      education, specialization, workPlace, post, region, locality, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave
     }:
     {
-      iin: string,
-      lastname: string,
-      name: string,
-      middleName: string,
       education: string,
       specialization: string,
       workPlace: string,
       dateBirthday: string,
       post: string,
-      phone: string,
-      email: string,
       region: string,
       locality: string,
       streat: string,
       home: string,
-      apartment: string
+      apartment: string,
+      pensioner: boolean,
+      disabled: boolean,
+      unemployed: boolean,
+      onChildcareLeave: boolean,
     }
   ) => {
-  const dateNow = moment().format('DD.M.YYYY');
 
   const data = {
-    "userID": userID,
-    "dayOfAcceptance": dateNow,
-    "dayOfRegistration": dateNow,
-  
-    "dayOfRequestToExitParty": null,
-    "deleted": false,
-  
-    "name": name,
-    "lastName": lastname,
-    "middleName": middleName,
-  
-    "iin": iin,
-    "birthday": moment(dateBirthday).format('DD.M.YYYY'), 
-    "phone": formatPhone(phone),
-    "email": email,
-
+    "birth_date": moment(dateBirthday).format('YYYY-M-DD'), 
     "gender": gender.value,
-    "educationlevel": education,
-    "specialization": specialization,
-    "workPlace": workPlace,
-    "role": post,
+
+    "education": education,
+    "specialty": specialization,
+    "workplace": workPlace,
+    "position": post,
   
-    "region": region,
-    "city": locality,
-    "streat": streat,
-    "home": home,
+    "location_id": locality ?? region,
+
+    "street": streat,
+    "house": home,
     "apartment": apartment,
-  
-    status: [
-    ]
+
+    "is_pensioner": pensioner,
+    "is_disabled": disabled,
+    "is_unemployed": unemployed,
+    "is_on_childcare_leave": onChildcareLeave,
   };
 
-  console.log('data', data);
   postParty(data);
 }
 
 const postParty = (data) => {
   loading.value = true;
-  const url = `https://tri.codetau.com/partyCards`;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships`;
 
   axios({
     method: "post",
     url: url,
-    data: data
+    data: data,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
   })
     .then((response) => {
       console.log('response', response);
@@ -368,7 +360,7 @@ const postParty = (data) => {
       grid-template-columns: 1fr 135px 135px;
       grid-gap: 16px;
     }
-    & label {
+    &-subtitle {
       display: block;
       font-size: 20px;
       font-weight: 500;

@@ -23,7 +23,7 @@
 
     <div class="modal-helperBtns">
       <Checkbox light name="remember">Запомнить меня</Checkbox>
-      <RouterLink to="">
+      <RouterLink to="/auth/reset-password">
         Забыли пароль? 
       </RouterLink>
     </div>
@@ -38,13 +38,12 @@
 
     <div class="modal-message">
       <h4 class="modal-message-title">У вас нет аккаунта?  </h4>
-      <button
-        type="button"
+      <RouterLink
+        to="/auth/register"
         class="modal-message-btn"
-        @click="() => $emit('toReg')"
       >
-        <span>Зарегистрироваться</span>
-      </button>
+        Зарегистрироваться
+      </RouterLink>
     </div>
   </Form>
 </template>
@@ -60,12 +59,6 @@ import Checkbox from '../common/Checkbox.vue';
 
 const { toast } = useToast()
 const router = useRouter()
-
-interface Emits {
-  (event: 'toReg', value: Function): void,
-}
-
-const emit = defineEmits<Emits>()
 
 const loading = ref(false)
 const token = ref();
@@ -110,9 +103,16 @@ const postLogin = ({ phone, password }: { phone: string, password: string }) => 
       })
       .catch((err) => {
         console.log('err', err);
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
+        
+        if (err.response.data.detail === 'Incorrect username or password') {
+          toast({
+            message: 'Неверный логин или пароль!'
+          })
+        } else {
+          toast({
+            message: 'Возникли ошибки при запросе'
+          })
+        }
         loading.value = false
       });
   }
@@ -177,13 +177,13 @@ const getUserData = () => {
 
   &-message {
     &-title,
-    & span {
+    & a {
       display: inline;
       font-size: 18px;
       font-weight: 500;
     }
 
-    & span {
+    & a {
       color: var(--accent-color);
     }
   }

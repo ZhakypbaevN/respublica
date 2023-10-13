@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 interface IProps {
-  single: boolean,
+  single?: boolean,
 }
 
 withDefaults(defineProps<IProps>(), {

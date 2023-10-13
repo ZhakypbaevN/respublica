@@ -63,6 +63,7 @@ button {
     font-size: 18px;
     font-weight: 700;
     font-family: 'Tilda Sans';
+    text-wrap: nowrap;
     line-height: 1;
     transition: all .3s ease-in-out;
 

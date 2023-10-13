@@ -7,7 +7,7 @@
         <span class="partyProgram-sub-title">программа партии</span>
         
         <a href="/doc/ru/Программа партии_.pdf" target="_blank">
-          <Button name="Скачать PDF" type="outline-blue" class="partyProgram-btn">
+          <Button name="Посмотреть PDF" type="outline-blue" class="partyProgram-btn">
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
         </a>
@@ -19,7 +19,7 @@
         <span class="partyProgram-sub-title">предвыборная программа партии</span>
         
         <a href="/doc/ru/Программа предвыборная рус.pdf" target="_blank">
-          <Button name="Скачать PDF" type="outline-blue" class="partyProgram-btn">
+          <Button name="Посмотреть PDF" type="outline-blue" class="partyProgram-btn">
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
         </a>

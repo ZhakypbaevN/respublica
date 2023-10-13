@@ -116,6 +116,15 @@ const deputieslist = reactive([
         docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23.pdf',
         video: null,
         answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23 жауап.pdf'
+      },
+
+
+      // 2nd session
+      {
+        title: 'Ходжаназаров 13.09.23',
+        docAndDescription: 'public/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 13.09.23.pdf',
+        video: null,
+        answerDoc: null
       }
     ]
   },
@@ -136,6 +145,15 @@ const deputieslist = reactive([
         docAndDescription: '/doc/ru/deputies-requests/berdenov/Берденов 21.06.23.pdf',
         video: null,
         answerDoc: '/doc/ru/deputies-requests/berdenov/Берденов 21.06.23 жауап.pdf'
+      },
+
+
+      // 2nd session
+      {
+        title: 'Берденов 06.09.23',
+        docAndDescription: '/doc/ru/deputies-requests/berdenov/Берденов 06.09.23.pdf',
+        video: null,
+        answerDoc: null
       }
     ]
   },
@@ -168,6 +186,15 @@ const deputieslist = reactive([
         docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 14.05.23.pdf',
         video: null,
         answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 16.06.23 жауап.pdf'
+      },
+
+
+      // 2nd session
+      {
+        title: 'Куспеков 04.10.23',
+        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 04.10.23.pdf',
+        video: null,
+        answerDoc: null
       }
     ]
   },
@@ -186,6 +213,15 @@ const deputieslist = reactive([
       {
         title: 'Наумова 15.05.23',
         docAndDescription: 'public/doc/ru/deputies-requests/naumova/Наумова 15.05.23.pdf',
+        video: null,
+        answerDoc: null
+      },
+
+
+      // 2nd session
+      {
+        title: 'Наумова Д.Р. 04.10.23',
+        docAndDescription: '/doc/ru/deputies-requests/naumova/Наумова Д.Р. 04.10.23.pdf',
         video: null,
         answerDoc: null
       }
@@ -220,6 +256,15 @@ const deputieslist = reactive([
         docAndDescription: '/doc/ru/deputies-requests/tau/Тау 27.06.23.pdf',
         video: null,
         answerDoc: null
+      },
+
+
+      // 2nd session
+      {
+        title: 'Тау Н. 22.09.23',
+        docAndDescription: '/doc/ru/deputies-requests/tau/Тау Н. 22.09.23.pdf',
+        video: null,
+        answerDoc: null
       }
     ]
   },
@@ -240,7 +285,7 @@ const deputieslist = reactive([
         docAndDescription: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23.pdf',
         video: null,
         answerDoc: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23 жауап.pdf'
-      }
+      },
     ]
   }
 ]);

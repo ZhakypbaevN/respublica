@@ -1,6 +1,6 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postRegister">
-    <h2 class="wrapper-darkMain-title">Регистрация</h2>
+  <Form class="wrapper-darkMain-form" @finish="postResetPassword">
+    <h2 class="wrapper-darkMain-title">Восстановить пароль</h2>
     <div class="modal-inputs">
       <Input
         type="tel"
@@ -13,17 +13,16 @@
       />
     </div>
 
-    <div class="modal-btn">
-      <Button
-        name="Получить код"
-        type="default-blue"
-        :loading="loading"
-        htmlType="submit"
-      />
-    </div>
+    <Button
+      name="Получить код"
+      type="default-blue"
+      class="modal-btn"
+      :loading="loading"
+      htmlType="submit"
+    />
 
     <div class="modal-message">
-      <h4 class="modal-message-title">У вас есть аккаунт? </h4>
+      <h4 class="modal-message-title">У вас есть аккаунт?  </h4>
       <RouterLink
         class="modal-message-btn"
         to="/auth/login"
@@ -61,9 +60,9 @@ const emit = defineEmits<Emits>()
 
 const loading = ref(false)
 
-const postRegister = ({ phone }: { phone: string }) => {
+const postResetPassword = ({ phone }: { phone: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/register`;
+  const url = `https://api.respublica.codetau.com/api/v1/auth/password/send-sms`;
     
   axios({
     method: "post",
@@ -86,15 +85,20 @@ const postRegister = ({ phone }: { phone: string }) => {
     })
     .catch((err) => {
       console.log('err', err);
-      if (err.response.data.detail === 'Phone number is already registered') {
+      if (err.response.data.detail === 'This number is not registered') {
         toast({
-          message: 'Номер телефона уже зарегистрирован!'
+          message: 'Этот номер не зарегистрирован!'
         })
       } else {
         toast({
           message: 'Возникли ошибки при запросе'
         })
       }
+
+      // toast({
+      //     message: 'Этот номер уже зарегистрирован!',
+      //     type: 'warning'
+      //   })
       loading.value = false
     });
 }
@@ -107,10 +111,17 @@ const postRegister = ({ phone }: { phone: string }) => {
     display: flex;
     flex-direction: column;
     grid-gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
+  }
+
+  &-helperBtns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
   }
 
   &-btn {
+    width: 100%;
     margin-bottom: 50px;
   }
 

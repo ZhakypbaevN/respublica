@@ -3,8 +3,8 @@
     <div>
       <Header />
   
-      <div class="content">
-        <div class="wrapper-menu">
+      <div class="layout">
+        <div class="layout-menu">
           <div class="left-menu" id="sideBar">
             <div class="left-menu-list">
               <ul>
@@ -20,7 +20,7 @@
           </div>
         </div>
         
-        <div>
+        <div class="layout-content">
           <slot />
         </div>
       </div>
@@ -43,14 +43,22 @@ withDefaults(defineProps<IProps>(), {})
   background-color: #F6F9FD;
 }
 
-.content {
+.layout {
   display: flex;
-  justify-content: center;
-}
+  justify-content: space-between;
 
-.wrapper-menu {
-  width: 325px;
-  background: #041a3f;
+  &-menu {
+    width: 325px;
+    background: #041a3f;
+  }
+
+  &-content {
+    width: -webkit-fill-available;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .left-menu {

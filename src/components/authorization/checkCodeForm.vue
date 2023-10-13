@@ -72,12 +72,14 @@ import { useToast } from '../../modules/toast'
 const { toast } = useToast()
 
 interface IProps {
-  token: string
+  phone: string,
+  token: string,
+  fromResetPassword: boolean
 }
 interface Emits {
-  (event: 'toBack', value: Function): void,
-  (event: 'toLogin', value: Function): void,
-  (event: 'toNext', value: Function): void,
+  (event: 'toBack'): Function,
+  (event: 'toLogin'): Function,
+  (event: 'toNext'): Function,
 }
 
 const props = withDefaults(defineProps<IProps>(), {})
@@ -147,7 +149,9 @@ const newCode = () => {
 
 const postCheckCode = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/register/phone-confirm`;
+  const url = props.fromResetPassword
+    ? 'https://api.respublica.codetau.com/api/v1/auth/password/verify-sms'
+    : 'https://api.respublica.codetau.com/api/v1/auth/register/phone-confirm';
     
   axios({
     method: "post",
@@ -161,7 +165,7 @@ const postCheckCode = () => {
       console.log('response', response);
 
       toast({
-        message: 'Код успешно подтвержден',
+        message: 'Код успешно подтвержден!',
         type: 'success'
       })
 
@@ -170,9 +174,19 @@ const postCheckCode = () => {
     })
     .catch((err) => {
       console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+      if (err.response.data.detail === 'Code is invalid') {
+        toast({
+          message: 'Неверный код!'
+        })
+      } else if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
+        toast({
+          message: 'Срок обработки истек, повторите заново!'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
       loading.value = false
     });
 }

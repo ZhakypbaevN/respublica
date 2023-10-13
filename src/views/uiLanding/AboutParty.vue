@@ -10,7 +10,12 @@
           <span class="party-charter-title-upper">Алға, Қазақстан! Алға, Respublica!</span>
         </div>
         <a href="/doc/ru/Respublica.pdf" target="_blank">
-          <Button class="party-charter-download" name="СКАЧАТЬ УСТАВ" type="default-blue" />
+          <Button
+            class="party-charter-download"
+            name="Посмотреть устав"
+            type="default-blue"
+            uppercase
+          />
         </a>
       </div>
     </div>
@@ -18,11 +23,13 @@
 
   <PartyProgram />
 
-  <section class="partyStructure landing-block" id="party-structure">
+  <section class="partyStructure">
     <div class="wrapper">
-      <h2 class="landing-title">Организационная структура аппарата партии «Respublica»</h2>
-    
-      <img src="/img/icons/party-structure-2.svg" alt="">
+      <div class="partyStructure-inner landing-block" id="party-structure">
+        <h2 class="landing-title center">Организационная структура аппарата партии «Respublica»</h2>
+      
+        <img src="/img/icons/party-structure-2.svg" alt="">
+      </div>
     </div>
   </section>
 
@@ -107,23 +114,22 @@ const sideBarlinks = [
   }
 
   &-download {
-    width: 213px;
     height: 64px;
   }
 }
 
 .partyStructure {
   border-radius: 10px;
-  margin: 0 50px;
+  padding: 0px !important;
 
-  border-radius: 20px;
-  background: white;
-
-  & .wrapper {
+  
+  &-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+
+    border-radius: 20px;
+    background: white;
   }
 
   &-items {
