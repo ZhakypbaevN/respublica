@@ -123,13 +123,24 @@
           required
         />
 
-        <Select
-          name="locality"
-          placeholder="Населенный пункт"
-          :options="locationList"
-          v-model="locationID"
-          required
-        />
+        <Transition>
+          <div
+            v-if="!disabledLocationSelect"
+            v-collapse
+          >
+            <Select
+              name="locality"
+              placeholder="Населенный пункт"
+              :options="
+                locationList.length
+                  ? locationList
+                  : [{label: 'Сначало выберите область', value: null}]
+              "
+              v-model="locationID"
+              required
+            />
+          </div>
+        </Transition>
 
         <div class="feedbackModal-inputs-home">
           <Input
@@ -263,6 +274,7 @@ const locationList = ref([]);
 
 const regionID = ref(null);
 const locationID = ref(null);
+const disabledLocationSelect = ref(false);
 
 onMounted(() => {
 
@@ -295,11 +307,11 @@ watch(
   () => {
     locationList.value = [];
     locationID.value = null;
+    disabledLocationSelect.value = false;
 
     regionList.value.forEach(region => {
-      if (Number(region.value) === 245) console.log('Number(region.id) === Number(regionID.value)', Number(region.value) === Number(regionID.value));
       if (Number(region.value) === Number(regionID.value)) {
-        
+        if (!region.childrens.length) disabledLocationSelect.value = true;
         region.childrens.forEach(location => {
           locationList.value.push(
             {
