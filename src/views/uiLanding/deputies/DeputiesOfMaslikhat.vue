@@ -29,7 +29,7 @@
                     v-for="deputy of region.deputies"
                   >
                       <div class="deputy-item-preview withZoomPreview-preview">
-                        <div class="deputy-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url();`"></div>
+                        <div class="deputy-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img});`"></div>
                       </div>
                       
                       <h4 class="deputy-item-name">
@@ -83,7 +83,8 @@ const regions = reactive([
     deputies: [
       {
         name: 'Жакупов Жанат Еркенович',
-        role: 'Депутат Кокшетауского городского маслихата'
+        role: 'Депутат Кокшетауского городского маслихата',
+        img: '/img/uiLanding/maslikhat/akmol/Zhakupov.jpg'
       },
     ]
   },
@@ -122,15 +123,18 @@ const regions = reactive([
     deputies: [
       {
         name: 'Аминов Асланбек Талапкалиевич',
-        role: 'Депутат Западно-Казахстанского областного маслихата'
+        role: 'Депутат Западно-Казахстанского областного маслихата',
+        img: '/img/uiLanding/maslikhat/zko/Aminov.jpg'
       },
       {
         name: 'Габдуалиев Мереке Тлекович',
-        role: 'Депутат Уральского городского маслихата'
+        role: 'Депутат Уральского городского маслихата',
+        img: '/img/uiLanding/maslikhat/zko/Gabdualiev.jpg'
       },
       {
         name: 'Бисенов Армат Гимранович',
-        role: 'Депутат маслихата района Байтерек'
+        role: 'Депутат маслихата района Байтерек',
+        img: '/img/uiLanding/maslikhat/zko/Bisenov.jpg'
       }
     ]
   },
@@ -140,7 +144,8 @@ const regions = reactive([
     deputies: [
       {
         name: 'Темірхан Нұрсултан Талгатұлы',
-        role: 'Депутат Жамбылского областного маслихата'
+        role: 'Депутат Жамбылского областного маслихата',
+        img: '/img/uiLanding/maslikhat/jambyl/Temirkhan.jpg'
       },
       {
         name: 'Серик Данияр',
@@ -154,35 +159,43 @@ const regions = reactive([
     deputies: [
       {
         name: 'Мустапова Гульназия Садыбековна',
-        role: 'Депутат маслихата области Жетісу'
+        role: 'Депутат маслихата области Жетісу',
+        img: '/img/uiLanding/maslikhat/zhetisu/Mustapova.jpg'
       },
       {
         name: 'Қылышбеков Темірлан Бақытбекұлы',
-        role: 'Депутат маслихата области Жетісу'
+        role: 'Депутат маслихата области Жетісу',
+        img: '/img/uiLanding/maslikhat/zhetisu/Kylyshbekov.jpg'
       },
       {
         name: 'Садиев Алмат Тезекбаевич',
-        role: 'Депутат маслихата области Жетісу'
+        role: 'Депутат маслихата области Жетісу',
+        img: '/img/uiLanding/maslikhat/zhetisu/Sadiev.jpg'
       },
       {
         name: 'Машеков Батыр Оралбаевич',
-        role: 'Депутат Талдыкорганского городского маслихата'
+        role: 'Депутат Талдыкорганского городского маслихата',
+        img: '/img/uiLanding/maslikhat/zhetisu/Mashekov.jpg'
       },
       {
         name: 'Есмаханов Азиз Аблаевич',
-        role: 'Депутат Талдыкорганского городского маслихата'
+        role: 'Депутат Талдыкорганского городского маслихата',
+        img: '/img/uiLanding/maslikhat/zhetisu/Zhumageldieva.jpg'
       },
       {
         name: 'Габдракипова Алсу Фаритовна',
-        role: 'Депутат Талдыкорганского городского маслихата'
+        role: 'Депутат Талдыкорганского городского маслихата',
+        img: '/img/uiLanding/maslikhat/zhetisu/Gabdrakipova.jpg'
       },
       {
         name: 'Махкамова Нуржамал Асанбайкызы',
-        role: 'Депутат Алакольского районного маслихата'
+        role: 'Депутат Алакольского районного маслихата',
+        img: '/img/uiLanding/maslikhat/zhetisu/Mahkamova.jpg'
       },
       {
         name: 'Жуанышев Талгат Жумашевич',
-        role: 'Депутат Аксуского районного маслихата'
+        role: 'Депутат Аксуского районного маслихата',
+        img: '/img/uiLanding/maslikhat/zhetisu/Zhumageldieva.jpg'
       }
     ]
   },
@@ -192,11 +205,13 @@ const regions = reactive([
     deputies: [
       {
         name: 'Алимжанов Арман Жаканович',
-        role: 'Депутат Карагандинского областного маслихата'
+        role: 'Депутат Карагандинского областного маслихата',
+        img: '/img/uiLanding/maslikhat/karaganda/Alimzhanov.jpg'
       },
       {
         name: 'Ахмадин Дидар Айдарович',
-        role: 'Депутат Карагандинского городского маслихата'
+        role: 'Депутат Карагандинского городского маслихата',
+        img: '/img/uiLanding/maslikhat/karaganda/Ahmadin.jpg'
       }
     ]
   },
@@ -206,11 +221,13 @@ const regions = reactive([
     deputies: [
       {
         name: 'Маишев Кайрат Алембаевич',
-        role: 'Депутат Костанайского областного маслихата'
+        role: 'Депутат Костанайского областного маслихата',
+        img: '/img/uiLanding/maslikhat/kostanay/Maishev.jpg'
       },
       {
         name: 'Юсупова  Асия Жумаковна',
-        role: 'Депутат Костанайского городского маслихата'
+        role: 'Депутат Костанайского городского маслихата',
+        img: '/img/uiLanding/maslikhat/kostanay/Yusupova.jpg'
       },
       {
         name: 'Латыпов Кауныш Женисович',
@@ -246,7 +263,8 @@ const regions = reactive([
       },
       {
         name: 'Агдавлетов Ауез Абильдинович',
-        role: 'Депутат Костанайского районного маслихата'
+        role: 'Депутат Костанайского районного маслихата',
+        img: '/img/uiLanding/maslikhat/kostanay/Agdavletov.jpg'
       },
       {
         name: 'Нурмагамбетов Дидар Батырбаевич',
@@ -262,7 +280,8 @@ const regions = reactive([
       },
       {
         name: 'Руднева Наталья Дмитриевна',
-        role: 'Депутат маслихата района Беимбета Майлина'
+        role: 'Депутат маслихата района Беимбета Майлина',
+        img: '/img/uiLanding/maslikhat/kostanay/Rudneva.jpg'
       },
       {
         name: 'Омаров Жанбулат Сартаевич',
@@ -312,11 +331,13 @@ const regions = reactive([
     deputies: [
       {
         name: 'Домаев Сергей Александрович',
-        role: 'Депутат Северо-Казахстанского областного маслихата'
+        role: 'Депутат Северо-Казахстанского областного маслихата',
+        img: '/img/uiLanding/maslikhat/sko/Domaev.jpg'
       },
       {
         name: 'Дмитрий Крель',
-        role: 'Депутат Аккаинского районного маслихата'
+        role: 'Депутат Аккаинского районного маслихата',
+        img: '/img/uiLanding/maslikhat/sko/Krel.jpg'
       }
     ]
   },
@@ -330,15 +351,18 @@ const regions = reactive([
       },
       {
         name: 'Куракбаев  Жаксыбай Булатович',
-        role: 'Депутат Мактаральского районного маслихата'
+        role: 'Депутат Мактаральского районного маслихата',
+        img: '/img/uiLanding/maslikhat/turkestan/Kurakbaev.jpg'
       },
       {
         name: 'Жумагельдиева Гульдариха',
-        role: 'Депутат Кентауского городского маслихата'
+        role: 'Депутат Кентауского городского маслихата',
+        img: '/img/uiLanding/maslikhat/turkestan/Zhumageldieva.jpg'
       },
       {
         name: 'Абдуллаев Нурсултан Пархадович',
-        role: 'Депутат Сауранского районного маслихата'
+        role: 'Депутат Сауранского районного маслихата',
+        img: '/img/uiLanding/maslikhat/turkestan/Abdullaev.jpg'
       }
     ]
   },
@@ -353,7 +377,8 @@ const regions = reactive([
     deputies: [
       {
         name: 'Бейсов Тилек Муратович',
-        role: 'Депутат Усть-Каменогорского городского маслихата'
+        role: 'Депутат Усть-Каменогорского городского маслихата',
+        img: '/img/uiLanding/maslikhat/vko/Beysov.jpg'
       },
     ]
   },
@@ -380,7 +405,8 @@ const regions = reactive([
       },
       {
         name: 'Турсунов Аким Хазреталиевич',
-        role: 'Депутат Алматинского городского маслихата'
+        role: 'Депутат Алматинского городского маслихата',
+        img: '/img/uiLanding/maslikhat/almaty/Tursunov.jpg'
       },
       {
         name: 'Бегалин Кайрат Талапович',
