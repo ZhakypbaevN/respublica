@@ -69,7 +69,7 @@ const sideBarlinks = [
     link: "#party-leaders"
   },
   {
-    title: 'Respublica jastary',
+    title: 'Respublica Jastary',
     link: "#respublica-jastary"
   }
 ]
