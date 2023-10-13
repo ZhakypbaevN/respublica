@@ -346,7 +346,7 @@ const postJoinParty = (
   ) => {
 
   const data = {
-    "birth_date": moment(dateBirthday).format('YYYY-M-DD'), 
+    "birth_date": moment(dateBirthday).format('YYYY-MM-DD'), 
     "gender": gender.value,
 
     "education": education,
@@ -391,10 +391,18 @@ const postParty = (data) => {
 
     })
     .catch((err) => {
+      
+      if (err.response.data.detail === 'Duplicate membership is not allowed.') {
+        toast({
+          message: 'Дублирование членства не допускается!'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+
       console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
       loading.value = false
     });
 }
