@@ -9,7 +9,7 @@
           <span class="party-charter-title">Устав партии</span>
           <span class="party-charter-title-upper">Алға, Қазақстан! Алға, Respublica!</span>
         </div>
-        <a href="/doc/ru/Respublica.pdf" target="_blank">
+        <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">
           <Button
             class="party-charter-download"
             name="Посмотреть устав"
