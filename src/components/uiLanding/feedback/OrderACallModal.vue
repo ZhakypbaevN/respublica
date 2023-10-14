@@ -8,6 +8,13 @@
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
         <Input
+          name="position"
+          placeholder="Введите тему званка"
+          staticPlaceholder
+          required
+        />
+        
+        <Input
           type="text"
           name="name"
           placeholder="Ваше имя"

@@ -29,9 +29,57 @@ onMounted(() => {
 
 const sideBarlinks = [
   {
-    title: 'Входящие обращения',
-    link: "/business/appeal-list/new"
-  }
+    title: 'Новые',
+    link: "/business/appeal-list/new",
+    typeButton: true
+  },
+  {
+    title: 'В обработке',
+    typeDropDown: true,
+    active: false,
+    children: [
+      {
+        title: 'В обработке',
+        link: "/business/page-in-development",
+      },
+      {
+        title: 'На подпись',
+        link: "/business/page-in-development",
+      },
+      {
+        title: 'В компетентный орган',
+        link: "/business/page-in-development",
+      }
+    ]
+  },
+  {
+    title: 'Завершенные',
+    typeDropDown: true,
+    active: false,
+    children: [
+      {
+        title: 'Положительный ответ',
+        link: "/business/page-in-development",
+      },
+      {
+        title: 'Дано разъяснение',
+        link: "/business/page-in-development",
+      },
+      {
+        title: 'Не решенные',
+        link: "/business/page-in-development",
+      },
+      {
+        title: 'Не подлежат рассмотрению',
+        link: "/business/page-in-development",
+      }
+    ]
+  },
+  {
+    title: 'Аналитика',
+    link: "/business/analytics",
+    typeButton: true
+  },
 ]
 </script>
 

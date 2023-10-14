@@ -24,19 +24,11 @@ import HeaderClient from './headerClient.vue';
 
 const sideBarlinks = [
   {
-    title: 'История обращений',
-    link: "/client/my-requests"
-  },
-  {
     title: 'Личные данные',
-    link: "/client/party-data"
+    link: "/client/user-data"
   },
   {
-    title: 'Записаться на прием',
-    link: "/client/test"
-  },
-  {
-    title: 'Подать обращение',
+    title: 'Новости',
     link: "/client/test"
   },
   {
@@ -44,11 +36,15 @@ const sideBarlinks = [
     link: "/client/test"
   },
   {
-    title: 'Скачать партбилет',
+    title: 'Записаться на прием',
     link: "/client/test"
   },
   {
-    title: 'Новости',
+    title: 'История обращений',
+    link: "/client/my-requests"
+  },
+  {
+    title: 'Подать обращение',
     link: "/client/test"
   }
 ]

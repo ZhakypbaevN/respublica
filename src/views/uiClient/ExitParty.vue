@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper-main">
-    <section class="myRequests">
+    <section class="exitParty">
       <div class="wrapper">
         <h2 class="landing-title">Выйти из партии</h2>
 
-        <div class="exitParty">
+        <div class="exitParty-inner">
           <div class="exitParty-content">
             <div class="exitParty-content-messege">
               <h4 class="exitParty-content-subtitle">Дорогой пользователь,</h4><br>
@@ -28,18 +28,52 @@
             </p>
           </div>
 
-          <Button
-            class="exitParty-addFileBtn"
-            name="Прикрепить файл"
-            type="outline-blue"
-            v-slot:left
-          >
-            <SvgIcon
-              name="plus"
-              :viewboxWidth="24"
-              :viewboxHeight="24"
-            />
-          </Button>
+
+          <Form class="exitParty-form">
+            <div class="exitParty-form-select">
+              <label for="position">Выберите причину выхода</label>
+              <Select
+                placeholder="Выберите из списка причину"
+                staticPlaceholder
+                :options="[
+                  {label: 'Алматы', value: 'Алматы'},
+                  {label: 'Астана', value: 'Астана'},
+                  {label: 'Другое', value: 'null'}
+                ]"
+                v-model="reasonForExitSelect"
+                required
+              />
+            </div>
+
+            <Transition>
+              <div
+                v-if="reasonForExitSelect === 'null'"
+                v-collapse
+              >
+                <Input
+                  name="position"
+                  type="textarea"
+                  placeholder="Введите причину выхода"
+                  staticPlaceholder
+                  required
+                />
+              </div>
+            </Transition>
+
+
+            <Button
+              class="exitParty-form-addFileBtn"
+              name="Прикрепить файл"
+              type="outline-blue"
+              v-slot:left
+            >
+              <SvgIcon
+                name="plus"
+                :viewboxWidth="24"
+                :viewboxHeight="24"
+              />
+            </Button>
+          </Form>
 
 
           <div class="exitParty-doc">
@@ -66,6 +100,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const reasonForExitSelect = ref();
 </script>
 
 <style scoped lang="scss">
@@ -106,16 +143,29 @@
     }
   }
 
-  &-addFileBtn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    margin-bottom: 38px;
+  &-form {
+    max-width: 700px;
 
-    & svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent-color);
+    &-select {
+      & label {
+        display: block;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+    }
+
+    &-addFileBtn {
+      display: flex;
+      align-items: center;
+      grid-gap: 10px;
+      margin-bottom: 38px;
+  
+      & svg {
+        width: 24px;
+        height: 24px;
+        fill: var(--accent-color);
+      }
     }
   }
 

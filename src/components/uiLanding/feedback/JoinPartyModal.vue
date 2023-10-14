@@ -46,55 +46,6 @@
           required
         />
 
-        <div class="feedbackModal-inputs-gender">
-          <Input
-            type="date"
-            name="dateBirthday"
-            placeholder="Дата рождения"
-            required
-          />
-
-          <Button
-            name="Женщина"
-            :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
-            @click="() => gender = 'female'"
-          />
-
-          <Button
-            name="Мужчина"
-            :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
-            @click="() => gender = 'male'"
-          />
-        </div>
-
-        <Select
-          name="education"
-          placeholder="Укажите ваше образование"
-          :options="[
-            {label: 'Высшее', value: 'higher_education'},
-            {label: 'Среднее', value: 'secondary_special_education'},
-          ]"
-          required
-        />
-
-        <Input
-          name="specialization"
-          placeholder="Специальность"
-          required
-        />
-
-        <Input
-          name="workPlace"
-          placeholder="Место работы"
-          required
-        />
-
-        <Input
-          name="post"
-          placeholder="Должность"
-          required
-        />
-
         <Input
           type="tel"
           name="phone"
@@ -115,9 +66,55 @@
           required
         />
 
+        <div class="feedbackModal-inputs-gender">
+          <Input
+            type="date"
+            name="dateBirthday"
+            placeholder="Дата рождения*"
+            required
+          />
+
+          <Button
+            name="Женщина"
+            :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
+            @click="() => gender = 'female'"
+          />
+
+          <Button
+            name="Мужчина"
+            :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
+            @click="() => gender = 'male'"
+          />
+        </div>
+
+        <Select
+          name="education"
+          placeholder="Укажите ваше образование*"
+          :options="[
+            {label: 'Высшее', value: 'higher_education'},
+            {label: 'Среднее', value: 'secondary_special_education'},
+          ]"
+          required
+        />
+
+        <Input
+          name="specialization"
+          placeholder="Специальность"
+        />
+
+        <Input
+          name="workPlace"
+          placeholder="Место работы"
+        />
+
+        <Input
+          name="post"
+          placeholder="Должность"
+        />
+
         <Select
           name="region"
-          placeholder="Укажите область"
+          placeholder="Укажите область*"
           :options="regionList"
           v-model="regionID"
           required
@@ -130,7 +127,7 @@
           >
             <Select
               name="locality"
-              placeholder="Населенный пункт"
+              placeholder="Населенный пункт*"
               :options="
                 locationList.length
                   ? locationList
@@ -145,13 +142,13 @@
         <div class="feedbackModal-inputs-home">
           <Input
             name="streat"
-            placeholder="Улица/Проспект/Мкр"
+            placeholder="Улица/Проспект/Мкр*"
             required
           />
 
           <Input
             name="home"
-            placeholder="Дом"
+            placeholder="Дом*"
             required
           />
 
@@ -209,7 +206,8 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          С Уставом и Программой политической партии «Respublica» ознакомлен(а), поддерживаю их и обязуюсь выполнять.
+          С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой политической партии</a>
+           ознакомлен(а), поддерживаю их и обязуюсь выполнять.
         </Checkbox>
 
         <Checkbox
@@ -358,7 +356,7 @@ const postJoinParty = (
 
     "street": streat,
     "house": home,
-    "apartment": apartment,
+    "apartment": apartment === '' ? null : apartment,
 
     "is_pensioner": pensioner,
     "is_disabled": disabled,

@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // -------------  Pages ---------------
 import Authorization from '../views/Authorization.vue'
 import NotFound from '../views/404NotFound.vue'
+import PageInDevelopment from '../views/InDevelopment.vue'
 
 import Home from '../views/uiLanding/Home.vue'
 import Feedback from '../views/uiLanding/Feedback.vue'
@@ -48,8 +49,8 @@ import ManagerPartyData from '../views/uiManager/party/PartyData.vue'
 import MyRequests from '../views/uiClient/requests/MyRequests.vue'
 import MyRequestDetail from '../views/uiClient/requests/MyRequestDetail.vue'
 
-import PartyData from '../views/uiClient/party/PartyData.vue'
-import ExitParty from '../views/uiClient/party/ExitParty.vue'
+import UserData from '../views/uiClient/UserData.vue'
+import ExitParty from '../views/uiClient/ExitParty.vue'
 
 
 // ------------------ UI Media ------------------
@@ -69,6 +70,7 @@ const MainLayoutMedia = () => import('../components/uiMedia/layouts/mainLayoutMe
 
 const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+  { path: '/page-in-development', name: 'PageInDevelopment', component: PageInDevelopment },
   // ------------- UI Landing Pages ---------------
   {
     path: '/auth/:logOrReg?',
@@ -179,9 +181,11 @@ const routes = [
     component: MainLayoutClient,
     meta: { title: 'client', requiresAuth: true },
     redirect: to => {
-      return '/client/my-requests'
+      return '/client/user-data'
     },
     children: [
+      { path: '/:pathMatch(.*)*', name: 'ClientNotFound', component: NotFound },
+      { path: '/page-in-development', name: 'ClientPageInDevelopment', component: PageInDevelopment },
       {
         path: 'my-requests',
         name: 'MyRequests',
@@ -193,9 +197,9 @@ const routes = [
         component: MyRequestDetail
       },
       {
-        path: 'party-data',
-        name: 'PartyData',
-        component: PartyData,
+        path: 'user-data',
+        name: 'UserData',
+        component: UserData,
       },
       {
         path: 'party-data/exit-party',
@@ -215,6 +219,8 @@ const routes = [
       return '/business/appeal-list/new'
     },
     children: [
+      { path: '/:pathMatch(.*)*', name: 'BusinessNotFound', component: NotFound },
+      { path: '/page-in-development', name: 'BusinessPageInDevelopment', component: PageInDevelopment },
       {
         path: 'appeal-list/:filter',
         name: 'BusinessAppealList',
@@ -224,6 +230,11 @@ const routes = [
         path: 'appeal-data/:appeal_id',
         name: 'BusinessAppealDetail',
         component: BusinessAppealDetail
+      },
+      {
+        path: 'analytics',
+        name: 'BusinessAnalytics',
+        component: PageInDevelopment
       }
     ]
   },
@@ -240,6 +251,8 @@ const routes = [
       return '/manager/party-list/confirm'
     },
     children: [
+      { path: '/:pathMatch(.*)*', name: 'ManagerNotFound', component: NotFound },
+      { path: '/page-in-development', name: 'ManagerPageInDevelopment', component: PageInDevelopment },
       {
         path: 'requests',
         name: 'Requests',
@@ -269,6 +282,8 @@ const routes = [
       return '/media/news-list'
     },
     children: [
+      { path: '/:pathMatch(.*)*', name: 'MediaNotFound', component: NotFound },
+      { path: '/page-in-development', name: 'MediaPageInDevelopment', component: PageInDevelopment },
       {
         path: 'news-list',
         name: 'MediaNewsList',

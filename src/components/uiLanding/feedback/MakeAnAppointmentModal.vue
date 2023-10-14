@@ -14,6 +14,16 @@
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
         <div>
+          <label for="position">Тема звонка</label>
+          <Input
+            name="position"
+            placeholder="Введите тему званка"
+            staticPlaceholder
+            required
+          />
+        </div>
+
+        <div>
           <label for="position">Принимающее должностное лицо</label>
           <Select
             name="position"
