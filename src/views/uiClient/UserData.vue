@@ -2,152 +2,140 @@
   <div class="wrapper-main">
     <section class="myRequests">
       <div class="wrapper">
-        <h2 class="landing-title">Партийные данные</h2>
-
-        <div class="partyData" v-if="userData">
-          <div class="partyData-inner">
-            <div class="partyData-content">
-              <h2 class="partyData-content-title">
+        <div class="userData" v-if="userData">
+          <div class="userData-inner">
+            <div class="userData-content">
+              <h2 class="userData-content-title">
                 {{ `${userData.last_name} ${userData.first_name} ${userData.middle_name}` }}
               </h2>
 
-              <div class="partyData-content-infoBlock">
-                <h4 class="partyData-content-infoBlock-item checked">
+              <div class="userData-content-infoBlock">
+                <h4 class="userData-content-infoBlock-item checked">
                   <span>ИИН:</span>
                   {{ userData.iin }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Дата рождения:</span>
                   {{ partyData?.birth_date ?? '-' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item checked">
+                <h4 class="userData-content-infoBlock-item checked">
                   <span>Телефон:</span>
                   {{ userData.phone }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>E-mail:</span>
                   {{ userData?.email ?? '-' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Пол:</span>
                   {{ partyData?.gender === 'male' ? 'Мужчина' : 'Женщина' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Образование:</span>
                   {{ partyData?.education === 'higher_education' ? 'Высшее образование' : 'Среднее образование' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Специальность:</span>
                   {{ partyData?.specialty ?? '-' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Место работы:</span>
                   {{ partyData?.workplace ?? '-' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Должность:</span>
                   {{ partyData?.position ?? '-' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Укажите область:</span>
                   {{ partyData?.region ?? '-' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Населенный пункт:</span>
                   {{ partyData?.city ?? '-' }}
                 </h4>
 
-                <h4 class="partyData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Улица/Проспект/Мкр:</span>
                   {{ partyData?.street ?? '-' }}
                 </h4>
 
-                <div class="partyData-content-infoBlock-bottom">
-                  <h4 class="partyData-content-infoBlock-item">
+                <div class="userData-content-infoBlock-bottom">
+                  <h4 class="userData-content-infoBlock-item">
                     <span>Дом:</span>
                     {{ partyData?.house ?? '-' }}
                   </h4>
 
-                  <h4 class="partyData-content-infoBlock-item">
+                  <h4 class="userData-content-infoBlock-item">
                     <span>Кв.:</span>
                     {{ partyData?.apartment ?? '-' }}
                   </h4>
                 </div>
 
-                <div class="partyData-content-infoBlock-statusBlock">
-                  <div v-if="partyData?.is_pensioner" class="partyData-content-infoBlock-status">
+                <div class="userData-content-infoBlock-statusBlock">
+                  <div v-if="partyData?.is_pensioner" class="userData-content-infoBlock-status">
                     Пенсионер
                   </div>
 
-                  <div v-if="partyData?.is_disabled" class="partyData-content-infoBlock-status">
+                  <div v-if="partyData?.is_disabled" class="userData-content-infoBlock-status">
                     Инвалид
                   </div>
 
-                  <div v-if="partyData?.is_unemployed" class="partyData-content-infoBlock-status">
+                  <div v-if="partyData?.is_unemployed" class="userData-content-infoBlock-status">
                     Безработный
                   </div>
 
-                  <div v-if="partyData?.is_on_childcare_leave" class="partyData-content-infoBlock-status">
+                  <div v-if="partyData?.is_on_childcare_leave" class="userData-content-infoBlock-status">
                     Находящиеся в отпуске по уходу за детьми
                   </div>
                 </div>
               </div>
 
               <p class="description">
-                С Уставом и Программой партии «Respublica» ознакомлен(а)<br>
+                С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой партии</a> «Respublica» ознакомлен(а)<br>
                 Согласие на сбор и обработку своих персональных данных есть<br>
                 Не являюсь членом другой политической партии
               </p>
             </div>
 
-            <div class="partyData-card" v-if="partyData">
-              <h5 class="partyData-card-subtitle">
-                На сайте с {{ partyData?.dayOfRegistration }}
-                <br>
-                Член партии с {{ partyData?.join_date }}
-                <br>
-                <span v-if="partyData?.dayOfRequestToExitParty">
-                  Подано заявление на выход из партий {{ partyData?.dayOfRequestToExitParty }}
-                </span>
-              </h5>
+            <div class="userData-card" v-if="partyData">
+              <h5 class="userData-card-title">Партийный билет</h5>
 
-              <h5 class="partyData-card-title">Партийный билет</h5>
-
-              <div class="partyData-card-items">
-                <div class="partyData-cardInfo">
-                  <div class="partyData-cardInfo-content">
+              <div class="userData-card-items">
+                <div class="userData-cardInfo">
+                  <div class="userData-cardInfo-content">
                   
-                    <h4 class="partyData-cardInfo-info number">
+                    <h4 class="userData-cardInfo-info number">
                       <span>Партийный билет</span>
                       №{{ partyData?.ticket_number }}
                     </h4>
 
 
-                    <h4 class="partyData-cardInfo-info">
+                    <h4 class="userData-cardInfo-info">
                       <span>Фамилия:</span>
                       {{ userData.last_name }}
                     </h4>
-                    <h4 class="partyData-cardInfo-info">
+                    <h4 class="userData-cardInfo-info">
                       <span>Имя:</span>
                       {{ userData.first_name }}
                     </h4>
-                    <h4 class="partyData-cardInfo-info middleName">
+                    <h4 class="userData-cardInfo-info middleName">
                       <span>Отчество:</span>
                       {{ userData.middle_name }}
                     </h4>
 
 
-                    <h4 class="partyData-cardInfo-info dayOfAcceptance">
+                    <h4 class="userData-cardInfo-info dayOfAcceptance">
                       <span>Дата выдачи:</span>
                       {{ partyData?.join_date }}
                     </h4>
@@ -157,30 +145,30 @@
                 </div>
 
 
-                <div class="partyData-cardInfo">
-                  <div class="partyData-cardInfo-content">
+                <div class="userData-cardInfo">
+                  <div class="userData-cardInfo-content">
                   
-                    <h4 class="partyData-cardInfo-info number">
+                    <h4 class="userData-cardInfo-info number">
                       <span>Партиялық билет</span>
                       №{{ partyData?.ticket_number }}
                     </h4>
 
 
-                    <h4 class="partyData-cardInfo-info">
+                    <h4 class="userData-cardInfo-info">
                       <span>Тегі:</span>
                       {{ userData.last_name }}
                     </h4>
-                    <h4 class="partyData-cardInfo-info">
+                    <h4 class="userData-cardInfo-info">
                       <span>Аты:</span>
                       {{ userData.first_name }}
                     </h4>
-                    <h4 class="partyData-cardInfo-info middleName">
+                    <h4 class="userData-cardInfo-info middleName">
                       <span>Әкесінің аты:</span>
                       {{ userData.middle_name }}
                     </h4>
 
 
-                    <h4 class="partyData-cardInfo-info dayOfAcceptance">
+                    <h4 class="userData-cardInfo-info dayOfAcceptance">
                       <span>Берілген күні:</span>
                       {{ partyData?.join_date }}
                     </h4>
@@ -191,7 +179,7 @@
               </div>
 
               <Button
-                class="partyData-btn"
+                class="userData-btn"
                 name="Скачать партийный билет"
                 type="outline-blue"
                 v-slot:left
@@ -215,7 +203,7 @@
 
           <RouterLink v-if="partyData" to="/client/party-data/exit-party">
             <Button
-              class="partyData-btn exit"
+              class="userData-btn exit"
               name="Выйти из партии"
               type="outline-red"
               v-slot:left
@@ -239,11 +227,11 @@
 </template>
 
 <script setup lang="ts">
-import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
+import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.vue';
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+import { useToast } from '../../modules/toast'
 
 const { toast } = useToast()
 
@@ -308,7 +296,7 @@ const getPartData = () => {
   background-color: var(--accent-color-op05);
 }
 
-.partyData {
+.userData {
   &-inner {
     display: grid;
     grid-template-columns: 780px 1fr;
@@ -394,13 +382,6 @@ const getPartData = () => {
   }
 
   &-card {
-    &-subtitle {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.4;
-      margin-bottom: 30px;
-    }
-
     &-title {
       font-size: 26px;
       font-weight: 600;
@@ -464,7 +445,12 @@ const getPartData = () => {
     margin-bottom: 38px;
 
     &.exit {
+      padding: 12px 20px;
+      
       svg {
+        width: 30px;
+        height: 30px;
+
         fill: var(--red-color);
       }
     }

@@ -52,7 +52,7 @@ const opacity = ref(0)
 const showModal = () => {
   setTimeout(() => {
     opacity.value = 1
-    container.top = '100px'
+    container.top = '40px'
     container.opacity = '1'
   }, 0)
   document.removeEventListener('mouseover', showModal)

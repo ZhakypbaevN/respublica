@@ -40,8 +40,6 @@ const router = useRouter()
 
 
 
-console.log('router', router);
-
 const exit = () => {
   localStorage.removeItem('USER_TYPE');
   localStorage.removeItem('TOKEN');
