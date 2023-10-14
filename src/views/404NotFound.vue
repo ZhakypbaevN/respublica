@@ -1,10 +1,16 @@
 <template>
-  <div class="notFoundPage">
+  <div class="wrapper-main">
+  <div>
     <Header />
-    <div class="wrapper wrapper-landing">
-      <h2 class="title">404</h2>
-    </div>
+    <section class="faq-block landing-block">
+      <div class="wrapper landing-wrapper">
+        <h2 class="title">404</h2>
+      </div>
+    </section>
   </div>
+
+  <Footer /> 
+</div>
 </template>
 
 <script setup>
@@ -12,8 +18,8 @@
 
 <style scoped lang="scss">
 .wrapper {
-  height: 100vh;
   min-height: 700px;
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,13 +33,9 @@
 
 .title {
   font-size: 200px;
-  color: white;
 
   @media (max-width: 576px) {
     font-size: 100px;
   }
-}
-img {
-  height: 100%;
 }
 </style>
