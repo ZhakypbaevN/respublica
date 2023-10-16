@@ -2,16 +2,14 @@
   <section class="photoGallery landing-block" id="photoGallery">
     <div class="wrapper">
       <div class="landing-header">
-        <h2 class="landing-title">
-          Фотогалерея
-        </h2>
+        <h2 class="landing-title">Фотогалерея</h2>
 
         <RouterLink to="photo-gallery" class="landing-header-link">
           <span>Смотреть все</span>
           <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
         </RouterLink>
       </div>
-      
+
       <div class="gallery">
         <div class="gallery-photos">
           <button
@@ -20,7 +18,10 @@
             :key="photo"
           >
             <div class="gallery-photo withZoomPreview-preview">
-              <div class="gallery-photo-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${photo});`"></div>
+              <div
+                class="gallery-photo-img bg-cover withZoomPreview-preview-img"
+                :style="`background-image: url(${photo.src});`"
+              ></div>
             </div>
           </button>
         </div>
@@ -29,16 +30,19 @@
             v-for="(albom, idx) of gallerylist"
             :key="albom.name"
             class="gallery-album withZoomPreview"
-            :class="{active: albom.active}"
+            :class="{ active: albom.active }"
             @click="() => toggleShow(idx)"
           >
             <div class="gallery-album-preview withZoomPreview-preview">
-              <div class="gallery-album-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${albom.photos[0]});`"></div>
+              <div
+                class="gallery-album-preview-img bg-cover withZoomPreview-preview-img"
+                :style="`background-image: url(${albom.photos[0].src});`"
+              ></div>
             </div>
 
             <div class="gallery-album-info">
               <span class="gallery-album-info-name">{{ albom.name }}</span>
-              <span class="gallery-album-info-date">Июль 20, 2023 01:51</span>
+              <span class="gallery-album-info-date"></span>
               <span class="gallery-album-info-city">Астана</span>
             </div>
           </button>
@@ -49,74 +53,73 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref } from "vue";
 
 const gallerylist = reactive([
   {
-    name: 'Учредительный съезд партии',
-    date: 'Июль 20, 2023 01:51',
-    location: 'Астана',
+    name: "Мероприятия",
+    date: "",
+    location: "",
     active: true,
     photos: [
-      'https://i.pinimg.com/564x/e6/e2/43/e6e2432cd3e481a74ae49ec4e069b0aa.jpg',
-      'https://i.pinimg.com/564x/6e/86/6d/6e866d39774a9a3f1062c3aa2b9369bf.jpg',
-      'https://i.pinimg.com/564x/cb/26/99/cb269935fad4870de6763bfc4a5b1a81.jpg',
-      'https://i.pinimg.com/564x/1e/9f/a0/1e9fa0b9529a354fe875a3a180d9ce2c.jpg',
-    ]
+      { src: "/img/gallery/events/3.png", descrition: "Встреча в Атырау" },
+      { src: "/img/gallery/events/1.jpg", descrition: "акция Образованное поколение" },
+      { src: "/img/gallery/events/2.JPG", descrition: "Акция ТАГЗЫМ - 31.05.23" },
+      { src: "/img/gallery/events/4.jpg", descrition: "День защиты детей - 1.06.2023" },
+      { src: "/img/gallery/events/5.JPG", descrition: "День защиты детей - дети в Мажилисе - 1.06.2023" },
+      { src: "/img/gallery/events/6.jpeg", descrition: "Итоги конкурса рисунков Моя республика - 6.06.2023" },
+      { src: "/img/gallery/events/7.jpg", descrition: "Открытие площади" },
+      { src: "/img/gallery/events/8.jpg", descrition: "Послание - Н.Тау" },
+      { src: "/img/gallery/events/9.jpg", descrition: "Фракция - встреча по КТЖ" },
+      { src: "/img/gallery/events/10.jpeg", descrition: "Фракция - встреча Р.Берденова по лудомании" },
+      { src: "/img/gallery/events/11.JPG", descrition: "Фракция - встреча с Минздрав" },
+      { src: "/img/gallery/events/12.JPG", descrition: "Фракция - Динара Наумова - рабочая группа" },
+      { src: "/img/gallery/events/13.PNG", descrition: "Фракция - заседаие" }
+    ],
   },
   {
-    name: 'II съезд партии',
-    date: 'Июль 20, 2023 01:51',
-    location: 'Астана',
+    name: "III съезд партии",
+    date: "",
+    location: "",
     active: false,
     photos: [
-      'https://i.pinimg.com/564x/96/05/b2/9605b2f33b16d04440bde1ad8c0d26a7.jpg',
-      'https://i.pinimg.com/564x/c4/c2/d2/c4c2d2b8304ab8c45bf5add1e3ecb295.jpg',
-      'https://i.pinimg.com/564x/4c/02/a7/4c02a758e7086f2329f3c7371848792e.jpg',
-      'https://i.pinimg.com/564x/96/f5/dd/96f5dd9b4ea0b3b70484e0beb7329d07.jpg'
-    ]
-  },
-  {
-    name: 'III съезд партии',
-    date: 'Июль 20, 2023 01:51',
-    location: 'Астана',
+      { src: "/img/gallery/conference-three/1.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/2.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/3.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/4.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/5.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/6.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/7.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/8.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/9.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/10.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/11.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/12.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/13.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/14.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/15.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/16.jpg", descrition: "III съезд" },
+      { src: "/img/gallery/conference-three/17.jpg", descrition: "III съезд" }
+    ],
+  },  {
+    name: "Поездки в регионы",
+    date: "",
+    location: "",
     active: false,
     photos: [
-      'https://i.pinimg.com/564x/d5/87/81/d58781138d4fb33ec7622604e1cea887.jpg',
-      'https://i.pinimg.com/564x/8b/f8/cb/8bf8cbbb5d6e9d75e37f440d41c6517a.jpg',
-      'https://i.pinimg.com/564x/47/0c/32/470c3235328ee95aa972c1237fe3b888.jpg',
-      'https://i.pinimg.com/564x/0d/71/3f/0d713f189c575579bf1080f511960b94.jpg'
-    ]
-  },
-  {
-    name: 'Встречи с избирателями',
-    date: 'Июль 20, 2023 01:51',
-    location: 'Астана',
-    active: false,
-    photos: [
-      'https://i.pinimg.com/564x/c3/db/d8/c3dbd839997c16ceebd24078912f63b0.jpg',
-      'https://i.pinimg.com/564x/2c/b4/61/2cb4617b4a5202fe9faaafebcf20994b.jpg',
-      'https://i.pinimg.com/564x/cb/bd/cb/cbbdcbb3270b1ead73ef42e070d7592c.jpg',
-      'https://i.pinimg.com/564x/dc/7d/a3/dc7da3c0cb5aede2baf3b721ffd1f099.jpg',
-      'https://i.pinimg.com/564x/81/85/91/8185910b9087760ee3d5cb4afaec81c5.jpg'
-    ]
-  },
-  {
-    name: 'Мероприятия',
-    date: 'Июль 20, 2023 01:51',
-    location: 'Астана',
-    active: false,
-    photos: [
-      'https://i.pinimg.com/564x/15/d7/87/15d7879cc386f8910c6e7ab648c6cdf0.jpg',
-      'https://i.pinimg.com/564x/8c/b8/a8/8cb8a8d0a0667017843325bd0b0c23e4.jpg',
-      'https://i.pinimg.com/736x/19/5b/94/195b945a4dd8aeaa6b3f69eaf4587349.jpg',
-      'https://i.pinimg.com/564x/b6/d0/f5/b6d0f535cba26b7b11cb0877915094ac.jpg',
-      'https://i.pinimg.com/564x/0e/b2/2c/0eb22c78b0c6b2348aaa28afb8eae2f6.jpg'
-    ]
+      { src: "/img/gallery/trips-to-regions/1.jpeg", descrition: "Акмола - О.Куспеков" },
+      { src: "/img/gallery/trips-to-regions/2.jpg", descrition: "Актобе - Д.Наумова" },
+      { src: "/img/gallery/trips-to-regions/3.jpg", descrition: "Алматы - Н.Тау" },
+      { src: "/img/gallery/trips-to-regions/4.jpg", descrition: "Атырау - Р.Берденов" },
+      { src: "/img/gallery/trips-to-regions/5.jpg", descrition: "ВКО - Берденов" },
+      { src: "/img/gallery/trips-to-regions/6.jpg", descrition: "Жамбыл - А.Ходжаназаров" },
+      { src: "/img/gallery/trips-to-regions/7.jpg", descrition: "ЗКО - А.Ходжаназаров и Д.Шукижанова" },
+      { src: "/img/gallery/trips-to-regions/8.jpeg", descrition: "Семей - Д.Шукижанова" }
+    ],
   }
 ]);
 
-const photosList = ref(gallerylist[0].photos)
+const photosList = ref(gallerylist[0].photos);
 
 const toggleShow = (idx: number) => {
   for (let i = 0; i < gallerylist.length; i++) {
@@ -124,11 +127,10 @@ const toggleShow = (idx: number) => {
   }
   gallerylist[idx].active = true;
   photosList.value = gallerylist[idx].photos;
-
-}
+};
 </script>
 
-<style  scoped lang="scss">
+<style scoped lang="scss">
 .gallery {
   width: 100%;
   height: 650px;
@@ -138,10 +140,11 @@ const toggleShow = (idx: number) => {
   grid-template-columns: 1fr 500px;
 
   &-photos {
-    max-height: 100px;
+    /*max-height: 100px;*/
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
+    overflow-y: scroll;
   }
 
   &-photo {
@@ -154,9 +157,9 @@ const toggleShow = (idx: number) => {
     display: flex;
     flex-direction: column;
     grid-gap: 20px;
-    
+
     overflow-y: auto;
-    
+
     margin-left: 45px;
 
     & .gallery-album:last-of-type::after {
@@ -171,14 +174,14 @@ const toggleShow = (idx: number) => {
     padding: 20px 25px;
     border-radius: 5px;
     border: 2px transparent solid;
-    
+
     cursor: pointer;
-    transition: .3s ease-in-out;
+    transition: 0.3s ease-in-out;
 
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
 
       display: block;
       width: 100%;
@@ -225,7 +228,7 @@ const toggleShow = (idx: number) => {
         font-weight: 700;
         margin-bottom: 15px;
 
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
       }
 
       &-date {
