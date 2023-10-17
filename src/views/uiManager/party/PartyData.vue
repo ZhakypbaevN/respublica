@@ -59,12 +59,12 @@
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>Укажите область:</span>
-                  {{ partyData?.region ?? '-' }}
+                  {{ partyData?.location.parent.name ?? '-' }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>Населенный пункт:</span>
-                  {{ partyData?.city ?? '-' }}
+                  {{ partyData?.location.name ?? '-' }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
@@ -158,15 +158,15 @@
 
                     <h4 class="userData-cardInfo-info">
                       <span>Тегі:</span>
-                      {{ userData.last_name }}
+                      {{ partyData.last_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info">
                       <span>Аты:</span>
-                      {{ userData.first_name }}
+                      {{ partyData.first_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info middleName">
                       <span>Әкесінің аты:</span>
-                      {{ userData.middle_name }}
+                      {{ partyData.middle_name }}
                     </h4>
 
 
@@ -231,65 +231,43 @@
 <script setup lang="ts">
 import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
 
-import axios from 'axios';
+// import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+import { useRoute } from 'vue-router'
+// import { useToast } from '../../../modules/toast'
 
-const { toast } = useToast()
+// const { toast } = useToast()
+const route = useRoute()
 
 const partyData = ref(null);
-const userData = ref(null);
 const showJoinPartyModal = ref(false);
-const token = localStorage.getItem('TOKEN');
+// const token = localStorage.getItem('TOKEN');
 
 onMounted(() => {
-  getUserData();
-  getPartData();
+  console.log('route.params.filter', route.params.filter);
+  // getPartData();
 })
 
-const getUserData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/users/me`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      userData.value = response.data;
-    })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-}
-
-const getPartData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      partyData.value = response.data;
-    })
-    .catch((err) => {
-      console.log('err', err);
-      // toast({
-      //   message: 'Возникли ошибки при запросе'
-      // })
-    });
-}
+// const getPartData = () => {
+//   const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/${route.params.filter}`;
+//   axios({
+//     method: "get",
+//     url: url,
+//     headers: {
+//       accept: 'application/json',
+//       Authorization: 'Bearer ' + token
+//     }
+//   })
+//     .then((response) => {
+//       partyData.value = response.data;
+//     })
+//     .catch((err) => {
+//       console.log('err', err);
+//       toast({
+//         message: 'Возникли ошибки при запросе'
+//       })
+//     });
+// }
 </script>
 
 <style scoped lang="scss">

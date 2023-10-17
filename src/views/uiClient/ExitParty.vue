@@ -2,9 +2,12 @@
   <div class="wrapper-main">
     <section class="exitParty">
       <div class="wrapper">
-        <h2 class="landing-title">Выйти из партии</h2>
+        <h2 class="landing-title">
+          <!-- {{ exitPartyDatas.status === 'approved' ? 'Дорогой пользователь!' : 'Выйти из партии' }} -->
+          Выйти из партии
+        </h2>
 
-        <div class="exitParty-inner">
+        <div class="exitParty-inner" v-if="(!exitPartyDatas.status || exitPartyDatas.status === 'approved') && !isLoading.page && partyData">
           <div class="exitParty-content">
             <div class="exitParty-content-messege">
               <h4 class="exitParty-content-subtitle">Дорогой пользователь,</h4><br>
@@ -29,80 +32,314 @@
           </div>
 
 
-          <Form class="exitParty-form">
-            <div class="exitParty-form-select">
-              <label for="position">Выберите причину выхода</label>
-              <Select
-                placeholder="Выберите из списка причину"
-                staticPlaceholder
-                :options="[
-                  {label: 'Алматы', value: 'Алматы'},
-                  {label: 'Астана', value: 'Астана'},
-                  {label: 'Другое', value: 'null'}
-                ]"
-                v-model="reasonForExitSelect"
-                required
-              />
-            </div>
-
-            <Transition>
-              <div
-                v-if="reasonForExitSelect === 'null'"
-                v-collapse
-              >
-                <Input
-                  name="position"
-                  type="textarea"
-                  placeholder="Введите причину выхода"
+          <Form class="exitParty-form" @finish="postRequestExitParty">
+            <div class="exitParty-form-inputs">
+              <div class="exitParty-form-select">
+                <label for="position">Выберите причину выхода</label>
+                <Select
+                  placeholder="Выберите из списка причину"
                   staticPlaceholder
+                  :options="[
+                    {label: 'Несогласие с политикой партии', value: 'Несогласие с политикой партии'},
+                    {label: 'Разочарование в лидерстве партии', value: 'Разочарование в лидерстве партии'},
+                    {label: 'Несоответствие партийных ценностей с собственными убеждениями', value: 'Несоответствие партийных ценностей с собственными убеждениями'},
+                    {label: 'Отсутствие эффективных механизмов для осуществления изменений в партии', value: 'Отсутствие эффективных механизмов для осуществления изменений в партии'},
+                    {label: 'Недовольство сделанными партией решениями или действиями', value: 'Недовольство сделанными партией решениями или действиями'},
+                    {label: 'Неудовлетворительное взаимодействие с другими членами партии', value: 'Неудовлетворительное взаимодействие с другими членами партии'},
+                    {label: 'Потеря доверия к партии и ее руководству', value: 'Потеря доверия к партии и ее руководству'},
+                    {label: 'Желание присоединиться к другой партии, которая лучше соответствует своим убеждениям', value: 'Желание присоединиться к другой партии, которая лучше соответствует своим убеждениям'},
+                    {label: 'Другое', value: null}
+                  ]"
+                  v-model="exitPartyDatas.select"
                   required
                 />
               </div>
-            </Transition>
+
+              <TransitionGroup>
+                <div
+                  v-if="!exitPartyDatas.select"
+                  v-collapse
+                >
+                  <Input
+                    name="position"
+                    type="textarea"
+                    v-model="exitPartyDatas.text"
+                    placeholder="Введите причину выхода"
+                    staticPlaceholder
+                    required
+                  />
+                </div>
+
+                <div
+                  v-if="!exitPartyDatas.document"
+                  v-collapse
+                >
+                  <Button
+                    class="exitParty-form-addFileBtn"
+                    name="Прикрепить файл"
+                    type="outline-blue"
+                    v-slot:left
+                    @click="clickInputFile"
+                  >
+                    <input
+                      type="file"
+                      id="upload-files"
+                      multiple
+                      style="display: none"
+                      @change="uploadFiles"
+                    />
+                    <SvgIcon
+                      name="plus"
+                      :viewboxWidth="24"
+                      :viewboxHeight="24"
+                    />
+                  </Button>
+                </div>
+              </TransitionGroup>
+            </div>
+
+            <div class="exitParty-doc">
+              <h4 class="exitParty-doc-title">Документ:</h4>
+              <label v-if="!exitPartyDatas.document" for="upload-files" class="exitParty-doc-name empty">Прикрепите обязательно файл заполненной формы</label>
+              <div v-else class="exitParty-doc-namEwithAction">
+                <div class="exitParty-doc-name">{{ exitPartyDatas.document?.name }}</div>
+                <SvgIcon
+                  class="exitParty-doc-remove"
+                  name="x"
+                  :viewboxHeight="14"
+                  :viewboxWidth="21"
+                  :width="24"
+                  :height="24"
+                  @click="deleteFile()"
+                />
+              </div>
+            </div>
 
 
-            <Button
-              class="exitParty-form-addFileBtn"
-              name="Прикрепить файл"
-              type="outline-blue"
-              v-slot:left
-            >
-              <SvgIcon
-                name="plus"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
+            <div class="exitParty-btns">
+              <Button
+                name="Отправить"
+                class="exitParty-addFileBtn"
+                :loading="isLoading.btn"
+                htmlType="submit"
+                :disabled="!exitPartyDatas.document"
               />
-            </Button>
+              <Button
+                class="exitParty-addFileBtn"
+                name="Отмена"
+                type="default-grey"
+              />
+            </div>
           </Form>
+        </div>
 
+        <div class="exitParty-inner" v-else-if="exitPartyDatas.status === 'pending'">
+          <div class="exitParty-content">
+            <h4 class="exitParty-content-messege-title green">ЗАЯВКА УСПЕШНО ОТПРАВЛЕНА</h4>
 
-          <div class="exitParty-doc">
-            <h4 class="exitParty-doc-title">Документ:</h4>
-            <p class="exitParty-doc-name empty">Прикрепите обязательно файл заполненной формы</p>
-          </div>
+            <div class="exitParty-doc">
+              <h4 class="exitParty-doc-title">Документ:</h4>
+              <div class="exitParty-doc-namEwithAction">
+                <a class="exitParty-doc-name" :href="'https://api.respublica.codetau.com/' + exitPartyDatas.document?.name">{{ exitPartyDatas.document?.name }}</a>
+              </div>
+            </div>
 
-
-          <div class="exitParty-btns">
-            <Button
-              class="exitParty-addFileBtn"
-              name="Отправить"
-            />
-            <Button
-              class="exitParty-addFileBtn"
-              name="Отмена"
-              type="default-grey"
-            />
+            <p>
+              Спасибо за отправленную заявку. 
+              Мы уведомим вас, как будет обработан и подтвержден ваш запрос. 
+              Ваше решение имеет для нас большое значение, и мы ценим ваше участие в нашей работе.
+              Пожалуйста, ожидайте дополнительную информацию от нас в ближайшее время. 
+              Если у вас возникли какие-либо вопросы или вам потребуется дополнительная помощь, не стесняйтесь обращаться к нашей службе поддержки.
+            </p>
           </div>
         </div>
+        <br>
+        <br><br>
+        <br><br>
+
+        <div class="exitParty-inner" v-if="exitPartyDatas.status === 'approved' || oldExitRequest && !partyData">
+          <div class="exitParty-content">
+            <h4 class="exitParty-content-messege-title blue">
+              ВАША ЗАЯВКА УСПЕШНО ОБРАБОТАНА
+              <span style="color:grey">{{ moment(oldExitRequest.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
+            </h4>
+            <br>
+
+            <div class="exitParty-doc">
+              <h4 class="exitParty-doc-title">Документ:</h4>
+              <div class="exitParty-doc-namEwithAction">
+                <a class="exitParty-doc-name" :href="'https://api.respublica.codetau.com/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
+              </div>
+            </div>
+            <p>
+              Спасибо за вашу активность и участие в жизни наших участников. Желаем вам удачи в ваших будущих усилиях и началах.
+              Если в будущем вы решите вернуться или изменить свою позицию, помните, что мы всегда открыты для диалога и готовы приветствовать вас обратно.
+            </p><br><br>
+
+            <p>
+              С уважением, Партия Respublica!
+            </p>
+          </div>
+        </div>
+        
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import axios from 'axios'
+import { reactive,ref  } from 'vue';
 
-const reasonForExitSelect = ref();
+// Modules
+import { useToast } from '../../modules/toast'
+import { onMounted } from 'vue';
+import moment from 'moment';
+
+const { toast } = useToast()
+
+const partyData = ref();
+const exitPartyDatas = reactive({
+  select: 'Несогласие с политикой партии',
+  text: null,
+  document: null,
+  status: null
+})
+const oldExitRequest = ref();
+
+const isLoading = reactive({
+  page: true,
+  btn: false
+})
+const token = localStorage.getItem('TOKEN');
+
+const clickInputFile = () => {
+  document.getElementById('upload-files')?.click();
+}
+
+const deleteFile = () => {
+  exitPartyDatas.document = null;
+}
+
+const uploadFiles = (event) => {
+  if (event.target.files.length > 0) {
+    if (isDocx(event.target.files[0].name)) exitPartyDatas.document = event.target.files[0];
+    else {
+      toast({
+        message: 'Документ должен быть с рачширением .docx'
+      })
+    }
+  }
+}
+
+const isDocx = (fileName) => {
+  const type = fileName.split(".")
+  return ['docx'].includes(type[type.length - 1])
+}
+
+// Get Party Data
+const getPartData = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships`;
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      partyData.value = response.data;
+    })
+    .catch((err) => {
+      console.log('err', err);
+      // toast({
+      //   message: 'Возникли ошибки при запросе'
+      // })
+    });
+}
+
+
+// Get Exit Party Data
+
+onMounted(() => {
+  getPartData();
+  getRequestExitParty();
+});
+
+const getRequestExitParty = () => {
+  isLoading.page = true;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/resignation`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+      
+      if (response.data.status !== 'approved') {
+        exitPartyDatas.document = {};
+        exitPartyDatas.document.name = response.data.document;
+        exitPartyDatas.status = response.data.status;
+      } else oldExitRequest.value = response.data;
+
+      isLoading.page = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+     
+        // toast({
+        //   message: 'Возникли ошибки при запросе'
+        // })
+      isLoading.page = false;
+    });
+}
+
+// Send Exit From Party
+const postRequestExitParty = () => {
+  isLoading.btn = true;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/resignation`;
+
+  const formData = new FormData();
+  formData.append("comment", exitPartyDatas.select ?? exitPartyDatas.text!);
+  formData.append("document", exitPartyDatas.document!);
+
+  axios({
+    method: "post",
+    url: url,
+    data: formData,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+      
+      exitPartyDatas.status = 'pending';
+      isLoading.btn = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      isLoading.btn = false;
+    });
+}
 </script>
 
 <style scoped lang="scss">
@@ -113,6 +350,7 @@ const reasonForExitSelect = ref();
 
 .exitParty {
   &-content {
+    max-width: 1240px;
     margin-bottom: 65px;
 
     &-subtitle {
@@ -123,6 +361,20 @@ const reasonForExitSelect = ref();
     &-messege,
     &-listBlock {
       margin-bottom: 30px;
+    }
+
+    &-messege-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 30px;
+
+      &.green {
+        color: var(--green-color);
+      }
+
+      &.blue {
+        color: var(--accent-color);
+      }
     }
   
     &-listBlock-list {
@@ -146,6 +398,10 @@ const reasonForExitSelect = ref();
   &-form {
     max-width: 700px;
 
+    &-inputs {
+      margin-bottom: 38px;
+    }
+
     &-select {
       & label {
         display: block;
@@ -159,7 +415,6 @@ const reasonForExitSelect = ref();
       display: flex;
       align-items: center;
       grid-gap: 10px;
-      margin-bottom: 38px;
   
       & svg {
         width: 24px;
@@ -181,13 +436,29 @@ const reasonForExitSelect = ref();
     }
 
     &-name {
+      color: var(--accent-color);
       font-size: 20px;
       text-decoration-line: underline;
+      margin-bottom: 0px !important;
 
       &.empty {
         
         color: var(--red-color);
       }
+    }
+
+    &-namEwithAction {
+      display: flex;
+      align-items: center;
+      grid-gap: 10px;
+    }
+
+    &-remove {
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+
+      fill: var(--red-color);
     }
   }
 

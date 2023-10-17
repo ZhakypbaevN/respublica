@@ -30,7 +30,7 @@ onMounted(() => {
 const sideBarlinks = [
   {
     title: 'Члены партии',
-    link: "/manager/party-list/confirm"
+    link: "/manager/party-list/active"
   },
   {
     title: 'Заявки на удаление',
@@ -38,7 +38,7 @@ const sideBarlinks = [
   },
   {
     title: 'Удаленные',
-    link: "/manager/party-list/deleted"
+    link: "/manager/party-list/revoked"
   }
 ]
 </script>
