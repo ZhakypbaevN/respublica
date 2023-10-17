@@ -248,7 +248,7 @@ const routes = [
     component: MainLayoutManager,
     meta: { title: 'manager', requiresAuth: true },
     redirect: to => {
-      return '/manager/party-list/confirm'
+      return '/manager/party-list/active'
     },
     children: [
       { path: '/:pathMatch(.*)*', name: 'ManagerNotFound', component: NotFound },
