@@ -18,12 +18,11 @@
 
       <div class="aboutParty-bottom">
         <p class="aboutParty-description">
-           Мы стремимся решать вопросы, волнующие наших избирателей в разных уголках страны. Мы открыты для диалога и намерены действовать активно.
-          Примите участие в нашем собществе, чтобы изменить свою жизнь и жизнь ваших близких.
+           {{ $t('home-about-party-descritption') }}
         </p>
 
         <Button
-          name="Вступить в партию"
+          :name="$t('home-about-party-join-the-party')"
           type="default-blue"
           uppercase
           @click="() => $emit('showJoinPartyModal')"

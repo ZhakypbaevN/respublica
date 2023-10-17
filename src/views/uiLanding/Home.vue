@@ -13,13 +13,13 @@
         <div class="wrapper landing-wrapper">
           <div class="intro-btns">
             <Button
-              name="ВСТУПИТЬ В ПАРТИЮ"
+              :name="$t('home-join-the-party')"
               type="default-blue"
               @click="() => showModals.joinPartyModal = true"
               data-aos="fade-up"
             />
             <Button
-              name="ПОДАТЬ ОБРАЩЕНИЕ"
+              :name="$t('home-submit-an-apeal')"
               type="default-blue"
               @click="() => showModals.submitAnAppeal = true"
               data-aos="fade-up"
@@ -39,11 +39,11 @@
         <div class="wrapper landing-wrapper">
           <div class="landing-header">
             <h2 class="landing-title">
-              Новости
+              {{ $t('home-news') }}
             </h2>
 
             <RouterLink to="/news-all" class="landing-header-link">
-              <span>Смотреть все</span>
+              <span>{{ $t('home-news-see-all') }}</span>
               <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
             </RouterLink>
           </div>
@@ -71,10 +71,10 @@
       <section class="landing-block">
         <div class="wrapper landing-wrapper">
           <div class="landing-header">
-            <h2 class="landing-title">Анонсы, объявления</h2>
+            <h2 class="landing-title">{{ $t('home-announcements') }}</h2>
             
             <RouterLink to="news-all" class="landing-header-link">
-              <span>Смотреть все</span>
+              <span>{{ $t('home-announcements-see-all') }}</span>
               <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
             </RouterLink>
           </div>
