@@ -57,12 +57,12 @@
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>Укажите область:</span>
-                  {{ partyData?.region ?? '-' }}
+                  {{ partyData?.location.parent.name ?? '-' }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>Населенный пункт:</span>
-                  {{ partyData?.city ?? '-' }}
+                  {{ partyData?.location.name ?? '-' }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">

@@ -11,7 +11,10 @@
     class="feedbackModal"
     title="Вступить в партию"
   >
-    <Form @finish="postJoinParty">
+    <Form
+      @finish="postJoinParty"
+      :ignores="disabledLocationSelect ? ['locality'] : null"
+    >
       <div class="feedbackModal-inputs">
         <Input
           name="iin"
@@ -228,6 +231,7 @@
         name="Отправить заявку"
         :loading="loading"
         htmlType="submit"
+        :ignoreValidate="disabledLocationSelect ? ['locality'] : null"
       />
 
     </Form>
@@ -290,9 +294,17 @@ axios({
   })
   .catch((err) => {
     console.log('err', err);
-    toast({
-      message: 'Возникли ошибки при запросе'
-    })
+
+    if (err.response.data.detail === 'Duplicate membership is not allowed.') {
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    } else {
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    }
+    
   });
 })
 
