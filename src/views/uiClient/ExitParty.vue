@@ -157,7 +157,7 @@
         <br><br>
         <br><br>
 
-        <div class="exitParty-inner" v-if="exitPartyDatas.status === 'approved' || oldExitRequest && !partyData">
+        <div class="exitParty-inner" v-if="exitPartyDatas.status === 'approved' || oldExitRequest">
           <div class="exitParty-content">
             <h4 class="exitParty-content-messege-title blue">
               ВАША ЗАЯВКА УСПЕШНО ОБРАБОТАНА
