@@ -45,7 +45,7 @@
             </Router-link>
 
             <Router-link to="/party-fraction" class="header-main-navs-item">
-              Партийная фракция
+              {{ $t('header-party-faction') }}
             </Router-link>
 
             <!-- <Router-link to="/regions" class="header-main-navs-item">
@@ -53,11 +53,11 @@
             </Router-link> -->
 
             <Router-link to="/news" class="header-main-navs-item">
-              Пресс-центр
+              {{ $t('header-press-center') }}
             </Router-link>
 
             <Router-link to="/contacts" class="header-main-navs-item">
-              Контакты
+              {{ $t('header-contacts') }}
             </Router-link>
 
             <Router-link to="/faq" class="header-main-navs-item">
@@ -75,7 +75,7 @@
           <div class="header-main-right" v-if="!withoutTopAndNavs">
             <Router-link to="/donations">
               <Button
-                name="ДОНАТЫ"
+                :name="$t('header-donations')"
                 type="outline-red"
                 class="header-main-donatBtn"
               >
@@ -91,7 +91,7 @@
               v-if="!userType"
               to="/auth"
             >
-              <Button name="Авторизация" />
+              <Button :name="$t('header-authorization')" />
             </RouterLink>
 
             <Avatar v-else />

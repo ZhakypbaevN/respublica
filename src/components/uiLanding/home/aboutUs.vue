@@ -2,23 +2,19 @@
   <section class="aboutUs landing-block">
     <div class="wrapper landing-wrapper">
       <h2 class="aboutUs-title">
-        <span class="blue" data-aos="zoom-in">Новые люди - </span>
-        <span data-aos="zoom-in">новые возможности!</span> 
+        <span class="blue" data-aos="zoom-in">{{ $t("about-us-new-people") }}</span>
+        <span data-aos="zoom-in">{{ $t("about-us-new-opportunities") }}</span>
       </h2>
       <p class="aboutUs-description" data-aos="zoom-in">
-        Партия Respublica – это МЕТА-партия. Мы нацелены на структурные преобразования во всех сферах общественной жизни. Мы являемся людьми нового Казахстана, цифровыми номадами!
-        <br>
-        <br>
-        Алға, Қазақстан! Алға, Respublica!
+        {{ $t("about-us-description") }}
+        <br />
+        <br />
+        {{ $t("about-us-forward") }}
       </p>
 
       <div class="aboutUs-inner">
         <div class="aboutUs-items">
-          <div
-            class="aboutUs-item"
-            v-for="item of aboutUsList"
-            :key="item.title"
-          >
+          <div class="aboutUs-item" v-for="item of aboutUsList" :key="item.title">
             <h4 class="aboutUs-item-title">{{ item.title }}</h4>
             <p class="aboutUs-item-description" v-html="item.text"></p>
             <RouterLink :to="item.link" class="aboutUs-item-link">
@@ -28,11 +24,8 @@
         </div>
 
         <div class="aboutUs-links">
-          <Router-link
-            to="/news-all"
-            class="aboutUs-links-item"
-          >
-            <span>Новости</span>
+          <Router-link to="/news-all" class="aboutUs-links-item">
+            <span> {{ $t("about-us-news") }}</span>
             <SvgIcon
               name="arrow-with-line-right-top"
               :viewboxWidth="32"
@@ -60,59 +53,53 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 interface Emits {
-  (event: 'showJoinPartyModal', value: Function): void,
-  (event: 'showSubmitAnAppeal', value: Function): void,
-  (event: 'showMakeAnAppointment', value: Function): void,
+  (event: "showJoinPartyModal", value: Function): void;
+  (event: "showSubmitAnAppeal", value: Function): void;
+  (event: "showMakeAnAppointment", value: Function): void;
 }
 
-const emits = defineEmits<Emits>()
+const emits = defineEmits<Emits>();
 
 const btnList = [
   {
-    title: 'Вступить в партию',
-    func: () => emits('showJoinPartyModal')
+    title: t('about-us-join-the-party'),
+    func: () => emits("showJoinPartyModal"),
   },
   {
-    title: 'Направить обращение',
-    func: () => emits('showSubmitAnAppeal')
+    title: t('about-us-send-a-request'),
+    func: () => emits("showSubmitAnAppeal"),
   },
   {
-    title: 'Записаться на прием',
-    func: () => emits('showMakeAnAppointment')
-  }
-]
+    title: t('about-us-make-an-appointment'),
+    func: () => emits("showMakeAnAppointment"),
+  },
+];
 
 const aboutUsList = [
   {
-    title: 'Что мы делаем',
-    text: `
-      Партия Respublica – это партия людей дела. Мы опытные и эффективные управленцы, лидеры с опытом преодоления преград и решения сложных задач.<br>
-      Мы связываем свое будущее с Казахстаном.
-    `,
-    btn: 'Узнать больше',
-    link: '/about-party'
+    title: t('about-us-what-are-we-doing'),
+    text: t('about-us-what-are-we-doing-text'),
+    btn: t('about-us-what-are-we-doing-btn'),
+    link: "/about-party",
   },
   {
-    title: 'Кто мы',
-    text: `
-      Мы не чиновники.<br>
-      Мы – созидатели. Каждый из нас создает тысячи рабочих мест. За каждым – личная история успеха и помощь множеству сограждан найти себя и обрести веру в будущее.<br>
-      Мы молоды, амбициозны и сильны. С нами необходимо считаться, мы создаем тысячи рабочих мест, мы платим налоги.
-    `,
-    btn: 'Узнать больше',
-    link: '/about-party'
+    title: t('about-us-who-are-we'),
+    text: t('about-us-who-are-we-text'),
+    btn: t('about-us-who-are-we-btn'),
+    link: "/about-party",
   },
   {
-    title: 'Внесите свой вклад',
-    text: `
-      На территории всей страны у партии Respublica есть филиалы и действуют депутаты в Мажилисе Парламента и маслихатах всех уровней.<br>
-      Ваша поддержка будет направлена на организацию работы на местах, усилия по защите избирателей и другие приоритеты.
-    `,
-    btn: 'Нажмите здесь, чтобы сделать пожертвование',
-    link: '/donations'
-  }
-]
+    title: t('about-us-contribute'),
+    text: t('about-us-contribute-text'),
+    btn: t('about-us-contribute-btn '),
+    link: "/donations",
+  },
+];
 </script>
 
 <style scoped lang="scss">
@@ -121,7 +108,7 @@ const aboutUsList = [
 
   &-title {
     text-align: center;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     text-transform: uppercase;
     font-size: 48px;
     font-weight: 700;
@@ -129,7 +116,7 @@ const aboutUsList = [
 
     & span.blue {
       color: var(--accent-color);
-      font-family: 'Montserrat';
+      font-family: "Montserrat";
     }
   }
   &-description {
@@ -182,13 +169,13 @@ const aboutUsList = [
         line-height: 1;
 
         &::after {
-          content: ' \2192';
+          content: " \2192";
 
           position: relative;
           top: 3px;
           left: 0;
 
-          transition: all .3s ease-in-out;
+          transition: all 0.3s ease-in-out;
         }
       }
 
@@ -202,7 +189,7 @@ const aboutUsList = [
 
   &-links {
     height: fit-content;
-    
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -219,7 +206,7 @@ const aboutUsList = [
       position: relative;
 
       &::after {
-        content: '';
+        content: "";
 
         display: block;
         width: 0;
@@ -231,7 +218,7 @@ const aboutUsList = [
         z-index: 2;
 
         border-bottom: 3.6px solid var(--accent-color);
-        transition: all .3s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
 
       &:hover {
@@ -261,10 +248,9 @@ const aboutUsList = [
         position: relative;
         right: 0;
         bottom: 0;
-        transition: all .3s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
     }
   }
-
 }
 </style>

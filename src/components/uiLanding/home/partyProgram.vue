@@ -1,7 +1,7 @@
 <template>
   <section class="partyProgram landing-block">
     <div class="wrapper landing-wrapper">
-      <h2 class="landing-title">Программа партии Respublica</h2>
+      <h2 class="landing-title">{{ $t('party-program-title') }}</h2>
     </div>
     <div class="partyProgram-main">
       <div class="partyProgram-preview"></div>
@@ -11,7 +11,7 @@
             <h4 class="partyProgram-item-title">{{ block.title }}</h4>
             <a :href="block.pdf" target="_blank">
               <Button
-                name="Посмотреть"
+                :name="$t('party-program-show-btn')"
                 type="outline-blue"
                 class="partyProgram-item-link"
               >
@@ -30,13 +30,17 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 const blockList = [
   {
-    title: "Программа партии",
+    title: t('party-program-progtam-pdf'),
     pdf: "/doc/ru/Программа партии_.pdf",
   },
   {
-    title: "Предвыборная программа партии",
+    title: t('party-program-party-election-program'),
     pdf: "/doc/ru/Программа предвыборная рус.pdf",
   },
 ];

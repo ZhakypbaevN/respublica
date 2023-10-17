@@ -3,7 +3,7 @@
     <div class="wrapper landing-wrapper">
       <div class="footer-main">
         <div class="footer-mainForm">
-          <h3 class="footer-mainForm-title">Присоединяйтесь к партии</h3>
+          <h3 class="footer-mainForm-title">{{ $t('footer-join-the-party') }}</h3>
           <RouterLink to="/" class="footer-mainForm-logo">
             <SvgIcon
               name="logo-light"
@@ -16,11 +16,11 @@
 
           <div class="footer-mainForm-btns">
             <RouterLink to="/feedback">
-              <Button name="ОБРАТНАЯ СВЯЗЬ" type="default-blue" uppercase />
+              <Button :name="$t('footer-feedback')" type="default-blue" uppercase />
             </RouterLink>
             <RouterLink to="/donations">
               <Button
-                name="ДОНАТЫ"
+                :name="$t('footer-donations')"
                 class="footer-mainNavs-donatBtn"
                 type="default-red"
                 uppercase
@@ -39,25 +39,25 @@
 
         <div class="footer-mainNavs">
           <div class="footer-mainNavs-item">
-            <h4 class="footer-mainNavs-title">ПАРТИЯ Respublica</h4>
+            <h4 class="footer-mainNavs-title">{{ $t('footer-party-respublica') }}</h4>
             <div class="footer-mainNavs-links">
-              <RouterLink to="/about-party" class="footer-mainNavs-link">О партии</RouterLink>
-              <RouterLink to="/party-fraction" class="footer-mainNavs-link">Партийная фракция</RouterLink>
+              <RouterLink to="/about-party" class="footer-mainNavs-link">{{ $t('footer-about') }}</RouterLink>
+              <RouterLink to="/party-fraction" class="footer-mainNavs-link">{{ $t('footer-party-faction') }}</RouterLink>
               <!-- <RouterLink to="/regions" class="footer-mainNavs-link">Регионы</RouterLink> -->
-              <RouterLink to="/news" class="footer-mainNavs-link">Пресс-центр</RouterLink>
-              <RouterLink to="/contacts" class="footer-mainNavs-link">Контакты</RouterLink>
+              <RouterLink to="/news" class="footer-mainNavs-link">{{ $t('footer-press-center') }}</RouterLink>
+              <RouterLink to="/contacts" class="footer-mainNavs-link">{{ $t('footer-contacts') }}</RouterLink>
               <RouterLink to="/faq" class="footer-mainNavs-link">FAQ</RouterLink>
             </div>
           </div>
 
           <div>
             <div class="footer-mainNavs-item team">
-              <h4 class="footer-mainNavs-title">КОМАНДА</h4>
+              <h4 class="footer-mainNavs-title">{{ $t('footer-team') }}</h4>
               <div class="footer-mainNavs-links">
-                <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">Депутаты Мажилиса</RouterLink>
-                <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">Депутаты маслихатов</RouterLink>
+                <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">{{ $t('footer-mazhilis-deputies') }}</RouterLink>
+                <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">{{ $t('footer-maslikhats-deputies') }}</RouterLink>
                 <!-- <RouterLink to="/0980" class="footer-mainNavs-link">Центральный аппарат</RouterLink> -->
-                <RouterLink to="/contacts/filials" class="footer-mainNavs-link">Филиалы</RouterLink>
+                <RouterLink to="/contacts/filials" class="footer-mainNavs-link">{{ $t('footer-branches') }}</RouterLink>
               </div>
             </div>
           </div>
@@ -65,8 +65,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-bottom-copyright">© 2023 партия RESPUBLICA.</p>
-        <button class="footer-bottom-siteRightBtn">Все права защищены.</button>
+        <p class="footer-bottom-copyright">{{ $t('footer-respublica-party') }}</p>
+        <button class="footer-bottom-siteRightBtn">{{ $t('footer-all-rights-reserved') }}</button>
       </div>
     </div>
   </footer>
