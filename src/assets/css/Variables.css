@@ -1,0 +1,28 @@
+/* -----VARIABLES----- */
+:root {
+  --primary-color: #042051;
+  --accent-color: #4A78EC;
+  --red-color: #F70531;
+  --green-color: #0FBC40;
+  --light-gray-color: #818FA7;
+  --cancel-color: #16193180;
+  --hover-color: #16193115;
+  --error-color: #ff5656;
+  --white-color: #ffffff;
+  --grey-color: #4F4F4F;
+  --border-light-gray: #E1E8EF;
+  --accent-color-op10: #4A78EC1A;
+  --accent-color-op15: #4A78EC26;
+  --accent-color-op30: #4A78EC4D;
+  --accent-color-op50: #4A78EC80;
+  --accent-color-op05: #4A78EC0D;
+  --red-color-op05: #F705310D;
+  --red-color-op07: #f7053111;
+  --red-color-op10: #F705311A;
+  --red-color-op50: #F7053180;
+  --red-color-op60: #f7053199;
+  --light-gray-color-op50: #818FA780;
+  --light-gray-color-op30: #818FA74D;
+  --light-gray-color-op20: #818FA733;
+  --light-gray-color-op10: #818FA71A;
+}

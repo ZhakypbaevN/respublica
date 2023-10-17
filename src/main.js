@@ -10,7 +10,9 @@ import App from './App.vue'
 import router from './router/index'
 
 import VueTheMask from 'vue-the-mask'
+import VWave from 'v-wave'
 
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import Select from './components/common/select/index.vue';
 import SvgIcon from './components/common/SvgIcon.vue'
 import Button from './components/common/Button.vue'
@@ -35,6 +37,7 @@ AOS.init();
 createApp(App)
   .use(router)
   .use(VueTheMask)
+  .use(CKEditor)
   .directive('click-outside', clickOutside())
   .directive('collapse', Collapse)
   .directive('loading', loading())

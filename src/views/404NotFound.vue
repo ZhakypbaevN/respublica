@@ -1,16 +1,16 @@
 <template>
   <div class="wrapper-main">
-  <div>
-    <Header />
-    <section class="faq-block landing-block">
-      <div class="wrapper landing-wrapper">
-        <h2 class="title">404</h2>
-      </div>
-    </section>
-  </div>
+    <div>
+      <Header />
+      <section class="faq-block landing-block">
+        <div class="wrapper landing-wrapper">
+          <h2 class="title">404</h2>
+        </div>
+      </section>
+    </div>
 
-  <Footer /> 
-</div>
+    <Footer /> 
+  </div>
 </template>
 
 <script setup>

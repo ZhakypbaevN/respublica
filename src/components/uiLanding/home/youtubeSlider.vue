@@ -72,8 +72,9 @@ const youtubeLinks = [
 <style lang="scss">
 
 .videoSlider {
-  padding-bottom: 100px !important;
-  margin-bottom: 120px;
+  overflow-y: visible !important;
+  overflow-x: clip !important;
+  margin-bottom: 190px;
   
   & .swiper {
 
@@ -81,7 +82,7 @@ const youtubeLinks = [
       &-prev,
       &-next {
         top: auto;
-        bottom: 0px;
+        bottom: -80px;
       }
 
       &-prev {

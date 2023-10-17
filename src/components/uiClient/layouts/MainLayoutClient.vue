@@ -29,7 +29,7 @@ const sideBarlinks = [
   },
   {
     title: 'Новости',
-    link: "/client/test"
+    link: "/news"
   },
   {
     title: 'Донаты',

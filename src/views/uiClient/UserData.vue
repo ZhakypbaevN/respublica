@@ -6,7 +6,7 @@
           <div class="userData-inner">
             <div class="userData-content">
               <h2 class="userData-content-title">
-                {{ `${userData.last_name} ${userData.first_name} ${userData.middle_name}` }}
+                {{ `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}` }}
               </h2>
 
               <div class="userData-content-infoBlock">
@@ -32,12 +32,12 @@
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>Пол:</span>
-                  {{ partyData?.gender === 'male' ? 'Мужчина' : 'Женщина' }}
+                  {{ partyData?.gender === 'male' ? 'Мужчина' : partyData?.gender === 'female' ? 'Женщина' : '-' }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>Образование:</span>
-                  {{ partyData?.education === 'higher_education' ? 'Высшее образование' : 'Среднее образование' }}
+                  {{ partyData?.education === 'higher_education' ? 'Высшее образование' : partyData?.education === 'secondary_special_education' ? 'Среднее образование' : '-' }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
@@ -283,9 +283,9 @@ const getPartData = () => {
     })
     .catch((err) => {
       console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+      // toast({
+      //   message: 'Возникли ошибки при запросе'
+      // })
     });
 }
 </script>

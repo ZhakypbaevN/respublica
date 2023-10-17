@@ -23,28 +23,22 @@
             <tr
               class="party-item"
               v-for="party in partyDataList"
-              :key="party.id"
+              :key="party.ticket_number"
             >
-              <td class="party-item">{{ party.id }}</td>
+              <td>{{ party.ticket_number }}</td>
               <td>
                 <RouterLink class="party-item-title" :to="`/manager/party-data/${party.id}`">
-                  {{ `${party.lastName} ${party.name} ${party.middleName}` }}
+                  {{ `${party.user.last_name} ${party.user.first_name} ${party.user.middle_name ?? ''}` }}
                 </RouterLink>
               </td>
-              <td class="party-item">
-                {{ party.dayOfAcceptance }}
+              <td>
+                {{ party.join_date }}
               </td>
-              <td class="party-item">{{ party.region ?? '-' }}</td>
-              <td class="party-item">{{ party.city ?? '-' }}</td>
-              <td
-                v-if="party.status.length"
-                v-for="status of party.status"
-                :key="status"
-                class="party-item"
-              >
-                {{ status }}
+              <td>{{ party.location_id ?? '-' }}</td>
+              <td>{{ party.city ?? '-' }}</td>
+              <td class="status">
+                <span>{{ getStatusList(party) }}</span>
               </td>
-              <td v-else class="party-item">-</td>
               <td v-if="route.params.filter === 'deleted'">
                 <button class="party-item-btn">
                   <SvgIcon
@@ -73,9 +67,19 @@ const route = useRoute()
 
 const partyDataList = ref([]);
 
+const getStatusList = (data) => {
+  const list = [];
+
+  if (data.is_pensioner) list.push('Пенсионер');
+  if (data.is_disabled) list.push('Инвалид');
+  if (data.is_unemployed) list.push('Безработный');
+  if (data.is_on_childcare_leave) list.push('Находящиеся в отпуске по уходу за детьми');
+
+  return list.join(', ');
+}
+
 onMounted(() => {
-  // https://tri.codetau.com/partyCards
-  const url = `https://tri.codetau.com/partyCards`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100`;
   axios({
     method: "get",
     url: url,
@@ -170,6 +174,18 @@ onMounted(() => {
       &-title {
         font-size: 18px;
         font-weight: 500;
+      }
+
+      & td.status span {
+        display: block;
+        width: 220px;
+
+        min-height: 1pc;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
       }
       
       & td:first-child {

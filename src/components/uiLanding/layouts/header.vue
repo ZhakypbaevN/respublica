@@ -246,7 +246,7 @@ onBeforeUnmount(() => {
     justify-content: space-between;
     align-items: center;
 
-    padding: 10px 0;
+    padding: 8px 0;
 
     &-right {
       display: flex;
