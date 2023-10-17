@@ -5,9 +5,9 @@
       loading
     }"
       :type="htmlType"
-      :disabled="disabled || handleError(hasError)"
+      :disabled="disabled || handleError(hasError, ignoreValidate)"
       @click="
-      loading || disabled || handleError(hasError)
+      loading || disabled || handleError(hasError, ignoreValidate)
         ? null
         : $emit('click', $event)
     "
@@ -33,6 +33,7 @@ interface IProps {
   htmlType?: 'button' | 'submit' | 'reset',
   disabled?: boolean,
   uppercase?: boolean,
+  ignoreValidate?: any[] | null,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -41,6 +42,7 @@ const props = withDefaults(defineProps<IProps>(), {
   loading: false,
   htmlType: 'button',
   disabled: false,
+  ignoreValidate: null,
 })
 
 defineEmits(['click'])

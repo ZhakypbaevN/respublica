@@ -1,9 +1,10 @@
 <template>
-  <section class="wrapper-main">
+  <section class="">
     <div class="newsEdit wrapper">
       <h2 class="landing-title">Новая новость</h2>
 
       <Form
+        @finish="postNews"
       >
         <div class="newsEdit-form-inputs">
           <div class="newsEdit-formItem">
@@ -12,7 +13,7 @@
               name="title"
               type="textarea"
               placeholder="Введите текст обращения"
-              :maxSymbol="100"
+              :maxSymbol="150"
               staticPlaceholder
             />
           </div>
@@ -23,7 +24,7 @@
               name="subtitle"
               type="textarea"
               placeholder="Введите текст обращения"
-              :maxSymbol="200"
+              :maxSymbol="250"
               staticPlaceholder
             />
           </div>
@@ -45,11 +46,12 @@
           </div>
 
           <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Текст обращения</label>
+            <label for="content" class="newsEdit-formItem-label">Текст обращения</label>
             <Input
-              name="subtitle"
+              name="content"
               type="textarea"
               placeholder="Введите текст обращения"
+              staticPlaceholder
             />
           </div>
         </div>
@@ -71,10 +73,56 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import axios from 'axios'
+import { useToast } from '../../../modules/toast'
+
+const { toast } = useToast()
+
+const loading = ref(false)
+const token = ref();
+
+const postNews = ({ title, subtitle, content }: { title: string, subtitle: string, content: string }) => {
+  loading.value = true;
+  const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("category_id", '6');
+  formData.append("preview_text", subtitle);
+  formData.append("content", content);
+  formData.append("published", 'true');
+
+  axios({
+    method: "post",
+    url: url,
+    data: formData
+  })
+    .then((response) => {
+      
+      token.value = response.data['access_token'];
+      localStorage.setItem('TOKEN', token.value);
+    })
+    .catch((err) => {
+      console.log('err', err);
+      
+      if (err.response.data.detail === 'Incorrect username or password') {
+        toast({
+          message: 'Неверный логин или пароль!'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      loading.value = false
+    });
+}
+
 </script>
 
 <style scoped lang="scss">
-.wrapper-main {
+.wrapper {
   /* background-color: var(--accent-color-op05); */
   padding-top: 40px;
 }

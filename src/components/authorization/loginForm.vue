@@ -1,51 +1,83 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postLogin">
-    <h2 class="wrapper-darkMain-title">Войти</h2>
-    <div class="modal-inputs">
-      <Input
-        type="tel"
-        light
-        name="phone"
-        placeholder="Ваш номер телефона"
-        validation="phone"
-        :min="17"
-        required
+  <div class="loginForm-inner">
+    <Form class="wrapper-darkMain-form" @finish="postLogin" :ignores="loginWithPhone ? ['iin'] : ['phone']">
+      <h2 class="wrapper-darkMain-title">Войти</h2>
+
+      <div  class="loginForm-inputs">
+        <Transition>
+          <div v-if="loginWithPhone">
+            <Input
+              type="tel"
+              light
+              name="phone"
+              placeholder="Ваш номер телефона"
+              validation="phone"
+              :min="17"
+              required
+            />
+          </div>
+
+          <div v-else>
+            <Input
+              light
+              name="iin"
+              placeholder="Ваш ИИН"
+              mask="############"
+              required
+            />
+          </div>
+        </Transition>
+
+        <Input
+          light
+          type="password"
+          name="password"
+          placeholder="Пароль"
+          required
+        />
+      </div>
+
+      <div class="loginForm-helperBtns">
+        <Checkbox light name="remember">Запомнить меня</Checkbox>
+        <RouterLink to="/auth/reset-password">
+          Забыли пароль? 
+        </RouterLink>
+      </div>
+
+      <Button
+        name="Войти в систему"
+        type="default-blue"
+        class="loginForm-btn"
+        :loading="loading"
+        htmlType="submit"
+        :ignoreValidate="loginWithPhone ? ['iin'] : ['phone']"
       />
+    </Form>
 
-      <Input
-        light
-        type="password"
-        name="password"
-        placeholder="Пароль"
-        required
-      />
-    </div>
+    <div class="loginForm-bottom">
+      <h3 class="loginForm-or">
+        <span>или</span>
+      </h3>
 
-    <div class="modal-helperBtns">
-      <Checkbox light name="remember">Запомнить меня</Checkbox>
-      <RouterLink to="/auth/reset-password">
-        Забыли пароль? 
-      </RouterLink>
-    </div>
-
-    <Button
-      name="Войти в систему"
-      type="default-blue"
-      class="modal-btn"
-      :loading="loading"
-      htmlType="submit"
-    />
-
-    <div class="modal-message">
-      <h4 class="modal-message-title">У вас нет аккаунта?  </h4>
-      <RouterLink
-        to="/auth/register"
-        class="modal-message-btn"
+      <button
+        type="button"
+        class="loginForm-message-btn switch"
+        @click="() => loginWithPhone = !loginWithPhone"
       >
-        Зарегистрироваться
-      </RouterLink>
+        {{ loginWithPhone ? 'Войти с помощью ИИН' : 'Войти с помощью номера'}}
+      </button>
+
+      <div class="loginForm-message">
+        <h4 class="loginForm-message-title">У вас нет аккаунта?  </h4>
+        <RouterLink
+          to="/auth/register"
+          class="loginForm-message-btn"
+        >
+          Зарегистрироваться
+        </RouterLink>
+      </div>
     </div>
-  </Form>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -62,13 +94,14 @@ const router = useRouter()
 
 const loading = ref(false)
 const token = ref();
+const loginWithPhone = ref(true);
 
-const postLogin = ({ phone, password }: { phone: string, password: string }) => {
+const postLogin = ({ phone, iin, password }: { phone: string, iin: string, password: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
 
   const formData = new FormData();
-  formData.append("username", formatPhone(phone));
+  formData.append("username", loginWithPhone.value ? formatPhone(phone) : iin);
   formData.append("password", password);
 
   const userType = ref('client'); 
@@ -155,13 +188,62 @@ const getUserData = () => {
 </script>
 
 <style scoped lang="scss">
-.modal {
+.wrapper-darkMain-form {
+  margin-bottom: 40px;
+}
+
+.loginForm {
+  &-inner {
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
   &-inputs {
     width: 100%;
     display: flex;
     flex-direction: column;
     grid-gap: 15px;
     margin-bottom: 14px;
+  }
+
+  &-or {
+    margin-bottom: 30px;
+    overflow: hidden;
+    
+    & span {
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 500;
+      position: relative;
+  
+      &::after,
+      &::before {
+        content: '';
+  
+        display: block;
+        width: 500px;
+        height: 0;
+  
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+  
+        border-bottom: 1px solid rgba(white, .3);
+      }
+  
+      &::before {
+        right: 80px;
+      }
+  
+      &::after {
+        left: 80px;
+      }
+    }
   }
 
   &-helperBtns {
@@ -172,18 +254,21 @@ const getUserData = () => {
 
   &-btn {
     width: 100%;
-    margin-bottom: 50px;
   }
 
   &-message {
     &-title,
-    & a {
+    &-btn {
       display: inline;
       font-size: 18px;
       font-weight: 500;
+
+      &.switch {
+        margin-bottom: 20px;
+      }
     }
 
-    & a {
+    &-btn {
       color: var(--accent-color);
     }
   }

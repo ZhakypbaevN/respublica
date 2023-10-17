@@ -35,8 +35,7 @@
         light
         type="email"
         name="email"
-        placeholder="Email*"
-        required
+        placeholder="Email"
       />
 
       <!-- validation="email" -->
@@ -120,10 +119,10 @@ const postRegister = (
     data: {
       "token": props.token,
       "password": password,
-      "email": email,
+      "email": email.length ? email : null,
       "first_name": name,
       "last_name": lastname,
-      "middle_name": middleName,
+      "middle_name": middleName.length ? middleName : null,
       "iin": iin
     }
   })

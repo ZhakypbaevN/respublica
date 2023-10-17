@@ -42,8 +42,6 @@
           name="middleName"
           placeholder="Отчество"
           v-model="userData.middle_name"
-          disabled
-          required
         />
 
         <Input
@@ -62,8 +60,6 @@
           name="email"
           placeholder="E-mail"
           v-model="userData.email"
-          disabled
-          required
         />
 
         <div class="feedbackModal-inputs-gender">

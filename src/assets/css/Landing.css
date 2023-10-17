@@ -1,0 +1,126 @@
+.landing-block {
+  padding: 50px 0;
+  scroll-margin-top: 9.4rem;
+}
+.landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.landing-header .landing-title {
+  margin-bottom: 0px !important;
+}
+.landing-header-link {
+  display: inline-flex;
+  align-items: center;
+  grid-gap: 10px;
+}
+.landing-header-link span {
+  color: var(--primary-color);
+  font-size: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+.landing-header-link svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--primary-color);
+  position: relative;
+  right: 0;
+  transition: all 0.3s ease-in-out;
+}
+.landing-header-link:hover span {
+  color: var(--accent-color);
+}
+.landing-header-link:hover svg {
+  fill: var(--accent-color);
+  right: -8px;
+}
+.landing-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+.landing-title.center {
+  text-align: center;
+}
+.landing-wrapper {
+  max-width: 1400px;
+  padding: 0 20px;
+}
+.landing-wrapper.litle {
+  max-width: 920px;
+}
+.landing-link.with-line {
+  display: inline-flex;
+  align-items: center;
+  grid-gap: 36px;
+  padding: 5px 0 5px 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.landing-link.with-line::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 5px;
+  min-width: 5px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  background-color: var(--accent-color);
+  transition: all 0.2s ease-in-out;
+}
+.landing-link.with-line span {
+  font-size: 36px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  transition: all 0.2s ease-in-out;
+}
+.landing-link.with-line svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--accent-color);
+  position: relative;
+  z-index: 2;
+  right: 0;
+  transition: all 0.2s ease-in-out;
+}
+.landing-link.with-line:hover::before {
+  min-width: 600px;
+  width: 120%;
+  background-color: var(--accent-color);
+}
+.landing-link.with-line:hover span {
+  color: white;
+}
+.landing-link.with-line:hover svg {
+  fill: white;
+  right: -15px;
+}
+.landing-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+
+.back-btn {
+  margin-right: 50px;
+  margin-left: 60px;
+}
+.back-btn button {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  height: 60px;
+  width: 152px;
+}
+.back-btn button svg {
+  padding-top: 4px;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
