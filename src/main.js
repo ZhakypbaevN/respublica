@@ -33,8 +33,21 @@ import loading from './directives/loading.js'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// Lang
+import { languages, defaultLocale } from './assets/lang'
+import { createI18n } from 'vue-i18n'
+
+const messages = Object.assign(languages)
+const i18n = createI18n({
+  legacy: false,
+  locale: defaultLocale,
+  fallbackLocale: 'de',
+  messages
+})
+
 AOS.init();
 createApp(App)
+  .use(i18n)
   .use(router)
   .use(VueTheMask)
   .use(CKEditor)

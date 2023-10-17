@@ -50,17 +50,17 @@ import PartyProgram from '../../components/uiLanding/about/partyProgram.vue';
 import RespublicaJastary from '../../components/uiLanding/about/respublicaJastary.vue';
 import History from '../../components/uiLanding/about/history.vue';
 
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 const sideBarlinks = [
   {
-    title: 'Кто мы?',
+    title: t('who-are-we'),
     link: "#who-are-we"
   },
   {
-    title: 'Restart. Reforma. Respublica (программа партии)',
-    link: "#party-program"
-  },
-  {
-    title: 'Это Новый Казахстан! (предвыборная программа партии)',
+    title: t('party-program-and-party-s-election-program'),
     link: "#party-program"
   },
   {

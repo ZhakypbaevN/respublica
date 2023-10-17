@@ -41,7 +41,7 @@
 
           <nav class="header-main-navs" v-if="!withoutTopAndNavs">
             <Router-link to="/about-party" class="header-main-navs-item">
-              О партии
+              {{ $t('about-party') }}
             </Router-link>
 
             <Router-link to="/party-fraction" class="header-main-navs-item">
