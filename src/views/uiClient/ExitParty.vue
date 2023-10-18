@@ -206,6 +206,7 @@ const exitPartyDatas = reactive({
   status: null
 })
 const oldExitRequest = ref();
+const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'JPG'];
 
 const isLoading = reactive({
   page: true,
@@ -226,7 +227,7 @@ const uploadFiles = (event) => {
     if (isDocx(event.target.files[0].name)) exitPartyDatas.document = event.target.files[0];
     else {
       toast({
-        message: 'Документ должен быть с рачширением .docx'
+        message: 'Документ должен быть с рачширением ' + fileTypes.join(', ')
       })
     }
   }
@@ -234,7 +235,7 @@ const uploadFiles = (event) => {
 
 const isDocx = (fileName) => {
   const type = fileName.split(".")
-  return ['docx'].includes(type[type.length - 1])
+  return fileTypes.includes(type[type.length - 1])
 }
 
 // Get Party Data

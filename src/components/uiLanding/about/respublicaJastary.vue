@@ -5,7 +5,7 @@
 
       <div class="respublicaJastary-inner">
         <div class="respublicaJastary-preview first">
-          <div class="respublicaJastary-preview-img bg-cover withZoomPreview-preview-img"></div>
+          <div class="respublicaJastary-preview-img bg-cover withZoomPreview-preview-img" style="background-image: url('/img/uiLanding/respublica-justary/2B7A4383.jpg');"></div>
         </div>
 
         <p class="respublicaJastary-text">
@@ -15,7 +15,7 @@
         </p>
 
         <div class="respublicaJastary-preview second">
-          <div class="respublicaJastary-preview-img bg-cover withZoomPreview-preview-img"></div>
+          <div class="respublicaJastary-preview-img bg-cover withZoomPreview-preview-img" style="background-image: url('/img/uiLanding/respublica-justary/Жастар (1).jpg');"></div>
         </div>
 
         <p class="respublicaJastary-text second">

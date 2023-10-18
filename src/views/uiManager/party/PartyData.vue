@@ -4,17 +4,17 @@
       <div class="wrapper">
         <h2 class="landing-title">Партийные данные</h2>
 
-        <div class="userData" v-if="userData">
+        <div class="userData" v-if="partyData">
           <div class="userData-inner">
             <div class="userData-content">
               <h2 class="userData-content-title">
-                {{ `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}` }}
+                {{ `${partyData.last_name} ${partyData.first_name} ${partyData.middle_name ?? ''}` }}
               </h2>
 
               <div class="userData-content-infoBlock">
                 <h4 class="userData-content-infoBlock-item checked">
                   <span>ИИН:</span>
-                  {{ userData.iin }}
+                  {{ partyData.iin }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
@@ -24,7 +24,7 @@
 
                 <h4 class="userData-content-infoBlock-item checked">
                   <span>Телефон:</span>
-                  {{ userData.phone }}
+                  {{ partyData.phone }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
@@ -58,11 +58,11 @@
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
-                  <span>Укажите область:</span>
-                  {{ partyData?.location.parent.name ?? '-' }}
+                  <span>Область:</span>
+                  {{ partyData?.location.parent ? partyData?.location.parent?.name ?? '-' : partyData?.location.name }}
                 </h4>
 
-                <h4 class="userData-content-infoBlock-item">
+                <h4 v-if="partyData?.location.parent" class="userData-content-infoBlock-item">
                   <span>Населенный пункт:</span>
                   {{ partyData?.location.name ?? '-' }}
                 </h4>
@@ -125,15 +125,15 @@
 
                     <h4 class="userData-cardInfo-info">
                       <span>Фамилия:</span>
-                      {{ userData.last_name }}
+                      {{ partyData.last_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info">
                       <span>Имя:</span>
-                      {{ userData.first_name }}
+                      {{ partyData.first_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info middleName">
                       <span>Отчество:</span>
-                      {{ userData.middle_name }}
+                      {{ partyData.middle_name }}
                     </h4>
 
 
@@ -231,43 +231,42 @@
 <script setup lang="ts">
 import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
 
-// import axios from 'axios';
+import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router'
-// import { useToast } from '../../../modules/toast'
+import { useToast } from '../../../modules/toast'
 
-// const { toast } = useToast()
+const { toast } = useToast()
 const route = useRoute()
 
 const partyData = ref(null);
 const showJoinPartyModal = ref(false);
-// const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('TOKEN');
 
 onMounted(() => {
-  console.log('route.params.filter', route.params.filter);
-  // getPartData();
+  getPartData();
 })
 
-// const getPartData = () => {
-//   const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/${route.params.filter}`;
-//   axios({
-//     method: "get",
-//     url: url,
-//     headers: {
-//       accept: 'application/json',
-//       Authorization: 'Bearer ' + token
-//     }
-//   })
-//     .then((response) => {
-//       partyData.value = response.data;
-//     })
-//     .catch((err) => {
-//       console.log('err', err);
-//       toast({
-//         message: 'Возникли ошибки при запросе'
-//       })
-//     });
-// }
+const getPartData = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/${route.params.party_id}`;
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      partyData.value = response.data;
+    })
+    .catch((err) => {
+      console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    });
+}
 </script>
 
 <style scoped lang="scss">
