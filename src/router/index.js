@@ -254,11 +254,6 @@ const routes = [
       { path: '/:pathMatch(.*)*', name: 'ManagerNotFound', component: NotFound },
       { path: '/page-in-development', name: 'ManagerPageInDevelopment', component: PageInDevelopment },
       {
-        path: 'requests',
-        name: 'Requests',
-        component: MyRequests
-      },
-      {
         path: 'party-list/:filter',
         name: 'PartyDataList',
         component: PartyDataList

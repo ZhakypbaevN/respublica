@@ -54,13 +54,13 @@
                   <span>Должность:</span>
                   {{ partyData?.position ?? '-' }}
                 </h4>
-
+                
                 <h4 class="userData-content-infoBlock-item">
-                  <span>Укажите область:</span>
-                  {{ partyData?.location.parent.name ?? '-' }}
+                  <span>Область:</span>
+                  {{ partyData?.location.parent ? partyData?.location.parent?.name ?? '-' : partyData?.location.name }}
                 </h4>
 
-                <h4 class="userData-content-infoBlock-item">
+                <h4 v-if="partyData?.location.parent" class="userData-content-infoBlock-item">
                   <span>Населенный пункт:</span>
                   {{ partyData?.location.name ?? '-' }}
                 </h4>

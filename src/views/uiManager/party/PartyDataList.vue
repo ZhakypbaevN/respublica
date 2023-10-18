@@ -16,7 +16,6 @@
               <th>Населенный пункт</th>
               <th>Особая категория</th>
               <th v-if="route.params.filter === 'revoked'"></th>
-              <th  v-if="route.params.filter === 'exit-request'"></th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +27,7 @@
             >
               <td>{{ party.ticket_number }}</td>
               <td>
-                <RouterLink class="party-item-title" :to="`/manager/party-data/${JSON.stringify(party)}`">
+                <RouterLink class="party-item-title" :to="`/manager/party-data/${party.id}`">
                   {{ `${party.user.last_name} ${party.user.first_name} ${party.user.middle_name ?? ''}` }}
                 </RouterLink>
               </td>
@@ -48,18 +47,6 @@
                     :viewboxHeight="32"
                   />
                 </button>
-              </td>
-
-              <td v-else-if="route.params.filter === 'exit-request'">
-                <div class="party-item-controls">
-                 <div class="party-item-controls-btn">
-                  <span>Действия</span>
-
-                  <div class="party-item-controls-dropDown">
-                    <Button name="" />
-                  </div>
-                 </div>
-                </div>
               </td>
             </tr>
           </tbody>
