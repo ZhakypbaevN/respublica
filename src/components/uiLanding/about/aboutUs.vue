@@ -1,27 +1,26 @@
 <template>
   <section class="landing-block" id="who-are-we">
     <div class="wrapper">
-      <h2 class="landing-title" id="aboutUs">Кто мы?</h2>
+      <h2 class="landing-title" id="aboutUs">{{ $t("about-us-page-who-are-we") }}</h2>
 
       <div class="icon-block">
         <div class="icon-items">
           <div class="icon-item">
             <SvgIcon name="respublica-logo" :viewboxWidth="60" :viewboxHeight="60" />
             <div class="icon-item-description">
-              <span class="icon-item-title">RESPUBLICA</span>
+              <span class="icon-item-title">{{ $t("about-us-page-respublica") }}</span>
               <span class="icon-item-text">
-                В переводе с латинского – общее, общественное, государственное дело. Мы нацелены на структурные преобразования во всех сферах жизни общества
+                {{ $t("about-us-page-resbublica-description") }}
               </span>
             </div>
           </div>
 
-          
           <div class="icon-item">
             <SvgIcon name="metaparty" :viewboxWidth="60" :viewboxHeight="60" />
             <div class="icon-item-description">
-              <span class="icon-item-title">МЕТАПАРТИЯ</span>
+              <span class="icon-item-title">{{ $t("about-us-page-metaparty") }}</span>
               <span class="icon-item-text">
-                Цифровые номады, люди Нового Казахстана, жители центральной Евразии, ощущающие свою принадлежность к Европе и Азии
+                {{ $t("about-us-page-metaparty-description") }}
               </span>
             </div>
           </div>
@@ -29,9 +28,9 @@
           <div class="icon-item">
             <SvgIcon name="businessman" :viewboxWidth="60" :viewboxHeight="60" />
             <div class="icon-item-description">
-              <span class="icon-item-title">НАШИ ЗАДАЧИ</span>
+              <span class="icon-item-title">{{ $t("about-us-page-our-tasks") }}</span>
               <span class="icon-item-text">
-                Достижения нашей страны не должны оставаться в речах политиков. Они должны напрямую отражаться на жизни каждого казахстанца. Пришло время стать счастливыми.
+                {{ $t("about-us-page-our-tasks-description") }}
               </span>
             </div>
           </div>
@@ -39,37 +38,59 @@
 
         <div class="icon-items">
           <div class="icon-item">
-            <SvgIcon name="equal-representatives" :viewboxWidth="60" :viewboxHeight="60" />
+            <SvgIcon
+              name="equal-representatives"
+              :viewboxWidth="60"
+              :viewboxHeight="60"
+            />
             <div class="icon-item-description">
-              <span class="icon-item-title">НАШИ ПРИОРИТЕТЫ</span>
+              <span class="icon-item-title">{{
+                $t("about-us-page-our-priorities")
+              }}</span>
               <ul>
-                <li><span class="icon-item-text">· Образованная нация</span></li>
-                <li><span class="icon-item-text">· Счастье быть здоровым</span></li>
-                <li><span class="icon-item-text">· Казахстанская культура – основа счастливого общества</span></li>
-                <li><span class="icon-item-text">· Благополучные казахстанцы</span></li>
-                <li><span class="icon-item-text">· Отказ от устаревших шаблонов</span></li>
+                <li>
+                  <span class="icon-item-text"
+                    >· {{ $t("about-us-page-our-priorities-educated-nation") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="icon-item-text"
+                    >· {{ $t("about-us-page-happiness-to-be-healthy") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="icon-item-text"
+                    >· {{ $t("about-us-page-kazakh-culture") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="icon-item-text"
+                    >· {{ $t("about-us-page-prosperous-kazakhstans") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="icon-item-text"
+                    >· {{ $t("about-us-page-refusal-of-outdated-templates") }}</span
+                  >
+                </li>
               </ul>
             </div>
           </div>
 
-
           <div class="icon-item">
             <SvgIcon name="businessman" :viewboxWidth="60" :viewboxHeight="60" />
             <div class="icon-item-description">
-              <span class="icon-item-title">НАШИ ЛИДЕРЫ</span>
-              <span class="icon-item-text">
-                Опытные и эффективные управленцы, за каждым - своя история успеха
-              </span>
+              <span class="icon-item-title">{{ $t("about-us-page-our-leaders") }}</span>
+              <span class="icon-item-text"> {{ $t("about-us-page-our-leaders-description") }} </span>
             </div>
           </div>
 
           <div class="icon-item">
             <SvgIcon name="marker" :viewboxWidth="60" :viewboxHeight="60" />
             <div class="icon-item-description">
-              <span class="icon-item-title">ВСЕ РЕГИОНЫ И РАЙОНЫ</span>
+              <span class="icon-item-title">{{ $t('about-us-page-all-regions-and-districs')}}</span>
               <span class="icon-item-text">
-                  Каждый город и поселок этой огромной страны: филиалы, депутаты, активисты
-              </span>
+                {{ $t('about-us-page-all-regions-and-districs-description')}}              </span>
             </div>
           </div>
         </div>
@@ -103,7 +124,6 @@
     flex-direction: column;
     margin-left: 18px;
     width: 550px;
-
   }
 
   &-title {

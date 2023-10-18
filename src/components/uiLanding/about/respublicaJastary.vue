@@ -1,7 +1,7 @@
 <template>
   <section class="respublicaJastary landing-block" id="respublica-jastary">
     <div class="wrapper">
-      <h2 class="landing-title">Respublica Jastary</h2>
+      <h2 class="landing-title">{{ $t('respublica-jastary-title') }}</h2>
 
       <div class="respublicaJastary-inner">
         <div class="respublicaJastary-preview first">

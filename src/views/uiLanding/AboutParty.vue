@@ -6,13 +6,13 @@
     <div class="wrapper">
       <div class="party-charter">
         <div class="party-charter-text">
-          <span class="party-charter-title">Устав партии</span>
-          <span class="party-charter-title-upper">Алға, Қазақстан! Алға, Respublica!</span>
+          <span class="party-charter-title">{{ $t('about-us-page-party-charter') }}</span>
+          <span class="party-charter-title-upper">{{ $t('about-us-page-alga-respublica') }}</span>
         </div>
         <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">
           <Button
             class="party-charter-download"
-            name="Посмотреть устав"
+            :name="$t('about-us-page-view-the-charter-btn')"
             type="default-blue"
             uppercase
           />
@@ -26,7 +26,7 @@
   <section class="partyStructure">
     <div class="wrapper">
       <div class="partyStructure-inner landing-block" id="party-structure">
-        <h2 class="landing-title center">Организационная структура аппарата партии «Respublica»</h2>
+        <h2 class="landing-title center">{{ $t('about-us-page-organizational-structure') }}</h2>
       
         <img src="/img/icons/party-structure-2.svg" alt="">
       </div>
@@ -63,15 +63,15 @@ const sideBarlinks = [
     link: "#party-program"
   },
   {
-    title: 'Организационная структура',
+    title: t('about-us-page-menu-organizational-structure'),
     link: "#party-structure"
   },
   {
-    title: 'История',
+    title: t('about-us-page-menu-history'),
     link: "#history"
   },
   {
-    title: 'Лидеры партии',
+    title: t('about-us-page-menu-party-leaders'),
     link: "#party-leaders"
   },
   {

@@ -1,7 +1,7 @@
 <template>
   <section class="party-leaders landing-block" id="party-leaders">
     <div class="wrapper">
-      <h2 class="landing-title">Лидеры партии</h2>
+      <h2 class="landing-title">{{ $t('party-leaders-title') }}</h2>
       <div class="management-items">
         <div
           class="management-item"
@@ -27,82 +27,58 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 const list = [
   {
     img: '/img/uiLanding/liders/khodzhanazarov.jpg',
-    fullName: 'Ходжаназаров Айдарбек',
+    fullName: t('party-leaders-khojanazarov'),
 
     instagram: 'https://instagram.com/a1darbek?igshid=NTc4MTIwNjQ2YQ==',
-    description: `
-      Депутат Мажилиса Парламента Республики Казахстан Член Комитета по аграрным вопросам.<br>
-      Руководитель партийной фракции
-    `
+    description: t('party-leaders-khojanazarov-description')
   },
   {
     img: '/img/uiLanding/liders/alibekov.jpg',
-    fullName: 'Бейбит Алибеков',
+    fullName: t('party-leaders-alibekov'),
     instagram: 'https://instagram.com/alibekovkz?igshid=MzRlODBiNWFlZA==',
-    description: `
-      Сопредседатель партии.<br>
-      Владелец медиа холдинга и издательства Blackberry.<br>
-      Блогер, основатель «Astana Watch Club»
-    `
+    description: t('party-leaders-alibekov-description')
   },
   {
     img: '/img/uiLanding/liders/baryshev.jpg',
-    fullName: 'Максим Барышев',
+    fullName: t('party-leaders-baryshev'),
     instagram: 'https://instagram.com/baryshev_maxim?igshid=MzRlODBiNWFlZA==',
-    description: `
-    Сопредседатель партии.<br>
-    Председатель регионального совета Национальной палаты предпринимателей «Атамекен» по городу Алматы.<br>
-    Основатель группы компаний "Учёт"
-    `
+    description: t('party-leaders-baryshev-description')
   },
   {
     img: '/img/uiLanding/liders/berdenov.jpg',
-    fullName: 'Руслан Берденов',
+    fullName: t('party-leaders-berdenov'),
     instagram: 'https://instagram.com/ruslan_berdenov?igshid=NTc4MTIwNjQ2YQ==',
-    description: `
-      Сопредседатель партии.<br>
-      Депутат Мажилиса Парламента Республики Казахстан Член Комитета по финансам и бюджету
-    `
+    description: t('party-leaders-berdenov-description')
   },
   {
     img: '/img/uiLanding/liders/koyanbayev.jpg',
-    fullName: 'Нурлан Коянбаев',
+    fullName: t('party-leaders-koyanbaev'),
     instagram: 'https://instagram.com/nurlankoyanbayev?igshid=MzRlODBiNWFlZA==',
-    description: `
-      Сопредседатель партии.<br>
-      Продюсер, актер, телеведущий
-    `
+    description: t('party-leaders-koyanbaev-description')
   },
   {
     img: '/img/uiLanding/liders/tau.jpg',
-    fullName: 'Сырымбек Тау',
+    fullName: t('party-leaders-tau'),
     instagram: 'https://instagram.com/syrymbek_tau?igshid=MzRlODBiNWFlZA==',
-    description: `
-      Сопредседатель партии.<br>
-      Президент компании «Daco Motors Kazakhstan»
-    `
+    description: t('party-leaders-tau-description')
   },
   {
     img: '/img/uiLanding/liders/shonbay.jpg',
-    fullName: 'Куаныш Шонбай',
+    fullName: t('party-leaders-shonby'),
     instagram: 'https://instagram.com/kuantr?igshid=MzRlODBiNWFlZA==',
-    description: `
-      Сопредседатель партии.<br>
-      Основатель группы компаний «Shonbay Inc»
-    `
+    description: t('party-leaders-shonby-description')
   },
   {
     img: '/img/uiLanding/liders/shukizhanova.jpg',
-    fullName: 'Динара Шукижанова',
+    fullName: t('party-leaders-shukizhanova'),
     instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ==',
-    description: `
-      Сопредседатель партии.<br>
-      Депутат Мажилиса Парламента Республики Казахстан
-      Член Комитета по экономической реформе и региональному развитию
-    `
+    description: t('party-leaders-shukizhanova-description')
   }
 ]
 </script>
