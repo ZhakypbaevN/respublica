@@ -137,6 +137,12 @@
           <div class="exitParty-content">
             <h4 class="exitParty-content-messege-title green">ЗАЯВКА УСПЕШНО ОТПРАВЛЕНА</h4>
 
+
+            <div class="exitParty-motive">
+              <h4 class="exitParty-motive-title">Причина:</h4>
+              <p class="exitParty-motive-text">{{ exitPartyDatas.select ?? exitPartyDatas.text }}</p>
+            </div>
+
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <div class="exitParty-doc-namEwithAction">
@@ -164,6 +170,11 @@
               <span style="color:grey">{{ moment(oldExitRequest.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
             </h4>
             <br>
+
+            <div class="exitParty-motive">
+              <h4 class="exitParty-motive-title">Причина:</h4>
+              <p class="exitParty-motive-text">{{ exitPartyDatas.select ?? exitPartyDatas.text }}</p>
+            </div>
 
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
@@ -286,6 +297,7 @@ const getRequestExitParty = () => {
       if (response.data.status !== 'approved') {
         exitPartyDatas.document = {};
         exitPartyDatas.document.name = response.data.document;
+        exitPartyDatas.select = response.data.reason_for_resignation;
         exitPartyDatas.status = response.data.status;
       } else oldExitRequest.value = response.data;
 
@@ -305,10 +317,9 @@ const getRequestExitParty = () => {
 // Send Exit From Party
 const postRequestExitParty = () => {
   isLoading.btn = true;
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/resignation`;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/resignation?reason_for_resignation=${exitPartyDatas.select ?? exitPartyDatas.text!}`;
 
   const formData = new FormData();
-  formData.append("comment", exitPartyDatas.select ?? exitPartyDatas.text!);
   formData.append("document", exitPartyDatas.document!);
 
   axios({
@@ -422,6 +433,23 @@ const postRequestExitParty = () => {
         height: 24px;
         fill: var(--accent-color);
       }
+    }
+  }
+
+  &-motive {
+    display: flex;
+    grid-gap: 9px;
+    margin-bottom: 20px;
+
+    &-title {
+      color: var(--light-gray-color);
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &-text {
+      color: var(--gray-color);
+      font-size: 20px;
     }
   }
 

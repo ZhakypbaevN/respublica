@@ -34,27 +34,23 @@ const sideBarlinks = [
   },
   {
     title: 'Новости для фракции',
-    link: "/media/news-fraction-list"
+    link: "/media/news-for-the-faction"
   },
   {
     title: 'Пресса о нас',
-    link: "/media/press-list"
+    link: "/media/press-about-us"
   },
   {
     title: 'Видеогалерея',
-    link: "/media/party-list/deleted"
+    link: "/media/video-gallery"
   },
   {
     title: 'Фотогалерея',
-    link: "/media/party-list/deleted"
+    link: "/media/photo-gallery"
   },
   {
     title: 'Анонсы, объявления',
-    link: "/media/party-list/deleted"
-  },
-  {
-    title: 'Создать закуп',
-    link: "/media/party-list/deleted"
+    link: "/media/announcements"
   }
 ]
 </script>
