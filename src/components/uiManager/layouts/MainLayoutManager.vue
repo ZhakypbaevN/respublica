@@ -34,7 +34,7 @@ const sideBarlinks = [
   },
   {
     title: 'Заявки на удаление',
-    link: "/manager/party-list/exit-request"
+    link: "/manager/party-resignation-list"
   },
   {
     title: 'Удаленные',
