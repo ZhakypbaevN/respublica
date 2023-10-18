@@ -11,6 +11,7 @@
             <tr class="party-head">
               <th>№ парт билета</th>
               <th>ФИО</th>
+              <th>Статус</th>
               <th>Дата выдачи</th>
               <th>Область</th>
               <th>Населенный пункт</th>
@@ -31,10 +32,15 @@
                 </RouterLink>
               </td>
               <td>
+                {{ checkStatus(party.status) }}
+              </td>
+              <td>
                 {{ party.membership.join_date }}
               </td>
-              <td>{{ party.membership.location_id ?? '-' }}</td>
-              <td>{{ party.membership.city ?? '-' }}</td>
+              <td>-</td>
+              <td>-</td>
+              <!-- <td>{{ party.membership.location.parent?.name ?? '-' }}</td>
+              <td>{{ party.membership.location.name ?? '-'}}</td> -->
               <td class="status">
                 <span>{{ getStatusList(party) }}</span>
               </td>
@@ -49,11 +55,9 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router'
 import { useToast } from '../../../modules/toast'
 
 const { toast } = useToast()
-const route = useRoute()
 
 const partyDataList = ref([]);
 const token = localStorage.getItem('TOKEN');
@@ -67,6 +71,12 @@ const getStatusList = (data) => {
   if (data.is_on_childcare_leave) list.push('Находящиеся в отпуске по уходу за детьми');
   if (!list.length) return '-'
   return list.join(', ');
+}
+
+const checkStatus = (status) => {
+  if (status === 'pending') return 'В ожидании';
+  if (status === 'approved') return 'Подтвержден';
+  return 'Откланен';
 }
 
 onMounted(() => {

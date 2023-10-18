@@ -59,10 +59,10 @@
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>Область:</span>
-                  {{ partyData?.location.parent ? partyData?.location.parent?.name ?? '-' : partyData?.location.name }}
+                  {{ partyData?.location.parent?.name ?? '-' }}
                 </h4>
 
-                <h4 v-if="partyData?.location.parent" class="userData-content-infoBlock-item">
+                <h4 class="userData-content-infoBlock-item">
                   <span>Населенный пункт:</span>
                   {{ partyData?.location.name ?? '-' }}
                 </h4>

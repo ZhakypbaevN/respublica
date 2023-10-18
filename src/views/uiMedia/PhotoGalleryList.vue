@@ -1,20 +1,13 @@
 <template>
   <section class="wrapper-main">
     <div class="news wrapper">
-
-      <div class="news-header">
-        <Input
-          placeholder="Поиск по проекту"
-          staticPlaceholder
-        />
+      <div class="news-items">
         <Button
           class="news-header-addNewsBtn"
           type="default-blue"
         >
           <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
         </Button>
-      </div>
-      <div class="news-items">
         <PhotoItem data="csdcs"/>
         <PhotoItem data="csdcs"/>
         <PhotoItem data="csdcs"/>
@@ -26,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import PhotoItem from "../../../components/uiMedia/photoItem.vue"
+import PhotoItem from "../../components/uiMedia/photoItem.vue"
 </script>
 
 <style scoped lang="scss">
@@ -60,7 +53,7 @@ import PhotoItem from "../../../components/uiMedia/photoItem.vue"
   &-items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 40px;
+    grid-gap: 30px;
   }
 }
 </style>

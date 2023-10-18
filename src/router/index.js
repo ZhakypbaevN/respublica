@@ -72,8 +72,7 @@ import MediaPressAboutUsEdit from '../views/uiMedia/press-about-us/PressAboutUsE
 import MediaVideoGalleryList from '../views/uiMedia/video-gallery/VideoGalleryList.vue'
 import MediaVideoGalleryEdit from '../views/uiMedia/video-gallery/VideoGalleryEdit.vue'
 
-import MediaPhotoGalleryList from '../views/uiMedia/photo-gallery/PhotoGalleryList.vue'
-import MediaPhotoGalleryEdit from '../views/uiMedia/photo-gallery/PhotoGalleryEdit.vue'
+import MediaPhotoGalleryList from '../views/uiMedia/PhotoGalleryList.vue'
 
 import MediaAnnouncementsList from '../views/uiMedia/announcements/AnnouncementsList.vue'
 import MediaAnnouncementsEdit from '../views/uiMedia/announcements/AnnouncementsEdit.vue'
@@ -363,18 +362,7 @@ const routes = [
         name: 'MediaPhotoGalleryList',
         component: MediaPhotoGalleryList,
       },
-      {
-        path: 'photo-gallery/create',
-        name: 'MediaPhotoGalleryCreate',
-        component: MediaPhotoGalleryEdit
-      },
-      {
-        path: 'photo-gallery/:photo_id',
-        name: 'MediaPhotoGalleryEdit',
-        component: MediaPhotoGalleryEdit
-      },
 
-      
       {
         path: 'announcements',
         name: 'MediaAnnouncementsList',

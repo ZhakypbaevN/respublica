@@ -255,7 +255,8 @@ interface IProps {
   show: boolean,
 }
 interface Emits {
-  (event: 'hide'): Function
+  (event: 'hide'): Function,
+  (event: 'finish'): Function,
 }
 
 const props = defineProps<IProps>()
@@ -385,10 +386,16 @@ const postParty = (data) => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Вы успешно вступили в партию'
+        message: 'Вы успешно вступили в партию',
+        type: 'success'
       })
-      loading.value = false
+      
+      emits('finish')
+      setTimeout(() => {
+        emits('hide')
+      }, 300);
 
+      loading.value = false
     })
     .catch((err) => {
 

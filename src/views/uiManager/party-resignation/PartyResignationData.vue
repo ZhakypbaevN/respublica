@@ -210,66 +210,67 @@
                 />
               </Button>
             </div>
-
-            <div v-else>
-              <Button
-                @click="() => showJoinPartyModal = true"
-                name="Вступить в партию"
-                type="default-blue"
-              />
-            </div>
           </div>
 
           <div class="userData-bottom">
             <Button
               class="userData-btn exit"
               name="Подтвердить выход"
-              type="outline-red"
+              type="default-red"
               v-slot:left
+              @click="() => showModal.confirm = true"
             >
               <SvgIcon
-                name="trash"
-                :viewboxWidth="32"
-                :viewboxHeight="32"
+                name="logout"
+                :viewboxWidth="24"
+                :viewboxHeight="24"
               />
             </Button>
+
             <Button
-              class="userData-btn exit"
+              type="default-grey"
               name="Отказать"
-              type="outline-red"
-              v-slot:left
-            >
-              <SvgIcon
-                name="trash"
-                :viewboxWidth="32"
-                :viewboxHeight="32"
-              />
-            </Button>
+              @click="() => showModal.cancel = true"
+            />
           </div>
+
+
+
+          <ConfirmModal
+            :show="showModal.confirm"
+            :id="partyData.id"
+            @hide="() => showModal.confirm = false"
+          />
+
+          <CancelModal
+            :show="showModal.cancel"
+            :id="partyData.id"
+            @hide="() => showModal.cancel = false"
+          />
         </div>
       </div>
     </section>
-
-    <JoinPartyModal
-      :show="showJoinPartyModal"
-      @hide="() => showJoinPartyModal = false"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
-import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
+import ConfirmModal from '../../../components/uiManager/party/confirmModal.vue'
+import CancelModal from '../../../components/uiManager/party/cancelModal.vue'
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router'
 import { useToast } from '../../../modules/toast'
+import { reactive } from 'vue';
 
 const { toast } = useToast()
 const route = useRoute()
 
 const partyData = ref(null);
-const showJoinPartyModal = ref(false);
+const showModal = reactive({
+  confirm: false,
+  cancel: false,
+})
 const token = localStorage.getItem('TOKEN');
 
 onMounted(() => {
@@ -300,7 +301,7 @@ const getPartData = () => {
 
 <style scoped lang="scss">
 .wrapper-main {
-  padding-top: 40px;
+  padding: 40px 0 80px;
   background-color: var(--accent-color-op05);
 }
 
@@ -488,7 +489,6 @@ const getPartData = () => {
     display: flex;
     align-items: center;
     grid-gap: 10px;
-    margin-bottom: 38px;
 
     &.exit {
       padding: 12px 20px;
@@ -497,7 +497,7 @@ const getPartData = () => {
         width: 30px;
         height: 30px;
 
-        fill: var(--red-color);
+        fill: white;
       }
     }
 
@@ -505,6 +505,11 @@ const getPartData = () => {
       width: 32px;
       height: 32px;
     }
+  }
+
+  &-bottom {
+    display: flex;
+    grid-gap: 20px;
   }
 }
 </style>
