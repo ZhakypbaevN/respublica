@@ -41,9 +41,11 @@ import BusinessAppealDetail from '../views/uiBusiness/appeal/AppealDetail.vue'
 
 
 // ------------------ UI Manager ------------------
-import PartyDataList from '../views/uiManager/party/PartyDataList.vue'
+import ManagerPartyDataList from '../views/uiManager/party/PartyDataList.vue'
 import ManagerPartyData from '../views/uiManager/party/PartyData.vue'
 
+import ManagerPartyResignationList from '../views/uiManager/party-resignation/PartyResignationList.vue'
+import ManagerPartyResignationData from '../views/uiManager/party-resignation/PartyResignationData.vue'
 
 // ------------------ UI Client ------------------
 import MyRequests from '../views/uiClient/requests/MyRequests.vue'
@@ -255,14 +257,27 @@ const routes = [
       { path: '/page-in-development', name: 'ManagerPageInDevelopment', component: PageInDevelopment },
       {
         path: 'party-list/:filter',
-        name: 'PartyDataList',
-        component: PartyDataList
+        name: 'ManagerPartyDataList',
+        component: ManagerPartyDataList
       },
       {
         path: 'party-data/:party_id',
         name: 'ManagerPartyData',
         component: ManagerPartyData
+      },
+
+      {
+        path: 'party-resignation-list',
+        name: 'ManagerPartyResignationList',
+        component: ManagerPartyResignationList
+      },
+      {
+        path: 'party-resignation-data/:party_id',
+        name: 'ManagerPartyResignationData',
+        component: ManagerPartyResignationData
       }
+
+      
     ]
   },
 

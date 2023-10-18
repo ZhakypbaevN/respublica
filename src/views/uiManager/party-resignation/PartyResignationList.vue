@@ -15,7 +15,6 @@
               <th>Область</th>
               <th>Населенный пункт</th>
               <th>Особая категория</th>
-              <th v-if="route.params.filter === 'revoked'"></th>
             </tr>
           </thead>
           <tbody>
@@ -23,30 +22,21 @@
             <tr
               class="party-item"
               v-for="party in partyDataList"
-              :key="party.ticket_number"
+              :key="party.membership.ticket_number"
             >
-              <td>{{ party.ticket_number }}</td>
+              <td>{{ party.membership.ticket_number }}</td>
               <td>
-                <RouterLink class="party-item-title" :to="`/manager/party-data/${party.id}`">
+                <RouterLink class="party-item-title" :to="`/manager/party-resignation-data/${party.id}`">
                   {{ `${party.user.last_name} ${party.user.first_name} ${party.user.middle_name ?? ''}` }}
                 </RouterLink>
               </td>
               <td>
-                {{ party.join_date }}
+                {{ party.membership.join_date }}
               </td>
-              <td>{{ party.location_id ?? '-' }}</td>
-              <td>{{ party.city ?? '-' }}</td>
+              <td>{{ party.membership.location_id ?? '-' }}</td>
+              <td>{{ party.membership.city ?? '-' }}</td>
               <td class="status">
                 <span>{{ getStatusList(party) }}</span>
-              </td>
-              <td v-if="route.params.filter === 'revoked'">
-                <button class="party-item-btn">
-                  <SvgIcon
-                    name="trash"
-                    :viewboxWidth="32"
-                    :viewboxHeight="32"
-                  />
-                </button>
               </td>
             </tr>
           </tbody>
@@ -81,7 +71,7 @@ const getStatusList = (data) => {
 
 onMounted(() => {
 
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100&status=${route.params.filter}`
+  const url = 'https://api.respublica.codetau.com/api/v1/admin/parties/memberships/resignations?offset=0&limit=100';
 
   axios({
     method: "get",

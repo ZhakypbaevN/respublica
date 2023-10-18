@@ -2,112 +2,129 @@
   <div class="wrapper-main">
     <section class="myRequests">
       <div class="wrapper">
-        <h2 class="landing-title">Партийные данные</h2>
+        <h2 class="landing-title">Выход из партий</h2>
 
         <div class="userData" v-if="partyData">
           <div class="userData-inner">
-            <div class="userData-content">
-              <h2 class="userData-content-title">
-                {{ `${partyData.user.last_name} ${partyData.user.first_name} ${partyData.user.middle_name ?? ''}` }}
-              </h2>
 
-              <div class="userData-content-infoBlock">
-                <h4 class="userData-content-infoBlock-item checked">
-                  <span>ИИН:</span>
-                  {{ partyData.user.iin }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Дата рождения:</span>
-                  {{ partyData?.birth_date ?? '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item checked">
-                  <span>Телефон:</span>
-                  {{ partyData.user.phone }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>E-mail:</span>
-                  {{ userData?.email ?? '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Пол:</span>
-                  {{ partyData?.gender === 'male' ? 'Мужчина' : partyData?.gender === 'female' ? 'Женщина' : '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Образование:</span>
-                  {{ partyData?.education === 'higher_education' ? 'Высшее образование' : partyData?.education === 'secondary_special_education' ? 'Среднее образование' : '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Специальность:</span>
-                  {{ partyData?.specialty ?? '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Место работы:</span>
-                  {{ partyData?.workplace ?? '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Должность:</span>
-                  {{ partyData?.position ?? '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Область:</span>
-                  {{ partyData?.location.parent ? partyData?.location.parent?.name ?? '-' : partyData?.location.name }}
-                </h4>
-
-                <h4 v-if="partyData?.location.parent" class="userData-content-infoBlock-item">
-                  <span>Населенный пункт:</span>
-                  {{ partyData?.location.name ?? '-' }}
-                </h4>
-
-                <h4 class="userData-content-infoBlock-item">
-                  <span>Улица/Проспект/Мкр:</span>
-                  {{ partyData?.street ?? '-' }}
-                </h4>
-
-                <div class="userData-content-infoBlock-bottom">
-                  <h4 class="userData-content-infoBlock-item">
-                    <span>Дом:</span>
-                    {{ partyData?.house ?? '-' }}
-                  </h4>
-
-                  <h4 class="userData-content-infoBlock-item">
-                    <span>Кв.:</span>
-                    {{ partyData?.apartment ?? '-' }}
-                  </h4>
+            <div>
+              <div class="userData-content">
+                <div class="userData-motive">
+                  <h4 class="userData-motive-title">Причина:</h4>
+                  <p class="userData-motive-text">{{ partyData.reason_for_resignation }}</p>
                 </div>
 
-                <div class="userData-content-infoBlock-statusBlock">
-                  <div v-if="partyData?.is_pensioner" class="userData-content-infoBlock-status">
-                    Пенсионер
-                  </div>
-
-                  <div v-if="partyData?.is_disabled" class="userData-content-infoBlock-status">
-                    Инвалид
-                  </div>
-
-                  <div v-if="partyData?.is_unemployed" class="userData-content-infoBlock-status">
-                    Безработный
-                  </div>
-
-                  <div v-if="partyData?.is_on_childcare_leave" class="userData-content-infoBlock-status">
-                    Находящиеся в отпуске по уходу за детьми
+                <div class="userData-doc">
+                  <h4 class="userData-doc-title">Документ:</h4>
+                  <div class="userData-doc-namEwithAction">
+                    <a class="userData-doc-name" :href="'https://api.respublica.codetau.com/' + partyData.document">{{ partyData.document }}</a>
                   </div>
                 </div>
               </div>
 
-              <p class="description">
-                С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой партии</a> «Respublica» ознакомлен(а)<br>
-                Согласие на сбор и обработку своих персональных данных есть<br>
-                Не являюсь членом другой политической партии
-              </p>
+              <div class="userData-content">
+                <h2 class="userData-content-title">
+                  {{ `${partyData.user.last_name} ${partyData.user.first_name} ${partyData.user.middle_name ?? ''}` }}
+                </h2>
+
+                <div class="userData-content-infoBlock">
+                  <h4 class="userData-content-infoBlock-item checked">
+                    <span>ИИН:</span>
+                    {{ partyData.user.iin }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>Дата рождения:</span>
+                    {{ partyData.membership.birth_date ?? '-' }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item checked">
+                    <span>Телефон:</span>
+                    {{ partyData.user.phone }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>E-mail:</span>
+                    {{ partyData.user.email ?? '-' }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>Пол:</span>
+                    {{ partyData.membership.gender === 'male' ? 'Мужчина' : partyData.membership.gender === 'female' ? 'Женщина' : '-' }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>Образование:</span>
+                    {{ partyData.membership.education === 'higher_education' ? 'Высшее образование' : partyData.membership.education === 'secondary_special_education' ? 'Среднее образование' : '-' }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>Специальность:</span>
+                    {{ partyData.membership.specialty ?? '-' }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>Место работы:</span>
+                    {{ partyData.membership.workplace ?? '-' }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>Должность:</span>
+                    {{ partyData.membership.position ?? '-' }}
+                  </h4>
+
+                  <!-- <h4 class="userData-content-infoBlock-item">
+                    <span>Область:</span>
+                    {{ partyData.membership.location?.parent ? partyData.membership.location?.parent?.name ?? '-' : partyData.membership.location.name }}
+                  </h4> -->
+
+                  <!-- <h4 v-if="partyData.membership.location.parent" class="userData-content-infoBlock-item">
+                    <span>Населенный пункт:</span>
+                    {{ partyData.membership.location.name ?? '-' }}
+                  </h4>
+
+                  <h4 class="userData-content-infoBlock-item">
+                    <span>Улица/Проспект/Мкр:</span>
+                    {{ partyData.membership.street ?? '-' }}
+                  </h4> -->
+
+                  <div class="userData-content-infoBlock-bottom">
+                    <h4 class="userData-content-infoBlock-item">
+                      <span>Дом:</span>
+                      {{ partyData.membership.house ?? '-' }}
+                    </h4>
+
+                    <h4 class="userData-content-infoBlock-item">
+                      <span>Кв.:</span>
+                      {{ partyData.membership.apartment ?? '-' }}
+                    </h4>
+                  </div>
+
+                  <div class="userData-content-infoBlock-statusBlock">
+                    <div v-if="partyData.membership.is_pensioner" class="userData-content-infoBlock-status">
+                      Пенсионер
+                    </div>
+
+                    <div v-if="partyData.membership.is_disabled" class="userData-content-infoBlock-status">
+                      Инвалид
+                    </div>
+
+                    <div v-if="partyData.membership.is_unemployed" class="userData-content-infoBlock-status">
+                      Безработный
+                    </div>
+
+                    <div v-if="partyData.membership.is_on_childcare_leave" class="userData-content-infoBlock-status">
+                      Находящиеся в отпуске по уходу за детьми
+                    </div>
+                  </div>
+                </div>
+
+                <p class="description">
+                  С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой партии</a> «Respublica» ознакомлен(а)<br>
+                  Согласие на сбор и обработку своих персональных данных есть<br>
+                  Не являюсь членом другой политической партии
+                </p>
+              </div>
             </div>
 
             <div class="userData-card" v-if="partyData">
@@ -119,7 +136,7 @@
                   
                     <h4 class="userData-cardInfo-info number">
                       <span>Партийный билет</span>
-                      №{{ partyData?.ticket_number }}
+                      №{{ partyData.membership.ticket_number }}
                     </h4>
 
 
@@ -139,7 +156,7 @@
 
                     <h4 class="userData-cardInfo-info dayOfAcceptance">
                       <span>Дата выдачи:</span>
-                      {{ partyData?.join_date }}
+                      {{ partyData.membership.join_date }}
                     </h4>
 
                   </div>
@@ -152,7 +169,7 @@
                   
                     <h4 class="userData-cardInfo-info number">
                       <span>Партиялық билет</span>
-                      №{{ partyData?.ticket_number }}
+                      №{{ partyData.membership.ticket_number }}
                     </h4>
 
 
@@ -172,7 +189,7 @@
 
                     <h4 class="userData-cardInfo-info dayOfAcceptance">
                       <span>Берілген күні:</span>
-                      {{ partyData?.join_date }}
+                      {{ partyData.membership.join_date }}
                     </h4>
 
                   </div>
@@ -203,10 +220,10 @@
             </div>
           </div>
 
-          <RouterLink v-if="partyData" to="/client/party-data/exit-party">
+          <div class="userData-bottom">
             <Button
               class="userData-btn exit"
-              name="Удалить из партии"
+              name="Подтвердить выход"
               type="outline-red"
               v-slot:left
             >
@@ -216,7 +233,19 @@
                 :viewboxHeight="32"
               />
             </Button>
-          </RouterLink>
+            <Button
+              class="userData-btn exit"
+              name="Отказать"
+              type="outline-red"
+              v-slot:left
+            >
+              <SvgIcon
+                name="trash"
+                :viewboxWidth="32"
+                :viewboxHeight="32"
+              />
+            </Button>
+          </div>
         </div>
       </div>
     </section>
@@ -248,7 +277,7 @@ onMounted(() => {
 })
 
 const getPartData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/${route.params.party_id}`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/resignations/${route.params.party_id}`;
   axios({
     method: "get",
     url: url,
@@ -276,6 +305,10 @@ const getPartData = () => {
 }
 
 .userData {
+  & .userData-content:last-of-type {
+    margin-bottom: 0px;
+  }
+
   &-inner {
     display: grid;
     grid-template-columns: 780px 1fr;
@@ -284,8 +317,42 @@ const getPartData = () => {
     margin-bottom: 25px;
   }
 
+  &-motive {
+    display: flex;
+    grid-gap: 9px;
+    margin-bottom: 20px;
+
+    &-title {
+      color: var(--light-gray-color);
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &-text {
+      color: var(--gray-color);
+      font-size: 20px;
+    }
+  }
+
+  &-doc {
+    &-title {
+      color: var(--light-gray-color);
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &-name {
+      color: var(--accent-color);
+      font-size: 20px;
+      text-decoration-line: underline;
+      margin-bottom: 0px !important;
+    }
+  }
+
+
   &-content {
     padding: 25px;
+    margin-bottom: 25px;
 
     border-radius: 10px;
     background: white;

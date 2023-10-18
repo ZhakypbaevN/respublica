@@ -356,9 +356,9 @@ const postJoinParty = (
     "gender": gender.value,
 
     "education": education,
-    "specialty": specialization,
-    "workplace": workPlace,
-    "position": post,
+    "specialty": specialization.length ? specialization : null,
+    "workplace": workPlace.length ? workPlace : null,
+    "position": post.length ? post : null,
   
     "location_id": Number(locationID.value ?? regionID.value),
 
