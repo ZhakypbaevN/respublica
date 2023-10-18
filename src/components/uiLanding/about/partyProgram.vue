@@ -3,11 +3,11 @@
     <div class="wrapper">
       <div class="partyProgram-item">
         <img src="/img/about/program-one.jpg" alt="">
-        <span class="partyProgram-title">Restart. Reforma. Respublica </span>
-        <span class="partyProgram-sub-title">программа партии</span>
+        <span class="partyProgram-title">{{ $t('about-us-page-party-program-restart-reforma-respublica') }}</span>
+        <span class="partyProgram-sub-title">{{ $t('about-us-page-party-program-restart-reforma-respublica-subtitle') }}</span>
         
         <a href="/doc/ru/Программа партии_.pdf" target="_blank">
-          <Button name="Посмотреть PDF" type="outline-blue" class="partyProgram-btn">
+          <Button :name="$t('about-us-page-party-program-restart-reforma-respublica-btn')" type="outline-blue" class="partyProgram-btn">
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
         </a>
@@ -15,11 +15,11 @@
       
       <div class="partyProgram-item">
         <img src="/img/about/program-two.jpg" alt="">
-        <span class="partyProgram-title">Это Новый Казахстан!</span>
-        <span class="partyProgram-sub-title">предвыборная программа партии</span>
+        <span class="partyProgram-title">{{ $t('about-us-page-party-program-this-is-new-kazakhstan') }}</span>
+        <span class="partyProgram-sub-title">{{ $t('about-us-page-party-program-partys-election-program') }}</span>
         
         <a href="/doc/ru/Программа предвыборная рус.pdf" target="_blank">
-          <Button name="Посмотреть PDF" type="outline-blue" class="partyProgram-btn">
+          <Button :name="$t('about-us-page-party-program-this-is-new-kazakhstan-btn')" type="outline-blue" class="partyProgram-btn">
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
         </a>
