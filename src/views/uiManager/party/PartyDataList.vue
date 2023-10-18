@@ -34,8 +34,8 @@
               <td>
                 {{ party.join_date }}
               </td>
-              <td>{{ party.location_id ?? '-' }}</td>
-              <td>{{ party.city ?? '-' }}</td>
+              <td>{{ party?.location.parent?.name ?? '-' }}</td>
+              <td>{{ party.location.name ?? '-'}}</td>
               <td class="status">
                 <span>{{ getStatusList(party) }}</span>
               </td>
@@ -81,7 +81,7 @@ const getStatusList = (data) => {
 
 onMounted(() => {
 
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100&status=${route.params.filter}`
+  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100&filter[status]=${route.params.filter}`
 
   axios({
     method: "get",
