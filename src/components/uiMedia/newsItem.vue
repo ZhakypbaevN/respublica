@@ -4,6 +4,7 @@
     @click="goEdit"
   >
     <div class="newsItem-main">
+
       <!-- Preview -->
       <div class="newsItem-preview withZoomPreview-preview">
         <div
@@ -67,7 +68,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 const goEdit = () => {
-  router.push('/media/press-edit/1')
+  router.push('/media/news-list/1')
 }
 </script>
 

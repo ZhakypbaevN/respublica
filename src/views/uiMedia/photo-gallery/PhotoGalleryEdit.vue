@@ -1,7 +1,7 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper">
-      <h2 class="landing-title">Новая новость</h2>
+      <h2 class="landing-title">Новое видео</h2>
 
       <Form
         @finish="postNews"
@@ -14,17 +14,6 @@
               type="textarea"
               placeholder="Введите текст обращения"
               :maxSymbol="150"
-              staticPlaceholder
-            />
-          </div>
-
-          <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Подзаголовок</label>
-            <Input
-              name="subtitle"
-              type="textarea"
-              placeholder="Введите текст обращения"
-              :maxSymbol="250"
               staticPlaceholder
             />
           </div>

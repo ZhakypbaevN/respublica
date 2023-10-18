@@ -1,7 +1,7 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper">
-      <h2 class="landing-title">Новая новость</h2>
+      <h2 class="landing-title">Новое видео</h2>
 
       <Form
         @finish="postNews"
@@ -17,65 +17,13 @@
               staticPlaceholder
             />
           </div>
-
+          
           <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Подзаголовок</label>
-            <Input
-              name="subtitle"
-              type="textarea"
-              placeholder="Введите текст обращения"
-              :maxSymbol="250"
-              staticPlaceholder
-            />
-          </div>
-
-          <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Фото</label>
-            <Button
-              class="newsEdit-addFileBtn"
-              name="Прикрепить файл"
-              type="outline-blue"
-              v-slot:left
-              @click="clickInputFile"
-            >
-              <input
-                type="file"
-                id="upload-files"
-                multiple
-                style="display: none"
-                @change="uploadFiles"
-              />
-              <SvgIcon
-                name="plus"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
-              />
-            </Button>
-          </div>
-
-          <div class="newsEdit-doc">
-            <h4 class="newsEdit-doc-title">Документ:</h4>
-            <label v-if="!newsData.preview" for="upload-files" class="newsEdit-doc-name empty">Прикрепите обязательно файл заполненной формы</label>
-            <div v-else class="newsEdit-doc-namEwithAction">
-              <div class="newsEdit-doc-name">{{ newsData.preview?.name }}</div>
-              <SvgIcon
-                class="newsEdit-doc-remove"
-                name="x"
-                :viewboxHeight="14"
-                :viewboxWidth="21"
-                :width="24"
-                :height="24"
-                @click="deleteFile()"
-              />
-            </div>
-          </div>
-
-          <div class="newsEdit-formItem">
-            <label for="content" class="newsEdit-formItem-label">Текст обращения</label>
+            <label for="content" class="newsEdit-formItem-label">YouTube код видео (iframe)</label>
             <Input
               name="content"
               type="textarea"
-              placeholder="Введите текст обращения"
+              placeholder="Введите YouTube код видео"
               staticPlaceholder
             />
           </div>
@@ -101,58 +49,26 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../../modules/toast'
-import { reactive } from 'vue';
 
 const { toast } = useToast()
 
-const newsData = reactive({
-  preview: null
-})
 const loading = ref(false)
 const token = localStorage.getItem('TOKEN');
-const fileTypes = ['png', 'jpg', 'jpeg', 'gif', 'JPG'];
-
-const clickInputFile = () => {
-  document.getElementById('upload-files')?.click();
-}
-
-const deleteFile = () => {
-  newsData.preview = null;
-}
-
-const uploadFiles = (event) => {
-  if (event.target.files.length > 0) {
-    if (isDocx(event.target.files[0].name)) newsData.preview = event.target.files[0];
-    else {
-      toast({
-        message: 'Документ должен быть с рачширением ' + fileTypes.join(', ')
-      })
-    }
-  }
-}
-
-const isDocx = (fileName) => {
-  const type = fileName.split(".")
-  return fileTypes.includes(type[type.length - 1])
-}
-
 
 // Post
-const postNews = ({ title, subtitle, content }: { title: string, subtitle: string, content: string }) => {
+const postNews = ({ title, content }: { title: string, content: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
   const formData = new FormData();
-  const data = { 
-    category_id: 1, 
+  const data = {
+    category_id: 4, 
     title: title, 
-    preview_text: subtitle, 
     content: content, 
     source_url: null, 
     published: true
   }
   formData.append("article", JSON.stringify(data));
-  formData.append("preview_image", newsData.preview!);
 
   axios({
     method: "post",
@@ -173,15 +89,9 @@ const postNews = ({ title, subtitle, content }: { title: string, subtitle: strin
     .catch((err) => {
       console.log('err', err);
       
-      if (err.response.data.detail === 'Incorrect username or password') {
-        toast({
-          message: 'Неверный логин или пароль!'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
       loading.value = false
     });
 }

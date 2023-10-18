@@ -295,15 +295,9 @@ axios({
   .catch((err) => {
     console.log('err', err);
 
-    if (err.response.data.detail === 'Duplicate membership is not allowed.') {
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    } else {
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    }
+    toast({
+      message: 'Возникли ошибки при запросе'
+    })
     
   });
 })
@@ -397,10 +391,16 @@ const postParty = (data) => {
 
     })
     .catch((err) => {
-      
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+
+      if (err.response.data.detail === 'Duplicate membership is not allowed.') {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
 
       console.log('err', err);
       loading.value = false
