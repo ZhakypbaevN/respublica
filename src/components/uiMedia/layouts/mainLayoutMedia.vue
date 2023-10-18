@@ -34,7 +34,7 @@ const sideBarlinks = [
   },
   {
     title: 'Новости для фракции',
-    link: "/media/news-for-the-faction"
+    link: "/media/news-for-fraction"
   },
   {
     title: 'Пресса о нас',

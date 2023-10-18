@@ -40,12 +40,15 @@ import BusinessAppealList from '../views/uiBusiness/appeal/AppealList.vue'
 import BusinessAppealDetail from '../views/uiBusiness/appeal/AppealDetail.vue'
 
 
+
 // ------------------ UI Manager ------------------
 import ManagerPartyDataList from '../views/uiManager/party/PartyDataList.vue'
 import ManagerPartyData from '../views/uiManager/party/PartyData.vue'
 
 import ManagerPartyResignationList from '../views/uiManager/party-resignation/PartyResignationList.vue'
 import ManagerPartyResignationData from '../views/uiManager/party-resignation/PartyResignationData.vue'
+
+
 
 // ------------------ UI Client ------------------
 import MyRequests from '../views/uiClient/requests/MyRequests.vue'
@@ -55,13 +58,25 @@ import UserData from '../views/uiClient/UserData.vue'
 import ExitParty from '../views/uiClient/ExitParty.vue'
 
 
+
 // ------------------ UI Media ------------------
-import MediaNewsList from '../views/uiMedia/news/News.vue'
-import MediaNewsFractionList from '../views/uiMedia/news/NewsFraction.vue'
+import MediaNewsList from '../views/uiMedia/news/NewsList.vue'
 import MediaNewsEdit from '../views/uiMedia/news/NewsEdit.vue'
 
-import MediaPressList from '../views/uiMedia/press/Press.vue'
-import MediaPressEdit from '../views/uiMedia/press/PressEdit.vue'
+import MediaNewsForFractionList from '../views/uiMedia/news-for-faction/NewsFactionList.vue'
+import MediaNewsForFractionEdit from '../views/uiMedia/news-for-faction/NewsFactionEdit.vue'
+
+import MediaPressAboutUsList from '../views/uiMedia/press-about-us/PressAboutUsList.vue'
+import MediaPressAboutUsEdit from '../views/uiMedia/press-about-us/PressAboutUsEdit.vue'
+
+import MediaVideoGalleryList from '../views/uiMedia/video-gallery/VideoGalleryList.vue'
+import MediaVideoGalleryEdit from '../views/uiMedia/video-gallery/VideoGalleryEdit.vue'
+
+import MediaPhotoGalleryList from '../views/uiMedia/photo-gallery/PhotoGalleryList.vue'
+import MediaPhotoGalleryEdit from '../views/uiMedia/photo-gallery/PhotoGalleryEdit.vue'
+
+import MediaAnnouncementsList from '../views/uiMedia/announcements/AnnouncementsList.vue'
+import MediaAnnouncementsEdit from '../views/uiMedia/announcements/AnnouncementsEdit.vue'
 
 
 // Layouts
@@ -300,25 +315,75 @@ const routes = [
         component: MediaNewsList,
       },
       {
-        path: 'news-fraction-list',
-        name: 'MediaNewsFractionList',
-        component: MediaNewsFractionList,
-      },
-      {
-        path: 'news-edit/:news_id',
+        path: 'news-list/:news_id',
         name: 'MediaNewsEdit',
         component: MediaNewsEdit
       },
-      
+
       {
-        path: 'press-list',
-        name: 'MediaPressList',
-        component: MediaPressList,
+        path: 'news-for-fraction',
+        name: 'MediaNewsForFractionList',
+        component: MediaNewsForFractionList,
       },
       {
-        path: 'press-edit/:press_id',
-        name: 'MediaPressEdit',
-        component: MediaPressEdit
+        path: 'news-for-fraction/:news_id',
+        name: 'MediaNewsForFractionEdit',
+        component: MediaNewsForFractionEdit
+      },
+      
+      {
+        path: 'press-about-us',
+        name: 'MediaPressAboutUsList',
+        component: MediaPressAboutUsList,
+      },
+      {
+        path: 'press-about-us/:press_id',
+        name: 'MediaPressAboutUsEdit',
+        component: MediaPressAboutUsEdit
+      },
+      
+      {
+        path: 'video-gallery',
+        name: 'MediaVideoGalleryList',
+        component: MediaVideoGalleryList,
+      },
+      {
+        path: 'video-gallery/create',
+        name: 'MediaVideoGalleryCreate',
+        component: MediaVideoGalleryEdit
+      },
+      {
+        path: 'video-gallery/:video_id',
+        name: 'MediaVideoGalleryEdit',
+        component: MediaVideoGalleryEdit
+      },
+      
+      {
+        path: 'photo-gallery',
+        name: 'MediaPhotoGalleryList',
+        component: MediaPhotoGalleryList,
+      },
+      {
+        path: 'photo-gallery/create',
+        name: 'MediaPhotoGalleryCreate',
+        component: MediaPhotoGalleryEdit
+      },
+      {
+        path: 'photo-gallery/:photo_id',
+        name: 'MediaPhotoGalleryEdit',
+        component: MediaPhotoGalleryEdit
+      },
+
+      
+      {
+        path: 'announcements',
+        name: 'MediaAnnouncementsList',
+        component: MediaAnnouncementsList,
+      },
+      {
+        path: 'announcements/:press_id',
+        name: 'MediaAnnouncementsEdit',
+        component: MediaAnnouncementsEdit
       },
     ]
   }
