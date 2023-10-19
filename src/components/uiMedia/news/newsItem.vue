@@ -16,15 +16,15 @@
       <!-- Content -->
       <div class="newsItem-content">
         <h4 class="newsItem-content-date">
-          Создано:  12:30, 5 июля 2023
+          {{ data.created_at }}
         </h4>
 
         <h3 class="newsItem-content-title">
-          Полный запрет вейпов будет введен в Казахстане
+          {{ data.title }}
         </h3>
 
         <p class="newsItem-content-description">
-          Этому предшествовала большая работа фракции партии Respublica, государственных и общественных организаций.
+          {{ data.preview_text }}
         </p>
       </div>
     </div>
@@ -59,16 +59,34 @@
         class="newsItem-btns-changeState"
       />
     </div>
+
+    <DeleteModal
+      @click.stop
+      :show="showDeleteModal"
+      :id="data.id"
+      @hide="() => showDeleteModal = false"
+    />
   </button>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import DeleteModal from './deleteModal.vue'
+
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
 
+interface IProps {
+  data: any,
+}
+
+const props = defineProps<IProps>()
+
+const showDeleteModal = ref(false);
+
 const goEdit = () => {
-  router.push('/media/news-list/1')
+  router.push(`/media/news-list/${props.data.id}`)
 }
 </script>
 

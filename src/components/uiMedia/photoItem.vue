@@ -4,10 +4,11 @@
   >
 
     <!-- Preview -->
+    <!-- :style="`background-image:url('https://api.respublica.codetau.com/${data.preview_image}');`" -->
     <div class="newsItem-preview withZoomPreview-preview">
       <div
         class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
-        :style="`background-image:url('https://api.respublica.codetau.com/${data.preview_image}');`"
+        :style="`background-image:url('https://api.respublica.codetau.com/${data.image}');`"
       ></div>
     </div>
 
@@ -46,7 +47,8 @@ const token = localStorage.getItem('TOKEN');
 // Send Send Photo
 const deletePhoto = () => {
   isLoading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${data.id}`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/images`;
+  // const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${data.id}`;
   console.log('props', props.data.id);
   axios({
     method: "delete",

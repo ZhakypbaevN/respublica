@@ -103,7 +103,8 @@ const renderImg = async (file) => {
 }
 onMounted(() => getPhotos());
 const getPhotos = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=5`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/images`;
+  // const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=5`;
 
   axios({
     method: "get",
@@ -138,17 +139,19 @@ const getPhotos = () => {
 // Send Send Photo
 const postPhoto = (photo) => {
   isLoading.btn = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
+  // const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/images`;
 
   const formData = new FormData();
-  const data = {
-    category_id: 5, 
-    title: photo.name, 
-    published: true
-  }
-  formData.append("article", JSON.stringify(data));
+  // const data = {
+  //   category_id: 5, 
+  //   title: photo.name, 
+  //   published: true
+  // }
+  // formData.append("article", JSON.stringify(data));
 
-  formData.append("preview_image", photo!);
+  formData.append("image", photo!);
+  // formData.append("preview_image", photo!);
 
   axios({
     method: "post",

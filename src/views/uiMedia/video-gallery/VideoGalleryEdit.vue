@@ -1,7 +1,7 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper">
-      <h2 class="landing-title">Новое видео</h2>
+      <h2 class="landing-title">{{ route.params.video_id ? formData.title : 'Новое видео' }}</h2>
 
       <Form
         @finish="postNews"
