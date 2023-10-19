@@ -1,7 +1,7 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper">
-      <h2 class="landing-title">Новое видео</h2>
+      <h2 class="landing-title">{{ route.params.news_id ? formData.title : 'Новое новость от прессы' }}</h2>
 
       <Form
         @finish="postNews"
@@ -14,6 +14,31 @@
               type="textarea"
               placeholder="Введите текст обращения"
               :maxSymbol="150"
+              v-model="formData.title"
+              staticPlaceholder
+            />
+          </div>
+
+          <div class="newsEdit-formItem">
+            <label for="" class="newsEdit-formItem-label">Автор (пресса)</label>
+            <Input
+              name="subtitle"
+              type="textarea"
+              placeholder="Введите текст автора прессы"
+              :maxSymbol="250"
+              v-model="formData.subtitle"
+              staticPlaceholder
+            />
+          </div>
+
+          <div class="newsEdit-formItem">
+            <label for="" class="newsEdit-formItem-label">Подзаголовок</label>
+            <Input
+              name="subtitle"
+              type="textarea"
+              placeholder="Введите текст обращения"
+              :maxSymbol="250"
+              v-model="formData.subtitle"
               staticPlaceholder
             />
           </div>
@@ -65,6 +90,7 @@
               name="content"
               type="textarea"
               placeholder="Введите текст обращения"
+              v-model="formData.content"
               staticPlaceholder
             />
           </div>
@@ -72,7 +98,11 @@
 
         <div class="newsEdit-form-btns">
           <Button
-            name="Создать новость"
+            :name="
+              route.params.video_id
+                ? 'Сохранить'
+                : 'Создать новость'
+            "
             htmlType="submit"
           />
           <Button
@@ -87,11 +117,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref, reactive } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../../modules/toast'
-import { reactive } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
 const { toast } = useToast()
 
 const newsData = reactive({
@@ -100,6 +131,13 @@ const newsData = reactive({
 const loading = ref(false)
 const token = localStorage.getItem('TOKEN');
 const fileTypes = ['png', 'jpg', 'jpeg', 'gif', 'JPG'];
+
+const formData = reactive({
+  title: '',
+  subtitle: '',
+  source: '',
+  content: ''
+})
 
 const clickInputFile = () => {
   document.getElementById('upload-files')?.click();
@@ -125,26 +163,62 @@ const isDocx = (fileName) => {
   return fileTypes.includes(type[type.length - 1])
 }
 
+// Get News
+onMounted(() => {
+  if (route.params.news_id) {
+    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${route.params.news_id}`;
+
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then((response) => {
+        console.log('response', response);
+        formData.title = response.data.title;
+        formData.subtitle = response.data.preview_text;
+        formData.source = response.data.source_url;
+        
+        
+        formData.content = response.data.content;
+        
+      })
+      .catch((err) => {
+        console.log('err', err);
+        
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+        loading.value = false
+      });
+
+  }
+})
+
 
 // Post
-const postNews = ({ title, subtitle, content }: { title: string, subtitle: string, content: string }) => {
+const postNews = ({ title, subtitle, source, content }: { title: string, subtitle: string, source: string, content: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
   const formData = new FormData();
-  const data = { 
-    category_id: 1, 
+  const data = {
+    category_id: 3, 
     title: title, 
     preview_text: subtitle, 
     content: content, 
-    source_url: null, 
+    source_url: source, 
     published: true
   }
+  
   formData.append("article", JSON.stringify(data));
-  formData.append("preview_image", newsData.preview!);
+  // formData.append("preview_image", newsData.preview!);
 
   axios({
-    method: "post",
+    method: route.params.news_id ? "put" : "post",
     url: url,
     data: formData,
     headers: {
@@ -155,7 +229,8 @@ const postNews = ({ title, subtitle, content }: { title: string, subtitle: strin
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Новость успешно создана'
+        message: 'Новость успешно создана',
+        type: 'success'
       })
       
     })

@@ -7,28 +7,74 @@
           placeholder="Поиск по проекту"
           staticPlaceholder
         />
-        <Button
-          class="news-header-addNewsBtn"
-          type="default-blue"
-        >
-          <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
-        </Button>
+        <RouterLink to="/media/announcements/create">
+          <Button
+            class="news-header-addNewsBtn"
+            type="default-blue"
+          >
+            <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
+          </Button>
+        </RouterLink>
       </div>
       <div class="news-items">
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
+        <NewsItem
+          v-for="data of newsList"
+          :key="data"
+          :data="data"
+        />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import NewsItem from "../../../components/uiMedia/newsItem.vue"
+import NewsItem from "../../../components/uiMedia/news/newsItem.vue"
+
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+
+import { useToast } from '../../../modules/toast'
+
+const { toast } = useToast()
+
+const isLoading = ref(false)
+const token = localStorage.getItem('TOKEN');
+const newsList = ref([]);
+
+onMounted(() => getPhotos());
+const getPhotos = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=6`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      newsList.value = response.data;
+      isLoading.value = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      isLoading.value = false;
+    });
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -39,11 +85,14 @@ import NewsItem from "../../../components/uiMedia/newsItem.vue"
 
 .news {
   &-header {
+    max-width: 1160px;
+
     display: grid;grid-template-columns: 1fr 60px;
     grid-gap: 20px;
     margin-bottom: 30px;
 
     &-addNewsBtn {
+      width: 60px;
       height: 60px;
 
       display: flex;

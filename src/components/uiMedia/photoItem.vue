@@ -4,10 +4,11 @@
   >
 
     <!-- Preview -->
+    <!-- :style="`background-image:url('https://api.respublica.codetau.com/${data.preview_image}');`" -->
     <div class="newsItem-preview withZoomPreview-preview">
       <div
         class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
-        :style="`background-image:url('${data}');`"
+        :style="`background-image:url('https://api.respublica.codetau.com/${data.image}');`"
       ></div>
     </div>
 
@@ -15,7 +16,7 @@
     <div class="newsItem-delete">
       <Button
         type="default-light-grey"
-        @click="() => $emit('delete')"
+        @click="deletePhoto"
       >
         <SvgIcon
           name="trash-edit-with-bg"
@@ -28,17 +29,60 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios'
+import { ref } from "vue";
+import { useToast } from '../../modules/toast'
+
 interface IProps {
   data: any,
 }
-interface Emits {
-  (event: 'delete'): Function
+
+const props = defineProps<IProps>()
+
+const { toast } = useToast()
+
+const isLoading = ref(false);
+const token = localStorage.getItem('TOKEN');
+
+// Send Send Photo
+const deletePhoto = () => {
+  isLoading.value = true;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/images`;
+  // const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${data.id}`;
+  console.log('props', props.data.id);
+  axios({
+    method: "delete",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      toast({
+        message: 'Фотография удалена!',
+        type: 'success'
+      })
+
+      isLoading.value = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      isLoading.value = false;
+    });
 }
-
-
-defineProps<IProps>()
-defineEmits<Emits>()
-
 </script>
 
 <style scoped lang="scss">

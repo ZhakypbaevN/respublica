@@ -200,7 +200,7 @@
 
 <script setup lang="ts">
 import axios from 'axios'
-import { reactive,ref  } from 'vue';
+import { reactive, ref } from 'vue';
 
 // Modules
 import { useToast } from '../../modules/toast'
@@ -333,6 +333,11 @@ const postRequestExitParty = () => {
   })
     .then((response) => {
       console.log('response', response);
+
+      toast({
+        message: 'Заявка успешно отправлена',
+        type: 'success'
+      })
       
       exitPartyDatas.status = 'pending';
       isLoading.btn = false;

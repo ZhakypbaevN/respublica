@@ -18,9 +18,9 @@
       </div>
       <div class="news-items">
         <YoutubeItem
-          v-for="vidoe of youtubeLinks"
-          :key="vidoe"
-          :vidoe="vidoe"
+          v-for="vidoeData of youTubeData"
+          :key="vidoeData"
+          :vidoeData="vidoeData"
         />
       </div>
     </div>
@@ -28,7 +28,17 @@
 </template>
 
 <script setup lang="ts">
-import YoutubeItem from '../../../components/uiMedia/youtubeItem.vue'
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+
+import YoutubeItem from '../../../components/uiMedia/youtube-video/youtubeItem.vue'
+import { useToast } from '../../../modules/toast'
+
+const { toast } = useToast()
+
+const isLoading = ref(false)
+const token = localStorage.getItem('TOKEN');
+const youTubeData = ref([]);
 
 const youtubeLinks = [
   `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NWPdwjlhk8E?si=IEuuidab_4uKs3pl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
@@ -48,6 +58,41 @@ const youtubeLinks = [
   `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/t9PuqQ3TX7c?si=GjCSp4E397BajrYg&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
   `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XZIS8ZUS50I?si=LoO7SHD6D8i3PDnX&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 ]
+
+onMounted(() => getPhotos());
+const getPhotos = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=4`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      youTubeData.value = response.data;
+      isLoading.value = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      isLoading.value = false;
+    });
+}
+
 </script>
 
 <style scoped lang="scss">

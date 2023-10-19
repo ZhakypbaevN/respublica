@@ -314,6 +314,11 @@ const routes = [
         component: MediaNewsList,
       },
       {
+        path: 'news-list/create',
+        name: 'MediaNewsCreate',
+        component: MediaNewsEdit
+      },
+      {
         path: 'news-list/:news_id',
         name: 'MediaNewsEdit',
         component: MediaNewsEdit
@@ -323,6 +328,11 @@ const routes = [
         path: 'news-for-fraction',
         name: 'MediaNewsForFractionList',
         component: MediaNewsForFractionList,
+      },
+      {
+        path: 'news-for-fraction/create',
+        name: 'MediaNewsForFractionCreate',
+        component: MediaNewsForFractionEdit
       },
       {
         path: 'news-for-fraction/:news_id',
@@ -336,7 +346,12 @@ const routes = [
         component: MediaPressAboutUsList,
       },
       {
-        path: 'press-about-us/:press_id',
+        path: 'press-about-us/create',
+        name: 'MediaPressAboutUsCreate',
+        component: MediaPressAboutUsEdit
+      },
+      {
+        path: 'press-about-us/:news_id',
         name: 'MediaPressAboutUsEdit',
         component: MediaPressAboutUsEdit
       },
@@ -369,7 +384,12 @@ const routes = [
         component: MediaAnnouncementsList,
       },
       {
-        path: 'announcements/:press_id',
+        path: 'announcements/create',
+        name: 'MediaAnnouncementsCreate',
+        component: MediaAnnouncementsEdit
+      },
+      {
+        path: 'announcements/:news_id',
         name: 'MediaAnnouncementsEdit',
         component: MediaAnnouncementsEdit
       },
