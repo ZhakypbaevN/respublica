@@ -23,6 +23,20 @@
               </div>
 
               <div class="userData-content">
+                <div class="userData-motive">
+                  <h4 class="userData-motive-title">Причина подтверждения:</h4>
+                  <p class="userData-motive-text">{{ partyData.reason_for_resignation }}</p>
+                </div>
+
+                <div class="userData-doc">
+                  <h4 class="userData-doc-title">Документ:</h4>
+                  <div class="userData-doc-namEwithAction">
+                    <a class="userData-doc-name" :href="'https://api.respublica.codetau.com/' + partyData.document">{{ partyData.document }}</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="userData-content">
                 <h2 class="userData-content-title">
                   {{ `${partyData.user.last_name} ${partyData.user.first_name} ${partyData.user.middle_name ?? ''}` }}
                 </h2>
@@ -73,20 +87,20 @@
                     {{ partyData.membership.position ?? '-' }}
                   </h4>
 
-                  <!-- <h4 class="userData-content-infoBlock-item">
+                  <h4 class="userData-content-infoBlock-item">
                     <span>Область:</span>
-                    {{ partyData.membership.location?.parent ? partyData.membership.location?.parent?.name ?? '-' : partyData.membership.location.name }}
-                  </h4> -->
+                    {{ partyData.membership.location?.parent?.name ?? '-' }}
+                  </h4>
 
-                  <!-- <h4 v-if="partyData.membership.location.parent" class="userData-content-infoBlock-item">
+                  <h4 class="userData-content-infoBlock-item">
                     <span>Населенный пункт:</span>
-                    {{ partyData.membership.location.name ?? '-' }}
+                    {{ partyData.membership.location?.name ?? '-' }}
                   </h4>
 
                   <h4 class="userData-content-infoBlock-item">
                     <span>Улица/Проспект/Мкр:</span>
                     {{ partyData.membership.street ?? '-' }}
-                  </h4> -->
+                  </h4>
 
                   <div class="userData-content-infoBlock-bottom">
                     <h4 class="userData-content-infoBlock-item">
@@ -212,7 +226,7 @@
             </div>
           </div>
 
-          <div class="userData-bottom">
+          <div class="userData-bottom" v-if="partyData.status === 'pending'">
             <Button
               class="userData-btn exit"
               name="Подтвердить выход"

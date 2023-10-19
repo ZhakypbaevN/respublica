@@ -403,6 +403,10 @@ const postParty = (data) => {
         toast({
           message: 'Возникли ошибки при запросе'
         })
+      } else if (err.response.data.detail === 'Age under 18 is not allowed.') {
+        toast({
+          message: 'Проживание в возрасте до 18 лет не допускается'
+        })
       } else {
         toast({
           message: 'Возникли ошибки при запросе'

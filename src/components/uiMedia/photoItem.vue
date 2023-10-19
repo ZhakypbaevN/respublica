@@ -7,7 +7,7 @@
     <div class="newsItem-preview withZoomPreview-preview">
       <div
         class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
-        :style="`background-image:url('https://i.pinimg.com/564x/66/ed/19/66ed190edaf9f2557cbe63978e1b89e2.jpg');`"
+        :style="`background-image:url('${data}');`"
       ></div>
     </div>
 
@@ -15,6 +15,7 @@
     <div class="newsItem-delete">
       <Button
         type="default-light-grey"
+        @click="() => $emit('delete')"
       >
         <SvgIcon
           name="trash-edit-with-bg"
@@ -30,8 +31,13 @@
 interface IProps {
   data: any,
 }
+interface Emits {
+  (event: 'delete'): Function
+}
+
 
 defineProps<IProps>()
+defineEmits<Emits>()
 
 </script>
 

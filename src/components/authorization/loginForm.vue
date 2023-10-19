@@ -104,51 +104,32 @@ const postLogin = ({ phone, iin, password }: { phone: string, iin: string, passw
   formData.append("username", loginWithPhone.value ? formatPhone(phone) : iin);
   formData.append("password", password);
 
-  const userType = ref('client'); 
+  axios({
+    method: "post",
+    url: url,
+    data: formData
+  })
+    .then((response) => {
+      
+      token.value = response.data['access_token'];
+      localStorage.setItem('TOKEN', token.value);
 
-  if (formatPhone(phone) === '77473392659') userType.value = 'manager';
-  else if (formatPhone(phone) === '77055523019') userType.value = 'media';
-  else if (formatPhone(phone) === '77471098845') userType.value = 'business';
-  
-  if (userType.value !== 'client') {
-    localStorage.setItem('USER_TYPE', userType.value);
-    toast({
-      message: 'Вы успешно авторизовались!',
-      type: 'success'
+      getUserData();
     })
-
-    setTimeout(() => {
-      router.push(`/${userType.value}`)
-    }, 300);
-  } else {
-
-    axios({
-      method: "post",
-      url: url,
-      data: formData
-    })
-      .then((response) => {
-        
-        token.value = response.data['access_token'];
-        localStorage.setItem('TOKEN', token.value);
-  
-        getUserData();
-      })
-      .catch((err) => {
-        console.log('err', err);
-        
-        if (err.response.data.detail === 'Incorrect username or password') {
-          toast({
-            message: 'Неверный логин или пароль!'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
-        loading.value = false
-      });
-  }
+    .catch((err) => {
+      console.log('err', err);
+      
+      if (err.response.data.detail === 'Incorrect username or password') {
+        toast({
+          message: 'Неверный логин или пароль!'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      loading.value = false
+    });
 }
 
 const getUserData = () => {

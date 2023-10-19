@@ -58,7 +58,8 @@ const postConfirmExitParty = () => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Пользователь успешно исключен из партии'
+        message: 'Пользователь успешно исключен из партии',
+        type: 'success'
       })
       
       emits('finish')
