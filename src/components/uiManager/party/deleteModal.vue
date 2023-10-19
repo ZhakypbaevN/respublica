@@ -3,7 +3,7 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="exitParty"
-    title="Отклонение выхода из партий"
+    title="Исключение из партий"
   >
     <Form
       @finish="postCencelExitParty"
@@ -80,7 +80,7 @@ const { toast } = useToast()
 
 interface IProps {
   show: boolean,
-  id: number
+  id: string
 }
 interface Emits {
   (event: 'hide'): Function,
@@ -121,13 +121,13 @@ const isDocx = (fileName) => {
 
 const postCencelExitParty = ({ motive }: { motive: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/resignations/${props.id}/reject?reason_for_reject=${motive}`
+  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/${props.id}?reason=${motive}`
 
   const formData = new FormData();
-  formData.append("document_of_reject", file.value);
+  formData.append("document", file.value);
 
   axios({
-    method: "post",
+    method: "delete",
     url: url,
     data: formData,
     headers: {
@@ -137,22 +137,26 @@ const postCencelExitParty = ({ motive }: { motive: string }) => {
   })
     .then((response) => {
       console.log('response', response);
-
       toast({
-        message: 'Отказ успешно отправлен',
+        message: 'Партийный билет был успешно удален!',
         type: 'success'
       })
       
-      loading.value = false;
+      emits('finish')
+      setTimeout(() => {
+        emits('hide')
+      }, 300);
+
+      loading.value = false
     })
     .catch((err) => {
-      console.log('err', err);
 
-     
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      loading.value = false;
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+
+      console.log('err', err);
+      loading.value = false
     });
 }
 </script>

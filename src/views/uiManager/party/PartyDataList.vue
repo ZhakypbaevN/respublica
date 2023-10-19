@@ -15,7 +15,6 @@
               <th>Область</th>
               <th>Населенный пункт</th>
               <th>Особая категория</th>
-              <th v-if="route.params.filter === 'revoked'"></th>
             </tr>
           </thead>
           <tbody>
@@ -34,19 +33,10 @@
               <td>
                 {{ party.join_date }}
               </td>
-              <td>{{ party?.location.parent?.name ?? '-' }}</td>
+              <td>{{ party.location.parent?.name ?? '-' }}</td>
               <td>{{ party.location.name ?? '-'}}</td>
               <td class="status">
                 <span>{{ getStatusList(party) }}</span>
-              </td>
-              <td v-if="route.params.filter === 'revoked'">
-                <button class="party-item-btn">
-                  <SvgIcon
-                    name="trash"
-                    :viewboxWidth="32"
-                    :viewboxHeight="32"
-                  />
-                </button>
               </td>
             </tr>
           </tbody>
@@ -80,7 +70,6 @@ const getStatusList = (data) => {
 }
 
 onMounted(() => {
-
   const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100&filter[status]=${route.params.filter}`
 
   axios({
@@ -215,29 +204,6 @@ onMounted(() => {
         &:hover,
         &:focus {
           color: var(--accent-color);
-        }
-      }
-
-      &-btn {
-        width: 40px;
-        height: 40px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        border-radius: 8px;
-        background-color: var(--red-color-op05);
-
-        &:hover {
-          background-color: var(--red-color-op07);
-        }
-
-        & svg {
-          width: 32px;
-          height: 32px;
-
-          fill: var(--red-color);
         }
       }
     }

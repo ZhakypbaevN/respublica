@@ -29,7 +29,7 @@
 
                 <h4 class="userData-content-infoBlock-item">
                   <span>E-mail:</span>
-                  {{ userData?.email ?? '-' }}
+                  {{ partyData.user.email ?? '-' }}
                 </h4>
 
                 <h4 class="userData-content-infoBlock-item">
@@ -193,43 +193,36 @@
                 />
               </Button>
             </div>
-
-            <div v-else>
-              <Button
-                @click="() => showJoinPartyModal = true"
-                name="Вступить в партию"
-                type="default-blue"
-              />
-            </div>
           </div>
 
-          <RouterLink v-if="partyData" to="/client/party-data/exit-party">
-            <Button
-              class="userData-btn exit"
-              name="Удалить из партии"
-              type="outline-red"
-              v-slot:left
-            >
-              <SvgIcon
-                name="trash"
-                :viewboxWidth="32"
-                :viewboxHeight="32"
-              />
-            </Button>
-          </RouterLink>
+          <Button
+            v-if="partyData.status !== 'revoked'"
+            class="userData-btn exit"
+            name="Удалить из партии"
+            type="outline-red"
+            v-slot:left
+            @click="() => showDeleteModal = true"
+          >
+            <SvgIcon
+              name="trash"
+              :viewboxWidth="32"
+              :viewboxHeight="32"
+            />
+          </Button>
         </div>
       </div>
     </section>
 
-    <JoinPartyModal
-      :show="showJoinPartyModal"
-      @hide="() => showJoinPartyModal = false"
+    <DeleteModal
+      :show="showDeleteModal"
+      :id="route.params.party_id"
+      @hide="() => showDeleteModal = false"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
+import DeleteModal from '../../../components/uiManager/party/deleteModal.vue'
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
@@ -240,7 +233,7 @@ const { toast } = useToast()
 const route = useRoute()
 
 const partyData = ref(null);
-const showJoinPartyModal = ref(false);
+const showDeleteModal = ref(false);
 const token = localStorage.getItem('TOKEN');
 
 onMounted(() => {

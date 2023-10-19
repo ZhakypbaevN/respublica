@@ -37,10 +37,8 @@
               <td>
                 {{ party.membership.join_date }}
               </td>
-              <td>-</td>
-              <td>-</td>
-              <!-- <td>{{ party.membership.location.parent?.name ?? '-' }}</td>
-              <td>{{ party.membership.location.name ?? '-'}}</td> -->
+              <td>{{ party.membership.location.parent?.name ?? '-' }}</td>
+              <td>{{ party.membership.location.name ?? '-'}}</td>
               <td class="status">
                 <span>{{ getStatusList(party) }}</span>
               </td>
@@ -53,6 +51,7 @@
 </template>
 
 <script setup lang="ts">
+
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useToast } from '../../../modules/toast'
@@ -65,10 +64,10 @@ const token = localStorage.getItem('TOKEN');
 const getStatusList = (data) => {
   const list = [];
 
-  if (data.is_pensioner) list.push('Пенсионер');
-  if (data.is_disabled) list.push('Инвалид');
-  if (data.is_unemployed) list.push('Безработный');
-  if (data.is_on_childcare_leave) list.push('Находящиеся в отпуске по уходу за детьми');
+  if (data.membership.is_pensioner) list.push('Пенсионер');
+  if (data.membership.is_disabled) list.push('Инвалид');
+  if (data.membership.is_unemployed) list.push('Безработный');
+  if (data.membership.is_on_childcare_leave) list.push('Находящиеся в отпуске по уходу за детьми');
   if (!list.length) return '-'
   return list.join(', ');
 }
