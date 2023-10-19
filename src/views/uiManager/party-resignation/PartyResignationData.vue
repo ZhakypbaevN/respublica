@@ -22,9 +22,9 @@
                 </div>
               </div>
 
-              <div class="userData-content">
+              <!-- <div class="userData-content">
                 <div class="userData-motive">
-                  <h4 class="userData-motive-title">Причина подтверждения:</h4>
+                  <h4 class="userData-motive-title">Причина отказа:</h4>
                   <p class="userData-motive-text">{{ partyData.reason_for_resignation }}</p>
                 </div>
 
@@ -34,7 +34,7 @@
                     <a class="userData-doc-name" :href="'https://api.respublica.codetau.com/' + partyData.document">{{ partyData.document }}</a>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <div class="userData-content">
                 <h2 class="userData-content-title">
