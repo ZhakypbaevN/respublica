@@ -6,32 +6,41 @@
       <Form
         @finish="postNews"
       >
-        <div class="newsEdit-form-inputs">
-          <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Заголовок</label>
-            <Input
-              name="title"
-              type="textarea"
-              placeholder="Введите текст обращения"
-              :maxSymbol="150"
-              staticPlaceholder
-            />
+        <div class="newsEdit-form-block">
+          <div class="newsEdit-form-inputs">
+            <div class="newsEdit-formItem">
+              <label for="" class="newsEdit-formItem-label">Заголовок</label>
+              <Input
+                name="title"
+                type="textarea"
+                placeholder="Введите текст обращения"
+                :maxSymbol="150"
+                v-model="formData.title"
+                staticPlaceholder
+              />
+            </div>
+            
+            <div class="newsEdit-formItem">
+              <label for="content" class="newsEdit-formItem-label">YouTube код видео (iframe)</label>
+              <Input
+                name="content"
+                type="textarea"
+                placeholder="Введите YouTube код видео"
+                staticPlaceholder
+                v-model="formData.content"
+              />
+            </div>
           </div>
-          
-          <div class="newsEdit-formItem">
-            <label for="content" class="newsEdit-formItem-label">YouTube код видео (iframe)</label>
-            <Input
-              name="content"
-              type="textarea"
-              placeholder="Введите YouTube код видео"
-              staticPlaceholder
-            />
-          </div>
+          <div class="newsEdit-videoPreview" v-html="formData.content"></div>
         </div>
 
         <div class="newsEdit-form-btns">
           <Button
-            name="Создать новость"
+            :name="
+              route.params.video_id
+                ? 'Сохранить'
+                : 'Создать видео'
+            "
             htmlType="submit"
           />
           <Button
@@ -46,19 +55,60 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router';
+
 import axios from 'axios'
 import { useToast } from '../../../modules/toast'
+import { reactive } from 'vue';
 
+const route = useRoute()
 const { toast } = useToast()
 
 const loading = ref(false)
 const token = localStorage.getItem('TOKEN');
 
+const formData = reactive({
+  title: '',
+  content: ''
+})
+
+onMounted(() => {
+  if (route.params.video_id) {
+    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${route.params.video_id}`;
+
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then((response) => {
+        console.log('response', response);
+        formData.title = response.data.title;
+        formData.content = response.data.content;
+        
+      })
+      .catch((err) => {
+        console.log('err', err);
+        
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+        loading.value = false
+      });
+
+  }
+})
+
 // Post
 const postNews = ({ title, content }: { title: string, content: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
+  const url = route.params.video_id
+    ? `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${route.params.video_id}`
+    : `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
   const formData = new FormData();
   const data = {
@@ -68,10 +118,11 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
     source_url: null, 
     published: true
   }
+  
   formData.append("article", JSON.stringify(data));
 
   axios({
-    method: "post",
+    method: route.params.video_id ? "put" : "post",
     url: url,
     data: formData,
     headers: {
@@ -82,7 +133,8 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Новость успешно создана'
+        message: 'Видео успешно добавлена',
+        type: 'success'
       })
       
     })
@@ -106,6 +158,13 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
 
 .newsEdit {
   &-form {
+    &-block {
+      max-width: 1200px;
+
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      grid-gap: 40px;
+    }
     &-inputs {
       margin-bottom: 40px;
     }
@@ -117,7 +176,6 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
   }
 
   &-formItem {
-    max-width: 800px;
     margin-bottom: 24px;
 
     &-label {

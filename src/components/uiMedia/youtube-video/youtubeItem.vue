@@ -7,17 +7,17 @@
 
       <!-- Preview -->
       <div class="newsItem-preview withZoomPreview-preview">
-        <YoutubeVideo :src="vidoe"></YoutubeVideo>
+        <YoutubeVideo :src="vidoeData.content"></YoutubeVideo>
       </div>
 
       <!-- Content -->
       <div class="newsItem-content">
         <h4 class="newsItem-content-date">
-          Создано:  12:30, 5 июля 2023
+          {{ vidoeData.created_at }}
         </h4>
 
         <h3 class="newsItem-content-title">
-          Полный запрет вейпов будет введен в Казахстане
+          {{ vidoeData.title }}
         </h3>
       </div>
     </div>
@@ -38,6 +38,7 @@
       <Button
         class="newsItem-btns-delete"
         type="default-light-grey"
+        @click.stop="() => showDeleteModal = true"
       >
         <SvgIcon
           name="trash-edit-with-bg"
@@ -52,24 +53,34 @@
         class="newsItem-btns-changeState"
       />
     </div>
+
+    <DeleteModal
+      @click.stop
+      :show="showDeleteModal"
+      :id="vidoeData.id"
+      @hide="() => showDeleteModal = false"
+    />
   </button>
 </template>
 
 <script setup lang="ts">
-import YoutubeVideo from '../uiLanding/news/youtubeVideo.vue';
+import DeleteModal from './deleteModal.vue'
+import YoutubeVideo from '../../uiLanding/news/youtubeVideo.vue';
 
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 interface IProps {
-  vidoe: any,
+  vidoeData: any,
 }
 
-defineProps<IProps>()
-
+const props = defineProps<IProps>()
 const router = useRouter()
 
+const showDeleteModal = ref(false);
+
 const goEdit = () => {
-  router.push('/media/video-gallery/1')
+  router.push(`/media/video-gallery/${props.vidoeData.id}`)
 }
 </script>
 

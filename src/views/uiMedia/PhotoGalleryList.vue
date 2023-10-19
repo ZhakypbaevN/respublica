@@ -19,12 +19,12 @@
         </label>
 
 
-        <PhotoItem
+        <!-- <PhotoItem
           v-for="(file, key) of newPhotos"
           :key="file"
           :data="renderedImages[file.name]"
           @delete="deleteNewFile(key)"
-        />
+        /> -->
 
         <PhotoItem
           v-for="(file, key) of photos"
@@ -37,11 +37,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import axios from 'axios'
+import { ref, reactive } from "vue";
+import { useToast } from '../../modules/toast'
+
 import PhotoItem from "../../components/uiMedia/photoItem.vue"
+import { onMounted } from 'vue';
+
+const { toast } = useToast()
 
 const newPhotos = ref([])
+const isLoading = reactive({
+  btn: false,
+  page: true
+})
 const renderedImages = ref([])
+const token = localStorage.getItem('TOKEN');
 
 const photos = ref([
   'https://i.pinimg.com/564x/66/ed/19/66ed190edaf9f2557cbe63978e1b89e2.jpg',
@@ -69,7 +80,10 @@ const uploadFiles = (event) => {
     newPhotos.value = [...newPhotos.value, ...event.target.files]
     renderedImages.value = []
     for (const file of newPhotos.value) {
-      if (isImage(file.name)) renderImg(file)
+      if (isImage(file.name)) {
+        renderImg(file)
+        postPhoto(file)
+      }
     }
   }
 }
@@ -86,6 +100,91 @@ const renderImg = async (file) => {
   reader.onload = (event) => {
     renderedImages.value[file.name] = event.target.result
   }
+}
+onMounted(() => getPhotos());
+const getPhotos = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=5`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      photos.value = response.data;
+      isLoading.page = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      isLoading.page = false;
+    });
+}
+
+// Send Send Photo
+const postPhoto = (photo) => {
+  isLoading.btn = true;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
+
+  const formData = new FormData();
+  const data = {
+    category_id: 5, 
+    title: photo.name, 
+    published: true
+  }
+  formData.append("article", JSON.stringify(data));
+
+  formData.append("preview_image", photo!);
+
+  axios({
+    method: "post",
+    url: url,
+    data: formData,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      toast({
+        message: 'Фотография загружена',
+        type: 'success'
+      })
+
+      photos.value.push(response.data)
+      
+      isLoading.btn = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+      isLoading.btn = false;
+    });
 }
 </script>
 
