@@ -1,0 +1,68 @@
+/* -----SKELETON ANIMATION----- */
+.skeleton {
+  /* display: inline-block;/ */
+  position: relative;
+  overflow: hidden;
+  background: #f1f3f4 !important;
+  border: none !important;
+  color: transparent !important;
+  opacity: 1 !important;
+
+  &-bg {
+    background-color: #f8f8f8 !important;
+  }
+
+  &.full-text {
+    height: 1em;
+    width: fit-content;
+    display: block;
+    border-radius: 15px;
+  }
+  &.long-text {
+    height: 1em;
+    width: 15pc;
+    display: block;
+    border-radius: 15px;
+  }
+  &.middle-text {
+    height: 1em;
+    width: 10pc;
+    display: block;
+    border-radius: 15px;
+  }
+  &.small-text {
+    height: 1em;
+    width: 5pc;
+    display: block;
+    border-radius: 15px;
+  }
+  &-img {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.517266281512605) 49%, rgba(255,255,255,0) 100%);
+    animation: shimmer 2s infinite;
+    content: '';
+  }
+
+  &.dark {
+    background: #23233d !important;
+  }
+  &.dark-gray {
+    background: #ececec !important;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

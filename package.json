@@ -45,6 +45,7 @@
     "sass": "^1.66.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
+    "vite-plugin-components": "^0.13.3",
     "vue-tsc": "^0.40.13"
   }
 }

@@ -39,6 +39,10 @@ const sideBarlinks = [
   {
     title: 'Удаленные',
     link: "/manager/party-list/revoked"
+  },
+  {
+    title: 'VIP номера',
+    link: "/manager/ticket-num-data-list"
   }
 ]
 </script>

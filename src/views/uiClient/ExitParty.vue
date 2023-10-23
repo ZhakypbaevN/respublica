@@ -7,7 +7,7 @@
           Выйти из партии
         </h2>
 
-        <div class="exitParty-inner" v-if="(!exitPartyDatas.status || exitPartyDatas.status === 'approved') && !isLoading.page && partyData">
+        <div class="exitParty-inner" v-if="(!exitPartyDatas.status || exitPartyDatas.status === 'rejected' || exitPartyDatas.status === 'approved') && !isLoading.page && partyData">
           <div class="exitParty-content">
             <div class="exitParty-content-messege">
               <h4 class="exitParty-content-subtitle">Дорогой пользователь,</h4><br>
@@ -159,11 +159,8 @@
             </p>
           </div>
         </div>
-        <br>
-        <br><br>
-        <br><br>
 
-        <div class="exitParty-inner" v-if="exitPartyDatas.status === 'approved' || oldExitRequest">
+        <div class="exitParty-inner" v-if="oldExitRequest.status === 'approved'">
           <div class="exitParty-content">
             <h4 class="exitParty-content-messege-title blue">
               ВАША ЗАЯВКА УСПЕШНО ОБРАБОТАНА
@@ -173,7 +170,37 @@
 
             <div class="exitParty-motive">
               <h4 class="exitParty-motive-title">Причина:</h4>
-              <p class="exitParty-motive-text">{{ exitPartyDatas.select ?? exitPartyDatas.text }}</p>
+              <p class="exitParty-motive-text">{{ oldExitRequest.reason_for_resignation }}</p>
+            </div>
+
+            <div class="exitParty-doc">
+              <h4 class="exitParty-doc-title">Документ:</h4>
+              <div class="exitParty-doc-namEwithAction">
+                <a class="exitParty-doc-name" :href="'https://api.respublica.codetau.com/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
+              </div>
+            </div>
+            <p>
+              Спасибо за вашу активность и участие в жизни наших участников. Желаем вам удачи в ваших будущих усилиях и началах.
+              Если в будущем вы решите вернуться или изменить свою позицию, помните, что мы всегда открыты для диалога и готовы приветствовать вас обратно.
+            </p><br><br>
+
+            <p>
+              С уважением, Партия Respublica!
+            </p>
+          </div>
+        </div>
+
+        <div class="exitParty-inner" v-if="oldExitRequest.status === 'rejected'">
+          <div class="exitParty-content">
+            <h4 class="exitParty-content-messege-title blue">
+              Вам отказали
+              <span style="color:grey">{{ moment(oldExitRequest.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
+            </h4>
+            <br>
+
+            <div class="exitParty-motive">
+              <h4 class="exitParty-motive-title">Причина:</h4>
+              <p class="exitParty-motive-text">{{ oldExitRequest.reason_for_resignation }}</p>
             </div>
 
             <div class="exitParty-doc">
@@ -216,7 +243,9 @@ const exitPartyDatas = reactive({
   document: null,
   status: null
 })
-const oldExitRequest = ref();
+const oldExitRequest = ref({
+  status: null
+});
 const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'JPG'];
 
 const isLoading = reactive({
@@ -294,7 +323,7 @@ const getRequestExitParty = () => {
     .then((response) => {
       console.log('response', response);
       
-      if (response.data.status !== 'approved') {
+      if (response.data.status === 'pending') {
         exitPartyDatas.document = {};
         exitPartyDatas.document.name = response.data.document;
         exitPartyDatas.select = response.data.reason_for_resignation;
@@ -366,6 +395,9 @@ const postRequestExitParty = () => {
 }
 
 .exitParty {
+  &-inner {
+    margin-bottom: 100px;
+  }
   &-content {
     max-width: 1240px;
     margin-bottom: 65px;

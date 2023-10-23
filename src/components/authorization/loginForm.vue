@@ -62,7 +62,7 @@
       <button
         type="button"
         class="loginForm-message-btn switch"
-        @click="() => loginWithPhone = !loginWithPhone"
+        @click="() => $emit('changeMethod')"
       >
         {{ loginWithPhone ? 'Войти с помощью ИИН' : 'Войти с помощью номера'}}
       </button>
@@ -89,19 +89,29 @@ import { useRouter } from 'vue-router';
 import formatPhone from '../../helpers/formatPhone.js'
 import Checkbox from '../common/Checkbox.vue';
 
+interface IProps {
+  loginWithPhone: boolean,
+}
+interface Emits {
+  (event: 'changeMethod'): Function
+}
+
+const props = defineProps<IProps>()
+defineEmits<Emits>()
+
+
 const { toast } = useToast()
 const router = useRouter()
 
 const loading = ref(false)
 const token = ref();
-const loginWithPhone = ref(true);
 
 const postLogin = ({ phone, iin, password }: { phone: string, iin: string, password: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
 
   const formData = new FormData();
-  formData.append("username", loginWithPhone.value ? formatPhone(phone) : iin);
+  formData.append("username", props.loginWithPhone ? formatPhone(phone) : iin);
   formData.append("password", password);
 
   axios({

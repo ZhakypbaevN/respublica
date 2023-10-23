@@ -191,17 +191,13 @@ const postNews = ({ title, subtitle, content }: { title: string, subtitle: strin
   const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
   const formData = new FormData();
-  const data = {
-    category_id: 1, 
-    title: title, 
-    preview_text: subtitle, 
-    content: content, 
-    source_url: null, 
-    published: true
-  }
   
-  formData.append("article", JSON.stringify(data));
-  // formData.append("preview_image", newsData.preview!);
+  formData.append("title", title);
+  formData.append("category_id", '1');
+  formData.append("preview_text", subtitle);
+  formData.append("content", content);
+  formData.append("published", 'true');
+  formData.append("preview_image", newsData.preview!);
 
   axios({
     method: route.params.news_id ? "put" : "post",
