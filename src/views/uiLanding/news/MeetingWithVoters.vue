@@ -7,11 +7,10 @@
           <div class="news">
             <div class="news-title">Встречи с избирателями</div>
 
-            <div class="news-preview withZoomPreview-preview">
-              <div
-                class="news-preview-img bg-cover withZoomPreview-preview-img"
-                :style="`background-image: url(/img/uiLanding/about-party/events-2.jpg);`"
-              ></div>
+            <div class="news-preview">
+              <img src="/img/gallery/trips-to-regions/1.jpeg" alt="photo" />
+              <img src="/img/gallery/trips-to-regions/2.jpg" alt="photo" />
+              <img src="/img/gallery/trips-to-regions/3.jpg" alt="photo" />
             </div>
 
             <div class="news-text">
@@ -54,14 +53,19 @@
               <br /><br />
               В ходе поездок собрано свыше 300 вопросов, озвученных жителями. В том числе
               108 касаются сферы здравоохранения, 60 – развития сельского хозяйства, 42 –
-              жилищно-коммунальной сферы, 36 – сферы труда и социальной
-              защиты населения, 30 – сферы образования, 30 – развития бизнеса, по 6
-              вопросов приходятся на правоохранительную и сферу государтвенных услуг.
+              жилищно-коммунальной сферы, 36 – сферы труда и социальной защиты населения,
+              30 – сферы образования, 30 – развития бизнеса, по 6 вопросов приходятся на
+              правоохранительную и сферу государтвенных услуг.
               <br /><br />
               Все поднятые вопросы будут проанализированы, обобщены и систематизированы.
               Они лягут в основу работы партийной фракции для их дальнейшего решения через
               обращения в государственные органы и законотворческую деятельность.
               <br /><br />
+              <div class="news-preview">
+              <img src="/img/gallery/trips-to-regions/4.jpg" alt="photo" />
+              <img src="/img/gallery/trips-to-regions/5.jpg" alt="photo" />
+              <img src="/img/gallery/trips-to-regions/6.jpg" alt="photo" />
+            </div>
             </div>
           </div>
         </div>
@@ -100,9 +104,16 @@
     width: 100%;
     margin-bottom: 30px;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
 
-    &-img {
-      padding-bottom: 60%;
+    & img {
+  
+
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 250px;
+
     }
   }
 }
