@@ -21,7 +21,11 @@
           >г.Алматы, ул. Жарокова, 41, 1 этаж</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a
+          href="mailto:S.Raiymbek@respublica-partiyasy.kz"
+          class="contacts-address-block-data"
+          >S.Raiymbek@respublica-partiyasy.kz</a
+        >
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -31,7 +35,11 @@
           >г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a
+          href="mailto:A.Oraz@respublica-partiyasy.kz"
+          class="contacts-address-block-data"
+          >A.Oraz@respublica-partiyasy.kz</a
+        >
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -39,7 +47,11 @@
         <span class="contacts-address-block-field">Акмолинская область</span>
         <span class="contacts-address-block-data"></span>
         <a href="tel:+77751888881" class="contacts-address-block-data">+7 775 188 8881</a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a
+          href="mailto:M.Baktibayev@respublica-partiyasy.kz	"
+          class="contacts-address-block-data"
+          >M.Baktibayev@respublica-partiyasy.kz
+        </a>
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -49,7 +61,11 @@
           >г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a
+          href="mailto:G.Kaiyrbayeva@respublica-partiyasy.kz"
+          class="contacts-address-block-data"
+          >G.Kaiyrbayeva@respublica-partiyasy.kz</a
+        >
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -57,7 +73,11 @@
         <span class="contacts-address-block-field">Алматинская область</span>
         <span class="contacts-address-block-data">г. Конаев, мкр-н 1, уч. 35/10</span>
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a
+          href="mailto:B.Kabasov@respublica-partiyasy.kz"
+          class="contacts-address-block-data"
+          >B.Kabasov@respublica-partiyasy.kz</a
+        >
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -67,7 +87,11 @@
           >г. Атырау, пр. Султан Бейбарыс, 450</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a
+          href="mailto:G.Utebayev@respublica-partiyasy.kz"
+          class="contacts-address-block-data"
+          >G.Utebayev@respublica-partiyasy.kz</a
+        >
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -77,7 +101,11 @@
           >г. Усть-Каменогорск, ул. Чехова, 69, кв.1</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a
+          href="mailto:Zh.Hogzhilbek@respublica-partiyasy.kz"
+          class="contacts-address-block-data"
+          >Zh.Hogzhilbek@respublica-partiyasy.kz</a
+        >
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
@@ -86,14 +114,14 @@
           >г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:n.iuldasheva@respublica-partiyasy.kz" class="contacts-address-block-data">n.iuldasheva@respublica-partiyasy.kz</a>
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
         <span class="contacts-address-block-field">Область Жетісу</span>
         <span class="contacts-address-block-data">Талдыкорган, ул. Абылай хана, 186</span>
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:N.Kambayeva@respublica-partiyasy.kz" class="contacts-address-block-data">N.Kambayeva@respublica-partiyasy.kz</a>
       </div>
     </div>
     <div class="contacts-address">
@@ -104,7 +132,7 @@
           >г. Уральск, с. Желаево, ул.Трудовая, 6/3</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:d.makatov@respublica-partiyasy.kz" class="contacts-address-block-data">d.makatov@respublica-partiyasy.kz</a>
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
@@ -113,7 +141,7 @@
           >г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:a.amandykov@respublica-partiyasy.kz" class="contacts-address-block-data">a.amandykov@respublica-partiyasy.kz</a>
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
@@ -122,7 +150,7 @@
           >г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:M.Madinina@respublica-partiyasy.kz" class="contacts-address-block-data">M.Madinina@respublica-partiyasy.kz</a>
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
@@ -131,7 +159,7 @@
           >г. Кызылорда, ул. Конаева, 19-а, 1 этаж</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:N.Talgatova@respublica-partiyasy.kz" class="contacts-address-block-data">N.Talgatova@respublica-partiyasy.kz</a>
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
@@ -140,7 +168,7 @@
           >г. Актау, 16 мкрн, д. 25, БЦ Prime</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:S.Beisembayeva@respublica-partiyasy.kz" class="contacts-address-block-data">S.Beisembayeva@respublica-partiyasy.kz</a>
       </div>
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
       <div class="contacts-address-block">
@@ -149,7 +177,7 @@
           >г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:Zh.Arganbai@respublica-partiyasy.kz" class="contacts-address-block-data">Zh.Arganbai@respublica-partiyasy.kz</a>
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -159,7 +187,7 @@
           >г. Петропавловск, ул. Алтынсарина, 168-б</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:a.beliyalov@respublica-partiyasy.kz" class="contacts-address-block-data">a.beliyalov@respublica-partiyasy.kz</a>
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -169,7 +197,7 @@
           >г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:B.Rysbekov@respublica-partiyasy.kz" class="contacts-address-block-data">B.Rysbekov@respublica-partiyasy.kz</a>
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -177,7 +205,7 @@
         <span class="contacts-address-block-field">Область Ұлытау:</span>
         <span class="contacts-address-block-data">г. Жезказган, ул. Мира 1</span>
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:Zh.Iztuleuov@respublica-partiyasy.kz" class="contacts-address-block-data">Zh.Iztuleuov@respublica-partiyasy.kz</a>
       </div>
 
       <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
@@ -187,7 +215,7 @@
           >г.Шымкент, Аль-Фарабийский р-н, ул. Жандосова, зд. 21-а</span
         >
         <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:" class="contacts-address-block-data"></a>
+        <a href="mailto:T.Yeszhan@respublica-partiyasy.kz" class="contacts-address-block-data">T.Yeszhan@respublica-partiyasy.kz</a>
       </div>
     </div>
   </div>
