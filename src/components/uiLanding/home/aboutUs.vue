@@ -164,7 +164,7 @@ const aboutUsList = [
 
       & span {
         color: var(--accent-color);
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 600;
         line-height: 1;
 
