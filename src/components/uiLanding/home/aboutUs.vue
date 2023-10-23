@@ -96,7 +96,7 @@ const aboutUsList = [
   {
     title: t('about-us-contribute'),
     text: t('about-us-contribute-text'),
-    btn: t('about-us-contribute-btn '),
+    btn: t('about-us-contribute-btn'),
     link: "/donations",
   },
 ];
