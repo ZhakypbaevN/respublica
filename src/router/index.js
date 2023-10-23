@@ -48,6 +48,8 @@ import ManagerPartyData from '../views/uiManager/party/PartyData.vue'
 import ManagerPartyResignationList from '../views/uiManager/party-resignation/PartyResignationList.vue'
 import ManagerPartyResignationData from '../views/uiManager/party-resignation/PartyResignationData.vue'
 
+import TicketNumList from '../views/uiManager/TicketNumList.vue'
+
 
 
 // ------------------ UI Client ------------------
@@ -289,9 +291,13 @@ const routes = [
         path: 'party-resignation-data/:party_id',
         name: 'ManagerPartyResignationData',
         component: ManagerPartyResignationData
-      }
+      },
 
-      
+      {
+        path: 'ticket-num-data-list',
+        name: 'TicketNumList',
+        component: TicketNumList
+      }
     ]
   },
 

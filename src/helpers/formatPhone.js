@@ -1,4 +1,4 @@
-const formatPhone = input => {
+const formatPhone = (input) => {
   const phoneHead = 7
   const areaCode = input.substring(4, 7)
   const middle = input.substring(9, 12)
