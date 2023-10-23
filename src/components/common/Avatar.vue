@@ -1,17 +1,27 @@
 <template>
   <div class="avatarBlock">
-    <RouterLink
-      class="avatarBlock-preview"
-      :to="`/${userType}`"
-    >
+    <button class="avatarBlock-preview">
       <SvgIcon
         name="avatar"
         :viewboxWidth="44"
         :viewboxHeight="44"
       />
-    </RouterLink>
+    </button>
+
 
     <div class="avatarBlock-dropDown">
+      <RouterLink
+        v-for="linkData of links"
+        :key="linkData.title"
+        class="avatarBlock-link"
+        :to="linkData.link"
+      >
+        <Button
+          :name="linkData.title"
+          type="outline-blue"
+        />
+      </RouterLink>
+
       <Button
         class="avatarBlock-btn"
         name="Выйти аккаунта"
@@ -33,12 +43,27 @@
 import { useToast } from '../../modules/toast'
 import { useRouter } from 'vue-router';
 
-const userType = localStorage.getItem('USER_TYPE');
-
 const { toast } = useToast()
 const router = useRouter()
 
-
+const links = [
+  {
+    title: 'Личные данные',
+    link: '/client'
+  },
+  {
+    title: 'Менеджер',
+    link: '/manager'
+  },
+  {
+    title: 'Пресс-центр',
+    link: '/media'
+  },
+  {
+    title: 'Для просмотра обращении',
+    link: '/business'
+  }
+]
 
 const exit = () => {
   localStorage.removeItem('USER_TYPE');
@@ -88,7 +113,9 @@ const exit = () => {
   }
 
   &-dropDown {
-    width: 260px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
 
     position: absolute;
     top: 140%;
@@ -106,6 +133,15 @@ const exit = () => {
     border-radius: 10px;
 
     transition: all .3s ease-in-out;
+  }
+
+  &-link button {
+    width: 100%;
+    text-align: left;
+  }
+
+  &-link:last-of-type {
+    margin-bottom: 12px;
   }
 
   &-btn {

@@ -6,7 +6,15 @@
       <div class="wrapper-darkMain-inner">
         <TransitionGroup>
           <LoginForm
-            v-if="showForm.login"
+            v-if="showForm.login && loginWithPhone"
+            :loginWithPhone="true"
+            @changeMethod="() => loginWithPhone = !loginWithPhone"
+          />
+
+          <LoginForm
+            v-else-if="showForm.login"
+            :loginWithPhone="false"
+            @changeMethod="() => loginWithPhone = !loginWithPhone"
           />
 
           <!-- Check Code Form -->
@@ -82,7 +90,7 @@ const showForm = reactive<ShowForm>({
   resetPassword: false,
   resetPasswordFinish: false
 })
-
+const loginWithPhone = ref(true);
 const checkData = reactive({
   phone: '',
   token: ''

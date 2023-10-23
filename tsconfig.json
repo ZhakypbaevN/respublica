@@ -21,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/directives/collapse.js", "src/directives/loading.js", "src/main.js", "src/vite-env.d.js"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/directives/collapse.js", "src/directives/loading.js", "src/main.js", "src/vite-env.d.js", "src/helpers/formatPhone.js", "src/helpers/formatPhoneNumber.js", "src/helpers/checkGender.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

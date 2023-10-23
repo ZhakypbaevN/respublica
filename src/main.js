@@ -4,6 +4,7 @@ import './assets/scss/Variables.scss';
 import './assets/scss/Wrapper.scss';
 import './assets/scss/Landing.scss';
 import './assets/scss/Helpers.scss';
+import './assets/scss/Skeleton.scss';
 import './assets/fonts/stylesheet.css';
 
 import App from './App.vue'
