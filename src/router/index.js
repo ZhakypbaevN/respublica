@@ -373,7 +373,7 @@ const routes = [
         component: MediaVideoGalleryEdit
       },
       {
-        path: 'video-gallery/:video_id',
+        path: 'video-gallery/:news_id',
         name: 'MediaVideoGalleryEdit',
         component: MediaVideoGalleryEdit
       },

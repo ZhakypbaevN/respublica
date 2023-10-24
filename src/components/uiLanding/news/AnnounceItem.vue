@@ -5,12 +5,12 @@
     :to="`/announce/${data.id}`"
   >
     <div class="announcement-preview withZoomPreview-preview">
-      <div class="announcement-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(/img/announcement.png);`"></div>
+      <div class="announcement-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
     </div>
 
     <div class="announcement-content">
       <h4 class="announcement-title">{{ data.title }}</h4>
-      <p class="announcement-text" v-html="data.content"></p>
+      <p class="announcement-text" v-html="data.preview_text"></p>
     </div>
   </RouterLink>
 </template>

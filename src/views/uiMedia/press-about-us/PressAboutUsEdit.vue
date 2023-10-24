@@ -1,7 +1,7 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper">
-      <h2 class="landing-title">{{ route.params.news_id ? formData.title : 'Новое новость от прессы' }}</h2>
+      <h2 class="landing-title">{{ route.params.news_id ? formData.title : 'Новая новость' }}</h2>
 
       <Form
         @finish="postNews"
@@ -20,18 +20,6 @@
           </div>
 
           <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Автор (пресса)</label>
-            <Input
-              name="subtitle"
-              type="textarea"
-              placeholder="Введите текст автора прессы"
-              :maxSymbol="250"
-              v-model="formData.subtitle"
-              staticPlaceholder
-            />
-          </div>
-
-          <div class="newsEdit-formItem">
             <label for="" class="newsEdit-formItem-label">Подзаголовок</label>
             <Input
               name="subtitle"
@@ -39,6 +27,16 @@
               placeholder="Введите текст обращения"
               :maxSymbol="250"
               v-model="formData.subtitle"
+              staticPlaceholder
+            />
+          </div>
+
+          <div class="newsEdit-formItem">
+            <label for="" class="newsEdit-formItem-label">Автор (пресса)</label>
+            <Input
+              name="subtitle"
+              placeholder="Введите текст автора прессы"
+              v-model="formData.author"
               staticPlaceholder
             />
           </div>
@@ -71,7 +69,7 @@
             <h4 class="newsEdit-doc-title">Документ:</h4>
             <label v-if="!newsData.preview" for="upload-files" class="newsEdit-doc-name empty">Прикрепите обязательно файл заполненной формы</label>
             <div v-else class="newsEdit-doc-namEwithAction">
-              <div class="newsEdit-doc-name">{{ newsData.preview?.name }}</div>
+              <div class="newsEdit-doc-name">{{ newsData.preview?.name ?? newsData.preview }}</div>
               <SvgIcon
                 class="newsEdit-doc-remove"
                 name="x"
@@ -99,7 +97,7 @@
         <div class="newsEdit-form-btns">
           <Button
             :name="
-              route.params.video_id
+              route.params.news_id
                 ? 'Сохранить'
                 : 'Создать новость'
             "
@@ -135,8 +133,8 @@ const fileTypes = ['png', 'jpg', 'jpeg', 'gif', 'JPG'];
 const formData = reactive({
   title: '',
   subtitle: '',
-  source: '',
-  content: ''
+  content: '',
+  author: ''
 })
 
 const clickInputFile = () => {
@@ -166,7 +164,7 @@ const isDocx = (fileName) => {
 // Get News
 onMounted(() => {
   if (route.params.news_id) {
-    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${route.params.news_id}`;
+    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`;
 
     axios({
       method: "get",
@@ -180,8 +178,8 @@ onMounted(() => {
         console.log('response', response);
         formData.title = response.data.title;
         formData.subtitle = response.data.preview_text;
-        formData.source = response.data.source_url;
-        
+        newsData.preview = response.data.preview_image;
+
         
         formData.content = response.data.content;
         
@@ -200,27 +198,26 @@ onMounted(() => {
 
 
 // Post
-const postNews = ({ title, subtitle, source, content }: { title: string, subtitle: string, source: string, content: string }) => {
+const postNews = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
+  const url = route.params.news_id
+    ? `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`
+    : `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
-  const formData = new FormData();
-  const data = {
-    category_id: 3, 
-    title: title, 
-    preview_text: subtitle, 
-    content: content, 
-    source_url: source, 
-    published: true
-  }
+  const data = new FormData();
   
-  formData.append("article", JSON.stringify(data));
-  // formData.append("preview_image", newsData.preview!);
+  data.append("title", formData.title);
+  data.append("category_id", '3');
+  data.append("preview_text", formData.subtitle);
+  data.append("content", formData.content);
+  data.append("source_url", formData.author);
+  data.append("published", 'true');
+  data.append("preview_image", newsData.preview!);
 
   axios({
     method: route.params.news_id ? "put" : "post",
     url: url,
-    data: formData,
+    data: data,
     headers: {
       accept: 'application/json',
       Authorization: 'Bearer ' + token

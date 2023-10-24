@@ -48,7 +48,7 @@ const token = localStorage.getItem('TOKEN');
 const deletePhoto = () => {
   isLoading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/admin/articles/images`;
-  // const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${data.id}`;
+  // const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${data.id}`;
   console.log('props', props.data.id);
   axios({
     method: "delete",
