@@ -61,8 +61,8 @@ const isLoading = ref(false)
 const token = localStorage.getItem('TOKEN');
 const youtubeLinks = ref([]);
 
-onMounted(() => getPhotos());
-const getPhotos = () => {
+onMounted(() => getVideo());
+const getVideo = () => {
   const url = `https://api.respublica.codetau.com/api/v1/articles?category_id=4&offset=0&limit=100`;
 
   axios({

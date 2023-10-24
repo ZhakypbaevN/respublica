@@ -136,7 +136,7 @@ const routes = [
     component: PressAboutUsList,
   },
   {
-    path: '/press-in-full',
+    path: '/press-about-us-list/:news_id',
     name: 'PressAboutUsDetail',
     component: PressAboutUsDetail,
   },

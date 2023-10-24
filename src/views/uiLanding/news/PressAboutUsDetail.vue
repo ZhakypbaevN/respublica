@@ -1,181 +1,142 @@
 <template>
-  <div class="wrapper-main">
-    <div class="content">
-      <Header />
-      <div class="wrapper-page">
-          <div class="news">
-            <div class="news-title">Республиканцы посетили Жамбылскую область</div>
-            <div class="news-text">Депутат Мажилиса Парламента Республики Казахстан, председатель партии Respublica
-                Айдарбек Ходжаназаров, сопредседатель партии Respublica Куаныш Шонбай, заместитель руководителя
-                центрального аппарата партии Маханбет Хасенов посетили Жамбылскую область. В Байзакском, Жамбылском,
-                Жуалинском района партийцы встретились с представителями госорганов, предприятий, крестьянских
-                хозяйств.</div>
-            <div class="news-img">
-                
+    <div class="wrapper-main">
+      <div class="content">
+        <Header />
+        <section class="landing-block">
+          <div class="wrapper landing-wrapper litle">
+            <div class="news" v-if="newsData">
+              <div class="news-title">{{ newsData.title }}</div>
+  
+              <div class="news-preview withZoomPreview-preview">
+                <div class="news-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${newsData.preview_image});`"></div>
+              </div>
+  
+              <div class="news-text" v-html="newsData.content"></div>
+  
             </div>
-            <div class="news-text">Депутат Мажилиса Парламента Республики Казахстан, председатель партии Respublica
-                Айдарбек Ходжаназаров, сопредседатель партии Respublica Куаныш Шонбай, заместитель руководителя
-                центрального аппарата партии Маханбет Хасенов посетили Жамбылскую область. В Байзакском, Жамбылском,
-                Жуалинском района партийцы встретились с представителями госорганов, предприятий, крестьянских
-                хозяйств.</div>
-            <div class="news-date">
-                <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-                <span>05.08.2023</span>
+  
+            <div class="news-items" v-if="newsList">
+              <NewsItem
+                v-for="news of newsList"
+                :key="news.title"
+                :data="news"
+                litle
+              />
             </div>
-            <div class="news-more">
-                <div class="news-more-title">Смотрите также</div>
-                <div class="news-more-news">
-                    <div class="news-more-news-img">
-                        
-                    </div>
-                    <div class="news-more-news-text">
-                        <div class="news-more-news-text-title">Потери жамбылским аграриям из-за засухи будут
-                            возмещены</div>
-                        <div class="news-more-news-text-description">Инициатива мажилисмена А.Ходжаназарова была
-                            поддержана. Премьер-министр А. Смаилов на встрече с жамбылскими аграриями заверил, что
-                            до </div>
-                    </div>
-                </div>
-                <div class="news-more-news">
-                    <div class="news-more-news-img">
-                        
-                    </div>
-                    <div class="news-more-news-text">
-                        <div class="news-more-news-text-title">Республиканцы обсудили с западноказахстанскими
-                            предпринимателями проблемные вопросы бизнеса</div>
-                        <div class="news-more-news-text-description">Западно-Казахстанскую область посетили депутаты
-                            Мажилиса Парламента Республики Казахстан от партии Respublica Айдарбек Ходжаназаров и
-                            ... </div>
-                    </div>
-                </div>
-                <div class="news-more-news">
-                    <div class="news-more-news-img">
-                        
-                    </div>
-                    <div class="news-more-news-text">
-                        <div class="news-more-news-text-title">Потери жамбылским аграриям из-за засухи будут
-                            возмещены</div>
-                        <div class="news-more-news-text-description">Инициатива мажилисмена А.Ходжаназарова была
-                            поддержана. Премьер-министр А. Смаилов на встрече с жамбылскими аграриями заверил, что
-                            до </div>
-                    </div>
-                </div>
-                <div class="news-more-news">
-                    <div class="news-more-news-img">
-                        
-                    </div>
-                    <div class="news-more-news-text">
-                        <div class="news-more-news-text-title">Потери жамбылским аграриям из-за засухи будут
-                            возмещены</div>
-                        <div class="news-more-news-text-description">Инициатива мажилисмена А.Ходжаназарова была
-                            поддержана. Премьер-министр А. Смаилов на встрече с жамбылскими аграриями заверил, что
-                            до </div>
-                    </div>
-                </div>
-
-            </div>
-
+  
           </div>
-
+        </section>
       </div>
       <Footer />
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
+import convertDateTime from '../../../helpers/convertDateTime.js';
+
+import NewsItem from '../../../components/uiLanding/news/newsItem.vue';
+
+import axios from 'axios';
+import { onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router'
+import { useToast } from '../../../modules/toast'
+
+const { toast } = useToast()
+const route = useRoute()
+
+const newsData = ref(null);
+const newsList = ref(null);
+
+onMounted(() => getData())
+
+const getData = () => {
+  getNewsData();
+  getNewsList();
+}
+
+watch(
+  () => route.params.announce_id,
+  getData
+)
+
+const getNewsData = () => {
+const url = `https://api.respublica.codetau.com/api/v1/articles/${route.params.news_id}`;
+axios({
+  method: "get",
+  url: url,
+})
+  .then((response) => {
+    newsData.value = response.data;
+  })
+  .catch((err) => {
+    console.log('err', err);
+    toast({
+        message: 'Возникли ошибки при запросе'
+    })
+  });
+}
+
+const getNewsList = () => {
+const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=3`;
+axios({
+    method: "get",
+    url: url,
+})
+  .then((response) => {
+    newsList.value = [];
+
+    response.data.forEach(news => {
+        if (news.id.toString() !== route.params.news_id) newsList.value.push(news);
+    });
+    })
+    .catch((err) => {
+    console.log('err', err);
+    toast({
+        message: 'Возникли ошибки при запросе'
+    })
+    });
+}
 </script>
 
 <style scoped lang="scss">
-.wrapper-page {
-  display: flex;
-  justify-content: center;
+.wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .news {
-  max-width: 920px;
-  margin-top: 50px;
+margin-bottom: 100px;
 
-  &-title {
+&-title {
     color: var(--primary-color);
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 40px;
-  }
+}
 
-  &-text {
+&-text {
     color: var(--primary-color);
     font-size: 22px;
     font-weight: 400;
     line-height: 25px;
     margin-bottom: 30px;
-  }
+}
 
-  &-img {
+&-preview {
     width: 100%;
     margin-bottom: 30px;
+    border-radius: 10px;
 
-    & img {
-      width: 100%;
+    &-img {
+    padding-bottom: 60%;
     }
-  }
+}
 
-  &-date {
+&-items {
     display: flex;
-    grid-gap: 5px;
-    margin-bottom: 100px;
-
-    & svg {
-      width: 28px;
-      height: 24px;
-      fill: var(--accent-color);
-    }
-
-    & span {
-      color: var(--light-gray-color);
-      font-size: 16px;
-      font-weight: 500;
-    }
-  }
-
-  &-more {
-    &-title {
-      color: var(--primary-color);
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 40px;
-    }
-
-    &-news {
-      display: flex;
-      margin-bottom: 25px;
-
-      &-img {
-        & img {
-          width: 200px;
-          height: 142px;
-          border-radius: 10px;
-        }
-      }
-
-      &-text {
-        margin-left: 20px;
-
-        &-title {
-          color: var(--primary-color);
-          font-size: 20px;
-          font-weight: 700;
-          margin-bottom: 15px;
-        }
-
-        &-description {
-          color: var(--primary-color);
-          font-size: 20px;
-          font-weight: 400;
-          line-height: 25px;
-      }
-      }
-    }
-  }
+    flex-direction: column;
+    grid-gap: 15px;
+}
 }
 </style>

@@ -3,7 +3,7 @@
     v-if="!litle"
     class="newsItem withZoomPreview"
     :class="{pressAboutUs: pressAboutUs}"
-    :to="`/news/${data.id ?? 1}`"
+    :to="`/${pressAboutUs ? 'press-about-us-list' : 'news'}/${data.id}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
       <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
@@ -13,22 +13,22 @@
           :viewboxWidth="16"
           :viewboxHeight="17"
         />
-        <span>{{ data.created_at ?? '12:30, 5 июля 2023' }}</span>
+        <span>{{ convertDateTime(data.created_at) }}</span>
       </div>
     </div>
 
     <div v-if="pressAboutUs">
       <a href="kazinform.kz" class="newsItem-author">kazinform.kz</a>
 
-      <h4 class="newsItem-title">{{ data.title ?? 'Полный запрет вейпов будет введен в Казахстане' }}</h4>
+      <h4 class="newsItem-title">{{ data.title }}</h4>
     </div>
 
     <div v-else>
-      <h4 class="newsItem-title">{{ data.title ?? 'Полный запрет вейпов будет введен в Казахстане' }}</h4>
+      <h4 class="newsItem-title">{{ data.title }}</h4>
       
       <div class="newsItem-line"></div>
 
-      <p class="newsItem-description">{{ data.preview_text ?? 'Этому предшествовала большая работа фракции партии Respublica, государственных и общественных организаций.' }}</p>
+      <p class="newsItem-description">{{ data.preview_text }}</p>
     </div>
   </RouterLink>
   
@@ -36,16 +36,15 @@
     v-else
     class="newsItemMini withZoomPreview"
     :class="{pressAboutUs: pressAboutUs}"
-    :to="`/news/${data.id ?? 1}`"
+    :to="`/${pressAboutUs ? 'press-about-us-list' : 'news'}/${data.id}`"
   >
     <div class="newsItemMini-preview withZoomPreview-preview">
       <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
     </div>
     <div class="newsItemMini-text">
-      <h4 class="newsItemMini-title">Полный запрет вейпов будет введен в Казахстане</h4>
+      <h4 class="newsItemMini-title">{{ data.title }}</h4>
 
-      <p class="newsItemMini-description">Этому предшествовала большая работа фракции партии Respublica,
-        государственных и общественных организаций.</p>
+      <p class="newsItemMini-description">{{ data.preview_text }}</p>
 
       <div class="newsItemMini-bottom">
         <div class="newsItemMini-comment">
@@ -53,8 +52,12 @@
           <span>0</span>
         </div>
         <div class="newsItemMini-date">
-          <SvgIcon name="calendar-check" :viewboxWidth="28" :viewboxHeight="28" />
-          <span>12:30, 5 июля 2023</span>
+          <SvgIcon
+            name="calendar-check-dark"
+            :viewboxWidth="16"
+            :viewboxHeight="17"
+          />
+          <span>{{ convertDateTime(data.created_at) }}</span>
         </div>
       </div>
     </div>
@@ -62,6 +65,8 @@
 </template>
 
 <script setup lang="ts">
+import convertDateTime from '../../../helpers/convertDateTime.js';
+
 interface IProps {
   data: any,
   pressAboutUs?: boolean,
@@ -218,7 +223,8 @@ withDefaults(defineProps<IProps>(), {
     & svg {
       width: 28px;
       height: 24px;
-      fill: var(--accent-color);
+
+      /* fill: var(--accent-color); */
     }
 
     & span {
