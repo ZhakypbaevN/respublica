@@ -14,13 +14,11 @@
       </div>
       
       <div class="landing-items">
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
-
-        <NewsItem />
-        <NewsItem />
-        <NewsItem />
+        <NewsItem
+          v-for="news of newsList"
+          :key="news.title"
+          :data="news"
+        />
       </div>
     </div>
   </section>
@@ -39,13 +37,12 @@
       </div>
       
       <div class="landing-items">
-        <NewsItem pressAboutUs />
-        <NewsItem pressAboutUs />
-        <NewsItem pressAboutUs />
-
-        <NewsItem pressAboutUs />
-        <NewsItem pressAboutUs />
-        <NewsItem pressAboutUs />
+        <NewsItem
+          v-for="news of newsPressAboutUsList"
+          :key="news.title"
+          :data="news"
+          pressAboutUs
+        />
       </div>
     </div>
   </section>
@@ -65,9 +62,9 @@
       
       <div class="landing-items">
         <YoutubeVideo
-          v-for="vidoe of youtubeVideos"
+          v-for="vidoe of youtubeLinks"
           :key="vidoe"
-          :src="vidoe"
+          :src="vidoe.content"
         ></YoutubeVideo>
       </div>
     </div>
@@ -104,6 +101,104 @@ import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
 
 import PhotoGallery from '../../components/uiLanding/news/photoGallery.vue';
 
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { useToast } from '../../modules/toast'
+
+const { toast } = useToast()
+
+const newsList = ref();
+const newsPressAboutUsList = ref();
+const youtubeLinks = ref();
+const token = localStorage.getItem('TOKEN');
+
+onMounted(() => {
+  getNews();
+  getNewsPressAboutUs();
+  getVideo();
+})
+
+const getNews = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=6&category_id=1`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      newsList.value = response.data;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    });
+}
+
+const getNewsPressAboutUs = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=6&category_id=3`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      newsPressAboutUsList.value = response.data;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    });
+}
+
+const getVideo = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/articles?category_id=4&offset=0&limit=6`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      youtubeLinks.value = response.data;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
+    });
+}
+
 const sideBarlinks = [
   {
     title: 'Новости',
@@ -127,14 +222,14 @@ const sideBarlinks = [
   }
 ]
 
-const youtubeVideos = [
-  `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/NWPdwjlhk8E?si=IEuuidab_4uKs3pl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-  `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/f6atkSucpRI?si=yFDSiVThhj19Iant&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-  `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/exuF3jsEE90?si=LGYdxg8tws2QvHDh&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-  `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/aJCMDFBN3fs?si=vrV7dQSHErof1VVI&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-  `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/qjM1eRjdcJU?si=pHwlKnwr0UuJHpum&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-  `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/7U4tuGk7zcM?si=BIpEuleVi90nvMDA&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-]
+// const youtubeVideos = [
+//   `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/NWPdwjlhk8E?si=IEuuidab_4uKs3pl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+//   `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/f6atkSucpRI?si=yFDSiVThhj19Iant&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+//   `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/exuF3jsEE90?si=LGYdxg8tws2QvHDh&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+//   `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/aJCMDFBN3fs?si=vrV7dQSHErof1VVI&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+//   `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/qjM1eRjdcJU?si=pHwlKnwr0UuJHpum&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+//   `<iframe width="535" height="300" src="https://www.youtube-nocookie.com/embed/7U4tuGk7zcM?si=BIpEuleVi90nvMDA&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
+// ]
 </script>
 
 <style scoped lang="scss">

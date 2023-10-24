@@ -210,7 +210,7 @@ const postNews = () => {
   data.append("category_id", '3');
   data.append("preview_text", formData.subtitle);
   data.append("content", formData.content);
-  data.append("source_url", formData.author);
+  // data.append("source_url", formData.author);
   data.append("published", 'true');
   data.append("preview_image", newsData.preview!);
 

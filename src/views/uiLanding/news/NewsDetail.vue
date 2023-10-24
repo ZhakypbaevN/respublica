@@ -32,109 +32,111 @@
 </template>
 
 <script setup lang="ts">
-  import NewsItem from '../../../components/uiLanding/news/newsItem.vue';
+import convertDateTime from '../../../helpers/convertDateTime.js';
 
-  import axios from 'axios';
-  import { onMounted, ref, watch } from 'vue';
-  import { useRoute } from 'vue-router'
-  import { useToast } from '../../../modules/toast'
-  
-  const { toast } = useToast()
-  const route = useRoute()
-  
-  const newsData = ref(null);
-  const newsList = ref(null);
-  
-  onMounted(() => getData())
-  
-  const getData = () => {
-    getNewsData();
-    getNewsList();
-  }
-  
-  watch(
-    () => route.params.announce_id,
-    getData
-  )
-  
-  const getNewsData = () => {
-    const url = `https://api.respublica.codetau.com/api/v1/articles/${route.params.news_id}`;
-    axios({
-      method: "get",
-      url: url,
+import NewsItem from '../../../components/uiLanding/news/newsItem.vue';
+
+import axios from 'axios';
+import { onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router'
+import { useToast } from '../../../modules/toast'
+
+const { toast } = useToast()
+const route = useRoute()
+
+const newsData = ref(null);
+const newsList = ref(null);
+
+onMounted(() => getData())
+
+const getData = () => {
+  getNewsData();
+  getNewsList();
+}
+
+watch(
+  () => route.params.announce_id,
+  getData
+)
+
+const getNewsData = () => {
+const url = `https://api.respublica.codetau.com/api/v1/articles/${route.params.news_id}`;
+axios({
+  method: "get",
+  url: url,
+})
+  .then((response) => {
+    newsData.value = response.data;
+  })
+  .catch((err) => {
+    console.log('err', err);
+    toast({
+        message: 'Возникли ошибки при запросе'
     })
-      .then((response) => {
-        newsData.value = response.data;
-      })
-      .catch((err) => {
-        console.log('err', err);
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      });
-  }
-  
-  const getNewsList = () => {
-    const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=1`;
-    axios({
-      method: "get",
-      url: url,
+  });
+}
+
+const getNewsList = () => {
+const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=1`;
+axios({
+    method: "get",
+    url: url,
+})
+  .then((response) => {
+    newsList.value = [];
+
+    response.data.forEach(news => {
+        if (news.id.toString() !== route.params.news_id) newsList.value.push(news);
+    });
     })
-      .then((response) => {
-        newsList.value = [];
-  
-        response.data.forEach(news => {
-          if (news.id.toString() !== route.params.news_id) newsList.value.push(news);
-        });
-      })
-      .catch((err) => {
-        console.log('err', err);
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      });
-  }
+    .catch((err) => {
+    console.log('err', err);
+    toast({
+        message: 'Возникли ошибки при запросе'
+    })
+    });
+}
 </script>
 
 <style scoped lang="scss">
-  .wrapper {
+.wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.news {
+margin-bottom: 100px;
+
+&-title {
+    color: var(--primary-color);
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+&-text {
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
+
+&-preview {
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    &-img {
+    padding-bottom: 60%;
+    }
+}
+
+&-items {
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
-  
-  .news {
-    margin-bottom: 100px;
-  
-    &-title {
-      color: var(--primary-color);
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 40px;
-    }
-  
-    &-text {
-      color: var(--primary-color);
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 25px;
-      margin-bottom: 30px;
-    }
-  
-    &-preview {
-      width: 100%;
-      margin-bottom: 30px;
-      border-radius: 10px;
-  
-      &-img {
-        padding-bottom: 60%;
-      }
-    }
-  
-    &-items {
-      display: flex;
-      flex-direction: column;
-      grid-gap: 15px;
-    }
-  }
+    grid-gap: 15px;
+}
+}
 </style>
