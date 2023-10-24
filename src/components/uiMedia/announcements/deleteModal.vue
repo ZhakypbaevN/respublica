@@ -45,7 +45,7 @@ const token = localStorage.getItem('TOKEN');
 
 const postDelete = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${props.id}`
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${props.id}`
 
   axios({
     method: "delete",
@@ -58,7 +58,7 @@ const postDelete = () => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Видео успешно удалена',
+        message: 'анонс успешно удалена',
         type: 'success'
       })
       

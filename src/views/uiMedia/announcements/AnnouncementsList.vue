@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from "../../../components/uiMedia/news/newsItem.vue"
+import NewsItem from "../../../components/uiMedia/announcements/newsItem.vue"
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';

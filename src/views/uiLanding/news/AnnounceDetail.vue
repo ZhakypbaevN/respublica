@@ -8,7 +8,7 @@
             <div class="news-title">{{ announceData.title }}</div>
 
             <div class="news-preview withZoomPreview-preview">
-              <div class="news-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(/img/announcement.png);`"></div>
+              <div class="news-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${announceData.preview_image});`"></div>
             </div>
 
             <div class="news-text" v-html="announceData.content"></div>
@@ -57,7 +57,7 @@ watch(
 )
 
 const getAnnounceData = () => {
-  const url = `https://tri.codetau.com/announceList/${route.params.announce_id}`;
+  const url = `https://api.respublica.codetau.com/api/v1/articles/${route.params.announce_id}`;
   axios({
     method: "get",
     url: url,
@@ -74,7 +74,7 @@ const getAnnounceData = () => {
 }
 
 const getAnnounceList = () => {
-  const url = `https://tri.codetau.com/announceList`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=6`;
   axios({
     method: "get",
     url: url,

@@ -1,38 +1,46 @@
 <template>
   <RouterLink
+    v-if="!litle"
     class="newsItem withZoomPreview"
     :class="{pressAboutUs: pressAboutUs}"
-    to="/news/1"
+    :to="`/news/${data.id ?? 1}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
-      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img"></div>
+      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
       <div class="newsItem-date">
         <SvgIcon
           name="calendar-check"
           :viewboxWidth="16"
           :viewboxHeight="17"
         />
-        <span>12:30, 5 июля 2023</span>
+        <span>{{ data.created_at ?? '12:30, 5 июля 2023' }}</span>
       </div>
     </div>
 
     <div v-if="pressAboutUs">
       <a href="kazinform.kz" class="newsItem-author">kazinform.kz</a>
 
-      <h4 class="newsItem-title">Полный запрет вейпов будет введен в Казахстане</h4>
+      <h4 class="newsItem-title">{{ data.title ?? 'Полный запрет вейпов будет введен в Казахстане' }}</h4>
     </div>
 
     <div v-else>
-      <h4 class="newsItem-title">Полный запрет вейпов будет введен в Казахстане</h4>
+      <h4 class="newsItem-title">{{ data.title ?? 'Полный запрет вейпов будет введен в Казахстане' }}</h4>
       
       <div class="newsItem-line"></div>
 
-      <p class="newsItem-description">Этому предшествовала большая работа фракции партии Respublica, государственных и общественных организаций.</p>
+      <p class="newsItem-description">{{ data.preview_text ?? 'Этому предшествовала большая работа фракции партии Respublica, государственных и общественных организаций.' }}</p>
     </div>
   </RouterLink>
   
-  <!-- <div class="newsItemMini">
-    <img class="newsItemMini-preview" src="/img/uiLanding/news-example.jpg" alt="">
+  <RouterLink
+    v-else
+    class="newsItemMini withZoomPreview"
+    :class="{pressAboutUs: pressAboutUs}"
+    :to="`/news/${data.id ?? 1}`"
+  >
+    <div class="newsItemMini-preview withZoomPreview-preview">
+      <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
+    </div>
     <div class="newsItemMini-text">
       <h4 class="newsItemMini-title">Полный запрет вейпов будет введен в Казахстане</h4>
 
@@ -50,16 +58,19 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </RouterLink>
 </template>
 
 <script setup lang="ts">
 interface IProps {
-  pressAboutUs?: boolean
+  data: any,
+  pressAboutUs?: boolean,
+  litle?: boolean
 }
 
 withDefaults(defineProps<IProps>(), {
-  pressAboutUs: false
+  pressAboutUs: false,
+  litle: false
 })
 
 
@@ -91,7 +102,6 @@ withDefaults(defineProps<IProps>(), {
     
     &-img {
       padding-bottom: 60%;
-      background-image: url('/img/uiLanding/news-example.jpg');
     }
   }
 
@@ -154,7 +164,7 @@ withDefaults(defineProps<IProps>(), {
     margin-bottom: 15px;
   }
 }
-.newsItemMiniMini {
+.newsItemMini {
   display: flex;
   border-radius: 10px;
   background: #FFF;
@@ -165,6 +175,10 @@ withDefaults(defineProps<IProps>(), {
     width: 223px;
     height: 161px;
     border-radius: 10px;
+
+    &-img {
+      padding-bottom: 100%;
+    }
   }
 
   &-text {

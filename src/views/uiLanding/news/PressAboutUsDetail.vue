@@ -11,7 +11,7 @@
                 Жуалинском района партийцы встретились с представителями госорганов, предприятий, крестьянских
                 хозяйств.</div>
             <div class="news-img">
-                <img src="/img/news.png" alt="news">
+                
             </div>
             <div class="news-text">Депутат Мажилиса Парламента Республики Казахстан, председатель партии Respublica
                 Айдарбек Ходжаназаров, сопредседатель партии Respublica Куаныш Шонбай, заместитель руководителя
@@ -26,7 +26,7 @@
                 <div class="news-more-title">Смотрите также</div>
                 <div class="news-more-news">
                     <div class="news-more-news-img">
-                        <img src="/img/news.png" alt="news">
+                        
                     </div>
                     <div class="news-more-news-text">
                         <div class="news-more-news-text-title">Потери жамбылским аграриям из-за засухи будут
@@ -38,7 +38,7 @@
                 </div>
                 <div class="news-more-news">
                     <div class="news-more-news-img">
-                        <img src="/img/news.png" alt="news">
+                        
                     </div>
                     <div class="news-more-news-text">
                         <div class="news-more-news-text-title">Республиканцы обсудили с западноказахстанскими
@@ -50,7 +50,7 @@
                 </div>
                 <div class="news-more-news">
                     <div class="news-more-news-img">
-                        <img src="/img/news.png" alt="news">
+                        
                     </div>
                     <div class="news-more-news-text">
                         <div class="news-more-news-text-title">Потери жамбылским аграриям из-за засухи будут
@@ -62,7 +62,7 @@
                 </div>
                 <div class="news-more-news">
                     <div class="news-more-news-img">
-                        <img src="/img/news.png" alt="news">
+                        
                     </div>
                     <div class="news-more-news-text">
                         <div class="news-more-news-text-title">Потери жамбылским аграриям из-за засухи будут

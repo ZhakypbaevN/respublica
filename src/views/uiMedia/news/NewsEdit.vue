@@ -59,7 +59,7 @@
             <h4 class="newsEdit-doc-title">Документ:</h4>
             <label v-if="!newsData.preview" for="upload-files" class="newsEdit-doc-name empty">Прикрепите обязательно файл заполненной формы</label>
             <div v-else class="newsEdit-doc-namEwithAction">
-              <div class="newsEdit-doc-name">{{ newsData.preview?.name }}</div>
+              <div class="newsEdit-doc-name">{{ newsData.preview?.name ?? newsData.preview }}</div>
               <SvgIcon
                 class="newsEdit-doc-remove"
                 name="x"
@@ -87,7 +87,7 @@
         <div class="newsEdit-form-btns">
           <Button
             :name="
-              route.params.video_id
+              route.params.news_id
                 ? 'Сохранить'
                 : 'Создать новость'
             "
@@ -123,7 +123,7 @@ const fileTypes = ['png', 'jpg', 'jpeg', 'gif', 'JPG'];
 const formData = reactive({
   title: '',
   subtitle: '',
-  content: ''
+  content: '',
 })
 
 const clickInputFile = () => {
@@ -153,7 +153,7 @@ const isDocx = (fileName) => {
 // Get News
 onMounted(() => {
   if (route.params.news_id) {
-    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${route.params.news_id}`;
+    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`;
 
     axios({
       method: "get",
@@ -167,6 +167,8 @@ onMounted(() => {
         console.log('response', response);
         formData.title = response.data.title;
         formData.subtitle = response.data.preview_text;
+        newsData.preview = response.data.preview_image;
+        newsData.preview = response.data.preview_image;
 
         
         formData.content = response.data.content;
@@ -186,23 +188,25 @@ onMounted(() => {
 
 
 // Post
-const postNews = ({ title, subtitle, content }: { title: string, subtitle: string, content: string }) => {
+const postNews = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles`;
+  const url = route.params.news_id
+    ? `https://api.respublica.codetau.com/api/v1/admin/{id}?article_id=${route.params.news_id}`
+    : `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
-  const formData = new FormData();
+  const data = new FormData();
   
-  formData.append("title", title);
-  formData.append("category_id", '1');
-  formData.append("preview_text", subtitle);
-  formData.append("content", content);
-  formData.append("published", 'true');
-  formData.append("preview_image", newsData.preview!);
+  data.append("title", formData.title);
+  data.append("category_id", '1');
+  data.append("preview_text", formData.subtitle);
+  data.append("content", formData.content);
+  data.append("published", 'true');
+  data.append("preview_image", newsData.preview!);
 
   axios({
     method: route.params.news_id ? "put" : "post",
     url: url,
-    data: formData,
+    data: data,
     headers: {
       accept: 'application/json',
       Authorization: 'Bearer ' + token

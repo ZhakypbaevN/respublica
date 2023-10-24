@@ -49,9 +49,11 @@
           </div>
           
           <div class="landing-items">
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
+            <NewsItem
+              v-for="news of newsList"
+              :key="news.title"
+              :data="news"
+            />
           </div>
         </div>
       </section>
@@ -130,25 +132,55 @@ import { useToast } from '../../modules/toast'
 
 const { toast } = useToast()
 
-const announceList = ref(null);
+const announceList = ref();
+const newsList = ref();
+const token = localStorage.getItem('TOKEN');
 
 onMounted(() => {
   getAnnounce();
+  getNews();
 })
 
 const getAnnounce = () => {
-  const url = `https://tri.codetau.com/announceList`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=6`;
   axios({
     method: "get",
     url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
   })
     .then((response) => {
-      announceList.value = null;
-
       announceList.value = response.data;
     })
     .catch((err) => {
       console.log('err', err);
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+    });
+}
+
+const getNews = () => {
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=1`;
+
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      console.log('response', response);
+
+      newsList.value = response.data;
+    })
+    .catch((err) => {
+      console.log('err', err);
+
       toast({
         message: 'Возникли ошибки при запросе'
       })

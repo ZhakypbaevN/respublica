@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
+import JoinPartyModal from '../../../components/uiManager/party/createPartyModal.vue';
 import Avatar from '../../../components/common/Avatar.vue';
 
 import { ref } from 'vue';

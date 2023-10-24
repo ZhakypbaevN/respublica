@@ -1,7 +1,7 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper">
-      <h2 class="landing-title">{{ route.params.video_id ? formData.title : 'Новое видео' }}</h2>
+      <h2 class="landing-title">{{ route.params.news_id ? formData.title : 'Новая видео' }}</h2>
 
       <Form
         @finish="postNews"
@@ -37,7 +37,7 @@
         <div class="newsEdit-form-btns">
           <Button
             :name="
-              route.params.video_id
+              route.params.news_id
                 ? 'Сохранить'
                 : 'Создать видео'
             "
@@ -55,12 +55,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router';
-
+import { onMounted, ref, reactive } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../../modules/toast'
-import { reactive } from 'vue';
+import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const { toast } = useToast()
@@ -70,12 +68,13 @@ const token = localStorage.getItem('TOKEN');
 
 const formData = reactive({
   title: '',
-  content: ''
+  content: '',
 })
 
+// Get News
 onMounted(() => {
-  if (route.params.video_id) {
-    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${route.params.video_id}`;
+  if (route.params.news_id) {
+    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`;
 
     axios({
       method: "get",
@@ -88,6 +87,7 @@ onMounted(() => {
       .then((response) => {
         console.log('response', response);
         formData.title = response.data.title;
+        
         formData.content = response.data.content;
         
       })
@@ -103,28 +103,25 @@ onMounted(() => {
   }
 })
 
+
 // Post
-const postNews = ({ title, content }: { title: string, content: string }) => {
+const postNews = () => {
   loading.value = true;
-  const url = route.params.video_id
-    ? `https://api.respublica.codetau.com/api/v1/admin/articles/{id}?article_id=${route.params.video_id}`
+  const url = route.params.news_id
+    ? `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`
     : `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
-  const formData = new FormData();
-  const data = {
-    category_id: 4, 
-    title: title, 
-    content: content, 
-    source_url: null, 
-    published: true
-  }
+  const data = new FormData();
   
-  formData.append("article", JSON.stringify(data));
+  data.append("title", formData.title);
+  data.append("category_id", '4');
+  data.append("content", formData.content);
+  data.append("published", 'true');
 
   axios({
-    method: route.params.video_id ? "put" : "post",
+    method: route.params.news_id ? "put" : "post",
     url: url,
-    data: formData,
+    data: data,
     headers: {
       accept: 'application/json',
       Authorization: 'Bearer ' + token
@@ -132,8 +129,11 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
   })
     .then((response) => {
       console.log('response', response);
+
       toast({
-        message: 'Видео успешно добавлена',
+        message: route.params.news_id
+          ? 'Видео успешно редактирование'
+          : 'Видео успешно создана',
         type: 'success'
       })
       
@@ -141,9 +141,15 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
     .catch((err) => {
       console.log('err', err);
       
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+      if (err.response.data.detail === 'Incorrect username or password') {
+        toast({
+          message: 'Неверный логин или пароль!'
+        })
+      } else {
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      }
       loading.value = false
     });
 }
@@ -151,9 +157,9 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
 </script>
 
 <style scoped lang="scss">
-.wrapper {
-  /* background-color: var(--accent-color-op05); */
-  padding-top: 40px;
+.wrapper-main {
+  background-color: var(--accent-color-op05);
+  padding: 40px 0;
 }
 
 .newsEdit {
@@ -168,7 +174,6 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
     &-inputs {
       margin-bottom: 40px;
     }
-
     &-btns {
       display: flex;
       grid-gap: 20px;
@@ -176,6 +181,7 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
   }
 
   &-formItem {
+    max-width: 800px;
     margin-bottom: 24px;
 
     &-label {
@@ -185,57 +191,6 @@ const postNews = ({ title, content }: { title: string, content: string }) => {
       font-weight: 500;
 
       margin-bottom: 10px;
-    }
-  }
-
-  &-addFileBtn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    margin-bottom: 38px;
-    margin-bottom: 8px;
-
-    & svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent-color);
-    }
-  }
-  &-doc {
-    display: flex;
-    grid-gap: 9px;
-    margin-bottom: 50px;
-
-    &-title {
-      color: var(--light-gray-color);
-      font-size: 20px;
-      font-weight: 500;
-    }
-
-    &-name {
-      color: var(--accent-color);
-      font-size: 20px;
-      text-decoration-line: underline;
-      margin-bottom: 0px !important;
-
-      &.empty {
-        
-        color: var(--red-color);
-      }
-    }
-
-    &-namEwithAction {
-      display: flex;
-      align-items: center;
-      grid-gap: 10px;
-    }
-
-    &-remove {
-      height: 20px;
-      width: 20px;
-      cursor: pointer;
-
-      fill: var(--red-color);
     }
   }
 }
