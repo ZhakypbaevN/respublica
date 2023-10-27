@@ -6,6 +6,7 @@
     :maxInner="885"
   >
     <div class="cropModal-inner">
+    
       <VuePictureCropper
         :boxStyle="{
           width: '100%',
