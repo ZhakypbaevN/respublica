@@ -1,10 +1,11 @@
 <template>
   <section class="">
-    <div class="newsEdit wrapper">
+    <div class="newsEdit wrapper" v-if="route.params.news_id ? !loading.page : true">
       <h2 class="landing-title">{{ route.params.news_id ? formData.title : 'Новая новость' }}</h2>
 
       <Form
         @finish="postNews"
+        class="newsEdit-form"
       >
         <div class="newsEdit-form-inputs">
           <div class="newsEdit-formItem">
@@ -30,58 +31,17 @@
               staticPlaceholder
             />
           </div>
+        </div>
 
-          <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Фото</label>
-            <Button
-              class="newsEdit-addFileBtn"
-              name="Прикрепить файл"
-              type="outline-blue"
-              v-slot:left
-              @click="clickInputFile"
-            >
-              <input
-                type="file"
-                id="upload-files"
-                multiple
-                style="display: none"
-                @change="uploadFiles"
-              />
-              <SvgIcon
-                name="plus"
-                :viewboxWidth="24"
-                :viewboxHeight="24"
-              />
-            </Button>
-          </div>
+        <Upload
+          class="newsEdit-preview"
+          v-model="formData.newPhoto"
+          v-model:preview="formData.preview"
+          :aspectRatio="16 / 9"
+        />
 
-          <div class="newsEdit-doc">
-            <h4 class="newsEdit-doc-title">Документ:</h4>
-            <label v-if="!newsData.preview" for="upload-files" class="newsEdit-doc-name empty">Прикрепите обязательно файл заполненной формы</label>
-            <div v-else class="newsEdit-doc-namEwithAction">
-              <div class="newsEdit-doc-name">{{ newsData.preview?.name ?? newsData.preview }}</div>
-              <SvgIcon
-                class="newsEdit-doc-remove"
-                name="x"
-                :viewboxHeight="14"
-                :viewboxWidth="21"
-                :width="24"
-                :height="24"
-                @click="deleteFile()"
-              />
-            </div>
-          </div>
-
-          <div class="newsEdit-formItem">
-            <label for="content" class="newsEdit-formItem-label">Текст обращения</label>
-            <Input
-              name="content"
-              type="textarea"
-              placeholder="Введите текст обращения"
-              v-model="formData.content"
-              staticPlaceholder
-            />
-          </div>
+        <div class="newsEdit-formItem-content">
+          <ckeditor :editor="ClassicEditor" v-model="formData.content" :config="{}"></ckeditor>
         </div>
 
         <div class="newsEdit-form-btns">
@@ -91,6 +51,7 @@
                 ? 'Сохранить'
                 : 'Создать новость'
             "
+            :loading="loading.btn"
             htmlType="submit"
           />
           <Button
@@ -105,50 +66,30 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive } from 'vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+import { onMounted, reactive } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../../modules/toast'
 import { useRoute } from 'vue-router';
+import { watch } from 'vue';
 
 const route = useRoute()
 const { toast } = useToast()
 
-const newsData = reactive({
-  preview: null
+const loading = reactive({
+  page: true,
+  btn: false
 })
-const loading = ref(false)
 const token = localStorage.getItem('TOKEN');
-const fileTypes = ['png', 'jpg', 'jpeg', 'gif', 'JPG'];
 
 const formData = reactive({
   title: '',
   subtitle: '',
   content: '',
+  preview: null,
+  newPhoto: null
 })
-
-const clickInputFile = () => {
-  document.getElementById('upload-files')?.click();
-}
-
-const deleteFile = () => {
-  newsData.preview = null;
-}
-
-const uploadFiles = (event) => {
-  if (event.target.files.length > 0) {
-    if (isDocx(event.target.files[0].name)) newsData.preview = event.target.files[0];
-    else {
-      toast({
-        message: 'Документ должен быть с рачширением ' + fileTypes.join(', ')
-      })
-    }
-  }
-}
-
-const isDocx = (fileName) => {
-  const type = fileName.split(".")
-  return fileTypes.includes(type[type.length - 1])
-}
 
 // Get News
 onMounted(() => {
@@ -167,11 +108,11 @@ onMounted(() => {
         console.log('response', response);
         formData.title = response.data.title;
         formData.subtitle = response.data.preview_text;
-        newsData.preview = response.data.preview_image;
-        newsData.preview = response.data.preview_image;
+        formData.preview = response.data.preview_image;
 
         
         formData.content = response.data.content;
+        loading.page = false
         
       })
       .catch((err) => {
@@ -180,18 +121,25 @@ onMounted(() => {
         toast({
           message: 'Возникли ошибки при запросе'
         })
-        loading.value = false
+        loading.page = false
       });
 
   }
 })
 
+watch(
+  () => formData.preview,
+  () => {
+    console.log('formData.preview', new File([formData.preview!], "filename"));
+  }
+)
+
 
 // Post
 const postNews = () => {
-  loading.value = true;
+  loading.btn = true;
   const url = route.params.news_id
-    ? `https://api.respublica.codetau.com/api/v1/admin/{id}?article_id=${route.params.news_id}`
+    ? `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`
     : `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
   const data = new FormData();
@@ -201,7 +149,8 @@ const postNews = () => {
   data.append("preview_text", formData.subtitle);
   data.append("content", formData.content);
   data.append("published", 'true');
-  data.append("preview_image", newsData.preview!);
+
+  data.append("preview_image", formData.newPhoto!);
 
   axios({
     method: route.params.news_id ? "put" : "post",
@@ -218,6 +167,7 @@ const postNews = () => {
         message: 'Новость успешно создана',
         type: 'success'
       })
+      loading.btn = false
       
     })
     .catch((err) => {
@@ -232,7 +182,7 @@ const postNews = () => {
           message: 'Возникли ошибки при запросе'
         })
       }
-      loading.value = false
+      loading.btn = false
     });
 }
 
@@ -246,8 +196,18 @@ const postNews = () => {
 
 .newsEdit {
   &-form {
+    display: grid;
+    grid-template-columns: auto 680px;
+    grid-gap: 40px;
+
     &-inputs {
       margin-bottom: 40px;
+    }
+
+    &-preview {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 20px;
     }
 
     &-btns {
@@ -257,7 +217,6 @@ const postNews = () => {
   }
 
   &-formItem {
-    max-width: 800px;
     margin-bottom: 24px;
 
     &-label {
@@ -268,57 +227,15 @@ const postNews = () => {
 
       margin-bottom: 10px;
     }
-  }
 
-  &-addFileBtn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    margin-bottom: 38px;
-    margin-bottom: 8px;
-
-    & svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent-color);
+    &-content {
+      grid-column: 1/3;
     }
   }
-  &-doc {
-    display: flex;
-    grid-gap: 9px;
-    margin-bottom: 50px;
 
-    &-title {
-      color: var(--light-gray-color);
-      font-size: 20px;
-      font-weight: 500;
-    }
-
-    &-name {
-      color: var(--accent-color);
-      font-size: 20px;
-      text-decoration-line: underline;
-      margin-bottom: 0px !important;
-
-      &.empty {
-        
-        color: var(--red-color);
-      }
-    }
-
-    &-namEwithAction {
-      display: flex;
-      align-items: center;
-      grid-gap: 10px;
-    }
-
-    &-remove {
-      height: 20px;
-      width: 20px;
-      cursor: pointer;
-
-      fill: var(--red-color);
-    }
+  &-preview {
+    height: 380px;
+    width: 680px;
   }
 }
 </style>

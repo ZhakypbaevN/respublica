@@ -10,8 +10,10 @@
               <div class="news-preview withZoomPreview-preview">
                 <div class="news-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${newsData.preview_image});`"></div>
               </div>
+
+              <div class="news-subtitle">{{ newsData.preview_text }}</div>
   
-              <div class="news-text" v-html="newsData.content"></div>
+              <div class="news-text ck" v-html="newsData.content"></div>
   
             </div>
   
@@ -113,6 +115,13 @@ margin-bottom: 100px;
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 40px;
+}
+
+&-subtitle {
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 40px;
 }
 
 &-text {
