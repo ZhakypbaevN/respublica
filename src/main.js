@@ -5,6 +5,7 @@ import './assets/scss/Wrapper.scss';
 import './assets/scss/Landing.scss';
 import './assets/scss/Helpers.scss';
 import './assets/scss/Skeleton.scss';
+import './assets/scss/CKEditor-reset.scss';
 import './assets/fonts/stylesheet.css';
 
 import App from './App.vue'
@@ -14,6 +15,7 @@ import VueTheMask from 'vue-the-mask'
 import VWave from 'v-wave'
 
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import Upload from './components/common/Upload.vue';
 import Select from './components/common/select/index.vue';
 import SvgIcon from './components/common/SvgIcon.vue'
 import Button from './components/common/Button.vue'
@@ -50,6 +52,7 @@ AOS.init();
 createApp(App)
   .use(i18n)
   .use(router)
+  .use(VWave)
   .use(VueTheMask)
   .use(CKEditor)
   .directive('click-outside', clickOutside())
@@ -57,6 +60,7 @@ createApp(App)
   .directive('loading', loading())
   .component('Checkbox', Checkbox)
   .component('SvgIcon', SvgIcon)
+  .component('Upload', Upload)
   .component('Select', Select)
   .component('Button', Button)
   .component('Input', Input)

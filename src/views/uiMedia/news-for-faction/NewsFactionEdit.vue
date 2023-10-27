@@ -74,15 +74,13 @@
 
           <div class="newsEdit-formItem">
             <label for="content" class="newsEdit-formItem-label">Текст обращения</label>
-            <Input
-              name="content"
-              type="textarea"
-              placeholder="Введите текст обращения"
-              v-model="formData.content"
-              staticPlaceholder
-            />
+            <div class="newsEdit-formItem-content">
+              <ckeditor :editor="ClassicEditor" v-model="formData.content" :config="{}"></ckeditor>
+            </div>
           </div>
         </div>
+
+        {{ newsData.preview }}
 
         <div class="newsEdit-form-btns">
           <Button
@@ -105,6 +103,8 @@
 </template>
 
 <script setup lang="ts">
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import { onMounted, ref, reactive } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../../modules/toast'
@@ -194,6 +194,8 @@ const postNews = () => {
     : `https://api.respublica.codetau.com/api/v1/admin/articles`;
 
   const data = new FormData();
+
+  console.log('newsData.preview', newsData.preview);
   
   data.append("title", formData.title);
   data.append("category_id", '2');

@@ -77,8 +77,6 @@ withDefaults(defineProps<IProps>(), {
   pressAboutUs: false,
   litle: false
 })
-
-
 </script>
 
 <style scoped lang="scss">

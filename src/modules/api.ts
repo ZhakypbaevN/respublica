@@ -38,7 +38,7 @@ interface Api extends AxiosInstance {
 }
 
 const api: Api = axios.create({
-  baseURL: process.env.VUE_APP_API_URL
+  baseURL: import.meta.env.VITE_API_URL
 })
 const request = function (
   httpType: string,
@@ -234,10 +234,8 @@ api.asyncGetBlob = (url, data = {}) => {
 
 export default api
 
-export const apiUrl = process.env.VUE_APP_API_URL
+export const apiUrl = import.meta.env.VITE_API_URL
 
-export const appUrl = process.env.VUE_APP_URL
+export const appUrl = import.meta.env.VITE_URL
 
-export const cloudUrl = process.env.VUE_APP_CLOUD_URL
-
-export const isDevelopment = process.env.NODE_ENV === 'development'
+export const isDevelopment = import.meta.env.NODE_ENV === 'development'

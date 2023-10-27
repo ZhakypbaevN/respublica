@@ -1,189 +1,120 @@
 <template>
-  <div
-    @dragover="onDragOver"
-    @dragleave="drag = false"
-    @drop="onDrop"
-    @click="input.click()"
-    :class="{ dragging: drag }"
-    v-if="image === defaultPreview || modelValue?.link"
-  >
-    <button
-      class="delete-image"
-      v-wave
-      v-if="modelValue"
-      @click.stop="image = null"
+  <div>
+    <div
+      @dragover="onDragOver"
+      @dragleave="drag = false"
+      @drop="onDrop"
+      @click="input.click()"
+      :class="{ dragging: drag }"
     >
-      <SvgIcon
-        name="x"
-        :viewboxHeight="14"
-        :viewboxWidth="14"
-        :width="14"
-        :height="14"
-        fill="var(--error-color)"
+      <img
+        v-if="!img"
+        :src="image"
+        alt=""
+        :class="{ default: image === defaultPreview }"
+        :crossorigin="image === defaultPreview ? 'anonymous' : null"
       />
-    </button>
-    <img
-      :src="image"
-      alt=""
-      :class="{ default: image === defaultPreview }"
-      crossorigin="anonymous"
-    />
-    <input
-      type="file"
-      ref="input"
-      style="display: none"
-      :accept="type"
-      @change="onUpload"
-    />
-    <SvgIcon
-      v-if="!modelValue"
-      class="plus"
-      name="plus"
-      :viewboxHeight="14"
-      :viewboxWidth="14"
-      :width="30"
-      :height="30"
-      :fill="!drag ? 'var(--accent-color)' : '#fff'"
-    />
-  </div>
-  <div v-else style="position: relative">
-    <button
-      class="delete-image"
-      v-wave
-      v-if="modelValue"
-      @click.stop="image = null"
-    >
-      <SvgIcon
-        name="x"
-        :viewboxHeight="14"
-        :viewboxWidth="14"
-        :width="14"
-        :height="14"
-        fill="var(--error-color)"
+      <img
+        v-else
+        :src="img"
+        alt=""
+        :class="{ default: image === defaultPreview }"
       />
-    </button>
-    <ImageCrop
-      @update="image = $event"
-      :value="image"
-      :width="width"
-      :height="height"
-    />
-    <div class="grid">
-      <div />
-      <div />
-      <div />
-      <div />
+      <input
+        type="file"
+        ref="input"
+        style="display: none"
+        :accept="'image/png, image/gif, image/jpeg, image/svg'"
+        @change="onUpload"
+      />
+      <SvgIcon
+        v-if="!modelValue"
+        class="plus"
+        name="plus"
+        :viewboxHeight="24"
+        :viewboxWidth="24"
+        :fill="!drag ? 'var(--accent-color)' : '#fff'"
+      />
     </div>
+    <ImageCrop
+      v-model:url="img"
+      :show="isShowModal"
+      :file="fileUrl"
+      :aspectRatio="aspectRatio"
+      @newFile="newCrop"
+      @hide="() => isShowModal = false"
+    />
   </div>
 </template>
 
-<script>
-import ImageCrop from '@/components/common/ImageCrop.vue'
-import { ref, computed } from 'vue-demi'
-import getFileUrl from '@/helpers/getFileUrlByDate'
+<script setup lang="ts">
+  import { ref, computed } from 'vue-demi'
+  import ImageCrop from '../../components/common/ImageCrop.vue'
+  import getFileUrl from '../../helpers/getFileUrlByDate'
 
-export default {
-  name: 'Upload',
-  components: {
-    ImageCrop
-  },
-  props: {
-    modelValue: [File, Object, String],
-    preview: {
-      type: Boolean,
-      default: false
-    },
-    defaultPreview: {
-      type: String,
-      default: '/img/tmp/default_product_avatar.svg'
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    type: {
-      type: String,
-      default: 'image/png, image/gif, image/jpeg, image/svg'
-    },
-    width: {
-      type: Number,
-      default: 225
-    },
-    height: {
-      type: Number,
-      default: 225
-    }
-  },
-  emits: ['upload', 'update:modelValue', 'update:preview'],
-  setup (props, { emit }) {
-    const drag = ref(false)
-    const input = ref(null)
-    const renderedImage = ref(null)
-    const image = computed({
-      get: () => {
-        const image = props.modelValue
-        if (image instanceof Blob) return image
-
-        if (image instanceof File) {
-          renderImage(image).then((value) => (renderedImage.value = value))
-          return renderedImage.value ?? props.defaultPreview
-        }
-
-        if (!image) return props.defaultPreview
-
-        return getFileUrl(image)
-      },
-      set: (val) => {
-        emit('update:modelValue', val)
-      }
-    })
-
-    const onDragOver = (event) => {
-      event.stopPropagation()
-      event.preventDefault()
-      drag.value = true
-    }
-
-    const onDrop = (event) => {
-      event.stopPropagation()
-      event.preventDefault()
-      const fileList = event.dataTransfer.files
-      if (fileList.length) upload(fileList)
-      drag.value = false
-    }
-
-    const onUpload = (event) => {
-      const fileList = event.target.files
-      if (fileList.length) upload(fileList)
-    }
-
-    const upload = (files) => {
-      emit('update:modelValue', props.multiple ? files : files[0])
-      emit('upload', props.multiple ? files : files[0])
-    }
-
-    const renderImage = (file) =>
-      new Promise((resolve) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-          resolve(reader.result)
-        }
-      })
-
-    return {
-      drag,
-      input,
-      image,
-      onDragOver,
-      onDrop,
-      onUpload
-    }
+  interface IProps {
+    modelValue?: File,
+    preview: string,
+    aspectRatio: number
   }
-}
+  interface Emits {
+    (event: 'update:modelValue', value: any): void,
+    (event: 'update:preview', value: any): void,
+  }
+
+  const emit = defineEmits<Emits>()
+
+  const props = withDefaults(defineProps<IProps>(), {
+    aspectRatio: 16 / 9
+  })
+
+  const defaultPreview = '/img/icons/default_product_avatar.svg';
+
+  const drag = ref(false)
+  const input = ref(null)
+  const fileUrl = ref();
+  const isShowModal = ref(false);
+  
+  const image = computed({
+    get: () => getFileUrl(props.preview),
+    set: (val) => emit('update:preview', val)
+  })
+  const img = ref(null)
+  const onDragOver = (event) => {
+    event.stopPropagation()
+    event.preventDefault()
+    drag.value = true
+  }
+
+  const onDrop = (event) => {
+    event.stopPropagation()
+    event.preventDefault()
+    const fileList = event.dataTransfer.files
+    if (fileList.length) upload(fileList)
+    drag.value = false
+  }
+
+  const onUpload = (e) => {
+    const { files } = e.target as HTMLInputElement
+    if (!files || !files.length) return
+
+    const file = files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      fileUrl.value = String(reader.result)
+
+      isShowModal.value = true
+    }
+    isShowModal.value = true;
+  }
+
+  const newCrop = file => {
+    emit('update:modelValue', file)
+  }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 div {
   width: 100%;
   height: 100%;
@@ -192,6 +123,8 @@ div {
   justify-content: center;
   cursor: pointer;
   position: relative;
+
+  border: 1px solid var(--accent-color);
 }
 img {
   object-fit: cover;
@@ -204,6 +137,8 @@ img {
 }
 .plus {
   position: absolute;
+  height: 30px;
+  width: 30px;
 }
 .dragging {
   background: var(--accent-color);
@@ -219,44 +154,10 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-}
-.grid {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  z-index: 1;
-  pointer-events: none;
-}
-.grid div {
-  border: 0.5px dashed #fff;
-}
-.grid div:nth-of-type(1) {
-  width: 1px;
-  grid-column: 1;
-  grid-row: 1 / 4;
-  justify-self: flex-end;
-}
-.grid div:nth-of-type(2) {
-  width: 1px;
-  grid-column: 2;
-  grid-row: 1 / 4;
-  justify-self: flex-end;
-}
-.grid div:nth-of-type(3) {
-  width: 100%;
-  height: 1px;
-  grid-row: 1;
-  grid-column: 1 / 4;
-  align-self: flex-end;
-}
-.grid div:nth-of-type(4) {
-  width: 100%;
-  height: 1px;
-  grid-row: 2;
-  grid-column: 1 / 4;
-  align-self: flex-end;
+
+  & svg {
+    width: 14px;
+    height: 14px;
+  }
 }
 </style>

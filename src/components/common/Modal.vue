@@ -3,7 +3,7 @@
     <div class="modal-back" :style="{opacity: opacity}">
       <div class="modal-inner" @mousedown.stop :style="container">
         <div class="modal-form" :class="{big: big}">
-          <div class="modal-form-inner">
+          <div class="modal-form-inner" :style="`max-width: ${maxInner}px;`">
             <div class="modal-header">
               <h2 class="modal-title" v-if="title">{{ title }}</h2>
               <p class="modal-subtitle" v-if="subtitle">{{ subtitle }}</p>
@@ -29,6 +29,7 @@ import { onMounted, onUnmounted, reactive, ref } from 'vue'
 interface IProps {
   title?: string,
   subtitle?: string,
+  maxInner?: number
   big?: boolean
 }
 
@@ -40,6 +41,7 @@ withDefaults(defineProps<IProps>(), {
   title: undefined,
   subtitle: undefined,
   big: false,
+  maxInner: 600
 })
 const emits = defineEmits<Emits>()
 
@@ -79,9 +81,9 @@ const hideModal = () => {
   }, 300)
 }
 
-const hideModalOnEsc = () => {
-  hideModal()
-}
+// const hideModalOnEsc = () => {
+//   hideModal()
+// }
 </script>
 
 <style scoped lang="scss">
@@ -140,7 +142,6 @@ const hideModalOnEsc = () => {
 
     &-inner {
       width: 100%;
-      max-width: 600px;
     }
 
     &.big {
