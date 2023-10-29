@@ -60,9 +60,9 @@
               {{ $t('header-contacts') }}
             </Router-link>
 
-            <Router-link to="/faq" class="header-main-navs-item">
+           <!-- <Router-link to="/faq" class="header-main-navs-item">
               FAQ
-            </Router-link>
+            </Router-link>-->
             <!-- <button class="header-main-search">
               <SvgIcon
                 name="search"
