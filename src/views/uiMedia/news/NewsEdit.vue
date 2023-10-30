@@ -1,48 +1,62 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper" v-if="route.params.news_id ? !loading.page : true">
-      <h2 class="landing-title">{{ route.params.news_id ? formData.title : 'Новая новость' }}</h2>
+      <h2 class="landing-title">{{ formData.title ? formData.title : route.params.news_id ? 'Редактирование новости' : 'Новая новость' }}</h2>
 
       <Form
         @finish="postNews"
         class="newsEdit-form"
       >
-        <div class="newsEdit-form-inputs">
-          <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Заголовок</label>
-            <Input
-              name="title"
-              type="textarea"
-              placeholder="Введите текст обращения"
-              :maxSymbol="150"
-              v-model="formData.title"
-              staticPlaceholder
-            />
+        <div class="newsEdit-form-main">
+          <div class="newsEdit-form-inputs">
+            <div class="newsEdit-formItem">
+              <label for="" class="newsEdit-formItem-label">Заголовок</label>
+              <Input
+                name="title"
+                type="textarea"
+                placeholder="Введите текст обращения"
+                :maxSymbol="150"
+                v-model="formData.title"
+                staticPlaceholder
+                required
+              />
+            </div>
+
+            <div class="newsEdit-formItem">
+              <label for="" class="newsEdit-formItem-label">Подзаголовок</label>
+              <Input
+                name="subtitle"
+                type="textarea"
+                placeholder="Введите текст обращения"
+                :maxSymbol="250"
+                v-model="formData.subtitle"
+                staticPlaceholder
+                required
+              />
+            </div>
           </div>
 
-          <div class="newsEdit-formItem">
-            <label for="" class="newsEdit-formItem-label">Подзаголовок</label>
-            <Input
-              name="subtitle"
-              type="textarea"
-              placeholder="Введите текст обращения"
-              :maxSymbol="250"
-              v-model="formData.subtitle"
-              staticPlaceholder
-            />
-          </div>
+          <Upload
+            class="newsEdit-preview"
+            v-model="formData.newPhotoFile"
+            :preview="formData.preview"
+            :aspectRatio="16 / 9"
+            :height="495"
+            :width="880"
+            :previewBottom="56.36"
+            required
+          />
         </div>
 
-        <Upload
-          class="newsEdit-preview"
-          v-model="formData.newPhoto"
-          v-model:preview="formData.preview"
-          :aspectRatio="16 / 9"
+        <Input
+          name="content"
+          type="editor"
+          v-model="formData.content"
+          staticPlaceholder
+          placeholder="Контент"
+          class="newsEdit-formItem-content"
+          required
         />
-
-        <div class="newsEdit-formItem-content">
-          <ckeditor :editor="ClassicEditor" v-model="formData.content" :config="{}"></ckeditor>
-        </div>
 
         <div class="newsEdit-form-btns">
           <Button
@@ -66,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import getFileUrl from '../../../helpers/getFileUrlByDate'
 
 import { onMounted, reactive } from 'vue'
 import axios from 'axios'
@@ -88,7 +102,7 @@ const formData = reactive({
   subtitle: '',
   content: '',
   preview: null,
-  newPhoto: null
+  newPhotoFile: null
 })
 
 // Get News
@@ -108,8 +122,7 @@ onMounted(() => {
         console.log('response', response);
         formData.title = response.data.title;
         formData.subtitle = response.data.preview_text;
-        formData.preview = response.data.preview_image;
-
+        formData.preview = getFileUrl(response.data.preview_image);
         
         formData.content = response.data.content;
         loading.page = false
@@ -150,7 +163,7 @@ const postNews = () => {
   data.append("content", formData.content);
   data.append("published", 'true');
 
-  data.append("preview_image", formData.newPhoto!);
+  if (formData.newPhotoFile) data.append("preview_image", formData.newPhotoFile);
 
   axios({
     method: route.params.news_id ? "put" : "post",
@@ -196,12 +209,15 @@ const postNews = () => {
 
 .newsEdit {
   &-form {
-    display: grid;
-    grid-template-columns: auto 680px;
-    grid-gap: 40px;
-
-    &-inputs {
+    &-main {
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      grid-gap: 40px;
       margin-bottom: 40px;
+    }
+
+    &-inputs .newsEdit-formItem:last-child {
+      margin-bottom: 0px;
     }
 
     &-preview {
@@ -229,13 +245,8 @@ const postNews = () => {
     }
 
     &-content {
-      grid-column: 1/3;
+      margin-bottom: 40px !important;
     }
-  }
-
-  &-preview {
-    height: 380px;
-    width: 680px;
   }
 }
 </style>

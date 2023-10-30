@@ -16,14 +16,14 @@
 </template>
 
 <script setup lang="ts">
-interface IProps {
-  data: any,
-  litle?: boolean
-}
+  interface IProps {
+    data: any,
+    litle?: boolean
+  }
 
-withDefaults(defineProps<IProps>(), {
-  litle: false
-})
+  withDefaults(defineProps<IProps>(), {
+    litle: false
+  })
 </script>
 
 <style  scoped lang="scss">
@@ -62,7 +62,7 @@ withDefaults(defineProps<IProps>(), {
     overflow: hidden;
 
     & .announcement-preview-img {
-      padding-bottom: 60%;
+      padding-bottom: 43.86%;
     }
 
     & .announcement-content {
@@ -81,7 +81,7 @@ withDefaults(defineProps<IProps>(), {
     border-radius: 10px;
     
     &-img {
-      padding-bottom: 44%;
+      padding-bottom: 43.86%;
     }
   }
 

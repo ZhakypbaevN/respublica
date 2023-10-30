@@ -11,7 +11,7 @@
     }">
 
     <span class="placeholder" v-if="type !== 'editor' && !staticPlaceholder">{{ placeholder }}</span>
-    <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ maxSymbol - (input.value ? String(input.value).length : 0) }}</span>
+    <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ maxSymbol - (input.value ? String(input.value).length : 0) }}/{{ maxSymbol }}</span>
 
     <input
       :type="input.eyeState ? input.eyeState : type"
@@ -39,6 +39,17 @@
       :class="{'with-error': input.withError}"
       :placeholder="staticPlaceholder ? placeholder : ''"
       v-else-if="type === 'textarea'"
+    />
+
+    <CKEditor
+      v-model="input.value"
+      :placeholder="placeholder"
+      :required="required"
+      @change="$emit('change')"
+      @blur="onBlur"
+      @focus="onFocus"
+      :class="{'with-error': input.withError}"
+      v-else-if="type === 'editor'"
     />
 
     <div
@@ -122,6 +133,7 @@
 </template>
 
 <script setup lang="ts">
+import CKEditor from './CKEditor.vue'
 import { inject, onMounted, reactive, watch } from 'vue-demi'
 
 interface IProps {

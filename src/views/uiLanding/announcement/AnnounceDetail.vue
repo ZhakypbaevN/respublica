@@ -125,7 +125,7 @@ const getAnnounceList = () => {
     border-radius: 10px;
 
     &-img {
-      padding-bottom: 20%;
+      padding-bottom: 43.86%;
     }
   }
 

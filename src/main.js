@@ -23,6 +23,7 @@ import Input from './components/common/Input.vue'
 import Checkbox from './components/common/Checkbox.vue'
 import Form from './components/common/Form.vue';
 import Modal from './components/common/Modal.vue';
+import Filter from './components/common/Filter.vue';
 
 import LandingLayout from './components/uiLanding/layouts/landingLayout.vue';
 import Header from './components/uiLanding/layouts/header.vue';
@@ -64,6 +65,7 @@ createApp(App)
   .component('Select', Select)
   .component('Button', Button)
   .component('Input', Input)
+  .component('Filter', Filter)
   .component('Form', Form)
   .component('Modal', Modal)
   .component('LandingLayout', LandingLayout)
