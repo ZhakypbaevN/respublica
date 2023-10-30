@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amcharts/amcharts5": "^5.5.2",
     "@ckeditor/ckeditor5-build-classic": "^40.0.0",
     "@ckeditor/ckeditor5-vue": "^5.1.0",
     "aos": "^2.3.4",

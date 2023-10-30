@@ -48,9 +48,9 @@
               {{ $t('header-party-faction') }}
             </Router-link>
 
-            <!-- <Router-link to="/regions" class="header-main-navs-item">
+            <Router-link to="/regions" class="header-main-navs-item">
               Регионы
-            </Router-link> -->
+            </Router-link>
 
             <Router-link to="/news" class="header-main-navs-item">
               {{ $t('header-press-center') }}
