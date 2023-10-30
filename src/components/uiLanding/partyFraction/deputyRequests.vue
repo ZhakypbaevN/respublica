@@ -1,39 +1,40 @@
 <template>
-<section class="deputyRequests landing-block" id="deputy-requests">
-  <div class="wrapper">
-    <h2 class="landing-title">Депутатские запросы</h2>
-    <div class="request-wrapper">
-      <div class="deputies">
+  <section class="deputyRequests landing-block" id="deputy-requests">
+    <div class="wrapper">
+      <h2 class="landing-title">Депутатские запросы</h2>
+      <div class="request-wrapper">
+        <div class="deputies">
+          <button
+            v-for="(deputy, idx) of deputieslist"
+            :key="deputy.name"
+            class="deputies-deputy withZoomPreview"
+            :class="{ active: deputy.active }"
+            @click="() => toggleShow(idx)"
+          >
+            <div class="deputies-deputy-photo withZoomPreview-preview">
+              <div
+                class="deputies-deputy-photo-img bg-cover withZoomPreview-preview-img"
+                :style="`background-image: url(${deputy.img});`"
+              ></div>
+            </div>
+            <span>{{ deputy.name }}</span>
+          </button>
+        </div>
 
-        <button
-          v-for="(deputy, idx) of deputieslist"
-          :key="deputy.name"
-          class="deputies-deputy withZoomPreview"
-          :class="{active: deputy.active}"
-          @click="() => toggleShow(idx)"
-        >
-          <div class="deputies-deputy-photo withZoomPreview-preview">
-            <div class="deputies-deputy-photo-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img});`"></div>
-          </div>
-          <span>{{ deputy.name }}</span>
-        </button>
-      </div>
-
-      <table class="deputy-requests-table">
+        <table class="deputy-requests-table">
           <thead>
-            <th>Дата и номер запроса, адресант</th>
+            <th>Дата</th>
             <th>Файл и краткое описание</th>
             <!-- <th>Выступление</th> -->
             <th>Ответ</th>
           </thead>
           <tbody>
-            <tr
-              v-for="request of tableContentList"
-              :key="request.title"
-            >
-              <td><span>
-                {{ request.title }}
-              </span></td>
+            <tr v-for="request of tableContentList" :key="request.title">
+              <td class="nowrap">
+                <span>
+                  {{ request.title }}
+                </span>
+              </td>
               <td>
                 <a class="text-line" :href="request.docAndDescription!" target="_blank">
                   <div class="text-line-icon">
@@ -41,7 +42,7 @@
                   </div>
 
                   <span>
-                    {{ request.docAndDescription }}
+                    {{ request.name }}
                   </span>
                 </a>
               </td>
@@ -53,8 +54,8 @@
                   <span>Смотреть</span>
                 </div>
               </td> -->
-              <td>
-                <a
+              <td class="nowrap">
+                <!--  <a
                   v-if="request.answerDoc"
                   class="text-line"
                   :href="request.answerDoc"
@@ -73,224 +74,250 @@
                     <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
                   </div>
                   <span>-</span>
-                </div>
+                </div>-->
+                <span>{{ request.answerDoc }}</span>
               </td>
             </tr>
           </tbody>
-      </table>
-
+        </table>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref } from "vue";
 
 const deputieslist = reactive([
   {
-    name: 'Ходжаназаров А.',
-    img: '/img/uiLanding/fraction/khodzhanazarov.jpg',
+    name: "Ходжаназаров А.",
+    img: "/img/uiLanding/fraction/khodzhanazarov.jpg",
     active: true,
     data: [
       {
-        title: 'Ходжаназаров 12.04.23',
-        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23.pdf',
+        title: "14 Апреля 2023 года",
+        docAndDescription:
+          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23.pdf",
+        name: "Касательно мер по ликвидации засухи",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23 жауап.pdf'
+        answerDoc: "17 Мая 2023 года",
       },
       {
-        title: 'Ходжаназаров 10.05.23',
-        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 10.05.23.pdf',
+        title: "16 Июня 2023 года",
+        docAndDescription:
+          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 10.05.23.pdf",
+        name: "Касательно водных ресурсов",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 10.05.23 жауап.pdf'
+        answerDoc: "3 Августа 2023 года",
       },
       {
-        title: 'Ходжаназаров 24.05.23',
-        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 24.05.23.pdf',
+        title: "21 Мая 2023 года",
+        docAndDescription:
+          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 24.05.23.pdf",
+        name: "Ауыл шаруашылығы өнімдерін экспортауда қойылатын шектеулер туралы",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 24.05.23 жауап.pdf'
+        answerDoc: "21 Июня 2023 года",
       },
       {
-        title: 'Ходжаназаров 14.06.23',
-        docAndDescription: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23.pdf',
+        title: "12 Мая 2023 года",
+        docAndDescription:
+          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23.pdf",
+        name: "Касательно развития сельских территорий",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23 жауап.pdf'
+        answerDoc: "6 Июня 2023 года",
       },
-
 
       // 2nd session
       {
-        title: 'Ходжаназаров 13.09.23',
-        docAndDescription: 'public/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 13.09.23.pdf',
+        title: "14 Апреля 2023 года",
+        name:
+          "Шетелдік астық және сүт өнімдерін жеткізушілер тарапынан ішкі нарықтағы бағалардың заңсыз импорты мен демпингі төңірегінде қалыптасқан жағдай туралы",
+        docAndDescription:
+          "public/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 13.09.23.pdf",
         video: null,
-        answerDoc: null
-      }
-    ]
+        answerDoc: '15 мая 2023 года',
+      },
+    ],
   },
 
   {
-    name: 'БЕРДЕНОВ Р.',
-    img: '/img/uiLanding/fraction/berdenov.jpg',
+    name: "БЕРДЕНОВ Р.",
+    img: "/img/uiLanding/fraction/berdenov.jpg",
     active: false,
     data: [
       {
-        title: 'Берденов 12.04.23',
-        docAndDescription: '/doc/ru/deputies-requests/berdenov/Берденов 12.04.23.pdf',
+        title: "13 Апреля 2023 года",
+        name: "Букмекерские конторы, азартные игры и все ставки предлагаемые через Интернет",
+        docAndDescription: "/doc/ru/deputies-requests/berdenov/Берденов 12.04.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/berdenov/Берденов 12.04.23 жауап.pdf'
+        answerDoc: "12 Мая 2023 года",
       },
       {
-        title: 'Берденов 21.06.23',
-        docAndDescription: '/doc/ru/deputies-requests/berdenov/Берденов 21.06.23.pdf',
+        title: "22 Июня 2023 года",
+        name: "По вопросам снижения оборота и обязательной постановки на учет по НДС",
+        docAndDescription: "/doc/ru/deputies-requests/berdenov/Берденов 21.06.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/berdenov/Берденов 21.06.23 жауап.pdf'
+        answerDoc: "14 Июля 2023 года",
       },
-
 
       // 2nd session
       {
-        title: 'Берденов 06.09.23',
-        docAndDescription: '/doc/ru/deputies-requests/berdenov/Берденов 06.09.23.pdf',
+        title: "6 Сентября 2023 года",
+        name: "«Қазақстан темір жолы» ҰК» АҚ қызметіне қатысты",
+        docAndDescription: "/doc/ru/deputies-requests/berdenov/Берденов 06.09.23.pdf",
         video: null,
-        answerDoc: null
-      }
-    ]
+        answerDoc: "13 Июня 2023 года",
+      },
+    ],
   },
 
   {
-    name: 'КУСПЕКОВ О.',
-    img: '/img/uiLanding/fraction/kuspekov.jpg',
+    name: "КУСПЕКОВ О.",
+    img: "/img/uiLanding/fraction/kuspekov.jpg",
     active: false,
     data: [
       {
-        title: 'Куспеков 12.04.23',
-        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 12.04.23.pdf',
+        title: "14 Апреля 2023 года",
+        name: "Про обновления сельхозтехники отечественных аграриев.",
+        docAndDescription: "/doc/ru/deputies-requests/kuspekov/Куспеков 12.04.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 12.04.23 жауап.pdf'
+        answerDoc: "12 Мая 2023 года",
       },
       {
-        title: 'Куспеков 20.04.23',
-        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 20.04.23.pdf',
+        title: "21 Апреля 2023 года",
+        name: "Жүргізуші куәліктеріне қатысты ",
+        docAndDescription: "/doc/ru/deputies-requests/kuspekov/Куспеков 20.04.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 20.04.23 жауап.pdf'
+        answerDoc: "17 Мая 2023 года",
       },
       {
-        title: 'Куспеков 3.05.23',
-        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 3.05.23.pdf',
+        title: "5 Апреля 2023 года",
+        name: "О развитии человеческого капитала",
+        docAndDescription: "/doc/ru/deputies-requests/kuspekov/Куспеков 3.05.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 3.05.23 жауап.pdf'
+        answerDoc: "26 Мая 2023 года ",
       },
       {
-        title: 'Куспеков 14.05.23 - 16.06.23',
-        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 14.05.23.pdf',
+        title: "16 Мая 2023 года",
+        name: "Колледждердің дамуы бойынша",
+        docAndDescription: "/doc/ru/deputies-requests/kuspekov/Куспеков 14.05.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/kuspekov/Куспеков 16.06.23 жауап.pdf'
+        answerDoc: "17 Июля 2023 года",
       },
-
 
       // 2nd session
       {
-        title: 'Куспеков 04.10.23',
-        docAndDescription: '/doc/ru/deputies-requests/kuspekov/Куспеков 04.10.23.pdf',
+        title: "4 Октября 2023 года",
+        name: "О проблемах лизинга автомобилей",
+        docAndDescription: "/doc/ru/deputies-requests/kuspekov/Куспеков 04.10.23.pdf",
         video: null,
-        answerDoc: null
-      }
-    ]
+        answerDoc: "",
+      },
+    ],
   },
 
   {
-    name: 'НАУМОВА Д.',
-    img: '/img/uiLanding/fraction/naumova.jpg',
+    name: "НАУМОВА Д.",
+    img: "/img/uiLanding/fraction/naumova.jpg",
     active: false,
     data: [
       {
-        title: 'Наумова 26.04.23',
-        docAndDescription: 'public/doc/ru/deputies-requests/naumova/Наумова 26.04.23.pdf',
+        title: "17 Мая 2023 года",
+        name: "О проблеме трудоустройства молодежи",
+        docAndDescription: "public/doc/ru/deputies-requests/naumova/Наумова 26.04.23.pdf",
         video: null,
-        answerDoc: null
+        answerDoc: "15 Июня 2023 года",
       },
       {
-        title: 'Наумова 15.05.23',
-        docAndDescription: 'public/doc/ru/deputies-requests/naumova/Наумова 15.05.23.pdf',
+        title: "28 Апреля 2023 года",
+        name: "Проблема лиц с онкологическими заболеваниями",
+        docAndDescription: "public/doc/ru/deputies-requests/naumova/Наумова 15.05.23.pdf",
         video: null,
-        answerDoc: null
+        answerDoc: "24 Мая 2023",
       },
-
 
       // 2nd session
       {
-        title: 'Наумова Д.Р. 04.10.23',
-        docAndDescription: '/doc/ru/deputies-requests/naumova/Наумова Д.Р. 04.10.23.pdf',
+        title: "4 Октября 2023 года",
+        name: "О проблеме обеспечения жильем лиц с инвалидностью",
+        docAndDescription: "/doc/ru/deputies-requests/naumova/Наумова Д.Р. 04.10.23.pdf",
         video: null,
-        answerDoc: null
-      }
-    ]
+        answerDoc: "",
+      },
+    ],
   },
 
   {
-    name: 'ТАУ Н.',
-    img: '/img/uiLanding/fraction/tau.jpg',
+    name: "ТАУ Н.",
+    img: "/img/uiLanding/fraction/tau.jpg",
     active: false,
     data: [
       {
-        title: 'Тау 20.04.23',
-        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 20.04.23.pdf',
+        title: "21 Апреля 2023 года",
+        name: "Қосымша білім беру бойынша",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 20.04.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/tau/Тау 20.04.23 жауап.pdf'
+        answerDoc: "17 Мая 2023 года",
       },
       {
-        title: 'Тау 3.05.23',
-        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 3.05.23.pdf',
+        title: "5 Мая 2023 года ",
+        name: "Білім беру ұйымдарының техникалық персоналының жекелеген санаттарына еңбек демалысына сауықтыру жәрдемақыларын төлеу мәселесі бойынша",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 3.05.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/tau/Тау 3.05.23 жауап.pdf'
+        answerDoc: "31 Мая 2023 года",
       },
       {
-        title: 'Тау 10.05.23',
-        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 10.05.23.pdf',
+        title: "11 Мая 2023 года",
+        name: "Мектеп оқушылары мен жастар арасында “вейп” атымен танымал тұтынудың электрондық жүйелердің жаппай таралуына тыйым салу туралы ",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 10.05.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/tau/Тау 10.05.23 жауап.pdf'
+        answerDoc: "6 Июня 2023 года",
       },
       {
-        title: 'Тау 27.06.23',
-        docAndDescription: '/doc/ru/deputies-requests/tau/Тау 27.06.23.pdf',
+        title: "29 Июня 2023 года",
+        name: "Білім беру ұйымдарының техникалық персоналының жекелеген санаттарына еңбек демалысына сауықтыру жәрдемақыларын төлеу мәселесі бойынша",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 27.06.23.pdf",
         video: null,
-        answerDoc: null
+        answerDoc: "31 Июля 2023 года",
       },
-
 
       // 2nd session
       {
-        title: 'Тау Н. 22.09.23',
-        docAndDescription: '/doc/ru/deputies-requests/tau/Тау Н. 22.09.23.pdf',
+        title: "22 Сентября 2023 года",
+        name: "Паллиативтік көмек туралы",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау Н. 22.09.23.pdf",
         video: null,
-        answerDoc: null
-      }
-    ]
+        answerDoc: "20 Октября 2023 года",
+      },
+    ],
   },
-  
+
   {
-    name: 'ШУКИЖАНОВА Д.',
-    img: '/img/uiLanding/fraction/shukizhanova.jpg',
+    name: "ШУКИЖАНОВА Д.",
+    img: "/img/uiLanding/fraction/shukizhanova.jpg",
     active: false,
     data: [
       {
-        title: 'Шукижанова 20.04.23',
-        docAndDescription: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23.pdf',
+        title: "20 Апреля 2023 года",
+        name: "Касательно противодействия и распространения синтетических наркотиков",
+        docAndDescription:
+          "/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23 жауап.pdf'
+        answerDoc: "19 Мая 2023 года",
       },
       {
-        title: 'Шукижанова 24.05.23',
-        docAndDescription: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23.pdf',
+        title: "25 Мая 2023 года",
+        name: "О необходимости разработки национальной Концепции по развитию использования транспортных средств",
+        docAndDescription:
+          "/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23.pdf",
         video: null,
-        answerDoc: '/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23 жауап.pdf'
+        answerDoc: "27 Июня 2023 года",
       },
-    ]
-  }
+    ],
+  },
 ]);
 
-const tableContentList = ref(deputieslist[0].data)
+const tableContentList = ref(deputieslist[0].data);
 
 const toggleShow = (idx: number) => {
   for (let i = 0; i < deputieslist.length; i++) {
@@ -298,7 +325,7 @@ const toggleShow = (idx: number) => {
   }
   deputieslist[idx].active = true;
   tableContentList.value = deputieslist[idx].data;
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -328,7 +355,7 @@ const toggleShow = (idx: number) => {
     border: 2px transparent solid;
     background-color: var(--white-color);
 
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       border-color: var(--accent-color-op50);
@@ -343,7 +370,6 @@ const toggleShow = (idx: number) => {
       }
     }
 
-
     &-photo {
       border-radius: 50%;
 
@@ -357,14 +383,14 @@ const toggleShow = (idx: number) => {
       font-size: 20px;
       font-weight: 500;
       text-transform: uppercase;
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
   }
 }
 
 .deputy-requests-table {
   max-width: 1490px;
-  border:none;
+  border: none;
   border-collapse: collapse;
   & thead {
     & th {
@@ -386,7 +412,7 @@ const toggleShow = (idx: number) => {
     background-color: var(--white-color);
 
     tr {
-      border-bottom: 0.5px solid rgba(129, 143, 167, 0.50);
+      border-bottom: 0.5px solid rgba(129, 143, 167, 0.5);
       td {
         padding: 20px 20px 20px 0;
 
@@ -419,5 +445,9 @@ const toggleShow = (idx: number) => {
       height: 32px;
     }
   }
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 </style>
