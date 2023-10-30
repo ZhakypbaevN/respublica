@@ -32,6 +32,7 @@ import AnnounceDetail from '../views/uiLanding/announcement/AnnounceDetail.vue'
 import VideoGallery from '../views/uiLanding/gallery/VideoGallery.vue'
 import PhotoGalleryAll from '../views/uiLanding/gallery/PhotoGalleryAll.vue'
 
+import Regions from '../views/uiLanding/Regions.vue'
 import Faq from '../views/uiLanding/Faq.vue'
 import Donations from '../views/uiLanding/Donations.vue'
 
@@ -163,6 +164,11 @@ const routes = [
     component: PartyFraction,
   },
   {
+    path: '/regions',
+    name: 'Regions',
+    component: Regions,
+  },
+  {
     path: '/faq',
     name: 'Faq',
     component: Faq,
@@ -183,7 +189,7 @@ const routes = [
     component: DeputiesOfMajilis
   },
   {
-    path: '/deputies-of-maslikhat',
+    path: '/deputies-of-maslikhat/:region_id?',
     name: 'DeputiesOfMaslikhat',
     component: DeputiesOfMaslikhat
   },
