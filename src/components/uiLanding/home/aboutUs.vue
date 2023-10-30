@@ -2,19 +2,21 @@
   <section class="aboutUs landing-block">
     <div class="wrapper landing-wrapper">
       <h2 class="aboutUs-title">
-        <span class="blue" data-aos="zoom-in">{{ $t("about-us-new-people") }}</span>
-        <span data-aos="zoom-in">{{ $t("about-us-new-opportunities") }}</span>
+        <span class="blue" data-aos="zoom-in" data-aos-delay="250">{{ $t("about-us-new-people") }}</span>
+        <span data-aos="zoom-in" data-aos-delay="300">{{ $t("about-us-new-opportunities") }}</span>
       </h2>
-      <p class="aboutUs-description" data-aos="zoom-in">
+      <p class="aboutUs-description" data-aos="zoom-in" data-aos-delay="300">
         {{ $t("about-us-description") }}
         <br />
         <br />
         {{ $t("about-us-forward") }}
       </p>
-
-      <div class="aboutUs-inner">
+      
+      <div class="aboutUs-inner" data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom"
+     data-aos-delay="300">
         <div class="aboutUs-items">
-          <div class="aboutUs-item" v-for="item of aboutUsList" :key="item.title">
+          <div class="aboutUs-item" v-for="item of aboutUsList" :key="item.title" data-aos="zoom-in-up">
             <h4 class="aboutUs-item-title">{{ item.title }}</h4>
             <p class="aboutUs-item-description" v-html="item.text"></p>
             <RouterLink :to="item.link" class="aboutUs-item-link">
@@ -116,7 +118,7 @@ const aboutUsList = [
 
     & span.blue {
       color: var(--accent-color);
-      /*font-family: "Montserrat";*/
+      font-family: "Montserrat";
     }
   }
   &-description {

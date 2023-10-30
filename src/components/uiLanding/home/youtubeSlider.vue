@@ -18,9 +18,10 @@
       :centeredSlides="true"
       :spaceBetween="30"
       :autoplay="{
-        delay: 4200,
+        delay: 0,
         disableOnInteraction: true,
       }"
+      :speed="6000"
       :mousewheel="true"
       :loop="true"
       :navigation="true"
