@@ -16,7 +16,7 @@
       <!-- Content -->
       <div class="newsItem-content">
         <h4 class="newsItem-content-date">
-          {{ data.created_at }}
+          {{ convertDateTime(data.created_at) }}
         </h4>
 
         <h3 class="newsItem-content-title">
@@ -71,6 +71,8 @@
 </template>
 
 <script setup lang="ts">
+import convertDateTime from '../../../helpers/convertDateTime.js'
+
 import { ref } from 'vue';
 import DeleteModal from './deleteModal.vue'
 

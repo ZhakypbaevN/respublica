@@ -1,13 +1,19 @@
 <template>
   <section class="wrapper-main">
     <div class="news wrapper">
+      <Filter
+        v-model="filter.published"
+        :list="filterList"
+      />
 
       <div class="news-header">
         <Input
-          placeholder="Поиск по проекту"
+          v-model="filter.search"
           staticPlaceholder
+          placeholder="Поиск по проекту"
         />
-        <RouterLink to="/media/announcements/create">
+
+        <RouterLink to="/media/news-list/create">
           <Button
             class="news-header-addNewsBtn"
             type="default-blue"
@@ -16,6 +22,7 @@
           </Button>
         </RouterLink>
       </div>
+      
       <div class="news-items">
         <NewsItem
           v-for="data of newsList"
@@ -31,19 +38,44 @@
 import NewsItem from "../../../components/uiMedia/announcements/newsItem.vue"
 
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 
 import { useToast } from '../../../modules/toast'
+import { useI18n } from 'vue-i18n'
+import { watch } from "vue";
 
+const { t } = useI18n()
 const { toast } = useToast()
 
-const isLoading = ref(false)
 const token = localStorage.getItem('TOKEN');
+const isLoading = ref(false)
 const newsList = ref([]);
 
+const filter = reactive({
+  search: null,
+  published: true
+})
+const filterList = [
+  {
+    name: t('filter-published'),
+    value: true
+  },
+  {
+    name: t('filter-unpublished'),
+    value: false
+  }
+]
+
 onMounted(() => getPhotos());
+
+watch(
+  () => [filter.published, filter.search],
+  () => getPhotos()
+)
+
 const getPhotos = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=6`;
+  newsList.value = [];
+  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=6&search=${filter.search}&published=${filter.published}`;
 
   axios({
     method: "get",

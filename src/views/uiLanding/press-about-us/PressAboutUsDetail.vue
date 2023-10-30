@@ -129,7 +129,7 @@ margin-bottom: 100px;
     border-radius: 10px;
 
     &-img {
-    padding-bottom: 60%;
+    padding-bottom: 50%;
     }
 }
 
