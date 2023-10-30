@@ -70,7 +70,7 @@ import convertDateTime from '../../../helpers/convertDateTime.js';
 interface IProps {
   data: any,
   pressAboutUs?: boolean,
-  litle?: boolean
+  litle?: boolean,
 }
 
 withDefaults(defineProps<IProps>(), {
@@ -83,7 +83,7 @@ withDefaults(defineProps<IProps>(), {
 .newsItem {
   &.pressAboutUs {
     & .newsItem-preview-img {
-      padding-bottom: 44%;;
+      padding-bottom: 50%;;
     }
   }
 
@@ -104,7 +104,7 @@ withDefaults(defineProps<IProps>(), {
     position: relative;
     
     &-img {
-      padding-bottom: 60%;
+      padding-bottom: 56.36%;
     }
   }
 

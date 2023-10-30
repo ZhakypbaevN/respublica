@@ -1,24 +1,27 @@
 <template>
-  <div>
+  <div class="upload">
     <div
       @dragover="onDragOver"
       @dragleave="drag = false"
       @drop="onDrop"
       @click="input.click()"
       :class="{ dragging: drag }"
+      class="upload-previewBlock withZoomPreview"
+      :style="image ? '' : `padding-bottom:${previewBottom}%;`"
     >
-      <img
-        v-if="!img"
-        :src="image"
-        alt=""
-        :class="{ default: image === defaultPreview }"
-        :crossorigin="image === defaultPreview ? 'anonymous' : null"
-      />
-      <img
+      <div v-if="image" class="upload-preview withZoomPreview-preview">
+        <div
+          class="upload-preview-img bg-cover withZoomPreview-preview-img"
+          :style="`background-image: url(${image});padding-bottom:${previewBottom}%;`"
+        ></div>
+      </div>
+
+      <SvgIcon
         v-else
-        :src="img"
-        alt=""
-        :class="{ default: image === defaultPreview }"
+        name="default-product-avatar"
+        class="defaultPreview"
+        :viewboxWidth="131"
+        :viewboxHeight="131"
       />
       <input
         type="file"
@@ -27,20 +30,23 @@
         :accept="'image/png, image/gif, image/jpeg, image/svg'"
         @change="onUpload"
       />
-      <SvgIcon
-        v-if="!modelValue"
-        class="plus"
-        name="plus"
-        :viewboxHeight="24"
-        :viewboxWidth="24"
-        :fill="!drag ? 'var(--accent-color)' : '#fff'"
-      />
     </div>
+    <Button
+      :name="
+        image
+        ? 'Сменить фотографию'
+        : 'Загрузить фотографию'
+      "
+      @click="input.click()"
+    />
+
     <ImageCrop
-      v-model:url="img"
       :show="isShowModal"
       :file="fileUrl"
+      :width="width"
+      :height="height"
       :aspectRatio="aspectRatio"
+      @newUrl="newUrl"
       @newFile="newCrop"
       @hide="() => isShowModal = false"
     />
@@ -48,14 +54,18 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, computed } from 'vue-demi'
+  import { ref } from 'vue-demi'
+  import { File } from 'buffer';
+
   import ImageCrop from '../../components/common/ImageCrop.vue'
-  import getFileUrl from '../../helpers/getFileUrlByDate'
 
   interface IProps {
     modelValue?: File,
-    preview: string,
-    aspectRatio: number
+    preview: string | null,
+    aspectRatio: number,
+    height: number,
+    width: number,
+    previewBottom: number
   }
   interface Emits {
     (event: 'update:modelValue', value: any): void,
@@ -65,21 +75,17 @@
   const emit = defineEmits<Emits>()
 
   const props = withDefaults(defineProps<IProps>(), {
-    aspectRatio: 16 / 9
+    aspectRatio: 16 / 10
   })
 
-  const defaultPreview = '/img/icons/default_product_avatar.svg';
+  const image = ref(props.preview);
 
   const drag = ref(false)
   const input = ref(null)
   const fileUrl = ref();
   const isShowModal = ref(false);
-  
-  const image = computed({
-    get: () => getFileUrl(props.preview),
-    set: (val) => emit('update:preview', val)
-  })
-  const img = ref(null)
+
+
   const onDragOver = (event) => {
     event.stopPropagation()
     event.preventDefault()
@@ -96,9 +102,16 @@
 
   const onUpload = (e) => {
     const { files } = e.target as HTMLInputElement
+
+    upload(files)
+  }
+
+  const upload = (files) => {
     if (!files || !files.length) return
 
     const file = files[0]
+    emit('update:modelValue', file)
+
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = () => {
@@ -106,58 +119,50 @@
 
       isShowModal.value = true
     }
-    isShowModal.value = true;
   }
 
-  const newCrop = file => {
+  const newUrl = (url) => {
+    image.value = url;
+    console.log('url', url);
+    console.log('image.value', image.value);
+  }
+
+  const newCrop = (file) => {
     emit('update:modelValue', file)
   }
 </script>
 
 <style scoped lang="scss">
-div {
-  width: 100%;
-  height: 100%;
+.upload {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
+  flex-direction: column;
+  grid-gap: 20px;
 
-  border: 1px solid var(--accent-color);
-}
-img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-.default {
-  height: unset;
-  width: unset;
-}
-.plus {
-  position: absolute;
-  height: 30px;
-  width: 30px;
-}
-.dragging {
-  background: var(--accent-color);
-}
-.delete-image {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  z-index: 2;
-  padding: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
+  &-previewBlock {
+    cursor: pointer;
+    position: relative;
+    
+    border: 1px solid var(--accent-color);
 
-  & svg {
-    width: 14px;
-    height: 14px;
+    .dragging {
+      background: var(--accent-color);
+    }
+  }
+
+  &-preview,
+  &-preview-img {
+    height: 100%;
+    width: 100%;
+  }
+
+  & .defaultPreview {
+    height: 140px;
+    width: 140px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 </style>

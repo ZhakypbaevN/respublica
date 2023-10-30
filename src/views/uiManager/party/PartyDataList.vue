@@ -70,7 +70,7 @@ const getStatusList = (data) => {
 }
 
 onMounted(() => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100&filter[status]=${route.params.filter}`
+  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100&status=${route.params.filter}`
 
   axios({
     method: "get",

@@ -11,6 +11,7 @@ import AboutParty from '../views/uiLanding/AboutParty.vue'
 import News from '../views/uiLanding/News.vue'
 import Contacts from '../views/uiLanding/Contacts.vue'
 import PartyFraction from '../views/uiLanding/PartyFraction.vue'
+import MeetingWithVoters from '../views/uiLanding/MeetingWithVoters.vue'
 
 // Deputies
 import DeputiesOfMajilis from '../views/uiLanding/deputies/DeputiesOfMajilis.vue';
@@ -19,12 +20,13 @@ import DeputiesOfMaslikhat from '../views/uiLanding/deputies/DeputiesOfMaslikhat
 // News
 import NewsList from '../views/uiLanding/news/NewsList.vue'
 import NewsDetail from '../views/uiLanding/news/NewsDetail.vue'
-import AnnounceDetail from '../views/uiLanding/news/AnnounceDetail.vue'
-import MeetingWithVoters from '../views/uiLanding/news/MeetingWithVoters.vue'
 
 // Press About Us
-import PressAboutUsList from '../views/uiLanding/news/PressAboutUsList.vue'
-import PressAboutUsDetail from '../views/uiLanding/news/PressAboutUsDetail.vue'
+import PressAboutUsList from '../views/uiLanding/press-about-us/PressAboutUsList.vue'
+import PressAboutUsDetail from '../views/uiLanding/press-about-us/PressAboutUsDetail.vue'
+
+// Announcement
+import AnnounceDetail from '../views/uiLanding/announcement/AnnounceDetail.vue'
 
 // Gallery
 import VideoGallery from '../views/uiLanding/gallery/VideoGallery.vue'

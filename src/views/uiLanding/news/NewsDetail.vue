@@ -13,8 +13,7 @@
 
               <div class="news-subtitle">{{ newsData.preview_text }}</div>
   
-              <div class="news-text ck" v-html="newsData.content"></div>
-  
+              <div class="news-text ck-content" v-html="newsData.content"></div>
             </div>
   
             <div class="news-items" v-if="newsList">
@@ -34,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import convertDateTime from '../../../helpers/convertDateTime.js';
+// import convertDateTime from '../../../helpers/convertDateTime.js';
 
 import NewsItem from '../../../components/uiLanding/news/newsItem.vue';
 
@@ -102,50 +101,50 @@ axios({
 
 <style scoped lang="scss">
 .wrapper {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .news {
-margin-bottom: 100px;
+  margin-bottom: 100px;
 
-&-title {
+  &-title {
     color: var(--primary-color);
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 40px;
-}
+  }
 
-&-subtitle {
-  color: var(--primary-color);
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 40px;
-}
+  &-subtitle {
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 40px;
+  }
 
-&-text {
+  &-text {
     color: var(--primary-color);
     font-size: 22px;
     font-weight: 400;
     line-height: 25px;
     margin-bottom: 30px;
-}
+  }
 
-&-preview {
+  &-preview {
     width: 100%;
     margin-bottom: 30px;
     border-radius: 10px;
 
     &-img {
-    padding-bottom: 60%;
+      padding-bottom: 56.36%;
     }
-}
+  }
 
-&-items {
+  &-items {
     display: flex;
     flex-direction: column;
     grid-gap: 15px;
-}
+  }
 }
 </style>

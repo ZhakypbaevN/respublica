@@ -7,21 +7,19 @@
   >
     <div class="cropModal-inner">
     
-      <VuePictureCropper
-        :boxStyle="{
-          width: '100%',
-          height: '100%',
-          backgroundColor: '#f8f8f8',
-          margin: 'auto',
+      <Cropper
+        ref="cropper"
+        class="cropper"
+        :src="file"
+        :stencil-props="{
+          aspectRatio: aspectRatio
         }"
-        :img="file"
-        :options="{
-          viewMode: 1,
-          dragMode: 'crop',
-          aspectRatio: 16 / 9,
+        :canvas="{
+          width: width,
+          height: height
         }"
-        @ready="ready"
       />
+      
       <Button
         name="Готово"
         type="default-green"
@@ -32,42 +30,50 @@
 </template>
 
 <script setup lang="ts">
-import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+import { ref } from 'vue';
+import { Cropper } from 'vue-advanced-cropper'
+import 'vue-advanced-cropper/dist/style.css';
+import 'vue-advanced-cropper/dist/theme.classic.css';
 
 interface IProps {
   show: boolean,
   file?: string,
-  aspectRatio?: number
+  aspectRatio?: number,
+  width: number,
+  height: number
 }
 interface Emits {
   (event: 'hide'): Function,
   (event: 'newFile', value: any): void,
-  (event: 'update:url', value: any): void,
+  (event: 'newUrl', value: any): void,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   aspectRatio: 16 / 9,
 })
+// const opt = {
+//   width: 920,
+//   height: 514,
+// }
 const emits = defineEmits<Emits>()
 
+const cropper = ref();
+
 const crop = async () => {
-  console.log('!cropper', !cropper);
+  console.log('props.width', props.width);
+  console.log('props.height', props.height);
+  if (cropper.value) {
+    const { canvas } = cropper.value.getResult({ width: props.width, height: props.height });
 
-  if (!cropper) return
-  const base64 = cropper.getDataURL()
-  const blob: Blob | null = await cropper.getBlob()
-  if (!blob) return
+    const dataUrl = canvas.toDataURL('image/jpeg');
+    const response = await fetch(dataUrl);
+    const blob = await response.blob();
+    const file = new File([blob], "fileName.jpeg", {type: "image/jpeg"});
 
-  const file = await cropper.getFile()
-
-  console.log({ base64, blob, file })
-  emits('update:url', URL.createObjectURL(blob))
-  emits('newFile', file)
-  emits('hide')
-}
-
-const ready = async () => {
-  console.log('Cropper is ready.')
+    emits('newUrl', dataUrl)
+    emits('newFile', file)
+    emits('hide')
+  }
 }
 </script>
 
@@ -83,6 +89,12 @@ const ready = async () => {
     align-items: flex-end;
   }
   
+}
+
+.cropper {
+	height: 880px;
+	width: 880px;
+	background: #DDD;
 }
 </style>
 <style>
