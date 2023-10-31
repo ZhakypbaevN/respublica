@@ -33,23 +33,23 @@ onMounted(() => {
   let root = am5.Root.new(map);
 
   const cities = [
-    { cityId: "KZ-ZHT", name: "ЖЕТЫСУСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-ALM", name: "АЛМАТИНСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-KAR", name: "КАРАГАНДИНСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-PAV", name: "ПАВЛОДАРСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-ZHA", name: "ЖАМБЫЛСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-AKM", name: "АКМОЛИНСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-ATY", name: "АТЫРАУСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-AKT", name: "АКТЮБИНСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-MAN", name: "МАНГИСТАУСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-TUR", name: "ТУРКЕСТАНСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-KZY", name: "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-KUS", name: "КОСТАНАЙСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-ABY", name: "АБАЙСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-ULT", name: "УЛЫТАУСКАЯ ОБЛАСТЬ" },
-    { cityId: "KZ-ZAP", name: "ЗКО" },
-    { cityId: "KZ-VOS", name: "ВКО" },
-    { cityId: "KZ-SEV", name: "СКО" }
+    { cityId: "KZ-ZHT", name: "ЖЕТЫСУСКАЯ ОБЛАСТЬ", address: "Талдыкорган, ул. Абылай хана, 186" },
+    { cityId: "KZ-ALM", name: "АЛМАТИНСКАЯ ОБЛАСТЬ", address: "г. Конаев, мкр-н 1, уч. 35/10" },
+    { cityId: "KZ-KAR", name: "КАРАГАНДИНСКАЯ ОБЛАСТЬ", address: "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46" },
+    { cityId: "KZ-PAV", name: "ПАВЛОДАРСКАЯ ОБЛАСТЬ", address: "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908" },
+    { cityId: "KZ-ZHA", name: "ЖАМБЫЛСКАЯ ОБЛАСТЬ", address: "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж" },
+    { cityId: "KZ-AKM", name: "АКМОЛИНСКАЯ ОБЛАСТЬ", address: "" },
+    { cityId: "KZ-ATY", name: "АТЫРАУСКАЯ ОБЛАСТЬ", address: "г. Атырау, пр. Султан Бейбарыс, 450" },
+    { cityId: "KZ-AKT", name: "АКТЮБИНСКАЯ ОБЛАСТЬ", address: "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж" },
+    { cityId: "KZ-MAN", name: "МАНГИСТАУСКАЯ ОБЛАСТЬ", address: "г. Актау, 16 мкрн, д. 25, БЦ Prime" },
+    { cityId: "KZ-TUR", name: "ТУРКЕСТАНСКАЯ ОБЛАСТЬ", address: "г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13" },
+    { cityId: "KZ-KZY", name: "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ", address: "г. Кызылорда, ул. Конаева, 19-а, 1 этаж" },
+    { cityId: "KZ-KUS", name: "КОСТАНАЙСКАЯ ОБЛАСТЬ", address: "г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN" },
+    { cityId: "KZ-ABY", name: "АБАЙСКАЯ ОБЛАСТЬ", address: "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199" },
+    { cityId: "KZ-ULT", name: "УЛЫТАУСКАЯ ОБЛАСТЬ", address: "г. Жезказган, ул. Мира 1" },
+    { cityId: "KZ-ZAP", name: "ЗКО", address: "г. Уральск, с. Желаево, ул.Трудовая, 6/3" },
+    { cityId: "KZ-VOS", name: "ВКО", address: "г. Усть-Каменогорск, ул. Чехова, 69, кв.1" },
+    { cityId: "KZ-SEV", name: "СКО", address: "г. Петропавловск, ул. Алтынсарина, 168-б" }
   ]
 
   root._logo!.dispose();
@@ -100,10 +100,14 @@ onMounted(() => {
   // -------- Map ToolTip Settings --------
   const generateToolTip = () => {
     return (
-      `<div style="min-height:50px;width:255px;background-color:white;padding:12px;display:flex;grid-gap:12px;border: 1px solid #E9EBED;border-radius:10px;pointer-events:none;">
-        <div style="height:12px;width:12px;background-color:#4A78EC;border-radius:50%;margin-top:4px;"></div>
+      `<div style="min-height:70px;width:400px;background-color:white;padding:12px;display:flex;grid-gap:12px;border: 1px solid #E9EBED;border-radius:10px;pointer-events:none;">
+        <div style="height:12px;width:12px;background-color:#4A78EC;border-radius:100%;margin-top:4px;"></div>
         <div>
           <p style="font-family:'SF Pro Display';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:10px;">{name}</p>
+          <p style="font-family:'SF Pro Display';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:2px;">
+            <span style="color:#9A9EA6">Адрес: </span>
+            {address}
+          </p>
           <p style="font-family:'SF Pro Display';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:2px;">
             <span style="color:#9A9EA6">ДЕПУТАТОВ: </span>
             {count}
@@ -161,7 +165,8 @@ onMounted(() => {
     let nameArray = city.name.split(' ')
     return {
       cityId: city.cityId,
-      name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`
+      name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`,
+      address: city.address
     }
   }));
 
@@ -183,10 +188,12 @@ onMounted(() => {
       const polygon = {
         id: '',
         name: '',
+        address: '',
         polygonSettings: {}
       };
       polygon.id = city.cityId
       polygon.name = nameToLowerCase({id: city.cityId, name: city.name})
+      polygon.address = city.address
       
       if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#A8C9E5') }
       return polygon

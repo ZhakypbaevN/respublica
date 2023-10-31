@@ -118,7 +118,6 @@ const aboutUsList = [
 
     & span.blue {
       color: var(--accent-color);
-      font-family: "Montserrat";
     }
   }
   &-description {
