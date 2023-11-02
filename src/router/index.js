@@ -12,6 +12,7 @@ import News from '../views/uiLanding/News.vue'
 import Contacts from '../views/uiLanding/Contacts.vue'
 import PartyFraction from '../views/uiLanding/PartyFraction.vue'
 import MeetingWithVoters from '../views/uiLanding/MeetingWithVoters.vue'
+import Marketplace from '../views/uiLanding/Marketplace.vue'
 
 // Deputies
 import DeputiesOfMajilis from '../views/uiLanding/deputies/DeputiesOfMajilis.vue';
@@ -197,6 +198,11 @@ const routes = [
     path: '/meeting-with-voters/:meetingWithVoters_id',
     name: 'MeetingWithVoters',
     component: MeetingWithVoters
+  },
+  {
+    path: '/marketplace',
+    name: 'Marketplace',
+    component: Marketplace
   },
 
 
