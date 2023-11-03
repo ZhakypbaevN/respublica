@@ -211,7 +211,6 @@ const routes = [
     component: Marketplace
   },
 
-
   // UI Client
   {
     path: '/client',
