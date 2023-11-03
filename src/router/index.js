@@ -169,6 +169,12 @@ const routes = [
     name: 'Regions',
     component: Regions,
   },
+  
+  {
+    path: '/regions/:region_id?',
+    name: 'Regions',
+    component: Regions,
+  },
   {
     path: '/faq',
     name: 'Faq',
