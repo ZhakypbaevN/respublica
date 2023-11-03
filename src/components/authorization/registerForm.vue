@@ -23,81 +23,83 @@
     </div>
 
     <div class="modal-message">
-      <h4 class="modal-message-title">У вас есть аккаунт? </h4>
-      <RouterLink
-        class="modal-message-btn"
-        to="/auth/login"
+      <h4 class="modal-message-title">У вас есть аккаунт?</h4>
+      <RouterLink class="modal-message-btn" to="/auth/login"> Войти </RouterLink>
+    </div>
+    <div class="modal-doc">
+      <span
+        >Отправляя нам ваши контактные данные, вы соглашаетесь с
+        <a href="/public/doc/ru/Политика конфиденциальности партии.pdf" target="_blank">политикой конфиденциалности</a> и
+        <a href="/public/doc/ru/Соглашение .pdf" target="_blank">соглашением</a></span
       >
-        Войти
-      </RouterLink>
     </div>
   </Form>
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
-import { ref } from 'vue'
+import axios from "axios";
+import { ref } from "vue";
 
 // Modules
-import { useToast } from '../../modules/toast'
+import { useToast } from "../../modules/toast";
 
 // Helpers
-import formatPhone from '../../helpers/formatPhone.js'
+import formatPhone from "../../helpers/formatPhone.js";
 
-const { toast } = useToast()
+const { toast } = useToast();
 
 interface IProps {
-  phone: string
+  phone: string;
 }
 
 interface Emits {
-  (event: 'update:phone', value: string): void,
-  (event: 'update:token', value: string): void,
-  (event: 'toCheck'): Function,
+  (event: "update:phone", value: string): void;
+  (event: "update:token", value: string): void;
+  (event: "toCheck"): Function;
 }
 
-defineProps<IProps>()
-const emit = defineEmits<Emits>()
+defineProps<IProps>();
+const emit = defineEmits<Emits>();
 
-const loading = ref(false)
+const loading = ref(false);
 
 const postRegister = ({ phone }: { phone: string }) => {
   loading.value = true;
   const url = `https://api.respublica.codetau.com/api/v1/auth/register`;
-    
+
   axios({
     method: "post",
     url: url,
     data: {
-      "phone": formatPhone(phone),
-    }
+      phone: formatPhone(phone),
+    },
   })
     .then((response) => {
-      console.log('response', response);
+      console.log("response", response);
       toast({
-        message: 'На ваш номер был отправлен код для подтверждение',
-        type: 'success'
-      })
-      emit('update:phone', formatPhone(phone));
-      emit('update:token', response.data.token);
-      emit('toCheck');
+        message: "На ваш номер был отправлен код для подтверждение",
+        type: "success",
+      });
+      emit("update:phone", formatPhone(phone));
+      emit("update:token", response.data.token);
+      emit("toCheck");
 
-      loading.value = false
+      loading.value = false;
     })
     .catch((err) => {
-      console.log('err', err);
-      if (err.response.data.detail === 'Phone number is already registered') {
+      console.log("err", err);
+      if (err.response.data.detail === "Phone number is already registered") {
         toast({
-          message: 'Номер телефона уже зарегистрирован!'
-        })
+          message: "Номер телефона уже зарегистрирован!",
+        });
       } else {
         toast({
-          message: 'Возникли ошибки при запросе'
-        })
+          message: "Возникли ошибки при запросе",
+        });
       }
-      loading.value = false
+      loading.value = false;
     });
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -116,6 +118,17 @@ const postRegister = ({ phone }: { phone: string }) => {
 
   &-message {
     &-title,
+    & a {
+      display: inline;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    & a {
+      color: var(--accent-color);
+    }
+  }
+  &-doc {
     & a {
       display: inline;
       font-size: 18px;
