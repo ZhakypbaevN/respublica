@@ -58,6 +58,9 @@
                 <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">{{ $t('footer-maslikhats-deputies') }}</RouterLink>
                 <!-- <RouterLink to="/0980" class="footer-mainNavs-link">Центральный аппарат</RouterLink> -->
                 <RouterLink to="/contacts/filials" class="footer-mainNavs-link">{{ $t('footer-branches') }}</RouterLink>
+                <RouterLink to="/marketplace">
+                 <Button :name="$t('footer-marketpalce')" type="default-blue" uppercase />
+               </RouterLink>  
               </div>
             </div>
           </div>
