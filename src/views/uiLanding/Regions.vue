@@ -4,7 +4,7 @@
   <Header />
   <section class="faq-block landing-block">
     <div class="wrapper landing-wrapper">
-      <h2 class="landing-title center">Карта регионов</h2>
+      <!--<h2 class="landing-title center">Карта регионов</h2>-->
 
       <div class="map" ref="chartdiv"></div>
     </div>
@@ -13,17 +13,19 @@
 
   <section class="landing-block">
         <div class="wrapper landing-wrapper">
-          <h2 class="landing-title">Представленность членов партии в маслихатах и на должностях акимов всех уровней.</h2>
+          <h2 class="landing-title font-size-28">Представленность членов партии в маслихатах и на должностях акимов всех уровней.</h2>
 
           <div
             v-for="region of regions"
             :key="region.title"
+            :id="region.code"
+            class="region-deputies"
           >
             <button
-              class="landing-link with-line"
+              class="landing-link with-line "
               @click="() => region.active = !region.active"
             >
-              <span>{{ region.title }}</span>
+              <span class="font-size-28">{{ region.title }}</span>
             </button>
 
             <Transition>
@@ -35,7 +37,7 @@
                   <div
                     class="deputy-item"
                     v-for="deputy of region.deputies"
-                    :id="region.code"
+                    
                   >
                       <div class="deputy-item-preview withZoomPreview-preview">
                         <div class="deputy-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img});`"></div>
@@ -86,7 +88,7 @@ onMounted(() => {
   let root = am5.Root.new(map);
 
   const cities = [
-    { cityId: "KZ-ZHT", name: "ЖЕТЫСУСКАЯ ОБЛАСТЬ", address: "Талдыкорган, ул. Абылай хана, 186" },
+    { cityId: "KZ-ZHT", name: "ЖЕТЫСУСКАЯ ОБЛАСТЬ", address: "г. Талдыкорган, ул. Абылай хана, 186" },
     { cityId: "KZ-ALM", name: "АЛМАТИНСКАЯ ОБЛАСТЬ", address: "г. Конаев, мкр-н 1, уч. 35/10" },
     { cityId: "KZ-KAR", name: "КАРАГАНДИНСКАЯ ОБЛАСТЬ", address: "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46" },
     { cityId: "KZ-PAV", name: "ПАВЛОДАРСКАЯ ОБЛАСТЬ", address: "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908" },
@@ -143,7 +145,7 @@ onMounted(() => {
       include: cities.map(city => {
         return city.cityId
       }),
-      fill: am5.color(0xBDD5E9),
+      fill: am5.color(0x5882ED),
       stroke: am5.color(0xffffff),
       strokeWidth: 5
     })
@@ -156,12 +158,12 @@ onMounted(() => {
       `<div style="min-height:70px;width:400px;background-color:white;padding:12px;display:flex;grid-gap:12px;border: 1px solid #E9EBED;border-radius:10px;pointer-events:none;">
         <div style="height:12px;width:12px;background-color:#4A78EC;border-radius:100%;margin-top:4px;"></div>
         <div>
-          <p style="font-family:'SF Pro Display';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:10px;">{name}</p>
-          <p style="font-family:'SF Pro Display';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:2px;">
+          <p style="font-family:'Tilda Sans';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:10px;">{name}</p>
+          <p style="font-family:'Tilda Sans';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:2px;">
             <span style="color:#9A9EA6">Адрес: </span>
             {address}
           </p>
-          <p style="font-family:'SF Pro Display';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:2px;">
+          <p style="font-family:'Tilda Sans';font-weight:400;font-size:16px;line-height:19px;letter-spacing:0.15px;color:#051A2D;margin-bottom:2px;">
             <span style="color:#9A9EA6">ДЕПУТАТОВ: </span>
             {count}
           </p>
@@ -188,7 +190,12 @@ onMounted(() => {
     regions.forEach(region => {
     if (region.code === e.target.dataItem!.dataContext!.id) {
       region.active = true;
-      window.location.hash = `${e.target.dataItem!.dataContext!.id}`;
+      //window.location.hash = `${e.target.dataItem!.dataContext!.id}`;
+      const targetElement = document.getElementById(e.target.dataItem!.dataContext!.id);
+      window.scrollTo({
+      top: targetElement.offsetTop - 120,
+      behavior: 'auto', 
+    });
       // window.history.replaceState(null, document.title, `/deputies-of-maslikhat/${route.params.region_id}#${route.params.region_id}`);
     } else region.active = false;
   })
@@ -206,9 +213,9 @@ onMounted(() => {
   polygonSeries.set("tooltip", tooltip);
   
   polygonSeries.mapPolygons.template.states.create("hover", {
-    fill: am5.color('#4A78EC'),
+    fill: am5.color('#113AA1'),
     fillOpacity: .8,
-    stroke: am5.color('#4A78EC'),
+    stroke: am5.color('#113AA1'),
     strokeWidth: 10,
     strokeOpacity: 0.2
   });
@@ -237,7 +244,8 @@ onMounted(() => {
         centerY: am5.p50,
         text: "{name}",
         fontSize: 12,
-        fontStyle: 'italic',
+        fontStyle: 'Tilda Sans',
+        fill: am5.color(0xFFFFFF),
         populateText: true
       })
     });
@@ -255,7 +263,7 @@ onMounted(() => {
       polygon.name = nameToLowerCase({id: city.cityId, name: city.name})
       polygon.address = city.address
       
-      if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#A8C9E5') }
+      if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#235BE8') }
       return polygon
     })
   );
@@ -274,10 +282,14 @@ onMounted(() => {
   width: 100%;
   height: 900px;
 }
+.region-deputies {
+  scroll-margin-top: 1000px;
+  scroll-snap-align: start;
+}
 .deputy {
   &-item {
-    scroll-margin-top: 9.4rem;
-    max-width: 320px;
+
+    max-width: 320px;    
 
     &-preview-img {
       padding: 48%;
@@ -312,5 +324,8 @@ onMounted(() => {
   &-empty {
     margin-bottom: 40px;
   }
+}
+.font-size-28 {
+  font-size: 28px!important;
 }
 </style>
