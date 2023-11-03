@@ -1,22 +1,22 @@
 <template>
   <button
-    class="newsItem withZoomPreview"
+    class="photoItem withZoomPreview"
   >
 
     <!-- Preview -->
     <!-- :style="`background-image:url('https://api.respublica.codetau.com/${data.preview_image}');`" -->
-    <div class="newsItem-preview withZoomPreview-preview">
+    <div class="photoItem-preview withZoomPreview-preview">
       <div
-        class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
+        class="photoItem-preview-img bg-cover withZoomPreview-preview-img"
         :style="`background-image:url('https://api.respublica.codetau.com/${data.image}');`"
       ></div>
     </div>
 
     <!-- Delete Button -->
-    <div class="newsItem-delete">
+    <div class="photoItem-delete">
       <Button
         type="default-light-grey"
-        @click="deletePhoto"
+        @click="onDelete"
       >
         <SvgIcon
           name="trash-edit-with-bg"
@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import axios from 'axios'
 import { ref } from "vue";
-import { useToast } from '../../modules/toast'
+import { useToast } from '../../../../modules/toast'
 
 interface IProps {
   data: any,
@@ -44,11 +44,10 @@ const { toast } = useToast()
 const isLoading = ref(false);
 const token = localStorage.getItem('TOKEN');
 
-// Send Send Photo
-const deletePhoto = () => {
+// Delete Photo
+const onDelete = () => {
   isLoading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/images`;
-  // const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${data.id}`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/galleries/images/${props.data.id}`;
   console.log('props', props.data.id);
   axios({
     method: "delete",
@@ -71,70 +70,59 @@ const deletePhoto = () => {
     .catch((err) => {
       console.log('err', err);
 
-      if (err.response.data.detail === 'Pending resignation request already exists.') {
-        toast({
-          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
       isLoading.value = false;
     });
 }
 </script>
 
 <style scoped lang="scss">
-.newsItem {
-  text-align: left;
-
-  padding: 10px;
-
+.photoItem {
   border-radius: 10px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   background-color: white;
 
   position: relative;
   overflow: hidden;
 
+  padding: 0px !important;
   transition: all .3s ease-in-out;
 
   &:hover {
     border-color: var(--accent-color);
-    background-color: var(--accent-color-op05);
 
-    & .newsItem-delete {
-      right: 20px;
+    & .photoItem-delete {
+      right: 10px;
     }
   }
 
   &-preview {
     width: 100%;
-    border-radius: 10px;
 
     &-img {
-      padding-bottom: 72%;
+      padding-bottom: 68.75%;
     }
   }
 
   &-delete {
-    height: 60px;
+    height: 40px;
     
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: -120px;
+    top: 10px;
     z-index: 2;
 
-    padding: 5px;
+    padding: 3px;
     border-radius: 10px;
     background-color: white;
 
     transition: all .3s ease-in-out;
 
     & button {
-      height: 50px;
-      width: 50px;
+      height: 34px;
+      width: 34px;
       padding: 0px !important;
       margin: 0px !important;
 
@@ -148,8 +136,8 @@ const deletePhoto = () => {
     }
     
     & svg {
-      height: 50px;
-      width: 50px;
+      height: 34px;
+      width: 34px;
       stroke: var(--light-gray-color);
 
       transition: all .3s ease-in-out;
