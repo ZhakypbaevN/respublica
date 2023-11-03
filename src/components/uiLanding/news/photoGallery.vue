@@ -15,7 +15,7 @@
           <button
             class="gallery-photo-btn withZoomPreview"
             v-for="photo of photosList"
-            :key="photo"
+            :key="photo.src"
           >
             <div class="gallery-photo withZoomPreview-preview">
               <div

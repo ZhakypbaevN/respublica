@@ -31,7 +31,7 @@
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
-import YoutubeItem from '../../../components/uiMedia/youtube-video/youtubeItem.vue'
+import YoutubeItem from '../../../components/uiMedia/video-gallery/youtubeItem.vue'
 import { useToast } from '../../../modules/toast'
 
 const { toast } = useToast()
