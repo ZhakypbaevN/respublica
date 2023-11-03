@@ -13,7 +13,7 @@
           placeholder="Поиск по проекту"
         />
 
-        <RouterLink to="/media/news-list/create">
+        <RouterLink to="/media/announcements/create">
           <Button
             class="news-header-addNewsBtn"
             type="default-blue"
