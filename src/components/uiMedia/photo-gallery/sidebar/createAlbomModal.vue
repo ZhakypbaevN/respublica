@@ -3,12 +3,25 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="feedbackModal"
-    title="Вступить в партию"
+    title="Создание альбома"
   >
     <Form
-      @finish="postJoinParty"
+      @finish="createAlbom"
     >
       <div class="feedbackModal-inputs">
+        <Input
+          name="name"
+          placeholder="Введите название"
+          required
+        />
+
+        <Input
+          name="date"
+          type="date"
+          placeholder="Введите дату"
+          required
+        />
+        
         <Select
           name="region"
           placeholder="Укажите область*"
@@ -16,20 +29,6 @@
           v-model="region"
           required
         />
-
-        <div class="feedbackModal-inputs-numBlock">
-          <div class="feedbackModal-inputs-symbol">
-            <span>{{ region }}</span>
-          </div>
-
-          <Input
-            name="ticketNum"
-            placeholder="Введите номер"
-            mask="#######"
-            staticPlaceholder
-            required
-          />
-        </div>
       </div>
       
 
@@ -38,7 +37,6 @@
         :loading="loading"
         htmlType="submit"
       />
-
     </Form>
   </Modal>
 </template>
@@ -48,7 +46,7 @@ import { onMounted, ref } from 'vue'
 import axios from 'axios'
 
 // Modules
-import { useToast } from '../../../modules/toast'
+import { useToast } from '../../../../modules/toast'
 
 const { toast } = useToast()
 
@@ -96,18 +94,18 @@ axios({
   });
 })
 
-const postJoinParty = (
-    { ticketNum }: { ticketNum: string }
+const createAlbom = (
+    { name }: { name: string }
   ) => {
 
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/reserved-ticket-numbers`;
+  const url = `https://api.respublica.codetau.com/api/v1/galleries/albums`;
 
   axios({
     method: "post",
     url: url,
     data: {
-      ticket_number: region.value + ticketNum
+      title: name
     },
     headers: {
       accept: 'application/json',
@@ -117,7 +115,7 @@ const postJoinParty = (
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Вы успешно вступили в партию',
+        message: 'Альбом успешно создан!',
         type: 'success'
       })
       
@@ -130,53 +128,12 @@ const postJoinParty = (
     })
     .catch((err) => {
 
-      if (err.response.data.detail === 'Duplicate membership is not allowed.') {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      } else if (err.response.data.detail === 'Age under 18 is not allowed.') {
-        toast({
-          message: 'Проживание в возрасте до 18 лет не допускается'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
 
       console.log('err', err);
       loading.value = false
     });
 }
 </script>
-
-<style scoped lang="scss">
-.feedbackModal {
-  &-inputs {
-    &-numBlock {
-      display: grid;
-      align-items: flex-start;
-      grid-template-columns: 50px 1fr;
-      grid-gap: 20px;
-    }
-
-    &-symbol {
-      min-height: 60px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      padding: 19px 30px;
-
-      border: 1px solid var(--light-gray-color);
-      border-radius: 10px;
-
-      & span {
-        font-size: 18px;
-      }
-    }
-  }
-}
-
-</style>

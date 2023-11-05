@@ -3,10 +3,9 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="cropModal"
-    :maxInner="885"
+    :maxInner="685"
   >
     <div class="cropModal-inner">
-    
       <Cropper
         ref="cropper"
         class="cropper"
@@ -92,8 +91,8 @@ const crop = async () => {
 }
 
 .cropper {
-	height: 880px;
-	width: 880px;
+	height: 680px;
+	width: 680px;
 	background: #DDD;
 }
 </style>

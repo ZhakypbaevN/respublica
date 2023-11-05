@@ -94,15 +94,9 @@ const getPhotos = () => {
     .catch((err) => {
       console.log('err', err);
 
-      if (err.response.data.detail === 'Pending resignation request already exists.') {
-        toast({
-          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
       isLoading.value = false;
     });
 }

@@ -9,7 +9,7 @@
 <script setup>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-// import Heading from '@ckeditor/ckeditor5-heading/src/heading'
+// import Heading from '@ckeditor/ckeditor5-heading'
 // import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight'
 // import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials'
 // import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold'
@@ -79,62 +79,84 @@ const editorData = computed({
 const editorConfig = {
   placeholder: props.placeholder,
   // plugins: [
+    // Font,
+    // Heading,
+    // Highlight,
+    // Indent,
+    // IndentBlock,
     // Essentials,
     // Bold,
     // Italic,
     // Link,
-    // Paragraph
+    // Paragraph,
+    // Underline,
+    // Strikethrough,
+    // Code,
+    // Subscript,
+    // Superscript,
+    // CodeBlock,
+    // Image,
+    // ImageToolbar,
+    // ImageCaption,
+    // ImageStyle,
+    // ImageResize,
+    // LinkImage,
+    // ImageInsert,
+    // Base64UploadAdapter,
+    // Clipboard,
+    // PasteFromOffice,
+    // Table,
+    // TableToolbar,
+    // SpecialCharacters,
+    // SpecialCharactersEssentials,
+    // ListStyle,
+    // Alignment,
+    // MediaEmbed
   // ],
-  // toolbar: {
-    // items: [
-    //   'heading',
-    //   '|',
-    //   'fontFamily',
-    //   'fontSize',
-    //   'fontColor',
-    //   'fontBackgroundColor',
-    //   'highlight',
-    //   '|',
-    //   'bold',
-    //   'italic',
-    //   'underline',
-    //   'strikethrough',
-    //   'bulletedList',
-    //   'numberedList',
-    //   'subscript',
-    //   'superscript',
-    //   '|',
-    //   'alignment',
-    //   'outdent',
-    //   'indent',
-    //   '|',
-    //   'imageInsert',
-    //   'linkImage',
-    //   'link',
-    //   'mediaEmbed',
-    //   '|',
-    //   'code',
-    //   'codeBlock',
-    //   'insertTable',
-    //   'specialCharacters',
-    //   '|',
-    //   'imageStyle:block',
-    //   'imageStyle:side',
-    //   'toggleImageCaption',
-    //   'imageTextAlternative',
-    //   '|',
-    //   'mergeTableCells',
-    //   'tableColumn',
-    //   'tableRow',
-    //   '|',
-    //   'undo',
-    //   'redo'
-    // ],
-    // shouldNotGroupWhenFull: true
-  // },
-  // mediaEmbed: {
-  //   previewsInData: true
-  // },
+  toolbar: {
+    items: [
+      'undo',
+      'redo',
+      '|',
+      'heading',
+      '|',
+      // 'fontFamily',
+      // 'fontSize',
+      // 'fontColor',
+      // 'fontBackgroundColor',
+      // 'highlight',
+      // '|',
+      'bold',
+      'italic',
+      // 'underline',
+      // 'strikethrough',
+      'bulletedList',
+      'numberedList',
+      // 'subscript',
+      // 'superscript',
+      '|',
+      // 'alignment',
+      'outdent',
+      'indent',
+      '|',
+      // 'imageInsert',
+      // 'linkImage',
+      'link',
+      'mediaEmbed',
+      '|',
+      'insertTable',
+      // 'specialCharacters',
+      '|',
+      'imageStyle:block',
+      'imageStyle:side',
+      'toggleImageCaption',
+      'imageTextAlternative'
+    ],
+    shouldNotGroupWhenFull: true
+  },
+  mediaEmbed: {
+    previewsInData: true
+  },
   language: 'ru'
 }
 </script>

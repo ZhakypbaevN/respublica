@@ -7,6 +7,7 @@
           class="photo-addBtn"
           type="outline-blue"
           name="Добавить альбом"
+          @click="() => showModal = true"
         >
           <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
         </Button>
@@ -26,6 +27,11 @@
         />
       </div>
     </div>
+
+    <CreateAlbomModal
+      :show="showModal"
+      @hide="() => showModal = false"
+    />
   </section>
 </template>
 
@@ -36,9 +42,11 @@ import { useToast } from '../../modules/toast'
 
 import PhotoCardList from "../../components/uiMedia/photo-gallery/photo-list/photoCardList.vue"
 import PhotoSideBar from "../../components/uiMedia/photo-gallery/sidebar/photoSidebar.vue"
+import CreateAlbomModal from "../../components/uiMedia/photo-gallery/sidebar/createAlbomModal.vue"
 
 const { toast } = useToast()
 
+const showModal = ref(false)
 const isLoading = reactive({
   sidebar: true,
   list: true
