@@ -7,7 +7,7 @@
           <div class="donations-left-text-title">
             Сделайте пожертвование, чтобы проголосовать за демократов по всей стране
           </div>
-          
+
           <div class="donations-left-text-description">
             Правила внесения пожертвований: <br />
             1. Я являюсь гражданином Республики Казахстан, достигшим восемнадцатилетнего
@@ -57,6 +57,10 @@
               <Button htmlType="submit" name="Оплатить картой" v-slot:left>
                 <img src="/public/img/visa-mastercard.png" alt="visa-mastercard" />
               </Button>
+            </div>
+            <div class="donations-right-block-consent">
+              <input type="checkbox" id="confirm" />
+              <label for="confirm">Я подтверждаю, что ознакомлен с правилами внесения пожертвований.</label>
             </div>
           </Form>
 
@@ -219,6 +223,18 @@ const backStep = () => {
 
     &-confirm {
       margin-bottom: 50px;
+    }
+    &-consent {
+      margin-top: 10px;
+      input[type="checkbox"] {
+        width: 20px;
+        margin-right: 5px;
+      }
+      label {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+      }
     }
 
     &-pay button {
