@@ -11,65 +11,38 @@
     class="feedbackModal"
     title="Вступить в партию"
   >
+    <div class="feedbackModal-userData">
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">ИИН: </h4>
+        <p class="feedbackModal-userData-value">{{ userData.iin }}</p>
+      </div>
+
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">ФИО: </h4>
+        <p class="feedbackModal-userData-value">{{ `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}` }}</p>
+      </div>
+
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">Телефон номер: </h4>
+        <p class="feedbackModal-userData-value">{{ formatPhoneNumber(userData.phone) }}</p>
+      </div>
+
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">Email адрес: </h4>
+        <p class="feedbackModal-userData-value">{{ userData.email }}</p>
+      </div>
+    </div>
+    
     <Form
       @finish="postJoinParty"
       :ignores="disabledLocationSelect ? ['locality'] : null"
     >
       <div class="feedbackModal-inputs">
-        <Input
-          name="iin"
-          placeholder="ИИН"
-          mask="############"
-          v-model="userData.iin"
-          disabled
-          required
-        />
-
-        <Input
-          name="lastname"
-          placeholder="Фамилия"
-          v-model="userData.last_name"
-          disabled
-          required
-        />
-
-        <Input
-          name="name"
-          placeholder="Имя"
-          v-model="userData.first_name"
-          disabled
-          required
-        /> 
-
-        <Input
-          name="middleName"
-          placeholder="Отчество"
-          v-model="userData.middle_name"
-        />
-
-        <Input
-          type="tel"
-          name="phone"
-          placeholder="Ваш номер телефона"
-          validation="phone"
-          v-model="userData.phone"
-          :min="17"
-          disabled
-          required
-        />
-
-        <Input
-          type="email"
-          name="email"
-          placeholder="E-mail"
-          v-model="userData.email"
-        />
-
         <div class="feedbackModal-inputs-gender">
           <Input
             type="date"
             name="dateBirthday"
-            placeholder="Дата рождения*"
+            placeholder="Дата рождения"
             required
           />
 
@@ -88,7 +61,7 @@
 
         <Select
           name="education"
-          placeholder="Укажите ваше образование*"
+          placeholder="Укажите ваше образование"
           :options="[
             {label: 'Высшее', value: 'higher_education'},
             {label: 'Среднее', value: 'secondary_special_education'},
@@ -113,7 +86,7 @@
 
         <Select
           name="region"
-          placeholder="Укажите область*"
+          placeholder="Укажите область"
           :options="regionList"
           v-model="regionID"
           required
@@ -126,7 +99,7 @@
           >
             <Select
               name="locality"
-              placeholder="Населенный пункт*"
+              placeholder="Населенный пункт"
               :options="
                 locationList.length
                   ? locationList
@@ -141,13 +114,13 @@
         <div class="feedbackModal-inputs-home">
           <Input
             name="streat"
-            placeholder="Улица/Проспект/Мкр*"
+            placeholder="Улица/Проспект/Мкр"
             required
           />
 
           <Input
             name="home"
-            placeholder="Дом*"
+            placeholder="Дом"
             required
           />
 
@@ -205,8 +178,7 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой политической партии</a>
-           ознакомлен(а), поддерживаю их и обязуюсь выполнять.
+          Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
         </Checkbox>
 
         <Checkbox
@@ -214,7 +186,7 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
+          Подтверждаю, что не являюсь членом другой политической партии
         </Checkbox>
 
         <Checkbox
@@ -222,7 +194,24 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          Подтверждаю, что не являюсь членом другой политической партии
+          Являюсь гражданином Республики Казахстан
+        </Checkbox>
+
+        <Checkbox
+          name="confirm-4"
+          class="feedbackModal-checkboxList-item"
+          required
+        >
+          Подтверждаю, что не отношусь к следующим категориям: Председатель, заместитель Председателя, судья Конституционного Суда Республики Казахстан, Председатель и судья Верховного Суда Республики Казахстан и иных судов, председатель и член Центральной избирательной комиссии Республики Казахстан, Высшей аудиторской палаты Республики Казахстан, Уполномоченный по правам человека в Республике Казахстан, сотрудник и работник специальных государственных, правоохранительных органов, военнослужащий
+        </Checkbox>
+
+        <Checkbox
+          name="confirm-5"
+          class="feedbackModal-checkboxList-item"
+          required
+        >
+          С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой политической партии</a>
+           ознакомлен(а), поддерживаю их и обязуюсь выполнять.
         </Checkbox>
       </div>
       
@@ -239,6 +228,8 @@
 </template>
 
 <script setup lang="ts">
+import formatPhoneNumber from '../../../helpers/formatPhoneNumber.js'
+
 // Components
 import LogInFirstModal from './logInFirstModal.vue';
 
@@ -277,30 +268,30 @@ const disabledLocationSelect = ref(false);
 
 onMounted(() => {
 
-const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
-axios({
-  method: "get",
-  url: url,
-})
-  .then((response) => {
-    response.data.forEach(location => {
-      regionList.value.push(
-        {
-          label: location.name,
-          value: location.id.toString(),
-          childrens: location.childrens
-        }
-      );
-    });
+  const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
+  axios({
+    method: "get",
+    url: url,
   })
-  .catch((err) => {
-    console.log('err', err);
-
-    toast({
-      message: 'Возникли ошибки при запросе'
+    .then((response) => {
+      response.data.forEach(location => {
+        regionList.value.push(
+          {
+            label: location.name,
+            value: location.id.toString(),
+            childrens: location.childrens
+          }
+        );
+      });
     })
-    
-  });
+    .catch((err) => {
+      console.log('err', err);
+
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
+      
+    });
 })
 
 watch(
@@ -419,14 +410,43 @@ const postParty = (data) => {
 }
 </script>
 
+
 <style scoped lang="scss">
 .feedbackModal {
+  &-userData {
+    margin-bottom: 40px;
+
+    &-item {
+      margin-bottom: 12px;
+    }
+
+    &-title,
+    &-value {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    &-title {
+      display: inline;
+      color: var(--light-gray-color);
+    }
+
+    &-value {
+      display: inline;
+    }
+
+    &-item:last-child {
+      margin-bottom: 0px;
+    }
+  }
+  
   &-inputs {
     &-home {
       display: grid;
       grid-template-columns: 1fr 135px 135px;
       grid-gap: 16px;
     }
+
     &-subtitle {
       display: block;
       font-size: 20px;
@@ -443,30 +463,6 @@ const postParty = (data) => {
         height: 60px;
       }
     }
-  }
-
-  &-addFileBtn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    margin-bottom: 38px;
-    margin-bottom: 8px;
-
-    & svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent-color);
-    }
-  }
-
-  &-description {
-    color: var(--light-gray-color);
-    margin-bottom: 10px;
-  }
-
-  &-btns {
-    display: flex;
-    grid-gap: 20px;
   }
 }
 

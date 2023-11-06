@@ -18,6 +18,7 @@
         v-model="states.inputValue"
         :disabled="!options"
         :staticPlaceholder="staticPlaceholder"
+        :required="required"
       />
 
       <!-- -------- Multi Select -------- -->

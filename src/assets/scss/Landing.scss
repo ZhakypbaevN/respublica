@@ -143,25 +143,3 @@
     grid-gap: 40px;
   }
 }
-
-
-.back-btn {
-
-  margin-right: 50px;
-  margin-left: 60px;
-
-  & button {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-    height: 60px;
-    width: 152px;
-
-    & svg {
-      padding-top: 4px;
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-    }
-  }
-}

@@ -53,7 +53,7 @@ import ManagerPartyResignationList from '../views/uiManager/party-resignation/Pa
 import ManagerPartyResignationData from '../views/uiManager/party-resignation/PartyResignationData.vue'
 
 import TicketNumList from '../views/uiManager/TicketNumList.vue'
-
+import Analytics from '../views/uiManager/Analytics.vue'
 
 
 // ------------------ UI Client ------------------
@@ -311,15 +311,19 @@ const routes = [
         name: 'ManagerPartyResignationData',
         component: ManagerPartyResignationData
       },
-
       {
         path: 'ticket-num-data-list',
         name: 'TicketNumList',
         component: TicketNumList
+      },
+      {
+        path: 'analytics',
+        name: 'Analytics',
+        component: Analytics
       }
     ]
   },
-
+  
 
   // UI Media
   {

@@ -11,7 +11,7 @@
       <div class="feedbackModal-inputs">
         <Select
           name="region"
-          placeholder="Укажите область*"
+          placeholder="Укажите область"
           :options="regionList"
           v-model="region"
           required

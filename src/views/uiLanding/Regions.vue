@@ -211,6 +211,11 @@ onMounted(() => {
   });
   
   polygonSeries.set("tooltip", tooltip);
+
+  polygonSeries.mapPolygons.template.setAll({
+    stroke: am5.color('#ffffff'),
+    strokeWidth: 2,
+  });
   
   polygonSeries.mapPolygons.template.states.create("hover", {
     fill: am5.color('#113AA1'),
@@ -228,8 +233,10 @@ onMounted(() => {
     })
   );
   
-  pointSeries.data.setAll(cities.map(city => { 
-    let nameArray = city.name.split(' ')
+  pointSeries.data.setAll(cities.map(city => {
+    const name = nameToLowerCase({id: city.cityId, name: city.name});
+    let nameArray = name.split(' ')
+    
     return {
       cityId: city.cityId,
       name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`,

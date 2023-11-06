@@ -4,7 +4,7 @@ const formatPhoneNumber = (input) => {
   const middle = input.substring(5, 8)
   const last = input.substring(8, 12)
 
-  return `+${phoneHead} ${areaCode} ${middle} ${last}`
+  return `+${phoneHead} (${areaCode}) ${middle} ${last}`
 }
 
 export default formatPhoneNumber

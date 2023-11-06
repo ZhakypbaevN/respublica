@@ -24,7 +24,7 @@
         
         <Select
           name="region"
-          placeholder="Укажите область*"
+          placeholder="Укажите область"
           :options="regionList"
           v-model="region"
           required
@@ -79,7 +79,7 @@ axios({
       regionList.value.push(
         {
           label: location.name,
-          value: location.ticket_prefix,
+          value: location.name
         }
       );
     });
@@ -95,7 +95,7 @@ axios({
 })
 
 const createAlbom = (
-    { name }: { name: string }
+    { name, date, region }: { name: string, date: string, date: string }
   ) => {
 
   loading.value = true;
@@ -105,7 +105,9 @@ const createAlbom = (
     method: "post",
     url: url,
     data: {
-      title: name
+      title: name,
+      date: date,
+      place: region
     },
     headers: {
       accept: 'application/json',
