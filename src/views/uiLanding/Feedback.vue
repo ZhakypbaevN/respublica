@@ -102,8 +102,7 @@ const showModals = reactive({
 
       border-bottom: 1px solid var(--light-gray-color);
 
-      padding-bottom: 30px;
-      margin-bottom: 10px;
+      padding-bottom: 20px;
 
       & .feedbackModal-checkboxList-item {
         margin-bottom: 0px !important;

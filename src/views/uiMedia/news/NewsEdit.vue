@@ -1,6 +1,8 @@
 <template>
   <section class="">
     <div class="newsEdit wrapper" v-if="route.params.news_id ? !loading.page : true">
+      <BackButton />
+
       <h2 class="landing-title">{{ formData.title ? formData.title : route.params.news_id ? 'Редактирование новости' : 'Новая новость' }}</h2>
 
       <Form
@@ -80,15 +82,17 @@
 </template>
 
 <script setup lang="ts">
-import getFileUrl from '../../../helpers/getFileUrlByDate'
+import getFileUrl from '../../../helpers/getFileUrlByDate.js'
 
 import { onMounted, reactive } from 'vue'
 import axios from 'axios'
 import { useToast } from '../../../modules/toast'
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { watch } from 'vue';
 
 const route = useRoute()
+const router = useRouter()
+
 const { toast } = useToast()
 
 const loading = reactive({
@@ -125,6 +129,7 @@ onMounted(() => {
         formData.preview = getFileUrl(response.data.preview_image);
         
         formData.content = response.data.content;
+        // formData.content = `<![CDATA[ <header><h1>Партия Respublica начала Road Show</h1></header><figure><img src="https://static.tildacdn.com/tild3834-3564-4565-b764-326262646266/IMG_2694.jpeg"/></figure><div class="t-redactor__text"><strong>Официальная поездка сотрудников центрального аппарата в регионы началась с области Жетысу. В первый день роуд-шоу состоялся ряд встреч и партийных мероприятий.</strong><br /><br />Так, проведена встреча с партийным активом области и депутатами маслихатов всех уровней, избранными от партии Respublica. Депутаты и активисты обсудили волнующие жителей региона вопросы и представили свои предложения.<br /><br />Кроме того, сотрудники центрального аппарата и регионального филиала встретились с игроками футбольной команды Qareket, которая стала многократным победителем в соревнованиях среди работников СМИ. 12 членов команды стали членами партии Respublica.<br /><br />В коллективе строительной компании "Жетісу жилстрой" 30 работников получили партийные билеты, здесь открыта первичная партийная организация. <br /><br />В Доме матери организована встреча с мамами, в подарок учреждению от партии переданы детская коляска и принтер. «Благодаря работе нашего фонда 172 мамы получили помощь в сложной ситуации», - сказала депутат Талдыкорганского городского маслихата от партии Respublica, глава общественного фонда «Дом матери» Алсу Габдракипова.<br /><br />Кроме того, прошла встреча с молодежью Жетысу, на которой презентован документальный фильм «Одержимость» о последствиях и жертвах лудомании. В организации съемок фильма, режиссером которого выступил Ринат Балгабаев, принял участие депутат Мажилиса Парламента, сопредседатель партии Руслан Берденов.</div><img src="https://static.tildacdn.com/tild3665-3063-4562-b931-366462653164/8233aa7b-1788-4372-b.jpeg"><img src="https://static.tildacdn.com/tild6430-3062-4531-b635-633035653437/7fc0a028-a0eb-4e33-9.jpeg"><img src="https://static.tildacdn.com/tild6439-3432-4263-b035-393463633739/d2abb28d-e625-454d-8.jpeg"><img src="https://static.tildacdn.com/tild6664-6164-4432-b535-363430633137/4b761258-a809-4539-9.jpeg"><img src="https://static.tildacdn.com/tild3466-3661-4733-b231-373935373933/d910a834-967a-4648-a.jpeg"><img src="https://static.tildacdn.com/tild6231-6432-4635-a265-336236623464/c320155e-7f6a-47c7-8.jpeg"><img src="https://static.tildacdn.com/tild6363-3132-4638-b231-616633326432/4d1bb129-847c-4d31-9.jpeg"> ]]>`;
         loading.page = false
         
       })
@@ -181,7 +186,8 @@ const postNews = () => {
         type: 'success'
       })
       loading.btn = false
-      
+
+      setTimeout(() => router.push('/media/news-list'), 300)
     })
     .catch((err) => {
       console.log('err', err);

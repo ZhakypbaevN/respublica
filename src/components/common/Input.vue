@@ -10,7 +10,10 @@
       light: light
     }">
 
-    <span class="placeholder" v-if="type !== 'editor' && !staticPlaceholder">{{ placeholder }}</span>
+    <span class="placeholder" v-if="type !== 'editor' && !staticPlaceholder">
+      {{ placeholder }}
+      <span v-if="required" class="required">*</span>
+    </span>
     <span class="maxSymbol" v-if="maxSymbol && type === 'textarea'">{{ maxSymbol - (input.value ? String(input.value).length : 0) }}/{{ maxSymbol }}</span>
 
     <input
@@ -362,6 +365,10 @@ const onFocus = ({e}: {e: KeyboardEvent}) => {
   z-index: 1;
   top: 19px;
   left: 30px;
+
+  & .required {
+    color: var(--red-color);
+  }
 }
 .maxSymbol {
   position: absolute;

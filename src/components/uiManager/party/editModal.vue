@@ -63,7 +63,7 @@
           <Input
             type="date"
             name="dateBirthday"
-            placeholder="Дата рождения*"
+            placeholder="Дата рождения"
             v-model="data.birth_date"
             required
           />
@@ -83,7 +83,7 @@
 
         <Select
           name="education"
-          placeholder="Укажите ваше образование*"
+          placeholder="Укажите ваше образование"
           v-model="data.education"
           :options="[
             {label: 'Высшее', value: 'higher_education'},
@@ -112,7 +112,7 @@
 
         <Select
           name="region"
-          placeholder="Укажите область*"
+          placeholder="Укажите область"
           :options="regionList"
           v-model="regionID"
           required
@@ -125,7 +125,7 @@
           >
             <Select
               name="locality"
-              placeholder="Населенный пункт*"
+              placeholder="Населенный пункт"
               :options="
                 locationList.length
                   ? locationList
@@ -140,14 +140,14 @@
         <div class="feedbackModal-inputs-home">
           <Input
             name="street"
-            placeholder="Улица/Проспект/Мкр*"
+            placeholder="Улица/Проспект/Мкр"
             v-model="data.street"
             required
           />
 
           <Input
             name="home"
-            placeholder="Дом*"
+            placeholder="Дом"
             v-model="data.house"
             required
           />
