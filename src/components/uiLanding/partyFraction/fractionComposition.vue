@@ -17,7 +17,7 @@
                 <span>{{ fraction.fullName }}</span>
               </h4>
               <div class="fraction-item-description">
-                <div class="fraction-item-description-text">Член Комитета по экономической реформе и региональному развитию</div>
+                <div class="fraction-item-description-text" v-html="fraction.description"></div>
                 <div class="fraction-item-social">
                   <a :href="fraction.facebook" target="_blank"
                     class="header-top-snList-item">
@@ -49,8 +49,7 @@ const fractionList = [
   {
     fullName: 'ХОДЖАНАЗАРОВ Айдарбек',
     description: `
-      Руководитель фракции.<br>
-      Член Комитета по аграрным вопросам
+      Руководитель фракции. <br>Член Комитета по аграрным вопросам
     `,
     img: '/img/uiLanding/fraction/khodzhanazarov.jpg',
     facebook: 'https://www.facebook.com/aidarbek',
@@ -77,7 +76,7 @@ const fractionList = [
   {
     fullName: 'НАУМОВА Динара',
     description: `
-      лен Комитета по законодательству и судебно-правовой реформе
+      Член Комитета по законодательству и судебно-правовой реформе
     `,
     img: '/img/uiLanding/fraction/naumova.jpg',
     facebook: 'https://www.facebook.com/profile.php?id=100048126368212&mibextid=LQQJ4d',
@@ -142,6 +141,7 @@ const fractionList = [
       flex-direction: column;
       justify-content: space-between;
       grid-gap: 18px;
+      height: 145px;
 
       background-color: white;
       padding: 10px 20px 14px;
