@@ -6,7 +6,7 @@
       <Input
         light
         name="iin"
-        placeholder="ИИН*"
+        placeholder="ИИН"
         mask="############"
         required
       />
@@ -14,14 +14,14 @@
       <Input
         light
         name="lastname"
-        placeholder="Фамилия*"
+        placeholder="Фамилия"
         required
       />
 
       <Input
         light
         name="name"
-        placeholder="Имя*"
+        placeholder="Имя"
         required
       />
 

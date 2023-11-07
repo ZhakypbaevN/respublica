@@ -43,6 +43,10 @@ const sideBarlinks = [
   {
     title: 'VIP номера',
     link: "/manager/ticket-num-data-list"
+  },
+  {
+    title: 'Аналитика',
+    link: "/manager/analytics"
   }
 ]
 </script>
@@ -57,7 +61,7 @@ const sideBarlinks = [
   &-inner {
     display: grid;
     align-items: stretch;
-    grid-template-columns: 325px 1fr;
+    grid-template-columns: 290px 1fr;
   }
 
   &-content {

@@ -3,7 +3,7 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="feedbackModal"
-    title="Вступить в партию"
+    title="Создание партийного билета"
   >
     <Form
       @finish="postJoinParty"
@@ -12,7 +12,7 @@
       <div class="feedbackModal-inputs">
         <Select
           name="user-data"
-          placeholder="Выберите пользователя*"
+          placeholder="Выберите пользователя"
           :options="usersList"
           v-model="userData"
           required
@@ -29,7 +29,7 @@
         <div class="feedbackModal-inputs-ticketNumSelect" :class="{disabled: autoGenerateTicketNum}">
           <Select
             name="ticket-num"
-            placeholder="Укажите номер билета*"
+            placeholder="Укажите номер билета"
             :options="ticketNumList"
             v-model="ticketNum"
             required
@@ -41,7 +41,7 @@
           <Input
             type="date"
             name="dateBirthday"
-            placeholder="Дата рождения*"
+            placeholder="Дата рождения"
             required
           />
 
@@ -59,8 +59,15 @@
         </div>
 
         <Select
+          name="socialStatus"
+          placeholder="Социальный статус"
+          :options="socialStatusList"
+          required
+        />
+
+        <Select
           name="education"
-          placeholder="Укажите ваше образование*"
+          placeholder="Укажите образование"
           :options="[
             {label: 'Высшее', value: 'higher_education'},
             {label: 'Среднее', value: 'secondary_special_education'},
@@ -85,7 +92,7 @@
 
         <Select
           name="region"
-          placeholder="Укажите область*"
+          placeholder="Укажите область"
           :options="regionList"
           v-model="regionID"
           required
@@ -98,7 +105,7 @@
           >
             <Select
               name="locality"
-              placeholder="Населенный пункт*"
+              placeholder="Населенный пункт"
               :options="
                 locationList.length
                   ? locationList
@@ -113,14 +120,12 @@
         <div class="feedbackModal-inputs-home">
           <Input
             name="streat"
-            placeholder="Улица/Проспект/Мкр*"
-            required
+            placeholder="Улица/Проспект/Мкр"
           />
 
           <Input
             name="home"
-            placeholder="Дом*"
-            required
+            placeholder="Дом"
           />
 
           <Input
@@ -132,7 +137,7 @@
 
         <div>
           <h4 class="feedbackModal-inputs-subtitle">
-            Относитесь ли вы к категории:
+            Относится пользователь к категории:
           </h4>
 
           <div class="feedbackModal-checkboxList-block">
@@ -170,34 +175,6 @@
           </div>
         </div>
       </div>
-
-      <div class="feedbackModal-checkboxList">
-        <Checkbox
-          name="confirm-1"
-          class="feedbackModal-checkboxList-item"
-          required
-        >
-          С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой политической партии</a>
-           ознакомлен(а), поддерживаю их и обязуюсь выполнять.
-        </Checkbox>
-
-        <Checkbox
-          name="confirm-2"
-          class="feedbackModal-checkboxList-item"
-          required
-        >
-          Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
-        </Checkbox>
-
-        <Checkbox
-          name="confirm-3"
-          class="feedbackModal-checkboxList-item"
-          required
-        >
-          Подтверждаю, что не являюсь членом другой политической партии
-        </Checkbox>
-      </div>
-      
 
       <Button
         name="Отправить заявку"
@@ -248,7 +225,38 @@ const userData = ref();
 
 const autoGenerateTicketNum = ref(true);
 const ticketNum = ref(null);
-const ticketNumList = ref([]);
+const ticketNumList = ref([]); 
+
+const socialStatusList = [
+  {
+    label: 'Самозанятые, лица с ограниченными возможностями',
+    value: 'Самозанятые, лица с ограниченными возможностями'
+  },
+  {
+    label: 'Студент',
+    value: 'Студент'
+  },
+  {
+    label: 'Лица находящиеся в отпуске по уходу за детьми',
+    value: 'Лица находящиеся в отпуске по уходу за детьми'
+  },
+  {
+    label: 'Пенсионеры',
+    value: 'пансионеры'
+  },
+  {
+    label: 'Безработные',
+    value: 'безработные'
+  },
+  {
+    label: 'Работающие',
+    value: 'работающие'
+  },
+  {
+    label: 'Многодетные',
+    value: 'многодетные'
+  }
+]
 
 onMounted(() => {
 
@@ -485,28 +493,9 @@ const postParty = (data) => {
     }
   }
 
-  &-addFileBtn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    margin-bottom: 38px;
-    margin-bottom: 8px;
-
-    & svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent-color);
-    }
-  }
-
-  &-description {
-    color: var(--light-gray-color);
-    margin-bottom: 10px;
-  }
-
-  &-btns {
-    display: flex;
-    grid-gap: 20px;
+  &-checkboxList-block {
+    padding-bottom: 0px;
+    border-bottom: 0px;
   }
 }
 

@@ -19,6 +19,7 @@ import Upload from './components/common/Upload.vue';
 import Select from './components/common/select/index.vue';
 import SvgIcon from './components/common/SvgIcon.vue'
 import Button from './components/common/Button.vue'
+import BackButton from './components/common/BackButton.vue'
 import Input from './components/common/Input.vue'
 import Checkbox from './components/common/Checkbox.vue'
 import Form from './components/common/Form.vue';
@@ -64,6 +65,7 @@ createApp(App)
   .component('Upload', Upload)
   .component('Select', Select)
   .component('Button', Button)
+  .component('BackButton', BackButton)
   .component('Input', Input)
   .component('Filter', Filter)
   .component('Form', Form)
