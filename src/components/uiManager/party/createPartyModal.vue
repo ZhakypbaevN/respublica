@@ -225,7 +225,7 @@ const userData = ref();
 
 const autoGenerateTicketNum = ref(true);
 const ticketNum = ref(null);
-const ticketNumList = ref([]); 
+const ticketNumList = ref([]);
 
 const socialStatusList = [
   {
@@ -242,19 +242,19 @@ const socialStatusList = [
   },
   {
     label: 'Пенсионеры',
-    value: 'пансионеры'
+    value: 'Пенсионеры'
   },
   {
     label: 'Безработные',
-    value: 'безработные'
+    value: 'Безработные'
   },
   {
     label: 'Работающие',
-    value: 'работающие'
+    value: 'Работающие'
   },
   {
     label: 'Многодетные',
-    value: 'многодетные'
+    value: 'Многодетные'
   }
 ]
 
@@ -363,7 +363,7 @@ watch(
 
 const postJoinParty = (
     {
-      education, specialization, workPlace, post, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave
+      education, specialization, workPlace, post, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave, socialStatus
     }:
     {
       education: string,
@@ -378,6 +378,7 @@ const postJoinParty = (
       disabled: boolean,
       unemployed: boolean,
       onChildcareLeave: boolean,
+      socialStatus: string
     }
   ) => {
 
@@ -389,6 +390,7 @@ const postJoinParty = (
     "specialty": specialization.length ? specialization : null,
     "workplace": workPlace.length ? workPlace : null,
     "position": post.length ? post : null,
+    "social_status": socialStatus,
   
     "location_id": Number(locationID.value ?? regionID.value),
 

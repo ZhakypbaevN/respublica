@@ -47,7 +47,7 @@ onMounted(() => {
 
 
 const getNewsPressAboutUs = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=6&category_id=3`;
+  const url = `https://api.respublica.codetau.com/api/v1/articles?offset=0&limit=6&category_id=3`;
 
   axios({
     method: "get",

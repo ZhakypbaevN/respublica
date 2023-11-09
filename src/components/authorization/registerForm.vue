@@ -26,6 +26,7 @@
       <h4 class="modal-message-title">У вас есть аккаунт?</h4>
       <RouterLink class="modal-message-btn" to="/auth/login"> Войти </RouterLink>
     </div>
+
     <div class="modal-doc">
       <span
         >Отправляя нам ваши контактные данные, вы соглашаетесь с
@@ -117,6 +118,8 @@ const postRegister = ({ phone }: { phone: string }) => {
   }
 
   &-message {
+    margin-bottom: 20px;
+
     &-title,
     & a {
       display: inline;
