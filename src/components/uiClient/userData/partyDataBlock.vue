@@ -49,6 +49,11 @@
       </h4>
 
       <h4 class="partyData-item">
+        <span>Социальный статус:</span>
+        {{ partyData?.social_status }}
+      </h4>
+
+      <h4 class="partyData-item">
         <span>Специальность:</span>
         {{ partyData?.specialty ?? '-' }}
       </h4>

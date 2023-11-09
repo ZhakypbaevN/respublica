@@ -60,6 +60,13 @@
         </div>
 
         <Select
+          name="socialStatus"
+          placeholder="Социальный статус"
+          :options="socialStatusList"
+          required
+        />
+
+        <Select
           name="education"
           placeholder="Укажите ваше образование"
           :options="[
@@ -266,6 +273,37 @@ const regionID = ref(null);
 const locationID = ref(null);
 const disabledLocationSelect = ref(false);
 
+const socialStatusList = [
+  {
+    label: 'Самозанятые, лица с ограниченными возможностями',
+    value: 'Самозанятые, лица с ограниченными возможностями'
+  },
+  {
+    label: 'Студент',
+    value: 'Студент'
+  },
+  {
+    label: 'Лица находящиеся в отпуске по уходу за детьми',
+    value: 'Лица находящиеся в отпуске по уходу за детьми'
+  },
+  {
+    label: 'Пенсионеры',
+    value: 'Пенсионеры'
+  },
+  {
+    label: 'Безработные',
+    value: 'Безработные'
+  },
+  {
+    label: 'Работающие',
+    value: 'Работающие'
+  },
+  {
+    label: 'Многодетные',
+    value: 'Многодетные'
+  }
+]
+
 onMounted(() => {
 
   const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
@@ -319,7 +357,7 @@ watch(
 
 const postJoinParty = (
     {
-      education, specialization, workPlace, post, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave
+      education, specialization, workPlace, post, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave, socialStatus
     }:
     {
       education: string,
@@ -334,6 +372,7 @@ const postJoinParty = (
       disabled: boolean,
       unemployed: boolean,
       onChildcareLeave: boolean,
+      socialStatus: string
     }
   ) => {
 
@@ -345,6 +384,7 @@ const postJoinParty = (
     "specialty": specialization.length ? specialization : null,
     "workplace": workPlace.length ? workPlace : null,
     "position": post.length ? post : null,
+    "social_status": socialStatus,
   
     "location_id": Number(locationID.value ?? regionID.value),
 

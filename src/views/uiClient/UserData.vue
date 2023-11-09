@@ -13,7 +13,7 @@
 
               <PartyDataBlock
                 :partyData="partyData"
-                :loading="isLoadingParty"
+                :loading="isLoading.party"
               />
             </div>
 
@@ -91,6 +91,8 @@
                 class="userData-btn"
                 name="Скачать партийный билет"
                 type="outline-blue"
+                :loading="isLoading.downloadPDF"
+                @click="() => downloadPDFCard()"
                 v-slot:left
               >
                 <SvgIcon
@@ -144,6 +146,7 @@ import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.v
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useToast } from '../../modules/toast'
+import { reactive } from 'vue';
 
 const { toast } = useToast()
 
@@ -152,7 +155,10 @@ const userData = ref(null);
 const showJoinPartyModal = ref(false);
 const token = localStorage.getItem('TOKEN');
 
-const isLoadingParty = ref(true);
+const isLoading = reactive({
+  party: true,
+  downloadPDF: false
+})
 
 onMounted(() => {
   getUserData();
@@ -194,14 +200,40 @@ const getPartData = () => {
   })
     .then((response) => {
       if (response.data.status !== 'revoked') partyData.value = response.data;
-      isLoadingParty.value = false;
+      isLoading.party = false;
     })
     .catch((err) => {
       console.log('err', err);
-      isLoadingParty.value = false;
+      isLoading.party = false;
       // toast({
       //   message: 'Возникли ошибки при запросе'
       // })
+    });
+}
+
+const downloadPDFCard = () => {
+  isLoading.downloadPDF = true;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/pdf`;
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + token
+    }
+  })
+    .then((response) => {
+      const blob = new Blob([response.data], {type: 'application/pdf'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      isLoading.downloadPDF = false;
+    })
+    .catch((err) => {
+      console.log('err', err);
+      isLoading.downloadPDF = false;
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
     });
 }
 </script>

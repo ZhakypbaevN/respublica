@@ -74,7 +74,7 @@ const getAnnounceData = () => {
 }
 
 const getAnnounceList = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=6`;
+  const url = `https://api.respublica.codetau.com/api/v1/articles?offset=0&limit=3&category_id=6`;
   axios({
     method: "get",
     url: url,
