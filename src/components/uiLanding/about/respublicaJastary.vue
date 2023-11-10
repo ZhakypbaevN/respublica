@@ -4,7 +4,7 @@
       <h2 class="landing-title">{{ $t('respublica-jastary-title') }}</h2>
 
       <div class="respublicaJastary-inner">
-        <div class="respublicaJastary-preview first">
+        <div class="respublicaJastary-preview withZoomPreview-preview first">
           <div class="respublicaJastary-preview-img bg-cover withZoomPreview-preview-img" style="background-image: url('/img/uiLanding/respublica-justary/2B7A4383.jpg');"></div>
         </div>
 
@@ -13,7 +13,7 @@
           Как отметил председатель партии Айдарбек Ходжаназаров, это очень важное решение. В ходе посещения регионов партийцы встречают огромное количество молодых людей, желающих присоединиться к партии и внести свой вклад в развитие страны. Он подчеркнул, что для партии большая честь быть причастными к становлению неравнодушных людей с активной гражданской позицией.
         </p>
 
-        <div class="respublicaJastary-preview second">
+        <div class="respublicaJastary-preview withZoomPreview-preview second">
           <div class="respublicaJastary-preview-img bg-cover withZoomPreview-preview-img" style="background-image: url('/img/uiLanding/respublica-justary/Жастар (1).jpg');"></div>
         </div>
 

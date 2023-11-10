@@ -25,7 +25,7 @@
               >
                 <div class="landing-items">
                   <div
-                    class="deputy-item"
+                    class="deputy-item withZoomPreview"
                     v-for="deputy of region.deputies"
                     :id="region.code"
                   >

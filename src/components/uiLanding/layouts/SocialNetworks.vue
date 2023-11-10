@@ -64,11 +64,8 @@ const snList = [
 .snList {
   display: flex;
   grid-gap: 20px;
-  margin-bottom: 51px;
 
   &.light {
-    margin-bottom: 0px !important;
-
     & .snList-item {
       & svg:last-child {
         fill: white !important;

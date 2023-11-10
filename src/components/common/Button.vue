@@ -67,6 +67,7 @@ button {
     font-family: 'Tilda Sans';
     text-wrap: nowrap;
     line-height: 1;
+    
     transition: all .3s ease-in-out;
 
     &.bigText {

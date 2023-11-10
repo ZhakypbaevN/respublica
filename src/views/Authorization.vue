@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper-main dark">
-    <Header withoutTopAndNavs />
+    <Header withoutNavs />
 
     <div class="wrapper">
       <div class="wrapper-darkMain-inner">
@@ -138,23 +138,6 @@ watch(
 </script>
 
 <style scoped lang="scss">
-.intro {
-  padding-top: 34%;
-  background: url('/img/uiLanding/intro-preview.jpg') center no-repeat;
-  background-size: cover;
-
-  position: relative;
-
-  &-btns {
-    display: flex;
-    grid-gap: 30px;
-
-    position: absolute;
-    left: 50%;
-    bottom: 50px;
-    transform: translateX(-50%);
-  }
-}
 
 .v-enter-active,
 .v-leave-active {
