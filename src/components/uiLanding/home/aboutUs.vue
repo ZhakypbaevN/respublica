@@ -1,54 +1,22 @@
 <template>
   <section class="aboutUs landing-block">
     <div class="wrapper landing-wrapper">
-      <h2 class="aboutUs-title">
-        <span class="blue" data-aos="zoom-in" data-aos-delay="250">{{ $t("about-us-new-people") }}</span>
-        <span data-aos="zoom-in" data-aos-delay="300">{{ $t("about-us-new-opportunities") }}</span>
-      </h2>
-      <p class="aboutUs-description" data-aos="zoom-in" data-aos-delay="300">
-        {{ $t("about-us-description") }}
-        <br />
-        <br />
-        {{ $t("about-us-forward") }}
-      </p>
-      
-      <div class="aboutUs-inner" data-aos="fade-up"
-     data-aos-anchor-placement="top-bottom"
-     data-aos-delay="300">
-        <div class="aboutUs-items">
-          <div class="aboutUs-item" v-for="item of aboutUsList" :key="item.title" data-aos="zoom-in-up">
+      <div class="aboutUs-inner">
+        <RouterLink
+          class="aboutUs-item withZoomPreview"
+          v-for="item of aboutUsList"
+          :key="item.title"
+          :to="item.link"
+        >
+          <div class="aboutUs-item-preview withZoomPreview-preview-img" :style="`background-image: url('${item.img}');`"></div>
+          <div>
             <h4 class="aboutUs-item-title">{{ item.title }}</h4>
             <p class="aboutUs-item-description" v-html="item.text"></p>
-            <RouterLink :to="item.link" class="aboutUs-item-link">
-              <span>{{ item.btn }}</span>
-            </RouterLink>
           </div>
-        </div>
-
-        <div class="aboutUs-links">
-          <Router-link to="/news-all" class="aboutUs-links-item">
-            <span> {{ $t("about-us-news") }}</span>
-            <SvgIcon
-              name="arrow-with-line-right-top"
-              :viewboxWidth="32"
-              :viewboxHeight="32"
-            />
-          </Router-link>
-
-          <button
-            v-for="item of btnList"
-            :key="item.title"
-            @click="item.func"
-            class="aboutUs-links-item"
-          >
-            <span>{{ item.title }}</span>
-            <SvgIcon
-              name="arrow-with-line-right-top"
-              :viewboxWidth="32"
-              :viewboxHeight="32"
-            />
-          </button>
-        </div>
+          <div class="aboutUs-item-link">
+            <span>{{ item.btn }}</span>
+          </div>
+        </RouterLink>
       </div>
     </div>
   </section>
@@ -59,43 +27,23 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-interface Emits {
-  (event: "showJoinPartyModal", value: Function): void;
-  (event: "showSubmitAnAppeal", value: Function): void;
-  (event: "showMakeAnAppointment", value: Function): void;
-}
-
-const emits = defineEmits<Emits>();
-
-const btnList = [
-  {
-    title: t('about-us-join-the-party'),
-    func: () => emits("showJoinPartyModal"),
-  },
-  {
-    title: t('about-us-send-a-request'),
-    func: () => emits("showSubmitAnAppeal"),
-  },
-  {
-    title: t('about-us-make-an-appointment'),
-    func: () => emits("showMakeAnAppointment"),
-  },
-];
-
 const aboutUsList = [
   {
+    img: '/img/uiLanding/home/about-us/about-us-1.jpg',
     title: t('about-us-what-are-we-doing'),
     text: t('about-us-what-are-we-doing-text'),
     btn: t('about-us-what-are-we-doing-btn'),
     link: "/about-party",
   },
   {
+    img: '/img/uiLanding/home/about-us/about-us-2.jpg',
     title: t('about-us-who-are-we'),
     text: t('about-us-who-are-we-text'),
     btn: t('about-us-who-are-we-btn'),
     link: "/about-party",
   },
   {
+    img: '/img/uiLanding/home/about-us/about-us-3.jpg',
     title: t('about-us-contribute'),
     text: t('about-us-contribute-text'),
     btn: t('about-us-contribute-btn'),
@@ -108,47 +56,45 @@ const aboutUsList = [
 .aboutUs {
   margin-top: 70px;
 
-  &-title {
-    text-align: center;
-    font-family: "Montserrat";
-    text-transform: uppercase;
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 30px;
-
-    & span.blue {
-      color: var(--accent-color);
-    }
-  }
-  &-description {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 60px;
-  }
-
   &-inner {
-    display: flex;
-    grid-gap: 42px;
-  }
-
-  &-items {
-    display: flex;
-    grid-gap: 42px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
   }
 
   &-item {
-    max-width: 318px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-gap: 30px;
+
+    padding: 35px 40px 40px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    position: relative;
+
+    &-preview {
+      height: 100%;
+      width: 100%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
     &-title {
+      color: white;
       font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 20px;
+      font-weight: 600;
+      margin-bottom: 30px;
     }
 
     &-description {
+      color: white;
       font-size: 20px;
-      line-height: 1.4;
+      line-height: 1.3;
       margin-bottom: 10px;
     }
 
@@ -164,8 +110,8 @@ const aboutUsList = [
       }
 
       & span {
-        color: var(--accent-color);
-        font-size: 24px;
+        color: white;
+        font-size: 20px;
         font-weight: 600;
         line-height: 1;
 
@@ -183,73 +129,7 @@ const aboutUsList = [
       & svg {
         width: 24px;
         height: 24px;
-        fill: var(--accent-color);
-      }
-    }
-  }
-
-  &-links {
-    height: fit-content;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    grid-gap: 25px;
-
-    padding: 10px 0 20px 40px;
-    border-left: 2px solid var(--accent-color);
-
-    &-item {
-      display: inline-flex;
-      align-items: center;
-      grid-gap: 7px;
-
-      position: relative;
-
-      &::after {
-        content: "";
-
-        display: block;
-        width: 0;
-        height: 0;
-
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 2;
-
-        border-bottom: 3.6px solid var(--accent-color);
-        transition: all 0.3s ease-in-out;
-      }
-
-      &:hover {
-        &::after {
-          width: 100%;
-        }
-
-        & svg {
-          right: -8px;
-          bottom: 3px;
-        }
-      }
-
-      & span {
-        color: var(--accent-color);
-        font-size: 28px;
-        font-weight: 600;
-        line-height: 1.8;
-        text-wrap: nowrap;
-      }
-
-      & svg {
-        height: 32px;
-        width: 32px;
-        fill: var(--accent-color);
-
-        position: relative;
-        right: 0;
-        bottom: 0;
-        transition: all 0.3s ease-in-out;
+        fill: white;
       }
     }
   }

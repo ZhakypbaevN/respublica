@@ -12,7 +12,7 @@
             />
           </RouterLink>
 
-          <SocialNetworks />
+          <SocialNetworks class="footer-mainForm-sn" />
 
           <div class="footer-mainForm-btns">
             <RouterLink to="/feedback">
@@ -122,6 +122,10 @@ withDefaults(defineProps<IProps>(), {
       display: block;
       width: 330px;
       margin-bottom: 45px;
+    }
+
+    &-sn {
+      margin-bottom: 50px;
     }
 
     &-btns {

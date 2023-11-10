@@ -1,30 +1,19 @@
 <template>
-  <header class="header" :class="{ sticky: isSticky, logoBig: withoutTopAndNavs }" :style="{paddingBottom: paddingBottom}">
-    <div class="wrapper" v-if="!withoutTopAndNavs">
-      <div class="header-top">
-        <SocialNetworks light />
-
-        <div class="header-top-right">
-          <!-- <button class="header-top-btnVisuallyImpaired">
-            <SvgIcon
-              name="eye-slashed"
-              :viewboxHeight="24"
-              :viewboxWidth="24"
-            />
-            <span>Версия для слабовидящих</span>
-          </button> -->
-
-          <button class="header-main-lang">
-            <span>РУ</span>
-          </button>
-        </div>
-      </div>
-    </div>
+  <header class="header" :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop }" :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}">
     <div class="header-main" id="header-main">
       <div class="wrapper">
         <div class="header-main-inner">
           <Router-link to="/" class="header-main-logo">
             <SvgIcon
+              v-if="defaultFixed && headerClingingToTop"
+              class="logo-big"
+              name="logo-light"
+              :viewboxWidth="449"
+              :viewboxHeight="62"
+            />
+
+            <SvgIcon
+              v-else
               class="logo-big"
               name="logo"
               :viewboxWidth="260"
@@ -39,7 +28,7 @@
             />
           </Router-link>
 
-          <nav class="header-main-navs" v-if="!withoutTopAndNavs">
+          <nav class="header-main-navs" v-if="!withoutNavs">
             <Router-link to="/about-party" class="header-main-navs-item">
               {{ $t('about-party') }}
             </Router-link>
@@ -63,35 +52,29 @@
            <!-- <Router-link to="/faq" class="header-main-navs-item">
               FAQ
             </Router-link>-->
-            <!-- <button class="header-main-search">
-              <SvgIcon
-                name="search"
-                :viewboxWidth="44"
-                :viewboxHeight="44"
-              />
-            </button> -->
           </nav>
          
-          <div class="header-main-right" v-if="!withoutTopAndNavs">
-            <Router-link to="/donations">
-              <Button
-                :name="$t('header-donations')"
-                type="outline-red"
-                class="header-main-donatBtn"
-              >
-                <SvgIcon
-                  name="donat-arrow-red"
-                  :viewboxWidth="24"
-                  :viewboxHeight="24"
-                />
-              </Button>
-            </Router-link>
-
+          <div class="header-main-right" v-if="!withoutNavs">
+            <button class="header-main-lang">
+              <span>РУС</span>
+            </button>
+            
+            <button class="header-main-search">
+              <SvgIcon
+                name="search"
+                :viewboxWidth="30"
+                :viewboxHeight="30"
+              />
+            </button>
+            
             <RouterLink
               v-if="!userType"
               to="/auth"
             >
-              <Button :name="$t('header-authorization')" />
+              <Button
+                :name="$t('header-authorization')"
+                :type="defaultFixed && headerClingingToTop ? 'outline-light' : 'outline-default'"
+              />
             </RouterLink>
 
             <Avatar v-else />
@@ -115,7 +98,6 @@
 </template>
 
 <script setup lang="ts">
-import SocialNetworks from './socialNetworks.vue';
 import Avatar from '../../../components/common/Avatar.vue';
 
 import { onBeforeUnmount, onMounted, ref } from 'vue';
@@ -128,21 +110,30 @@ const back = () => {
   router.go(-1)
 }
 
-defineProps({
-  withoutTopAndNavs: {
-    type: Boolean,
-    default: false
-  }
+interface IProps {
+  withoutNavs?: boolean,
+  defaultFixed?: boolean,
+  withoutPaddingBottom?: boolean
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  withoutNavs: false,
+  withoutPaddingBottom: false,
+  defaultFixed: false,
 })
 
 const isSticky = ref(false);
 const headerOffsetTop = ref(0);
+const headerClingingToTop = ref(true)
 const paddingBottom = ref('0px');
 
 const handleScroll = () => {
   const headerMain = document.querySelector('#header-main');
   const sideBar = document.querySelector('#sideBar');
 
+  console.log('window.pageYOffset', window.pageYOffset);
+
+  headerClingingToTop.value = window.pageYOffset === 0;
   if (window.pageYOffset >= headerOffsetTop.value) {
     isSticky.value = true;
     paddingBottom.value = headerMain!.offsetHeight + 'px';
@@ -157,9 +148,10 @@ const handleScroll = () => {
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
   const headerMain = document.querySelector('#header-main');
-
+  
   headerOffsetTop.value = headerMain!.offsetTop;
   document.body.style ='height:auto;overflow:auto;';
+  handleScroll();
 });
 
 onBeforeUnmount(() => {
@@ -195,8 +187,6 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 .header {
-  background-color: var(--accent-color-op05);
-
   &.sticky {
     & .header-main {
       position: fixed;
@@ -226,6 +216,25 @@ onBeforeUnmount(() => {
     }
   }
 
+  &.defaultFixedLight {
+    & .header-main {
+      background: transparent;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+
+      &-navs-item {
+        color: white;
+      }
+
+      &-lang span {
+        color: white;
+      }
+      
+      &-search svg {
+        stroke: white !important;
+      }
+    }
+  }
+
   &.logoBig .header-main {
     &-logo {
       width: 260px !important;
@@ -241,47 +250,11 @@ onBeforeUnmount(() => {
     }
   }
 
-  &-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 8px 0;
-
-    &-right {
-      display: flex;
-      align-items: center;
-      grid-gap: 20px;
-    }
-
-    &-btnVisuallyImpaired {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-
-      padding: 8px 30px;
-
-      border-radius: 10px;
-
-      & svg {
-        height: 24px;
-        width: 24px;
-      }
-
-      & span {
-        color: var(--primary-color);
-        font-size: 18px;
-        font-weight: 500;
-      }
-    }
-  }
-
   &-main {
-    padding: 18px 0;
+    padding: 8px 0;
     background: white;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-    transition: box-shadow .2s ease-in-out;
+    transition: box-shadow .2s ease-in-out, background .3s ease-in-out;
 
     &-inner {
       display: flex;
@@ -292,7 +265,7 @@ onBeforeUnmount(() => {
       &-right {
         display: flex;
         align-items: center;
-        grid-gap: 55px;
+        grid-gap: 30px;
       }
     }
 
@@ -333,11 +306,11 @@ onBeforeUnmount(() => {
     &-navs {
       display: flex;
       align-items: center;
-      grid-gap: 55px;
+      grid-gap: 44px;
 
       &-item {
         color: var(--primary-color);
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 600;
         text-transform: uppercase;
         transition: all .3s ease-in-out;
@@ -348,7 +321,7 @@ onBeforeUnmount(() => {
           content: '';
 
           position: absolute;
-          top: 75px;
+          top: 65px;
           left: 50%;
           transform: translateX(-50%);
 
@@ -376,33 +349,28 @@ onBeforeUnmount(() => {
       grid-gap: 20px;
     }
 
-    &-donatBtn {
-      display: flex;
-      align-items: center;
-      grid-gap: 10px;
-
-      & svg {
-        height: 24px;
-        width: 24px;
-      }
-    }
-
     &-lang {
       & span {
         color: var(--primary-color);
-        font-size: 18px;
-        font-weight: 700;
+        font-size: 20px;
+        font-weight: 500;
+        text-decoration: underline;
+
+        transition: all .3s ease-in-out;
       }
     }
 
     &-search {
       display: block;
-      height: 44px;
-      width: 44px;
+      height: 30px;
+      width: 30px;
 
       & svg {
         height: 100%;
         width: 100%;
+
+        stroke: var(--primary-color);
+        transition: all .3s ease-in-out;
       }
     }
 

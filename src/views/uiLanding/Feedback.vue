@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper-main dark">
-    <Header withoutTopAndNavs />
+    <Header withoutNavs />
 
     <div class="wrapper">
       <div class="wrapper-darkMain-inner">
