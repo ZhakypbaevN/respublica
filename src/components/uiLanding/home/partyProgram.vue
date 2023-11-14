@@ -123,8 +123,12 @@ const toggleSlider = () => {
     padding: 55px 0;
 
     &-preview {
+      height: 480px;
+
       & img {
-        width: 100%;
+        mix-blend-mode: hard-light;
+
+        height: 100%;
       }
     }
 

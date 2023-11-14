@@ -11,6 +11,7 @@
 
         </h4>
       </a>
+      
       <a class="contacts-item" href="tel:+7 7172 640 777">
         <SvgIcon name="call-gery" :viewboxWidth="28" :viewboxHeight="28" />
         <h4 class="contacts-item-title">+7 7172 640 777</h4>

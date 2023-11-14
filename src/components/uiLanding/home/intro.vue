@@ -25,7 +25,7 @@
     <div class="intro-bottom">
       <div class="wrapper landing-wrapper">
         <div class="intro-bottom-inner">
-          <SocialNetworks />
+          <SocialNetworks lightBlue />
 
           <div class="intro-bottom-btns">
             <Button
@@ -40,12 +40,13 @@
               @click="() => showModals.submitAnAppeal = true"
               data-aos="fade-left"
             />
-            <Button
-              :name="$t('header-donations')"
-              type="default-blue"
-              @click="() => showModals.submitAnAppeal = true"
-              data-aos="fade-left"
-            />
+            <RouterLink to="/donations">
+              <Button
+                :name="$t('header-donations')"
+                type="default-blue"
+                data-aos="fade-left"
+              />
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -85,8 +86,6 @@ const showModals = reactive({
 
 <style scoped lang="scss">
 .intro {
-  
-
   &-main {
     padding-top: 40%;
     position: relative;
@@ -195,6 +194,10 @@ const showModals = reactive({
         &:hover {
           background-color: var(--primary-color-op10) !important;
         }
+      }
+
+      & a button {
+        width: 100%;
       }
     }
   }

@@ -27,6 +27,7 @@ import PressAboutUsList from '../views/uiLanding/press-about-us/PressAboutUsList
 import PressAboutUsDetail from '../views/uiLanding/press-about-us/PressAboutUsDetail.vue'
 
 // Announcement
+import AnnouncesList from '../views/uiLanding/announcement/AnnouncesList.vue'
 import AnnounceDetail from '../views/uiLanding/announcement/AnnounceDetail.vue'
 
 // Gallery
@@ -123,6 +124,11 @@ const routes = [
     path: '/news-all',
     name: 'NewsList',
     component: NewsList,
+  },
+  {
+    path: '/announce-list',
+    name: 'AnnouncesList',
+    component: AnnouncesList,
   },
   {
     path: '/announce/:announce_id',
