@@ -45,6 +45,7 @@
               <RouterLink to="/party-fraction" class="footer-mainNavs-link">{{ $t('footer-party-faction') }}</RouterLink>
               <!-- <RouterLink to="/regions" class="footer-mainNavs-link">Регионы</RouterLink> -->
               <RouterLink to="/news" class="footer-mainNavs-link">{{ $t('footer-press-center') }}</RouterLink>
+              <RouterLink to="/announce-list" class="footer-mainNavs-link">{{ $t('home-announcements') }}</RouterLink>
               <RouterLink to="/contacts" class="footer-mainNavs-link">{{ $t('footer-contacts') }}</RouterLink>
               <RouterLink to="/faq" class="footer-mainNavs-link">Вопрос – ответ</RouterLink>
             </div>

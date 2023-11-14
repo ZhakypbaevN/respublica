@@ -246,7 +246,7 @@ const exitPartyDatas = reactive({
 const oldExitRequest = ref({
   status: null
 });
-const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'JPG'];
+const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'PNG', 'JPG'];
 
 const isLoading = reactive({
   page: true,

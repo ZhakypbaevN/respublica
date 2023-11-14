@@ -92,7 +92,7 @@ const emits = defineEmits<Emits>()
 
 const loading = ref(false)
 const file = ref()
-const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'JPG'];
+const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'PNG', 'JPG'];
 const token = localStorage.getItem('TOKEN');
 
 const clickInputFile = () => {

@@ -49,7 +49,7 @@ const sideBarlinks = [
     link: "/media/photo-gallery"
   },
   {
-    title: 'Анонсы, объявления',
+    title: 'Закупы, объявления',
     link: "/media/announcements"
   }
 ]

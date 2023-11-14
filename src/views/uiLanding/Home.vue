@@ -43,7 +43,7 @@
           <div class="landing-header">
             <h2 class="landing-title">{{ $t('home-announcements') }}</h2>
             
-            <RouterLink to="news-all" class="landing-header-link">
+            <RouterLink to="announce-list" class="landing-header-link">
               <span>{{ $t('home-announcements-see-all') }}</span>
               <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
             </RouterLink>
