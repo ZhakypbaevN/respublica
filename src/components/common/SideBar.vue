@@ -7,13 +7,22 @@
         class=""
       > 
         <RouterLink
-          v-if="!link.typeDropDown"
+          v-if="!link.typeDropDown && link.link"
           class="sideBar-link"
           :class="{btnStyle: link.typeButton}"
           :to="link.link"
         >
           <span>{{ link.title }}</span>
         </RouterLink>
+
+        <button
+          v-else-if="!link.typeDropDown && link.func"
+          class="sideBar-link"
+          :class="{btnStyle: link.typeButton}"
+          @click="link.func"
+        >
+          <span>{{ link.title }}</span>
+        </button>
 
         <div v-else class="sideBar-dropDown">
           <button
@@ -82,6 +91,7 @@ const listValue = ref(props.list)
 
   &-link {
     width: 100%;
+    text-align: left;
     cursor: pointer;
 
     & span {

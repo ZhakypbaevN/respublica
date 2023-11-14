@@ -15,13 +15,25 @@
         </router-view>
       </div>
     </div>
+
+    <SubmitAnAppealModal
+      :show="showModalSubmitAnAppeal"
+      @hide="() => showModalSubmitAnAppeal = false"
+    />
   </div>
 </template>
 
 <script setup>
+import SubmitAnAppealModal from '../../../components/uiLanding/feedback/submitAnAppealModal.vue';
 import SideBar from '../../common/SideBar.vue';
 import HeaderClient from './headerClient.vue';
 
+import { ref } from 'vue';
+import { useToast } from '../../../modules/toast'
+
+const { toast } = useToast()
+
+const showModalSubmitAnAppeal = ref(false);
 const sideBarlinks = [
   {
     title: 'Личные данные',
@@ -37,15 +49,19 @@ const sideBarlinks = [
   },
   {
     title: 'Записаться на прием',
-    link: "/client/test"
+    func: () => {
+      toast({
+        message: 'Страница в разработке'
+      })
+    }
   },
-  {
-    title: 'История обращений',
-    link: "/client/my-requests"
-  },
+  // {
+  //   title: 'История обращений',
+  //   link: "/client/my-requests"
+  // },
   {
     title: 'Подать обращение',
-    link: "/client/test"
+    func: () => showModalSubmitAnAppeal.value = true
   }
 ]
 </script>
