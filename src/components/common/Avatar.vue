@@ -160,5 +160,29 @@ const exit = () => {
       fill: var(--red-color);
     }
   }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    &-preview {
+      height: 45px;
+      width: 45px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-preview {
+      height: 42px;
+      width: 42px;
+    }
+  }
+
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 </style>

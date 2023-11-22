@@ -132,5 +132,30 @@ const snList = [
       opacity: 0;
     }
   }
+
+  // Adaptation
+  @media (max-width: 992px) {
+    grid-gap: 18px;
+
+    &-item {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-gap: 16px;
+
+    &-item {
+      height: 28px;
+      width: 28px;
+    }
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 </style>

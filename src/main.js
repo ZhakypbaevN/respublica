@@ -25,6 +25,7 @@ import Checkbox from './components/common/Checkbox.vue'
 import Form from './components/common/Form.vue';
 import Modal from './components/common/Modal.vue';
 import Filter from './components/common/Filter.vue';
+import LangToggle from './components/common/LangToggle.vue';
 
 import LandingLayout from './components/uiLanding/layouts/landingLayout.vue';
 import Header from './components/uiLanding/layouts/header.vue';
@@ -70,6 +71,7 @@ createApp(App)
   .component('Filter', Filter)
   .component('Form', Form)
   .component('Modal', Modal)
+  .component('LangToggle', LangToggle)
   .component('LandingLayout', LandingLayout)
   .component('Header', Header)
   .component('Footer', Footer)

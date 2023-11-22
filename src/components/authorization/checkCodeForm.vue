@@ -3,7 +3,7 @@
     <h2 class="wrapper-darkMain-title">Введите код</h2>
 
     <div class="modal-message">
-      <h4 class="modal-message-title">Мы отправили код подтверждения на номер <br> {{ phone }}</h4>
+      <h4 class="modal-message-title">Мы отправили код подтверждения на номер <br> {{ formatPhoneNumber('7' + phone) }}</h4>
       
       <button
         type="button"
@@ -68,6 +68,8 @@
 import axios from 'axios'
 import { ref } from 'vue'
 import { useToast } from '../../modules/toast'
+
+import formatPhoneNumber from '../../helpers/formatPhoneNumber.js'
 
 const { toast } = useToast()
 

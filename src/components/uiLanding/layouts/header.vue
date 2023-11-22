@@ -1,188 +1,217 @@
 <template>
-  <header class="header" :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop }" :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}">
-    <div class="header-main" id="header-main">
-      <div class="wrapper">
-        <div class="header-main-inner">
-          <Router-link to="/" class="header-main-logo">
-            <SvgIcon
-              v-if="defaultFixed && headerClingingToTop"
-              class="logo-big"
-              name="logo-light"
-              :viewboxWidth="449"
-              :viewboxHeight="62"
-            />
-
-            <SvgIcon
-              v-else
-              class="logo-big"
-              name="logo"
-              :viewboxWidth="260"
-              :viewboxHeight="49"
-            />
-
-            <SvgIcon
-              class="logo-mini"
-              name="logo-mini"
-              :viewboxWidth="96"
-              :viewboxHeight="95"
-            />
-          </Router-link>
-
-          <nav class="header-main-navs" v-if="!withoutNavs">
-            <Router-link to="/about-party" class="header-main-navs-item">
-              {{ $t('about-party') }}
-            </Router-link>
-
-            <Router-link to="/party-fraction" class="header-main-navs-item">
-              {{ $t('header-party-faction') }}
-            </Router-link>
-
-            <Router-link to="/regions" class="header-main-navs-item">
-              Регионы
-            </Router-link>
-
-            <Router-link to="/news" class="header-main-navs-item">
-              {{ $t('header-press-center') }}
-            </Router-link>
-
-            <Router-link to="/contacts" class="header-main-navs-item">
-              {{ $t('header-contacts') }}
-            </Router-link>
-
-           <!-- <Router-link to="/faq" class="header-main-navs-item">
-              FAQ
-            </Router-link>-->
-          </nav>
-         
-          <div class="header-main-right" v-if="!withoutNavs">
-            <button class="header-main-lang">
-              <span>РУС</span>
-            </button>
-            
-            <button class="header-main-search">
+  <div>
+    <header class="header" :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop }" :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}">
+      <div class="header-main" id="header-main">
+        <div class="wrapper">
+          <div class="header-main-inner">
+            <Router-link to="/" class="header-main-logo">
               <SvgIcon
-                name="search"
-                :viewboxWidth="30"
-                :viewboxHeight="30"
+                v-if="defaultFixed && headerClingingToTop"
+                class="logo-big"
+                name="logo-light"
+                :viewboxWidth="449"
+                :viewboxHeight="62"
+              />
+
+              <SvgIcon
+                v-else
+                class="logo-big"
+                name="logo"
+                :viewboxWidth="260"
+                :viewboxHeight="49"
+              />
+
+              <SvgIcon
+                class="logo-mini"
+                name="logo-mini"
+                :viewboxWidth="96"
+                :viewboxHeight="95"
+              />
+            </Router-link>
+
+            <nav class="header-main-navs" v-if="!withoutNavs">
+              <Router-link
+                class="header-main-navs-item"
+                v-for="nav of navsList"
+                :key="nav.link"
+                :to="nav.link"
+              >
+                {{ nav.title }}
+              </Router-link>
+            </nav>
+          
+            <div class="header-main-right" v-if="!withoutNavs">
+              <LangToggle
+                class="header-main-lang"
+                :light="defaultFixed && headerClingingToTop"
+              />
+              
+              <button class="header-main-search">
+                <SvgIcon
+                  name="search"
+                  :viewboxWidth="30"
+                  :viewboxHeight="30"
+                />
+              </button>
+              
+              <RouterLink
+                v-if="!userType"
+                to="/auth"
+              >
+                <Button
+                  :name="$t('header-authorization')"
+                  :type="defaultFixed && headerClingingToTop ? 'outline-light' : 'outline-default'"
+                />
+              </RouterLink>
+
+              <Avatar v-else />
+
+              <button
+                class="header-main-burger"
+                @click="() => showSideBar = true"
+              >
+                <SvgIcon
+                  name="map-control-list"
+                  :viewboxHeight="32"
+                  :viewboxWidth="32"
+                />
+              </button>
+            </div>
+
+            <button
+              v-else
+              class="header-main-close"
+              @click="back"
+            >
+              <SvgIcon
+                name="close"
+                :viewboxHeight="37"
+                :viewboxWidth="37"
               />
             </button>
-            
-            <RouterLink
-              v-if="!userType"
-              to="/auth"
-            >
-              <Button
-                :name="$t('header-authorization')"
-                :type="defaultFixed && headerClingingToTop ? 'outline-light' : 'outline-default'"
-              />
-            </RouterLink>
-
-            <Avatar v-else />
           </div>
-
-          <button
-            v-else
-            class="header-main-close"
-            @click="back"
-          >
-            <SvgIcon
-              name="close"
-              :viewboxHeight="37"
-              :viewboxWidth="37"
-            />
-          </button>
         </div>
       </div>
+
+    </header>
+    <div class="headerSidebar" :class="{show: showSideBar}">
+      <div class="headerSidebar-header">
+        <h3 class="headerSidebar-header-title">Меню</h3>
+        <button
+          class="headerSidebar-header-exitBtn"
+          @click="() => showSideBar = false"
+        >
+          <SvgIcon
+            name="x"
+            class="headerSidebar-header-exitBtn-icon"
+            :viewboxHeight="14"
+            :viewboxWidth="14"
+          />
+        </button>
+      </div>
+      
+      <div class="headerSidebar-content">
+        <nav class="headerSidebar-content-navs">
+          <Router-link
+            class="headerSidebar-content-navs-item"
+            v-for="nav of navsList"
+            :key="nav.link"
+            :to="nav.link"
+          >
+            {{ nav.title }}
+          </Router-link>
+        </nav>
+      </div>
     </div>
-  </header>
+  </div>
 </template>
 
 <script setup lang="ts">
-import Avatar from '../../../components/common/Avatar.vue';
+  import Avatar from '../../../components/common/Avatar.vue';
 
-import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router'
+  import { onBeforeUnmount, onMounted, ref } from 'vue';
+  import { useRouter } from 'vue-router'
 
-const router = useRouter()
-const userType = localStorage.getItem('USER_TYPE');
+  import { useI18n } from 'vue-i18n'
 
-const back = () => {
-  router.go(-1)
-}
+  const { t } = useI18n()
 
-interface IProps {
-  withoutNavs?: boolean,
-  defaultFixed?: boolean,
-  withoutPaddingBottom?: boolean
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-  withoutNavs: false,
-  withoutPaddingBottom: false,
-  defaultFixed: false,
-})
-
-const isSticky = ref(false);
-const headerOffsetTop = ref(0);
-const headerClingingToTop = ref(true)
-const paddingBottom = ref('0px');
-
-const handleScroll = () => {
-  const headerMain = document.querySelector('#header-main');
-  const sideBar = document.querySelector('#sideBar');
-
-  console.log('window.pageYOffset', window.pageYOffset);
-
-  headerClingingToTop.value = window.pageYOffset === 0;
-  if (window.pageYOffset >= headerOffsetTop.value) {
-    isSticky.value = true;
-    paddingBottom.value = headerMain!.offsetHeight + 'px';
-    sideBar?.classList.add('fixed');
-  } else {
-    isSticky.value = false;
-    paddingBottom.value = '0px';
-    sideBar?.classList.remove('fixed');
+  interface IProps {
+    withoutNavs?: boolean,
+    defaultFixed?: boolean,
+    withoutPaddingBottom?: boolean
   }
-};
 
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-  const headerMain = document.querySelector('#header-main');
-  
-  headerOffsetTop.value = headerMain!.offsetTop;
-  document.body.style ='height:auto;overflow:auto;';
-  handleScroll();
-});
+  withDefaults(defineProps<IProps>(), {
+    withoutNavs: false,
+    withoutPaddingBottom: false,
+    defaultFixed: false,
+  })
 
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
+  const router = useRouter()
+  const userType = localStorage.getItem('USER_TYPE');
 
+  const back = () => {
+    router.go(-1)
+  }
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   var header = document.querySelector('header');
-//   var headerHeight = header.offsetHeight;
-//   console.log('headerHeight', headerHeight);
-//   var headerFake = document.querySelector('#header-fake');
-//   headerFake.style.paddingTop = headerHeight + 'px';
+  const isSticky = ref(false);
+  const headerOffsetTop = ref(0);
+  const headerClingingToTop = ref(true)
+  const paddingBottom = ref('0px');
+  const showSideBar = ref(false)
 
-//   window.addEventListener('scroll', function() {
-//     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-//     if (scrollTop === 0) {
-//       header.classList.remove('fixed');
-//       header.classList.add('big');
-//     } else {
-//       header.classList.add('fixed');
-//       header.classList.remove('big');
-//     }
-//     headerFake.style.paddingTop = header.offsetHeight + 'px';
-//   });
+  const navsList = [
+    {
+      link: '/about-party',
+      title: t('about-party')
+    },
+    {
+      link: '/party-fraction',
+      title: t('header-party-faction')
+    },
+    {
+      link: '/regions',
+      title: t('header-regions')
+    },
+    {
+      link: '/news',
+      title: t('header-press-center')
+    },
+    {
+      link: '/contacts',
+      title: t('header-contacts')
+    }
+  ]
 
-//   window.addEventListener('resize', function() {
-//     headerHeight = header.offsetHeight;
-//     headerFake.style.paddingTop = headerHeight + 'px';
-//   });
-// });
+  const handleScroll = () => {
+    const headerMain = document.querySelector('#header-main');
+    const sideBar = document.querySelector('#sideBar');
+
+    headerClingingToTop.value = window.pageYOffset === 0;
+    if (window.pageYOffset >= headerOffsetTop.value) {
+      isSticky.value = true;
+      paddingBottom.value = headerMain!.offsetHeight + 'px';
+      sideBar?.classList.add('fixed');
+    } else {
+      isSticky.value = false;
+      paddingBottom.value = '0px';
+      sideBar?.classList.remove('fixed');
+    }
+  };
+
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+    const headerMain = document.querySelector('#header-main');
+    
+    headerOffsetTop.value = headerMain!.offsetTop;
+    document.body.style ='height:auto;overflow:auto;';
+    handleScroll();
+  });
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleScroll);
+  });
 </script>
 
 <style scoped lang="scss">
@@ -225,10 +254,6 @@ onBeforeUnmount(() => {
         color: white;
       }
 
-      &-lang span {
-        color: white;
-      }
-      
       &-search svg {
         stroke: white !important;
       }
@@ -346,18 +371,7 @@ onBeforeUnmount(() => {
     &-right {
       display: flex;
       align-items: center;
-      grid-gap: 20px;
-    }
-
-    &-lang {
-      & span {
-        color: var(--primary-color);
-        font-size: 20px;
-        font-weight: 500;
-        text-decoration: underline;
-
-        transition: all .3s ease-in-out;
-      }
+      grid-gap: 30px;
     }
 
     &-search {
@@ -385,6 +399,251 @@ onBeforeUnmount(() => {
 
       &:hover svg {
         fill: var(--accent-color);
+      }
+    }
+
+    &-burger {
+      display: none;
+
+      height: 40px;
+      width: 40px;
+
+      fill: var(--accent-color);
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 1450px) {
+    &.sticky .header-main-logo {
+      width: 80px;
+    }
+
+    &.logoBig .header-main-logo {
+      width: 228px !important;
+    }
+    
+    &-main {
+      &-logo {
+        height: 80px;
+        width: 228px;
+        & svg.logo-big {
+          height: 80px;
+          width: 228px;
+        }
+
+        & svg.logo-mini {
+          height: 80px;
+          width: 80px;
+        }
+      }
+
+      &-right {
+        grid-gap: 20px;
+      }
+      
+      &-navs,
+      &-lang,
+      &-search {
+        display: none;
+      }
+
+      &-burger {
+        display: block;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &.sticky .header-main-logo {
+      width: 60px;
+    }
+
+    &.logoBig .header-main-logo {
+      width: 200px !important;
+    }
+    
+    &-main {
+      &-logo {
+        height: 60px;
+        width: 200px;
+        & svg.logo-big {
+          height: 60px;
+          width: 200px;
+        }
+
+        & svg.logo-mini {
+          height: 60px;
+          width: 60px;
+        }
+      }
+
+      &-burger {
+        height: 38px;
+        width: 38px;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    
+  }
+
+  @media (max-width: 768px) {
+    &.sticky .header-main-logo {
+      width: 50px;
+    }
+
+    &.logoBig .header-main-logo {
+      width: 180px !important;
+    }
+    
+    &-main {
+      &-logo {
+        height: 50px;
+        width: 180px;
+        & svg.logo-big {
+          height: 50px;
+          width: 180px;
+        }
+
+        & svg.logo-mini {
+          height: 50px;
+          width: 50px;
+        }
+      }
+
+      &-burger {
+        height: 38px;
+        width: 38px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    &.sticky .header-main-logo {
+      width: 48px;
+    }
+
+    &.logoBig .header-main {
+      &-logo {
+        width: 48px !important;
+        border-radius: 50% !important;
+      }
+
+      & svg.logo-big {
+        display: none !important;
+      }
+
+      & svg.logo-mini {
+        opacity: 1 !important;
+      }
+    }
+    
+    &-main {
+      &-logo {
+        height: 48px;
+        width: 48px;
+        & svg.logo-big {
+          display: none;
+        }
+
+        & svg.logo-mini {
+          height: 48px;
+          width: 48px;
+        }
+      }
+
+      &-burger {
+        height: 38px;
+        width: 38px;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+  }
+}
+
+.headerSidebar {
+  width: 280px;
+  height: 100vh;
+
+  position: fixed;
+  right: -300px;
+  top: 0;
+  z-index: 200;
+  overflow-y: auto;
+
+  padding: 20px;
+
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(160,174,192,.25);
+
+  transition: all .3s ease-in-out;
+
+  &.show {
+    right: 0;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+
+    &-title {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    &-exitBtn {
+      &-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &-content {
+    &-navs {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 20px;
+
+      &-item {
+        color: var(--primary-color);
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: all .3s ease-in-out;
+
+        position: relative;
+
+        &::after {
+          content: '';
+
+          position: absolute;
+          top: calc(100% + 4px);
+          left: 50%;
+          transform: translateX(-50%);
+
+          display: block;
+          width: 0px;
+          height: 3px;
+
+          background-color: var(--accent-color);
+          transition: all .3s ease-in-out;
+        }
+
+        &:hover,
+        &.router-link-active {
+          color: var(--accent-color);
+
+          &::after {
+            width: 100%;
+          }
+        }
       }
     }
   }

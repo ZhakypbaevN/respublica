@@ -23,6 +23,7 @@
             :phone="checkData.phone"
             :token="checkData.token"
             :fromResetPassword="fromResetPassword"
+            @toBack="() => {fromResetPassword ? showResetPasswordForm() : showRegistrationForm()}"
             @toNext="() => {fromResetPassword ? showFinishResetPasswordForm() : showFinishRegistrationForm()}"
           />
 
@@ -112,9 +113,19 @@ const showCheckForm = () => {
   showForm.checkCode = true;
 }
 
+const showRegistrationForm = () => {
+  objElementsToFalse();
+  showForm.register = true;
+}
+
 const showFinishRegistrationForm = () => {
   objElementsToFalse();
   showForm.registerFinish = true;
+}
+
+const showResetPasswordForm = () => {
+  objElementsToFalse();
+  showForm.resetPassword = true;
 }
 
 const showFinishResetPasswordForm = () => {
