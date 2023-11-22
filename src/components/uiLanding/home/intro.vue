@@ -33,18 +33,21 @@
               type="default-blue"
               @click="() => showModals.joinPartyModal = true"
               data-aos="fade-left"
+              uppercase
             />
             <Button
               :name="$t('home-submit-an-apeal')"
               type="default-blue"
               @click="() => showModals.submitAnAppeal = true"
               data-aos="fade-left"
+              uppercase
             />
             <RouterLink to="/donations">
               <Button
                 :name="$t('header-donations')"
                 type="default-blue"
                 data-aos="fade-left"
+                uppercase
               />
             </RouterLink>
           </div>
@@ -123,7 +126,7 @@ const showModals = reactive({
       }
       &::after {
         z-index: 2;
-        background: linear-gradient(1deg, rgba(4, 32, 81, 0.50) 50.29%, rgba(4, 32, 81, 0.00) 99.36%);
+        background: linear-gradient(1deg, rgba(4, 32, 81, 0.50) 30.29%, rgba(4, 32, 81, 0.00) 69.36%);
       }
     }
 

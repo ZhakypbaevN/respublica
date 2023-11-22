@@ -1,7 +1,7 @@
 {
   "deputiesList": [
     {
-      "title": "область АБАЙ",
+      "title": "АБАЙ область",
       "code": "KZ-ABY",
       "deputies": [
         {
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "title": "область ЖЕТІСУ",
+      "title": "ЖЕТІСУ область",
       "code": "KZ-ZHT",
       "deputies": [
         {
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "title": "КОСТАНАЙСКАЯ область ",
+      "title": "КОСТАНАЙСКАЯ область",
       "code": "KZ-KUS",
       "deputies": [
         {
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "title": "ТУРКЕСТАНСКАЯ область ",
+      "title": "ТУРКЕСТАНСКАЯ область",
       "code": "KZ-TUR",
       "deputies": [
         {
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "title": "область ҰЛЫТАУ",
+      "title": "ҰЛЫТАУ область",
       "code": "KZ-ULT",
       "deputies": []
     },
@@ -325,12 +325,12 @@
     },
     {
       "title": "г. АСТАНА",
-      "code": "KZ-AKM",
+      "code": "KZ-AKM-ASTANA",
       "deputies": []
     },
     {
       "title": "г. АЛМАТЫ",
-      "code": "KZ-ALM",
+      "code": "KZ-ALM-ALMATY",
       "deputies": [
         {
           "name": "Жайнарбай Жалынбек",
@@ -357,7 +357,7 @@
     },
     {
       "title": "г. ШЫМКЕНТ",
-      "code": "KZ-TUR",
+      "code": "KZ-TUR-SHUMKENT",
       "deputies": [
         {
           "name": "Нурлыбаев Асхат Мелдебекович",

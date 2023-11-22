@@ -123,8 +123,6 @@
 
   const newUrl = (url) => {
     image.value = url;
-    console.log('url', url);
-    console.log('image.value', image.value);
   }
 
   const newCrop = (file) => {

@@ -9,13 +9,26 @@
       @finish="createAlbom"
     >
       <div class="feedbackModal-inputs">
+        <Upload
+          class="feedbackModal-preview"
+          v-model="formData.newPhotoFile"
+          :preview="formData.preview"
+          :aspectRatio="6 / 6"
+          :height="200"
+          :width="200"
+          :previewBottom="100"
+          required
+        />
+        
         <Input
+          v-model="formData.title"
           name="name"
           placeholder="Введите название"
           required
         />
 
         <Input
+          v-model="formData.date"
           name="date"
           type="date"
           placeholder="Введите дату"
@@ -23,10 +36,10 @@
         />
         
         <Select
+          v-model="formData.place"
           name="region"
           placeholder="Укажите область"
           :options="regionList"
-          v-model="region"
           required
         />
       </div>
@@ -42,8 +55,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, reactive } from 'vue'
 import axios from 'axios'
+import moment from 'moment';
 
 // Modules
 import { useToast } from '../../../../modules/toast'
@@ -65,7 +79,14 @@ const token = localStorage.getItem('TOKEN');
 
 const loading = ref(false);
 const regionList = ref([]);
-const region = ref(null);
+
+const formData = reactive({
+  title: null,
+  date: null,
+  place: null,
+  preview: null,
+  newPhotoFile: null
+})
 
 onMounted(() => {
 
@@ -94,21 +115,27 @@ axios({
   });
 })
 
-const createAlbom = (
-    { name, date, region }: { name: string, date: string, date: string }
-  ) => {
+const createAlbom = () => {
 
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/galleries/albums`;
+  const url = `https://api.respublica.codetau.com/api/v1/admin/galleries/albums`;
+
+  const data = new FormData();
+
+  const albomData = {
+    label: null,
+    title: formData.title,
+    date: moment(formData.date).format('YYYY-MM-DD'),
+    place: formData.place
+  }
+  
+  data.append("album", JSON.stringify(albomData));
+  if (formData.newPhotoFile) data.append("preview_image", formData.newPhotoFile);
 
   axios({
     method: "post",
     url: url,
-    data: {
-      title: name,
-      date: date,
-      place: region
-    },
+    data: data,
     headers: {
       accept: 'application/json',
       Authorization: 'Bearer ' + token
@@ -139,3 +166,9 @@ const createAlbom = (
     });
 }
 </script>
+
+<style scoped lang="scss">
+.feedbackModal-preview {
+  width: 300px;
+}
+</style>

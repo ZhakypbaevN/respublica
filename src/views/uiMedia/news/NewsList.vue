@@ -81,8 +81,9 @@ const getPhotos = () => {
     method: "get",
     url: url,
     headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
+      'Accept': 'application/json',
+      'Accept-Language': 'ru-RU',
+      'Authorization': `Bearer ${token}`
     }
   })
     .then((response) => {
@@ -94,15 +95,9 @@ const getPhotos = () => {
     .catch((err) => {
       console.log('err', err);
 
-      if (err.response.data.detail === 'Pending resignation request already exists.') {
-        toast({
-          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
       isLoading.value = false;
     });
 }
