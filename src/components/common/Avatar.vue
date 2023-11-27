@@ -10,7 +10,7 @@
 
 
     <div class="avatarBlock-dropDown">
-      <RouterLink
+      <!-- <RouterLink
         v-for="linkData of links"
         :key="linkData.title"
         class="avatarBlock-link"
@@ -20,7 +20,7 @@
           :name="linkData.title"
           type="outline-blue"
         />
-      </RouterLink>
+      </RouterLink> -->
 
       <Button
         class="avatarBlock-btn"
