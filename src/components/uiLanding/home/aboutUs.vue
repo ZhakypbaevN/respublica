@@ -95,7 +95,6 @@ const aboutUsList = [
       color: white;
       font-size: 20px;
       line-height: 1.3;
-      margin-bottom: 10px;
     }
 
     &-link {
@@ -130,6 +129,151 @@ const aboutUsList = [
         width: 24px;
         height: 24px;
         fill: white;
+      }
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    margin-top: 70px;
+
+    &-inner {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 40px;
+
+      & .aboutUs-item:last-child {
+        grid-column: 1/3;
+      }
+    }
+
+    &-item {
+      grid-gap: 30px;
+
+      padding: 35px 40px 40px;
+      border-radius: 10px;
+
+      &-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+
+      &-description {
+        font-size: 20px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+
+        &:hover {
+          & span::after {
+            left: 10px;
+          }
+        }
+
+        & span {
+          font-size: 20px;
+        }
+
+        & svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    margin-top: 60px;
+
+    &-inner {
+      grid-template-columns: 1fr;
+      grid-gap: 30px;
+
+      & .aboutUs-item:last-child {
+        grid-column: auto;
+      }
+    }
+
+    &-item {
+      grid-gap: 26px;
+
+      padding: 25px 30px 30px;
+      border-radius: 10px;
+
+      &-title {
+        font-size: 26px;
+        margin-bottom: 10px;
+      }
+
+      &-description {
+        font-size: 20px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+
+        &:hover {
+          & span::after {
+            left: 10px;
+          }
+        }
+
+        & span {
+          font-size: 20px;
+        }
+
+        & svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 60px;
+
+    &-inner {
+      grid-template-columns: 1fr;
+      grid-gap: 30px;
+
+      & .aboutUs-item:last-child {
+        grid-column: auto;
+      }
+    }
+
+    &-item {
+      grid-gap: 26px;
+
+      padding: 16px 20px 20px;
+      border-radius: 10px;
+
+      &-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
+      &-description {
+        font-size: 18px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+
+        &:hover {
+          & span::after {
+            left: 10px;
+          }
+        }
+
+        & span {
+          font-size: 18px;
+        }
+
+        & svg {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }

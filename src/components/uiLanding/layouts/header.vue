@@ -1,15 +1,15 @@
 <template>
   <div>
-    <header class="header" :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop }" :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}">
+    <header class="header" :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop, dark: dark }" :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}">
       <div class="header-main" id="header-main">
         <div class="wrapper">
           <div class="header-main-inner">
             <Router-link to="/" class="header-main-logo">
               <SvgIcon
-                v-if="defaultFixed && headerClingingToTop"
+                v-if="defaultFixed && headerClingingToTop && !dark"
                 class="logo-big"
                 name="logo-light"
-                :viewboxWidth="449"
+                :viewboxWidth="329"
                 :viewboxHeight="62"
               />
 
@@ -43,7 +43,7 @@
             <div class="header-main-right" v-if="!withoutNavs">
               <LangToggle
                 class="header-main-lang"
-                :light="defaultFixed && headerClingingToTop"
+                :light="defaultFixed && headerClingingToTop && !dark"
               />
               
               <button class="header-main-search">
@@ -137,6 +137,7 @@
   const { t } = useI18n()
 
   interface IProps {
+    dark?: boolean,
     withoutNavs?: boolean,
     defaultFixed?: boolean,
     withoutPaddingBottom?: boolean
@@ -256,6 +257,21 @@
 
       &-search svg {
         stroke: white !important;
+      }
+    }
+  }
+
+  &.defaultFixedLight.dark {
+    & .header-main {
+      background: transparent;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+
+      &-navs-item {
+        color: var(--primary-color);
+      }
+
+      &-search svg {
+        stroke: var(--primary-color) !important;
       }
     }
   }
@@ -520,6 +536,10 @@
   }
 
   @media (max-width: 576px) {
+    & svg.logo-big {
+      display: none !important;
+    }
+    
     &.sticky .header-main-logo {
       width: 48px;
     }
@@ -528,10 +548,6 @@
       &-logo {
         width: 48px !important;
         border-radius: 50% !important;
-      }
-
-      & svg.logo-big {
-        display: none !important;
       }
 
       & svg.logo-mini {
@@ -558,9 +574,6 @@
         width: 38px;
       }
     }
-  }
-
-  @media (max-width: 380px) {
   }
 }
 

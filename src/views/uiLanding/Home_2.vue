@@ -1,7 +1,7 @@
 <template>
   <div class="home wrapper-main">
     <div>
-      <Header defaultFixed withoutPaddingBottom />
+      <Header defaultFixed withoutPaddingBottom dark />
 
       <Intro />
 
@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.vue';
 
-import Intro from '../../components/uiLanding/home/intro.vue'
+import Intro from '../../components/uiLanding/home/intro_2.vue'
 import AboutUs from '../../components/uiLanding/home/aboutUs.vue'
 import NewsItem from '../../components/uiLanding/news/newsItem.vue'
 import PartyProgram from '../../components/uiLanding/home/partyProgram.vue'

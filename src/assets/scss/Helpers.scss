@@ -3,6 +3,10 @@
     overflow: hidden;
 
     &-img {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      
       transform: scale(1);
       transition: all .3s ease-in-out;
     }

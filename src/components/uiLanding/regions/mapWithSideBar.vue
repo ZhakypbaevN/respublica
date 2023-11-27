@@ -106,7 +106,7 @@
       { cityId: "KZ-ZAP", name: "ЗКО", address: "г. Уральск, с. Желаево, ул.Трудовая, 6/3" },
       { cityId: "KZ-VOS", name: "ВКО", address: "г. Усть-Каменогорск, ул. Чехова, 69, кв.1" },
       { cityId: "KZ-SEV", name: "СКО", address: "г. Петропавловск, ул. Алтынсарина, 168-б" }
-    ]
+    ];
   
     root._logo!.dispose();
     root.setThemes([
@@ -146,7 +146,7 @@
         include: cities.map(city => {
           return city.cityId
         }),
-        fill: am5.color(0xBED5E9),
+        fill: am5.color(0x5882ED),
         stroke: am5.color(0xffffff),
         strokeWidth: 5
       })
@@ -189,19 +189,24 @@
       showSideBar.value = true;
       regions.forEach(region => {
         if (region.code === ev.target.dataItem!.dataContext!.id) {
-          const city = cities.find(city => city.cityId === ev.target.dataItem!.dataContext!.id)
-
-          sideBarData.title = region.title;
-          sideBarData.deputies = region.deputies;
-          sideBarData.address = city.address;
+          cities.forEach(city => {
+            if (city.cityId === ev.target.dataItem!.dataContext!.id) {
+              sideBarData.title = region.title;
+              sideBarData.deputies = region.deputies;
+              sideBarData.address = Object.assign({}, city).address;
+            }
+          })
+          region.active = true;
         } else region.active = false;
       })
 
       polygonSeries.data.setAll(cities.map(city => {
         const polygon = {}
         polygon.id = city.cityId
+        
         polygon.name = nameToLowerCase({ id: city.cityId, name: city.name })
-        if (city.cityId === 'KZ-ABY' || city.cityId === 'ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#A8C9E5')}
+        if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#235BE8')}
+        
         if (city.cityId === ev.target.dataItem.dataContext.id) {
           polygon.polygonSettings = {
             fill: am5.color('#FCC952'),
@@ -284,7 +289,7 @@
         polygon.name = nameToLowerCase({id: city.cityId, name: city.name})
         polygon.address = city.address
         
-        if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#A7C9E5') }
+        if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#235BE8') }
         return polygon
       })
     );

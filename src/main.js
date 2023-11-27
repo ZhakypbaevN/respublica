@@ -15,7 +15,10 @@ import VueTheMask from 'vue-the-mask'
 import VWave from 'v-wave'
 
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import Pagination from './components/common/Pagination.vue';
 import Upload from './components/common/Upload.vue';
+import Dropdown from './components/common/dropdown/index.vue'
+import DropdownItem from './components/common/dropdown/DropdownItem.vue'
 import Select from './components/common/select/index.vue';
 import SvgIcon from './components/common/SvgIcon.vue'
 import Button from './components/common/Button.vue'
@@ -67,6 +70,9 @@ createApp(App)
   .component('Select', Select)
   .component('Button', Button)
   .component('BackButton', BackButton)
+  .component('Dropdown', Dropdown)
+  .component('DropdownItem', DropdownItem)
+  .component('Pagination', Pagination)
   .component('Input', Input)
   .component('Filter', Filter)
   .component('Form', Form)

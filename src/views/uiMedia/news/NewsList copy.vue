@@ -8,7 +8,7 @@
 
       <div class="news-header">
         <Input
-          v-model="filter.search"
+          v-model="onSearch"
           staticPlaceholder
           placeholder="Поиск по проекту"
         />
@@ -40,23 +40,33 @@
 import NewsItem from "../../../components/uiMedia/news/newsItem.vue"
 
 import axios from 'axios';
-import { onMounted, reactive, ref } from 'vue';
 
-import { useToast } from '../../../modules/toast'
+import { onMounted, reactive, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+
+import { INews } from '../../../types/news'
 import { useI18n } from 'vue-i18n'
-import { watch } from "vue";
+import { useToast } from '../../../modules/toast'
+import debounce from '../../../helpers/debounce'
+import { computed } from "vue";
+
+
+export interface NewsValues {
+  tableValues: INews[]
+  total: number
+  isEmpty: boolean
+  searchEmpty: boolean
+}
 
 const { t } = useI18n()
 const { toast } = useToast()
+const route = useRoute()
+const router = useRouter()
 
 const token = localStorage.getItem('TOKEN');
 const isLoading = ref(false)
 const newsList = ref([]);
 
-const filter = reactive({
-  search: null,
-  published: true
-})
 const filterList = [
   {
     name: t('status.list-published'),
@@ -68,12 +78,37 @@ const filterList = [
   }
 ]
 
-onMounted(() => getNews());
+const values = reactive<NewsValues>({
+  tableValues: [],
+  total: 0,
+  isEmpty: false,
+  searchEmpty: false
+})
 
-watch(
-  () => [filter.published, filter.search],
-  () => getNews()
-)
+const filtered = computed(() => Object.keys(route.query).length)
+
+const onSearch = debounce((event) => {
+  router.push({ query: { name: event.target.value } })
+})
+
+const getData = async () => {
+  values.isEmpty = false
+  values.searchEmpty = false
+  const {
+    data,
+    meta: { total }
+  } = await getApplications({
+    ...route.query
+  })
+  values.tableValues = data
+  values.total = total
+  if (!total && !filtered.value) values.isEmpty = true
+  if (!total) values.searchEmpty = true
+}
+
+onMounted(getData)
+
+watch(() => route.query, debounce(getData), { deep: true })
 
 const getNews = () => {
   newsList.value = [];
