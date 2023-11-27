@@ -114,7 +114,7 @@ const postNews = () => {
   const data = new FormData();
   
   data.append("title", formData.title);
-  data.append("category_id", '4');
+  data.append("alias_category", 'video-gallery');
   data.append("content", formData.content);
   data.append("published", 'true');
 

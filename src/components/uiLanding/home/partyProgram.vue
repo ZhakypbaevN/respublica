@@ -107,7 +107,7 @@ const toggleSlider = () => {
     }
 
     &-title {
-      font-family: Montserrat;
+      font-family: 'Montserrat';
       font-size: 64px;
       font-weight: 700;
       text-transform: uppercase;
@@ -116,14 +116,14 @@ const toggleSlider = () => {
 
   &-slider {
     display: grid;
-    grid-template-columns: 486px 1fr 65px;
+    grid-template-columns: 480px 1fr 65px;
     align-items: center;
     grid-gap: 140px;
 
     padding: 55px 0;
 
     &-preview {
-      height: 480px;
+      height: 510px;
 
       & img {
         mix-blend-mode: hard-light;
@@ -185,5 +185,74 @@ const toggleSlider = () => {
     }
   }
 
+  // Adaptation
+  @media (max-width: 1400px) {
+    &-titleBlock {
+      padding: 48px 0;
+
+      &-description {
+        font-size: 28px;
+      }
+
+      &-title {
+        font-size: 64px;
+      }
+    }
+
+    &-slider {
+      grid-template-columns: 360px 1fr 65px;
+      grid-gap: 80px;
+
+      padding: 55px 0;
+
+      &-preview {
+        height: 360px;
+      }
+
+      &-title {
+        font-size: 38px;
+        margin-bottom: 50px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+        border-radius: 100px;
+
+        & svg {
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      &-control {
+        grid-gap: 14px;
+    
+        &-btn svg {
+          height: 65px;
+          width: 65px;
+        }
+
+        &-line {
+          height: 2px;
+          width: 33px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+  }
+
+  @media (max-width: 992px) {
+  }
+
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 </style>

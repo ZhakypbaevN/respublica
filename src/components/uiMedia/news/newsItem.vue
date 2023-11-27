@@ -1,7 +1,9 @@
 <template>
   <button
     class="newsItem withZoomPreview"
+    :class="{disabled: disabled}"
     @click="goEdit"
+    v-if="newsData"
   >
     <div class="newsItem-main">
 
@@ -54,10 +56,9 @@
         />
       </Button>
 
-      <Button
-        name="Опубликовать"
-        type="default-light-blue"
-        class="newsItem-btns-changeState"
+      <PublishToggle
+        :data="newsData"
+        @finish="togglePublish"
       />
     </div>
 
@@ -71,10 +72,12 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import convertDateTime from '../../../helpers/convertDateTime.js'
+import PublishToggle from '../publishToggle.vue'
+import DeleteModal from './deleteModal.vue'
 
 import { ref } from 'vue';
-import DeleteModal from './deleteModal.vue'
 
 import { useRouter } from 'vue-router';
 
@@ -86,10 +89,21 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
+const newsData = ref(null);
+const disabled = ref(false);
 const showDeleteModal = ref(false);
+
+onMounted(() => {
+  newsData.value = Object.assign({}, props.data);
+})
 
 const goEdit = () => {
   router.push(`/media/news-list/${props.data.id}`)
+}
+
+const togglePublish = () => {
+  newsData.value.published = !newsData.value.published;
+  disabled.value = true;
 }
 </script>
 
@@ -102,7 +116,7 @@ const goEdit = () => {
 
   text-align: left;
 
-  padding: 25px;
+  padding: 18px;
   padding-right: 30px;
 
   border-radius: 10px;
@@ -141,7 +155,7 @@ const goEdit = () => {
       font-size: 16px;
       font-weight: 500;
 
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     &-title {
@@ -170,6 +184,8 @@ const goEdit = () => {
     &-delete {
       height: 50px;
       width: 50px;
+
+      cursor: pointer;
       padding: 0px !important;
       
       & svg {
@@ -183,6 +199,10 @@ const goEdit = () => {
     &-edit {
       & svg {
         fill: var(--light-gray-color);
+      }
+
+      &:hover svg {
+        fill: var(--accent-color);
       }
     }
 
@@ -198,11 +218,6 @@ const goEdit = () => {
           stroke: var(--red-color);
         }
       }
-    }
-
-    &-changeState {
-      height: 50px;
-      padding: 15px 40px;
     }
   }
 }

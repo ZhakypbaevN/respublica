@@ -5,39 +5,12 @@
 
       <section class="news landing-block" id="newsList">
         <div class="wrapper">
-          <div>
-            <button
-              class="landing-link with-line"
-              @click="() => showBlock.contactsCentralOffice = !showBlock.contactsCentralOffice"
-            >
-              <span>Центральный аппарат</span>
-              <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
-            </button>
-
-            <Transition>
-              <div v-if="showBlock.contactsCentralOffice" v-collapse>
-                <ContactsCentralOffice />
-              </div>
-            </Transition>
-          </div>
-          
-
-          <div>
-            <button
-              class="landing-link with-line"
-              @click="() => showBlock.contactsBranch = !showBlock.contactsBranch"
-            >
-              <span>Филиалы</span>
-              <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
-            </button>
-
-            <Transition>
-              <div v-if="showBlock.contactsBranch" v-collapse>
-                <ContactsBranch />
-              </div>
-            </Transition>
-
-          </div>
+        
+          <h2 class="landing-title">Центральный аппарат</h2>
+          <ContactsCentralOffice />
+     
+          <h2 class="landing-title">Филиалы</h2>
+          <ContactsBranch />
         </div>
       </section>
     </div>
@@ -47,21 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue';
 import ContactsBranch from '../../components/uiLanding/contacts/contactsBranch.vue';
 import ContactsCentralOffice from '../../components/uiLanding/contacts/contactsCentralOffice.vue';
-import { useRoute } from 'vue-router';
-
-const route = useRoute()
-
-const showBlock = reactive({
-  contactsCentralOffice: false,
-  contactsBranch: false
-})
-
-onMounted(() => {
-  if (route.params.centralOfficeOrBranches === 'filials') showBlock.contactsBranch = true;
-})
 </script>
 
 <style scoped lang="scss">

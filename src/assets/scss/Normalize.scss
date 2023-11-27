@@ -20,7 +20,10 @@ header {
   z-index: 100;
 }
 .disabled {
+  opacity: .6;
   pointer-events: none;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
 }
 .bg-cover {
   background-size: cover;

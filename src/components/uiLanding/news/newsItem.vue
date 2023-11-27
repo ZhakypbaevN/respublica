@@ -143,6 +143,15 @@ withDefaults(defineProps<IProps>(), {
     margin-bottom: 12px;
   }
 
+  &-title,
+  &-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+  }
+
   &-title {
     font-size: 20px;
     font-weight: 700;
@@ -163,7 +172,8 @@ withDefaults(defineProps<IProps>(), {
 
   &-description {
     font-size: 20px;
-    line-height: 1.5;
+    line-height: 1.2;
+
     margin-bottom: 15px;
   }
 }

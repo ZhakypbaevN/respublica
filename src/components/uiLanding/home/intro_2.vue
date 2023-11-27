@@ -101,7 +101,7 @@ const showModals = reactive({
       left: 0;
       bottom: 0;
 
-      background-image: url('/img/uiLanding/home/intro/intro-banner.jpg');
+      background-image: url('/img/uiLanding/home/intro-2/intro-banner.jpg');
 
       &::before,
       &::after {
@@ -119,14 +119,15 @@ const showModals = reactive({
       &::before {
         z-index: 1;
     
-        background-image: url('/img/uiLanding/home/intro/team-respublic.png');
+        background-image: url('/img/uiLanding/home/intro-2/team-respublic.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: bottom;
       }
       &::after {
+        height: 40%;
         z-index: 2;
-        background: linear-gradient(1deg, rgba(4, 32, 81, 0.50) 30.29%, rgba(4, 32, 81, 0.00) 69.36%);
+        background: linear-gradient(0deg, #042051 0%, rgba(#042051, 0) 100%);
       }
     }
 

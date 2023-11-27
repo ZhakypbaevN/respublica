@@ -1,334 +1,305 @@
 <template>
-  <div class="contacts">
-    <div class="contacts-address">
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">г. Астана</span>
-        <span class="contacts-address-block-data">
-          Мангилик ел, 33/1 <br />
-          Бизнес-центр IPLAZA, 9 этаж</span
-        >
-        <a href="tel:+77172640777" class="contacts-address-block-data">+7 7172 640 777</a>
-        <a href="mailto:info@respublica-partiyasy.kz" class="contacts-address-block-data"
-          >info@respublica-partiyasy.kz</a
-        >
-      </div>
+  <div class="branch">
+    <div class="wrapper landing-wrapper">
+      <div class="branch-inner">
+        <div class="map" ref="chartdiv"></div>
 
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">г. Алматы</span>
-        <span class="contacts-address-block-data"
-          >г.Алматы, ул. Жарокова, 41, 1 этаж</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a
-          href="mailto:S.Raiymbek@respublica-partiyasy.kz"
-          class="contacts-address-block-data"
-          >S.Raiymbek@respublica-partiyasy.kz</a
-        >
-      </div>
+        <div class="branch-content">
+          <div class="branch-content-header">
+            <SvgIcon
+              class="branch-content-header-icon"
+              name="pin-with-circle-yellow-bg"
+              :viewboxWidth="52"
+              :viewboxHeight="52"
+            />
+            
+            <h3 class="branch-content-header-title">{{ branchData.title }}</h3>
+          </div>
 
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Область Абай</span>
-        <span class="contacts-address-block-data"
-          >г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a
-          href="mailto:A.Oraz@respublica-partiyasy.kz"
-          class="contacts-address-block-data"
-          >A.Oraz@respublica-partiyasy.kz</a
-        >
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Акмолинская область</span>
-        <span class="contacts-address-block-data"></span>
-        <a href="tel:+77751888881" class="contacts-address-block-data">+7 775 188 8881</a>
-        <a
-          href="mailto:M.Baktibayev@respublica-partiyasy.kz	"
-          class="contacts-address-block-data"
-          >M.Baktibayev@respublica-partiyasy.kz
-        </a>
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Актюбинская область</span>
-        <span class="contacts-address-block-data"
-          >г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a
-          href="mailto:G.Kaiyrbayeva@respublica-partiyasy.kz"
-          class="contacts-address-block-data"
-          >G.Kaiyrbayeva@respublica-partiyasy.kz</a
-        >
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Алматинская область</span>
-        <span class="contacts-address-block-data">г. Конаев, мкр-н 1, уч. 35/10</span>
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a
-          href="mailto:B.Kabasov@respublica-partiyasy.kz"
-          class="contacts-address-block-data"
-          >B.Kabasov@respublica-partiyasy.kz</a
-        >
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Атырауская область</span>
-        <span class="contacts-address-block-data"
-          >г. Атырау, пр. Султан Бейбарыс, 450</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a
-          href="mailto:G.Utebayev@respublica-partiyasy.kz"
-          class="contacts-address-block-data"
-          >G.Utebayev@respublica-partiyasy.kz</a
-        >
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Восточно-Казахстанская область</span>
-        <span class="contacts-address-block-data"
-          >г. Усть-Каменогорск, ул. Чехова, 69, кв.1</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a
-          href="mailto:Zh.Hogzhilbek@respublica-partiyasy.kz"
-          class="contacts-address-block-data"
-          >Zh.Hogzhilbek@respublica-partiyasy.kz</a
-        >
-      </div>
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Жамбылская область</span>
-        <span class="contacts-address-block-data"
-          >г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:n.iuldasheva@respublica-partiyasy.kz" class="contacts-address-block-data">n.iuldasheva@respublica-partiyasy.kz</a>
-      </div>
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Область Жетісу</span>
-        <span class="contacts-address-block-data">Талдыкорган, ул. Абылай хана, 186</span>
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:N.Kambayeva@respublica-partiyasy.kz" class="contacts-address-block-data">N.Kambayeva@respublica-partiyasy.kz</a>
-      </div>
-    </div>
-    <div class="contacts-address">
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Западно-Казахстанская область</span>
-        <span class="contacts-address-block-data"
-          >г. Уральск, с. Желаево, ул.Трудовая, 6/3</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:d.makatov@respublica-partiyasy.kz" class="contacts-address-block-data">d.makatov@respublica-partiyasy.kz</a>
-      </div>
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Карагандинская область</span>
-        <span class="contacts-address-block-data"
-          >г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:a.amandykov@respublica-partiyasy.kz" class="contacts-address-block-data">a.amandykov@respublica-partiyasy.kz</a>
-      </div>
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Костанайская область</span>
-        <span class="contacts-address-block-data"
-          >г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:M.Madinina@respublica-partiyasy.kz" class="contacts-address-block-data">M.Madinina@respublica-partiyasy.kz</a>
-      </div>
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Кызылординская область</span>
-        <span class="contacts-address-block-data"
-          >г. Кызылорда, ул. Конаева, 19-а, 1 этаж</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:N.Talgatova@respublica-partiyasy.kz" class="contacts-address-block-data">N.Talgatova@respublica-partiyasy.kz</a>
-      </div>
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Мангистауская область</span>
-        <span class="contacts-address-block-data"
-          >г. Актау, 16 мкрн, д. 25, БЦ Prime</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:S.Beisembayeva@respublica-partiyasy.kz" class="contacts-address-block-data">S.Beisembayeva@respublica-partiyasy.kz</a>
-      </div>
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Павлодарская область</span>
-        <span class="contacts-address-block-data"
-          >г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:Zh.Arganbai@respublica-partiyasy.kz" class="contacts-address-block-data">Zh.Arganbai@respublica-partiyasy.kz</a>
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Северо-Казахстанская область</span>
-        <span class="contacts-address-block-data"
-          >г. Петропавловск, ул. Алтынсарина, 168-б</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:a.beliyalov@respublica-partiyasy.kz" class="contacts-address-block-data">a.beliyalov@respublica-partiyasy.kz</a>
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Туркестанская область</span>
-        <span class="contacts-address-block-data"
-          >г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:B.Rysbekov@respublica-partiyasy.kz" class="contacts-address-block-data">B.Rysbekov@respublica-partiyasy.kz</a>
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">Область Ұлытау:</span>
-        <span class="contacts-address-block-data">г. Жезказган, ул. Мира 1</span>
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:Zh.Iztuleuov@respublica-partiyasy.kz" class="contacts-address-block-data">Zh.Iztuleuov@respublica-partiyasy.kz</a>
-      </div>
-
-      <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-      <div class="contacts-address-block">
-        <span class="contacts-address-block-field">г. Шымкент</span>
-        <span class="contacts-address-block-data"
-          >г.Шымкент, Аль-Фарабийский р-н, ул. Жандосова, зд. 21-а</span
-        >
-        <a href="tel:" class="contacts-address-block-data"></a>
-        <a href="mailto:T.Yeszhan@respublica-partiyasy.kz" class="contacts-address-block-data">T.Yeszhan@respublica-partiyasy.kz</a>
+          <p class="branch-content-info">
+            Адрес:
+            <span>{{ branchData.address }}</span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import * as am5 from "@amcharts/amcharts5";
+  import * as am5map from "@amcharts/amcharts5/map";
+  import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+  
+  import am5geodata_kazakhstanMap from "../../../assets/map/kazakhstanMap.json";
+  import deputiesMap from "../../../assets/map/deputiesMap.json";
+  
+  import { onMounted, reactive } from 'vue';
+  
+  const regions = reactive(deputiesMap.deputiesList.map((x) => x))
+
+  const cities = [
+    { cityId: "KZ-ZHT", name: "ЖЕТЫСУСКАЯ ОБЛАСТЬ", address: "г. Талдыкорган, ул. Абылай хана, 186" },
+    { cityId: "KZ-ALM", name: "АЛМАТИНСКАЯ ОБЛАСТЬ", address: "г. Конаев, мкр-н 1, уч. 35/10" },
+    { cityId: "KZ-KAR", name: "КАРАГАНДИНСКАЯ ОБЛАСТЬ", address: "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46" },
+    { cityId: "KZ-PAV", name: "ПАВЛОДАРСКАЯ ОБЛАСТЬ", address: "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908" },
+    { cityId: "KZ-ZHA", name: "ЖАМБЫЛСКАЯ ОБЛАСТЬ", address: "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж" },
+    { cityId: "KZ-AKM", name: "АКМОЛИНСКАЯ ОБЛАСТЬ", address: "" },
+    { cityId: "KZ-ATY", name: "АТЫРАУСКАЯ ОБЛАСТЬ", address: "г. Атырау, пр. Султан Бейбарыс, 450" },
+    { cityId: "KZ-AKT", name: "АКТЮБИНСКАЯ ОБЛАСТЬ", address: "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж" },
+    { cityId: "KZ-MAN", name: "МАНГИСТАУСКАЯ ОБЛАСТЬ", address: "г. Актау, 16 мкрн, д. 25, БЦ Prime" },
+    { cityId: "KZ-TUR", name: "ТУРКЕСТАНСКАЯ ОБЛАСТЬ", address: "г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13" },
+    { cityId: "KZ-KZY", name: "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ", address: "г. Кызылорда, ул. Конаева, 19-а, 1 этаж" },
+    { cityId: "KZ-KUS", name: "КОСТАНАЙСКАЯ ОБЛАСТЬ", address: "г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN" },
+    { cityId: "KZ-ABY", name: "АБАЙСКАЯ ОБЛАСТЬ", address: "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199" },
+    { cityId: "KZ-ULT", name: "УЛЫТАУСКАЯ ОБЛАСТЬ", address: "г. Жезказган, ул. Мира 1" },
+    { cityId: "KZ-ZAP", name: "ЗКО", address: "г. Уральск, с. Желаево, ул.Трудовая, 6/3" },
+    { cityId: "KZ-VOS", name: "ВКО", address: "г. Усть-Каменогорск, ул. Чехова, 69, кв.1" },
+    { cityId: "KZ-SEV", name: "СКО", address: "г. Петропавловск, ул. Алтынсарина, 168-б" }
+  ]
+  
+  const branchData = reactive({
+    title: cities[2].name,
+    address: cities[2].address,
+    deputies: null
+  })
+  
+  onMounted(() => {
+    const map = document.querySelector('.map');
+    let root = am5.Root.new(map);
+  
+    root._logo!.dispose();
+    root.setThemes([
+      am5themes_Animated.new(root)
+    ]);
+    let chart = root.container.children.push(
+      am5map.MapChart.new(root, {
+        panX: "none",
+        panY: "none",
+        projection: am5map.geoMercator(),
+        wheelY: "none",
+        minZoomLevel: 1,
+        maxZoomLevel: 1
+      })
+    );
+  
+    // -------- Create polygon series --------
+    const getCount = polygonId => {
+      const regions = deputiesMap.deputiesList.filter(region => region.code === polygonId)
+      let sum = 0;
+      regions.forEach((region) => {
+        sum += region.deputies.length
+      })
+      return sum
+    }
+  
+  
+    const customMap = am5geodata_kazakhstanMap.features.map(polygon => {
+      let customPolygon = polygon
+      customPolygon.properties.count = getCount(polygon.id)
+      return customPolygon
+    })
+  
+    let polygonSeries = chart.series.push(
+      am5map.MapPolygonSeries.new(root, {
+        geoJSON: { type: am5geodata_kazakhstanMap.type, features: customMap },
+        include: cities.map(city => {
+          return city.cityId
+        }),
+        fill: am5.color(0x5882ED),
+        stroke: am5.color(0xffffff),
+        strokeWidth: 5
+      })
+    );
+  
+  
+    // -------- Map ToolTip Settings --------
+    const generateToolTip = () => {
+      return (
+        `<div style="min-height:40px;width:200px;background-color:white;padding:8px;display:flex;grid-gap:8px;border: 1px solid #E9EBED;border-radius:10px;pointer-events:none;">
+          <div style="height:8px;width:8px;background-color:#FCC952;border-radius:100%;margin-top:4px;"></div>
+          <p style="font-family:'Tilda Sans';font-weight:400;font-size:14px;line-height:19px;letter-spacing:0.15px;color:#051A2D;">{name}</p>
+        </div>`
+      )
+    }
+  
+    const nameToLowerCase = ({id, name}: {id: string, name: string}) => {
+      if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV') return name
+      return name[0].toUpperCase() + name.slice(1).toLowerCase()
+    }
+  
+    polygonSeries.mapPolygons.template.setAll({
+      interactive: true,
+      tooltipHTML: generateToolTip(),
+      templateField: "polygonSettings",
+      showTooltipOn: 'hover'
+    });
+
+    polygonSeries.mapPolygons.template.events.on("click", function(ev) {
+      regions.forEach(region => {
+        if (region.code === ev.target.dataItem!.dataContext!.id) {
+          cities.forEach(city => {
+            if (city.cityId === ev.target.dataItem!.dataContext!.id) {
+              branchData.title = region.title;
+              branchData.address = Object.assign({}, city).address;
+            }
+          })
+          region.active = true;
+        } else region.active = false;
+      })
+
+      polygonSeries.data.setAll(cities.map(city => {
+        const polygon = {}
+        polygon.id = city.cityId
+        polygon.name = nameToLowerCase({ id: city.cityId, name: city.name })
+        if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#235BE8') }
+        if (city.cityId === ev.target.dataItem.dataContext.id) {
+          polygon.polygonSettings = {
+            fill: am5.color('#FCC952'),
+            stroke: am5.color('#FCC952'),
+            strokeWidth: 7,
+            strokeOpacity: 0.4
+          }
+        }
+        return polygon
+      }));
+    });
+  
+    let tooltip = am5.Tooltip.new(root, {
+      getFillFromSprite: false
+    });
+    
+    tooltip.get("background")!.setAll({
+      fillOpacity: 0,
+      strokeOpacity: 0
+    });
+    
+    polygonSeries.set("tooltip", tooltip);
+  
+    polygonSeries.mapPolygons.template.setAll({
+      stroke: am5.color('#ffffff'),
+      strokeWidth: 1,
+    });
+    
+    polygonSeries.mapPolygons.template.states.create("hover", {
+      fill: am5.color('#FCC952'),
+      fillOpacity: .8,
+      stroke: am5.color('#FCC952'),
+      strokeWidth: 10,
+      strokeOpacity: 0.2
+    });
+  
+    // -------- Map Point Settings --------
+  
+    let pointSeries = chart.series.push(
+      am5map.MapPointSeries.new(root, {
+        polygonIdField: "cityId",
+      })
+    );
+    
+    pointSeries.data.setAll(cities.map(city => {
+      const name = nameToLowerCase({id: city.cityId, name: city.name});
+      let nameArray = name.split(' ')
+      
+      return {
+        cityId: city.cityId,
+        name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`,
+        address: city.address
+      }
+    }));
+  
+    pointSeries.bullets.push(function() {
+      return am5.Bullet.new(root, {
+        sprite: am5.Label.new(root, {
+          centerX: am5.p50,
+          centerY: am5.p50,
+          text: "{name}",
+          fontSize: 12,
+          fontStyle: 'Tilda Sans',
+          fill: am5.color(0xFFFFFF),
+          populateText: true
+        })
+      });
+    });
+  
+    polygonSeries.data.setAll(
+      cities.map(city => {
+        const polygon = {
+          id: '',
+          name: '',
+          address: '',
+          polygonSettings: {}
+        };
+        polygon.id = city.cityId
+        polygon.name = nameToLowerCase({id: city.cityId, name: city.name})
+        polygon.address = city.address
+        
+        if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#235BE8') }
+        if (city.cityId === cities[2].cityId) {
+          polygon.polygonSettings = {
+            fill: am5.color('#FCC952'),
+            stroke: am5.color('#FCC952'),
+            strokeWidth: 7,
+            strokeOpacity: 0.4
+          }
+        }
+        return polygon
+      })
+    );
+
+  
+    return { root };
+  })
+</script>
 
 <style scoped lang="scss">
-.contacts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 180px;
-
-  // Adaptation
-  @media (max-width: 1200px) {
-    grid-gap: 140px;
-  }
-
-  @media (max-width: 992px) {
-    grid-gap: 80px;
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 0;
-  }
+.map {
+  width: 700px;
+  height: 400px;
 }
-.contacts-address {
-  display: inline-grid;
-  grid-template-columns: auto auto;
-  justify-content: start;
-  padding-bottom: 30px;
 
-  & svg {
-    width: 32px;
-    height: 32px;
-    margin: 30px 15px 0 30px;
+.branch {
+  &-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
   }
 
-  &-block {
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
+  &-content {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(160,174,192,.25);
+  
+    padding: 27px 20px;
 
-    &-field {
-      color: #042051;
-      font-family: Tilda Sans;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.5;
+    &-header {
+      display: flex;
+      align-items: center;
+      grid-gap: 20px;
+      margin-bottom: 30px;
+
+      &-icon {
+        width: 50px;
+        height: 50px;
+      }
+    
+      &-title {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 1.2;
+      }
     }
-
-    &-data {
-      color: rgba(4, 32, 81, 0.8);
-      font-size: 20px;
+  
+    &-info {
+      color: var(--light-gray-color);
       font-weight: 500;
-      line-height: 1.5;
-    }
-  }
+      font-size: 18px;
+      line-height: 1.2;
 
-  // Adaptation
-  @media (max-width: 992px) {
-    & svg {
-      width: 30px;
-      height: 30px;
-      margin: 22px 12px 0 0;
-    }
-
-    &-block {
-      margin-top: 22px;
-
-      &-field {
-        font-size: 18px;
-      }
-
-      &-data {
-        font-size: 18px;
+      & span {
+        color: var(--primary-color);
+        font-weight: 700;
       }
     }
-  }
-
-  @media (max-width: 768px) {
-    padding-bottom: 0px;
-
-    & svg {
-      width: 28px;
-      height: 28px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    & svg {
-      width: 24px;
-      height: 24px;
-      margin: 18px 10px 0 0;
-    }
-
-    &-block {
-      margin-top: 16px;
-
-      &-field {
-        font-size: 18px;
-      }
-
-      &-data {
-        font-size: 16px;
-      }
-    }
-  }
-
-  @media (max-width: 380px) {
   }
 }
 </style>
