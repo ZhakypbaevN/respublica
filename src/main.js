@@ -1,58 +1,50 @@
 import { createApp } from 'vue'
-import './assets/scss/Normalize.scss';
-import './assets/scss/Variables.scss';
-import './assets/scss/Wrapper.scss';
-import './assets/scss/Landing.scss';
-import './assets/scss/Helpers.scss';
-import './assets/scss/Skeleton.scss';
-import './assets/scss/CKEditor-reset.scss';
-import './assets/fonts/stylesheet.css';
+import '@/assets/scss/Normalize.scss';
+import '@/assets/scss/Variables.scss';
+import '@/assets/scss/Wrapper.scss';
+import '@/assets/scss/Landing.scss';
+import '@/assets/scss/Helpers.scss';
+import '@/assets/scss/Skeleton.scss';
+import '@/assets/scss/CKEditor-reset.scss';
+import '@/assets/fonts/tilda-sans/stylesheet.css';
+import '@/assets/fonts/montserrat/stylesheet.css';
 
-import App from './App.vue'
-import router from './router/index'
+import App from '@/App.vue'
+import router from '@/router/index'
 
 import VueTheMask from 'vue-the-mask'
 import VWave from 'v-wave'
 
 import CKEditor from '@ckeditor/ckeditor5-vue';
-import Pagination from './components/common/Pagination.vue';
-import Upload from './components/common/Upload.vue';
-import Dropdown from './components/common/dropdown/index.vue'
-import DropdownItem from './components/common/dropdown/DropdownItem.vue'
-import Select from './components/common/select/index.vue';
-import SvgIcon from './components/common/SvgIcon.vue'
-import Button from './components/common/Button.vue'
-import BackButton from './components/common/BackButton.vue'
-import Input from './components/common/Input.vue'
-import Checkbox from './components/common/Checkbox.vue'
-import Form from './components/common/Form.vue';
-import Modal from './components/common/Modal.vue';
-import Filter from './components/common/Filter.vue';
-import LangToggle from './components/common/LangToggle.vue';
+import Pagination from '@/components/common/Pagination.vue';
+import Upload from '@/components/common/Upload.vue';
+import Dropdown from '@/components/common/dropdown/index.vue'
+import DropdownItem from '@/components/common/dropdown/DropdownItem.vue'
+import Select from '@/components/common/select/index.vue';
+import SvgIcon from '@/components/common/SvgIcon.vue'
+import Button from '@/components/common/Button.vue'
+import BackButton from '@/components/common/BackButton.vue'
+import Input from '@/components/common/Input.vue'
+import Checkbox from '@/components/common/Checkbox.vue'
+import Form from '@/components/common/Form.vue';
+import Modal from '@/components/common/Modal.vue';
+import Filter from '@/components/common/Filter.vue';
+import LangToggle from '@/components/common/LangToggle.vue';
 
-import LandingLayout from './components/uiLanding/layouts/landingLayout.vue';
-import Header from './components/uiLanding/layouts/header.vue';
-import Footer from './components/uiLanding/layouts/footer.vue';
+import LandingLayout from '@/components/uiLanding/layouts/LandingLayout.vue';
+import Header from '@/components/uiLanding/layouts/HeaderCustom.vue';
+import Footer from '@/components/uiLanding/layouts/FooterCustom.vue';
 
-import Collapse from './directives/collapse.js'
-import clickOutside from './directives/clickOutside'
-import loading from './directives/loading.js'
+import Collapse from '@/directives/collapse.js'
+import clickOutside from '@/directives/clickOutside'
+import loading from '@/directives/loading.js'
 
 // AOS
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // Lang
-import { languages, defaultLocale } from './assets/lang'
-import { createI18n } from 'vue-i18n'
-
-const messages = Object.assign(languages)
-const i18n = createI18n({
-  legacy: false,
-  locale: defaultLocale,
-  fallbackLocale: 'de',
-  messages
-})
+import i18n from '@/assets/lang/i18n.js'
 
 AOS.init();
 createApp(App)

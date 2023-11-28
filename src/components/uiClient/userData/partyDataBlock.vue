@@ -122,7 +122,7 @@
 </template>
 
 <script setup lang="ts">
-import checkGender from '../../../helpers/checkGender.js'
+import checkGender from '@/helpers/checkGender.js'
 
 interface IProps {
   partyData: any,

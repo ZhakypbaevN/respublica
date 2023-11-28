@@ -1,35 +1,35 @@
 <template>
   <LogInFirstModal
-    title="Чтобы вступить в партию Вам необходимо авторизоваться на портале или пройти регистрацию"
+    :title="t('feedback.to-join-the-party,-you-need-to-log-in-to-the-portal-or-register')"
     @hide="emits('hide')"
-    :show="props.show && !userType"
+    :show="show && !userType"
   />
   
   <Modal
-    v-if="props.show && userType"
+    v-if="show && userType"
     @hide="emits('hide')"
     class="feedbackModal"
-    title="Вступить в партию"
+    :title="t('feedback.join-the-party')"
   >
     <div class="feedbackModal-userData">
       <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">ИИН: </h4>
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.iin') }}: </h4>
         <p class="feedbackModal-userData-value">{{ userData.iin }}</p>
       </div>
 
       <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">ФИО: </h4>
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.fio') }}: </h4>
         <p class="feedbackModal-userData-value">{{ `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}` }}</p>
       </div>
 
       <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">Телефон номер: </h4>
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.phone-number') }}: </h4>
         <p class="feedbackModal-userData-value">{{ formatPhoneNumber(userData.phone) }}</p>
       </div>
 
       <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">Email адрес: </h4>
-        <p class="feedbackModal-userData-value">{{ userData.email }}</p>
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.email-address') }}: </h4>
+        <p class="feedbackModal-userData-value">{{ userData.email ?? '-' }}</p>
       </div>
     </div>
     
@@ -42,18 +42,18 @@
           <Input
             type="date"
             name="dateBirthday"
-            placeholder="Дата рождения"
+            :placeholder="$t('formdata.date-of-birth')"
             required
           />
 
           <Button
-            name="Женщина"
+            :name="$t('status.female')"
             :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
             @click="() => gender = 'female'"
           />
 
           <Button
-            name="Мужчина"
+            :name="$t('status.male')"
             :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
             @click="() => gender = 'male'"
           />
@@ -61,39 +61,39 @@
 
         <Select
           name="socialStatus"
-          placeholder="Социальный статус"
+          :placeholder="$t('formdata.social-status')"
           :options="socialStatusList"
           required
         />
 
         <Select
           name="education"
-          placeholder="Укажите ваше образование"
+          :placeholder="$t('formdata.specify-your-education')"
           :options="[
-            {label: 'Высшее', value: 'higher_education'},
-            {label: 'Среднее', value: 'secondary_special_education'},
+            {label: $t('formdata.higher'), value: 'higher_education'},
+            {label: $t('formdata.average'), value: 'secondary_special_education'},
           ]"
           required
         />
 
         <Input
           name="specialization"
-          placeholder="Специальность"
+          :placeholder="$t('formdata.specialization')"
         />
 
         <Input
           name="workPlace"
-          placeholder="Место работы"
+          :placeholder="$t('formdata.place-of-work')"
         />
 
         <Input
           name="post"
-          placeholder="Должность"
+          :placeholder="$t('formdata.post')"
         />
 
         <Select
           name="region"
-          placeholder="Укажите область"
+          :placeholder="$t('formdata.specify-the-area')"
           :options="regionList"
           v-model="regionID"
           required
@@ -106,11 +106,11 @@
           >
             <Select
               name="locality"
-              placeholder="Населенный пункт"
+              :placeholder="$t('formdata.locality')"
               :options="
                 locationList.length
                   ? locationList
-                  : [{label: 'Сначало выберите область', value: null}]
+                  : [{label: $t('formdata.first-select-an-area'), value: null}]
               "
               v-model="locationID"
               required
@@ -121,26 +121,26 @@
         <div class="feedbackModal-inputs-home">
           <Input
             name="streat"
-            placeholder="Улица/Проспект/Мкр"
+            :placeholder="$t('formdata.street-prospect-mkr')"
             required
           />
 
           <Input
             name="home"
-            placeholder="Дом"
+            :placeholder="$t('formdata.house')"
             required
           />
 
           <Input
             name="apartment"
-            placeholder="Кв."
+            :placeholder="$t('formdata.sq')"
           />
         </div>
 
 
         <div>
           <h4 class="feedbackModal-inputs-subtitle">
-            Относитесь ли вы к категории:
+            {{ $t('formdata.do-you-belong-to-the-category') }}
           </h4>
 
           <div class="feedbackModal-checkboxList-block">
@@ -149,14 +149,14 @@
                 name="pensioner"
                 class="feedbackModal-checkboxList-item"
               >
-                Пенсионеры
+                {{ $t('social-category.pensioner') }}
               </Checkbox>
 
               <Checkbox
                 name="disabled"
                 class="feedbackModal-checkboxList-item"
               >
-                Инвалиды
+                {{ $t('social-category.disabled') }}
               </Checkbox>
             </div>
 
@@ -165,14 +165,14 @@
                 name="unemployed"
                 class="feedbackModal-checkboxList-item"
               >
-                Безработные
+                {{ $t('social-category.unemployed') }}
               </Checkbox>
 
               <Checkbox
                 name="onChildcareLeave"
                 class="feedbackModal-checkboxList-item"
               >
-                Находящиеся в отпуске по уходу за детьми
+                {{ $t('social-category.on-childcare-leave') }}
               </Checkbox>
             </div>
           </div>
@@ -185,7 +185,7 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          Продолжая, Вы выражаете согласие на сбор и обработку своих персональных данных не противоречащими законодательству Республики Казахстан способами, как на бумажных носителях, так и в электронном формате, в той мере, насколько это необходимо.
+          {{ $t('agreement.data-collection-and-processing') }}
         </Checkbox>
 
         <Checkbox
@@ -193,7 +193,7 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          Подтверждаю, что не являюсь членом другой политической партии
+          {{ $t('agreement.i-am-not-a-member-of-another-political-party') }}
         </Checkbox>
 
         <Checkbox
@@ -201,7 +201,7 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          Являюсь гражданином Республики Казахстан
+          {{ $t('agreement.i-am-a-citizen-of-the-republic-of-kazakhstan') }}
         </Checkbox>
 
         <Checkbox
@@ -209,7 +209,7 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          Подтверждаю, что не отношусь к следующим категориям: Председатель, заместитель Председателя, судья Конституционного Суда Республики Казахстан, Председатель и судья Верховного Суда Республики Казахстан и иных судов, председатель и член Центральной избирательной комиссии Республики Казахстан, Высшей аудиторской палаты Республики Казахстан, Уполномоченный по правам человека в Республике Казахстан, сотрудник и работник специальных государственных, правоохранительных органов, военнослужащий
+          {{ $t('agreement.that-i-do-not-belong-to-the-following-categories') }}
         </Checkbox>
 
         <Checkbox
@@ -217,14 +217,13 @@
           class="feedbackModal-checkboxList-item"
           required
         >
-          С <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">Уставом</a> и <a href="/doc/ru/Программа партии_.pdf" target="_blank">Программой политической партии</a>
-           ознакомлен(а), поддерживаю их и обязуюсь выполнять.
+          <div v-html="$t('agreement.the-charter-and-program-of-the-political-party')"></div>
         </Checkbox>
       </div>
       
 
       <Button
-        name="Отправить заявку"
+        :name="$t('button.send-a-request')"
         :loading="loading"
         htmlType="submit"
         :ignoreValidate="disabledLocationSelect ? ['locality'] : null"
@@ -235,18 +234,17 @@
 </template>
 
 <script setup lang="ts">
-import formatPhoneNumber from '../../../helpers/formatPhoneNumber.js'
+import LogInFirstModal from '@/components/uiLanding/feedback/LogInFirstModal.vue';
 
-// Components
-import LogInFirstModal from './logInFirstModal.vue';
-
-import { onMounted, ref, watch } from 'vue'
-import moment from 'moment'
 import axios from 'axios'
+import moment from 'moment'
+import { useI18n } from 'vue-i18n'
+import { onMounted, ref, watch } from 'vue'
 
-// Modules
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
+import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
 
+const { t } = useI18n()
 const { toast } = useToast()
 
 interface IProps {
@@ -257,7 +255,7 @@ interface Emits {
   (event: 'finish'): Function,
 }
 
-const props = defineProps<IProps>()
+defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
 const loading = ref(false)
@@ -275,37 +273,36 @@ const disabledLocationSelect = ref(false);
 
 const socialStatusList = [
   {
-    label: 'Самозанятые, лица с ограниченными возможностями',
-    value: 'Самозанятые, лица с ограниченными возможностями'
+    label: t('social-status.self-employed-persons-with-disabilities'),
+    value: t('social-status.self-employed-persons-with-disabilities')
   },
   {
-    label: 'Студент',
-    value: 'Студент'
+    label: t('social-status.student'),
+    value: t('social-status.student')
   },
   {
-    label: 'Лица находящиеся в отпуске по уходу за детьми',
-    value: 'Лица находящиеся в отпуске по уходу за детьми'
+    label: t('social-status.persons-on-parental-leave'),
+    value: t('social-status.persons-on-parental-leave')
   },
   {
-    label: 'Пенсионеры',
-    value: 'Пенсионеры'
+    label: t('social-status.pensioners'),
+    value: t('social-status.pensioners')
   },
   {
-    label: 'Безработные',
-    value: 'Безработные'
+    label: t('social-status.unemployed'),
+    value: t('social-status.unemployed')
   },
   {
-    label: 'Работающие',
-    value: 'Работающие'
+    label: t('social-status.working'),
+    value: t('social-status.working')
   },
   {
-    label: 'Многодетные',
-    value: 'Многодетные'
+    label: t('social-status.large-families'),
+    value: t('social-status.large-families')
   }
 ]
 
 onMounted(() => {
-
   const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
   axios({
     method: "get",

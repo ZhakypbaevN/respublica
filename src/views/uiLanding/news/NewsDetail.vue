@@ -33,14 +33,14 @@
 </template>
 
 <script setup lang="ts">
-// import convertDateTime from '../../../helpers/convertDateTime.js';
+// import convertDateTime from '@/helpers/convertDateTime.js';
 
-import NewsItem from '../../../components/uiLanding/news/newsItem.vue';
+import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue';
 
 import axios from 'axios';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router'
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 const route = useRoute()
@@ -56,7 +56,7 @@ const getData = () => {
 }
 
 watch(
-  () => route.params.announce_id,
+  () => route.params,
   getData
 )
 

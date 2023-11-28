@@ -66,8 +66,8 @@
   import * as am5map from "@amcharts/amcharts5/map";
   import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
   
-  import am5geodata_kazakhstanMap from "../../../assets/map/kazakhstanMap.json";
-  import deputiesMap from "../../../assets/map/deputiesMap.json";
+  import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap.json";
+  import deputiesMap from "@/assets/map/deputiesMap.json";
   
   import { onMounted, reactive, ref } from 'vue';
   

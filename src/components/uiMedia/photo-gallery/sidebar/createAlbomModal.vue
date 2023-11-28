@@ -60,7 +60,7 @@ import axios from 'axios'
 import moment from 'moment';
 
 // Modules
-import { useToast } from '../../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 

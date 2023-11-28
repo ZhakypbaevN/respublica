@@ -72,14 +72,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import convertDateTime from '../../../helpers/convertDateTime.js'
-import PublishToggle from '../publishToggle.vue'
-import DeleteModal from './deleteModal.vue'
-
-import { ref } from 'vue';
-
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+
+import PublishToggle from '@/components/uiMedia/PublishToggle.vue'
+import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
+
+import convertDateTime from '@/helpers/convertDateTime.js'
 
 const router = useRouter()
 

@@ -32,8 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
-import Avatar from '../../../components/common/Avatar.vue';
+import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
+import Avatar from '@/components/common/Avatar.vue';
 
 import { ref } from 'vue';
 

@@ -22,9 +22,16 @@
             </RouterLink>
           </div>
           
-          <div class="landing-items">
+          <div class="landing-items" v-if="!newsValues.searchEmpty">
             <NewsItem
-              v-for="news of newsList"
+              v-for="news of newsValues.tableValues"
+              :key="news.title"
+              :data="news"
+            />
+          </div>
+          <div class="landing-items disabled" v-else-if="!newsValues.isEmpty">
+            <NewsItem
+              v-for="news of newsValues.tableValues"
               :key="news.title"
               :data="news"
             />
@@ -49,7 +56,7 @@
 
           <div class="landing-items">
             <AnnounceItem
-              v-for="announce of announceList"
+              v-for="announce of announceValues.tableValues"
               :key="announce.title"
               :data="announce"
             />
@@ -69,76 +76,51 @@
 </template>
 
 <script setup lang="ts">
-import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.vue';
-
-import Intro from '../../components/uiLanding/home/intro.vue'
-import AboutUs from '../../components/uiLanding/home/aboutUs.vue'
-import NewsItem from '../../components/uiLanding/news/newsItem.vue'
-import PartyProgram from '../../components/uiLanding/home/partyProgram.vue'
-import AboutParty from '../../components/uiLanding/home/aboutParty.vue'
-import AnnounceItem from '../../components/uiLanding/news/announceItem.vue';
-
+import Intro from '@/components/uiLanding/home/Intro.vue'
+import AboutUs from '@/components/uiLanding/home/AboutUs.vue'
+import PartyProgram from '@/components/uiLanding/home/PartyProgram.vue'
+import AboutParty from '@/components/uiLanding/home/AboutParty.vue'
+import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
+import AnnounceItem from '@/components/uiLanding/press-center/announces/AnnounceItem.vue';
+import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
 
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useToast } from '../../modules/toast'
+import { onMounted, reactive, ref } from 'vue';
+
+import { useToast } from '@/modules/toast';
+import { NewsValues } from '@/types/news';
+import { getNews } from '@/actions/v1/uiLanding/news';
 
 const { toast } = useToast()
 
-const announceList = ref();
-const newsList = ref();
-const token = localStorage.getItem('TOKEN');
-
 const showJoinPartyModal = ref(false)
-
-onMounted(() => {
-  getAnnounce();
-  getNews();
+const newsValues = reactive<NewsValues>({
+  tableValues: null,
+  total: 0,
+  isEmpty: false,
+  searchEmpty: true
+})
+const announceValues = reactive<NewsValues>({
+  tableValues: null,
+  total: 0,
+  isEmpty: false,
+  searchEmpty: true
 })
 
-const getAnnounce = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=6`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      announceList.value = response.data;
-    })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-}
+onMounted(() => {
+  getData();
+})
 
-const getNews = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=1`;
-
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      newsList.value = response.data;
-    })
-    .catch((err) => {
-      console.log('err', err);
-
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
+const getData = async () => {
+  newsValues.isEmpty = false
+  const {
+    data,
+    // meta: { total }
+  } = await getNews('news', {offset: 0,limit: 3})
+  newsValues.tableValues = data
+  // newsValues.total = total;
+  // if (!total) {
+  //   newsValues.isEmpty = true
+  // }
 }
 </script>

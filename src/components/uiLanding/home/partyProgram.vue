@@ -24,7 +24,7 @@
 
             <a :href="blockList[showFirst ? 0 : 1].pdf" target="_blank">
               <Button
-                :name="'Скачать и посмотреть файл'"
+                :name="$t('button.view-the-file')"
                 type="outline-light"
                 class="partyProgram-slider-link"
               >

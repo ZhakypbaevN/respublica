@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import formatPhoneNumber from '../../../helpers/formatPhoneNumber.js'
-import { IUser } from '../../../types/user'
+import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
+import { IUser } from '@/types/user'
 
 interface IProps {
   userData?: IUser,

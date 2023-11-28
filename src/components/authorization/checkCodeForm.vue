@@ -67,9 +67,9 @@
 <script setup lang="ts">
 import axios from 'axios'
 import { ref } from 'vue'
-import { useToast } from '../../modules/toast'
+import { useToast } from '@/modules/toast'
 
-import formatPhoneNumber from '../../helpers/formatPhoneNumber.js'
+import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
 
 const { toast } = useToast()
 

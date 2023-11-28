@@ -1,43 +1,45 @@
 <template>
   <LogInFirstModal
-    title="Для подачи обращения Вам необходимо войти в личный кабинет или пройти регистрацию"
+    :title="$t('feedback.to-submit-an-application-you-need-to-log-in-to-your-personal-account-or-register')"
     @hide="emits('hide')"
-    :show="props.show && !userType"
+    :show="show && !userType"
   />
 
   <Modal
-    v-if="props.show && userType"
+    v-if="show && userType"
     @hide="emits('hide')"
     class="feedbackModal"
-    title="Подать обращение"
+    :title="$t('feedback.submit-an-appeal')"
   >
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
 
         <Input
           name="lastname"
-          placeholder="Фамилия"
+          :placeholder="$t('formdata.surname')"
           required
         />
 
         <Input
           name="name"
-          placeholder="Имя"
+          :placeholder="$t('formdata.name')"
           required
         />
 
         <Input
           name="middleName"
-          placeholder="Отчество"
+          :placeholder="$t('formdata.middle-name')"
           required
         />
 
         <div>
-          <label> Вид обращения<span>*</span> </label>
+          <label>
+            {{ $t('formdata.type-of-treatment') }}<span>*</span>
+          </label>
 
           <Select
             name="appleanType"
-            placeholder="Выберите категорию обращения"
+            :placeholder="$t('formdata.select-the-type-of-appeal')"
             :options="appleanTypeList"
             staticPlaceholder
             required
@@ -47,12 +49,12 @@
 
         <div>
           <label>
-            Категория обращения<span>*</span>
+            {{ $t('formdata.category-of-appeal') }}<span>*</span>
           </label>
 
           <Select
             name="appleanCategory"
-            placeholder="Выберите категорию обращения"
+            :placeholder="$t('formdata.select-the-category-of-the-question-appeal')"
             :options="appleanCategoryList"
             staticPlaceholder
             required
@@ -60,11 +62,13 @@
         </div>
 
         <div>
-          <label> Текст обращения<span>*</span> </label>
+          <label>
+            {{ $t('formdata.the-text-of-the-appeal') }}<span>*</span>
+          </label>
           <Input
             name="messege"
             type="textarea"
-            placeholder="Введите текст обращения"
+            :placeholder="$t('formdata.enter-the-message-text')"
             staticPlaceholder
             :maxSymbol="200"
             required
@@ -73,37 +77,34 @@
 
         <!-- File -->
         <div>
-          <label> Файлы </label>
+          <label>{{ $t('formdata.files') }}</label>
 
           <p class="feedbackModal-description">
-            Прикрепите фото и документы, которые могут помочь или выступить
-            доказательством
+            {{ $t('formdata.attach-photos-and-documents-that-can-help-or-act-as-proof') }}
           </p>
 
           <Button
             class="feedbackModal-addFileBtn"
-            name="Прикрепить файл"
+            :name="$t('button.attach-a-file')"
             type="outline-blue"
             v-slot:left
           >
             <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
 
-          <p class="feedbackModal-description">
-            Максимальный размер одного файла 19 мб.<br />
-            Общий размер файлов не более 80 мб, количество до 10 файлов.Форматы: png, pdf,
-            jpg, jpeg, gif, tiff, bmp, doc, docx, xls, xlsx.
-          </p>
+          <p class="feedbackModal-description" v-html="$t('formdata.the-maximum-size-of-a-single-file-is-19-mb')"></p>
         </div>
 
         <div>
-          <label> Фактический адрес<span>*</span> </label>
+          <label>
+            {{ $t('formdata.actual-address') }}<span>*</span>
+          </label>
 
-          <p class="feedbackModal-description">Введите адрес фактического проживания</p>
+          <p class="feedbackModal-description">{{ $t('formdata.enter-the-address-of-the-actual-residence') }}</p>
 
           <Select
             name="region"
-            placeholder="Укажите область"
+            :placeholder="$t('formdata.specify-the-area')"
             :options="[
               { label: 'Алматы', value: 'Алматы' },
               { label: 'Астана', value: 'Астана' },
@@ -115,7 +116,7 @@
 
           <Select
             name="locality"
-            placeholder="Населенный пункт"
+            :placeholder="$t('formdata.locality')"
             :options="[
               {label: 'Есик', value: 'Есик'},
               {label: 'Жаркент', value: 'Жаркент'},
@@ -132,21 +133,21 @@
           <div class="feedbackModal-inputs-home">
             <Input
               name="streat"
-              placeholder="Улица"
+              :placeholder="$t('formdata.street-prospect-mkr')"
               staticPlaceholder
               required
             />
 
             <Input
               name="house"
-              placeholder="Дом/корпус"
+              :placeholder="$t('formdata.house')"
               staticPlaceholder
               required
             />
 
             <Input
               name="appartment"
-              placeholder="Квартира"
+              :placeholder="$t('formdata.sq')"
               staticPlaceholder
               required
             />
@@ -173,21 +174,30 @@
       </div>
 
       <div class="feedbackModal-btns">
-        <Button name="Отправить" :loading="loading" htmlType="submit" />
+        <Button
+          name="Отправить"
+          :loading="loading"
+          htmlType="submit"
+        />
 
-        <Button type="default-grey" name="Отмена" @click="emits('hide')" />
+        <Button
+          type="default-grey"
+          name="Отмена"
+          @click="emits('hide')"
+        />
       </div>
     </Form>
   </Modal>
 </template>
 
 <script setup lang="ts">
-import LogInFirstModal from './logInFirstModal.vue';
+import LogInFirstModal from '@/components/uiLanding/feedback/LogInFirstModal.vue';
 
-import { ref } from 'vue'
-import moment from 'moment'
 import axios from 'axios'
-import { useToast } from '../../../modules/toast'
+import moment from 'moment'
+import { ref } from 'vue'
+
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 
@@ -198,7 +208,7 @@ interface Emits {
   (event: "hide"): Function;
 }
 
-const props = defineProps<IProps>();
+defineProps<IProps>();
 const emits = defineEmits<Emits>();
 
 const loading = ref(false)

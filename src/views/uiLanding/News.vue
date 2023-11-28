@@ -96,14 +96,14 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from '../../components/uiLanding/news/newsItem.vue'
-import YoutubeVideo from '../../components/uiLanding/news/youtubeVideo.vue'
+import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
+import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVideo.vue'
 
-import PhotoGallery from '../../components/uiLanding/news/photoGallery.vue';
+import PhotoGallery from '@/components/uiLanding/press-center/photo-gallery/PhotoGallery.vue';
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { useToast } from '../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 

@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import axios from 'axios'
 import { ref } from "vue";
-import { useToast } from '../../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 interface IProps {
   data: any,

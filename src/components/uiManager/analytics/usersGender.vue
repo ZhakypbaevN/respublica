@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import AnalyticsBlock from './analyticsBlock.vue'
+import AnalyticsBlock from '@/components/uiManager/analytics/AnalyticsBlock.vue'
 
 </script>
 

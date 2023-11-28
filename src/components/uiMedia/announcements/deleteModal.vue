@@ -24,7 +24,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 // Modules
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 

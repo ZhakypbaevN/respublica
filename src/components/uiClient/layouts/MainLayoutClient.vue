@@ -24,12 +24,12 @@
 </template>
 
 <script setup>
-import SubmitAnAppealModal from '../../../components/uiLanding/feedback/submitAnAppealModal.vue';
-import SideBar from '../../common/SideBar.vue';
-import HeaderClient from './headerClient.vue';
+import SideBar from '@/components/common/SideBar.vue';
+import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
+import HeaderClient from '@/components/uiClient/layouts/HeaderClient.vue';
 
 import { ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 

@@ -23,7 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from '../../../components/uiLanding/news/newsItem.vue'
+import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
+import { getNews } from '@/actions/v1/uiLanding/news'
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
@@ -35,10 +36,10 @@ const newsList = ref();
 const token = localStorage.getItem('TOKEN');
 
 onMounted(() => {
-  getNews();
+  getNews({category_id: 1});2
 })
 
-const getNews = () => {
+const getNewsList = () => {
   const url = `https://api.respublica.codetau.com/api/v1/articles?offset=0&limit=100&category_id=1`;
 
   axios({

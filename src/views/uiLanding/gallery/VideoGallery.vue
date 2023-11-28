@@ -25,11 +25,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import YoutubeVideo from '../../../components/uiLanding/news/youtubeVideo.vue'
+import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVideo.vue'
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 

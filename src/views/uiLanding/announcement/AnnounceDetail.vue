@@ -31,12 +31,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import AnnounceItem from '../../../components/uiLanding/news/announceItem.vue';
+import AnnounceItem from '@/components/uiLanding/press-center/announces/AnnounceItem.vue';
 
 import axios from 'axios';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router'
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 const route = useRoute()

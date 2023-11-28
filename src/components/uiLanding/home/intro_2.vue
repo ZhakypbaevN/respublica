@@ -73,10 +73,10 @@
 </template>
 
 <script setup lang="ts">
-import SocialNetworks from '../../../components/uiLanding/layouts/socialNetworks.vue';
-import JoinPartyModal from '../../../components/uiLanding/feedback/joinPartyModal.vue';
-import SubmitAnAppealModal from '../../../components/uiLanding/feedback/submitAnAppealModal.vue';
-import MakeAnAppointmentModal from '../../../components/uiLanding/feedback/makeAnAppointmentModal.vue';
+import SocialNetworks from '@/components/uiLanding/layouts/SocialNetworks.vue';
+import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
+import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
+import MakeAnAppointmentModal from '@/components/uiLanding/feedback/MakeAnAppointmentModal.vue';
 
 import { reactive } from 'vue';
 
