@@ -1,33 +1,33 @@
 <template>
   <LogInFirstModal
-    title="Чтобы записаться на прием Вам необходимо авторизоваться на портале или пройти регистрацию"
-    @hide="emits('hide')"
-    :show="props.show && !userType"
+    :title="$t('feedback.to-make-an-appointment,-you-need-to-log-in-to-the-portal-or-register')"
+    @hide="$emit('hide')"
+    :show="show && !userType"
   />
 
   <Modal
-    v-if="props.show && userType"
-    @hide="emits('hide')"
+    v-if="show && userType"
+    @hide="$emit('hide')"
     class="feedbackModal"
-    title="Записаться на прием"
+    :title="$t('feedback.make-an-appointment')"
   >
     <Form @finish="postFeedback">
       <div class="feedbackModal-inputs">
         <div>
-          <label for="position">Тема звонка</label>
+          <label for="position">{{ $t('formdata.subject-of-the-call') }}</label>
           <Input
             name="position"
-            placeholder="Введите тему званка"
+            :placeholder="$t('formdata.enter-the-subject-of-the-call')"
             staticPlaceholder
             required
           />
         </div>
 
         <div>
-          <label for="position">Принимающее должностное лицо</label>
+          <label for="position">{{ $t('formdata.receiving-official') }}</label>
           <Select
             name="position"
-            placeholder="Выберите из списка принимающее должностное лицо"
+            :placeholder="$t('formdata.select-the-receiving-official-from-the-list')"
             staticPlaceholder
             :options="[
               {label: 'Алматы', value: 'Алматы'},
@@ -39,10 +39,10 @@
         </div>
 
         <div>
-          <label for="category">Категория вопроса/обращения</label>
+          <label for="category">{{ $t('formdata.question-request-category') }}</label>
           <Select
             name="category"
-            placeholder="Выберите категорию вопроса/обращения"
+            :placeholder="$t('formdata.select-the-category-of-the-question-appeal')"
             staticPlaceholder
             :options="[
               {label: 'Алматы', value: 'Алматы'},
@@ -55,12 +55,12 @@
       </div>
       
       <p class="feedbackModal-description">
-        Мы Вам направим точную дату и время за 3 рабочих дня до даты проведения приема.
+        {{ $t('feedback.we-will-send-the-exact-date-and-time-3-working-days-before-the-date-of-the-reception') }}
       </p>
 
       <div>
         <Button
-          name="Записаться на прием"
+          :name="$t('button.make-an-appointment')"
           :loading="loading"
           htmlType="submit"
         />
@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import LogInFirstModal from './logInFirstModal.vue';
+import LogInFirstModal from '@/components/uiLanding/feedback/LogInFirstModal.vue';
 
 import { ref } from 'vue'
 
@@ -81,8 +81,8 @@ interface Emits {
   (event: 'hide'): Function
 }
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+defineProps<IProps>()
+defineEmits<Emits>()
 
 
 const loading = ref(false);

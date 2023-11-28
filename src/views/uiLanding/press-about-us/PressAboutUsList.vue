@@ -30,11 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from '../../../components/uiLanding/news/newsItem.vue'
+import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import AnalyticsBlock from './analyticsBlock.vue'
+import AnalyticsBlock from '@/components/uiManager/analytics/AnalyticsBlock.vue'
 
 import * as am5 from "@amcharts/amcharts5";
 import * as am5percent from "@amcharts/amcharts5/percent";

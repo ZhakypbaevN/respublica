@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 interface Emits {
-  (event: 'showJoinPartyModal', value: Function): void,
+  (event: 'showJoinPartyModal'): Function,
 }
 
 defineEmits<Emits>()

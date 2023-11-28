@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import deputiesMap from "../../../assets/map/deputiesMap.json";
+import deputiesMap from "@/assets/map/deputiesMap.json";
 
 import { reactive } from 'vue';
 

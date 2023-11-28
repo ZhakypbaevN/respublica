@@ -8,3 +8,10 @@ export interface INews {
   published: boolean,
   preview_image: LaravelFile
 }
+
+export interface NewsValues {
+  tableValues: INews[]
+  total: number
+  isEmpty: boolean
+  searchEmpty: boolean
+}

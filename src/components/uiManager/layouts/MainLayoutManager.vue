@@ -20,8 +20,8 @@
 
 <script setup>
 import { onMounted } from 'vue';
-import SideBar from '../../common/SideBar.vue';
-import HeaderManager from './headerManager.vue';
+import SideBar from '@/components/common/SideBar.vue';
+import HeaderManager from '@/components/uiManager/layouts/HeaderManager.vue';
 
 onMounted(() => {
   document.body.style ='height:100vh;overflow:hidden;';

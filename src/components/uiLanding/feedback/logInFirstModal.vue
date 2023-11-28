@@ -1,7 +1,7 @@
 <template>
   <Modal
-    v-if="props.show"
-    @hide="emits('hide')"
+    v-if="show"
+    @hide="$emit('hide')"
     class="logInFirst"
     :title="title"
     big
@@ -9,22 +9,22 @@
     <div class="logInFirst-btns">
       <RouterLink to="/auth/login">
         <Button
-          name="Войти"
+          :name="$t('button.login')"
           type="default-blue"
         />
       </RouterLink>
 
       <RouterLink to="/auth/register">
         <Button
-          name="Регистрация"
+          :name="$t('button.registration')"
           type="default-blue"
         />
       </RouterLink>
 
       <Button
-        name="Отмена"
+        :name="$t('button.cancel')"
         type="default-grey"
-        @click="() => emits('hide')"
+        @click="() => $emit('hide')"
       />
     </div>
   </Modal>
@@ -39,8 +39,8 @@ interface Emits {
   (event: 'hide'): Function
 }
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+defineProps<IProps>()
+defineEmits<Emits>()
 </script>
 
 <style scoped lang="scss">
@@ -51,5 +51,4 @@ const emits = defineEmits<Emits>()
     grid-gap: 20px;
   }
 }
-
 </style>

@@ -67,8 +67,8 @@
 import { onMounted, ref } from 'vue';
 import axios from 'axios'
 
-import Header from '../../components/uiLanding/layouts/header.vue';
-import Footer from '../../components/uiLanding/layouts/footer.vue';
+import Header from '@/components/uiLanding/layouts/HeaderCustom.vue';
+import Footer from '@/components/uiLanding/layouts/FooterCustom.vue';
 
 const usersList = ref()
 const usersListEgov = ref()

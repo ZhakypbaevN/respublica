@@ -1,96 +1,96 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import i18n from '@/assets/lang/i18n.js'
 
 // -------------  Pages ---------------
-import Authorization from '../views/Authorization.vue'
-import NotFound from '../views/404NotFound.vue'
-import PageInDevelopment from '../views/InDevelopment.vue'
+import Authorization from '@/views/Authorization.vue'
+import NotFound from '@/views/404NotFound.vue'
+import PageInDevelopment from '@/views/InDevelopment.vue'
 
-import Home from '../views/uiLanding/Home.vue'
-import Home_2 from '../views/uiLanding/Home_2.vue'
-import Feedback from '../views/uiLanding/Feedback.vue'
-import AboutParty from '../views/uiLanding/AboutParty.vue'
-import News from '../views/uiLanding/News.vue'
-import Contacts from '../views/uiLanding/Contacts.vue'
-import PartyFraction from '../views/uiLanding/PartyFraction.vue'
-import MeetingWithVoters from '../views/uiLanding/MeetingWithVoters.vue'
-import Marketplace from '../views/uiLanding/Marketplace.vue'
+import Home from '@/views/uiLanding/Home.vue'
+import Home_2 from '@/views/uiLanding/Home_2.vue'
+import Feedback from '@/views/uiLanding/Feedback.vue'
+import AboutParty from '@/views/uiLanding/AboutParty.vue'
+import News from '@/views/uiLanding/News.vue'
+import Contacts from '@/views/uiLanding/Contacts.vue'
+import PartyFraction from '@/views/uiLanding/PartyFraction.vue'
+import MeetingWithVoters from '@/views/uiLanding/MeetingWithVoters.vue'
+import Marketplace from '@/views/uiLanding/Marketplace.vue'
 
 // Deputies
-import DeputiesOfMajilis from '../views/uiLanding/deputies/DeputiesOfMajilis.vue';
-import DeputiesOfMaslikhat from '../views/uiLanding/deputies/DeputiesOfMaslikhat.vue';
+import DeputiesOfMajilis from '@/views/uiLanding/deputies/DeputiesOfMajilis.vue';
+import DeputiesOfMaslikhat from '@/views/uiLanding/deputies/DeputiesOfMaslikhat.vue';
 
 // News
-import NewsList from '../views/uiLanding/news/NewsList.vue'
-import NewsDetail from '../views/uiLanding/news/NewsDetail.vue'
+import NewsList from '@/views/uiLanding/news/NewsList.vue'
+import NewsDetail from '@/views/uiLanding/news/NewsDetail.vue'
 
 // Press About Us
-import PressAboutUsList from '../views/uiLanding/press-about-us/PressAboutUsList.vue'
-import PressAboutUsDetail from '../views/uiLanding/press-about-us/PressAboutUsDetail.vue'
+import PressAboutUsList from '@/views/uiLanding/press-about-us/PressAboutUsList.vue'
+import PressAboutUsDetail from '@/views/uiLanding/press-about-us/PressAboutUsDetail.vue'
 
 // Announcement
-import AnnouncesList from '../views/uiLanding/announcement/AnnouncesList.vue'
-import AnnounceDetail from '../views/uiLanding/announcement/AnnounceDetail.vue'
+import AnnouncesList from '@/views/uiLanding/announcement/AnnouncesList.vue'
+import AnnounceDetail from '@/views/uiLanding/announcement/AnnounceDetail.vue'
 
 // Gallery
-import VideoGallery from '../views/uiLanding/gallery/VideoGallery.vue'
-import PhotoGalleryAll from '../views/uiLanding/gallery/PhotoGalleryAll.vue'
+import VideoGallery from '@/views/uiLanding/gallery/VideoGallery.vue'
+import PhotoGalleryAll from '@/views/uiLanding/gallery/PhotoGalleryAll.vue'
 
-import Regions from '../views/uiLanding/Regions.vue'
-import Faq from '../views/uiLanding/Faq.vue'
-import Donations from '../views/uiLanding/Donations.vue'
+import Regions from '@/views/uiLanding/Regions.vue'
+import Faq from '@/views/uiLanding/Faq.vue'
+import Donations from '@/views/uiLanding/Donations.vue'
 
 
 // ------------------ UI Bussiness ------------------
-import MainDB from '../views/uiBusiness/Main.vue'
-import BusinessAppealList from '../views/uiBusiness/appeal/AppealList.vue'
-import BusinessAppealDetail from '../views/uiBusiness/appeal/AppealDetail.vue'
+import MainDB from '@/views/uiBusiness/Main.vue'
+import BusinessAppealList from '@/views/uiBusiness/appeal/AppealList.vue'
+import BusinessAppealDetail from '@/views/uiBusiness/appeal/AppealDetail.vue'
 
 
 
 // ------------------ UI Manager ------------------
-import ManagerPartyDataList from '../views/uiManager/party/PartyDataList.vue'
-import ManagerPartyData from '../views/uiManager/party/PartyData.vue'
+import ManagerPartyDataList from '@/views/uiManager/party/PartyDataList.vue'
+import ManagerPartyData from '@/views/uiManager/party/PartyData.vue'
 
-import ManagerPartyResignationList from '../views/uiManager/party-resignation/PartyResignationList.vue'
-import ManagerPartyResignationData from '../views/uiManager/party-resignation/PartyResignationData.vue'
+import ManagerPartyResignationList from '@/views/uiManager/party-resignation/PartyResignationList.vue'
+import ManagerPartyResignationData from '@/views/uiManager/party-resignation/PartyResignationData.vue'
 
-import TicketNumList from '../views/uiManager/TicketNumList.vue'
-import Analytics from '../views/uiManager/Analytics.vue'
+import TicketNumList from '@/views/uiManager/TicketNumList.vue'
+import Analytics from '@/views/uiManager/Analytics.vue'
 
 
 // ------------------ UI Client ------------------
-import MyRequests from '../views/uiClient/requests/MyRequests.vue'
-import MyRequestDetail from '../views/uiClient/requests/MyRequestDetail.vue'
+import MyRequests from '@/views/uiClient/requests/MyRequests.vue'
+import MyRequestDetail from '@/views/uiClient/requests/MyRequestDetail.vue'
 
-import UserData from '../views/uiClient/UserData.vue'
-import ExitParty from '../views/uiClient/ExitParty.vue'
+import UserData from '@/views/uiClient/UserData.vue'
+import ExitParty from '@/views/uiClient/ExitParty.vue'
 
 
 
 // ------------------ UI Media ------------------
-import MediaNewsList from '../views/uiMedia/news/NewsList.vue'
-import MediaNewsEdit from '../views/uiMedia/news/NewsEdit.vue'
+import MediaNewsList from '@/views/uiMedia/news/NewsList.vue'
+import MediaNewsEdit from '@/views/uiMedia/news/NewsEdit.vue'
 
-import MediaNewsForFractionList from '../views/uiMedia/news-for-faction/NewsFactionList.vue'
-import MediaNewsForFractionEdit from '../views/uiMedia/news-for-faction/NewsFactionEdit.vue'
+import MediaNewsForFractionList from '@/views/uiMedia/news-for-faction/NewsFactionList.vue'
+import MediaNewsForFractionEdit from '@/views/uiMedia/news-for-faction/NewsFactionEdit.vue'
 
-import MediaPressAboutUsList from '../views/uiMedia/press-about-us/PressAboutUsList.vue'
-import MediaPressAboutUsEdit from '../views/uiMedia/press-about-us/PressAboutUsEdit.vue'
+import MediaPressAboutUsList from '@/views/uiMedia/press-about-us/PressAboutUsList.vue'
+import MediaPressAboutUsEdit from '@/views/uiMedia/press-about-us/PressAboutUsEdit.vue'
 
-import MediaVideoGalleryList from '../views/uiMedia/video-gallery/VideoGalleryList.vue'
-import MediaVideoGalleryEdit from '../views/uiMedia/video-gallery/VideoGalleryEdit.vue'
+import MediaVideoGalleryList from '@/views/uiMedia/video-gallery/VideoGalleryList.vue'
+import MediaVideoGalleryEdit from '@/views/uiMedia/video-gallery/VideoGalleryEdit.vue'
 
-import MediaPhotoGalleryList from '../views/uiMedia/PhotoGalleryList.vue'
+import MediaPhotoGalleryList from '@/views/uiMedia/PhotoGalleryList.vue'
 
-import MediaAnnouncementsList from '../views/uiMedia/announcements/AnnouncementsList.vue'
-import MediaAnnouncementsEdit from '../views/uiMedia/announcements/AnnouncementsEdit.vue'
-
+import MediaAnnouncementsList from '@/views/uiMedia/announcements/AnnouncementsList.vue'
+import MediaAnnouncementsEdit from '@/views/uiMedia/announcements/AnnouncementsEdit.vue'
 
 // Layouts
-const MainLayoutBusiness = () => import('../components/uiBusiness/layouts/mainLayoutBusiness.vue')
-const MainLayoutClient = () => import('../components/uiClient/layouts/mainLayoutClient.vue')
-const MainLayoutManager = () => import('../components/uiManager/layouts/mainLayoutManager.vue')
-const MainLayoutMedia = () => import('../components/uiMedia/layouts/mainLayoutMedia.vue')
+const MainLayoutBusiness = () => import('@/components/uiBusiness/layouts/MainLayoutBusiness.vue')
+const MainLayoutClient = () => import('@/components/uiClient/layouts/MainLayoutClient.vue')
+const MainLayoutManager = () => import('@/components/uiManager/layouts/MainLayoutManager.vue')
+const MainLayoutMedia = () => import('@/components/uiMedia/layouts/MainLayoutMedia.vue')
 
 const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
@@ -105,6 +105,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    meta: { titleKey: 'page.main' }
   },
   {
     path: '/variant-2',
@@ -443,12 +444,22 @@ const router = createRouter({
   routes,
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
-      return { el: to.hash }
+      return { el: to.hash };
     } else if (savedPosition) {
-      return savedPosition
+      return savedPosition;
     }
-    return { top: 0 }
+    return { top: 0 };
   }
-})
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  const lang = to.params.lang || 'ru';
+  i18n.global.locale.value = lang;
+
+  // Установка заголовка для текущего языка
+  if (to.meta.titleKey) to.meta.title = i18n.global.t(to.meta.titleKey);
+
+  next();
+});
+
+export default router;

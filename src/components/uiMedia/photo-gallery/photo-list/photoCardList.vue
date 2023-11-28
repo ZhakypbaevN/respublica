@@ -29,8 +29,8 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import CreatePhoto from "./createPhoto.vue"
-import PhotoCard from "./photoCard.vue"
+import CreatePhoto from "@/components/uiMedia/photo-gallery/photo-list/CreatePhoto.vue"
+import PhotoCard from "@/components/uiMedia/photo-gallery/photo-list/photoCard.vue"
 
 interface IProps {
   list: any,

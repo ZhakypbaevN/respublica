@@ -36,8 +36,8 @@
 </template>
   
 <script setup lang="ts">
-import FractionComposition from '../../components/uiLanding/partyFraction/fractionComposition.vue';
-import DeputyRequests from '../../components/uiLanding/partyFraction/deputyRequests.vue';
+import FractionComposition from '../../components/uiLanding/party-fraction/fractionComposition.vue';
+import DeputyRequests from '../../components/uiLanding/party-fraction/deputyRequests.vue';
 import SubmitAnAppealModal from '../../components/uiLanding/feedback/submitAnAppealModal.vue';
 
 import { ref } from 'vue';

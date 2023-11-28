@@ -61,7 +61,7 @@ import axios from 'axios'
 import { ref, onMounted, computed } from 'vue';
 
 // Modules
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 interface IProps {
   title: string,

@@ -31,10 +31,11 @@
 import axios from 'axios'
 import { ref } from 'vue';
 
-import ImageCrop from '../../../../components/common/ImageCrop.vue'
+// Components
+import ImageCrop from '@/components/common/ImageCrop.vue'
 
 // Module
-import { useToast } from '../../../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 interface IProps {
   albomID: number

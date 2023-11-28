@@ -5,27 +5,23 @@
     class="submitAnAppealModal"
   >
     <SvgIcon class="contacts-settings-icon" name="settings-develop" :viewboxWidth="300" :viewboxHeight="300" />
-    <h2 class="contacts-settings-title">Данный функционал еще в разработке</h2>
+    <h2 class="contacts-settings-title">{{ $t('message.this-functionality-is-still-in-development') }}</h2>
 
     <div class="contacts-items">
-      <h4 class="contacts-items-title">Но вы можете подать обращение связавшись с нами!</h4>
+      <h4 class="contacts-items-title">{{ $t('message.but-you-can-submit-an-appeal-by-contacting-us') }}</h4>
 
       <a class="contacts-item" href="https://go.2gis.com/yd0lu">
         <SvgIcon name="marker-grey" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">
-          г.Астана, пр. Мангилик ел, 33/1<br>
-          Бизнес-центр IPLAZA, 9 этаж
-
-        </h4>
+        <h4 class="contacts-item-title" v-html="$t('contacts.address')"></h4>
       </a>
       
-      <a class="contacts-item" href="tel:+7 7172 640 777">
+      <a class="contacts-item" :href="`tel:${$t('contacts.phone')}`">
         <SvgIcon name="call-gery" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">+7 7172 640 777</h4>
+        <h4 class="contacts-item-title">{{ $t('contacts.phone') }}</h4>
       </a>
-      <a class="contacts-item" href="mailto:info@respublica-partiyasy.kz">
+      <a class="contacts-item" :href="`mailto:${$t('contacts.email')}`">
         <SvgIcon name="envelope-grey" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">info@respublica-partiyasy.kz</h4>
+        <h4 class="contacts-item-title">{{ $t('contacts.email') }}</h4>
       </a>
     </div>
   </Modal>

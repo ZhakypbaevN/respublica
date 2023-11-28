@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import DeleteModal from './deleteModal.vue'
+import DeleteModal from '@/components/uiMedia/announcements/DeleteModal.vue'
 
 import { useRouter } from 'vue-router';
 

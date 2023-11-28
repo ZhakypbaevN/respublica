@@ -10,14 +10,14 @@
 </template>
 
 <script setup lang="ts">
-import AnalyticsBlock from './analyticsBlock.vue'
+import AnalyticsBlock from '@/components/uiManager/analytics/AnalyticsBlock.vue'
 
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-import am5geodata_kazakhstanMap from "../../../assets/map/kazakhstanMap.json";
-import deputiesMap from "../../../assets/map/deputiesMap.json";
+import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap.json";
+import deputiesMap from "@/assets/map/deputiesMap.json";
 
 import { ref, onMounted, reactive } from 'vue';
 

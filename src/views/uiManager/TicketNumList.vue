@@ -33,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
-import TicketNumItem from "../../components/uiManager/ticketNum/ticketNumItem.vue"
-import CreateTicketNumModal from "../../components/uiManager/ticketNum/createTicketNumModal.vue";
+import TicketNumItem from "../../components/uiManager/ticket-num/ticketNumItem.vue"
+import CreateTicketNumModal from "../../components/uiManager/ticket-num/createTicketNumModal.vue";
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
