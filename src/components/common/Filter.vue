@@ -5,7 +5,7 @@
       v-for="item of list"
       :key="item.value"
       :class="{active: item.value === active}"
-      @click="() => active = item.value"
+      @click="() => onFilter(item.value)"
     >
       {{ item.name }}
     </button>
@@ -13,23 +13,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
 
 interface IProps {
-  modelValue: string | boolean,
   list: Array<any>
-}
-interface Emits {
-  (event: 'update:modelValue', value: any): void
 }
 
 const props = defineProps<IProps>()
-const emit = defineEmits<Emits>()
 
-const active = computed({
-  get: () => props.modelValue ?? '',
-  set: (val) => emit('update:modelValue', val)
-})
+const router = useRouter()
+const route = useRoute()
+
+const active = ref(props.list[0].value)
+
+const onFilter = (newFilter) => {
+  active.value = newFilter;
+  router.push({ query: { ...route.query, published: active.value } })
+}
 </script>
 
 <style lang="scss" scoped>

@@ -8,4 +8,5 @@ export interface IUser {
   iin: string,
   phone: string,
   email?: string,
+  role: string
 }

@@ -116,12 +116,12 @@ const request = function (
     })
 }
 
-if (localStorage.getItem('access_token') != null) {
+if (localStorage.getItem('TOKEN') != null) {
   api.defaults.headers.common.Authorization =
-    'Bearer' + ' ' + localStorage.getItem('access_token')
-} else if (sessionStorage.getItem('access_token') != null) {
+    'Bearer' + ' ' + localStorage.getItem('TOKEN')
+} else if (sessionStorage.getItem('TOKEN') != null) {
   api.defaults.headers.common.Authorization =
-    'Bearer' + ' ' + sessionStorage.getItem('access_token')
+    'Bearer' + ' ' + sessionStorage.getItem('TOKEN')
 }
 
 api.requestGet = function (

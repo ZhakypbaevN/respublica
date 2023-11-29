@@ -30,19 +30,19 @@ onMounted(() => {
 const sideBarlinks = [
   {
     title: 'Новости',
-    link: "/media/news-list"
+    link: "/media/news-list?offset=0&limit=20&published=true&search="
   },
   {
     title: 'Новости для фракции',
-    link: "/media/news-for-fraction"
+    link: "/media/news-for-fraction?offset=0&limit=20&published=true&search="
   },
   {
     title: 'Пресса о нас',
-    link: "/media/press-about-us"
+    link: "/media/press-about-us?offset=0&limit=20&published=true&search="
   },
   {
     title: 'Видеогалерея',
-    link: "/media/video-gallery"
+    link: "/media/video-gallery?offset=0&limit=20&published=true&search="
   },
   {
     title: 'Фотогалерея',

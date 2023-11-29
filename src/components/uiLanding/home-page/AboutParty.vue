@@ -40,7 +40,7 @@ const aboutPartyList = [
   {
     color: '#894BEC',
     img: '/img/uiLanding/about-party/events-1.jpg',
-    title: t('about-party.item-1')
+    title: t('home.about-party.item-1')
   },
   {
     color: null,
@@ -50,7 +50,7 @@ const aboutPartyList = [
   {
     color: '#FF6B00',
     img: '/img/uiLanding/about-party/events-3.jpg',
-    title: t('about-party.item-3')
+    title: t('home.about-party.item-3')
   },
   {
     color: null,
@@ -65,7 +65,7 @@ const aboutPartyList = [
   {
     color: '#4A78EC',
     img: '/img/uiLanding/about-party/events-6.jpg',
-    title: t('about-party.item-6')
+    title: t('home.about-party.item-6')
   },
   {
     color: null,
