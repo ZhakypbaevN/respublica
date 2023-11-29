@@ -1,7 +1,9 @@
 <template>
   <button
     class="newsItem withZoomPreview"
+    :class="{disabled: disabled}"
     @click="goEdit"
+    v-if="newsData"
   >
     <div class="newsItem-main">
 
@@ -9,14 +11,14 @@
       <div class="newsItem-preview withZoomPreview-preview">
         <div
           class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
-          :style="`background-image:url('https://i.pinimg.com/564x/66/ed/19/66ed190edaf9f2557cbe63978e1b89e2.jpg');`"
+          :style="`background-image:url('https://api.respublica.codetau.com/${data.preview_image}');`"
         ></div>
       </div>
 
       <!-- Content -->
       <div class="newsItem-content">
         <h4 class="newsItem-content-date">
-          {{ data.created_at }}
+          {{ convertDateTime(data.created_at) }}
         </h4>
 
         <h3 class="newsItem-content-title">
@@ -45,6 +47,7 @@
       <Button
         class="newsItem-btns-delete"
         type="default-light-grey"
+        @click.stop="() => showDeleteModal = true"
       >
         <SvgIcon
           name="trash-edit-with-bg"
@@ -53,10 +56,9 @@
         />
       </Button>
 
-      <Button
-        name="Опубликовать"
-        type="default-light-blue"
-        class="newsItem-btns-changeState"
+      <PublishToggle
+        :data="newsData"
+        @finish="togglePublish"
       />
     </div>
 
@@ -70,10 +72,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import DeleteModal from '@/components/uiMedia/press-about-us/DeleteModal.vue'
-
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+
+import PublishToggle from '@/components/uiMedia/PublishToggle.vue'
+import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
+
+import convertDateTime from '@/helpers/convertDateTime.js'
 
 const router = useRouter()
 
@@ -83,10 +88,21 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
+const newsData = ref(null);
+const disabled = ref(false);
 const showDeleteModal = ref(false);
 
+onMounted(() => {
+  newsData.value = Object.assign({}, props.data);
+})
+
 const goEdit = () => {
-  router.push(`/media/press-about-us/${props.data.id}`)
+  router.push(`/media/news-list/${props.data.id}`)
+}
+
+const togglePublish = () => {
+  newsData.value.published = !newsData.value.published;
+  disabled.value = true;
 }
 </script>
 
@@ -99,7 +115,7 @@ const goEdit = () => {
 
   text-align: left;
 
-  padding: 25px;
+  padding: 18px;
   padding-right: 30px;
 
   border-radius: 10px;
@@ -138,7 +154,7 @@ const goEdit = () => {
       font-size: 16px;
       font-weight: 500;
 
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     &-title {
@@ -167,6 +183,8 @@ const goEdit = () => {
     &-delete {
       height: 50px;
       width: 50px;
+
+      cursor: pointer;
       padding: 0px !important;
       
       & svg {
@@ -180,6 +198,10 @@ const goEdit = () => {
     &-edit {
       & svg {
         fill: var(--light-gray-color);
+      }
+
+      &:hover svg {
+        fill: var(--accent-color);
       }
     }
 
@@ -195,11 +217,6 @@ const goEdit = () => {
           stroke: var(--red-color);
         }
       }
-    }
-
-    &-changeState {
-      height: 50px;
-      padding: 15px 40px;
     }
   }
 }

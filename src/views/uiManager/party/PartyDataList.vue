@@ -4,9 +4,9 @@
       <div class="wrapper">
         <div class="party-header">
           <h3 class="party-party-header-title">Члены партий</h3>
-          <p class="party-header-count">Всего {{ partyDataList ? partyDataList.length : '...' }}</p>
+          <p class="party-header-count">Всего {{ partyValues.tableValues ? partyValues.tableValues.length : '...' }}</p>
         </div>
-        <table class="party-table" v-if="partyDataList">
+        <table class="party-table" v-if="partyValues.tableValues">
           <thead>
             <tr class="party-head">
               <th>№ парт билета</th>
@@ -21,7 +21,7 @@
             <!-- <tr > -->
             <tr
               class="party-item"
-              v-for="party in partyDataList"
+              v-for="party in partyValues.tableValues"
               :key="party.ticket_number"
             >
               <td>{{ party.ticket_number }}</td>
@@ -42,6 +42,8 @@
           </tbody>
         </table>
       </div>
+
+      <Pagination :total="partyValues.total" withRouter />
     </section>
   </div>
 </template>
@@ -54,8 +56,8 @@ import { onMounted, reactive, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 
 import debounce from '@/helpers/debounce'
-import { NewsValues } from '@/types/news';
-import { getNewsList } from '@/actions/uiMedia/news';
+import { PartyMembersValues } from '@/types/party-member';
+import { getPartyMembersList } from '@/actions/uiManager/party-members';
 import { ref } from "vue";
 
 const { t } = useI18n()
@@ -74,7 +76,7 @@ const filterList = [
     value: false
   }
 ]
-const newsValues = reactive<NewsValues>({
+const partyValues = reactive<PartyMembersValues>({
   tableValues: null,
   total: 0,
   isEmpty: false,
@@ -82,18 +84,18 @@ const newsValues = reactive<NewsValues>({
 })
 
 const getData = async () => {
-  newsValues.tableValues = null;
-  newsValues.isEmpty = false
+  partyValues.tableValues = null;
+  partyValues.isEmpty = false
   const {
     data,
     total
-  } = await getNewsList('announcements', {
+  } = await getPartyMembersList(route.params.filter.toString(), {
     ...route.query
   })
-  newsValues.tableValues = data;
-  newsValues.total = total;
+  partyValues.tableValues = data;
+  partyValues.total = total;
   if (!total) {
-    newsValues.isEmpty = true
+    partyValues.isEmpty = true
   }
 }
 

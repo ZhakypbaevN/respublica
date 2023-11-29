@@ -10,7 +10,7 @@ export const getNewsList = async (newsAlias: string, filters: any) => {
     await api.asyncGet<Paginator<INews[]>>(
       '/api/v1/admin/articles',
       {
-        alias_category: newsAlias,
+        category_alias: newsAlias,
         ...filters,
       },
       true

@@ -58,7 +58,7 @@ const postDelete = () => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Видео успешно удалена',
+        message: 'Новость успешно удалена',
         type: 'success'
       })
       
