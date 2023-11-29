@@ -35,12 +35,12 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from "../../../components/uiMedia/press-about-us/newsItem.vue"
+import NewsItem from "@/components/uiMedia/press-about-us/NewsItem.vue"
 
 import axios from 'axios';
 import { onMounted, reactive, ref } from 'vue';
 
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 import { useI18n } from 'vue-i18n'
 import { watch } from "vue";
 

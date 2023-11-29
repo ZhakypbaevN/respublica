@@ -214,7 +214,7 @@ const getPartData = () => {
 const downloadPDFCard = () => {
   isLoading.downloadPDF = true;
   console.log('userData', userData.value);
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/pdf/${userData.value.id}`;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/pdf/${partyData.value.id}`;
   axios({
     method: "get",
     url: url,

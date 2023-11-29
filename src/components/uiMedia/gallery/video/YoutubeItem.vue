@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import DeleteModal from '@/components/uiMedia/video-gallery/DeleteModal.vue'
+import DeleteModal from '@/components/uiMedia/gallery/video/DeleteModal.vue'
 import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVideo.vue';
 
 import { useRouter } from 'vue-router';

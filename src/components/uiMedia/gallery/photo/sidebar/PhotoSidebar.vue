@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import PhotoSidebarCard from '@/components/uiMedia/photo-gallery/sidebar/PhotoSidebarCard.vue';
-import PhotoSidebarCardSkeleton from '@/components/uiMedia/photo-gallery/sidebar/PhotoSidebarCardSkeleton.vue';
+import PhotoSidebarCard from '@/components/uiMedia/gallery/photo/sidebar/PhotoSidebarCard.vue';
+import PhotoSidebarCardSkeleton from '@/components/uiMedia/gallery/photo/sidebar/PhotoSidebarCardSkeleton.vue';
 
 interface IProps {
   albomlist: any,

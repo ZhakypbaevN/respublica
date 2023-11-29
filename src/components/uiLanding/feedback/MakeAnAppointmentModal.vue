@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import LogInFirstModal from '@/components/uiLanding/feedback/LogInFirstModal.vue';
+import LogInFirstModal from '@/components/uiLanding/feedback/FirstLoginModal.vue';
 
 import { ref } from 'vue'
 

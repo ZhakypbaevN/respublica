@@ -1,6 +1,7 @@
 <template>
-  <div class="wrapper-main">
+  <main class="wrapper-main">
     <div class="content">
+    
       <Header />
       <section class="news landing-block" id="newsList">
         <div class="wrapper">
@@ -8,66 +9,59 @@
             Новости
           </h2>
           
-          <div class="landing-items">
+          <div class="landing-items" v-if="newsValues.isEmpty">
+            Empty
+          </div>
+          <div class="landing-items disabled" v-else-if="!newsValues.tableValues">
+            Loading
+          </div>
+          <div class="landing-items" v-else>
             <NewsItem
-              v-for="news of newsList"
+              v-for="news of newsValues.tableValues"
               :key="news.title"
               :data="news"
             />
           </div>
         </div>
       </section>
-      <Footer />
     </div>
-  </div>
+
+    <Footer />
+  </main>
 </template>
 
 <script setup lang="ts">
-import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
-import { getNews } from '@/actions/v1/uiLanding/news'
+  import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
 
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+  import { onMounted, reactive } from 'vue';
 
-const { toast } = useToast()
+  import { NewsValues } from '@/types/news';
+  import { getNewsList } from '@/actions/uiLanding/news';
 
-const newsList = ref();
-const token = localStorage.getItem('TOKEN');
-
-onMounted(() => {
-  getNews({category_id: 1});2
-})
-
-const getNewsList = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/articles?offset=0&limit=100&category_id=1`;
-
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
+  const newsValues = reactive<NewsValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false,
+    searchEmpty: true
   })
-    .then((response) => {
-      console.log('response', response);
 
-      newsList.value = response.data;
-    })
-    .catch((err) => {
-      console.log('err', err);
+  onMounted(() => {
+    getData();
+  })
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-}
-
+  const getData = async () => {
+    newsValues.isEmpty = false
+    const { data, total } = await getNewsList('news', {offset: 0,limit: 100})
+    newsValues.tableValues = data;
+    newsValues.total = total;
+    if (!total) {
+      newsValues.isEmpty = true
+    }
+  }
 </script>
 
 <style scoped lang="scss">
 .wrapper-main {
-    background-color: #F6F9FD;
+  background-color: #F6F9FD;
 }
 </style>

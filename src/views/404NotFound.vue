@@ -28,9 +28,6 @@
   background-size: cover;
 }
 
-.notFoundPage {
-}
-
 .title {
   font-size: 200px;
 

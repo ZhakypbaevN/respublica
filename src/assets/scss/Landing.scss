@@ -119,7 +119,8 @@
       transition: all .2s ease-in-out;
     }
 
-    &:hover {
+    &:hover,
+    &.active {
       &::before {
         min-width: 600px;
         max-width: 100%;
