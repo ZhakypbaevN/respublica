@@ -26,9 +26,13 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 interface Emits {
   (event: 'showJoinPartyModal'): Function,
 }
+
+const { t } = useI18n()
 
 defineEmits<Emits>()
 
@@ -36,7 +40,7 @@ const aboutPartyList = [
   {
     color: '#894BEC',
     img: '/img/uiLanding/about-party/events-1.jpg',
-    title: 'Мы стремимся решать вопросы, волнующие наших избирателей в разных уголках страны.'
+    title: t('about-party.item-1')
   },
   {
     color: null,
@@ -46,7 +50,7 @@ const aboutPartyList = [
   {
     color: '#FF6B00',
     img: '/img/uiLanding/about-party/events-3.jpg',
-    title: 'Мы открыты для диалога и намерены действовать активно.'
+    title: t('about-party.item-3')
   },
   {
     color: null,
@@ -61,7 +65,7 @@ const aboutPartyList = [
   {
     color: '#4A78EC',
     img: '/img/uiLanding/about-party/events-6.jpg',
-    title: 'Примите участие в нашем собществе, чтобы изменить свою жизнь и жизнь ваших близких.'
+    title: t('about-party.item-6')
   },
   {
     color: null,

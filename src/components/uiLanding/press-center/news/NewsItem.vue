@@ -1,9 +1,8 @@
 <template>
-  <RouterLink
-    v-if="!litle"
-    class="newsItem withZoomPreview"
-    :class="{pressAboutUs: pressAboutUs}"
-    :to="`/${pressAboutUs ? 'press-about-us-list' : 'news'}/${data.id}`"
+  <a
+    v-if="pressAboutUs"
+    class="newsItem withZoomPreview pressAboutUs"
+    :href="`/news/${data.id}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
       <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
@@ -17,13 +16,31 @@
       </div>
     </div>
 
-    <div v-if="pressAboutUs">
+    <div>
       <a href="kazinform.kz" class="newsItem-author">kazinform.kz</a>
 
       <h4 class="newsItem-title">{{ data.title }}</h4>
     </div>
+  </a>
 
-    <div v-else>
+  <RouterLink
+    v-else-if="!litle"
+    class="newsItem withZoomPreview"
+    :to="`/news/${data.id}`"
+  >
+    <div class="newsItem-preview withZoomPreview-preview">
+      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
+      <div class="newsItem-date">
+        <SvgIcon
+          name="calendar-check"
+          :viewboxWidth="16"
+          :viewboxHeight="17"
+        />
+        <span>{{ convertDateTime(data.created_at) }}</span>
+      </div>
+    </div>
+
+    <div>
       <h4 class="newsItem-title">{{ data.title }}</h4>
       
       <div class="newsItem-line"></div>
@@ -35,8 +52,7 @@
   <RouterLink
     v-else
     class="newsItemMini withZoomPreview"
-    :class="{pressAboutUs: pressAboutUs}"
-    :to="`/${pressAboutUs ? 'press-about-us-list' : 'news'}/${data.id}`"
+    :to="`/news/${data.id}`"
   >
     <div class="newsItemMini-preview withZoomPreview-preview">
       <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>

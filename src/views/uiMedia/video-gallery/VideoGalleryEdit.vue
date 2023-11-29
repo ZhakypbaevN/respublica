@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import { onMounted, ref, reactive } from 'vue'
 import axios from 'axios'
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 import { useRoute } from 'vue-router';
 
 const route = useRoute()

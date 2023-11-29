@@ -25,8 +25,7 @@ import NewsList from '@/views/uiLanding/news/NewsList.vue'
 import NewsDetail from '@/views/uiLanding/news/NewsDetail.vue'
 
 // Press About Us
-import PressAboutUsList from '@/views/uiLanding/press-about-us/PressAboutUsList.vue'
-import PressAboutUsDetail from '@/views/uiLanding/press-about-us/PressAboutUsDetail.vue'
+import PressAboutUsList from '@/views/uiLanding/news/PressAboutUsList.vue'
 
 // Announcement
 import AnnouncesList from '@/views/uiLanding/announcement/AnnouncesList.vue'
@@ -151,11 +150,6 @@ const routes = [
     path: '/press-about-us-list',
     name: 'PressAboutUsList',
     component: PressAboutUsList,
-  },
-  {
-    path: '/press-about-us-list/:news_id',
-    name: 'PressAboutUsDetail',
-    component: PressAboutUsDetail,
   },
   {
     path: '/video-gallery',

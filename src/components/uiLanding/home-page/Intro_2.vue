@@ -8,9 +8,9 @@
           <div class="intro-main-content-inner">
             <SvgIcon
               class="intro-main-content-map"
-              name="kazakhstan-map-dots"
-              :viewboxWidth="523"
-              :viewboxHeight="251"
+              name="logo-re-circle"
+              :viewboxWidth="219"
+              :viewboxHeight="219"
             />
             
             <h2 class="intro-main-content-title">
@@ -143,20 +143,15 @@ const showModals = reactive({
 
         display: flex;
         justify-content: center;
-        padding-left: 250px;
+        align-items: center;
+        grid-gap: 59px;
 
         position: relative;
       }
 
       &-map {
-        width: 523px;
-        height: 250.105px;
-
-        position: absolute;
-        left: 0;
-        top: 50%;
-        z-index: -1;
-        transform: translateY(-50%);
+        width: 219px;
+        height: 219px;
       }
 
       &-title {

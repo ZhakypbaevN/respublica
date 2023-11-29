@@ -192,7 +192,7 @@
     headerClingingToTop.value = window.pageYOffset === 0;
     if (window.pageYOffset >= headerOffsetTop.value) {
       isSticky.value = true;
-      paddingBottom.value = headerMain!.offsetHeight + 'px';
+      if (headerMain) paddingBottom.value = headerMain!.offsetHeight + 'px';
       sideBar?.classList.add('fixed');
     } else {
       isSticky.value = false;
@@ -205,7 +205,7 @@
     window.addEventListener('scroll', handleScroll);
     const headerMain = document.querySelector('#header-main');
     
-    headerOffsetTop.value = headerMain!.offsetTop;
+    if (headerMain) headerOffsetTop.value = headerMain!.offsetTop;
     document.body.style ='height:auto;overflow:auto;';
     handleScroll();
   });

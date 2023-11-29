@@ -16,11 +16,11 @@
         <div class="mapSidebar-header-title">
           <h3 class="mapSidebar-header-name">{{ sideBarData.title }}</h3>
           <p class="mapSidebar-header-address">
-            Адрес:
+            {{ $t('formdata.address') }}:
             {{ sideBarData.address }}
           </p>
           <div class="mapSidebar-header-deputies">
-            Депутатов:
+            {{ $t('deputies') }}:
             <span>{{ sideBarData.deputies ? sideBarData.deputies.length : 0 }}</span>
           </div>
         </div>
@@ -48,7 +48,7 @@
           :key="deputy.name"
         >
           <div class="mapSidebar-content-item-preview withZoomPreview-preview">
-            <div class="mapSidebar-content-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img});`"></div>
+            <div class="mapSidebar-content-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img ?? '/img/avatar-default.jpg'});`"></div>
           </div>
           
           <div class="mapSidebar-content-item-info">
@@ -56,6 +56,13 @@
             <p class="mapSidebar-content-item-description">{{ deputy.role }}</p>
           </div>
         </div>
+      </div>
+
+      <div
+        v-else
+        class="mapSidebar-content"
+      >
+        <p>{{ $t('status.there-are-no-deputies') }}</p>
       </div>
     </div>
   </div>

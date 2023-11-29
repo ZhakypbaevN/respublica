@@ -1,14 +1,15 @@
 <template>
   <div>
     <div
-      v-for="region of regions"
+      v-for="(region, idx) of regions"
       :key="region.title"
       :id="region.code"
       class="region-deputies"
     >
       <button
-        class="landing-link with-line "
-        @click="() => region.active = !region.active"
+        class="landing-link with-line"
+        :class="{active: region.active}"
+        @click="() => toggleShow(idx)"
       >
         <span>{{ region.title }}</span>
       </button>
@@ -22,10 +23,9 @@
             <div
               class="deputy-item"
               v-for="deputy of region.deputies"
-              
             >
                 <div class="deputy-item-preview withZoomPreview-preview">
-                  <div class="deputy-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img});`"></div>
+                  <div class="deputy-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${deputy.img ?? '/img/avatar-default.jpg'});`"></div>
                 </div>
                 
                 <h4 class="deputy-item-name">
@@ -39,7 +39,7 @@
         </div>
 
         <div v-else-if="region.active" v-collapse>
-          <p class="deputy-empty">Нет депутатов</p>
+          <p class="deputy-empty">{{ $t('status.there-are-no-deputies') }}</p>
         </div>
       </Transition>
     </div>
@@ -52,6 +52,16 @@ import deputiesMap from "@/assets/map/deputiesMap.json";
 import { reactive } from 'vue';
 
 const regions = reactive(deputiesMap.deputiesList.map((x) => x))
+
+const toggleShow = (idx: number) => {
+  if (regions[idx].active) regions[idx].active = false;
+  else {
+    for (let i = 0; i < regions.length; i++) {
+      regions[i].active = false;
+    }
+    regions[idx].active = true;
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -61,7 +71,6 @@ const regions = reactive(deputiesMap.deputiesList.map((x) => x))
 }
 .deputy {
   &-item {
-
     max-width: 320px;    
 
     &-preview-img {

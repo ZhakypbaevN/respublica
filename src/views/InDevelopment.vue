@@ -10,7 +10,7 @@
             :viewboxHeight="24"
             :viewboxWidth="24"
           />
-          <h2 class="title">Страница в разработке!</h2>
+          <h2 class="title">{{ $t('status.the-page-is-in-development') }}</h2>
         </div>
       </section>
     </div>
@@ -30,7 +30,6 @@
   align-items: center;
   justify-content: center;
 
-  /* background: url('/img/landing/travel-ideas.jpg') no-repeat center; */
   background-size: cover;
 }
 .icon {

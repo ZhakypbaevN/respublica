@@ -69,14 +69,13 @@
 </template>
 
 <script setup lang="ts">
-import Intro from '@/components/uiLanding/home/Intro.vue'
-import AboutUs from '@/components/uiLanding/home/AboutUs.vue'
-import PartyProgram from '@/components/uiLanding/home/PartyProgram.vue'
-import AboutParty from '@/components/uiLanding/home/AboutParty.vue'
+import Intro from '@/components/uiLanding/home-page/Intro_2.vue'
+import AboutUs from '@/components/uiLanding/home-page/AboutUs.vue'
+import PartyProgram from '@/components/uiLanding/home-page/PartyProgram.vue'
+import AboutParty from '@/components/uiLanding/home-page/AboutParty.vue'
 import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
 import AnnounceItem from '@/components/uiLanding/press-center/announces/AnnounceItem.vue';
 import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
-
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';

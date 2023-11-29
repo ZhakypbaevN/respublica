@@ -64,101 +64,100 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+  import { onMounted, reactive, ref, watch } from 'vue';
+  import { useRoute } from 'vue-router';
 
-import LoginForm from '../components/authorization/loginForm.vue';
-import RegisterForm from '../components/authorization/registerForm.vue';
-import RegisterFinishForm from '../components/authorization/registerFinishForm.vue';
-import CheckCodeForm from '../components/authorization/checkCodeForm.vue';
+  import LoginForm from '@/components/authorization/LoginForm.vue';
+  import RegisterForm from '@/components/authorization/RegisterForm.vue';
+  import RegisterFinishForm from '@/components/authorization/RegisterFinishForm.vue';
+  import CheckCodeForm from '@/components/authorization/CheckingCodeForm.vue';
 
-import ResetPasswordForm from '../components/authorization/resetPasswordForm.vue';
-import ResetPasswordFinishForm from '../components/authorization/resetPasswordFinishForm.vue';
+  import ResetPasswordForm from '@/components/authorization/ResetPasswordForm.vue';
+  import ResetPasswordFinishForm from '@/components/authorization/ResetPasswordFinishForm.vue';
 
-const route = useRoute()
+  const route = useRoute()
 
-interface ShowForm {
-  [key: string]: boolean;
-}
+  interface ShowForm {
+    [key: string]: boolean;
+  }
 
-const showForm = reactive<ShowForm>({
-  login: true,
-  checkCode: false,
+  const showForm = reactive<ShowForm>({
+    login: true,
+    checkCode: false,
 
-  register: false,
-  registerFinish: false,
+    register: false,
+    registerFinish: false,
 
-  resetPassword: false,
-  resetPasswordFinish: false
-})
-const loginWithPhone = ref(true);
-const checkData = reactive({
-  phone: '',
-  token: ''
-});
-const fromResetPassword = ref(false);
+    resetPassword: false,
+    resetPasswordFinish: false
+  })
+  const loginWithPhone = ref(true);
+  const checkData = reactive({
+    phone: '',
+    token: ''
+  });
+  const fromResetPassword = ref(false);
 
-const objElementsToFalse = () => {
-  for (const key in showForm) {
-  if (Object.prototype.hasOwnProperty.call(showForm, key)) {
-      showForm[key] = false;
+  const objElementsToFalse = () => {
+    for (const key in showForm) {
+    if (Object.prototype.hasOwnProperty.call(showForm, key)) {
+        showForm[key] = false;
+      }
     }
   }
-}
 
-const showCheckForm = () => {
-  console.log('checkData', checkData.token);
-  fromResetPassword.value = showForm.resetPassword === true;
-  objElementsToFalse();
-  showForm.checkCode = true;
-}
+  const showCheckForm = () => {
+    console.log('checkData', checkData.token);
+    fromResetPassword.value = showForm.resetPassword === true;
+    objElementsToFalse();
+    showForm.checkCode = true;
+  }
 
-const showRegistrationForm = () => {
-  objElementsToFalse();
-  showForm.register = true;
-}
+  const showRegistrationForm = () => {
+    objElementsToFalse();
+    showForm.register = true;
+  }
 
-const showFinishRegistrationForm = () => {
-  objElementsToFalse();
-  showForm.registerFinish = true;
-}
+  const showFinishRegistrationForm = () => {
+    objElementsToFalse();
+    showForm.registerFinish = true;
+  }
 
-const showResetPasswordForm = () => {
-  objElementsToFalse();
-  showForm.resetPassword = true;
-}
+  const showResetPasswordForm = () => {
+    objElementsToFalse();
+    showForm.resetPassword = true;
+  }
 
-const showFinishResetPasswordForm = () => {
-  objElementsToFalse();
-  showForm.resetPasswordFinish = true;
-}
+  const showFinishResetPasswordForm = () => {
+    objElementsToFalse();
+    showForm.resetPasswordFinish = true;
+  }
 
-const checkRoute = () => {
-  objElementsToFalse();
-  if (route.params.logOrReg === 'register') showForm.register = true;
-  else if (route.params.logOrReg === 'reset-password') showForm.resetPassword = true;
-  else showForm.login = true;
-}
+  const checkRoute = () => {
+    objElementsToFalse();
+    if (route.params.logOrReg === 'register') showForm.register = true;
+    else if (route.params.logOrReg === 'reset-password') showForm.resetPassword = true;
+    else showForm.login = true;
+  }
 
-onMounted(checkRoute)
+  onMounted(checkRoute)
 
-watch(
-  () => route.params.logOrReg,
-  checkRoute
-)
+  watch(
+    () => route.params.logOrReg,
+    checkRoute
+  )
 </script>
 
 <style scoped lang="scss">
-
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.5s ease;
-}
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-.v-leave-active {
-  position: absolute;
-}
+  .v-enter-active,
+  .v-leave-active {
+    transition: all 0.5s ease;
+  }
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+  .v-leave-active {
+    position: absolute;
+  }
 </style>
