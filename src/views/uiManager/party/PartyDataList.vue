@@ -47,16 +47,63 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router'
-import { useToast } from '../../../modules/toast'
 
-const { toast } = useToast()
+
+import { useI18n } from 'vue-i18n'
+import { onMounted, reactive, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+
+import debounce from '@/helpers/debounce'
+import { NewsValues } from '@/types/news';
+import { getNewsList } from '@/actions/uiMedia/news';
+import { ref } from "vue";
+
+const { t } = useI18n()
+
 const route = useRoute()
+const router = useRouter()
+const search = ref(null);
 
-const partyDataList = ref([]);
-const token = localStorage.getItem('TOKEN');
+const filterList = [
+  {
+    name: t('status.list-published'),
+    value: true
+  },
+  {
+    name: t('status.list-unpublished'),
+    value: false
+  }
+]
+const newsValues = reactive<NewsValues>({
+  tableValues: null,
+  total: 0,
+  isEmpty: false,
+  searchEmpty: true
+})
+
+const getData = async () => {
+  newsValues.tableValues = null;
+  newsValues.isEmpty = false
+  const {
+    data,
+    total
+  } = await getNewsList('announcements', {
+    ...route.query
+  })
+  newsValues.tableValues = data;
+  newsValues.total = total;
+  if (!total) {
+    newsValues.isEmpty = true
+  }
+}
+
+onMounted(() => getData());
+
+watch(() => route.query, debounce(getData), { deep: true })
+watch(
+  () => search.value,
+  () => router.push({ query: { ...route.query, search: search.value } })
+)
 
 const getStatusList = (data) => {
   const list = [];
@@ -68,36 +115,6 @@ const getStatusList = (data) => {
   if (!list.length) return '-'
   return list.join(', ');
 }
-
-onMounted(() => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships?offset=0&limit=100&status=${route.params.filter}`
-
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    },
-    data: {
-      status: 'json'
-    }
-  })
-    .then((response) => {
-      partyDataList.value = [];
-
-      response.data.forEach(party => {
-        partyDataList.value.push(party);
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-
-})
 </script>
 
 <style scoped lang="scss">

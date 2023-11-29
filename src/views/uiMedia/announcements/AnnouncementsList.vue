@@ -1,14 +1,11 @@
 <template>
   <section class="wrapper-main">
     <div class="news wrapper">
-      <Filter
-        v-model="filter.published"
-        :list="filterList"
-      />
+      <Filter :list="filterList"/>
 
       <div class="news-header">
         <Input
-          v-model="filter.search"
+          v-model="search"
           staticPlaceholder
           placeholder="Поиск по проекту"
         />
@@ -23,11 +20,17 @@
         </RouterLink>
       </div>
       
-      <div class="news-items">
+      <div class="news-items" v-if="newsValues.isEmpty">
+        Empty
+      </div>
+      <div class="news-items disabled" v-else-if="!newsValues.tableValues">
+        Loading
+      </div>
+      <div class="news-items" v-else>
         <NewsItem
-          v-for="data of newsList"
-          :key="data"
-          :data="data"
+          v-for="news of newsValues.tableValues"
+          :key="news.title"
+          :data="news"
         />
       </div>
     </div>
@@ -37,70 +40,61 @@
 <script setup lang="ts">
 import NewsItem from "../../../components/uiMedia/announcements/newsItem.vue"
 
-import axios from 'axios';
-import { onMounted, reactive, ref } from 'vue';
-
-import { useToast } from '../../../modules/toast'
 import { useI18n } from 'vue-i18n'
-import { watch } from "vue";
+import { onMounted, reactive, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+
+import debounce from '@/helpers/debounce'
+import { NewsValues } from '@/types/news';
+import { getNewsList } from '@/actions/uiMedia/news';
+import { ref } from "vue";
 
 const { t } = useI18n()
-const { toast } = useToast()
 
-const token = localStorage.getItem('TOKEN');
-const isLoading = ref(false)
-const newsList = ref([]);
+const route = useRoute()
+const router = useRouter()
+const search = ref(null);
 
-const filter = reactive({
-  search: null,
-  published: true
-})
 const filterList = [
   {
-    name: t('filter-published'),
+    name: t('status.list-published'),
     value: true
   },
   {
-    name: t('filter-unpublished'),
+    name: t('status.list-unpublished'),
     value: false
   }
 ]
+const newsValues = reactive<NewsValues>({
+  tableValues: null,
+  total: 0,
+  isEmpty: false,
+  searchEmpty: true
+})
 
-onMounted(() => getPhotos());
-
-watch(
-  () => [filter.published, filter.search],
-  () => getPhotos()
-)
-
-const getPhotos = () => {
-  newsList.value = [];
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=6&search=${filter.search}&published=${filter.published}`;
-
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
+const getData = async () => {
+  newsValues.tableValues = null;
+  newsValues.isEmpty = false
+  const {
+    data,
+    total
+  } = await getNewsList('announcements', {
+    ...route.query
   })
-    .then((response) => {
-      console.log('response', response);
-
-      newsList.value = response.data;
-      isLoading.value = false;
-    })
-    .catch((err) => {
-      console.log('err', err);
-
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-      isLoading.value = false;
-    });
+  newsValues.tableValues = data;
+  newsValues.total = total;
+  if (!total) {
+    newsValues.isEmpty = true
+  }
 }
 
+onMounted(() => getData());
+
+watch(() => route.query, debounce(getData), { deep: true })
+watch(
+  () => search.value,
+  () => router.push({ query: { ...route.query, search: search.value } })
+)
 </script>
 
 <style scoped lang="scss">

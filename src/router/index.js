@@ -85,7 +85,11 @@ import MediaPhotoGalleryList from '@/views/uiMedia/PhotoGalleryList.vue'
 import MediaAnnouncementsList from '@/views/uiMedia/announcements/AnnouncementsList.vue'
 import MediaAnnouncementsEdit from '@/views/uiMedia/announcements/AnnouncementsEdit.vue'
 
+// ------------------ UI Client ------------------
+import Users from '@/views/uiAdmin/Users.vue'
+
 // Layouts
+const MainLayoutAdmin = () => import('@/components/uiAdmin/layouts/MainLayoutAdmin.vue')
 const MainLayoutBusiness = () => import('@/components/uiBusiness/layouts/MainLayoutBusiness.vue')
 const MainLayoutClient = () => import('@/components/uiClient/layouts/MainLayoutClient.vue')
 const MainLayoutManager = () => import('@/components/uiManager/layouts/MainLayoutManager.vue')
@@ -216,6 +220,24 @@ const routes = [
     path: '/marketplace',
     name: 'Marketplace',
     component: Marketplace
+  },
+
+  // UI Admin
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: MainLayoutAdmin,
+    meta: { title: 'admin', requiresAuth: true },
+    redirect: to => {
+      return '/admin/users'
+    },
+    children: [
+      {
+        path: 'users',
+        name: 'Users',
+        component: Users,
+      },
+    ]
   },
 
   // UI Client

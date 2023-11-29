@@ -3,38 +3,41 @@
     <span class="count">{{ visibleCount }} из {{ total }}</span>
     <div class="pagination" v-if="pagesCount > 1">
       <button
-        @click="paginate({ page: currentPage - 1 })"
-        v-if="currentPage !== 1"
+        @click="paginate({ offset: currentOffset - currentLimit, limit: currentLimit })"
+        v-if="currentOffset !== 0"
       >
-        <SvgIcon
+        
+        <!-- <SvgIcon
           name="pagination-chevron-left"
           :viewboxHeight="18"
           :viewboxWidth="11"
           :width="11"
           :height="18"
           fill="#161931"
-        />
+        /> -->
+        &lt;
       </button>
       <button
         v-for="page in pagesCount"
         :key="page"
-        @click="paginate({ page })"
-        :class="{ active: page === currentPage }"
+        @click="paginate({ offset: currentLimit * (page - 1), limit: currentLimit })"
+        :class="{ active: currentLimit * (page - 1) === currentOffset }"
       >
         {{ page }}
       </button>
       <button
-        @click="paginate({ page: currentPage + 1 })"
-        v-if="currentPage !== pagesCount"
+        @click="paginate({ offset: currentOffset + currentLimit, limit: currentLimit })"
+        v-if="currentOffset !== currentLimit - currentOffset"
       >
-        <SvgIcon
+        <!-- <SvgIcon
           name="pagination-chevron-right"
           :viewboxHeight="18"
           :viewboxWidth="11"
           :width="11"
           :height="18"
           fill="#161931"
-        />
+        /> -->
+        &gt;
       </button>
     </div>
     <div
@@ -44,8 +47,8 @@
       <select
         name="per_page"
         id="per_page"
-        @change="paginate({ perPage: Number(($event.target as HTMLInputElement).value) })"
-        :value="currentPerPage"
+        @change="paginate({ offset: currentOffset, limit: Number(($event.target as HTMLInputElement).value) })"
+        :value="currentLimit"
       >
         <option value="20">20</option>
         <option value="40">40</option>
@@ -62,11 +65,11 @@ import { useRoute, useRouter } from 'vue-router'
 
 interface IProps {
   total: number
-  page?: number
-  perPage?: number
+  offset?: number
+  Limit?: number
   withRouter: boolean
 }
-type PaginateProps = { page?: number; perPage?: number }
+type PaginateProps = { offset?: number; limit?: number }
 
 interface IEmits {
   (event: 'paginate', props: PaginateProps): void
@@ -74,8 +77,8 @@ interface IEmits {
 
 const props = withDefaults(defineProps<IProps>(), {
   total: 0,
-  page: 1,
-  perPage: 20,
+  offset: 1,
+  limit: 20,
   withRouter: false
 })
 
@@ -84,34 +87,34 @@ const emit = defineEmits<IEmits>()
 const route = useRoute()
 const router = useRouter()
 
-const currentPerPage = computed(() =>
-  Number(route.query.per_page ?? props.perPage)
+const currentLimit = computed(() =>
+  Number(route.query.limit ?? props.limit)
 )
 
-const currentPage = computed(() => Number(route.query.page ?? props.page))
+const currentOffset = computed(() => Number(route.query.offset ?? props.offset))
 
-const pagesCount = computed(() => Math.ceil(props.total / currentPerPage.value))
+const pagesCount = computed(() => Math.ceil(props.total / currentLimit.value))
 
 const visibleCount = computed(() => {
-  const { total, perPage } = props
+  const { total, limit } = props
 
-  if (total < perPage) return total
+  if (total < limit) return total
 
-  const totalPerPage = currentPage.value * currentPerPage.value
+  const totalLimit = currentOffset.value * currentLimit.value
 
-  if (totalPerPage > total) return total
+  if (totalLimit > total) return total
 
-  return totalPerPage
+  return totalLimit
 })
 
-const paginate = ({ page, perPage }: PaginateProps) => {
-  emit('paginate', { page, perPage })
+const paginate = ({ offset, limit }: PaginateProps) => {
+  emit('paginate', { offset, limit })
   if (props.withRouter) {
     router.push({
       query: {
         ...route.query,
-        page,
-        per_page: perPage
+        offset: offset,
+        limit: limit
       }
     })
   }

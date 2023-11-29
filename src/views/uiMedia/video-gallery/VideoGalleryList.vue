@@ -1,9 +1,11 @@
 <template>
   <section class="wrapper-main">
     <div class="news wrapper">
+      <Filter :list="filterList"/>
 
       <div class="news-header">
         <Input
+          v-model="search"
           placeholder="Поиск по проекту"
           staticPlaceholder
         />
@@ -16,10 +18,18 @@
           </Button>
         </RouterLink>
       </div>
-      <div class="news-items">
+
+
+      <div class="news-items" v-if="newsValues.isEmpty">
+        Empty
+      </div>
+      <div class="news-items disabled" v-else-if="!newsValues.tableValues">
+        Loading
+      </div>
+      <div class="news-items" v-else>
         <YoutubeItem
-          v-for="vidoeData of youTubeData"
-          :key="vidoeData"
+          v-for="(vidoeData, idx) of newsValues.tableValues"
+          :key="idx"
           :vidoeData="vidoeData"
         />
       </div>
@@ -28,52 +38,63 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-
 import YoutubeItem from '@/components/uiMedia/gallery/video/YoutubeItem.vue'
-import { useToast } from '@/modules/toast'
 
-const { toast } = useToast()
+import { useI18n } from 'vue-i18n'
+import { onMounted, reactive, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
 
-const isLoading = ref(false)
-const token = localStorage.getItem('TOKEN');
-const youTubeData = ref([]);
+import debounce from '@/helpers/debounce'
+import { NewsValues } from '@/types/news';
+import { getNewsList } from '@/actions/uiMedia/news';
+import { ref } from "vue";
 
-onMounted(() => getPhotos());
-const getPhotos = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=4`;
+const { t } = useI18n()
 
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
+const route = useRoute()
+const router = useRouter()
+const search = ref(null);
+
+const filterList = [
+  {
+    name: t('status.list-published'),
+    value: true
+  },
+  {
+    name: t('status.list-unpublished'),
+    value: false
+  }
+]
+const newsValues = reactive<NewsValues>({
+  tableValues: null,
+  total: 0,
+  isEmpty: false,
+  searchEmpty: true
+})
+
+const getData = async () => {
+  newsValues.tableValues = null;
+  newsValues.isEmpty = false
+  const {
+    data,
+    total
+  } = await getNewsList('video-gallery', {
+    ...route.query
   })
-    .then((response) => {
-      console.log('response', response);
-
-      youTubeData.value = response.data;
-      isLoading.value = false;
-    })
-    .catch((err) => {
-      console.log('err', err);
-
-      if (err.response.data.detail === 'Pending resignation request already exists.') {
-        toast({
-          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
-      isLoading.value = false;
-    });
+  newsValues.tableValues = data;
+  newsValues.total = total;
+  if (!total) {
+    newsValues.isEmpty = true
+  }
 }
 
+onMounted(() => getData());
+
+watch(() => route.query, debounce(getData), { deep: true })
+watch(
+  () => search.value,
+  () => router.push({ query: { ...route.query, search: search.value } })
+)
 </script>
 
 <style scoped lang="scss">
