@@ -17,14 +17,17 @@
         /> -->
         &lt;
       </button>
-      <button
+      <div
         v-for="page in pagesCount"
         :key="page"
-        @click="paginate({ offset: currentLimit * (page - 1), limit: currentLimit })"
-        :class="{ active: currentLimit * (page - 1) === currentOffset }"
       >
-        {{ page }}
-      </button>
+        <button
+          @click="paginate({ offset: currentLimit * (page - 1), limit: currentLimit })"
+          :class="{ active: currentLimit * (page - 1) === currentOffset }"
+        >
+          {{ page }}
+        </button>
+      </div>
       <button
         @click="paginate({ offset: currentOffset + currentLimit, limit: currentLimit })"
         v-if="currentOffset !== currentLimit - currentOffset"
@@ -77,7 +80,7 @@ interface IEmits {
 
 const props = withDefaults(defineProps<IProps>(), {
   total: 0,
-  offset: 1,
+  offset: 0,
   limit: 20,
   withRouter: false
 })

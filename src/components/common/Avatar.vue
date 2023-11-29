@@ -53,11 +53,11 @@ const links = [
   },
   {
     title: 'Менеджер',
-    link: '/manager'
+    link: '/manager/party-list/active?offset=0&limit=20&published=true&search='
   },
   {
     title: 'Пресс-центр',
-    link: '/media'
+    link: '/media/news-list?offset=0&limit=20&published=true&search='
   },
   {
     title: 'Для просмотра обращении',

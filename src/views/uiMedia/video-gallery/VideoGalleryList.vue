@@ -34,6 +34,8 @@
         />
       </div>
     </div>
+
+    <Pagination :total="newsValues.total" withRouter />
   </section>
 </template>
 

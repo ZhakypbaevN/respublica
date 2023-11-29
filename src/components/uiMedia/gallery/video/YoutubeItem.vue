@@ -13,7 +13,7 @@
       <!-- Content -->
       <div class="newsItem-content">
         <h4 class="newsItem-content-date">
-          {{ vidoeData.created_at }}
+          {{ convertDateTime(vidoeData.created_at) }}
         </h4>
 
         <h3 class="newsItem-content-title">
@@ -69,6 +69,8 @@ import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVid
 
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+
+import convertDateTime from '@/helpers/convertDateTime.js'
 
 interface IProps {
   vidoeData: any,
