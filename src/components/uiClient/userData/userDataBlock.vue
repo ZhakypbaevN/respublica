@@ -19,12 +19,12 @@
 
     <h4 class="userData-item checked">
       <span>ИИН:</span>
-      {{ userData.iin }}
+      {{ userData.iin ?? '-' }}
     </h4>
 
     <h4 class="userData-item checked">
       <span>Телефон:</span>
-      {{ formatPhoneNumber(userData.phone) }}
+      {{ userData.phone ? formatPhoneNumber(userData.phone) : '-' }}
     </h4>
 
     <h4 class="userData-item">

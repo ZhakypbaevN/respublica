@@ -80,7 +80,7 @@ const getData = async () => {
   const {
     data,
     total
-  } = await getNewsList('press-about-us', {
+  } = await getNewsList('news', {
     ...route.query
   })
   newsValues.tableValues = data;

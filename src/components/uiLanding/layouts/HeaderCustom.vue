@@ -46,13 +46,13 @@
                 :light="defaultFixed && headerClingingToTop && !dark"
               />
               
-              <button class="header-main-search">
+              <!-- <button class="header-main-search">
                 <SvgIcon
                   name="search"
                   :viewboxWidth="30"
                   :viewboxHeight="30"
                 />
-              </button>
+              </button> -->
               
               <RouterLink
                 v-if="!userType"

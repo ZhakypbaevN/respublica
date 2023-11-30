@@ -96,7 +96,7 @@ axios({
   url: url,
 })
   .then((response) => {
-    response.data.forEach(location => {
+    response.data.data.forEach(location => {
       regionList.value.push(
         {
           label: location.name,

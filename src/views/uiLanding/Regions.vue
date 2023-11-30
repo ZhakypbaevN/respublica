@@ -4,7 +4,7 @@
     <Header />
 
     <section class="landing-block">
-      <div class="wrapper landing-wrapper">
+      <div class="wrapper">
         <div class="landing-header regions-header">
           <h2 class="landing-title">
             <span v-if="controlBtns[0].active">{{ $t('header-regions') }}</span>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="faq-block">
-        <div class="wrapper landing-wrapper">
+        <div class="wrapper">
           <!--<h2 class="landing-title center">Карта регионов</h2>-->
 
           <Transition>

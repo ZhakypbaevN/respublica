@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="wrapper landing-wrapper">
-      <div class="map" ref="chartdiv"></div>
-    </div>
+    <div class="map" ref="chartdiv"></div>
 
     <div class="mapSidebar" :class="{show: showSideBar}">
       <div class="mapSidebar-topBlock" ref="mapSidebarTopBlock"></div>
@@ -210,6 +208,7 @@
       polygonSeries.data.setAll(cities.map(city => {
         const polygon = {}
         polygon.id = city.cityId
+        polygon.address = city.address;
         
         polygon.name = nameToLowerCase({ id: city.cityId, name: city.name })
         if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#235BE8')}
@@ -276,7 +275,7 @@
           centerX: am5.p50,
           centerY: am5.p50,
           text: "{name}",
-          fontSize: 12,
+          fontSize: 14,
           fontStyle: 'Tilda Sans',
           fill: am5.color(0xFFFFFF),
           populateText: true
@@ -294,7 +293,7 @@
         };
         polygon.id = city.cityId
         polygon.name = nameToLowerCase({id: city.cityId, name: city.name})
-        polygon.address = city.address
+        polygon.address = city.address;
         
         if (city.cityId === 'KZ-ABY' || city.cityId === 'KZ-ZHT' || city.cityId === 'KZ-ULT') polygon.polygonSettings = { fill: am5.color('#235BE8') }
         return polygon
@@ -308,7 +307,7 @@
 <style scoped lang="scss">
 .map {
   width: 100%;
-  height: 700px;
+  height: 900px;
 }
 
 .mapSidebar {

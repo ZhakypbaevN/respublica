@@ -99,7 +99,7 @@
 
           <a class="contacts-link" href="tel:+77017228251">
             <SvgIcon name="call-white" :viewboxWidth="52" :viewboxHeight="52" />
-            <span>8 701 722 8251</span>
+            <span>+7 701 722 8251</span>
           </a>
 
           <a class="contacts-link" href="mailto:akparat2020@gmail.com">

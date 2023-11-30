@@ -4,7 +4,7 @@
       <div class="wrapper">
         <div class="party-header">
           <h3 class="party-party-header-title">Члены партий</h3>
-          <p class="party-header-count">Всего {{ partyValues.tableValues ? partyValues.tableValues.length : '...' }}</p>
+          <p class="party-header-count">Всего {{ partyValues.total ?? '...' }}</p>
         </div>
         <table class="party-table" v-if="partyValues.tableValues">
           <thead>
@@ -126,6 +126,7 @@ const getStatusList = (data) => {
   }
 
   .party {
+    padding-bottom: 40px;
     &-header {
       display: flex;
       justify-content: space-between;
@@ -143,6 +144,7 @@ const getStatusList = (data) => {
     &-table {
       width: 100%;
       border-spacing: 0 10px;
+      margin-bottom: 40px;
 
       & tbody {
         transform: translateY(-15px);

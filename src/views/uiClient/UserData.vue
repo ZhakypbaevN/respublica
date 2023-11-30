@@ -219,10 +219,10 @@ const downloadPDFCard = () => {
     method: "get",
     url: url,
     headers: {
-      accept: 'application/pdf', // изменено значение заголовка accept
+      accept: 'application/pdf',
       Authorization: 'Bearer ' + token
     },
-    responseType: 'arraybuffer' // добавлен responseType
+    responseType: 'arraybuffer'
   })
   .then((response) => {
     const blob = new Blob([response.data], {type: 'application/pdf'});
@@ -237,8 +237,8 @@ const downloadPDFCard = () => {
       message: 'Возникли ошибки при запросе'
     })
   });
-
 }
+
 </script>
 
 <style scoped lang="scss">

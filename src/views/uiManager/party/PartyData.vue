@@ -93,6 +93,8 @@
                 name="Скачать партийный билет"
                 type="outline-blue"
                 v-slot:left
+                @click="downloadPDFCard"
+                :loading="isLoadingPDF"
               >
                 <SvgIcon
                   name="download"
@@ -137,20 +139,21 @@
 </template>
 
 <script setup lang="ts">
-import UserDataBlock from '../../../components/uiClient/userData/userDataBlock.vue'
-import PartyDataBlock from '../../../components/uiClient/userData/partyDataBlock.vue';
-import DeleteModal from '../../../components/uiManager/party/deleteModal.vue'
-import JoinPartyModal from '../../../components/uiManager/party/editModal.vue';
+import UserDataBlock from '@/components/uiClient/userData/userDataBlock.vue'
+import PartyDataBlock from '@/components/uiClient/userData/partyDataBlock.vue';
+import DeleteModal from '@/components/uiManager/party/deleteModal.vue'
+import JoinPartyModal from '@/components/uiManager/party/editModal.vue';
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router'
-import { useToast } from '../../../modules/toast'
+import { useToast } from '@/modules/toast'
 import { reactive } from 'vue';
 
 const { toast } = useToast()
 const route = useRoute()
 
+const isLoadingPDF = ref(false);
 const partyData = ref(null);
 const showModal = reactive({
   delete: false,
@@ -181,6 +184,33 @@ const getPartData = () => {
         message: 'Возникли ошибки при запросе'
       })
     });
+}
+
+const downloadPDFCard = () => {
+  isLoadingPDF.value = true;
+  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/pdf/${route.params.party_id}`;
+  axios({
+    method: "get",
+    url: url,
+    headers: {
+      accept: 'application/pdf',
+      Authorization: 'Bearer ' + token
+    },
+    responseType: 'arraybuffer'
+  })
+  .then((response) => {
+    const blob = new Blob([response.data], {type: 'application/pdf'});
+    const url = window.URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    isLoadingPDF.value = false;
+  })
+  .catch((err) => {
+    console.log('err', err);
+    isLoadingPDF.value = false;
+    toast({
+      message: 'Возникли ошибки при запросе'
+    })
+  });
 }
 </script>
 
