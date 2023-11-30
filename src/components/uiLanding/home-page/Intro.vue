@@ -28,6 +28,7 @@
           <SocialNetworks lightBlue />
 
           <div class="intro-bottom-btns">
+          <div></div>
             <Button
               :name="$t('home-join-the-party')"
               type="default-blue"
@@ -35,13 +36,13 @@
               data-aos="fade-left"
               uppercase
             />
-            <Button
+            <!-- <Button
               :name="$t('home-submit-an-apeal')"
               type="default-blue"
               @click="() => showModals.submitAnAppeal = true"
               data-aos="fade-left"
               uppercase
-            />
+            /> -->
             <RouterLink to="/donations">
               <Button
                 :name="$t('header-donations')"

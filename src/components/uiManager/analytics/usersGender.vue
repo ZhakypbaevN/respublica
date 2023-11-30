@@ -2,7 +2,7 @@
   <AnalyticsBlock
     title="Пол пользователя"
   >
-    <div class="usersGender-block">
+    <div v-if="genderData" class="usersGender-block">
       <div class="usersGender-item">
         <div class="usersGender-item-preview man">
           <h4 class="usersGender-item-preview-title">
@@ -14,7 +14,7 @@
             :viewboxHeight="83"
           />
           <h3 class="usersGender-item-preview-procent">
-            40%
+            {{ calculatorProcents(genderData.male) }}%
           </h3>
         </div>
         <div class="usersGender-item-list man">
@@ -24,7 +24,7 @@
             name="people-body-man"
             :viewboxWidth="30"
             :viewboxHeight="83"
-            :class="{ active: item < 5 }"
+            :class="{ active: item < calculatorCount(genderData.male) }"
           />
         </div>
       </div>
@@ -32,7 +32,7 @@
       <div class="usersGender-item girl">
         <div class="usersGender-item-preview girl">
           <h3 class="usersGender-item-preview-procent">
-            40%
+            {{ calculatorProcents(genderData.female) }}%
           </h3>
           <SvgIcon
             name="people-body-girl"
@@ -50,7 +50,7 @@
             name="people-body-girl"
             :viewboxWidth="42"
             :viewboxHeight="83"
-            :class="{ active: item < 5 }"
+            :class="{ active: item < calculatorCount(genderData.female) }"
           />
         </div>
       </div>
@@ -61,6 +61,29 @@
 <script setup lang="ts">
 import AnalyticsBlock from '@/components/uiManager/analytics/AnalyticsBlock.vue'
 
+import { ref, onMounted } from 'vue';
+
+import { IAnalyticsGenderDemographics } from '@/types/analytics';
+import { getGenderDemographics } from '@/actions/uiManager/analytics';
+
+const total = ref(0);
+const genderData = ref<IAnalyticsGenderDemographics>()
+
+onMounted(async () => {
+  const response = await getGenderDemographics();
+  if (response) {
+    genderData.value = response.data;
+    total.value = genderData.value.male + genderData.value.female;
+  }
+})
+
+const calculatorProcents = (count) => {
+  return Math.round(count / total.value * 100) / 1;
+}
+
+const calculatorCount = (count) => {
+  return Math.round(count / total.value * 100) / 10;
+}
 </script>
 
 <style scoped lang="scss">

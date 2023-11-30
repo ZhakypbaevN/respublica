@@ -13,21 +13,21 @@
             type="default-blue"
             @click="() => showModals.joinPartyModal = true"
           />
-          <Button
+          <!-- <Button
             name="ЗАПИСАТЬСЯ НА ПРИЕМ"
             type="default-blue"
             @click="() => showModals.makeAnAppointment = true"
-          />
-          <Button
+          /> -->
+          <!-- <Button
             name="ПОДАТЬ ОБРАЩЕНИЕ"
             type="default-blue"
             @click="() => showModals.submitAnAppeal = true"
-          />
-          <Button
+          /> -->
+          <!-- <Button
             name="ЗАКАЗАТЬ ЗВОНОК"
             type="default-blue"
             @click="() => showModals.orserACall = true"
-          />
+          /> -->
         </div>
 
         <RouterLink to="/">
@@ -111,10 +111,12 @@ const showModals = reactive({
   }
 
   &-mainBtns {
-    display: grid;
+    display: flex;
+    justify-content: center;
+    /* display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 82px);
-    grid-gap: 20px;
+    grid-gap: 20px; */
 
     margin-bottom: 60px;
   }

@@ -15,13 +15,13 @@
             <span>Встречи с избирателями</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
           </RouterLink>
-          <button 
+          <!-- <button 
             class="landing-link with-line"
             @click="() => showSubmitAnAppeal = true"
           >
             <span>Направить обращение</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -36,9 +36,9 @@
 </template>
   
 <script setup lang="ts">
-import FractionComposition from '../../components/uiLanding/party-fraction/fractionComposition.vue';
-import DeputyRequests from '../../components/uiLanding/party-fraction/deputyRequests.vue';
-import SubmitAnAppealModal from '../../components/uiLanding/feedback/submitAnAppealModal.vue';
+import FractionComposition from '@/components/uiLanding/party-fraction/FractionComposition.vue';
+import DeputyRequests from '@/components/uiLanding/party-fraction/DeputyRequests.vue';
+import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
 
 import { ref } from 'vue';
 
