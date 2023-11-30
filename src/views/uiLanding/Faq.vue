@@ -135,6 +135,7 @@ import { onMounted } from 'vue';
         font-size: 25px;
         font-weight: 500;
         line-height: 1.2;
+        text-align: left;
 
         transition: color .3s ease-in-out;
       }

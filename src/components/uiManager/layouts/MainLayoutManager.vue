@@ -30,19 +30,19 @@ onMounted(() => {
 const sideBarlinks = [
   {
     title: 'Члены партии',
-    link: "/manager/party-list/active"
+    link: "/manager/party-list/active?offset=0&limit=20&published=true&search="
   },
   {
     title: 'Заявки на удаление',
-    link: "/manager/party-resignation-list"
+    link: "/manager/party-resignation-list?offset=0&limit=20&published=true&search="
   },
   {
     title: 'Удаленные',
-    link: "/manager/party-list/revoked"
+    link: "/manager/party-list/revoked?offset=0&limit=20&published=true&search="
   },
   {
     title: 'VIP номера',
-    link: "/manager/ticket-num-data-list"
+    link: "/manager/ticket-num-data-list?offset=0&limit=20&published=true&search="
   },
   {
     title: 'Аналитика',

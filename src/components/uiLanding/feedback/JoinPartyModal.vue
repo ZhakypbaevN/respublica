@@ -1,6 +1,6 @@
 <template>
   <LogInFirstModal
-    :title="t('feedback.to-join-the-party,-you-need-to-log-in-to-the-portal-or-register')"
+    :title="t('feedback.to-join-the-party-you-need-to-log-in-to-the-portal-or-register')"
     @hide="emits('hide')"
     :show="show && !userType"
   />
@@ -309,8 +309,6 @@ onMounted(() => {
     url: url,
   })
     .then((response) => {
-      console.log('response.data', response.data);
-      console.log('response.data.data', response.data.data);
       response.data.data.forEach(location => {
         regionList.value.push(
           {
