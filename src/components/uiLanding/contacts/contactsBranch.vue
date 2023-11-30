@@ -1,27 +1,23 @@
 <template>
   <div class="branch">
-    <div class="wrapper landing-wrapper">
-      <div class="branch-inner">
-        <div class="map" ref="chartdiv"></div>
+    <div class="branch-map" ref="chartdiv"></div>
 
-        <div class="branch-content">
-          <div class="branch-content-header">
-            <SvgIcon
-              class="branch-content-header-icon"
-              name="pin-with-circle-yellow-bg"
-              :viewboxWidth="52"
-              :viewboxHeight="52"
-            />
-            
-            <h3 class="branch-content-header-title">{{ branchData.title }}</h3>
-          </div>
-
-          <p class="branch-content-info">
-            Адрес:
-            <span>{{ branchData.address }}</span>
-          </p>
-        </div>
+    <div class="branch-content">
+      <div class="branch-content-header">
+        <SvgIcon
+          class="branch-content-header-icon"
+          name="pin-with-circle-yellow-bg"
+          :viewboxWidth="52"
+          :viewboxHeight="52"
+        />
+        
+        <h3 class="branch-content-header-title">{{ branchData.title }}</h3>
       </div>
+
+      <p class="branch-content-info">
+        Адрес:
+        <span>{{ branchData.address }}</span>
+      </p>
     </div>
   </div>
 </template>
@@ -65,7 +61,7 @@
   })
   
   onMounted(() => {
-    const map = document.querySelector('.map');
+    const map = document.querySelector('.branch-map');
     let root = am5.Root.new(map);
   
     root._logo!.dispose();
@@ -203,7 +199,7 @@
       
       return {
         cityId: city.cityId,
-        name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`,
+        name: '',
         address: city.address
       }
     }));
@@ -253,19 +249,22 @@
 </script>
 
 <style scoped lang="scss">
-.map {
-  width: 700px;
-  height: 400px;
-}
 
 .branch {
-  &-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  grid-gap: 90px;
+
+  &-map {
+    width: 875px;
+    height: 500px;
   }
 
   &-content {
+    width: 100%;
+    max-width: 700px;
+    min-height: 340px;
     background-color: white;
     box-shadow: 0 4px 20px rgba(160,174,192,.25);
   
@@ -293,13 +292,111 @@
       color: var(--light-gray-color);
       font-weight: 500;
       font-size: 18px;
-      line-height: 1.2;
+      line-height: 1.4;
 
       & span {
         color: var(--primary-color);
         font-weight: 700;
       }
     }
+  }
+
+  // Adaptation
+  @media (max-width: 1900px) {
+    grid-gap: 70px;
+    
+    &-map {
+      width: 875px;
+      height: 500px;
+    }
+
+    &-content {
+      max-width: 600px;
+      min-height: 340px;
+    }
+  }
+
+  @media (max-width: 1600px) {
+    grid-gap: 60px;
+    
+    &-map {
+      width: 875px;
+      height: 500px;
+    }
+
+    &-content {
+      max-width: 480px;
+      min-height: 280px;
+
+      padding: 27px 20px;
+
+      &-header {
+        grid-gap: 20px;
+        margin-bottom: 30px;
+
+        &-icon {
+          width: 40px;
+          height: 40px;
+        }
+      
+        &-title {
+          font-size: 22px;
+        }
+      }
+    
+      &-info {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 1400px) {
+    grid-gap: 40px;
+    
+    &-map {
+      width: 875px;
+      height: 500px;
+    }
+
+    &-content {
+      max-width: 400px;
+      min-height: 280px;
+
+      padding: 27px 20px;
+
+      &-header {
+        grid-gap: 20px;
+        margin-bottom: 30px;
+
+        &-icon {
+          width: 40px;
+          height: 40px;
+        }
+      
+        &-title {
+          font-size: 22px;
+        }
+      }
+    
+      &-info {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+  }
+
+  @media (max-width: 992px) {
+  }
+
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
   }
 }
 </style>

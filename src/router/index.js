@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import i18n from '@/assets/lang/i18n.js'
+
+import { defaultLocale } from '@/assets/lang/exports'
+import i18n from '@/assets/lang'
 
 // -------------  Pages ---------------
 import Authorization from '@/views/Authorization.vue'
@@ -469,7 +471,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const lang = to.params.lang || 'ru';
+  const lang = to.params.lang || defaultLocale;
   i18n.global.locale.value = lang;
 
   // Установка заголовка для текущего языка

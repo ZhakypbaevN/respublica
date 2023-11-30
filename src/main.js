@@ -44,7 +44,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // Lang
-import i18n from '@/assets/lang/i18n.js'
+import i18n from '@/assets/lang'
 
 AOS.init();
 createApp(App)

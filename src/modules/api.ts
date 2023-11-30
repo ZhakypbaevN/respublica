@@ -119,9 +119,11 @@ const request = function (
 if (localStorage.getItem('TOKEN') != null) {
   api.defaults.headers.common.Authorization =
     'Bearer' + ' ' + localStorage.getItem('TOKEN')
+  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang') == 'kz' ? 'kz-KZ' : 'ru-RU'
 } else if (sessionStorage.getItem('TOKEN') != null) {
   api.defaults.headers.common.Authorization =
     'Bearer' + ' ' + sessionStorage.getItem('TOKEN')
+  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang') == 'kz' ? 'kz-KZ' : 'ru-RU'
 }
 
 api.requestGet = function (

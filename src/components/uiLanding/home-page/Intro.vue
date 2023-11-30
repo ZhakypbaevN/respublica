@@ -7,10 +7,10 @@
         <div class="wrapper landing-wrapper">
           <div class="intro-main-content-inner">
             <SvgIcon
-              class="intro-main-content-map"
-              name="kazakhstan-map-dots"
-              :viewboxWidth="523"
-              :viewboxHeight="251"
+              class="intro-main-content-logo"
+              name="logo-re-circle"
+              :viewboxWidth="219"
+              :viewboxHeight="219"
             />
             
             <h2 class="intro-main-content-title">
@@ -125,8 +125,9 @@ const showModals = reactive({
         background-position: bottom;
       }
       &::after {
+        height: 40%;
         z-index: 2;
-        background: linear-gradient(1deg, rgba(4, 32, 81, 0.50) 30.29%, rgba(4, 32, 81, 0.00) 69.36%);
+        background: linear-gradient(0deg, #042051 0%, rgba(#042051, 0) 100%);
       }
     }
 
@@ -142,20 +143,15 @@ const showModals = reactive({
 
         display: flex;
         justify-content: center;
-        padding-left: 250px;
+        align-items: center;
+        grid-gap: 59px;
 
         position: relative;
       }
 
-      &-map {
-        width: 523px;
-        height: 250.105px;
-
-        position: absolute;
-        left: 0;
-        top: 50%;
-        z-index: -1;
-        transform: translateY(-50%);
+      &-logo {
+        width: 219px;
+        height: 219px;
       }
 
       &-title {
@@ -211,15 +207,9 @@ const showModals = reactive({
       &-content {
         bottom: 70px;
 
-        &-inner {
-          padding-left: 250px;
-        }
-
-        &-map {
-          width: 440px;
-          height: 210.4px;
-
-          left: 120px;
+        &-logo {
+          width: 200px;
+          height: 200px;
         }
 
         &-title span {
@@ -244,15 +234,9 @@ const showModals = reactive({
       &-content {
         bottom: 70px;
 
-        &-inner {
-          padding-left: 250px;
-        }
-
-        &-map {
-          width: 400px;
-          height: 191.29px;
-
-          left: 140px;
+        &-logo {
+          width: 190px;
+          height: 190px;
         }
 
         &-title span {
@@ -277,15 +261,9 @@ const showModals = reactive({
       &-content {
         bottom: 50px;
 
-        &-inner {
-          padding-left: 250px;
-        }
-
-        &-map {
-          width: 300px;
-          height: 143.48px;
-
-          left: 140px;
+        &-logo {
+          width: 180px;
+          height: 180px;
         }
 
         &-title span {

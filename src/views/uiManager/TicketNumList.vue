@@ -33,13 +33,13 @@
 </template>
 
 <script setup lang="ts">
-import TicketNumItem from "../../components/uiManager/ticket-num/ticketNumItem.vue"
-import CreateTicketNumModal from "../../components/uiManager/ticket-num/createTicketNumModal.vue";
+import TicketNumItem from "@/components/uiManager/ticket-num/TicketNumItem.vue"
+import CreateTicketNumModal from "@/components/uiManager/ticket-num/CreateTicketNumModal.vue";
 
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
-import { useToast } from '../../modules/toast'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 

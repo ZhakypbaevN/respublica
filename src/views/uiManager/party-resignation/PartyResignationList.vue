@@ -4,9 +4,18 @@
       <div class="wrapper">
         <div class="party-header">
           <h3 class="party-party-header-title">Члены партий</h3>
-          <p class="party-header-count">Всего {{ partyDataList ? partyDataList.length : '...' }}</p>
+          <p class="party-header-count">Всего {{ partyValues.total ?? '...' }}</p>
         </div>
-        <table class="party-table" v-if="partyDataList">
+
+        <div class="party-filter">
+          <Input
+            v-model="search"
+            staticPlaceholder
+            placeholder="Поиск по проекту"
+          />
+        </div>
+
+        <table class="party-table" v-if="partyValues.tableValues">
           <thead>
             <tr class="party-head">
               <th>№ парт билета</th>
@@ -20,9 +29,9 @@
           </thead>
           <tbody>
             <!-- <tr > -->
-            <tr
+              <tr
               class="party-item"
-              v-for="party in partyDataList"
+              v-for="party in partyValues.tableValues"
               :key="party.membership.ticket_number"
             >
               <td>{{ party.membership.ticket_number }}</td>
@@ -46,31 +55,58 @@
           </tbody>
         </table>
       </div>
+
+      <Pagination :total="partyValues.total" withRouter />
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { onMounted, reactive, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
 
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+import debounce from '@/helpers/debounce'
+import { PartyResignationsValues } from '@/types/party-resignations'
+import { getPartyResignationsList } from '@/actions/uiManager/party-resignations';
+import { ref } from "vue";
 
-const { toast } = useToast()
+const { t } = useI18n()
 
-const partyDataList = ref([]);
-const token = localStorage.getItem('TOKEN');
+const route = useRoute()
+const router = useRouter()
+const search = ref(null);
 
-const getStatusList = (data) => {
-  const list = [];
+const partyValues = reactive<PartyResignationsValues>({
+  tableValues: null,
+  total: 0,
+  isEmpty: false,
+  searchEmpty: true
+})
 
-  if (data.membership.is_pensioner) list.push('Пенсионер');
-  if (data.membership.is_disabled) list.push('Инвалид');
-  if (data.membership.is_unemployed) list.push('Безработный');
-  if (data.membership.is_on_childcare_leave) list.push('Находящиеся в отпуске по уходу за детьми');
-  if (!list.length) return '-'
-  return list.join(', ');
+const getData = async () => {
+  partyValues.tableValues = null;
+  partyValues.isEmpty = false
+  const {
+    data,
+    total
+  } = await getPartyResignationsList(route.params.filter.toString(), {
+    ...route.query
+  })
+  partyValues.tableValues = data;
+  partyValues.total = total;
+  if (!total) {
+    partyValues.isEmpty = true
+  }
 }
+
+onMounted(() => getData());
+
+watch(() => route.query, debounce(getData), { deep: true })
+watch(
+  () => search.value,
+  () => router.push({ query: { ...route.query, search: search.value } })
+)
 
 const checkStatus = (status) => {
   if (status === 'pending') return 'В ожидании';
@@ -78,36 +114,16 @@ const checkStatus = (status) => {
   return 'Откланен';
 }
 
-onMounted(() => {
+const getStatusList = (data) => {
+  const list = [];
 
-  const url = 'https://api.respublica.codetau.com/api/v1/admin/parties/memberships/resignations?offset=0&limit=100';
-
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    },
-    data: {
-      status: 'json'
-    }
-  })
-    .then((response) => {
-      partyDataList.value = [];
-
-      response.data.forEach(party => {
-        partyDataList.value.push(party);
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-
-})
+  if (data.is_pensioner) list.push(t('social-category.pensioner'));
+  if (data.is_disabled) list.push(t('social-category.disabled'));
+  if (data.is_unemployed) list.push(t('social-category.unemployed'));
+  if (data.is_on_childcare_leave) list.push(t('social-category.on-childcare-leave'));
+  if (!list.length) return '-'
+  return list.join(', ');
+}
 </script>
 
 <style scoped lang="scss">

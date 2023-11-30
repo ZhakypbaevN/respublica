@@ -1,9 +1,13 @@
-import ru from './ru.json'
-import kz from './kz.json'
+import { languages, defaultLocale } from '@/assets/lang/exports'
+import { createI18n } from 'vue-i18n'
 
-export const defaultLocale = 'ru'
+const messages = Object.assign(languages)
 
-export const languages = {
-  ru,
-  kz
-}
+const i18n = createI18n({
+  legacy: false,
+  locale: defaultLocale,
+  fallbackLocale: defaultLocale,
+  messages
+})
+
+export default i18n;

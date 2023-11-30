@@ -4,8 +4,17 @@
       <div class="wrapper">
         <div class="party-header">
           <h3 class="party-party-header-title">Члены партий</h3>
-          <p class="party-header-count">Всего {{ partyValues.tableValues ? partyValues.tableValues.length : '...' }}</p>
+          <p class="party-header-count">Всего {{ partyValues.total ?? '...' }}</p>
         </div>
+
+        <div class="party-filter">
+          <Input
+            v-model="search"
+            staticPlaceholder
+            placeholder="Поиск по проекту"
+          />
+        </div>
+
         <table class="party-table" v-if="partyValues.tableValues">
           <thead>
             <tr class="party-head">
@@ -49,8 +58,6 @@
 </template>
 
 <script setup lang="ts">
-
-
 import { useI18n } from 'vue-i18n'
 import { onMounted, reactive, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
@@ -66,16 +73,6 @@ const route = useRoute()
 const router = useRouter()
 const search = ref(null);
 
-const filterList = [
-  {
-    name: t('status.list-published'),
-    value: true
-  },
-  {
-    name: t('status.list-unpublished'),
-    value: false
-  }
-]
 const partyValues = reactive<PartyMembersValues>({
   tableValues: null,
   total: 0,
@@ -110,10 +107,10 @@ watch(
 const getStatusList = (data) => {
   const list = [];
 
-  if (data.is_pensioner) list.push('Пенсионер');
-  if (data.is_disabled) list.push('Инвалид');
-  if (data.is_unemployed) list.push('Безработный');
-  if (data.is_on_childcare_leave) list.push('Находящиеся в отпуске по уходу за детьми');
+  if (data.is_pensioner) list.push(t('social-category.pensioner'));
+  if (data.is_disabled) list.push(t('social-category.disabled'));
+  if (data.is_unemployed) list.push(t('social-category.unemployed'));
+  if (data.is_on_childcare_leave) list.push(t('social-category.on-childcare-leave'));
   if (!list.length) return '-'
   return list.join(', ');
 }
@@ -126,6 +123,7 @@ const getStatusList = (data) => {
   }
 
   .party {
+    padding-bottom: 40px;
     &-header {
       display: flex;
       justify-content: space-between;
@@ -143,6 +141,7 @@ const getStatusList = (data) => {
     &-table {
       width: 100%;
       border-spacing: 0 10px;
+      margin-bottom: 40px;
 
       & tbody {
         transform: translateY(-15px);

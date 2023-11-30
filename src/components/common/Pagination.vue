@@ -56,7 +56,6 @@
         <option value="20">20</option>
         <option value="40">40</option>
         <option value="80">80</option>
-        <option :value="total">{{ $t('button.all') }}</option>
       </select>
     </div>
   </div>
