@@ -20,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import ContactsBranch from '../../components/uiLanding/contacts/contactsBranch.vue';
-import ContactsCentralOffice from '../../components/uiLanding/contacts/contactsCentralOffice.vue';
+import ContactsBranch from '@/components/uiLanding/contacts/ContactsBranch.vue';
+import ContactsCentralOffice from '@/components/uiLanding/contacts/ContactsCentralOffice.vue';
 </script>
 
 <style scoped lang="scss">

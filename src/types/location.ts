@@ -3,5 +3,6 @@ export interface ILocation {
   level: string,
   name: string,
   parent?: ILocation,
-  parent_id?: number
+  parent_id?: number,
+  ticket_prefix: string
 }

@@ -7,12 +7,43 @@
           <p class="party-header-count">Всего {{ partyValues.total ?? '...' }}</p>
         </div>
 
-        <div class="party-filter">
+        <div class="party-filter-header">
           <Input
-            v-model="search"
+            v-model="filter.fullName"
             staticPlaceholder
-            placeholder="Поиск по проекту"
+            placeholder="Поиск по ФИО"
           />
+          <Button
+            name="Фильтр"
+            :class="{ active: filter.show }"
+            @class="() => filter.show = !filter.show"
+          ></Button>
+        </div>
+
+        <div class="party-filter-block">
+          <Input
+            v-model="filter.ticketNum"
+            placeholder="Поиск по номеру билета"
+          />
+
+          <Select
+            :placeholder="$t('formdata.locality')"
+            :options="locationsList"
+            v-model="filter.locationID"
+          />
+
+          <Input
+            type="date"
+            v-model="filter.birthDate"
+            :placeholder="$t('formdata.date-of-birth')"
+          />
+
+          <Input
+            type="date"
+            v-model="filter.joinDate"
+            :placeholder="'Дата выдачи билета'"
+          />
+          
         </div>
 
         <table class="party-table" v-if="partyValues.tableValues">
@@ -59,19 +90,30 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { onMounted, reactive, watch } from 'vue';
+import { onMounted, reactive, watch, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 
+import moment from 'moment';
 import debounce from '@/helpers/debounce'
+
 import { PartyMembersValues } from '@/types/party-member';
 import { getPartyMembersList } from '@/actions/uiManager/party-members';
-import { ref } from "vue";
+import { getLocationsList } from '@/actions/uiAdmin/locations';
 
 const { t } = useI18n()
 
 const route = useRoute()
 const router = useRouter()
-const search = ref(null);
+
+const filter = reactive({
+  show: false,
+  fullName: route.query.full_name,
+  ticketNum: route.query.ticket_number,
+  locationID: route.query.location_id,
+  joinDate: route.query.join_date,
+  birthDate: route.query.birth_date,
+});
+const locationsList = ref();
 
 const partyValues = reactive<PartyMembersValues>({
   tableValues: null,
@@ -81,6 +123,19 @@ const partyValues = reactive<PartyMembersValues>({
 })
 
 const getData = async () => {
+  const response = await getLocationsList()
+  if (response) {
+    locationsList.value = [];
+    response.data.data.forEach(location => {
+      locationsList.value.push(
+        {
+          label: `${location.ticket_prefix}  -  ${location.name}`,
+          value: location.id.toString()
+        }
+      )
+    });
+  }
+
   partyValues.tableValues = null;
   partyValues.isEmpty = false
   const {
@@ -100,8 +155,14 @@ onMounted(() => getData());
 
 watch(() => route.query, debounce(getData), { deep: true })
 watch(
-  () => search.value,
-  () => router.push({ query: { ...route.query, search: search.value } })
+  () => [filter.fullName, filter.ticketNum, filter.locationID, filter.joinDate, filter.birthDate],
+  () => router.push({ query: { ...route.query,
+    full_name: filter.fullName,
+    ticket_number: filter.ticketNum,
+    location_id: filter.locationID,
+    join_date: filter.joinDate ? moment(filter.joinDate).format('YYYY-MM-DD') : null,
+    birth_date: filter.birthDate ? moment(filter.birthDate).format('YYYY-MM-DD') : null
+  } })
 )
 
 const getStatusList = (data) => {
@@ -124,6 +185,7 @@ const getStatusList = (data) => {
 
   .party {
     padding-bottom: 40px;
+
     &-header {
       display: flex;
       justify-content: space-between;
@@ -138,6 +200,25 @@ const getStatusList = (data) => {
         color: var(--light-gray-color);
       }
     }
+
+    &-filter {
+      &-header {
+        max-width: 900px;
+
+        display: flex;
+        grid-gap: 10px;
+
+        & button {
+          height: 60px;
+        }
+      }
+
+      &-block {
+        position: relative;
+        z-index: 10;
+      }
+    }
+
     &-table {
       width: 100%;
       border-spacing: 0 10px;

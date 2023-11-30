@@ -40,7 +40,7 @@
     { cityId: "KZ-KAR", name: "КАРАГАНДИНСКАЯ ОБЛАСТЬ", address: "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46" },
     { cityId: "KZ-PAV", name: "ПАВЛОДАРСКАЯ ОБЛАСТЬ", address: "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908" },
     { cityId: "KZ-ZHA", name: "ЖАМБЫЛСКАЯ ОБЛАСТЬ", address: "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж" },
-    { cityId: "KZ-AKM", name: "АКМОЛИНСКАЯ ОБЛАСТЬ", address: "" },
+    { cityId: "KZ-AKM", name: "АКМОЛИНСКАЯ ОБЛАСТЬ", address: "г.Кокшетау, Е.Н.АУЕЛЬБЕКОВА, 117" },
     { cityId: "KZ-ATY", name: "АТЫРАУСКАЯ ОБЛАСТЬ", address: "г. Атырау, пр. Султан Бейбарыс, 450" },
     { cityId: "KZ-AKT", name: "АКТЮБИНСКАЯ ОБЛАСТЬ", address: "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж" },
     { cityId: "KZ-MAN", name: "МАНГИСТАУСКАЯ ОБЛАСТЬ", address: "г. Актау, 16 мкрн, д. 25, БЦ Prime" },
@@ -206,14 +206,9 @@
   
     pointSeries.bullets.push(function() {
       return am5.Bullet.new(root, {
-        sprite: am5.Label.new(root, {
-          centerX: am5.p50,
-          centerY: am5.p50,
-          text: "{name}",
-          fontSize: 12,
-          fontStyle: 'Tilda Sans',
-          fill: am5.color(0xFFFFFF),
-          populateText: true
+        sprite: am5.Circle.new(root, {
+          radius: 5,
+          fill: am5.color(0xFFFFFF)
         })
       });
     });
