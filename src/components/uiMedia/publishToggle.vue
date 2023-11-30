@@ -33,7 +33,7 @@ const loading = ref(false);
 
 const togglePublishNews = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${props.data.id}`
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${props.data.id}`
   const token = localStorage.getItem('TOKEN');
 
   const data = new FormData();

@@ -152,8 +152,8 @@ const newCode = () => {
 const postCheckCode = () => {
   loading.value = true;
   const url = props.fromResetPassword
-    ? 'https://api.respublica.codetau.com/api/v1/auth/password/verify-sms'
-    : 'https://api.respublica.codetau.com/api/v1/auth/register/phone-confirm';
+    ? 'https://api.respublica-partiyasy.kz/api/v1/auth/password/verify-sms'
+    : 'https://api.respublica-partiyasy.kz/api/v1/auth/register/phone-confirm';
     
   axios({
     method: "post",

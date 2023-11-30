@@ -45,7 +45,7 @@ const token = localStorage.getItem('TOKEN');
 
 const postConfirmExitParty = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/resignations/${props.id}/approve`
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/resignations/${props.id}/approve`
 
   axios({
     method: "post",

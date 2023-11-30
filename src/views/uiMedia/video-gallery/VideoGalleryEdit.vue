@@ -74,7 +74,7 @@ const formData = reactive({
 // Get News
 onMounted(() => {
   if (route.params.news_id) {
-    const url = `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`;
 
     axios({
       method: "get",
@@ -108,8 +108,8 @@ onMounted(() => {
 const postNews = () => {
   loading.value = true;
   const url = route.params.news_id
-    ? `https://api.respublica.codetau.com/api/v1/admin/articles/${route.params.news_id}`
-    : `https://api.respublica.codetau.com/api/v1/admin/articles`;
+    ? `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`
+    : `https://api.respublica-partiyasy.kz/api/v1/admin/articles`;
 
   const data = new FormData();
   

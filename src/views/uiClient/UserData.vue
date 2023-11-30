@@ -166,7 +166,7 @@ onMounted(() => {
 })
 
 const getUserData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/users/me`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/users/me`;
   axios({
     method: "get",
     url: url,
@@ -189,7 +189,7 @@ const getUserData = () => {
 }
 
 const getPartData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
   axios({
     method: "get",
     url: url,
@@ -214,7 +214,7 @@ const getPartData = () => {
 const downloadPDFCard = () => {
   isLoading.downloadPDF = true;
   console.log('userData', userData.value);
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/pdf/${partyData.value.id}`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/pdf/${partyData.value.id}`;
   axios({
     method: "get",
     url: url,

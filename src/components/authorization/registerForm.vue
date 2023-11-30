@@ -66,7 +66,7 @@ const loading = ref(false);
 
 const postRegister = ({ phone }: { phone: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/register`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/register`;
 
   axios({
     method: "post",

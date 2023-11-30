@@ -65,7 +65,7 @@
   )
 
   const getAlboms = () => {
-    const url = `https://api.respublica.codetau.com/api/v1/galleries/albums?offset=0&limit=100`;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums?offset=0&limit=100`;
 
     axios({
       method: "get",
@@ -104,7 +104,7 @@
 
   const getPhotos = () => {
     isLoading.list = true;
-    const url = `https://api.respublica.codetau.com/api/v1/galleries/albums/${selectAlbomID.value}/images?offset=0&limit=100`;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums/${selectAlbomID.value}/images?offset=0&limit=100`;
 
     axios({
       method: "get",

@@ -45,7 +45,7 @@ const token = localStorage.getItem('TOKEN');
 
 const postDelete = () => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/reserved-ticket-numbers/${props.id}`
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers/${props.id}`
 
   axios({
     method: "delete",

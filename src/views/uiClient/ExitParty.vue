@@ -146,7 +146,7 @@
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <div class="exitParty-doc-namEwithAction">
-                <a class="exitParty-doc-name" :href="'https://api.respublica.codetau.com/' + exitPartyDatas.document?.name">{{ exitPartyDatas.document?.name }}</a>
+                <a class="exitParty-doc-name" :href="'https://api.respublica-partiyasy.kz/' + exitPartyDatas.document?.name">{{ exitPartyDatas.document?.name }}</a>
               </div>
             </div>
 
@@ -176,7 +176,7 @@
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <div class="exitParty-doc-namEwithAction">
-                <a class="exitParty-doc-name" :href="'https://api.respublica.codetau.com/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
+                <a class="exitParty-doc-name" :href="'https://api.respublica-partiyasy.kz/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
               </div>
             </div>
             <p>
@@ -206,7 +206,7 @@
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <div class="exitParty-doc-namEwithAction">
-                <a class="exitParty-doc-name" :href="'https://api.respublica.codetau.com/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
+                <a class="exitParty-doc-name" :href="'https://api.respublica-partiyasy.kz/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
               </div>
             </div>
             <p>
@@ -280,7 +280,7 @@ const isDocx = (fileName) => {
 
 // Get Party Data
 const getPartData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
   axios({
     method: "get",
     url: url,
@@ -310,7 +310,7 @@ onMounted(() => {
 
 const getRequestExitParty = () => {
   isLoading.page = true;
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/resignation`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation`;
 
   axios({
     method: "get",
@@ -346,7 +346,7 @@ const getRequestExitParty = () => {
 // Send Exit From Party
 const postRequestExitParty = () => {
   isLoading.btn = true;
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships/resignation?reason_for_resignation=${exitPartyDatas.select ?? exitPartyDatas.text!}`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation?reason_for_resignation=${exitPartyDatas.select ?? exitPartyDatas.text!}`;
 
   const formData = new FormData();
   formData.append("document", exitPartyDatas.document!);

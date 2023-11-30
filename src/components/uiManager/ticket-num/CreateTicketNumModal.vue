@@ -71,7 +71,7 @@ const region = ref(null);
 
 onMounted(() => {
 
-const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
+const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
 axios({
   method: "get",
   url: url,
@@ -101,7 +101,7 @@ const postJoinParty = (
   ) => {
 
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/reserved-ticket-numbers`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers`;
 
   axios({
     method: "post",

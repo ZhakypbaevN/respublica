@@ -297,7 +297,7 @@
   }
 
   // Adaptation
-  @media (max-width: 1900px) {
+  /* @media (max-width: 1900px) {
     grid-gap: 70px;
     
     &-map {
@@ -392,6 +392,6 @@
   }
 
   @media (max-width: 380px) {
-  }
+  } */
 }
 </style>

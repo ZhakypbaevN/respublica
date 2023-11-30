@@ -8,7 +8,7 @@
               <div class="news-title">{{ newsData.title }}</div>
   
               <div class="news-preview withZoomPreview-preview">
-                <div class="news-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${newsData.preview_image});`"></div>
+                <div class="news-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${newsData.preview_image});`"></div>
               </div>
 
               <div class="news-subtitle">{{ newsData.preview_text }}</div>

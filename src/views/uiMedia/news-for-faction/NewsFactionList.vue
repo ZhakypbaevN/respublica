@@ -75,7 +75,7 @@ watch(
 
 const getPhotos = () => {
   newsList.value = [];
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=2&search=${filter.search}&published=${filter.published}`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles?offset=0&limit=100&category_id=2&search=${filter.search}&published=${filter.published}`;
 
   axios({
     method: "get",

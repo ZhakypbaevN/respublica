@@ -17,7 +17,7 @@
                 <div class="userData-doc">
                   <h4 class="userData-doc-title">Документ:</h4>
                   <div class="userData-doc-namEwithAction">
-                    <a class="userData-doc-name" :href="'https://api.respublica.codetau.com/' + partyData.document">{{ partyData.document }}</a>
+                    <a class="userData-doc-name" :href="'https://api.respublica-partiyasy.kz/' + partyData.document">{{ partyData.document }}</a>
                   </div>
                 </div>
               </div>
@@ -31,7 +31,7 @@
                 <div class="userData-doc">
                   <h4 class="userData-doc-title">Документ:</h4>
                   <div class="userData-doc-namEwithAction">
-                    <a class="userData-doc-name" :href="'https://api.respublica.codetau.com/' + partyData.document">{{ partyData.document }}</a>
+                    <a class="userData-doc-name" :href="'https://api.respublica-partiyasy.kz/' + partyData.document">{{ partyData.document }}</a>
                   </div>
                 </div>
               </div> -->
@@ -292,7 +292,7 @@ onMounted(() => {
 })
 
 const getPartData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/resignations/${route.params.party_id}`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/resignations/${route.params.party_id}`;
   axios({
     method: "get",
     url: url,

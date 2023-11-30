@@ -113,7 +113,7 @@ const categoryList = [
 ]
 
 const getRegions = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
   axios({
     method: "get",
     url: url,

@@ -112,7 +112,7 @@ const postRegister = (
     }
   ) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/register/extra`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/register/extra`;
   axios({
     method: "post",
     url: url,
@@ -152,7 +152,7 @@ const postRegister = (
 
 const postLogin = ({ password }: { password: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/login`;
 
   const formData = new FormData();
   formData.append("username", props.phone);
@@ -206,7 +206,7 @@ const postLogin = ({ password }: { password: string }) => {
 }
 
 const getUserData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/users/me`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/users/me`;
   axios({
     method: "get",
     url: url,

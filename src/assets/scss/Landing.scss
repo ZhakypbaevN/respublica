@@ -147,128 +147,128 @@
   }
 
   // Adaptation
-  @media (max-width: 1200px) {
-    &-link.with-line {
-      grid-gap: 32px;
+  // @media (max-width: 1200px) {
+  //   &-link.with-line {
+  //     grid-gap: 32px;
   
-      padding: 5px 0 5px 18px;
-      margin-bottom: 18px;
+  //     padding: 5px 0 5px 18px;
+  //     margin-bottom: 18px;
   
-      &::before {
-        width: 5px;
-        min-width: 5px;
-      }
+  //     &::before {
+  //       width: 5px;
+  //       min-width: 5px;
+  //     }
   
-      & span {
-        font-size: 34px;
-      }
+  //     & span {
+  //       font-size: 34px;
+  //     }
   
-      & svg {
-        width: 30px;
-        height: 30px;
-      }
+  //     & svg {
+  //       width: 30px;
+  //       height: 30px;
+  //     }
   
-      &:hover {
-        &::before {
-          min-width: 600px;
-          width: 120%;
-        }
-      }
-    }
-  }
+  //     &:hover {
+  //       &::before {
+  //         min-width: 600px;
+  //         width: 120%;
+  //       }
+  //     }
+  //   }
+  // }
 
-  @media (max-width: 992px) {
-    &-link.with-line {
-      grid-gap: 30px;
+  // @media (max-width: 992px) {
+  //   &-link.with-line {
+  //     grid-gap: 30px;
   
-      padding: 5px 0 5px 18px;
-      margin-bottom: 18px;
+  //     padding: 5px 0 5px 18px;
+  //     margin-bottom: 18px;
   
-      &::before {
-        width: 5px;
-        min-width: 5px;
-      }
+  //     &::before {
+  //       width: 5px;
+  //       min-width: 5px;
+  //     }
   
-      & span {
-        font-size: 32px;
-      }
+  //     & span {
+  //       font-size: 32px;
+  //     }
   
-      & svg {
-        width: 28px;
-        height: 28px;
-      }
+  //     & svg {
+  //       width: 28px;
+  //       height: 28px;
+  //     }
   
-      &:hover {
-        &::before {
-          min-width: 600px;
-          width: 120%;
-        }
-      }
-    }
-  }
+  //     &:hover {
+  //       &::before {
+  //         min-width: 600px;
+  //         width: 120%;
+  //       }
+  //     }
+  //   }
+  // }
 
-  @media (max-width: 768px) {
-    &-link.with-line {
-      grid-gap: 28px;
+  // @media (max-width: 768px) {
+  //   &-link.with-line {
+  //     grid-gap: 28px;
   
-      padding: 5px 0 5px 18px;
-      margin-bottom: 18px;
+  //     padding: 5px 0 5px 18px;
+  //     margin-bottom: 18px;
   
-      &::before {
-        width: 5px;
-        min-width: 5px;
-      }
+  //     &::before {
+  //       width: 5px;
+  //       min-width: 5px;
+  //     }
   
-      & span {
-        font-size: 28px;
-      }
+  //     & span {
+  //       font-size: 28px;
+  //     }
   
-      & svg {
-        width: 26px;
-        height: 26px;
-      }
+  //     & svg {
+  //       width: 26px;
+  //       height: 26px;
+  //     }
   
-      &:hover {
-        &::before {
-          min-width: 500px;
-          width: 110%;
-        }
-      }
-    }
-  }
+  //     &:hover {
+  //       &::before {
+  //         min-width: 500px;
+  //         width: 110%;
+  //       }
+  //     }
+  //   }
+  // }
 
-  @media (max-width: 576px) {
-    &-link.with-line {
-      width: 100%;
-      display: flex;
-      grid-gap: 24px;
+  // @media (max-width: 576px) {
+  //   &-link.with-line {
+  //     width: 100%;
+  //     display: flex;
+  //     grid-gap: 24px;
   
-      padding: 5px 0 5px 18px;
-      margin-bottom: 18px;
+  //     padding: 5px 0 5px 18px;
+  //     margin-bottom: 18px;
   
-      &::before {
-        width: 5px;
-        min-width: 5px;
-      }
+  //     &::before {
+  //       width: 5px;
+  //       min-width: 5px;
+  //     }
   
-      & span {
-        font-size: 24px;
-      }
+  //     & span {
+  //       font-size: 24px;
+  //     }
   
-      & svg {
-        width: 24px;
-        height: 24px;
-      }
+  //     & svg {
+  //       width: 24px;
+  //       height: 24px;
+  //     }
   
-      &:hover {
-        &::before {
-          min-width: auto;
-          width: 100%;
-        }
-      }
-    }
-  }
+  //     &:hover {
+  //       &::before {
+  //         min-width: auto;
+  //         width: 100%;
+  //       }
+  //     }
+  //   }
+  // }
 
-  @media (max-width: 380px) {
-  }
+  // @media (max-width: 380px) {
+  // }
 }

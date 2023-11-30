@@ -4,11 +4,11 @@
   >
 
     <!-- Preview -->
-    <!-- :style="`background-image:url('https://api.respublica.codetau.com/${data.preview_image}');`" -->
+    <!-- :style="`background-image:url('https://api.respublica-partiyasy.kz/${data.preview_image}');`" -->
     <div class="photoItem-preview withZoomPreview-preview">
       <div
         class="photoItem-preview-img bg-cover withZoomPreview-preview-img"
-        :style="`background-image:url('https://api.respublica.codetau.com/${data.image}');`"
+        :style="`background-image:url('https://api.respublica-partiyasy.kz/${data.image}');`"
       ></div>
     </div>
 
@@ -47,7 +47,7 @@ const token = localStorage.getItem('TOKEN');
 // Delete Photo
 const onDelete = () => {
   isLoading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/galleries/images/${props.data.id}`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/galleries/images/${props.data.id}`;
   console.log('props', props.data.id);
   axios({
     method: "delete",

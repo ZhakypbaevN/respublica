@@ -249,7 +249,7 @@ const locationID = ref(null);
 const disabledLocationSelect = ref(false);
 
 onMounted(() => {
-  const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
   axios({
     method: "get",
     url: url,
@@ -347,7 +347,7 @@ const postJoinParty = (
 
 const postParty = (data) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/${props.data.id}`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/${props.data.id}`;
 
   axios({
     method: "post",
