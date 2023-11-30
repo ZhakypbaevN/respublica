@@ -31,8 +31,8 @@
 .title {
   font-size: 200px;
 
-  @media (max-width: 576px) {
+  /* @media (max-width: 576px) {
     font-size: 100px;
-  }
+  } */
 }
 </style>

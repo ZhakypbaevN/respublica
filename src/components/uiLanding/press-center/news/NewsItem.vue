@@ -5,7 +5,7 @@
     :href="`/news/${data.id}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
-      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
+      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
       <div class="newsItem-date">
         <SvgIcon
           name="calendar-check"
@@ -29,7 +29,7 @@
     :to="`/news/${data.id}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
-      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
+      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
       <div class="newsItem-date">
         <SvgIcon
           name="calendar-check"
@@ -55,7 +55,7 @@
     :to="`/news/${data.id}`"
   >
     <div class="newsItemMini-preview withZoomPreview-preview">
-      <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
+      <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
     </div>
     <div class="newsItemMini-text">
       <h4 class="newsItemMini-title">{{ data.title }}</h4>

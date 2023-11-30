@@ -55,7 +55,7 @@ const removeItem = ({index}: {index: number}) => {
 
 onMounted(() => getPhotos());
 const getPhotos = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
 
   axios({
     method: "get",

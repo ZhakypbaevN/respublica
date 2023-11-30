@@ -62,7 +62,7 @@ const loading = ref(false)
 
 const postResetPassword = ({ phone }: { phone: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/password/send-sms`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/password/send-sms`;
     
   axios({
     method: "post",

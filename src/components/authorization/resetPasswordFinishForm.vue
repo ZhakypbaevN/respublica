@@ -59,7 +59,7 @@ const postRegister = (
     }
   ) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/password/reset`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/password/reset`;
   axios({
     method: "post",
     url: url,

@@ -5,7 +5,7 @@
     :to="`/announce/${data.id}`"
   >
     <div class="announcement-preview withZoomPreview-preview">
-      <div class="announcement-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica.codetau.com/${data.preview_image});`"></div>
+      <div class="announcement-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
     </div>
 
     <div class="announcement-content">

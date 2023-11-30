@@ -79,7 +79,7 @@ const isImage = (fileName) => {
 // Send Send Photo
 const postPhoto = (photo) => {
   isLoading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/galleries/albums/${props.albomID}/images`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/galleries/albums/${props.albomID}/images`;
 
   const formData = new FormData();
   formData.append("image", photo!);

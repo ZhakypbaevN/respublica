@@ -108,7 +108,7 @@ const token = ref();
 
 const postLogin = ({ phone, iin, password }: { phone: string, iin: string, password: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/auth/login`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/login`;
 
   const formData = new FormData();
   formData.append("username", props.loginWithPhone ? formatPhone(phone) : iin);
@@ -143,7 +143,7 @@ const postLogin = ({ phone, iin, password }: { phone: string, iin: string, passw
 }
 
 const getUserData = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/users/me`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/users/me`;
   console.log('token.value', token.value);
   axios({
     method: "get",

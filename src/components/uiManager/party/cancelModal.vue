@@ -121,7 +121,7 @@ const isDocx = (fileName) => {
 
 const postCencelExitParty = ({ motive }: { motive: string }) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/resignations/${props.id}/reject?reason_for_reject=${motive}`
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/resignations/${props.id}/reject?reason_for_reject=${motive}`
 
   const formData = new FormData();
   formData.append("document_of_reject", file.value);

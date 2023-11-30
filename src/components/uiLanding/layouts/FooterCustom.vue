@@ -218,7 +218,7 @@ withDefaults(defineProps<IProps>(), {
   }
 
   // Adaptation
-  @media (max-width: 1370px) {
+  /* @media (max-width: 1370px) {
     &-main {
       grid-template-columns: 400px 1fr;
       grid-gap: 100px;
@@ -483,6 +483,6 @@ withDefaults(defineProps<IProps>(), {
   }
 
   @media (max-width: 380px) {
-  }
+  } */
 }
 </style>

@@ -39,7 +39,7 @@ onMounted(() => {
 })
 
 const getNews = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=100&category_id=6`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles?offset=0&limit=100&category_id=6`;
 
   axios({
     method: "get",

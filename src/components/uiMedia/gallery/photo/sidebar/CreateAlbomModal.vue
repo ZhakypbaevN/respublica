@@ -90,7 +90,7 @@ const formData = reactive({
 
 onMounted(() => {
 
-const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
+const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
 axios({
   method: "get",
   url: url,
@@ -118,7 +118,7 @@ axios({
 const createAlbom = () => {
 
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/admin/galleries/albums`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/galleries/albums`;
 
   const data = new FormData();
 

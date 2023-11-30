@@ -215,7 +215,7 @@ button {
   }
 
   // Adaptation
-  @media (max-width: 1200px) {
+  /* @media (max-width: 1200px) {
     padding: 19px 28px;
     border-radius: 10px;
 
@@ -246,6 +246,6 @@ button {
   }
 
   @media (max-width: 380px) {
-  }
+  } */
 }
 </style>

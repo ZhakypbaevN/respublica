@@ -40,9 +40,9 @@
 .title {
   font-size: 60px;
 
-  @media (max-width: 576px) {
+  /* @media (max-width: 576px) {
     font-size: 100px;
-  }
+  } */
 }
 img {
   height: 100%;

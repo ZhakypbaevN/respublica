@@ -260,7 +260,7 @@ const socialStatusList = [
 
 onMounted(() => {
 
-  const url = `https://api.respublica.codetau.com/api/v1/parties/locations?offset=0&limit=100`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
   axios({
     method: "get",
     url: url,
@@ -289,7 +289,7 @@ onMounted(() => {
 })
 
 const getUsers = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/users?offset=0&limit=100`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/users?offset=0&limit=100`;
   axios({
     method: "get",
     url: url,
@@ -314,7 +314,7 @@ const getUsers = () => {
 }
 
 const getTicketNum = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
   axios({
     method: "get",
     url: url,
@@ -409,7 +409,7 @@ const postJoinParty = (
 
 const postParty = (data) => {
   loading.value = true;
-  const url = `https://api.respublica.codetau.com/api/v1/parties/memberships`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
 
   axios({
     method: "post",

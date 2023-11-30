@@ -95,7 +95,7 @@ onMounted(() => {
 })
 
 const getAnnounce = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=6`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles?offset=0&limit=3&category_id=6`;
   axios({
     method: "get",
     url: url,
@@ -116,7 +116,7 @@ const getAnnounce = () => {
 }
 
 const getNews = () => {
-  const url = `https://api.respublica.codetau.com/api/v1/admin/articles?offset=0&limit=3&category_id=1`;
+  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles?offset=0&limit=3&category_id=1`;
 
   axios({
     method: "get",
