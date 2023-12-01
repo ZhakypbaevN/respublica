@@ -1,7 +1,7 @@
 <template>
   <section class="landing-block" id="history">
     <div class="wrapper">
-      <h2 class="landing-title" id="history">{{ $t('history-title') }}</h2>
+      <h2 class="landing-title" id="history">{{ $t('about-us-page.history.title') }}</h2>
       <ul class="timeline">
         <li
           v-for="history of historylist"
@@ -38,30 +38,30 @@ const { t } = useI18n()
 
 const historylist = [
   {
-    date: t('history-date-december'),
+    date: t('about-us-page.history.date-december'),
     img: '/img/about/history/История 1 съезд (1).jpg',
-    text: t('history-date-december-text')
+    text: t('about-us-page.history.date-december-text')
   },
   {
-    date: t('history-date-january'),
+    date: t('about-us-page.history.date-january'),
     img: '/img/about/history/История 1 съезд (2).jpg',
     logoSvg: true,
-    text: t('history-date-january-text')
+    text: t('about-us-page.history.date-january-text')
   },
   {
-    date: t('history-date-february'),
+    date: t('about-us-page.history.date-february'),
     img: '/img/about/history/История 1 съезд (2).jpg',
-    text: t('history-date-february-text')
+    text: t('about-us-page.history.date-february-text')
   },
   {
-    date: t('history-date-march'),
+    date: t('about-us-page.history.date-march'),
     img: '/img/about/history/История - выборы.jpg',
-    text: t('history-date-march-text')
+    text: t('about-us-page.history.date-march-text')
   },
   {
-    date: t('history-date-july'),
+    date: t('about-us-page.history.date-july'),
     img: '/img/about/history/История 3 съезд.jpg',
-    text: t('history-date-july-text')
+    text: t('about-us-page.history.date-july-text')
   }
 ]
 

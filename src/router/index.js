@@ -9,7 +9,6 @@ import NotFound from '@/views/404NotFound.vue'
 import PageInDevelopment from '@/views/InDevelopment.vue'
 
 import Home from '@/views/uiLanding/Home.vue'
-import Home_2 from '@/views/uiLanding/Home_2.vue'
 import Feedback from '@/views/uiLanding/Feedback.vue'
 import AboutParty from '@/views/uiLanding/AboutParty.vue'
 import News from '@/views/uiLanding/News.vue'
@@ -110,12 +109,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { titleKey: 'page.main' }
-  },
-  {
-    path: '/variant-2',
-    name: 'Home_2',
-    component: Home_2,
   },
   {
     path: '/about-party',

@@ -6,13 +6,13 @@
     <div class="wrapper">
       <div class="party-charter">
         <div class="party-charter-text">
-          <span class="party-charter-title">{{ $t('about-us-page-party-charter') }}</span>
-          <span class="party-charter-title-upper">{{ $t('about-us-page-alga-respublica') }}</span>
+          <span class="party-charter-title">{{ $t('about-us-page.party-is-charter.title') }}</span>
+          <span class="party-charter-title-upper">{{ $t('about-us-page.party-is-charter.alga-respublica') }}</span>
         </div>
         <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">
           <Button
             class="party-charter-download"
-            :name="$t('about-us-page-view-the-charter-btn')"
+            :name="$t('about-us-page.party-is-charter.view-the-charter-btn')"
             type="default-blue"
             uppercase
           />
@@ -26,7 +26,7 @@
   <section class="partyStructure">
     <div class="wrapper">
       <div class="partyStructure-inner landing-block" id="party-structure">
-        <h2 class="landing-title center">{{ $t('about-us-page-organizational-structure') }}</h2>
+        <h2 class="landing-title center">{{ $t('about-us-page.organizational-structure') }}</h2>
       
         <img src="/img/icons/party-structure-2.svg" alt="">
       </div>
@@ -43,11 +43,11 @@
 </template>
   
 <script setup lang="ts">
-import AboutUs from '../../components/uiLanding/about/aboutUs.vue';
-import PartyLeaders from '../../components/uiLanding/about/partyLeaders.vue';
-import PartyProgram from '../../components/uiLanding/about/partyProgram.vue';
-import RespublicaJastary from '../../components/uiLanding/about/respublicaJastary.vue';
-import History from '../../components/uiLanding/about/history.vue';
+import AboutUs from '@/components/uiLanding/about/AboutUs.vue';
+import PartyLeaders from '@/components/uiLanding/about/PartyLeaders.vue';
+import PartyProgram from '@/components/uiLanding/about/PartyProgram.vue';
+import RespublicaJastary from '@/components/uiLanding/about/RespublicaJastary.vue';
+import History from '@/components/uiLanding/about/History.vue';
 
 import { useI18n } from 'vue-i18n'
 

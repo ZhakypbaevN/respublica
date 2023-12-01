@@ -16,7 +16,7 @@
 
     <div class="aboutParty-item aboutParty-item-btn">
       <Button
-        :name="$t('home-about-party-join-the-party')"
+        :name="$t('feedback.join-the-party')"
         type="outline-light"
         uppercase
         @click="() => $emit('showJoinPartyModal')"

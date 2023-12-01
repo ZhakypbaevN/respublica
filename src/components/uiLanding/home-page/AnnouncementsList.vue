@@ -3,7 +3,7 @@
     <div class="wrapper landing-wrapper">
       <div class="landing-header">
         <h2 class="landing-title">
-          {{ $t('page.news') }}
+          {{ $t('page.announcements') }}
         </h2>
 
         <RouterLink to="/news-all" class="landing-header-link">
@@ -18,7 +18,7 @@
         Loading
       </div>
       <div class="landing-items" v-else>
-        <NewsItem
+        <AnnounceItem
           v-for="news of newsValues.tableValues"
           :key="news.title"
           :data="news"
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-  import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
+  import AnnounceItem from '@/components/uiLanding/press-center/announces/AnnounceItem.vue';
 
   import { onMounted, reactive, ref } from 'vue';
 
@@ -50,7 +50,7 @@
 
   const getData = async () => {
     newsValues.isEmpty = false
-    const { data, total } = await getNewsList('news', {offset: 0,limit: 3})
+    const { data, total } = await getNewsList('announcements', {offset: 0,limit: 3})
     newsValues.tableValues = data;
     newsValues.total = total;
     if (!total) {

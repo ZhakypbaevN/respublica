@@ -30,23 +30,23 @@ const { t } = useI18n()
 const aboutUsList = [
   {
     img: '/img/uiLanding/home/about-us/about-us-1.jpg',
-    title: t('about-us-what-are-we-doing'),
-    text: t('about-us-what-are-we-doing-text'),
-    btn: t('about-us-what-are-we-doing-btn'),
+    title: t('home.about-us.what-are-we-doing'),
+    text: t('home.about-us.what-are-we-doing-text'),
+    btn: t('button.doing-btn'),
     link: "/about-party",
   },
   {
     img: '/img/uiLanding/home/about-us/about-us-2.jpg',
-    title: t('about-us-who-are-we'),
-    text: t('about-us-who-are-we-text'),
-    btn: t('about-us-who-are-we-btn'),
+    title: t('home.about-us.who-are-we'),
+    text: t('home.about-us.who-are-we-text'),
+    btn: t('button.doing-btn'),
     link: "/about-party",
   },
   {
     img: '/img/uiLanding/home/about-us/about-us-3.jpg',
-    title: t('about-us-contribute'),
-    text: t('about-us-contribute-text'),
-    btn: t('about-us-contribute-btn'),
+    title: t('home.about-us.contribute'),
+    text: t('home.about-us.contribute-text'),
+    btn: t('button.doing-btn'),
     link: "/donations",
   },
 ];
@@ -134,7 +134,7 @@ const aboutUsList = [
   }
 
   // Adaptation
-  /* @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     margin-top: 70px;
 
     &-inner {
@@ -276,6 +276,6 @@ const aboutUsList = [
         }
       }
     }
-  } */
+  }
 }
 </style>

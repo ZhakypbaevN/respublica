@@ -1,7 +1,7 @@
 <template>
   <section class="party-leaders landing-block" id="party-leaders">
     <div class="wrapper">
-      <h2 class="landing-title">{{ $t('party-leaders-title') }}</h2>
+      <h2 class="landing-title">{{ $t('about-us-page.party-leaders.title') }}</h2>
       <div class="management-items">
         <div
           class="management-item"
@@ -33,52 +33,52 @@ const { t } = useI18n()
 const list = [
   {
     img: '/img/uiLanding/liders/khodzhanazarov.jpg',
-    fullName: t('party-leaders-khojanazarov'),
+    fullName: t('about-us-page.party-leaders.khojanazarov'),
 
     instagram: 'https://instagram.com/a1darbek?igshid=NTc4MTIwNjQ2YQ==',
-    description: t('party-leaders-khojanazarov-description')
+    description: t('about-us-page.party-leaders.khojanazarov-description')
   },
   {
     img: '/img/uiLanding/liders/alibekov.jpg',
-    fullName: t('party-leaders-alibekov'),
+    fullName: t('about-us-page.party-leaders.alibekov'),
     instagram: 'https://instagram.com/alibekovkz?igshid=MzRlODBiNWFlZA==',
-    description: t('party-leaders-alibekov-description')
+    description: t('about-us-page.party-leaders.alibekov-description')
   },
   {
     img: '/img/uiLanding/liders/baryshev.jpg',
-    fullName: t('party-leaders-baryshev'),
+    fullName: t('about-us-page.party-leaders.baryshev'),
     instagram: 'https://instagram.com/baryshev_maxim?igshid=MzRlODBiNWFlZA==',
-    description: t('party-leaders-baryshev-description')
+    description: t('about-us-page.party-leaders.baryshev-description')
   },
   {
     img: '/img/uiLanding/liders/berdenov.jpg',
-    fullName: t('party-leaders-berdenov'),
+    fullName: t('about-us-page.party-leaders.berdenov'),
     instagram: 'https://instagram.com/ruslan_berdenov?igshid=NTc4MTIwNjQ2YQ==',
-    description: t('party-leaders-berdenov-description')
+    description: t('about-us-page.party-leaders.berdenov-description')
   },
   {
     img: '/img/uiLanding/liders/koyanbayev.jpg',
-    fullName: t('party-leaders-koyanbaev'),
+    fullName: t('about-us-page.party-leaders.koyanbaev'),
     instagram: 'https://instagram.com/nurlankoyanbayev?igshid=MzRlODBiNWFlZA==',
-    description: t('party-leaders-koyanbaev-description')
+    description: t('about-us-page.party-leaders.koyanbaev-description')
   },
   {
     img: '/img/uiLanding/liders/tau.jpg',
-    fullName: t('party-leaders-tau'),
+    fullName: t('about-us-page.party-leaders.tau'),
     instagram: 'https://instagram.com/syrymbek_tau?igshid=MzRlODBiNWFlZA==',
-    description: t('party-leaders-tau-description')
+    description: t('about-us-page.party-leaders.tau-description')
   },
   {
     img: '/img/uiLanding/liders/shonbay.jpg',
-    fullName: t('party-leaders-shonby'),
+    fullName: t('about-us-page.party-leaders.shonby'),
     instagram: 'https://instagram.com/kuantr?igshid=MzRlODBiNWFlZA==',
-    description: t('party-leaders-shonby-description')
+    description: t('about-us-page.party-leaders.shonby-description')
   },
   {
     img: '/img/uiLanding/liders/shukizhanova.jpg',
-    fullName: t('party-leaders-shukizhanova'),
+    fullName: t('about-us-page.party-leaders.shukizhanova'),
     instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ==',
-    description: t('party-leaders-shukizhanova-description')
+    description: t('about-us-page.party-leaders.shukizhanova-description')
   }
 ]
 </script>

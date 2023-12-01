@@ -14,8 +14,8 @@
             />
             
             <h2 class="intro-main-content-title">
-              <span class="blue" data-aos="zoom-in" data-aos-delay="250">{{ $t("intro-new-people") }}</span> <br>
-              <span data-aos="zoom-in" data-aos-delay="300">{{ $t("intro-new-opportunities") }}</span>
+              <span class="blue" data-aos="zoom-in" data-aos-delay="250">{{ $t("home.intro.new-people") }}</span> <br>
+              <span data-aos="zoom-in" data-aos-delay="300">{{ $t("home.intro.new-opportunities") }}</span>
             </h2>
           </div>
         </div>
@@ -30,7 +30,7 @@
           <div class="intro-bottom-btns">
           <div></div>
             <Button
-              :name="$t('home-join-the-party')"
+              :name="$t('feedback.join-the-party')"
               type="default-blue"
               @click="() => showModals.joinPartyModal = true"
               data-aos="fade-left"
@@ -45,7 +45,7 @@
             /> -->
             <RouterLink to="/donations">
               <Button
-                :name="$t('header-donations')"
+                :name="$t('page.donations')"
                 type="default-blue"
                 data-aos="fade-left"
                 uppercase
@@ -203,7 +203,7 @@ const showModals = reactive({
   }
 
   // Adaptation
-  /* @media (max-width: 1600px) {
+  @media (max-width: 1600px) {
     &-main {
       &-content {
         bottom: 70px;
@@ -295,6 +295,6 @@ const showModals = reactive({
   }
 
   @media (max-width: 380px) {
-  } */
+  }
 }
 </style>

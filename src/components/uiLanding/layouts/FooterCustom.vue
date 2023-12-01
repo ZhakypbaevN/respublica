@@ -3,7 +3,7 @@
     <div class="wrapper landing-wrapper">
       <div class="footer-main">
         <div class="footer-mainForm">
-          <h3 class="footer-mainForm-title">{{ $t('footer-join-the-party') }}</h3>
+          <h3 class="footer-mainForm-title">{{ $t('footer.join-the-party') }}</h3>
           <div class="footer-mainForm-content">
             <RouterLink to="/" class="footer-mainForm-logo">
               <SvgIcon
@@ -18,11 +18,11 @@
 
           <div class="footer-mainForm-btns">
             <RouterLink to="/feedback">
-              <Button :name="$t('footer-feedback')" type="default-blue" uppercase />
+              <Button :name="$t('feedback.title')" type="default-blue" uppercase />
             </RouterLink>
             <RouterLink to="/donations">
               <Button
-                :name="$t('footer-donations')"
+                :name="$t('button.donations')"
                 class="footer-mainNavs-donatBtn"
                 type="default-red"
                 uppercase
@@ -39,15 +39,15 @@
 
         <div class="footer-mainNavs">
           <div class="footer-mainNavs-item">
-            <h4 class="footer-mainNavs-title">{{ $t('footer-party-respublica') }}</h4>
+            <h4 class="footer-mainNavs-title">{{ $t('footer.party-respublica') }}</h4>
             <div class="footer-mainNavs-links">
-              <RouterLink to="/about-party" class="footer-mainNavs-link">{{ $t('footer-about') }}</RouterLink>
-              <RouterLink to="/party-fraction" class="footer-mainNavs-link">{{ $t('footer-party-faction') }}</RouterLink>
-              <!-- <RouterLink to="/regions" class="footer-mainNavs-link">Регионы</RouterLink> -->
-              <RouterLink to="/news" class="footer-mainNavs-link">{{ $t('footer-press-center') }}</RouterLink>
-              <RouterLink to="/announce-list" class="footer-mainNavs-link">{{ $t('home-announcements') }}</RouterLink>
-              <RouterLink to="/contacts" class="footer-mainNavs-link">{{ $t('footer-contacts') }}</RouterLink>
-              <RouterLink to="/faq" class="footer-mainNavs-link">Вопрос – ответ</RouterLink>
+              <RouterLink to="/about-party" class="footer-mainNavs-link">{{ $t('page.about-party') }}</RouterLink>
+              <RouterLink to="/party-fraction" class="footer-mainNavs-link">{{ $t('page.party-faction') }}</RouterLink>
+              <RouterLink to="/regions" class="footer-mainNavs-link">{{ $t('page.regions') }}</RouterLink>
+              <RouterLink to="/news" class="footer-mainNavs-link">{{ $t('page.press-center') }}</RouterLink>
+              <RouterLink to="/announce-list" class="footer-mainNavs-link">{{ $t('page.announcements') }}</RouterLink>
+              <RouterLink to="/contacts" class="footer-mainNavs-link">{{ $t('page.contacts') }}</RouterLink>
+              <RouterLink to="/faq" class="footer-mainNavs-link">{{ $t('page.question-and-answer') }}</RouterLink>
             </div>
           </div>
 
@@ -55,12 +55,12 @@
             <div class="footer-mainNavs-item team">
               <h4 class="footer-mainNavs-title">{{ $t('footer-team') }}</h4>
               <div class="footer-mainNavs-links">
-                <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">{{ $t('footer-mazhilis-deputies') }}</RouterLink>
-                <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">{{ $t('footer-maslikhats-deputies') }}</RouterLink>
+                <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">{{ $t('page.mazhilis-deputies') }}</RouterLink>
+                <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">{{ $t('page.maslikhats-deputies') }}</RouterLink>
                 <!-- <RouterLink to="/0980" class="footer-mainNavs-link">Центральный аппарат</RouterLink> -->
-                <RouterLink to="/contacts/filials" class="footer-mainNavs-link">{{ $t('footer-branches') }}</RouterLink>
+                <RouterLink to="/contacts/filials" class="footer-mainNavs-link">{{ $t('page.branches') }}</RouterLink>
                 <RouterLink to="/marketplace">
-                 <Button :name="$t('footer-marketpalce')" type="default-blue" uppercase />
+                 <Button :name="$t('footer.marketpalce')" type="default-blue" uppercase />
                </RouterLink>  
               </div>
             </div>
@@ -70,11 +70,11 @@
 
         <div class="footer-bottom-btns">
           <RouterLink to="/feedback">
-            <Button :name="$t('footer-feedback')" type="default-blue" uppercase />
+            <Button :name="$t('feedback.title')" type="default-blue" uppercase />
           </RouterLink>
           <RouterLink to="/donations">
             <Button
-              :name="$t('footer-donations')"
+              :name="$t('button.donations')"
               class="footer-mainNavs-donatBtn"
               type="default-red"
               uppercase
@@ -89,8 +89,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-bottom-copyright">{{ $t('footer-respublica-party') }}</p>
-        <button class="footer-bottom-siteRightBtn">{{ $t('footer-all-rights-reserved') }}</button>
+        <p class="footer-bottom-copyright">{{ $t('footer.respublica-party') }}</p>
+        <button class="footer-bottom-siteRightBtn">{{ $t('footer.all-rights-reserved') }}</button>
       </div>
     </div>
   </footer>
@@ -218,7 +218,7 @@ withDefaults(defineProps<IProps>(), {
   }
 
   // Adaptation
-  /* @media (max-width: 1370px) {
+  @media (max-width: 1370px) {
     &-main {
       grid-template-columns: 400px 1fr;
       grid-gap: 100px;
@@ -483,6 +483,6 @@ withDefaults(defineProps<IProps>(), {
   }
 
   @media (max-width: 380px) {
-  } */
+  }
 }
 </style>
