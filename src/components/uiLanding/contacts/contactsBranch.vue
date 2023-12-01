@@ -18,11 +18,6 @@
         Адрес:
         <span>{{ branchData.address }}</span>
       </p>
-
-      <p class="branch-content-info">
-        Email:
-        <a :href="`mailto:${branchData.email}`">{{ branchData.email }}</a>
-      </p>
     </div>
   </div>
 </template>
@@ -40,120 +35,29 @@
   const regions = reactive(deputiesMap.deputiesList.map((x) => x))
 
   const cities = [
-    {
-      cityId: "KZ-ZHT",
-      name: "ЖЕТЫСУСКАЯ ОБЛАСТЬ",
-      email: "N.Kambayeva@respublica-partiyasy.kz",
-      address: "г. Талдыкорган, ул. Абылай хана, 186"
-    },
-    {
-      cityId: "KZ-ALM",
-      name: "АЛМАТИНСКАЯ ОБЛАСТЬ",
-      email: "B.Kabasov@respublica-partiyasy.kz",
-      address: "г. Конаев, мкр-н 1, уч. 35/10"
-    },
-    {
-      cityId: "KZ-KAR",
-      name: "КАРАГАНДИНСКАЯ ОБЛАСТЬ",
-      email: "a.amandykov@respublica-partiyasy.kz",
-      address: "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46"
-    },
-    {
-      cityId: "KZ-PAV",
-      name: "ПАВЛОДАРСКАЯ ОБЛАСТЬ",
-      email: "Zh.Arganbai@respublica-partiyasy.kz",
-      address: "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908"
-    },
-    {
-      cityId: "KZ-ZHA",
-      name: "ЖАМБЫЛСКАЯ ОБЛАСТЬ",
-      email: "n.iuldasheva@respublica-partiyasy.kz",
-      address: "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж"
-    },
-    {
-      cityId: "KZ-AKM",
-      name: "АКМОЛИНСКАЯ ОБЛАСТЬ",
-      email: "M.Baktibayev@respublica-partiyasy.kz",
-      address: "г.Кокшетау, Е.Н.АУЕЛЬБЕКОВА, 117"
-    },
-    {
-      cityId: "KZ-ATY",
-      name: "АТЫРАУСКАЯ ОБЛАСТЬ",
-      email: "G.Utebayev@respublica-partiyasy.kz",
-      address: "г. Атырау, пр. Султан Бейбарыс, 450"
-    },
-    {
-      cityId: "KZ-AKT",
-      name: "АКТЮБИНСКАЯ ОБЛАСТЬ",
-      email: "G.Kaiyrbayeva@respublica-partiyasy.kz",
-      address: "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж"
-    },
-    {
-      cityId: "KZ-MAN",
-      name: "МАНГИСТАУСКАЯ ОБЛАСТЬ",
-      email: "S.Beisembayeva@respublica-partiyasy.kz",
-      address: "г. Актау, 16 мкрн, д. 25, БЦ Prime"
-    },
-    {
-      cityId: "KZ-TUR",
-      name: "ТУРКЕСТАНСКАЯ ОБЛАСТЬ",
-      email: "B.Rysbekov@respublica-partiyasy.kz",
-      address: "г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13"
-    },
-    {
-      cityId: "KZ-KZY",
-      name: "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ",
-      email: "N.Talgatova@respublica-partiyasy.kz",
-      address: "г. Кызылорда, ул. Конаева, 19-а, 1 этаж"
-    },
-    {
-      cityId: "KZ-KUS",
-      name: "КОСТАНАЙСКАЯ ОБЛАСТЬ",
-      email: "M.Madinina@respublica-partiyasy.kz",
-      address: "г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN"
-    },
-    {
-      cityId: "KZ-ABY",
-      name: "АБАЙСКАЯ ОБЛАСТЬ",
-      email: "A.Oraz@respublica-partiyasy.kz",
-      address: "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199"
-    },
-    {
-      cityId: "KZ-ULT",
-      name: "УЛЫТАУСКАЯ ОБЛАСТЬ",
-      email: "Zh.Iztuleuov@respublica-partiyasy.kz",
-      address: "г. Жезказган, ул. Мира 1"
-    },
-    {
-      cityId: "KZ-ZAP",
-      name: "ЗКО",
-      email: "d.makatov@respublica-partiyasy.kz",
-      address: "г. Уральск, с. Желаево, ул.Трудовая, 6/3"
-    },
-    {
-      cityId: "KZ-VOS",
-      name: "ВКО",
-      email: "Zh.Hogzhilbek@respublica-partiyasy.kz",
-      address: "г. Усть-Каменогорск, ул. Чехова, 69, кв.1"
-    },
-    {
-      cityId: "KZ-SEV",
-      name: "СКО",
-      email: "a.beliyalov@respublica-partiyasy.kz",
-      address: "г. Петропавловск, ул. Алтынсарина, 168-б"
-    }
+    { cityId: "KZ-ZHT", name: "ЖЕТЫСУСКАЯ ОБЛАСТЬ", address: "г. Талдыкорган, ул. Абылай хана, 186" },
+    { cityId: "KZ-ALM", name: "АЛМАТИНСКАЯ ОБЛАСТЬ", address: "г. Конаев, мкр-н 1, уч. 35/10" },
+    { cityId: "KZ-KAR", name: "КАРАГАНДИНСКАЯ ОБЛАСТЬ", address: "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46" },
+    { cityId: "KZ-PAV", name: "ПАВЛОДАРСКАЯ ОБЛАСТЬ", address: "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908" },
+    { cityId: "KZ-ZHA", name: "ЖАМБЫЛСКАЯ ОБЛАСТЬ", address: "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж" },
+    { cityId: "KZ-AKM", name: "АКМОЛИНСКАЯ ОБЛАСТЬ", address: "г.Кокшетау, Е.Н.АУЕЛЬБЕКОВА, 117" },
+    { cityId: "KZ-ATY", name: "АТЫРАУСКАЯ ОБЛАСТЬ", address: "г. Атырау, пр. Султан Бейбарыс, 450" },
+    { cityId: "KZ-AKT", name: "АКТЮБИНСКАЯ ОБЛАСТЬ", address: "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж" },
+    { cityId: "KZ-MAN", name: "МАНГИСТАУСКАЯ ОБЛАСТЬ", address: "г. Актау, 16 мкрн, д. 25, БЦ Prime" },
+    { cityId: "KZ-TUR", name: "ТУРКЕСТАНСКАЯ ОБЛАСТЬ", address: "г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13" },
+    { cityId: "KZ-KZY", name: "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ", address: "г. Кызылорда, ул. Конаева, 19-а, 1 этаж" },
+    { cityId: "KZ-KUS", name: "КОСТАНАЙСКАЯ ОБЛАСТЬ", address: "г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN" },
+    { cityId: "KZ-ABY", name: "АБАЙСКАЯ ОБЛАСТЬ", address: "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199" },
+    { cityId: "KZ-ULT", name: "УЛЫТАУСКАЯ ОБЛАСТЬ", address: "г. Жезказган, ул. Мира 1" },
+    { cityId: "KZ-ZAP", name: "ЗКО", address: "г. Уральск, с. Желаево, ул.Трудовая, 6/3" },
+    { cityId: "KZ-VOS", name: "ВКО", address: "г. Усть-Каменогорск, ул. Чехова, 69, кв.1" },
+    { cityId: "KZ-SEV", name: "СКО", address: "г. Петропавловск, ул. Алтынсарина, 168-б" }
   ]
-
-  // Almaty: S.Raiymbek@respublica-partiyasy.kz, г.Алматы, ул. Жарокова, 41, 1 этаж
-  // Astana: info@respublica-partiyasy.kz, Мангилик ел, 33/1, Бизнес-центр IPLAZA, 9 этаж
-  // Shymkent: T.Yeszhan@respublica-partiyasy.kz, г.Шымкент, Аль-Фарабийский р-н, ул. Жандосова, зд. 21-а
-
   
   const branchData = reactive({
     title: cities[2].name,
     address: cities[2].address,
-    deputies: null,
-    email: cities[2].email
+    deputies: null
   })
   
   onMounted(() => {
@@ -234,7 +138,6 @@
             if (city.cityId === ev.target.dataItem!.dataContext!.id) {
               branchData.title = region.title;
               branchData.address = Object.assign({}, city).address;
-              branchData.email = Object.assign({}, city).email;
             }
           })
           region.active = true;
@@ -386,20 +289,9 @@
       font-size: 18px;
       line-height: 1.4;
 
-      margin-bottom: 12px;
-
       & span {
         color: var(--primary-color);
         font-weight: 700;
-      }
-
-      & a {
-        color: var(--accent-color);
-        font-weight: 700;
-
-        &:hover {
-          text-decoration: underline;
-        }
       }
     }
   }

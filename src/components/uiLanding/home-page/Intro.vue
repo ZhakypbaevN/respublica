@@ -103,7 +103,6 @@ const showModals = reactive({
       bottom: 0;
 
       background-image: url('/img/uiLanding/home/intro/intro-banner.jpg');
-      filter: brightness(98%); 
 
       &::before,
       &::after {

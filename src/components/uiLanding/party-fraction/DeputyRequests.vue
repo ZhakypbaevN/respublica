@@ -32,7 +32,7 @@
             <tr v-for="request of tableContentList" :key="request.title">
               <td class="nowrap">
                 <span>
-                  {{ toLowerCaseText(request.title) }}
+                  {{ request.title }}
                 </span>
               </td>
               <td>
@@ -65,7 +65,7 @@
                     <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
                   </div>
                   <span>
-                    {{ toLowerCaseText(request.answerDate) }}
+                    {{ request.answerDate }}
                   </span>
                 </a>
 
@@ -73,7 +73,7 @@
                   <div class="text-line-icon">
                     <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
                   </div>
-                  <span>{{ toLowerCaseText(request.answerDate) }}</span>
+                  <span>{{ request.answerDate }}</span>
                 </div>
               </td>
             </tr>
@@ -94,49 +94,49 @@ const deputieslist = reactive([
     active: true,
     data: [
       {
-        title: "14 апреля 2023 года",
+        title: "14 Апреля 2023 года",
         docAndDescription:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23.pdf",
         name: "Касательно мер по ликвидации засухи",
         video: null,
-        answerDate: "17 мая 2023 года",
+        answerDate: "17 Мая 2023 года",
         answerDoc:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23 жауап.pdf",
       },
       {
-        title: "16 июня 2023 года",
+        title: "16 Июня 2023 года",
         docAndDescription:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 10.05.23.pdf",
         name: "Касательно водных ресурсов",
         video: null,
-        answerDate: "3 августа 2023 года",
+        answerDate: "3 Августа 2023 года",
         answerDoc:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 10.05.23 жауап.pdf",
       },
       {
-        title: "21 мая 2023 года",
+        title: "21 Мая 2023 года",
         docAndDescription:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 24.05.23.pdf",
         name: "Ауыл шаруашылығы өнімдерін экспортауда қойылатын шектеулер туралы",
         video: null,
-        answerDate: "21 июня 2023 года",
+        answerDate: "21 Июня 2023 года",
         answerDoc:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 24.05.23 жауап.pdf",
       },
       {
-        title: "12 мая 2023 года",
+        title: "12 Мая 2023 года",
         docAndDescription:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23.pdf",
         name: "Касательно развития сельских территорий",
         video: null,
-        answerDate: "6 июня 2023 года",
+        answerDate: "6 Июня 2023 года",
         answerDoc:
           "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 14.06.23 жауап.pdf",
       },
 
       // 2nd session
       {
-        title: "14 апреля 2023 года",
+        title: "14 Апреля 2023 года",
         name:
           "Шетелдік астық және сүт өнімдерін жеткізушілер тарапынан ішкі нарықтағы бағалардың заңсыз импорты мен демпингі төңірегінде қалыптасқан жағдай туралы",
         docAndDescription:
@@ -154,30 +154,30 @@ const deputieslist = reactive([
     active: false,
     data: [
       {
-        title: "13 апреля 2023 года",
+        title: "13 Апреля 2023 года",
         name:
           "Букмекерские конторы, азартные игры и все ставки предлагаемые через Интернет",
         docAndDescription: "/doc/ru/deputies-requests/berdenov/Берденов 12.04.23.pdf",
         video: null,
-        answerDate: "12 мая 2023 года",
+        answerDate: "12 Мая 2023 года",
         answerDoc: "/doc/ru/deputies-requests/berdenov/Берденов 12.04.23 жауап.pdf",
       },
       {
-        title: "22 июня 2023 года",
+        title: "22 Июня 2023 года",
         name: "По вопросам снижения оборота и обязательной постановки на учет по НДС",
         docAndDescription: "/doc/ru/deputies-requests/berdenov/Берденов 21.06.23.pdf",
         video: null,
-        answerDate: "14 июля 2023 года",
+        answerDate: "14 Июля 2023 года",
         answerDoc: "/doc/ru/deputies-requests/berdenov/Берденов 21.06.23 жауап.pdf",
       },
 
       // 2nd session
       {
-        title: "6 сентября 2023 года",
+        title: "6 Сентября 2023 года",
         name: "«Қазақстан темір жолы» ҰК» АҚ қызметіне қатысты",
         docAndDescription: "/doc/ru/deputies-requests/berdenov/Берденов 06.09.23.pdf",
         video: null,
-        answerDate: "13 июня 2023 года",
+        answerDate: "13 Июня 2023 года",
         answerDoc: null,
       },
     ],
@@ -347,10 +347,6 @@ const deputieslist = reactive([
     ],
   },
 ]);
-
-function toLowerCaseText(inputText) {
-  return inputText.toLowerCase();
-}
 
 const tableContentList = ref(deputieslist[0].data);
 

@@ -89,7 +89,7 @@ const sideBarlinks = [
   justify-content: space-between;
   padding: 54px 140px 54px 80px;
   
-  background: url('/img/about/people.jpg') center no-repeat;
+  background: url('/img/about/people.png') center no-repeat;
   background-size: cover;
   border-radius: 20px;
 
