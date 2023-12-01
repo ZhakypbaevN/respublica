@@ -56,7 +56,7 @@ const fractionList = [
     zIndex: 6,
     fullName: 'ТАУ Нургуль',
     description: `
-      Член Комитета по социальнокультурному развитию
+      Член Комитета по социально-культурному развитию
     `,
     img: '/img/uiLanding/fraction/banner-peoples/fraction-people-1.png',
     facebook: 'https://www.facebook.com/nurgul.ttt?mibextid=LQQJ4d',
