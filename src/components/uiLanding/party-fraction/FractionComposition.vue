@@ -2,7 +2,7 @@
   <section class="fractionComposition landing-block" id="fraction-composition">
     <div class="wrapper" :class="{'landing-wrapper': single}">
       <h2 v-if="single" class="landing-title center">Депутаты мажилиса</h2>
-      <h2 v-else class="landing-title">Состав фракции партии RESPUBLICA</h2>
+      <h2 v-else class="landing-title">Состав фракции партии Respublica в Мажилисе Парламента РК</h2>
    
       <div class="fraction-items">
         <div
