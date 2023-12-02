@@ -19,9 +19,13 @@
 </template>
 
 <script setup>
+import SideBar from '@/components/common/SideBar.vue';
+import HeaderBusiness from '@/components/uiBusiness/layouts/HeaderBusiness.vue';
+
 import { onMounted } from 'vue';
-import SideBar from '../../common/SideBar.vue';
-import HeaderBusiness from './headerBusiness.vue';
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 onMounted(() => {
   document.body.style ='height:100vh;overflow:hidden;';
@@ -29,54 +33,54 @@ onMounted(() => {
 
 const sideBarlinks = [
   {
-    title: 'Новые',
+    title: t('status.new'),
     link: "/business/appeal-list/new",
     typeButton: true
   },
   {
-    title: 'В обработке',
+    title: t('status.in-processing'),
     typeDropDown: true,
     active: false,
     children: [
       {
-        title: 'В обработке',
+        title: t('status.in-processing'),
         link: "/business/page-in-development",
       },
       {
-        title: 'На подпись',
+        title: t('status.for-signature'),
         link: "/business/page-in-development",
       },
       {
-        title: 'В компетентный орган',
+        title: t('status.to-the-competent-authority'),
         link: "/business/page-in-development",
       }
     ]
   },
   {
-    title: 'Завершенные',
+    title: t('status.completed'),
     typeDropDown: true,
     active: false,
     children: [
       {
-        title: 'Положительный ответ',
+        title: t('status.positive-response'),
         link: "/business/page-in-development",
       },
       {
-        title: 'Дано разъяснение',
+        title: t('status.an-explanation-is-given'),
         link: "/business/page-in-development",
       },
       {
-        title: 'Не решенные',
+        title: t('status.unresolved-issues'),
         link: "/business/page-in-development",
       },
       {
-        title: 'Не подлежат рассмотрению',
+        title: t('status.not-subject-to-review'),
         link: "/business/page-in-development",
       }
     ]
   },
   {
-    title: 'Аналитика',
+    title: t('page.analytics'),
     link: "/business/analytics",
     typeButton: true
   },

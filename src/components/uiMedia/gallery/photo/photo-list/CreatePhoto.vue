@@ -4,7 +4,7 @@
       for="upload-files"
     >
       <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
-      <h3 class="createPhoto-title">Загрузите снимок</h3>
+      <h3 class="createPhoto-title">{{ $t('upload-a-picture') }}</h3>
 
       <input
         type="file"
@@ -28,14 +28,16 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
-import { ref } from 'vue';
-
-// Components
 import ImageCrop from '@/components/common/ImageCrop.vue'
 
-// Module
+import axios from 'axios'
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n'
+
 import { useToast } from '@/modules/toast'
+
+const { t } = useI18n()
+const { toast } = useToast()
 
 interface IProps {
   albomID: number
@@ -48,9 +50,8 @@ interface Emits {
 const props = defineProps<IProps>()
 const emit = defineEmits<Emits>()
 
-const { toast } = useToast()
 const isLoading = ref(false)
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const isShowModal = ref(false)
 const fileUrl = ref()
@@ -97,7 +98,7 @@ const postPhoto = (photo) => {
       console.log('response', response);
 
       toast({
-        message: 'Фотография загружена',
+        message: t('message.the-photo-has-been-uploaded'),
         type: 'success'
       })
 

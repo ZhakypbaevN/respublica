@@ -2,11 +2,11 @@
   <section class="wrapper-main">
     <div class="photo wrapper">
       <div class="landing-header">
-        <h2 class="landing-title">Фотогалерея</h2>
+        <h2 class="landing-title">{{ $t('page.photo-gallery') }}</h2>
         <Button
           class="photo-addBtn"
           type="outline-blue"
-          name="Добавить альбом"
+          :name="$t('button.add-albom')"
           @click="() => showModal = true"
         >
           <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
@@ -36,13 +36,14 @@
 </template>
 
 <script setup lang="ts">
-  import axios from 'axios'
-  import { ref, reactive, onMounted, watch } from "vue";
-  import { useToast } from '@/modules/toast'
-
   import PhotoCardList from "@/components/uiMedia/gallery/photo/photo-list/PhotoCardList.vue"
   import PhotoSideBar from "@/components/uiMedia/gallery/photo/sidebar/PhotoSidebar.vue"
   import CreateAlbomModal from "@/components/uiMedia/gallery/photo/sidebar/CreateAlbomModal.vue"
+
+  import axios from 'axios'
+  import { ref, reactive, onMounted, watch } from "vue";
+  
+  import { useToast } from '@/modules/toast'
 
   const { toast } = useToast()
 
@@ -51,7 +52,7 @@
     sidebar: true,
     list: true
   })
-  const token = localStorage.getItem('TOKEN');
+  const token = localStorage.getItem('access_token');
 
   const selectAlbomID = ref(1)
   const albomlist = ref();
@@ -65,7 +66,7 @@
   )
 
   const getAlboms = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums?offset=0&limit=100`;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums`;
 
     axios({
       method: "get",
@@ -78,27 +79,29 @@
       .then((response) => {
         console.log('response', response);
         
-        albomlist.value = response.data.filter((albom, idx) => {
+        albomlist.value = response.data.data.filter((albom, idx) => {
           albom.id = idx + 1;
           return albom
         });
-        isLoading.sidebar = false;
-        selectAlbomID.value = albomlist.value[0].id;
-
-        if (albomlist.value.length) getPhotos()
+        
+        if (albomlist.value.length) {
+          isLoading.sidebar = false;
+          selectAlbomID.value = albomlist.value[0].id;
+          getPhotos()
+        }
       })
       .catch((err) => {
         console.log('err', err);
 
-        if (err.response.data.detail === 'Pending resignation request already exists.') {
-          toast({
-            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
+        // if (err.response.data.detail === 'Pending resignation request already exists.') {
+        //   toast({
+        //     message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        //   })
+        // } else {
+        //   toast({
+        //     message: 'Возникли ошибки при запросе'
+        //   })
+        // }
       });
   }
 
@@ -123,15 +126,15 @@
       .catch((err) => {
         console.log('err', err);
 
-        if (err.response.data.detail === 'Pending resignation request already exists.') {
-          toast({
-            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
+        // if (err.response.data.detail === 'Pending resignation request already exists.') {
+        //   toast({
+        //     message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        //   })
+        // } else {
+        //   toast({
+        //     message: 'Возникли ошибки при запросе'
+        //   })
+        // }
       });
   }
 </script>

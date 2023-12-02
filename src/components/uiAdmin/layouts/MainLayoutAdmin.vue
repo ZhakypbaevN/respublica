@@ -22,12 +22,13 @@
 import SideBar from '@/components/common/SideBar.vue';
 import HeaderClient from '@/components/uiAdmin/layouts/HeaderClient.vue';
 
-import { ref } from 'vue';
+import { useI18n } from 'vue-i18n'
 
-const showModalSubmitAnAppeal = ref(false);
+const { t } = useI18n()
+
 const sideBarlinks = [
   {
-    title: 'Пользователи',
+    title: t('page.users'),
     link: "/admin/users"
   },
 ]

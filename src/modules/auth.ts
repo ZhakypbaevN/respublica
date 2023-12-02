@@ -1,10 +1,14 @@
-// import { ILoggedUser } from '@/types/user'
 import { ref, watch } from 'vue'
+// import { useI18n } from 'vue-i18n'
 
-import api from './api'
-import router from '../router/index.js'
-import { useToast } from './toast.js'
+import router from '@/router/index.js'
 
+import api from '@/modules/api'
+import { useToast } from '@/modules/toast'
+
+import { IUser } from '@/types/user'
+
+// const { t } = useI18n()
 const { toast } = useToast()
 
 const user = ref<{ data?: any }>({
@@ -108,20 +112,21 @@ export const useAuth = () => {
   }
 
   const logout = () => {
-    if (
-      localStorage.getItem('access_token') ||
-      sessionStorage.getItem('access_token')
-    ) {
-      api.requestPost('/api/sanctum/logout', {}, () => null, () => null, true)
-      localStorage.removeItem('access_token')
-      sessionStorage.removeItem('access_token')
-    }
+    localStorage.removeItem('USER_TYPE');
+    localStorage.removeItem('access_token')
+    sessionStorage.removeItem('access_token')
+    
     user.value.data = {
       name: '...'
     }
     loaded.value = false
-    toast({ message: 'Вы вышли из системы!' })
-    router.push('/')
+    // toast({ message: t('message.you-are-logged-out') })
+
+    if (router.currentRoute.value.name === 'Home') {
+      location.reload();
+    } else {
+      router.push(`/`);
+    }
     return true
   }
 

@@ -6,7 +6,7 @@
       <div class="news-header">
         <Input
           v-model="search"
-          placeholder="Поиск по проекту"
+          :placeholder="$t('formdata.search-by-name')"
           staticPlaceholder
         />
         <RouterLink to="/media/video-gallery/create">
@@ -40,101 +40,100 @@
 </template>
 
 <script setup lang="ts">
-import YoutubeItem from '@/components/uiMedia/gallery/video/YoutubeItem.vue'
+  import YoutubeItem from '@/components/uiMedia/gallery/video/YoutubeItem.vue'
 
-import { useI18n } from 'vue-i18n'
-import { onMounted, reactive, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router'
+  import { onMounted, reactive, watch, ref } from 'vue';
+  import { useRoute, useRouter } from 'vue-router'
+  import { useI18n } from 'vue-i18n'
 
-import debounce from '@/helpers/debounce'
-import { NewsValues } from '@/types/news';
-import { getNewsList } from '@/actions/uiMedia/news';
-import { ref } from "vue";
+  import debounce from '@/helpers/debounce'
+  import { NewsValues } from '@/types/news';
+  import { getNewsList } from '@/actions/uiMedia/news';
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const route = useRoute()
-const router = useRouter()
-const search = ref(null);
+  const route = useRoute()
+  const router = useRouter()
+  const search = ref(null);
 
-const filterList = [
-  {
-    name: t('status.list-published'),
-    value: true
-  },
-  {
-    name: t('status.list-unpublished'),
-    value: false
-  }
-]
-const newsValues = reactive<NewsValues>({
-  tableValues: null,
-  total: 0,
-  isEmpty: false,
-  searchEmpty: true
-})
-
-const getData = async () => {
-  newsValues.tableValues = null;
-  newsValues.isEmpty = false
-  const {
-    data,
-    total
-  } = await getNewsList('video-gallery', {
-    ...route.query
+  const filterList = [
+    {
+      name: t('status.list-published'),
+      value: true
+    },
+    {
+      name: t('status.list-unpublished'),
+      value: false
+    }
+  ]
+  const newsValues = reactive<NewsValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false,
+    searchEmpty: true
   })
-  newsValues.tableValues = data;
-  newsValues.total = total;
-  if (!total) {
-    newsValues.isEmpty = true
+
+  const getData = async () => {
+    newsValues.tableValues = null;
+    newsValues.isEmpty = false
+    const {
+      data,
+      total
+    } = await getNewsList('video-gallery', {
+      ...route.query
+    })
+    newsValues.tableValues = data;
+    newsValues.total = total;
+    if (!total) {
+      newsValues.isEmpty = true
+    }
   }
-}
 
-onMounted(() => getData());
+  onMounted(() => getData());
 
-watch(() => route.query, debounce(getData), { deep: true })
-watch(
-  () => search.value,
-  () => router.push({ query: { ...route.query, search: search.value } })
-)
+  watch(() => route.query, debounce(getData), { deep: true })
+  watch(
+    () => search.value,
+    () => router.push({ query: { ...route.query, search: search.value } })
+  )
 </script>
 
 <style scoped lang="scss">
-.wrapper-main {
-  background-color: var(--accent-color-op05);
-  padding: 40px 0;
-}
+  .wrapper-main {
+    background-color: var(--accent-color-op05);
+    padding: 40px 0;
+  }
 
-.news {
-  &-header {
-    max-width: 1160px;
+  .news {
+    &-header {
+      max-width: 1160px;
 
-    display: grid;
-    grid-template-columns: 1fr 60px;
-    grid-gap: 20px;
-    margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: 1fr 60px;
+      grid-gap: 20px;
+      margin-bottom: 30px;
 
-    &-addNewsBtn {
-      width: 60px;
-      height: 60px;
+      &-addNewsBtn {
+        width: 60px;
+        height: 60px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px !important;
 
-      & svg {
-        height: 40px;
-        width: 40px;
+        & svg {
+          height: 40px;
+          width: 40px;
 
-        fill: white;
+          fill: white;
+        }
       }
     }
+    &-items {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 10px;
+    }
   }
-  &-items {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 10px;
-  }
-}
 </style>

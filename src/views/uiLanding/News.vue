@@ -4,11 +4,11 @@
       <div class="wrapper">
         <div class="landing-header">
           <h2 class="landing-title">
-            Новости
+            {{ $t('page.news') }}
           </h2>
 
           <RouterLink to="/news-all" class="landing-header-link">
-            <span>Смотреть все</span>
+            <span>{{ $t('button.view-all') }}</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </RouterLink>
         </div>
@@ -33,11 +33,11 @@
       <div class="wrapper">
         <div class="landing-header">
           <h2 class="landing-title">
-            Пресса о нас
+            {{ $t('page.the-press-about-us') }}
           </h2>
 
           <RouterLink to="/press-about-us-list" class="landing-header-link">
-            <span>Смотреть все</span>
+            <span>{{ $t('button.view-all') }}</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </RouterLink>
         </div>
@@ -63,11 +63,11 @@
       <div class="wrapper">
         <div class="landing-header">
           <h2 class="landing-title">
-            Видеогалерея
+            {{ $t('page.video-gallery') }}
           </h2>
 
           <RouterLink to="/video-gallery" class="landing-header-link">
-            <span>Смотреть все</span>
+            <span>{{ $t('button.view-all') }}</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </RouterLink>
         </div>
@@ -94,17 +94,17 @@
       <div class="wrapper">
         <div class="contacts-inner">
           <h2 class="contacts-title">
-            Пресс-служба партии Respublica
+            {{ $t('contacts.press-service-for-the-media.title-the-republica-party') }}
           </h2>
 
-          <a class="contacts-link" href="tel:+77017228251">
+          <a class="contacts-link" :href="`tel:${$t('contacts.press-service-for-the-media.phone')}`">
             <SvgIcon name="call-white" :viewboxWidth="52" :viewboxHeight="52" />
-            <span>+7 701 722 8251</span>
+            <span>{{ $t('contacts.press-service-for-the-media.phone') }}</span>
           </a>
 
-          <a class="contacts-link" href="mailto:akparat2020@gmail.com">
+          <a class="contacts-link" :href="`mailto:${$t('contacts.press-service-for-the-media.email')}`">
             <SvgIcon name="mail-white" :viewboxWidth="52" :viewboxHeight="52" />
-            <span>akparat2020@gmail.com</span>
+            <span>{{ $t('contacts.press-service-for-the-media.email') }}</span>
           </a>
         </div>
       </div>
@@ -116,16 +116,15 @@
 <script setup lang="ts">
   import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
   import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVideo.vue'
-
   import PhotoGallery from '@/components/uiLanding/press-center/photo-gallery/PhotoGallery.vue';
 
   import { onMounted, reactive } from 'vue';
+  import { useI18n } from 'vue-i18n'
 
   import { NewsValues } from '@/types/news';
   import { getNewsList } from '@/actions/uiLanding/news';
 
-  onMounted(() => {
-  })
+  const { t } = useI18n()
 
   const newsValues = reactive<NewsValues>({
     tableValues: null,
@@ -184,23 +183,23 @@
 
   const sideBarlinks = [
     {
-      title: 'Новости',
+      title: t('page.news'),
       link: "#newsList"
     },
     {
-      title: 'Пресса о нас',
+      title: t('page.the-press-about-us'),
       link: "#pressAboutUS"
     },
     {
-      title: 'Видеогалерея',
+      title: t('page.video-gallery'),
       link: "#videoGallery"
     },
     {
-      title: 'Фотогалерея',
+      title: t('page.photo-gallery'),
       link: "#photoGallery"
     },
     {
-      title: 'Контакты пресс-службы',
+      title: t('contacts.press-service-for-the-media.nepress-service-contactsws'),
       link: "#contacts"
     }
   ]

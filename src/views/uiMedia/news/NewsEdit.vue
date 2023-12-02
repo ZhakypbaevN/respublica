@@ -71,7 +71,7 @@
             htmlType="submit"
           />
           <Button
-            name="Отмена"
+            :name="$t('button.cancel')"
             htmlType="submit"
             type="default-grey"
           />
@@ -99,7 +99,7 @@ const loading = reactive({
   page: true,
   btn: false
 })
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const formData = reactive({
   title: '',

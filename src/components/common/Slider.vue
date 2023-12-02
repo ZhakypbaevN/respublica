@@ -6,7 +6,7 @@
     </h2>
 
     <RouterLink v-if="link" :to="link" class="landing-header-link">
-      <span>Смотреть все</span>
+      <span>{{ $t('button.view-all') }}</span>
       <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
     </RouterLink>
   </div>
@@ -17,13 +17,6 @@
       :style="sliderStyle"
     >
       <slot />
-<!-- 
-      <RouterLink v-if="link" class="showAll" :to="link">
-        <div class="arrow">
-          <SvgIcon name="arrow-have-medium-line" :viewboxHeight="24" :viewboxWidth="24" :width="24" :height="24" fill="#0082FA"/>
-        </div>
-        <p class="title">Смотреть все</p>
-      </RouterLink> -->
     </div>
   </div>
 </div>
@@ -108,7 +101,7 @@ onMounted(() => {
   }
 }
 
-/* @media (max-width: 1440px) {
+@media (max-width: 1440px) {
   .slider {
     grid-gap: 28px;
   }
@@ -127,5 +120,5 @@ onMounted(() => {
   .slider {
     grid-gap: 22px;
   }
-} */
+}
 </style>

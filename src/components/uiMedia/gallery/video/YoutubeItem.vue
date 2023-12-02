@@ -67,8 +67,8 @@
 import DeleteModal from '@/components/uiMedia/gallery/video/DeleteModal.vue'
 import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVideo.vue';
 
-import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import convertDateTime from '@/helpers/convertDateTime.js'
 

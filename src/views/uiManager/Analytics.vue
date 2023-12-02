@@ -15,10 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import UsersChart from "@/components/uiManager/analytics/usersChart.vue"
-import MapRegions from "@/components/uiManager/analytics/mapRegions.vue"
-import PieChart from "@/components/uiManager/analytics/pieChart.vue"
-import UsersGender from "@/components/uiManager/analytics/usersGender.vue"
+  import UsersChart from "@/components/uiManager/analytic/UsersChart.vue"
+  import MapRegions from "@/components/uiManager/analytic/MapRegions.vue"
+  import PieChart from "@/components/uiManager/analytic/PieChart.vue"
+  import UsersGender from "@/components/uiManager/analytic/UsersGender.vue"
 </script>
 
 <style scoped lang="scss">

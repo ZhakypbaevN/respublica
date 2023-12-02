@@ -25,42 +25,45 @@
 
 <script setup>
 import SideBar from '@/components/common/SideBar.vue';
-import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
 import HeaderClient from '@/components/uiClient/layouts/HeaderClient.vue';
+import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
 
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n'
+
 import { useToast } from '@/modules/toast'
 
+const { t } = useI18n()
 const { toast } = useToast()
 
 const showModalSubmitAnAppeal = ref(false);
 const sideBarlinks = [
   {
-    title: 'Личные данные',
+    title: t('page.personal-data'),
     link: "/client/user-data"
   },
   {
-    title: 'Новости',
+    title: t('page.news'),
     link: "/news"
   },
   {
-    title: 'Донаты',
+    title: t('page.donations'),
     link: "/client/test"
   },
   {
-    title: 'Записаться на прием',
+    title: t('feedback.make-an-appointment'),
     func: () => {
       toast({
-        message: 'Страница в разработке'
+        message: t('status.the-page-is-in-development')
       })
     }
   },
-  // {
-  //   title: 'История обращений',
-  //   link: "/client/my-requests"
-  // },
   {
-    title: 'Подать обращение',
+    title: t('page.the-history-of-appeals'),
+    link: "/client/my-requests"
+  },
+  {
+    title: t('feedback.submit-an-appeal'),
     func: () => showModalSubmitAnAppeal.value = true
   }
 ]

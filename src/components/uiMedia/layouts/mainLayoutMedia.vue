@@ -20,8 +20,12 @@
 
 <script setup>
 import { onMounted } from 'vue';
+import { useI18n } from 'vue-i18n'
+
 import SideBar from '@/components/common/SideBar.vue';
 import HeaderMedia from '@/components/uiMedia/layouts/HeaderMedia.vue';
+
+const { t } = useI18n()
 
 onMounted(() => {
   document.body.style ='height:100vh;overflow:hidden;';
@@ -29,27 +33,27 @@ onMounted(() => {
 
 const sideBarlinks = [
   {
-    title: 'Новости',
+    title: t('page.news'),
     link: "/media/news-list?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'Новости для фракции',
+    title: t('page.news-for-the-faction'),
     link: "/media/news-for-fraction?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'Пресса о нас',
+    title: t('page.the-press-about-us'),
     link: "/media/press-about-us?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'Видеогалерея',
+    title: t('page.video-gallery'),
     link: "/media/video-gallery?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'Фотогалерея',
+    title: t('page.photo-gallery'),
     link: "/media/photo-gallery"
   },
   {
-    title: 'Закупы, объявления',
+    title: t('page.announcements'),
     link: "/media/announcements"
   }
 ]

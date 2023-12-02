@@ -8,7 +8,7 @@
     <div class="photoItem-preview withZoomPreview-preview">
       <div
         class="photoItem-preview-img bg-cover withZoomPreview-preview-img"
-        :style="`background-image:url('https://api.respublica-partiyasy.kz/${data.image}');`"
+        :style="`background-image:url('${getFileUrl(data.image)}');`"
       ></div>
     </div>
 
@@ -31,7 +31,13 @@
 <script setup lang="ts">
 import axios from 'axios'
 import { ref } from "vue";
+import { useI18n } from 'vue-i18n'
+
 import { useToast } from '@/modules/toast'
+import getFileUrl from '@/helpers/getFileUrlByDate'
+
+const { t } = useI18n()
+const { toast } = useToast()
 
 interface IProps {
   data: any,
@@ -39,10 +45,8 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
-const { toast } = useToast()
-
 const isLoading = ref(false);
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 // Delete Photo
 const onDelete = () => {
@@ -61,7 +65,7 @@ const onDelete = () => {
       console.log('response', response);
 
       toast({
-        message: 'Фотография удалена!',
+        message: t('message.the-photo-has-been-deleted'),
         type: 'success'
       })
 

@@ -41,11 +41,11 @@
 
   const langs = [
     {
-      name: 'РУС',
+      name: t('rus'),
       value: 'ru'
     },
     {
-      name: 'КАЗ',
+      name: t('kaz'),
       value: 'kz'
     }
   ];

@@ -5,7 +5,7 @@
       
       <section class="landing-block">
         <div class="wrapper landing-wrapper">
-          <h2 class="landing-title">Представленность членов партии в маслихатах и на должностях акимов всех уровней.</h2>
+          <h2 class="landing-title">{{ $t('page.representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels') }}</h2>
 
           <ListDeputies />
         </div>
@@ -17,7 +17,7 @@
 </template>
   
 <script setup lang="ts">
-import ListDeputies from "@/components/uiLanding/regions/listDeputiesOfMaslikhat.vue";
+import ListDeputies from "@/components/uiLanding/regions-page/ListDeputiesOfMaslikhat.vue";
 </script>
   
 <style scoped lang="scss">

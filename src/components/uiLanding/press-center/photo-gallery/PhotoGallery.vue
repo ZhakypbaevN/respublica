@@ -2,10 +2,10 @@
   <section class="photoGallery landing-block" id="photoGallery">
     <div class="wrapper">
       <div class="landing-header">
-        <h2 class="landing-title">Фотогалерея</h2>
+        <h2 class="landing-title">{{ $t('page.photo-gallery') }}</h2>
 
         <RouterLink to="photo-gallery" class="landing-header-link">
-          <span>Смотреть все</span>
+          <span>{{ $t('button.view-all') }}</span>
           <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
         </RouterLink>
       </div>

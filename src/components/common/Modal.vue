@@ -81,9 +81,9 @@ const hideModal = () => {
   }, 300)
 }
 
-// const hideModalOnEsc = () => {
-//   hideModal()
-// }
+const hideModalOnEsc = () => {
+  hideModal()
+}
 </script>
 
 <style scoped lang="scss">

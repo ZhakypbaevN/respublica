@@ -50,10 +50,6 @@ interface Emits {
 const props = withDefaults(defineProps<IProps>(), {
   aspectRatio: 16 / 9,
 })
-// const opt = {
-//   width: 920,
-//   height: 514,
-// }
 const emits = defineEmits<Emits>()
 
 const cropper = ref();

@@ -16,7 +16,7 @@
 
       <RouterLink to="/auth/register">
         <Button
-          :name="$t('button.registration')"
+          :name="$t('auth.registration')"
           type="default-blue"
         />
       </RouterLink>

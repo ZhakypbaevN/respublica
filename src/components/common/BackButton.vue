@@ -1,6 +1,6 @@
 <template>
   <div class="backBtn" @click="back">
-    <Button v-if="outlined" name="Назад" type="outline-grey" v-slot:left>
+    <Button v-if="outlined" :name="$t('button.go-back')" type="outline-grey" v-slot:left>
       <SvgIcon
         name="arrow-left"
         :viewboxWidth="24"
@@ -16,7 +16,7 @@
       />
 
       <div class="default-text">
-        Вернутся назад
+        {{ $t('button.go-back') }}
       </div>
     </div>
   </div>

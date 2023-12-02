@@ -60,7 +60,7 @@
               >
                 <Button
                   :name="$t('page.authorization')"
-                  :type="defaultFixed && headerClingingToTop ? 'outline-light' : 'outline-default'"
+                  :type="defaultFixed && headerClingingToTop && !dark ? 'outline-light' : 'outline-default'"
                 />
               </RouterLink>
 

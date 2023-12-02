@@ -3,15 +3,15 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="feedbackModal"
-    title="Вступить в партию"
+    :title="$t('party.creating-a-vip-room')"
   >
     <Form
-      @finish="postJoinParty"
+      @finish="postNewVipNumber"
     >
       <div class="feedbackModal-inputs">
         <Select
           name="region"
-          placeholder="Укажите область"
+          :placeholder="$t('formdata.specify-the-area')"
           :options="regionList"
           v-model="region"
           required
@@ -24,7 +24,7 @@
 
           <Input
             name="ticketNum"
-            placeholder="Введите номер"
+            :placeholder="$t('formdata.enter-the-number')"
             mask="#######"
             staticPlaceholder
             required
@@ -34,7 +34,7 @@
       
 
       <Button
-        name="Отправить заявку"
+        :name="$t('button.send-a-request')"
         :loading="loading"
         htmlType="submit"
       />
@@ -44,12 +44,14 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 import axios from 'axios'
 
-// Modules
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import { useToast } from '@/modules/toast'
 
+const { t } = useI18n()
 const { toast } = useToast()
 
 interface IProps {
@@ -63,7 +65,7 @@ interface Emits {
 const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const loading = ref(false);
 const regionList = ref([]);
@@ -96,7 +98,7 @@ axios({
   });
 })
 
-const postJoinParty = (
+const postNewVipNumber = (
     { ticketNum }: { ticketNum: string }
   ) => {
 
@@ -117,7 +119,7 @@ const postJoinParty = (
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Вы успешно вступили в партию',
+        message: t('message.vip-number-has-been-successfully-created'),
         type: 'success'
       })
       

@@ -5,12 +5,14 @@
     <div class="wrapper">
       <div class="wrapper-darkMain-inner">
         <TransitionGroup>
+          <!-- Login with Phone -->
           <LoginForm
             v-if="showForm.login && loginWithPhone"
             :loginWithPhone="true"
             @changeMethod="() => loginWithPhone = !loginWithPhone"
           />
 
+          <!-- Login with IIN -->
           <LoginForm
             v-else-if="showForm.login"
             :loginWithPhone="false"
@@ -26,7 +28,7 @@
             @toBack="() => {fromResetPassword ? showResetPasswordForm() : showRegistrationForm()}"
             @toNext="() => {fromResetPassword ? showFinishResetPasswordForm() : showFinishRegistrationForm()}"
           />
-
+          
 
           <!-- Register Form -->
           <RegisterForm
@@ -67,13 +69,13 @@
   import { onMounted, reactive, ref, watch } from 'vue';
   import { useRoute } from 'vue-router';
 
-  import LoginForm from '@/components/authorization/LoginForm.vue';
-  import RegisterForm from '@/components/authorization/RegisterForm.vue';
-  import RegisterFinishForm from '@/components/authorization/RegisterFinishForm.vue';
-  import CheckCodeForm from '@/components/authorization/CheckingCodeForm.vue';
+  import LoginForm from '@/components/auth/LoginForm.vue';
+  import RegisterForm from '@/components/auth/RegisterForm.vue';
+  import RegisterFinishForm from '@/components/auth/RegisterFinishForm.vue';
+  import CheckCodeForm from '@/components/auth/CheckingCodeForm.vue';
 
-  import ResetPasswordForm from '@/components/authorization/ResetPasswordForm.vue';
-  import ResetPasswordFinishForm from '@/components/authorization/ResetPasswordFinishForm.vue';
+  import ResetPasswordForm from '@/components/auth/ResetPasswordForm.vue';
+  import ResetPasswordFinishForm from '@/components/auth/ResetPasswordFinishForm.vue';
 
   const route = useRoute()
 

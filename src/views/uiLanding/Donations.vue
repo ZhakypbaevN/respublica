@@ -1,26 +1,15 @@
 <template>
   <div class="wrapper-main">
     <Header />
+
     <div class="content">
       <div class="donations">
         <div class="donations-left-text">
           <div class="donations-left-text-title">
-            Сделайте пожертвование, чтобы проголосовать за демократов по всей стране
+            {{ $t('donations.title') }}
           </div>
 
-          <div class="donations-left-text-description">
-            Правила внесения пожертвований: <br />
-            1. Я являюсь гражданином Республики Казахстан, достигшим восемнадцатилетнего
-            возраста; <br />
-            2. Я не являюсь иностранцем или лицом без гражданства; <br />
-            3. Я вношу пожертвования, которые не относятся к источникам финансирования от
-            иностранных государств, иностранных юридических лиц, юридических лиц с
-            иностранным участием и международных организаций, граждан или
-            негосударственных организаций Республики Казахстан, получающих гранты и иные
-            средства от международных или иностранных неправительственных организаций,
-            государственных органов и государственных организаций, религиозных объединений
-            и благотворительных организаций;
-          </div>
+          <div class="donations-left-text-description" v-html="$t('donations.rules-for-making-donations')" />
         </div>
         <div class="donations-right-block">
           <div class="donations-right-block-steps-line"></div>
@@ -40,55 +29,78 @@
           </div>
 
           <Form v-if="currentStep === 1" @finish="enterSum">
-            <div class="donations-right-block-title">Введите сумму (тенге)</div>
+            <div class="donations-right-block-title">{{ $t('formdata.enter-the-amount-tenge-with-staples') }}</div>
             <div class="donations-right-block-description">
-              Ваше пожертвование пойдет на пользу Национальному комитету Демократической
-              партии.
+              {{ $t('donations.your-donation-will-benefit-the-party') }}
             </div>
+
             <div class="donations-right-block-inputs">
               <Input
                 name="sum"
                 type="number"
-                placeholder="Введите сумму, тенге"
+                :placeholder="$t('formdata.enter-the-amount-tenge')"
                 required
               />
             </div>
             <div class="donations-right-block-pay">
-              <Button htmlType="submit" name="Оплатить картой" v-slot:left>
+              <Button
+                :name="$t('button.pay-by-card')"
+                htmlType="submit"
+                v-slot:left
+              >
                 <img src="/public/img/visa-mastercard.png" alt="visa-mastercard" />
               </Button>
             </div>
-            <div class="donations-right-block-consent">
-              <input type="checkbox" id="confirm" />
-              <label for="confirm">Я подтверждаю, что ознакомлен с правилами внесения пожертвований.</label>
-            </div>
+  
+
+            <Checkbox
+              name="confirm"
+              class="feedbackModal-checkboxList-item"
+            >
+            {{ $t('donations.i-confirm-that-i-am-familiar-with-the-donation-rules') }}
+            </Checkbox>
           </Form>
 
           <Form v-else-if="currentStep === 2" @finish="enterFullName">
             <div class="donations-right-block-title">
-              Завершите свой взнос в размере {{ formData.sum }} тенге KZ
+              {{ $t('donations.complete-your-contribution-in-the-amount-of') }} {{ formData.sum }} {{ $t('donations.tenge-kz') }}
             </div>
             <div class="donations-right-block-description grey">
-              *Все поля обязательны для заполнения, если не указано иное.
+              {{ $t('donations.all-fields-are-required-unless-otherwise-specified') }}
             </div>
             <div class="donations-right-block-inputs">
-              <Input placeholder="Фамилия" name="lastName" required />
-              <Input placeholder="Имя" name="name" required />
+              <Input
+                :placeholder="$t('formdata.surname')"
+                name="lastName"
+                required
+              />
+
+              <Input
+                :placeholder="$t('formdata.name')"
+                name="name"
+                required
+              />
             </div>
 
-            <div class="donations-right-block-confirm">
-              <input type="checkbox" id="confirm" />
-              <label for="confirm">
-                Я подтверждаю, что я гражданин или постоянный житель Казахстана, делая это
-                пожертвование из моих личных средств, а не деловых или корпоративных
-                средств. Никакое физическое или юридическое лицо не возместит мне.
-              </label>
-            </div>
+            <Checkbox
+              name="confirm"
+              class="feedbackModal-checkboxList-item"
+            >
+              {{ $t('donations.i-confirm-that-i-am-a-citizen-or-permanent-resident-of-kazakhstan') }}
+            </Checkbox>
 
             <div class="donations-right-block-btns">
-              <Button type="outline-default" name="Назад" @click="backStep" />
+              <Button
+                type="outline-default"
+                :name="$t('button.back')"
+                @click="backStep"
+              />
 
-              <Button type="default-blue" htmlType="submit" name="Сделующий" />
+              <Button
+                :name="$t('button.next')"
+                type="default-blue"
+                htmlType="submit"
+              />
             </div>
           </Form>
 
@@ -96,26 +108,7 @@
         </div>
       </div>
 
-      <div class="donations-rules">
-        <br />
-        <br />
-
-        Информация для лиц желающих внести пожертвования: В качестве лиц, оказывающих
-        помощь партии в виде пожертвований, с целью поддержания её уставной деятельности,
-        могут выступать казахстанские юридические лица и совершеннолетние физические лица
-        являющиеся гражданами Республики Казахстан. Не допускаются пожертвования
-        политической партии и ее структурным подразделениям (филиалам и
-        представительствам) от:<br />
-        1) иностранных государств, иностранных юридических лиц и международных
-        организаций;<br />
-        2) иностранцев и лиц без гражданства;<br />
-        3) юридических лиц с иностранным участием;<br />
-        4) государственных органов и государственных организаций;<br />
-        5) религиозных объединений и благотворительных организаций;<br />
-        6) анонимных пожертвователей;<br />
-        7) от граждан или негосударственных организаций Республики Казахстан, получающих
-        гранты и иные средства от международных или иностранных неправительственных
-        организаций.
+      <div class="donations-rules" v-html="$t('donations.information-for-those-who-wish-to-make-donations')">
       </div>
     </div>
 
@@ -124,201 +117,192 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+  import { reactive, ref } from "vue";
+  import { useI18n } from 'vue-i18n'
 
-const formData = reactive({
-  sum: 0,
-  name: "",
-  lastName: "",
-  confirm: false,
-});
-const currentStep = ref(1);
-const steps = [
-  {
-    title: "Сумма",
-    num: 1,
-  },
-  {
-    title: "Детали",
-    num: 2,
-  },
-  {
-    title: "Оплата",
-    num: 3,
-  },
-];
+  const { t } = useI18n()
 
-const enterSum = (data: any) => {
-  formData.sum = data.sum;
-  currentStep.value = 2;
-};
+  const formData = reactive({
+    sum: 0,
+    name: "",
+    lastName: "",
+    confirm: false,
+  });
+  const currentStep = ref(1);
+  const steps = [
+    {
+      title: t('formdata.the-amount'),
+      num: 1,
+    },
+    {
+      title: t('formdata.details'),
+      num: 2,
+    },
+    {
+      title: t('formdata.payment'),
+      num: 3,
+    },
+  ];
 
-const enterFullName = (data: any) => {
-  formData.name = data.name;
-  formData.lastName = data.lastName;
-  currentStep.value = 3;
-};
+  const enterSum = (data: any) => {
+    formData.sum = data.sum;
+    currentStep.value = 2;
+  };
 
-const backStep = () => {
-  currentStep.value--;
-};
+  const enterFullName = (data: any) => {
+    formData.name = data.name;
+    formData.lastName = data.lastName;
+    currentStep.value = 3;
+  };
+
+  const backStep = () => {
+    currentStep.value--;
+  };
 </script>
 
 <style scoped lang="scss">
-.content {
-  max-width: 1920px;
-  margin: 0 auto;
-}
-.donations {
-  margin-top: 50px;
-  display: flex;
-  grid-gap: 50px;
-
-  border-bottom: 1px solid var(--primary-color);
-  padding-bottom: 40px;
-  margin-bottom: 40px;
-
-  &-left-text {
-    width: 590px;
-    &-title {
-      color: var(--primary-color);
-      font-size: 36px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 35px;
-    }
-    &-description {
-      color: rgba(4, 32, 81, 0.8);
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      margin-top: 30px;
-    }
+  .content {
+    max-width: 1920px;
+    margin: 0 auto;
   }
-  &-right-block {
-    width: 600px;
+  .donations {
+    margin-top: 50px;
+    display: flex;
+    grid-gap: 50px;
 
-    &-title {
-      color: var(--primary-color);
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 35px;
-    }
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
 
-    &-description {
-      color: var(--primary-color);
-      font-size: 20px;
-      font-weight: 400;
-      margin-bottom: 25px;
-    }
-
-    &-inputs {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      grid-gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    &-confirm {
-      margin-bottom: 50px;
-    }
-    &-consent {
-      margin-top: 10px;
-      input[type="checkbox"] {
-        width: 20px;
-        margin-right: 5px;
+    &-left-text {
+      width: 590px;
+      &-title {
+        color: var(--primary-color);
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 35px;
       }
-      label {
+      &-description {
+        color: rgba(4, 32, 81, 0.8);
         font-size: 20px;
         font-style: normal;
         font-weight: 400;
+        line-height: normal;
+        margin-top: 30px;
       }
     }
+    &-right-block {
+      width: 600px;
 
-    &-pay button {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      grid-gap: 10px;
-      padding: 7px 0;
-    }
-
-    &-btns {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    &-steps {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 30px;
-      overflow: hidden;
-
-      position: relative;
-
-      &::after {
-        content: "";
-
-        display: block;
-        height: 1.2px;
-        width: 1000px;
-
-        position: absolute;
-        right: 25px;
-        bottom: 25px;
-        z-index: -1;
-
-        background-color: var(--light-gray-color-op50);
-        transition: all 0.3s ease-in-out;
+      &-title {
+        color: var(--primary-color);
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 35px;
       }
 
-      &-circles {
+      &-description {
+        color: var(--primary-color);
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 25px;
+      }
+
+      &-inputs {
+        width: 100%;
         display: flex;
         flex-direction: column;
+        grid-gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      &-confirm {
+        margin-bottom: 50px;
+      }
+
+      &-pay button {
+        width: 100%;
+        display: flex;
         align-items: center;
+        justify-content: center;
         grid-gap: 10px;
+        padding: 7px 0;
+      }
+
+      &-btns {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        overflow: hidden;
+
         position: relative;
 
-        &.current-step {
-          & span {
-            color: var(--accent-color);
-          }
-          & div {
-            background-color: var(--accent-color);
-            color: var(--white-color);
-          }
+        &::after {
+          content: "";
+
+          display: block;
+          height: 1.2px;
+          width: 1000px;
+
+          position: absolute;
+          right: 25px;
+          bottom: 25px;
+          z-index: -1;
+
+          background-color: var(--light-gray-color-op50);
+          transition: all 0.3s ease-in-out;
         }
 
-        &-text {
-          color: var(--light-gray-color);
-          font-size: 18px;
-          font-weight: 400;
-        }
-
-        &-number {
-          width: 50px;
-          height: 50px;
-          border-radius: 100px;
-          background-color: #dadee5;
-          color: var(--light-gray-color);
-          font-size: 20px;
-          font-weight: 500;
+        &-circles {
           display: flex;
-          justify-content: center;
+          flex-direction: column;
           align-items: center;
+          grid-gap: 10px;
+          position: relative;
+
+          &.current-step {
+            & span {
+              color: var(--accent-color);
+            }
+            & div {
+              background-color: var(--accent-color);
+              color: var(--white-color);
+            }
+          }
+
+          &-text {
+            color: var(--light-gray-color);
+            font-size: 18px;
+            font-weight: 400;
+          }
+
+          &-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            background-color: #dadee5;
+            color: var(--light-gray-color);
+            font-size: 20px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
+    &-rules {
+      max-width: 1240px;
+      color: rgba(4, 32, 81, 0.8);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 100px;
+    }
   }
-  &-rules {
-    max-width: 1240px;
-    color: rgba(4, 32, 81, 0.8);
-    font-size: 20px;
-    font-weight: 400;
-    margin-bottom: 100px;
-  }
-}
 </style>

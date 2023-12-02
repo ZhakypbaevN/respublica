@@ -3,6 +3,9 @@
     {
       "title": "АБАЙСКАЯ область",
       "code": "KZ-ABY",
+      "email": "A.Oraz@respublica-partiyasy.kz",
+      "address": "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199",
+      "locationID": 194,
       "deputies": [
         {
           "name": "Ахметканов Арман Шамаевич",
@@ -22,6 +25,9 @@
     {
       "title": "АКМОЛИНСКАЯ область",
       "code": "KZ-AKM",
+      "email": "M.Baktibayev@respublica-partiyasy.kz",
+      "address": "г.Кокшетау, Е.Н.АУЕЛЬБЕКОВА, 117",
+      "locationID": 4,
       "deputies": [
         {
           "name": "Жакупов Жанат Еркенович",
@@ -33,11 +39,17 @@
     {
       "title": "АКТЮБИНСКАЯ область",
       "code": "KZ-AKT",
+      "email": "G.Kaiyrbayeva@respublica-partiyasy.kz",
+      "address": "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж",
+      "locationID": 25,
       "deputies": []
     },
     {
       "title": "АЛМАТИНСКАЯ область ",
       "code": "KZ-ALM",
+      "email": "B.Kabasov@respublica-partiyasy.kz",
+      "address": "г. Конаев, мкр-н 1, уч. 35/10",
+      "locationID": 39,
       "deputies": [
         {
           "name": "Акберген Кияс Жапарбекович",
@@ -52,6 +64,9 @@
     {
       "title": "АТЫРАУСКАЯ область",
       "code": "KZ-ATY",
+      "email": "G.Utebayev@respublica-partiyasy.kz",
+      "address": "г. Атырау, пр. Султан Бейбарыс, 450",
+      "locationID": 51,
       "deputies": [
         {
           "name": "Серік Касенов",
@@ -60,29 +75,11 @@
       ]
     },
     {
-      "title": "ЗАПАДНО-КАЗАХСТАНСКАЯ область",
-      "code": "KZ-ZAP",
-      "deputies": [
-        {
-          "name": "Аминов Асланбек Талапкалиевич",
-          "role": "Депутат Западно-Казахстанского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/zko/Aminov.jpg"
-        },
-        {
-          "name": "Габдуалиев Мереке Тлекович",
-          "role": "Депутат Уральского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zko/Gabdualiev.jpg"
-        },
-        {
-          "name": "Бисенов Армат Гимранович",
-          "role": "Депутат маслихата района Байтерек",
-          "img": "/img/uiLanding/maslikhat/zko/Bisenov.jpg"
-        }
-      ]
-    },
-    {
       "title": "ЖАМБЫЛСКАЯ область",
       "code": "KZ-ZHA",
+      "email": "n.iuldasheva@respublica-partiyasy.kz",
+      "address": "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж",
+      "locationID": 74,
       "deputies": [
         {
           "name": "Темірхан Нұрсултан Талгатұлы",
@@ -98,6 +95,9 @@
     {
       "title": "ЖЕТЫСУСКАЯ область",
       "code": "KZ-ZHT",
+      "email": "N.Kambayeva@respublica-partiyasy.kz",
+      "address": "г. Талдыкорган, ул. Абылай хана, 186",
+      "locationID": 205,
       "deputies": [
         {
           "name": "Мустапова Гульназия Садыбековна",
@@ -144,6 +144,9 @@
     {
       "title": "КАРАГАНДИНСКАЯ область",
       "code": "KZ-KAR",
+      "email": "a.amandykov@respublica-partiyasy.kz",
+      "address": "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46",
+      "locationID": 86,
       "deputies": [
         {
           "name": "Алимжанов Арман Жаканович",
@@ -160,6 +163,9 @@
     {
       "title": "КОСТАНАЙСКАЯ область",
       "code": "KZ-KUS",
+      "email": "M.Madinina@respublica-partiyasy.kz",
+      "address": "г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN",
+      "locationID": 100,
       "deputies": [
         {
           "name": "Маишев Кайрат Алембаевич",
@@ -251,16 +257,25 @@
     {
       "title": "КЫЗЫЛОРДИНСКАЯ область",
       "code": "KZ-KZY",
+      "email": "N.Talgatova@respublica-partiyasy.kz",
+      "address": "г. Кызылорда, ул. Конаева, 19-а, 1 этаж",
+      "locationID": 121,
       "deputies": []
     },
     {
       "title": "МАНГИСТАУСКАЯ область",
       "code": "KZ-MAN",
+      "email": "S.Beisembayeva@respublica-partiyasy.kz",
+      "address": "г. Актау, 16 мкрн, д. 25, БЦ Prime",
+      "locationID": 130,
       "deputies": []
     },
     {
       "title": "ПАВЛОДАРСКАЯ область",
       "code": "KZ-PAV",
+      "email": "Zh.Arganbai@respublica-partiyasy.kz",
+      "address": "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908",
+      "locationID": 138,
       "deputies": [
         {
           "name": "Маханбет Амангелді",
@@ -273,8 +288,19 @@
       ]
     },
     {
+      "title": "УЛЫТАУСКАЯ область",
+      "code": "KZ-ULT",
+      "email": "Zh.Iztuleuov@respublica-partiyasy.kz",
+      "address": "г. Жезказган, ул. Мира 1",
+      "locationID": 215,
+      "deputies": []
+    },
+    {
       "title": "СЕВЕРО-КАЗАХСТАНСКАЯ область",
       "code": "KZ-SEV",
+      "email": "a.beliyalov@respublica-partiyasy.kz",
+      "address": "г. Петропавловск, ул. Алтынсарина, 168-б",
+      "locationID": 152,
       "deputies": [
         {
           "name": "Домаев Сергей Александрович",
@@ -289,8 +315,49 @@
       ]
     },
     {
-      "title": "ТУРКЕСТАНСКАЯ область",
-      "code": "KZ-TUR",
+      "title": "ЗАПАДНО-КАЗАХСТАНСКАЯ область",
+      "code": "KZ-ZAP",
+      "email": "d.makatov@respublica-partiyasy.kz",
+      "address": "г. Уральск, с. Желаево, ул.Трудовая, 6/3",
+      "locationID": 59,
+      "deputies": [
+        {
+          "name": "Аминов Асланбек Талапкалиевич",
+          "role": "Депутат Западно-Казахстанского областного маслихата",
+          "img": "/img/uiLanding/maslikhat/zko/Aminov.jpg"
+        },
+        {
+          "name": "Габдуалиев Мереке Тлекович",
+          "role": "Депутат Уральского городского маслихата",
+          "img": "/img/uiLanding/maslikhat/zko/Gabdualiev.jpg"
+        },
+        {
+          "name": "Бисенов Армат Гимранович",
+          "role": "Депутат маслихата района Байтерек",
+          "img": "/img/uiLanding/maslikhat/zko/Bisenov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "ВОСТОЧНО-КАЗАХСТАНСКАЯ область",
+      "code": "KZ-VOS",
+      "email": "Zh.Hogzhilbek@respublica-partiyasy.kz",
+      "address": "г. Усть-Каменогорск, ул. Чехова, 69, кв.1",
+      "locationID": 167,
+      "deputies": [
+        {
+          "name": "Бейсов Тилек Муратович",
+          "role": "Депутат Усть-Каменогорского городского маслихата",
+          "img": "/img/uiLanding/maslikhat/vko/Beysov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "ЮЖНО-КАЗАХСТАНСКАЯ область",
+      "code": "KZ-SKO",
+      "email": "B.Rysbekov@respublica-partiyasy.kz",
+      "address": "г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13",
+      "locationID": 177,
       "deputies": [
         {
           "name": "Айткулов Бекжан Бахтыбекович",
@@ -314,29 +381,19 @@
       ]
     },
     {
-      "title": "УЛЫТАУСКАЯ область",
-      "code": "KZ-ULT",
-      "deputies": []
-    },
-    {
-      "title": "ВОСТОЧНО-КАЗАХСТАНСКАЯ область",
-      "code": "KZ-VOS",
-      "deputies": [
-        {
-          "name": "Бейсов Тилек Муратович",
-          "role": "Депутат Усть-Каменогорского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/vko/Beysov.jpg"
-        }
-      ]
-    },
-    {
       "title": "г. АСТАНА",
       "code": "KZ-AKM-ASTANA",
+      "email": "info@respublica-partiyasy.kz",
+      "address": "Мангилик ел, 33/1, Бизнес-центр IPLAZA, 9 этаж",
+      "locationID": 1,
       "deputies": []
     },
     {
       "title": "г. АЛМАТЫ",
       "code": "KZ-ALM-ALMATY",
+      "email": "S.Raiymbek@respublica-partiyasy.kz",
+      "address": "г.Алматы, ул. Жарокова, 41, 1 этаж",
+      "locationID": 2,
       "deputies": [
         {
           "name": "Жайнарбай Жалынбек",
@@ -367,6 +424,9 @@
     {
       "title": "г. ШЫМКЕНТ",
       "code": "KZ-TUR-SHUMKENT",
+      "email": "T.Yeszhan@respublica-partiyasy.kz",
+      "address": "г.Шымкент, Аль-Фарабийский р-н, ул. Жандосова, зд. 21-а",
+      "locationID": 3,
       "deputies": [
         {
           "name": "Нурлыбаев Асхат Мелдебекович",

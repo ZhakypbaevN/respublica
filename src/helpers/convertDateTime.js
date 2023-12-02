@@ -5,8 +5,6 @@ function convertDateTime(datetimeStr) {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
   };
 
   const optionsKazakh = {

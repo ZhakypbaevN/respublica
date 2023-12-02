@@ -42,15 +42,13 @@ import Donations from '@/views/uiLanding/Donations.vue'
 
 
 // ------------------ UI Bussiness ------------------
-import MainDB from '@/views/uiBusiness/Main.vue'
 import BusinessAppealList from '@/views/uiBusiness/appeal/AppealList.vue'
 import BusinessAppealDetail from '@/views/uiBusiness/appeal/AppealDetail.vue'
 
 
-
 // ------------------ UI Manager ------------------
-import ManagerPartyDataList from '@/views/uiManager/party/PartyDataList.vue'
-import ManagerPartyData from '@/views/uiManager/party/PartyData.vue'
+import ManagerPartyDataList from '@/views/uiManager/party-members/PartyDataList.vue'
+import ManagerPartyData from '@/views/uiManager/party-members/PartyData.vue'
 
 import ManagerPartyResignationList from '@/views/uiManager/party-resignation/PartyResignationList.vue'
 import ManagerPartyResignationData from '@/views/uiManager/party-resignation/PartyResignationData.vue'
@@ -192,11 +190,6 @@ const routes = [
     component: Donations,
   },
   {
-    path: '/main-db',
-    name: 'MainDB',
-    component: MainDB,
-  },
-  {
     path: '/deputies-of-majilis',
     name: 'DeputiesOfMajilis',
     component: DeputiesOfMajilis
@@ -295,7 +288,7 @@ const routes = [
       {
         path: 'analytics',
         name: 'BusinessAnalytics',
-        component: PageInDevelopment
+        component: Analytics
       }
     ]
   },
