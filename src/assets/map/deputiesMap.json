@@ -18,7 +18,7 @@
         {
           "name": "Жуматов Кайыржан Серикович",
           "role": "Депутат Аксуатского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/abay/zhumatov.jpg"
+          "img": "/img/uiLanding/maslikhats/abay/zhumatov.jpg"
         }
       ]
     },
@@ -32,7 +32,7 @@
         {
           "name": "Жакупов Жанат Еркенович",
           "role": "Депутат Кокшетауского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/akmol/Zhakupov.jpg"
+          "img": "/img/uiLanding/maslikhats/akmol/Zhakupov.jpg"
         }
       ]
     },
@@ -84,7 +84,7 @@
         {
           "name": "Темірхан Нұрсултан Талгатұлы",
           "role": "Депутат Жамбылского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/jambyl/Temirkhan.jpg"
+          "img": "/img/uiLanding/maslikhats/jambyl/Temirkhan.jpg"
         },
         {
           "name": "Серик Данияр",
@@ -102,42 +102,42 @@
         {
           "name": "Мустапова Гульназия Садыбековна",
           "role": "Депутат маслихата области Жетісу",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Mustapova.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mustapova.jpg"
         },
         {
           "name": "Қылышбеков Темірлан Бақытбекұлы",
           "role": "Депутат маслихата области Жетісу",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Kylyshbekov.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Kylyshbekov.jpg"
         },
         {
           "name": "Садиев Алмат Тезекбаевич",
           "role": "Депутат маслихата области Жетісу",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Sadiev.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Sadiev.jpg"
         },
         {
           "name": "Машеков Батыр Оралбаевич",
           "role": "Депутат Талдыкорганского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Mashekov.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mashekov.jpg"
         },
         {
           "name": "Есмаханов Азиз Аблаевич",
           "role": "Депутат Талдыкорганского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
         },
         {
           "name": "Габдракипова Алсу Фаритовна",
           "role": "Депутат Талдыкорганского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Gabdrakipova.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Gabdrakipova.jpg"
         },
         {
           "name": "Махкамова Нуржамал Асанбайкызы",
           "role": "Депутат Алакольского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Mahkamova.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mahkamova.jpg"
         },
         {
           "name": "Жуанышев Талгат Жумашевич",
           "role": "Депутат Аксуского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
         }
       ]
     },
@@ -151,12 +151,12 @@
         {
           "name": "Алимжанов Арман Жаканович",
           "role": "Депутат Карагандинского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/karaganda/Alimzhanov.jpg"
+          "img": "/img/uiLanding/maslikhats/karaganda/Alimzhanov.jpg"
         },
         {
           "name": "Ахмадин Дидар Айдарович",
           "role": "Депутат Карагандинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/karaganda/Ahmadin.jpg"
+          "img": "/img/uiLanding/maslikhats/karaganda/Ahmadin.jpg"
         }
       ]
     },
@@ -170,12 +170,12 @@
         {
           "name": "Маишев Кайрат Алембаевич",
           "role": "Депутат Костанайского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/Maishev.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Maishev.jpg"
         },
         {
           "name": "Юсупова  Асия Жумаковна",
           "role": "Депутат Костанайского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/Yusupova.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Yusupova.jpg"
         },
         {
           "name": "Латыпов Кауныш Женисович",
@@ -204,7 +204,7 @@
         {
           "name": "Мустафин Ермек Абдугалиевич",
           "role": "Депутат Аулиекольского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/mustafin.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/mustafin.jpg"
         },
         {
           "name": "Жумабаева Акерке Тулендиевна",
@@ -213,17 +213,17 @@
         {
           "name": "Агдавлетов Ауез Абильдинович",
           "role": "Депутат Костанайского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/Agdavletov.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Agdavletov.jpg"
         },
         {
           "name": "Нурмагамбетов Дидар Батырбаевич",
           "role": "Депутат Мендикаринского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/nurmagambet.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/nurmagambet.jpg"
         },
         {
           "name": "Тасанов Данияр Маратович",
           "role": "Депутат Наурзумского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/tasanov.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/tasanov.jpg"
         },
         {
           "name": "Колесникова Наталья Аатольевна",
@@ -232,7 +232,7 @@
         {
           "name": "Руднева Наталья Дмитриевна",
           "role": "Депутат маслихата района Беимбета Майлина",
-          "img": "/img/uiLanding/maslikhat/kostanay/Rudneva.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Rudneva.jpg"
         },
         {
           "name": "Омаров Жанбулат Сартаевич",
@@ -241,12 +241,12 @@
         {
           "name": "Байназаров Алексей Мерекеевич",
           "role": "Депутат Федоровского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/baynazarov.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/baynazarov.jpg"
         },
         {
           "name": "Ищанова Венера Ибрагимовна",
           "role": "Депутат Житикаринского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/ishanova.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/ishanova.jpg"
         },
         {
           "name": "Усов Михаил Александрович",
@@ -305,12 +305,12 @@
         {
           "name": "Домаев Сергей Александрович",
           "role": "Депутат Северо-Казахстанского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/sko/Domaev.jpg"
+          "img": "/img/uiLanding/maslikhats/sko/Domaev.jpg"
         },
         {
           "name": "Дмитрий Крель",
           "role": "Депутат Аккаинского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/sko/Krel.jpg"
+          "img": "/img/uiLanding/maslikhats/sko/Krel.jpg"
         }
       ]
     },
@@ -324,17 +324,17 @@
         {
           "name": "Аминов Асланбек Талапкалиевич",
           "role": "Депутат Западно-Казахстанского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/zko/Aminov.jpg"
+          "img": "/img/uiLanding/maslikhats/zko/Aminov.jpg"
         },
         {
           "name": "Габдуалиев Мереке Тлекович",
           "role": "Депутат Уральского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zko/Gabdualiev.jpg"
+          "img": "/img/uiLanding/maslikhats/zko/Gabdualiev.jpg"
         },
         {
           "name": "Бисенов Армат Гимранович",
           "role": "Депутат маслихата района Байтерек",
-          "img": "/img/uiLanding/maslikhat/zko/Bisenov.jpg"
+          "img": "/img/uiLanding/maslikhats/zko/Bisenov.jpg"
         }
       ]
     },
@@ -348,7 +348,7 @@
         {
           "name": "Бейсов Тилек Муратович",
           "role": "Депутат Усть-Каменогорского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/vko/Beysov.jpg"
+          "img": "/img/uiLanding/maslikhats/vko/Beysov.jpg"
         }
       ]
     },
@@ -366,17 +366,17 @@
         {
           "name": "Куракбаев  Жаксыбай Булатович",
           "role": "Депутат Мактаральского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/turkestan/Kurakbaev.jpg"
+          "img": "/img/uiLanding/maslikhats/turkestan/Kurakbaev.jpg"
         },
         {
           "name": "Жумагельдиева Гульдариха",
           "role": "Депутат Кентауского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/turkestan/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/turkestan/Zhumageldieva.jpg"
         },
         {
           "name": "Абдуллаев Нурсултан Пархадович",
           "role": "Депутат Сауранского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/turkestan/Abdullaev.jpg"
+          "img": "/img/uiLanding/maslikhats/turkestan/Abdullaev.jpg"
         }
       ]
     },
@@ -398,12 +398,12 @@
         {
           "name": "Жайнарбай Жалынбек",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/zhainarbay.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/zhainarbay.jpg"
         },
         {
           "name": "Идрисов Руслан Рашитович",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/idrisov.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/idrisov.jpg"
         },
         {
           "name": "Серикова Салтанат Бахтияровна",
@@ -412,12 +412,12 @@
         {
           "name": "Турсунов Аким Хазреталиевич",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/Tursunov.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/Tursunov.jpg"
         },
         {
           "name": "Бегалин Кайрат Талапович",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/begalin.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/begalin.jpg"
         }
       ]
     },

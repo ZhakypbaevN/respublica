@@ -19,14 +19,16 @@
 </template>
 
 <script setup lang="ts">
-import convertDateTime from '@/helpers/convertDateTime'
-import getFileUrl from '@/helpers/getFileUrlByDate'
+  import convertDateTime from '@/helpers/convertDateTime'
+  import getFileUrl from '@/helpers/getFileUrlByDate'
 
-interface IProps {
-  albom: any,
-  active: boolean
-}
-defineProps<IProps>()
+  import { IAlbom } from '@/types/photo-gallery';
+
+  interface IProps {
+    albom: IAlbom,
+    active: boolean
+  }
+  defineProps<IProps>()
 </script>
 
 <style scoped lang="scss">

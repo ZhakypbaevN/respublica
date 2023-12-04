@@ -40,63 +40,63 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from "@/components/uiMedia/news/NewsItem.vue"
+  import NewsItem from "@/components/uiMedia/news/NewsItem.vue"
 
-import { useI18n } from 'vue-i18n'
-import { onMounted, reactive, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router'
+  import { useI18n } from 'vue-i18n'
+  import { useRoute, useRouter } from 'vue-router'
+  import { onMounted, reactive, watch, ref } from 'vue';
 
-import debounce from '@/helpers/debounce'
-import { NewsValues } from '@/types/news';
-import { getNewsList } from '@/actions/uiMedia/news';
-import { ref } from "vue";
+  import debounce from '@/helpers/debounce'
 
-const { t } = useI18n()
+  import { NewsValues } from '@/types/news';
+  import { getNewsList } from '@/actions/uiMedia/news';
 
-const route = useRoute()
-const router = useRouter()
-const search = ref(null);
+  const { t } = useI18n()
 
-const filterList = [
-  {
-    name: t('status.list-published'),
-    value: true
-  },
-  {
-    name: t('status.list-unpublished'),
-    value: false
-  }
-]
-const newsValues = reactive<NewsValues>({
-  tableValues: null,
-  total: 0,
-  isEmpty: false,
-  searchEmpty: true
-})
+  const route = useRoute()
+  const router = useRouter()
+  const search = ref(null);
 
-const getData = async () => {
-  newsValues.tableValues = null;
-  newsValues.isEmpty = false
-  const {
-    data,
-    total
-  } = await getNewsList('news', {
-    ...route.query
+  const filterList = [
+    {
+      name: t('status.list-published'),
+      value: true
+    },
+    {
+      name: t('status.list-unpublished'),
+      value: false
+    }
+  ]
+  const newsValues = reactive<NewsValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false,
+    searchEmpty: false
   })
-  newsValues.tableValues = data;
-  newsValues.total = total;
-  if (!total) {
-    newsValues.isEmpty = true
+
+  const getData = async () => {
+    newsValues.tableValues = null;
+    newsValues.isEmpty = false
+    const {
+      data,
+      total
+    } = await getNewsList('news', {
+      ...route.query
+    })
+    newsValues.tableValues = data;
+    newsValues.total = total;
+    if (!total) {
+      newsValues.isEmpty = true
+    }
   }
-}
 
-onMounted(() => getData());
+  onMounted(() => getData());
 
-watch(() => route.query, debounce(getData), { deep: true })
-watch(
-  () => search.value,
-  () => router.push({ query: { ...route.query, search: search.value } })
-)
+  watch(() => route.query, debounce(getData), { deep: true })
+  watch(
+    () => search.value,
+    () => router.push({ query: { ...route.query, search: search.value } })
+  )
 </script>
 
 <style scoped lang="scss">

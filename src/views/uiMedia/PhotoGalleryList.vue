@@ -16,14 +16,14 @@
       <div class="photo-inner">
         <PhotoSideBar
           v-model="selectAlbomID"
-          :albomlist="albomlist"
-          :loading="isLoading.sidebar"
+          :albomlist="albomValues.tableValues"
+          :loading="!albomValues.tableValues"
         />
 
         <PhotoCardList
-          :list="photoList"
+          :list="imagesValues.tableValues"
           :albomID="selectAlbomID"
-          :loading="isLoading.list"
+          :loading="!imagesValues.tableValues"
         />
       </div>
     </div>
@@ -40,103 +40,68 @@
   import PhotoSideBar from "@/components/uiMedia/gallery/photo/sidebar/PhotoSidebar.vue"
   import CreateAlbomModal from "@/components/uiMedia/gallery/photo/sidebar/CreateAlbomModal.vue"
 
-  import axios from 'axios'
   import { ref, reactive, onMounted, watch } from "vue";
   
-  import { useToast } from '@/modules/toast'
-
-  const { toast } = useToast()
+  import { AlbomValues, AlbomImagesValues } from '@/types/photo-gallery';
+  import { getAlbomList, getAlbomImagesList } from '@/actions/uiMedia/photo-gallery';
 
   const showModal = ref(false)
-  const isLoading = reactive({
-    sidebar: true,
-    list: true
-  })
-  const token = localStorage.getItem('access_token');
 
   const selectAlbomID = ref(1)
-  const albomlist = ref();
-  const photoList = ref()
+  const albomValues = reactive<AlbomValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false
+  })
+  const imagesValues = reactive<AlbomImagesValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false
+  })
 
-  onMounted(() => getAlboms());
+  onMounted(() => getData());
+
+  const getData = async () => {
+    albomValues.tableValues = null;
+    albomValues.isEmpty = false
+    const {
+      data,
+      total
+    } = (await getAlbomList()).data
+
+    albomValues.tableValues = data;
+    albomValues.total = total;
+
+    if (!total) {
+      albomValues.isEmpty = true
+    } else {
+      selectAlbomID.value = albomValues.tableValues[0].id;
+      getPhotos()
+    }
+  }
+
+  const getPhotos = async () => {
+    imagesValues.tableValues = null;
+    imagesValues.isEmpty = false
+    const {
+      data,
+      total
+    } = (await getAlbomImagesList(selectAlbomID.value)).data
+
+    imagesValues.tableValues = data;
+    imagesValues.total = total;
+
+    if (!total) {
+      imagesValues.isEmpty = true
+    }
+  }
+
+  onMounted(() => getData());
 
   watch(
     () => selectAlbomID.value,
     () => getPhotos()
   )
-
-  const getAlboms = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums`;
-
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then((response) => {
-        console.log('response', response);
-        
-        albomlist.value = response.data.data.filter((albom, idx) => {
-          albom.id = idx + 1;
-          return albom
-        });
-        
-        if (albomlist.value.length) {
-          isLoading.sidebar = false;
-          selectAlbomID.value = albomlist.value[0].id;
-          getPhotos()
-        }
-      })
-      .catch((err) => {
-        console.log('err', err);
-
-        // if (err.response.data.detail === 'Pending resignation request already exists.') {
-        //   toast({
-        //     message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        //   })
-        // } else {
-        //   toast({
-        //     message: 'Возникли ошибки при запросе'
-        //   })
-        // }
-      });
-  }
-
-  const getPhotos = () => {
-    isLoading.list = true;
-    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums/${selectAlbomID.value}/images?offset=0&limit=100`;
-
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then((response) => {
-        console.log('response', response);
-
-        photoList.value = response.data;
-        isLoading.list = false;
-      })
-      .catch((err) => {
-        console.log('err', err);
-
-        // if (err.response.data.detail === 'Pending resignation request already exists.') {
-        //   toast({
-        //     message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        //   })
-        // } else {
-        //   toast({
-        //     message: 'Возникли ошибки при запросе'
-        //   })
-        // }
-      });
-  }
 </script>
 
 <style scoped lang="scss">

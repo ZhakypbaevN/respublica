@@ -21,35 +21,37 @@
 
     <PhotoCard
       v-for="photo of photoList"
-      :key="photo"
+      :key="photo.id"
       :data="photo"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import CreatePhoto from "@/components/uiMedia/gallery/photo/photo-list/CreatePhoto.vue"
-import PhotoCard from "@/components/uiMedia/gallery/photo/photo-list/PhotoCard.vue"
+  import CreatePhoto from "@/components/uiMedia/gallery/photo/photo-list/CreatePhoto.vue"
+  import PhotoCard from "@/components/uiMedia/gallery/photo/photo-list/PhotoCard.vue"
 
-import { ref, watch } from "vue";
+  import { ref, watch } from "vue";
 
-interface IProps {
-  list: any,
-  albomID: number,
-  loading: boolean
-}
+  import { IAlbomImage } from '@/types/photo-gallery';
 
-const props = defineProps<IProps>()
-const photoList = ref(props.list);
+  interface IProps {
+    list: IAlbomImage[],
+    albomID: number,
+    loading: boolean
+  }
 
-watch(
-  () => props.list,
-  () => photoList.value = props.list
-)
+  const props = defineProps<IProps>()
+  const photoList = ref(props.list);
 
-const addNwPhoto = (photo) => {
-  photoList.value.unshift(photo)
-}
+  watch(
+    () => props.list,
+    () => photoList.value = props.list
+  )
+
+  const addNwPhoto = (photo) => {
+    photoList.value.unshift(photo)
+  }
 </script>
 
 <style scoped lang="scss">

@@ -9,7 +9,7 @@
   >
     <PhotoSidebarCard
       v-for="albom of albomlist"
-      :key="albom.name"
+      :key="albom.title"
       :albom="albom"
       :active="modelValue === albom.id"
       @click="() => $emit('update:modelValue', albom.id)"
@@ -18,20 +18,22 @@
 </template>
 
 <script setup lang="ts">
-import PhotoSidebarCard from '@/components/uiMedia/gallery/photo/sidebar/PhotoSidebarCard.vue';
-import PhotoSidebarCardSkeleton from '@/components/uiMedia/gallery/photo/sidebar/PhotoSidebarCardSkeleton.vue';
+  import PhotoSidebarCard from '@/components/uiMedia/gallery/photo/sidebar/PhotoSidebarCard.vue';
+  import PhotoSidebarCardSkeleton from '@/components/uiMedia/gallery/photo/sidebar/PhotoSidebarCardSkeleton.vue';
 
-interface IProps {
-  albomlist: any,
-  modelValue: number,
-  loading: boolean
-}
-interface Emits {
-  (event: 'update:modelValue', value: any): void
-}
+  import { IAlbom } from '@/types/photo-gallery';
 
-defineProps<IProps>()
-defineEmits<Emits>()
+  interface IProps {
+    albomlist: IAlbom[],
+    modelValue: number,
+    loading: boolean
+  }
+  interface Emits {
+    (event: 'update:modelValue', value: any): void
+  }
+
+  defineProps<IProps>()
+  defineEmits<Emits>()
 </script>
 
 <style scoped lang="scss">
