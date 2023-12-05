@@ -144,7 +144,7 @@ const links = [
   }
 
   // Adaptation
-  @media (max-width: 1200px) {
+  /* @media (max-width: 1200px) {
     &-preview {
       height: 45px;
       width: 45px;
@@ -165,6 +165,6 @@ const links = [
   }
 
   @media (max-width: 380px) {
-  }
+  } */
 }
 </style>

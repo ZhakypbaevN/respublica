@@ -134,7 +134,7 @@ const snList = [
   }
 
   // Adaptation
-  @media (max-width: 992px) {
+  /* @media (max-width: 992px) {
     grid-gap: 18px;
 
     &-item {
@@ -156,6 +156,6 @@ const snList = [
   }
 
   @media (max-width: 380px) {
-  }
+  } */
 }
 </style>

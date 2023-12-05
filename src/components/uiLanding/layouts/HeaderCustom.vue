@@ -429,7 +429,7 @@
   }
 
   // Adaptation
-  @media (max-width: 1450px) {
+  /* @media (max-width: 1450px) {
     &.sticky .header-main-logo {
       width: 80px;
     }
@@ -574,7 +574,7 @@
         width: 38px;
       }
     }
-  }
+  } */
 }
 
 .headerSidebar {

@@ -92,7 +92,7 @@
   }
 
   // Adaptation
-  @media (max-width: 1200px) {
+  /* @media (max-width: 1200px) {
     grid-gap: 140px;
   }
 
@@ -157,6 +157,6 @@
   }
 
   @media (max-width: 380px) {
-  }
+  } */
 }
 </style>
