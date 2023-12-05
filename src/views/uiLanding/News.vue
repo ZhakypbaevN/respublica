@@ -102,9 +102,9 @@
             <span>{{ $t('contacts.press-service-for-the-media.phone') }}</span>
           </a>
 
-          <a class="contacts-link" :href="`mailto:${$t('contacts.press-service-for-the-media.email')}`">
+          <a class="contacts-link" :href="`mailto:akparat2020@gmail.com`">
             <SvgIcon name="mail-white" :viewboxWidth="52" :viewboxHeight="52" />
-            <span>{{ $t('contacts.press-service-for-the-media.email') }}</span>
+            <span>akparat2020@gmail.com</span>
           </a>
         </div>
       </div>
@@ -199,7 +199,7 @@
       link: "#photoGallery"
     },
     {
-      title: t('contacts.press-service-for-the-media.nepress-service-contactsws'),
+      title: t('contacts.press-service-for-the-media.title'),
       link: "#contacts"
     }
   ]

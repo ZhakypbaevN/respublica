@@ -49,6 +49,8 @@
     //   value: 'kz'
     // }
   ];
+
+  localStorage.removeItem('lang');
   
   const selectLang = ref(defaultLocale)
   const showDropdown = ref(false);
