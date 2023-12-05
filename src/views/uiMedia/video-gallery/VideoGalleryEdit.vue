@@ -9,11 +9,13 @@
         <div class="newsEdit-form-block">
           <div class="newsEdit-form-inputs">
             <div class="newsEdit-formItem">
-              <label for="" class="newsEdit-formItem-label">Заголовок</label>
+              <label for="" class="newsEdit-formItem-label">
+                {{ $t('formdata.heading') }}
+              </label>
               <Input
                 name="title"
                 type="textarea"
-                placeholder="Введите текст обращения"
+                :placeholder="$t('formdata.enter-the-name-of-the-video')"
                 :maxSymbol="150"
                 v-model="formData.title"
                 staticPlaceholder
@@ -21,13 +23,13 @@
             </div>
             
             <div class="newsEdit-formItem">
-              <label for="content" class="newsEdit-formItem-label">YouTube код видео (iframe)</label>
+              <label for="content" class="newsEdit-formItem-label">{{ $t('formdata.youTube-video-code-iframe') }}</label>
               <Input
                 name="content"
                 type="textarea"
-                placeholder="Введите YouTube код видео"
-                staticPlaceholder
                 v-model="formData.content"
+                :placeholder="$t('formdata.enter-the-youTube-video-code')"
+                staticPlaceholder
               />
             </div>
           </div>
@@ -38,13 +40,13 @@
           <Button
             :name="
               route.params.news_id
-                ? 'Сохранить'
-                : 'Создать видео'
+                ? $t('button.save')
+                : $t('button.create-a-video')
             "
             htmlType="submit"
           />
           <Button
-            name="Отмена"
+            :name="$t('button.cancel')"
             htmlType="submit"
             type="default-grey"
           />
@@ -55,30 +57,78 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive } from 'vue'
-import axios from 'axios'
-import { useToast } from '@/modules/toast'
-import { useRoute } from 'vue-router';
+  import axios from 'axios'
 
-const route = useRoute()
-const { toast } = useToast()
+  import { onMounted, ref, reactive } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useRoute } from 'vue-router';
+  
+  import { useToast } from '@/modules/toast'
+  
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const loading = ref(false)
-const token = localStorage.getItem('TOKEN');
+  const route = useRoute()
 
-const formData = reactive({
-  title: '',
-  content: '',
-})
+  const loading = ref(false)
+  const token = localStorage.getItem('access_token');
 
-// Get News
-onMounted(() => {
-  if (route.params.news_id) {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`;
+  const formData = reactive({
+    title: '',
+    content: '',
+  })
+
+  // Get News
+  onMounted(() => {
+    if (route.params.news_id) {
+      const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`;
+
+      axios({
+        method: "get",
+        url: url,
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer ' + token
+        }
+      })
+        .then((response) => {
+          console.log('response', response);
+          formData.title = response.data.title;
+          
+          formData.content = response.data.content;
+          
+        })
+        .catch((err) => {
+          console.log('err', err);
+          
+          toast({
+            message: 'Возникли ошибки при запросе'
+          })
+          loading.value = false
+        });
+
+    }
+  })
+
+
+  // Post
+  const postNews = () => {
+    loading.value = true;
+    const url = route.params.news_id
+      ? `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`
+      : `https://api.respublica-partiyasy.kz/api/v1/admin/articles`;
+
+    const data = new FormData();
+    
+    data.append("title", formData.title);
+    data.append("alias_category", 'video-gallery');
+    data.append("content", formData.content);
+    data.append("published", 'true');
 
     axios({
-      method: "get",
+      method: route.params.news_id ? "put" : "post",
       url: url,
+      data: data,
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + token
@@ -86,74 +136,23 @@ onMounted(() => {
     })
       .then((response) => {
         console.log('response', response);
-        formData.title = response.data.title;
-        
-        formData.content = response.data.content;
+
+        toast({
+          message: route.params.news_id
+            ? t('message.the-video-has-been-successfully-edited')
+            : t('message.the-video-has-been-successfully-created'),
+          type: 'success'
+        })
         
       })
       .catch((err) => {
         console.log('err', err);
-        
         toast({
           message: 'Возникли ошибки при запросе'
         })
         loading.value = false
       });
-
   }
-})
-
-
-// Post
-const postNews = () => {
-  loading.value = true;
-  const url = route.params.news_id
-    ? `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`
-    : `https://api.respublica-partiyasy.kz/api/v1/admin/articles`;
-
-  const data = new FormData();
-  
-  data.append("title", formData.title);
-  data.append("alias_category", 'video-gallery');
-  data.append("content", formData.content);
-  data.append("published", 'true');
-
-  axios({
-    method: route.params.news_id ? "put" : "post",
-    url: url,
-    data: data,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      toast({
-        message: route.params.news_id
-          ? 'Видео успешно редактирование'
-          : 'Видео успешно создана',
-        type: 'success'
-      })
-      
-    })
-    .catch((err) => {
-      console.log('err', err);
-      
-      if (err.response.data.detail === 'Incorrect username or password') {
-        toast({
-          message: 'Неверный логин или пароль!'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
-      loading.value = false
-    });
-}
-
 </script>
 
 <style scoped lang="scss">

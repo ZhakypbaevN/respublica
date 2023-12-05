@@ -10,7 +10,7 @@
         <Input
           v-model="filter.search"
           staticPlaceholder
-          placeholder="Поиск по проекту"
+          :placeholder="$t('formdata.search-by-name')"
         />
 
         <RouterLink to="/media/news-for-fraction/create">
@@ -47,7 +47,7 @@ import { watch } from "vue";
 const { t } = useI18n()
 const { toast } = useToast()
 
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 const isLoading = ref(false)
 const newsList = ref([]);
 

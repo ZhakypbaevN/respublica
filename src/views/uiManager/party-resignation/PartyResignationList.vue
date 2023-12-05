@@ -3,28 +3,28 @@
     <section class="party">
       <div class="wrapper">
         <div class="party-header">
-          <h3 class="party-party-header-title">Члены партий</h3>
-          <p class="party-header-count">Всего {{ partyValues.total ?? '...' }}</p>
+          <h3 class="party-party-header-title">{{ $t('party.party-members') }}</h3>
+          <p class="party-header-count">{{ $t('total') }} {{ partyValues.total ?? '...' }}</p>
         </div>
 
         <div class="party-filter">
           <Input
             v-model="search"
             staticPlaceholder
-            placeholder="Поиск по проекту"
+            :placeholder="$t('formdata.search-by-name')"
           />
         </div>
 
         <table class="party-table" v-if="partyValues.tableValues">
           <thead>
             <tr class="party-head">
-              <th>№ парт билета</th>
-              <th>ФИО</th>
-              <th>Статус</th>
-              <th>Дата выдачи</th>
-              <th>Область</th>
-              <th>Населенный пункт</th>
-              <th>Особая категория</th>
+              <th>{{ $t('formdata.ticket-desk-number') }}</th>
+              <th>{{ $t('formdata.fio') }}</th>
+              <th>{{ $t('formdata.status') }}</th>
+              <th>{{ $t('formdata.date-of-issue') }}</th>
+              <th>{{ $t('formdata.area') }}</th>
+              <th>{{ $t('formdata.locality') }}</th>
+              <th>{{ $t('formdata.a-special-category') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -62,68 +62,67 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { onMounted, reactive, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router'
+  import { useI18n } from 'vue-i18n'
+  import { onMounted, reactive, watch, ref } from 'vue';
+  import { useRoute, useRouter } from 'vue-router'
 
-import debounce from '@/helpers/debounce'
-import { PartyResignationsValues } from '@/types/party-resignations'
-import { getPartyResignationsList } from '@/actions/uiManager/party-resignations';
-import { ref } from "vue";
+  import debounce from '@/helpers/debounce'
+  import { PartyResignationsValues } from '@/types/party-resignations'
+  import { getPartyResignationsList } from '@/actions/uiManager/party-resignations';
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const route = useRoute()
-const router = useRouter()
-const search = ref(null);
+  const route = useRoute()
+  const router = useRouter()
+  const search = ref(null);
 
-const partyValues = reactive<PartyResignationsValues>({
-  tableValues: null,
-  total: 0,
-  isEmpty: false,
-  searchEmpty: true
-})
-
-const getData = async () => {
-  partyValues.tableValues = null;
-  partyValues.isEmpty = false
-  const {
-    data,
-    total
-  } = await getPartyResignationsList(route.params.filter.toString(), {
-    ...route.query
+  const partyValues = reactive<PartyResignationsValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false,
+    searchEmpty: true
   })
-  partyValues.tableValues = data;
-  partyValues.total = total;
-  if (!total) {
-    partyValues.isEmpty = true
+
+  const getData = async () => {
+    partyValues.tableValues = null;
+    partyValues.isEmpty = false
+    const {
+      data,
+      total
+    } = await getPartyResignationsList(route.params.filter.toString(), {
+      ...route.query
+    })
+    partyValues.tableValues = data;
+    partyValues.total = total;
+    if (!total) {
+      partyValues.isEmpty = true
+    }
   }
-}
 
-onMounted(() => getData());
+  onMounted(() => getData());
 
-watch(() => route.query, debounce(getData), { deep: true })
-watch(
-  () => search.value,
-  () => router.push({ query: { ...route.query, search: search.value } })
-)
+  watch(() => route.query, debounce(getData), { deep: true })
+  watch(
+    () => search.value,
+    () => router.push({ query: { ...route.query, search: search.value } })
+  )
 
-const checkStatus = (status) => {
-  if (status === 'pending') return 'В ожидании';
-  if (status === 'approved') return 'Подтвержден';
-  return 'Откланен';
-}
+  const checkStatus = (status) => {
+    if (status === 'pending') return t('status.pending');
+    if (status === 'approved') return t('status.approved');
+    return t('status.dismissed');
+  }
 
-const getStatusList = (data) => {
-  const list = [];
+  const getStatusList = (data) => {
+    const list = [];
 
-  if (data.is_pensioner) list.push(t('social-category.pensioner'));
-  if (data.is_disabled) list.push(t('social-category.disabled'));
-  if (data.is_unemployed) list.push(t('social-category.unemployed'));
-  if (data.is_on_childcare_leave) list.push(t('social-category.on-childcare-leave'));
-  if (!list.length) return '-'
-  return list.join(', ');
-}
+    if (data.is_pensioner) list.push(t('social-category.pensioner'));
+    if (data.is_disabled) list.push(t('social-category.disabled'));
+    if (data.is_unemployed) list.push(t('social-category.unemployed'));
+    if (data.is_on_childcare_leave) list.push(t('social-category.on-childcare-leave'));
+    if (!list.length) return '-'
+    return list.join(', ');
+  }
 </script>
 
 <style scoped lang="scss">

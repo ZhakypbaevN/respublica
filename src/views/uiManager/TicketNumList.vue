@@ -4,7 +4,7 @@
 
       <div class="ticketNum-header">
         <Input
-          placeholder="Поиск по проекту"
+          :placeholder="$t('formdata.search-by-name')"
           staticPlaceholder
         />
         <Button
@@ -33,97 +33,97 @@
 </template>
 
 <script setup lang="ts">
-import TicketNumItem from "@/components/uiManager/ticket-num/TicketNumItem.vue"
-import CreateTicketNumModal from "@/components/uiManager/ticket-num/CreateTicketNumModal.vue";
+  import TicketNumItem from "@/components/uiManager/ticket-num/TicketNumItem.vue"
+  import CreateTicketNumModal from "@/components/uiManager/ticket-num/CreateTicketNumModal.vue";
 
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
+  import axios from 'axios';
+  import { onMounted, ref } from 'vue';
 
-import { useToast } from '@/modules/toast'
+  import { useToast } from '@/modules/toast'
 
-const { toast } = useToast()
+  const { toast } = useToast()
 
-const isLoading = ref(false)
-const token = localStorage.getItem('TOKEN');
-const ticketNumList = ref([]);
+  const isLoading = ref(false)
+  const token = localStorage.getItem('access_token');
+  const ticketNumList = ref([]);
 
-const showCreateModal = ref(false);
+  const showCreateModal = ref(false);
 
-const removeItem = ({index}: {index: number}) => {
-  ticketNumList.value.splice(index, 1);
-}
+  const removeItem = ({index}: {index: number}) => {
+    ticketNumList.value.splice(index, 1);
+  }
 
-onMounted(() => getPhotos());
-const getPhotos = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
+  onMounted(() => getPhotos());
+  const getPhotos = () => {
+    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
 
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      ticketNumList.value = response.data;
-      isLoading.value = false;
-    })
-    .catch((err) => {
-      console.log('err', err);
-
-      if (err.response.data.detail === 'Pending resignation request already exists.') {
-        toast({
-          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
       }
-      isLoading.value = false;
-    });
-}
+    })
+      .then((response) => {
+        console.log('response', response);
+
+        ticketNumList.value = response.data.data;
+        isLoading.value = false;
+      })
+      .catch((err) => {
+        console.log('err', err);
+
+        if (err.response.data.detail === 'Pending resignation request already exists.') {
+          toast({
+            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+          })
+        } else {
+          toast({
+            message: 'Возникли ошибки при запросе'
+          })
+        }
+        isLoading.value = false;
+      });
+  }
 
 </script>
 
 <style scoped lang="scss">
-.wrapper-main {
-  background-color: var(--accent-color-op05);
-  padding: 40px 0;
-}
+  .wrapper-main {
+    background-color: var(--accent-color-op05);
+    padding: 40px 0;
+  }
 
-.ticketNum {
-  &-header {
-    max-width: 1160px;
+  .ticketNum {
+    &-header {
+      max-width: 1160px;
 
-    display: grid;grid-template-columns: 1fr 60px;
-    grid-gap: 20px;
-    margin-bottom: 30px;
+      display: grid;grid-template-columns: 1fr 60px;
+      grid-gap: 20px;
+      margin-bottom: 30px;
 
-    &-addticketNumBtn {
-      width: 60px;
-      height: 60px;
+      &-addticketNumBtn {
+        width: 60px;
+        height: 60px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px !important;
 
-      & svg {
-        height: 40px;
-        width: 40px;
+        & svg {
+          height: 40px;
+          width: 40px;
 
-        fill: white;
+          fill: white;
+        }
       }
     }
+    &-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 10px;
+    }
   }
-  &-items {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px;
-  }
-}
 </style>

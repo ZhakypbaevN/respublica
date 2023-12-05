@@ -5,7 +5,9 @@
       
       <section class="landing-block">
         <div class="wrapper landing-wrapper">
-          <h2 class="landing-title center">Видеогалерея</h2>
+          <h2 class="landing-title center">
+            {{ $t('page.video-gallery') }}
+          </h2>
 
           <div class="landing-items" v-if="newsValues.isEmpty">
             Empty

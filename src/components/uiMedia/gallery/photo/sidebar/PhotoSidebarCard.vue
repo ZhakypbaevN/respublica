@@ -6,24 +6,29 @@
     <div class="albom-preview withZoomPreview-preview">
       <div
         class="albom-preview-img bg-cover withZoomPreview-preview-img"
-        :style="`background-image: url(${null});`"
+        :style="`background-image: url(${getFileUrl(albom.preview_image)});`"
       ></div>
     </div>
 
     <div class="albom-info">
       <span class="albom-info-name">{{ albom.title }}</span>
-      <span class="albom-info-date">20 июля, 2023.</span>
-      <span class="albom-info-city">Астана</span>
+      <span class="albom-info-date">{{ convertDateTime(albom.date) }}</span>
+      <span class="albom-info-city">{{ albom.place }}</span>
     </div>
   </button>
 </template>
 
 <script setup lang="ts">
-interface IProps {
-  albom: any,
-  active: boolean
-}
-defineProps<IProps>()
+  import convertDateTime from '@/helpers/convertDateTime'
+  import getFileUrl from '@/helpers/getFileUrlByDate'
+
+  import { IAlbom } from '@/types/photo-gallery';
+
+  interface IProps {
+    albom: IAlbom,
+    active: boolean
+  }
+  defineProps<IProps>()
 </script>
 
 <style scoped lang="scss">

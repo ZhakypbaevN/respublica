@@ -7,7 +7,7 @@
         <Input
           v-model="search"
           staticPlaceholder
-          placeholder="Поиск по проекту"
+          :placeholder="$t('formdata.search-by-name')"
         />
 
         <RouterLink to="/media/press-about-us/create">
@@ -42,14 +42,13 @@
 <script setup lang="ts">
 import NewsItem from "@/components/uiMedia/press-about-us/NewsItem.vue"
 
-import { useI18n } from 'vue-i18n'
-import { onMounted, reactive, watch } from 'vue';
+import { onMounted, reactive, watch, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 import debounce from '@/helpers/debounce'
 import { NewsValues } from '@/types/news';
 import { getNewsList } from '@/actions/uiMedia/news';
-import { ref } from "vue";
 
 const { t } = useI18n()
 

@@ -5,7 +5,9 @@
         
         <section class="landing-block">
           <div class="wrapper landing-wrapper">
-            <h2 class="landing-title">Функционал находиться в разработке.</h2>
+            <h2 class="landing-title">
+              {{ $t('message.the-functionality-is-under-development') }}
+            </h2>
         </div>
       </section>
     </div>

@@ -19,9 +19,13 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 import SideBar from '@/components/common/SideBar.vue';
 import HeaderManager from '@/components/uiManager/layouts/HeaderManager.vue';
+
+import { onMounted } from 'vue';
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 onMounted(() => {
   document.body.style ='height:100vh;overflow:hidden;';
@@ -29,23 +33,23 @@ onMounted(() => {
 
 const sideBarlinks = [
   {
-    title: 'Члены партии',
+    title: t('page.party-members'),
     link: "/manager/party-list/active?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'Заявки на удаление',
+    title: t('page.requests-for-deletion'),
     link: "/manager/party-resignation-list?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'Удаленные',
+    title: t('page.deleted'),
     link: "/manager/party-list/revoked?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'VIP номера',
+    title: t('page.vip-rooms'),
     link: "/manager/ticket-num-data-list?offset=0&limit=20&published=true&search="
   },
   {
-    title: 'Аналитика',
+    title: t('page.analytics'),
     link: "/manager/analytics"
   }
 ]

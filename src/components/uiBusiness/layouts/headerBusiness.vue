@@ -13,9 +13,7 @@
           </RouterLink>
          
           <div class="header-main-right">
-            <button class="header-main-lang">
-              <span>РУ</span>
-            </button>
+            <LangToggle />
 
             <Avatar />
           </div>
@@ -26,12 +24,14 @@
 </template>
 
 <script setup lang="ts">
-import Avatar from '../../../components/common/Avatar.vue';
+import Avatar from '@/components/common/Avatar.vue';
 </script>
 
 <style scoped lang="scss">
 .wrapper {
   max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .header {
   background-color: var(--accent-color-op05);
@@ -75,14 +75,6 @@ import Avatar from '../../../components/common/Avatar.vue';
       display: flex;
       align-items: center;
       grid-gap: 60px;
-    }
-
-    &-lang {
-      & span {
-        color: var(--primary-color);
-        font-size: 18px;
-        font-weight: 700;
-      }
     }
   }
 }

@@ -2,13 +2,10 @@
   <button
     class="photoItem withZoomPreview"
   >
-
-    <!-- Preview -->
-    <!-- :style="`background-image:url('https://api.respublica-partiyasy.kz/${data.preview_image}');`" -->
     <div class="photoItem-preview withZoomPreview-preview">
       <div
         class="photoItem-preview-img bg-cover withZoomPreview-preview-img"
-        :style="`background-image:url('https://api.respublica-partiyasy.kz/${data.image}');`"
+        :style="`background-image:url('${getFileUrl(data.preview_image)}');`"
       ></div>
     </div>
 
@@ -29,53 +26,59 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
-import { ref } from "vue";
-import { useToast } from '@/modules/toast'
+  import axios from 'axios'
+  import { ref } from "vue";
+  import { useI18n } from 'vue-i18n'
 
-interface IProps {
-  data: any,
-}
+  import { useToast } from '@/modules/toast'
+  import getFileUrl from '@/helpers/getFileUrlByDate'
 
-const props = defineProps<IProps>()
+  import { IAlbomImage } from '@/types/photo-gallery';
 
-const { toast } = useToast()
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const isLoading = ref(false);
-const token = localStorage.getItem('TOKEN');
+  interface IProps {
+    data: IAlbomImage,
+  }
 
-// Delete Photo
-const onDelete = () => {
-  isLoading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/galleries/images/${props.data.id}`;
-  console.log('props', props.data.id);
-  axios({
-    method: "delete",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
+  const props = defineProps<IProps>()
 
-      toast({
-        message: 'Фотография удалена!',
-        type: 'success'
-      })
+  const isLoading = ref(false);
+  const token = localStorage.getItem('access_token');
 
-      isLoading.value = false;
+  // Delete Photo
+  const onDelete = () => {
+    isLoading.value = true;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/galleries/images/${props.data.id}`;
+    console.log('props', props.data.id);
+    axios({
+      method: "delete",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
     })
-    .catch((err) => {
-      console.log('err', err);
+      .then((response) => {
+        console.log('response', response);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
+        toast({
+          message: t('message.the-photo-has-been-deleted'),
+          type: 'success'
+        })
+
+        isLoading.value = false;
       })
-      isLoading.value = false;
-    });
-}
+      .catch((err) => {
+        console.log('err', err);
+
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+        isLoading.value = false;
+      });
+  }
 </script>
 
 <style scoped lang="scss">

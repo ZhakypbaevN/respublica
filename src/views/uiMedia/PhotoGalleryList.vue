@@ -2,28 +2,36 @@
   <section class="wrapper-main">
     <div class="photo wrapper">
       <div class="landing-header">
-        <h2 class="landing-title">Фотогалерея</h2>
+        <h2 class="landing-title">{{ $t('page.photo-gallery') }}</h2>
         <Button
           class="photo-addBtn"
           type="outline-blue"
-          name="Добавить альбом"
+          :name="$t('button.add-albom')"
           @click="() => showModal = true"
         >
           <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
         </Button>
       </div>
 
-      <div class="photo-inner">
+      <div v-if="albomValues.isEmpty">
+        Empty
+      </div>
+      <div class="news-items disabled" v-else-if="!albomValues.tableValues">
+        Loading
+      </div>
+      <div
+        v-else
+        class="photo-inner"
+      >
         <PhotoSideBar
           v-model="selectAlbomID"
-          :albomlist="albomlist"
-          :loading="isLoading.sidebar"
+          :albomlist="albomValues.tableValues"
+          :loading="!albomValues.tableValues"
         />
 
         <PhotoCardList
-          :list="photoList"
           :albomID="selectAlbomID"
-          :loading="isLoading.list"
+          :loading="!albomValues.tableValues"
         />
       </div>
     </div>
@@ -36,103 +44,39 @@
 </template>
 
 <script setup lang="ts">
-  import axios from 'axios'
-  import { ref, reactive, onMounted, watch } from "vue";
-  import { useToast } from '@/modules/toast'
-
   import PhotoCardList from "@/components/uiMedia/gallery/photo/photo-list/PhotoCardList.vue"
   import PhotoSideBar from "@/components/uiMedia/gallery/photo/sidebar/PhotoSidebar.vue"
   import CreateAlbomModal from "@/components/uiMedia/gallery/photo/sidebar/CreateAlbomModal.vue"
 
-  const { toast } = useToast()
+  import { ref, reactive, onMounted } from "vue";
+  
+  import { AlbomValues } from '@/types/photo-gallery';
+  import { getAlbomList } from '@/actions/uiMedia/photo-gallery';
 
   const showModal = ref(false)
-  const isLoading = reactive({
-    sidebar: true,
-    list: true
-  })
-  const token = localStorage.getItem('TOKEN');
 
   const selectAlbomID = ref(1)
-  const albomlist = ref();
-  const photoList = ref()
+  const albomValues = reactive<AlbomValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false
+  })
 
-  onMounted(() => getAlboms());
+  onMounted(() => getData());
 
-  watch(
-    () => selectAlbomID.value,
-    () => getPhotos()
-  )
+  const getData = async () => {
+    albomValues.tableValues = null;
+    albomValues.isEmpty = false
+    const {
+      data,
+      total
+    } = (await getAlbomList()).data
 
-  const getAlboms = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums?offset=0&limit=100`;
+    albomValues.tableValues = data;
+    albomValues.total = total;
 
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then((response) => {
-        console.log('response', response);
-        
-        albomlist.value = response.data.filter((albom, idx) => {
-          albom.id = idx + 1;
-          return albom
-        });
-        isLoading.sidebar = false;
-        selectAlbomID.value = albomlist.value[0].id;
-
-        if (albomlist.value.length) getPhotos()
-      })
-      .catch((err) => {
-        console.log('err', err);
-
-        if (err.response.data.detail === 'Pending resignation request already exists.') {
-          toast({
-            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
-      });
-  }
-
-  const getPhotos = () => {
-    isLoading.list = true;
-    const url = `https://api.respublica-partiyasy.kz/api/v1/galleries/albums/${selectAlbomID.value}/images?offset=0&limit=100`;
-
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then((response) => {
-        console.log('response', response);
-
-        photoList.value = response.data;
-        isLoading.list = false;
-      })
-      .catch((err) => {
-        console.log('err', err);
-
-        if (err.response.data.detail === 'Pending resignation request already exists.') {
-          toast({
-            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
-      });
+    if (!total) albomValues.isEmpty = true;
+    else selectAlbomID.value = albomValues.tableValues[0].id;
   }
 </script>
 

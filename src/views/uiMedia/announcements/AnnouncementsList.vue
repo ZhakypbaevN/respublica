@@ -7,7 +7,7 @@
         <Input
           v-model="search"
           staticPlaceholder
-          placeholder="Поиск по проекту"
+          :placeholder="$t('formdata.search-by-name')"
         />
 
         <RouterLink to="/media/announcements/create">

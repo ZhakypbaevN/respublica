@@ -3,29 +3,34 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="modal"
-    title="Вы уверены?"
+    :title="$t('are-you-sure')"
   >
     <div class="modal-btns">
       <Button
-        name="Подтвердить"
+        :name="$t('button.confirm')"
         :loading="loading"
         @click="postDelete"
         type="default-red"
       />
 
-      <Button type="default-grey" name="Отмена" @click="emits('hide')" />
+      <Button
+        :name="$t('button.cancel')"
+        type="default-grey"
+        @click="emits('hide')"
+      />
     </div>
   </Modal>
 </template>
 
 <script setup lang="ts">
-// Components
-import { ref } from 'vue'
 import axios from 'axios'
 
-// Modules
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import { useToast } from '@/modules/toast'
 
+const { t } = useI18n()
 const { toast } = useToast()
 
 interface IProps {
@@ -41,7 +46,7 @@ const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
 const loading = ref(false)
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const postDelete = () => {
   loading.value = true;
@@ -58,7 +63,7 @@ const postDelete = () => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Видео успешно удалена',
+        message: t('message.the-video-has-been-successfully-deleted'),
         type: 'success'
       })
       

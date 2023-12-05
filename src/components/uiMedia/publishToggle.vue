@@ -11,10 +11,11 @@
 
 <script setup lang="ts">
 import axios from 'axios'
+
 import { ref } from 'vue';
-import { useToast } from '../../modules/toast'
 import { useI18n } from 'vue-i18n'
 
+import { useToast } from '@/modules/toast'
 
 interface IProps {
   data: any
@@ -34,7 +35,7 @@ const loading = ref(false);
 const togglePublishNews = () => {
   loading.value = true;
   const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${props.data.id}`
-  const token = localStorage.getItem('TOKEN');
+  const token = localStorage.getItem('access_token');
 
   const data = new FormData();
 

@@ -23,10 +23,10 @@
 
         <table class="deputy-requests-table">
           <thead>
-            <th>Дата</th>
-            <th>Файл и краткое описание</th>
-            <!-- <th>Выступление</th> -->
-            <th>Ответ</th>
+            <th>{{ $t('formdata.date') }}</th>
+            <th>{{ $t('formdata.file-and-brief-description') }}</th>
+            <!-- <th>{{ $t('formdata.performance') }}</th> -->
+            <th>{{ $t('formdata.answer') }}</th>
           </thead>
           <tbody>
             <tr v-for="request of tableContentList" :key="request.title">
@@ -46,14 +46,6 @@
                   </span>
                 </a>
               </td>
-              <!-- <td>
-                <div class="text-line">
-                  <div class="text-line-icon">
-                    <SvgIcon name="youtube-dark" :viewboxHeight="32" :viewboxWidth="32" />
-                  </div>
-                  <span>Смотреть</span>
-                </div>
-              </td> -->
               <td class="nowrap">
                 <a
                   v-if="request.answerDoc"

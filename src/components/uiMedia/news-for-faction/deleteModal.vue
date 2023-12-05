@@ -3,17 +3,21 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="modal"
-    title="Вы уверены?"
+    :title="$t('are-you-sure')"
   >
     <div class="modal-btns">
       <Button
-        name="Подтвердить"
+        :name="$t('button.confirm')"
         :loading="loading"
         @click="postDelete"
         type="default-red"
       />
 
-      <Button type="default-grey" name="Отмена" @click="emits('hide')" />
+      <Button
+        :name="$t('button.cancel')"
+        type="default-grey"
+        @click="emits('hide')"
+      />
     </div>
   </Modal>
 </template>
@@ -41,7 +45,7 @@ const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
 const loading = ref(false)
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const postDelete = () => {
   loading.value = true;

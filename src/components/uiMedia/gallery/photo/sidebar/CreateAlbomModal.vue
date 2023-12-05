@@ -3,7 +3,7 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="feedbackModal"
-    title="Создание альбома"
+    :title="$t('gallery.creating-an-album')"
   >
     <Form
       @finish="createAlbom"
@@ -23,7 +23,7 @@
         <Input
           v-model="formData.title"
           name="name"
-          placeholder="Введите название"
+          :placeholder="$t('formdata.enter-a-name')"
           required
         />
 
@@ -31,14 +31,14 @@
           v-model="formData.date"
           name="date"
           type="date"
-          placeholder="Введите дату"
+          :placeholder="$t('formdata.enter-the-date')"
           required
         />
         
         <Select
           v-model="formData.place"
           name="region"
-          placeholder="Укажите область"
+          :placeholder="$t('formdata.specify-the-area')"
           :options="regionList"
           required
         />
@@ -46,7 +46,7 @@
       
 
       <Button
-        name="Отправить заявку"
+        :name="$t('button.send-a-request')"
         :loading="loading"
         htmlType="submit"
       />
@@ -55,13 +55,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive } from 'vue'
 import axios from 'axios'
 import moment from 'moment';
 
-// Modules
+import { onMounted, ref, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import { useToast } from '@/modules/toast'
 
+const { t } = useI18n()
 const { toast } = useToast()
 
 interface IProps {
@@ -75,7 +77,7 @@ interface Emits {
 const props = defineProps<IProps>()
 const emits = defineEmits<Emits>()
 
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const loading = ref(false);
 const regionList = ref([]);
@@ -122,14 +124,10 @@ const createAlbom = () => {
 
   const data = new FormData();
 
-  const albomData = {
-    label: null,
-    title: formData.title,
-    date: moment(formData.date).format('YYYY-MM-DD'),
-    place: formData.place
-  }
-  
-  data.append("album", JSON.stringify(albomData));
+  data.append("title", formData.title);
+  data.append("place", formData.place);
+  data.append("date", moment(formData.date).format('YYYY-MM-DD'));
+
   if (formData.newPhotoFile) data.append("preview_image", formData.newPhotoFile);
 
   axios({
@@ -144,7 +142,7 @@ const createAlbom = () => {
     .then((response) => {
       console.log('response', response);
       toast({
-        message: 'Альбом успешно создан!',
+        message: t('message.the-album-has-been-successfully-created'),
         type: 'success'
       })
       

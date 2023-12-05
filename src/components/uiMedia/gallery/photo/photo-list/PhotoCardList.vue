@@ -1,6 +1,17 @@
 <template>
+   <div
+    v-if="imagesValues.isEmpty"
+    class="photoItems"
+  >
+    <CreatePhoto
+      :albomID="albomID"
+      @newPhoto="addNwPhoto"
+    />
+
+    Empty
+  </div>
   <div
-    v-if="loading"
+    v-else-if="loading || !imagesValues.tableValues"
     class="photoItems"
   >
     <div
@@ -9,7 +20,6 @@
       class="photoItems-cardSkeleton skeleton"
     />
   </div>
-
   <div
     v-else
     class="photoItems"
@@ -20,35 +30,62 @@
     />
 
     <PhotoCard
-      v-for="photo of photoList"
-      :key="photo"
+      v-for="photo of imagesValues.tableValues"
+      :key="photo.id"
       :data="photo"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import CreatePhoto from "@/components/uiMedia/gallery/photo/photo-list/CreatePhoto.vue"
-import PhotoCard from "@/components/uiMedia/gallery/photo/photo-list/PhotoCard.vue"
+  import CreatePhoto from "@/components/uiMedia/gallery/photo/photo-list/CreatePhoto.vue"
+  import PhotoCard from "@/components/uiMedia/gallery/photo/photo-list/PhotoCard.vue"
 
-interface IProps {
-  list: any,
-  albomID: number,
-  loading: boolean
-}
+  import { watch, reactive, onMounted } from "vue";
 
-const props = defineProps<IProps>()
-const photoList = ref(props.list);
+  import { AlbomImagesValues } from '@/types/photo-gallery';
+  import { getAlbomImagesList } from '@/actions/uiMedia/photo-gallery';
 
-watch(
-  () => props.list,
-  () => photoList.value = props.list
-)
+  interface IProps {
+    albomID: number,
+    loading: boolean
+  }
 
-const addNwPhoto = (photo) => {
-  photoList.value.unshift(photo)
-}
+  const props = defineProps<IProps>()
+  const imagesValues = reactive<AlbomImagesValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false
+  })
+
+  const addNwPhoto = (photo) => {
+    if (imagesValues.isEmpty) imagesValues.tableValues = [];
+    imagesValues.tableValues.push(photo)
+  }
+
+  const getPhotos = async () => {
+    imagesValues.tableValues = null;
+    imagesValues.isEmpty = false;
+
+    const {
+      data,
+      total
+    } = (await getAlbomImagesList(props.albomID)).data
+
+    imagesValues.tableValues = data;
+    imagesValues.total = total;
+
+    if (!total) {
+      imagesValues.isEmpty = true
+    }
+  }
+
+  watch(
+    () => props.albomID,
+    () => getPhotos()
+  )
+  
+  onMounted(() => getPhotos())
 </script>
 
 <style scoped lang="scss">

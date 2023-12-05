@@ -5,10 +5,10 @@
       <div class="wrapper landing-wrapper">
         <p
           class="partyProgram-titleBlock-description"
-          v-html="$t('party-program-description')"
+          v-html="$t('home.party-program.description')"
         />
 
-        <h2 v-if="false" class="partyProgram-titleBlock-title">{{ $t("party-program-forward") }}</h2>
+        <h2 v-if="false" class="partyProgram-titleBlock-title">{{ $t("home.party-program.forward") }}</h2>
       </div>
     </div>
     
@@ -77,13 +77,13 @@ const blockList = [
   {
     color: '#4A78EC',
     img: '/img/uiLanding/party-program/R.png',
-    title: t('party-program-progtam-pdf'),
+    title: t('home.party-program.party-program-respublica'),
     pdf: "/doc/ru/Программа партии_.pdf",
   },
   {
     color: '#894BEC',
     img: '/img/uiLanding/party-program/E.png',
-    title: t('party-program-party-election-program'),
+    title: t('home.party-program.party-election-program-respublica'),
     pdf: "/doc/ru/Программа предвыборная рус.pdf",
   },
 ];

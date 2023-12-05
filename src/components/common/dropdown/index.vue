@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import { provide, reactive, ref, VNode, watch } from 'vue'
-import VNodeRenderer from '../VNodeRenderer.vue'
+import VNodeRenderer from '@/components/common/VNodeRenderer.vue'
 
 export interface DropdownItem {
   vnodes: VNode[]

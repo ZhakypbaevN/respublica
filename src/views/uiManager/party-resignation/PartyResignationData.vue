@@ -2,7 +2,7 @@
   <div class="wrapper-main">
     <section class="myRequests">
       <div class="wrapper">
-        <h2 class="landing-title">Выход из партий</h2>
+        <h2 class="landing-title">{{ $t('page.quitting-the-party') }}</h2>
 
         <div class="userData" v-if="partyData">
           <div class="userData-inner">
@@ -10,31 +10,17 @@
             <div>
               <div class="userData-content">
                 <div class="userData-motive">
-                  <h4 class="userData-motive-title">Причина:</h4>
+                  <h4 class="userData-motive-title">{{ $t('formdata.reason') }}:</h4>
                   <p class="userData-motive-text">{{ partyData.reason_for_resignation }}</p>
                 </div>
 
                 <div class="userData-doc">
-                  <h4 class="userData-doc-title">Документ:</h4>
+                  <h4 class="userData-doc-title">{{ $t('formdata.document') }}:</h4>
                   <div class="userData-doc-namEwithAction">
                     <a class="userData-doc-name" :href="'https://api.respublica-partiyasy.kz/' + partyData.document">{{ partyData.document }}</a>
                   </div>
                 </div>
               </div>
-
-              <!-- <div class="userData-content">
-                <div class="userData-motive">
-                  <h4 class="userData-motive-title">Причина отказа:</h4>
-                  <p class="userData-motive-text">{{ partyData.reason_for_resignation }}</p>
-                </div>
-
-                <div class="userData-doc">
-                  <h4 class="userData-doc-title">Документ:</h4>
-                  <div class="userData-doc-namEwithAction">
-                    <a class="userData-doc-name" :href="'https://api.respublica-partiyasy.kz/' + partyData.document">{{ partyData.document }}</a>
-                  </div>
-                </div>
-              </div> -->
 
               <div class="userData-content">
                 <h2 class="userData-content-title">
@@ -229,7 +215,7 @@
           <div class="userData-bottom" v-if="partyData.status === 'pending'">
             <Button
               class="userData-btn exit"
-              name="Подтвердить выход"
+              :name="$t('button.confirm-the-exit')"
               type="default-red"
               v-slot:left
               @click="() => showModal.confirm = true"
@@ -243,12 +229,10 @@
 
             <Button
               type="default-grey"
-              name="Отказать"
+              :name="$t('button.deny')"
               @click="() => showModal.cancel = true"
             />
           </div>
-
-
 
           <ConfirmModal
             :show="showModal.confirm"
@@ -268,262 +252,263 @@
 </template>
 
 <script setup lang="ts">
-import ConfirmModal from '../../../components/uiManager/party/confirmModal.vue'
-import CancelModal from '../../../components/uiManager/party/cancelModal.vue'
+  import ConfirmModal from '@/components/uiManager/party-members/ConfirmModal.vue'
+  import CancelModal from '@/components/uiManager/party-members/CancelModal.vue'
 
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router'
-import { useToast } from '../../../modules/toast'
-import { reactive } from 'vue';
+  import axios from 'axios';
 
-const { toast } = useToast()
-const route = useRoute()
+  import { onMounted, ref, reactive } from 'vue';
+  import { useRoute } from 'vue-router'
 
-const partyData = ref(null);
-const showModal = reactive({
-  confirm: false,
-  cancel: false,
-})
-const token = localStorage.getItem('TOKEN');
+  import { useToast } from '@/modules/toast'
 
-onMounted(() => {
-  getPartData();
-})
+  const { toast } = useToast()
+  const route = useRoute()
 
-const getPartData = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/resignations/${route.params.party_id}`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
+  const partyData = ref(null);
+  const showModal = reactive({
+    confirm: false,
+    cancel: false,
   })
-    .then((response) => {
-      partyData.value = response.data;
+  const token = localStorage.getItem('access_token');
+
+  onMounted(() => {
+    getPartData();
+  })
+
+  const getPartData = () => {
+    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/resignations/${route.params.party_id}`;
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
     })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
+      .then((response) => {
+        partyData.value = response.data;
       })
-    });
-}
+      .catch((err) => {
+        console.log('err', err);
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      });
+  }
 </script>
 
 <style scoped lang="scss">
-.wrapper-main {
-  padding: 40px 0 80px;
-  background-color: var(--accent-color-op05);
-}
-
-.userData {
-  & .userData-content:last-of-type {
-    margin-bottom: 0px;
+  .wrapper-main {
+    padding: 40px 0 80px;
+    background-color: var(--accent-color-op05);
   }
 
-  &-inner {
-    display: grid;
-    grid-template-columns: 780px 1fr;
-    grid-gap: 30px;
-
-    margin-bottom: 25px;
-  }
-
-  &-motive {
-    display: flex;
-    grid-gap: 9px;
-    margin-bottom: 20px;
-
-    &-title {
-      color: var(--light-gray-color);
-      font-size: 20px;
-      font-weight: 500;
+  .userData {
+    & .userData-content:last-of-type {
+      margin-bottom: 0px;
     }
 
-    &-text {
-      color: var(--gray-color);
-      font-size: 20px;
-    }
-  }
+    &-inner {
+      display: grid;
+      grid-template-columns: 780px 1fr;
+      grid-gap: 30px;
 
-  &-doc {
-    &-title {
-      color: var(--light-gray-color);
-      font-size: 20px;
-      font-weight: 500;
+      margin-bottom: 25px;
     }
 
-    &-name {
-      color: var(--accent-color);
-      font-size: 20px;
-      text-decoration-line: underline;
-      margin-bottom: 0px !important;
-    }
-  }
-
-
-  &-content {
-    padding: 25px;
-    margin-bottom: 25px;
-
-    border-radius: 10px;
-    background: white;
-
-    &-title {
-      color: var(--accent-color);
-      font-size: 30px;
-      font-weight: 600;
-
-      margin-bottom: 30px;
-    }
-
-    &-infoBlock {
-      padding-bottom: 20px;
+    &-motive {
+      display: flex;
+      grid-gap: 9px;
       margin-bottom: 20px;
 
-      border-bottom: 1px solid var(--light-gray-color-op50);
-
-      &-item {
+      &-title {
+        color: var(--light-gray-color);
         font-size: 20px;
         font-weight: 500;
-
-        margin-bottom: 14px;
-
-        & span {
-          color: var(--light-gray-color);
-        }
-        
-        &.checked::after {
-          content: '';
-
-          display: inline-block;
-          height: 24px;
-          width: 24px;
-
-          position: relative;
-          top: 4.4px;
-          left: 10px;
-
-
-          background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExLjE3ODQgMS4xODM4M0MxMS41NzYyIDAuNjEwNjgxIDEyLjQyMzggMC42MTA2ODEgMTIuODIxNiAxLjE4MzgzTDEzLjY4IDIuNDIwODdDMTMuOTY3MiAyLjgzNDcyIDE0LjUxNzQgMi45NzAzMyAxNC45NjQxIDIuNzM3MzVMMTYuMjk5MSAyLjA0MDk3QzE2LjkxNzYgMS43MTgzMSAxNy42NjgxIDIuMTEyMjEgMTcuNzU0IDIuODA0NTVMMTcuOTM5MiA0LjI5ODg0QzE4LjAwMTIgNC43OTg3NiAxOC40MjU0IDUuMTc0NTMgMTguOTI5MSA1LjE3NThMMjAuNDM0OCA1LjE3OTU5QzIxLjEzMjUgNS4xODEzNSAyMS42MTQgNS44Nzg5MSAyMS4zNjgyIDYuNTMxODRMMjAuODM3OCA3Ljk0MTA2QzIwLjY2MDQgOC40MTI1MiAyMC44NjEzIDguOTQyMzcgMjEuMzA2OCA5LjE3NzU5TDIyLjYzODMgOS44ODA3QzIzLjI1NTIgMTAuMjA2NSAyMy4zNTc0IDExLjA0NzkgMjIuODM2MyAxMS41MTE4TDIxLjcxMTggMTIuNTEzMUMyMS4zMzU2IDEyLjg0ODEgMjEuMjY3MyAxMy40MTA3IDIxLjU1MjQgMTMuODI2TDIyLjQwNDYgMTUuMDY3M0MyMi43OTk1IDE1LjY0MjUgMjIuNDk4OSAxNi40MzUgMjEuODIyIDE2LjYwMzZMMjAuMzYwOSAxNi45Njc3QzE5Ljg3MjEgMTcuMDg5NCAxOS41NTAyIDE3LjU1NTggMTkuNjA5NyAxOC4wNTZMMTkuNzg3NCAxOS41NTEyQzE5Ljg2OTcgMjAuMjQ0IDE5LjIzNTMgMjAuODA2MSAxOC41NTc1IDIwLjY0MDhMMTcuMDk0NiAyMC4yODQxQzE2LjYwNTIgMjAuMTY0OCAxNi4xMDM1IDIwLjQyODIgMTUuOTIzNiAyMC44OTg3TDE1LjM4NjIgMjIuMzA1M0MxNS4xMzcxIDIyLjk1NjkgMTQuMzE0MiAyMy4xNTk4IDEzLjc5MDggMjIuNjk4NUwxMi42NjEyIDIxLjcwMjhDMTIuMjgzMyAyMS4zNjk3IDExLjcxNjcgMjEuMzY5NyAxMS4zMzg4IDIxLjcwMjhMMTAuMjA5MiAyMi42OTg1QzkuNjg1ODQgMjMuMTU5OCA4Ljg2Mjg3IDIyLjk1NjkgOC42MTM4NCAyMi4zMDUzTDguMDc2MzYgMjAuODk4N0M3Ljg5NjU0IDIwLjQyODIgNy4zOTQ3OCAyMC4xNjQ4IDYuOTA1MzcgMjAuMjg0MUw1LjQ0MjQ5IDIwLjY0MDhDNC43NjQ3IDIwLjgwNjEgNC4xMzAyNyAyMC4yNDQgNC4yMTI2MiAxOS41NTEyTDQuMzkwMzUgMTguMDU2QzQuNDQ5ODEgMTcuNTU1OCA0LjEyNzkgMTcuMDg5NCAzLjYzOTEgMTYuOTY3N0wyLjE3ODAzIDE2LjYwMzZDMS41MDEwOCAxNi40MzUgMS4yMDA1MiAxNS42NDI1IDEuNTk1MzggMTUuMDY3M0wyLjQ0NzYxIDEzLjgyNkMyLjczMjczIDEzLjQxMDcgMi42NjQ0MiAxMi44NDgxIDIuMjg4MiAxMi41MTMxTDEuMTYzNjcgMTEuNTExOEMwLjY0MjYzOSAxMS4wNDc5IDAuNzQ0ODA1IDEwLjIwNjUgMS4zNjE3MiA5Ljg4MDdMMi42OTMyMSA5LjE3NzU5QzMuMTM4NjcgOC45NDIzNyAzLjMzOTYxIDguNDEyNTIgMy4xNjIxNyA3Ljk0MTA2TDIuNjMxNzggNi41MzE4NEMyLjM4NjAzIDUuODc4OTEgMi44Njc1MiA1LjE4MTM1IDMuNTY1MTYgNS4xNzk1OUw1LjA3MDg5IDUuMTc1OEM1LjU3NDYzIDUuMTc0NTMgNS45OTg3OSA0Ljc5ODc2IDYuMDYwNzcgNC4yOTg4NEw2LjI0NjAzIDIuODA0NTVDNi4zMzE4NyAyLjExMjIxIDcuMDgyMzcgMS43MTgzMSA3LjcwMDkyIDIuMDQwOTdMOS4wMzU5NCAyLjczNzM1QzkuNDgyNTcgMi45NzAzMyAxMC4wMzI4IDIuODM0NzIgMTAuMzIgMi40MjA4N0wxMS4xNzg0IDEuMTgzODNaIiBmaWxsPSIjNEE3OEVDIi8+CjxwYXRoIGQ9Ik03LjMzMzI1IDEyLjMzMkwxMC40NDQ2IDE1LjMzMkwxNi42NjY2IDkuMzMyMDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==') center no-repeat;
-        }
       }
 
-      &-item:last-child {
-        margin-bottom: 20px;
+      &-text {
+        color: var(--gray-color);
+        font-size: 20px;
+      }
+    }
+
+    &-doc {
+      &-title {
+        color: var(--light-gray-color);
+        font-size: 20px;
+        font-weight: 500;
       }
 
-      &-bottom {
-        display: flex;
-        grid-gap: 40px;
-      }
-
-      &-statusBlock {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        grid-gap: 12px;
-      }
-
-      &-status {
+      &-name {
         color: var(--accent-color);
         font-size: 20px;
-        font-weight: 500;
-
-        display: inline-flex;
-        padding: 10px 15px;
-
-        border-radius: 60px;
-        background: var(--accent-color-op10);
+        text-decoration-line: underline;
+        margin-bottom: 0px !important;
       }
     }
-  }
 
-  &-card {
-    &-title {
-      font-size: 26px;
-      font-weight: 600;
-      margin-bottom: 25px;
-    }
-
-    &-items {
-      display: flex;
-      flex-direction: column;
-      grid-gap: 15px;
-
-      margin-bottom: 25px;
-    }
-  }
-
-  &-cardInfo {
-    display: block;
-    height: 250px;
-    width: 400px;
-
-    position: relative;
-
-    & img {
-      height: 100%;
-      width: 100%;
-    }
 
     &-content {
-      position: absolute;
-      top: 80px;
-      left: 32px;
+      padding: 25px;
+      margin-bottom: 25px;
+
+      border-radius: 10px;
+      background: white;
+
+      &-title {
+        color: var(--accent-color);
+        font-size: 30px;
+        font-weight: 600;
+
+        margin-bottom: 30px;
+      }
+
+      &-infoBlock {
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+
+        border-bottom: 1px solid var(--light-gray-color-op50);
+
+        &-item {
+          font-size: 20px;
+          font-weight: 500;
+
+          margin-bottom: 14px;
+
+          & span {
+            color: var(--light-gray-color);
+          }
+          
+          &.checked::after {
+            content: '';
+
+            display: inline-block;
+            height: 24px;
+            width: 24px;
+
+            position: relative;
+            top: 4.4px;
+            left: 10px;
+
+
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExLjE3ODQgMS4xODM4M0MxMS41NzYyIDAuNjEwNjgxIDEyLjQyMzggMC42MTA2ODEgMTIuODIxNiAxLjE4MzgzTDEzLjY4IDIuNDIwODdDMTMuOTY3MiAyLjgzNDcyIDE0LjUxNzQgMi45NzAzMyAxNC45NjQxIDIuNzM3MzVMMTYuMjk5MSAyLjA0MDk3QzE2LjkxNzYgMS43MTgzMSAxNy42NjgxIDIuMTEyMjEgMTcuNzU0IDIuODA0NTVMMTcuOTM5MiA0LjI5ODg0QzE4LjAwMTIgNC43OTg3NiAxOC40MjU0IDUuMTc0NTMgMTguOTI5MSA1LjE3NThMMjAuNDM0OCA1LjE3OTU5QzIxLjEzMjUgNS4xODEzNSAyMS42MTQgNS44Nzg5MSAyMS4zNjgyIDYuNTMxODRMMjAuODM3OCA3Ljk0MTA2QzIwLjY2MDQgOC40MTI1MiAyMC44NjEzIDguOTQyMzcgMjEuMzA2OCA5LjE3NzU5TDIyLjYzODMgOS44ODA3QzIzLjI1NTIgMTAuMjA2NSAyMy4zNTc0IDExLjA0NzkgMjIuODM2MyAxMS41MTE4TDIxLjcxMTggMTIuNTEzMUMyMS4zMzU2IDEyLjg0ODEgMjEuMjY3MyAxMy40MTA3IDIxLjU1MjQgMTMuODI2TDIyLjQwNDYgMTUuMDY3M0MyMi43OTk1IDE1LjY0MjUgMjIuNDk4OSAxNi40MzUgMjEuODIyIDE2LjYwMzZMMjAuMzYwOSAxNi45Njc3QzE5Ljg3MjEgMTcuMDg5NCAxOS41NTAyIDE3LjU1NTggMTkuNjA5NyAxOC4wNTZMMTkuNzg3NCAxOS41NTEyQzE5Ljg2OTcgMjAuMjQ0IDE5LjIzNTMgMjAuODA2MSAxOC41NTc1IDIwLjY0MDhMMTcuMDk0NiAyMC4yODQxQzE2LjYwNTIgMjAuMTY0OCAxNi4xMDM1IDIwLjQyODIgMTUuOTIzNiAyMC44OTg3TDE1LjM4NjIgMjIuMzA1M0MxNS4xMzcxIDIyLjk1NjkgMTQuMzE0MiAyMy4xNTk4IDEzLjc5MDggMjIuNjk4NUwxMi42NjEyIDIxLjcwMjhDMTIuMjgzMyAyMS4zNjk3IDExLjcxNjcgMjEuMzY5NyAxMS4zMzg4IDIxLjcwMjhMMTAuMjA5MiAyMi42OTg1QzkuNjg1ODQgMjMuMTU5OCA4Ljg2Mjg3IDIyLjk1NjkgOC42MTM4NCAyMi4zMDUzTDguMDc2MzYgMjAuODk4N0M3Ljg5NjU0IDIwLjQyODIgNy4zOTQ3OCAyMC4xNjQ4IDYuOTA1MzcgMjAuMjg0MUw1LjQ0MjQ5IDIwLjY0MDhDNC43NjQ3IDIwLjgwNjEgNC4xMzAyNyAyMC4yNDQgNC4yMTI2MiAxOS41NTEyTDQuMzkwMzUgMTguMDU2QzQuNDQ5ODEgMTcuNTU1OCA0LjEyNzkgMTcuMDg5NCAzLjYzOTEgMTYuOTY3N0wyLjE3ODAzIDE2LjYwMzZDMS41MDEwOCAxNi40MzUgMS4yMDA1MiAxNS42NDI1IDEuNTk1MzggMTUuMDY3M0wyLjQ0NzYxIDEzLjgyNkMyLjczMjczIDEzLjQxMDcgMi42NjQ0MiAxMi44NDgxIDIuMjg4MiAxMi41MTMxTDEuMTYzNjcgMTEuNTExOEMwLjY0MjYzOSAxMS4wNDc5IDAuNzQ0ODA1IDEwLjIwNjUgMS4zNjE3MiA5Ljg4MDdMMi42OTMyMSA5LjE3NzU5QzMuMTM4NjcgOC45NDIzNyAzLjMzOTYxIDguNDEyNTIgMy4xNjIxNyA3Ljk0MTA2TDIuNjMxNzggNi41MzE4NEMyLjM4NjAzIDUuODc4OTEgMi44Njc1MiA1LjE4MTM1IDMuNTY1MTYgNS4xNzk1OUw1LjA3MDg5IDUuMTc1OEM1LjU3NDYzIDUuMTc0NTMgNS45OTg3OSA0Ljc5ODc2IDYuMDYwNzcgNC4yOTg4NEw2LjI0NjAzIDIuODA0NTVDNi4zMzE4NyAyLjExMjIxIDcuMDgyMzcgMS43MTgzMSA3LjcwMDkyIDIuMDQwOTdMOS4wMzU5NCAyLjczNzM1QzkuNDgyNTcgMi45NzAzMyAxMC4wMzI4IDIuODM0NzIgMTAuMzIgMi40MjA4N0wxMS4xNzg0IDEuMTgzODNaIiBmaWxsPSIjNEE3OEVDIi8+CjxwYXRoIGQ9Ik03LjMzMzI1IDEyLjMzMkwxMC40NDQ2IDE1LjMzMkwxNi42NjY2IDkuMzMyMDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==') center no-repeat;
+          }
+        }
+
+        &-item:last-child {
+          margin-bottom: 20px;
+        }
+
+        &-bottom {
+          display: flex;
+          grid-gap: 40px;
+        }
+
+        &-statusBlock {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          grid-gap: 12px;
+        }
+
+        &-status {
+          color: var(--accent-color);
+          font-size: 20px;
+          font-weight: 500;
+
+          display: inline-flex;
+          padding: 10px 15px;
+
+          border-radius: 60px;
+          background: var(--accent-color-op10);
+        }
+      }
     }
 
-    &-info {
-      color: white;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.4;
-
-      &.number,
-      &.middleName {
-        margin-bottom: 12px;
+    &-card {
+      &-title {
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 25px;
       }
 
-      &.join_date {
-        font-size: 13px;
+      &-items {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 15px;
+
+        margin-bottom: 25px;
+      }
+    }
+
+    &-cardInfo {
+      display: block;
+      height: 250px;
+      width: 400px;
+
+      position: relative;
+
+      & img {
+        height: 100%;
+        width: 100%;
       }
 
-      & span {
-        color: rgba(white, .6);
-        font-size: inherit;
-        font-weight: 400;
+      &-content {
+        position: absolute;
+        top: 80px;
+        left: 32px;
       }
+
+      &-info {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+
+        &.number,
+        &.middleName {
+          margin-bottom: 12px;
+        }
+
+        &.join_date {
+          font-size: 13px;
+        }
+
+        & span {
+          color: rgba(white, .6);
+          font-size: inherit;
+          font-weight: 400;
+        }
+      }
+    }
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      grid-gap: 10px;
+
+      &.exit {
+        padding: 12px 20px;
+        
+        svg {
+          width: 30px;
+          height: 30px;
+
+          fill: white;
+        }
+      }
+
+      & svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    &-bottom {
+      display: flex;
+      grid-gap: 20px;
     }
   }
-
-  &-btn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-
-    &.exit {
-      padding: 12px 20px;
-      
-      svg {
-        width: 30px;
-        height: 30px;
-
-        fill: white;
-      }
-    }
-
-    & svg {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  &-bottom {
-    display: flex;
-    grid-gap: 20px;
-  }
-}
 </style>

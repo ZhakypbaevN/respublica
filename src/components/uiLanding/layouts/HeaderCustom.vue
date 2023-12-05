@@ -59,8 +59,8 @@
                 to="/auth"
               >
                 <Button
-                  :name="$t('header-authorization')"
-                  :type="defaultFixed && headerClingingToTop ? 'outline-light' : 'outline-default'"
+                  :name="$t('page.authorization')"
+                  :type="defaultFixed && headerClingingToTop && !dark ? 'outline-light' : 'outline-default'"
                 />
               </RouterLink>
 
@@ -165,23 +165,23 @@
   const navsList = [
     {
       link: '/about-party',
-      title: t('about-party')
+      title: t('page.about-party')
     },
     {
       link: '/party-fraction',
-      title: t('header-party-faction')
+      title: t('page.party-faction')
     },
     {
       link: '/regions',
-      title: t('header-regions')
+      title: t('page.regions')
     },
     {
       link: '/news',
-      title: t('header-press-center')
+      title: t('page.press-center')
     },
     {
       link: '/contacts',
-      title: t('header-contacts')
+      title: t('page.contacts')
     }
   ]
 

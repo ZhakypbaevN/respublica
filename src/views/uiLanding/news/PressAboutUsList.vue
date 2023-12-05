@@ -6,7 +6,7 @@
       <section class="news landing-block" id="newsList">
         <div class="wrapper">
           <h2 class="landing-title center">
-            Пресса о нас
+            {{ $t('page.the-press-about-us') }}
           </h2>
           
           <div class="landing-items" v-if="newsValues.isEmpty">

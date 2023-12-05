@@ -1,8 +1,8 @@
 <template>
   <section class="fractionComposition landing-block" id="fraction-composition">
     <div class="wrapper" :class="{'landing-wrapper': single}">
-      <h2 v-if="single" class="landing-title center">Депутаты мажилиса</h2>
-      <h2 v-else class="landing-title">Состав фракции партии RESPUBLICA</h2>
+      <h2 v-if="single" class="landing-title center">{{ $t('page.mazhilis-deputies') }}</h2>
+      <h2 v-else class="landing-title">{{ $t('composition-of-faction.title') }}</h2>
    
       <div class="fraction-items">
         <div
@@ -43,6 +43,8 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 interface IProps {
   single?: boolean,
 }
@@ -51,63 +53,59 @@ withDefaults(defineProps<IProps>(), {
   single: false
 })
 
+const { t } = useI18n()
+
 const fractionList = [
   {
     zIndex: 6,
-    fullName: 'ТАУ Нургуль',
-    description: `
-      Член Комитета по социальнокультурному развитию
-    `,
+    fullName: t('composition-of-faction.nurgul.full-name'),
+    description: t('composition-of-faction.nurgul.post'),
+
     img: '/img/uiLanding/fraction/banner-peoples/fraction-people-1.png',
     facebook: 'https://www.facebook.com/nurgul.ttt?mibextid=LQQJ4d',
     instagram: 'https://instagram.com/nurgul_tau?igshid=NTc4MTIwNjQ2YQ=='
   },
   {
     zIndex: 5,
-    fullName: 'КУСПЕКОВ Олжас',
-    description: `
-      Член Комитета по международным делам, обороне и безопасности
-    `,
+    fullName: t('composition-of-faction.kuspenov.full-name'),
+    description: t('composition-of-faction.kuspenov.post'),
+
     img: '/img/uiLanding/fraction/banner-peoples/fraction-people-2.png',
     facebook: 'https://www.facebook.com/olzhas.kuspekov',
     instagram: 'https://www.instagram.com/kuspekov_olzhas/'
   },
   {
     zIndex: 4,
-    fullName: 'ШУКИЖАНОВА Динара',
-    description: `
-      Член Комитета по экономической реформе и региональному развитию
-    `,
+    fullName: t('composition-of-faction.shukizhanova.full-name'),
+    description: t('composition-of-faction.shukizhanova.post'),
+
     img: '/img/uiLanding/fraction/banner-peoples/fraction-people-3.png',
     facebook: 'https://www.facebook.com/dika.ask?mibextid=LQQJ4d',
     instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ=='
   },
   {
     zIndex: 3,
-    fullName: 'ХОДЖАНАЗАРОВ Айдарбек',
-    description: `
-      Руководитель фракции. <br>Член Комитета по аграрным вопросам
-    `,
+    fullName: t('composition-of-faction.hodzhanazarov.full-name'),
+    description: t('composition-of-faction.hodzhanazarov.post'),
+
     img: '/img/uiLanding/fraction/banner-peoples/fraction-people-4.png',
     facebook: 'https://www.facebook.com/aidarbek',
     instagram: 'https://instagram.com/a1darbek?igshid=NTc4MTIwNjQ2YQ='
   },
   {
     zIndex: 2,
-    fullName: 'НАУМОВА Динара',
-    description: `
-      Член Комитета по законодательству и судебно-правовой реформе
-    `,
+    fullName: t('composition-of-faction.naumova.full-name'),
+    description: t('composition-of-faction.naumova.post'),
+
     img: '/img/uiLanding/fraction/banner-peoples/fraction-people-5.png',
     facebook: 'https://www.facebook.com/profile.php?id=100048126368212&mibextid=LQQJ4d',
     instagram: 'https://instagram.com/_naumova_dinara?igshid=NTc4MTIwNjQ2YQ=='
   },
   {
     zIndex: 1,
-    fullName: 'БЕРДЕНОВ Руслан',
-    description: `
-      Член Комитета по финансам и бюджету
-    `,
+    fullName: t('composition-of-faction.berdenov.full-name'),
+    description: t('composition-of-faction.berdenov.post'),
+
     img: '/img/uiLanding/fraction/banner-peoples/fraction-people-6.png',
     facebook: 'https://www.facebook.com/ruslan.berdenov?mibextid=LQQJ4d',
     instagram: 'https://instagram.com/ruslan_berdenov?igshid=NTc4MTIwNjQ2YQ=='
@@ -133,7 +131,7 @@ const fractionList = [
       z-index: 10 !important;
       & .fraction-item {
         &-preview-img {
-          -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+          -webkit-filter: grayscale(0%);
           filter: grayscale(0%);
         }
 
@@ -152,7 +150,7 @@ const fractionList = [
       z-index: 1;
       transform: translateX(-50%);
 
-      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
     
       transition: all .3s ease-in-out;

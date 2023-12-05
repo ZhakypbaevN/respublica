@@ -12,14 +12,18 @@
       <div class="links-wrapper scroll-top" id="links">
         <div class="links">
           <RouterLink to="/meeting-with-voters/1" class="landing-link with-line" id="meetings-with-voters">
-            <span>Встречи с избирателями</span>
+            <span>
+              {{ $t('meeting-with-voters.title') }}
+            </span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
           </RouterLink>
           <!-- <button 
             class="landing-link with-line"
             @click="() => showSubmitAnAppeal = true"
           >
-            <span>Направить обращение</span>
+            <span>
+              {{ $t('button.send-a-appeal') }}
+            </span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
           </button> -->
         </div>
@@ -41,19 +45,22 @@ import DeputyRequests from '@/components/uiLanding/party-fraction/DeputyRequests
 import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
 
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const showSubmitAnAppeal = ref(false);
 const sideBarlinks = [
   {
-    title: 'Депутаты',
+    title: t('deputies'),
     link: "#fraction-composition"
   },
   {
-    title: 'Депутатские запросы',
+    title: t('parliamentary-inquiries'),
     link: "#deputy-requests"
   },
   {
-    title: 'Встречи с избирателями',
+    title: t('meeting-with-voters.title'),
     link: "#meetings-with-voters"
   }
 ]

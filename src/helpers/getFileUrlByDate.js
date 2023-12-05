@@ -1,4 +1,4 @@
-import { apiUrl } from '../modules/api'
+import { apiUrl } from '@/modules/api'
 
 const getFileUrl = link =>
   `${apiUrl}/${link}`

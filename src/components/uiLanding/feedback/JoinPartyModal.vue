@@ -260,7 +260,7 @@ const emits = defineEmits<Emits>()
 
 const loading = ref(false)
 const gender = ref('female');
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 const userData = JSON.parse(localStorage.getItem('USER_DATA')!);
 const userType = localStorage.getItem('USER_TYPE');
 

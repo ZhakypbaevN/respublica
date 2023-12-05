@@ -10,7 +10,6 @@
                 :userData="userData"
               />
               
-
               <PartyDataBlock
                 :partyData="partyData"
                 :loading="isLoading.party"
@@ -18,34 +17,38 @@
             </div>
 
             <div class="userData-card" v-if="partyData && userData">
-              <h5 class="userData-card-title">Партийный билет</h5>
+              <h5 class="userData-card-title">{{ $t('party.party-card') }}</h5>
 
               <div class="userData-card-items">
-                <div class="userData-cardInfo">
+                <div
+                  class="userData-cardInfo"
+                  v-for="lang of ['kaz', 'rus']"
+                  :key="lang"
+                >
                   <div class="userData-cardInfo-content">
                   
                     <h4 class="userData-cardInfo-info number">
-                      <span>Партийный билет</span>
+                      <span>{{ $t(`party.party-card-${lang}.title`) }}</span>
                       №{{ partyData?.ticket_number }}
                     </h4>
 
 
                     <h4 class="userData-cardInfo-info">
-                      <span>Фамилия:</span>
+                      <span>{{ $t(`party.party-card-${lang}.surname`) }}:</span>
                       {{ userData.last_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info">
-                      <span>Имя:</span>
+                      <span>{{ $t(`party.party-card-${lang}.name`) }}:</span>
                       {{ userData.first_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info middleName">
-                      <span>Отчество:</span>
+                      <span>{{ $t(`party.party-card-${lang}.middle-name`) }}:</span>
                       {{ userData.middle_name }}
                     </h4>
 
 
                     <h4 class="userData-cardInfo-info dayOfAcceptance">
-                      <span>Дата выдачи:</span>
+                      <span>{{ $t(`party.party-card-${lang}.date-of-issue`) }}:</span>
                       {{ partyData?.join_date }}
                     </h4>
 
@@ -53,43 +56,11 @@
                   <img src="/img/icons/party-card.svg" alt="">
                 </div>
 
-
-                <div class="userData-cardInfo">
-                  <div class="userData-cardInfo-content">
-                  
-                    <h4 class="userData-cardInfo-info number">
-                      <span>Партиялық билет</span>
-                      №{{ partyData?.ticket_number }}
-                    </h4>
-
-
-                    <h4 class="userData-cardInfo-info">
-                      <span>Тегі:</span>
-                      {{ userData.last_name }}
-                    </h4>
-                    <h4 class="userData-cardInfo-info">
-                      <span>Аты:</span>
-                      {{ userData.first_name }}
-                    </h4>
-                    <h4 class="userData-cardInfo-info middleName">
-                      <span>Әкесінің аты:</span>
-                      {{ userData.middle_name }}
-                    </h4>
-
-
-                    <h4 class="userData-cardInfo-info dayOfAcceptance">
-                      <span>Берілген күні:</span>
-                      {{ partyData?.join_date }}
-                    </h4>
-
-                  </div>
-                  <img src="/img/icons/party-card.svg" alt="">
-                </div>
               </div>
 
               <Button
                 class="userData-btn"
-                name="Скачать партийный билет"
+                :name="$t('button.download-a-party-ticket')"
                 type="outline-blue"
                 :loading="isLoading.downloadPDF"
                 @click="() => downloadPDFCard()"
@@ -106,7 +77,7 @@
             <div v-else>
               <Button
                 @click="() => showJoinPartyModal = true"
-                name="Вступить в партию"
+                :name="$t('feedback.join-the-party')"
                 type="default-blue"
               />
             </div>
@@ -115,7 +86,7 @@
           <RouterLink v-if="partyData" to="/client/party-data/exit-party">
             <Button
               class="userData-btn exit"
-              name="Выйти из партии"
+              :name="$t('button.quit-the-party')"
               type="outline-red"
               v-slot:left
             >
@@ -139,8 +110,8 @@
 </template>
 
 <script setup lang="ts">
-import UserDataBlock from '@/components/uiClient/userData/UserDataBlock.vue'
-import PartyDataBlock from '@/components/uiClient/userData/PartyDataBlock.vue';
+import UserDataBlock from '@/components/uiClient/user-data/UserDataBlock.vue'
+import PartyDataBlock from '@/components/uiClient/user-data/PartyDataBlock.vue';
 import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
 
 import axios from 'axios';
@@ -153,7 +124,7 @@ const { toast } = useToast()
 const partyData = ref(null);
 const userData = ref(null);
 const showJoinPartyModal = ref(false);
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const isLoading = reactive({
   party: true,

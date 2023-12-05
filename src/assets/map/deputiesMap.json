@@ -3,6 +3,9 @@
     {
       "title": "АБАЙСКАЯ область",
       "code": "KZ-ABY",
+      "email": "A.Oraz@respublica-partiyasy.kz",
+      "address": "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199",
+      "locationID": 194,
       "deputies": [
         {
           "name": "Ахметканов Арман Шамаевич",
@@ -15,29 +18,38 @@
         {
           "name": "Жуматов Кайыржан Серикович",
           "role": "Депутат Аксуатского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/abay/zhumatov.jpg"
+          "img": "/img/uiLanding/maslikhats/abay/zhumatov.jpg"
         }
       ]
     },
     {
       "title": "АКМОЛИНСКАЯ область",
       "code": "KZ-AKM",
+      "email": "M.Baktibayev@respublica-partiyasy.kz",
+      "address": "г.Кокшетау, Е.Н.АУЕЛЬБЕКОВА, 117",
+      "locationID": 4,
       "deputies": [
         {
           "name": "Жакупов Жанат Еркенович",
           "role": "Депутат Кокшетауского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/akmol/Zhakupov.jpg"
+          "img": "/img/uiLanding/maslikhats/akmol/Zhakupov.jpg"
         }
       ]
     },
     {
       "title": "АКТЮБИНСКАЯ область",
       "code": "KZ-AKT",
+      "email": "G.Kaiyrbayeva@respublica-partiyasy.kz",
+      "address": "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж",
+      "locationID": 25,
       "deputies": []
     },
     {
       "title": "АЛМАТИНСКАЯ область ",
       "code": "KZ-ALM",
+      "email": "B.Kabasov@respublica-partiyasy.kz",
+      "address": "г. Конаев, мкр-н 1, уч. 35/10",
+      "locationID": 39,
       "deputies": [
         {
           "name": "Акберген Кияс Жапарбекович",
@@ -52,6 +64,9 @@
     {
       "title": "АТЫРАУСКАЯ область",
       "code": "KZ-ATY",
+      "email": "G.Utebayev@respublica-partiyasy.kz",
+      "address": "г. Атырау, пр. Султан Бейбарыс, 450",
+      "locationID": 51,
       "deputies": [
         {
           "name": "Серік Касенов",
@@ -60,34 +75,16 @@
       ]
     },
     {
-      "title": "ЗАПАДНО-КАЗАХСТАНСКАЯ область",
-      "code": "KZ-ZAP",
-      "deputies": [
-        {
-          "name": "Аминов Асланбек Талапкалиевич",
-          "role": "Депутат Западно-Казахстанского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/zko/Aminov.jpg"
-        },
-        {
-          "name": "Габдуалиев Мереке Тлекович",
-          "role": "Депутат Уральского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zko/Gabdualiev.jpg"
-        },
-        {
-          "name": "Бисенов Армат Гимранович",
-          "role": "Депутат маслихата района Байтерек",
-          "img": "/img/uiLanding/maslikhat/zko/Bisenov.jpg"
-        }
-      ]
-    },
-    {
       "title": "ЖАМБЫЛСКАЯ область",
       "code": "KZ-ZHA",
+      "email": "n.iuldasheva@respublica-partiyasy.kz",
+      "address": "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж",
+      "locationID": 74,
       "deputies": [
         {
           "name": "Темірхан Нұрсултан Талгатұлы",
           "role": "Депутат Жамбылского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/jambyl/Temirkhan.jpg"
+          "img": "/img/uiLanding/maslikhats/jambyl/Temirkhan.jpg"
         },
         {
           "name": "Серик Данияр",
@@ -98,78 +95,87 @@
     {
       "title": "ЖЕТЫСУСКАЯ область",
       "code": "KZ-ZHT",
+      "email": "N.Kambayeva@respublica-partiyasy.kz",
+      "address": "г. Талдыкорган, ул. Абылай хана, 186",
+      "locationID": 205,
       "deputies": [
         {
           "name": "Мустапова Гульназия Садыбековна",
           "role": "Депутат маслихата области Жетісу",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Mustapova.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mustapova.jpg"
         },
         {
           "name": "Қылышбеков Темірлан Бақытбекұлы",
           "role": "Депутат маслихата области Жетісу",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Kylyshbekov.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Kylyshbekov.jpg"
         },
         {
           "name": "Садиев Алмат Тезекбаевич",
           "role": "Депутат маслихата области Жетісу",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Sadiev.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Sadiev.jpg"
         },
         {
           "name": "Машеков Батыр Оралбаевич",
           "role": "Депутат Талдыкорганского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Mashekov.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mashekov.jpg"
         },
         {
           "name": "Есмаханов Азиз Аблаевич",
           "role": "Депутат Талдыкорганского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
         },
         {
           "name": "Габдракипова Алсу Фаритовна",
           "role": "Депутат Талдыкорганского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Gabdrakipova.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Gabdrakipova.jpg"
         },
         {
           "name": "Махкамова Нуржамал Асанбайкызы",
           "role": "Депутат Алакольского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Mahkamova.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mahkamova.jpg"
         },
         {
           "name": "Жуанышев Талгат Жумашевич",
           "role": "Депутат Аксуского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/zhetisu/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
         }
       ]
     },
     {
       "title": "КАРАГАНДИНСКАЯ область",
       "code": "KZ-KAR",
+      "email": "a.amandykov@respublica-partiyasy.kz",
+      "address": "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46",
+      "locationID": 86,
       "deputies": [
         {
           "name": "Алимжанов Арман Жаканович",
           "role": "Депутат Карагандинского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/karaganda/Alimzhanov.jpg"
+          "img": "/img/uiLanding/maslikhats/karaganda/Alimzhanov.jpg"
         },
         {
           "name": "Ахмадин Дидар Айдарович",
           "role": "Депутат Карагандинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/karaganda/Ahmadin.jpg"
+          "img": "/img/uiLanding/maslikhats/karaganda/Ahmadin.jpg"
         }
       ]
     },
     {
       "title": "КОСТАНАЙСКАЯ область",
       "code": "KZ-KUS",
+      "email": "M.Madinina@respublica-partiyasy.kz",
+      "address": "г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN",
+      "locationID": 100,
       "deputies": [
         {
           "name": "Маишев Кайрат Алембаевич",
           "role": "Депутат Костанайского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/Maishev.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Maishev.jpg"
         },
         {
           "name": "Юсупова  Асия Жумаковна",
           "role": "Депутат Костанайского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/Yusupova.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Yusupova.jpg"
         },
         {
           "name": "Латыпов Кауныш Женисович",
@@ -198,7 +204,7 @@
         {
           "name": "Мустафин Ермек Абдугалиевич",
           "role": "Депутат Аулиекольского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/mustafin.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/mustafin.jpg"
         },
         {
           "name": "Жумабаева Акерке Тулендиевна",
@@ -207,17 +213,17 @@
         {
           "name": "Агдавлетов Ауез Абильдинович",
           "role": "Депутат Костанайского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/Agdavletov.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Agdavletov.jpg"
         },
         {
           "name": "Нурмагамбетов Дидар Батырбаевич",
           "role": "Депутат Мендикаринского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/nurmagambet.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/nurmagambet.jpg"
         },
         {
           "name": "Тасанов Данияр Маратович",
           "role": "Депутат Наурзумского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/kostanay/tasanov.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/tasanov.jpg"
         },
         {
           "name": "Колесникова Наталья Аатольевна",
@@ -226,7 +232,7 @@
         {
           "name": "Руднева Наталья Дмитриевна",
           "role": "Депутат маслихата района Беимбета Майлина",
-          "img": "/img/uiLanding/maslikhat/kostanay/Rudneva.jpg"
+          "img": "/img/uiLanding/maslikhats/kostanay/Rudneva.jpg"
         },
         {
           "name": "Омаров Жанбулат Сартаевич",
@@ -235,12 +241,12 @@
         {
           "name": "Байназаров Алексей Мерекеевич",
           "role": "Депутат Федоровского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/baynazarov.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/baynazarov.jpg"
         },
         {
           "name": "Ищанова Венера Ибрагимовна",
           "role": "Депутат Житикаринского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/ishanova.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/ishanova.jpg"
         },
         {
           "name": "Усов Михаил Александрович",
@@ -251,16 +257,25 @@
     {
       "title": "КЫЗЫЛОРДИНСКАЯ область",
       "code": "KZ-KZY",
+      "email": "N.Talgatova@respublica-partiyasy.kz",
+      "address": "г. Кызылорда, ул. Конаева, 19-а, 1 этаж",
+      "locationID": 121,
       "deputies": []
     },
     {
       "title": "МАНГИСТАУСКАЯ область",
       "code": "KZ-MAN",
+      "email": "S.Beisembayeva@respublica-partiyasy.kz",
+      "address": "г. Актау, 16 мкрн, д. 25, БЦ Prime",
+      "locationID": 130,
       "deputies": []
     },
     {
       "title": "ПАВЛОДАРСКАЯ область",
       "code": "KZ-PAV",
+      "email": "Zh.Arganbai@respublica-partiyasy.kz",
+      "address": "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908",
+      "locationID": 138,
       "deputies": [
         {
           "name": "Маханбет Амангелді",
@@ -273,24 +288,76 @@
       ]
     },
     {
+      "title": "УЛЫТАУСКАЯ область",
+      "code": "KZ-ULT",
+      "email": "Zh.Iztuleuov@respublica-partiyasy.kz",
+      "address": "г. Жезказган, ул. Мира 1",
+      "locationID": 215,
+      "deputies": []
+    },
+    {
       "title": "СЕВЕРО-КАЗАХСТАНСКАЯ область",
       "code": "KZ-SEV",
+      "email": "a.beliyalov@respublica-partiyasy.kz",
+      "address": "г. Петропавловск, ул. Алтынсарина, 168-б",
+      "locationID": 152,
       "deputies": [
         {
           "name": "Домаев Сергей Александрович",
           "role": "Депутат Северо-Казахстанского областного маслихата",
-          "img": "/img/uiLanding/maslikhat/sko/Domaev.jpg"
+          "img": "/img/uiLanding/maslikhats/sko/Domaev.jpg"
         },
         {
           "name": "Дмитрий Крель",
           "role": "Депутат Аккаинского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/sko/Krel.jpg"
+          "img": "/img/uiLanding/maslikhats/sko/Krel.jpg"
         }
       ]
     },
     {
-      "title": "ТУРКЕСТАНСКАЯ область",
-      "code": "KZ-TUR",
+      "title": "ЗАПАДНО-КАЗАХСТАНСКАЯ область",
+      "code": "KZ-ZAP",
+      "email": "d.makatov@respublica-partiyasy.kz",
+      "address": "г. Уральск, с. Желаево, ул.Трудовая, 6/3",
+      "locationID": 59,
+      "deputies": [
+        {
+          "name": "Аминов Асланбек Талапкалиевич",
+          "role": "Депутат Западно-Казахстанского областного маслихата",
+          "img": "/img/uiLanding/maslikhats/zko/Aminov.jpg"
+        },
+        {
+          "name": "Габдуалиев Мереке Тлекович",
+          "role": "Депутат Уральского городского маслихата",
+          "img": "/img/uiLanding/maslikhats/zko/Gabdualiev.jpg"
+        },
+        {
+          "name": "Бисенов Армат Гимранович",
+          "role": "Депутат маслихата района Байтерек",
+          "img": "/img/uiLanding/maslikhats/zko/Bisenov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "ВОСТОЧНО-КАЗАХСТАНСКАЯ область",
+      "code": "KZ-VOS",
+      "email": "Zh.Hogzhilbek@respublica-partiyasy.kz",
+      "address": "г. Усть-Каменогорск, ул. Чехова, 69, кв.1",
+      "locationID": 167,
+      "deputies": [
+        {
+          "name": "Бейсов Тилек Муратович",
+          "role": "Депутат Усть-Каменогорского городского маслихата",
+          "img": "/img/uiLanding/maslikhats/vko/Beysov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "ЮЖНО-КАЗАХСТАНСКАЯ область",
+      "code": "KZ-SKO",
+      "email": "B.Rysbekov@respublica-partiyasy.kz",
+      "address": "г. Туркестан, ул. Б.Батырбекова, дом 33, кв. 13",
+      "locationID": 177,
       "deputies": [
         {
           "name": "Айткулов Бекжан Бахтыбекович",
@@ -299,54 +366,44 @@
         {
           "name": "Куракбаев  Жаксыбай Булатович",
           "role": "Депутат Мактаральского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/turkestan/Kurakbaev.jpg"
+          "img": "/img/uiLanding/maslikhats/turkestan/Kurakbaev.jpg"
         },
         {
           "name": "Жумагельдиева Гульдариха",
           "role": "Депутат Кентауского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/turkestan/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/turkestan/Zhumageldieva.jpg"
         },
         {
           "name": "Абдуллаев Нурсултан Пархадович",
           "role": "Депутат Сауранского районного маслихата",
-          "img": "/img/uiLanding/maslikhat/turkestan/Abdullaev.jpg"
-        }
-      ]
-    },
-    {
-      "title": "УЛЫТАУСКАЯ область",
-      "code": "KZ-ULT",
-      "deputies": []
-    },
-    {
-      "title": "ВОСТОЧНО-КАЗАХСТАНСКАЯ область",
-      "code": "KZ-VOS",
-      "deputies": [
-        {
-          "name": "Бейсов Тилек Муратович",
-          "role": "Депутат Усть-Каменогорского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/vko/Beysov.jpg"
+          "img": "/img/uiLanding/maslikhats/turkestan/Abdullaev.jpg"
         }
       ]
     },
     {
       "title": "г. АСТАНА",
       "code": "KZ-AKM-ASTANA",
+      "email": "info@respublica-partiyasy.kz",
+      "address": "Мангилик ел, 33/1, Бизнес-центр IPLAZA, 9 этаж",
+      "locationID": 1,
       "deputies": []
     },
     {
       "title": "г. АЛМАТЫ",
       "code": "KZ-ALM-ALMATY",
+      "email": "S.Raiymbek@respublica-partiyasy.kz",
+      "address": "г.Алматы, ул. Жарокова, 41, 1 этаж",
+      "locationID": 2,
       "deputies": [
         {
           "name": "Жайнарбай Жалынбек",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/zhainarbay.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/zhainarbay.jpg"
         },
         {
           "name": "Идрисов Руслан Рашитович",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/idrisov.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/idrisov.jpg"
         },
         {
           "name": "Серикова Салтанат Бахтияровна",
@@ -355,18 +412,21 @@
         {
           "name": "Турсунов Аким Хазреталиевич",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/Tursunov.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/Tursunov.jpg"
         },
         {
           "name": "Бегалин Кайрат Талапович",
           "role": "Депутат Алматинского городского маслихата",
-          "img": "/img/uiLanding/maslikhat/almaty/begalin.jpg"
+          "img": "/img/uiLanding/maslikhats/almaty/begalin.jpg"
         }
       ]
     },
     {
       "title": "г. ШЫМКЕНТ",
       "code": "KZ-TUR-SHUMKENT",
+      "email": "T.Yeszhan@respublica-partiyasy.kz",
+      "address": "г.Шымкент, Аль-Фарабийский р-н, ул. Жандосова, зд. 21-а",
+      "locationID": 3,
       "deputies": [
         {
           "name": "Нурлыбаев Асхат Мелдебекович",

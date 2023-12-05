@@ -24,10 +24,10 @@
 
       <Button
         class="avatarBlock-btn"
-        name="Выйти аккаунта"
+        :name="$t('button.log-out-of-your-account')"
         type="outline-red"
         v-slot:left
-        @click="exit"
+        @click="logout"
       >
         <SvgIcon
           name="logout"
@@ -40,11 +40,9 @@
 </template>
 
 <script setup lang="ts">
-import { useToast } from '../../modules/toast'
-import { useRouter } from 'vue-router';
+import { useAuth } from'@/modules/auth'
 
-const { toast } = useToast()
-const router = useRouter()
+const { logout } = useAuth()
 
 const links = [
   {
@@ -64,22 +62,6 @@ const links = [
     link: '/business'
   }
 ]
-
-const exit = () => {
-  localStorage.removeItem('USER_TYPE');
-  localStorage.removeItem('TOKEN');
-
-  toast({
-    message: 'Вы успешно вышли из аккаунта!',
-    type: 'success'
-  })
-  
-  if (router.currentRoute.value.name === 'Home') {
-    location.reload();
-  } else {
-    router.push(`/`);
-  }
-}
 </script>
 
 <style scoped lang="scss">

@@ -136,408 +136,413 @@
 </template>
 
 <script setup lang="ts">
-import CKEditor from './CKEditor.vue'
-import { inject, onMounted, reactive, watch } from 'vue-demi'
-
-interface IProps {
-  modelValue?: any,
-  value?: string | number,
-  name?: string,
-  type?: 'text' | 'tel' | 'email' | 'number' | 'editor' | 'password' | 'textarea' | 'disabled',
-  light?: boolean,
-  placeholder?: string,
-  required?: boolean,
-  validation?: any,
-  sameAs?: string,
-  autocomplete?: string,
-  autofocus?: boolean,
-  min?: number,
-  mask?: string,
-  staticPlaceholder?: boolean,
-  disabled?: boolean,
-  resetButton?: boolean,
-  multiple?: boolean,
-  errorText?: string,
-  maxSymbol?: number
-}
-const props = withDefaults(defineProps<IProps>(), {
-  type: 'text',
-  required: false,
-  validation: false,
-  autocomplete: 'on',
-  light: false,
-  autofocus: false,
-  staticPlaceholder: false,
-  disabled: false,
-  resetButton: false,
-  multiple: false,
-  mask: null
-})
-const emit = defineEmits([
-  'update:modelValue',
-  'reset',
-  'blur',
-  'error',
-  'success',
-  'change',
-  'focus',
-  'label'
-])
-
-interface IInputValues {
-  value: string | number,
-  isDirty: boolean,
-  eyeState: any,
-  withError: any,
-  focused: boolean,
-  hasError: any,
-  formValue: any,
-}
-
-const input = reactive(<IInputValues>{
-  value: props.modelValue ?? '',
-  isDirty: false,
-  eyeState: null,
-  withError: null,
-  focused: false,
-  hasError: (props.required || props.validation) && props.name ? inject('hasError') : {},
-  formValue: props.name ? inject('formData') : {}
-})
-if (props.name) input.hasError[props.name] = props.required || props.validation
-const inputName = props.name ?? 'example'
-
-const rules = {
-  email: () => /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$/
-    .test(String(input.value).toLowerCase()) ? false : 'Введите правильную почту',
-
-  phone: () => input.value && String(input.value).length === 17 ? false : 'Введите правильный номер',
-
-  password: () => /^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
-    .test(String(input.value)) ? false : 'Пароль должен содержать минимум 8 символов. И в нем должны быть минимум, одна цифра,одна большая буква и одна маленькая буква',
-
-  sameAs: () => input.value.toString() === props.sameAs ? false : 'Поля не совпадают',
-
-  customRegex: () => props.validation.test(String(input.value)) ? false : props.errorText ?? 'Введите поле правильно'
-}
-
-const onChangeValue = () => {
-  input.formValue[inputName] = input.value
-  const validate = validation()
+  import CKEditor from '@/components/common/CKEditor.vue'
   
-  if (input.isDirty) {
-    input.withError = false
-    if (props.required) {
-      if (!input.value) input.withError = 'Это поле обязателно'
+  import { inject, onMounted, reactive, watch } from 'vue-demi'
+  import { useI18n } from 'vue-i18n'
+
+  interface IProps {
+    modelValue?: any,
+    value?: string | number,
+    name?: string,
+    type?: 'text' | 'tel' | 'email' | 'number' | 'editor' | 'password' | 'textarea' | 'disabled',
+    light?: boolean,
+    placeholder?: string,
+    required?: boolean,
+    validation?: any,
+    sameAs?: string,
+    autocomplete?: string,
+    autofocus?: boolean,
+    min?: number,
+    mask?: string,
+    staticPlaceholder?: boolean,
+    disabled?: boolean,
+    resetButton?: boolean,
+    multiple?: boolean,
+    errorText?: string,
+    maxSymbol?: number
+  }
+
+  interface IInputValues {
+    value: string | number,
+    isDirty: boolean,
+    eyeState: any,
+    withError: any,
+    focused: boolean,
+    hasError: any,
+    formValue: any,
+  }
+
+  const { t } = useI18n()
+
+  const props = withDefaults(defineProps<IProps>(), {
+    type: 'text',
+    required: false,
+    validation: false,
+    autocomplete: 'on',
+    light: false,
+    autofocus: false,
+    staticPlaceholder: false,
+    disabled: false,
+    resetButton: false,
+    multiple: false,
+    mask: null
+  })
+  const emit = defineEmits([
+    'update:modelValue',
+    'reset',
+    'blur',
+    'error',
+    'success',
+    'change',
+    'focus',
+    'label'
+  ])
+
+  const input = reactive(<IInputValues>{
+    value: props.modelValue ?? '',
+    isDirty: false,
+    eyeState: null,
+    withError: null,
+    focused: false,
+    hasError: (props.required || props.validation) && props.name ? inject('hasError') : {},
+    formValue: props.name ? inject('formData') : {}
+  })
+  if (props.name) input.hasError[props.name] = props.required || props.validation
+  const inputName = props.name ?? 'example'
+
+  const rules = {
+    email: () => /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$/
+      .test(String(input.value).toLowerCase()) ? false : t('errors.enter-the-correct-email-address'),
+
+    phone: () => input.value && String(input.value).length === 17 ? false : t('errors.enter-the-correct-number'),
+
+    password: () => /^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+      .test(String(input.value)) ? false : t('errors.the-password-must-contain-at-least-8-characters'),
+
+    sameAs: () => input.value.toString() === props.sameAs ? false : t('errors.the-fields-don-not-match'),
+
+    customRegex: () => props.validation.test(String(input.value)) ? false : props.errorText ?? t('errors.enter-the-field-correctly')
+  }
+
+  const onChangeValue = () => {
+    input.formValue[inputName] = input.value
+    const validate = validation()
+    
+    if (input.isDirty) {
+      input.withError = false
+      if (props.required) {
+        if (!input.value) input.withError = t('errors.this-field-is-required')
+      }
+      if (props.validation && !input.withError) {
+        input.withError = validate(input.value)
+      }
     }
+    if (props.validation && !validate(input.value)) {
+      emit('success')
+      input.hasError[inputName] = false
+    } else if (props.validation && validate(input.value)) {
+      emit('error')
+      input.hasError[inputName] = true
+    } else if (props.required && input.value) {
+      emit('success')
+      input.hasError[inputName] = false
+    } else {
+      emit('error')
+      input.hasError[inputName] = true
+    }
+    if (props.min && (input.value ? input.value.toString().length : 0) < props.min) {
+      emit('error')
+      input.hasError[inputName] = true
+    }
+    emit('update:modelValue', input.value)
+  }
+
+  watch(
+    () => input.value,
+    onChangeValue
+  )
+
+  watch(
+    () => props.modelValue,
+    () => {
+      input.value = props.modelValue
+      onChangeValue()
+    }
+  )
+
+  onMounted(onChangeValue)
+
+  watch(
+    () => input.withError,
+    () => {
+      if (input.withError) {
+        emit('error')
+        input.hasError[inputName] = true
+      } else {
+        emit('success')
+        input.hasError[inputName] = false
+      }
+    }
+  )
+
+  watch(
+    () => [input.focused, input.value],
+    () => {
+      if (input.focused || input.value) {
+        emit('label', true)
+      } else emit('label', false)
+    }
+  )
+
+  const validation = () => {
+    if (typeof props.validation === 'string') {
+      return rules[props.validation as keyof typeof rules]
+    } else if (typeof props.validation === 'object') {
+      return rules.customRegex
+    }
+    return () => {}
+  }
+
+  const onBlur = ({e}: {e: KeyboardEvent}) => {
+    emit('blur', e)
+    input.focused = false
+
+    if (!input.isDirty) input.isDirty = true
+
+    input.withError = false
+    if (props.required && !input.value) {
+      input.withError = t('errors.this-field-is-required')
+    }
+
     if (props.validation && !input.withError) {
+      const validate = validation()
       input.withError = validate(input.value)
     }
   }
-  if (props.validation && !validate(input.value)) {
-    emit('success')
-    input.hasError[inputName] = false
-  } else if (props.validation && validate(input.value)) {
-    emit('error')
-    input.hasError[inputName] = true
-  } else if (props.required && input.value) {
-    emit('success')
-    input.hasError[inputName] = false
-  } else {
-    emit('error')
-    input.hasError[inputName] = true
+
+  const onFocus = ({e}: {e: KeyboardEvent}) => {
+    input.focused = true
+    emit('focus', e)
   }
-  if (props.min && (input.value ? input.value.toString().length : 0) < props.min) {
-    emit('error')
-    input.hasError[inputName] = true
-  }
-  emit('update:modelValue', input.value)
-}
-
-watch(
-  () => input.value,
-  onChangeValue
-)
-
-watch(
-  () => props.modelValue,
-  () => {
-    input.value = props.modelValue
-    onChangeValue()
-  }
-)
-
-onMounted(onChangeValue)
-
-watch(
-  () => input.withError,
-  () => {
-    if (input.withError) {
-      emit('error')
-      input.hasError[inputName] = true
-    } else {
-      emit('success')
-      input.hasError[inputName] = false
-    }
-  }
-)
-
-watch(
-  () => [input.focused, input.value],
-  () => {
-    if (input.focused || input.value) {
-      emit('label', true)
-    } else emit('label', false)
-  }
-)
-
-const validation = () => {
-  if (typeof props.validation === 'string') {
-    return rules[props.validation as keyof typeof rules]
-  } else if (typeof props.validation === 'object') {
-    return rules.customRegex
-  }
-  return () => {}
-}
-
-const onBlur = ({e}: {e: KeyboardEvent}) => {
-  emit('blur', e)
-  input.focused = false
-
-  if (!input.isDirty) input.isDirty = true
-
-  input.withError = false
-  if (props.required && !input.value) {
-    input.withError = 'Это поле обязателно'
-  }
-
-  if (props.validation && !input.withError) {
-    const validate = validation()
-    input.withError = validate(input.value)
-  }
-}
-
-const onFocus = ({e}: {e: KeyboardEvent}) => {
-  input.focused = true
-  emit('focus', e)
-}
 </script>
 
 <style scoped lang="scss">
-.input {
-  position: relative;
-  width: 100%;
-  align-items: flex-start!important;
-  transition: all .2s ease;
-  margin-bottom: 10px;
+  .input {
+    position: relative;
+    width: 100%;
+    align-items: flex-start!important;
+    transition: all .2s ease;
+    margin-bottom: 10px;
 
-  &.light {
-    & input {
-      border-color: white;
-      background-color: transparent;
+    &.light {
+      & input {
+        border-color: white;
+        background-color: transparent;
+      }
+
+      & .placeholder {
+        color: rgba(white, .8);
+      }
     }
+    &.grey {
+      & input {
+        border-color: #818FA7;
+        background-color: transparent;
+      }
 
-    & .placeholder {
-      color: rgba(white, .8);
+      & .placeholder {
+        color: rgba(white, .8);
+      }
     }
   }
-  &.grey {
-    & input {
-      border-color: #818FA7;
-      background-color: transparent;
+  .placeholder,
+  .maxSymbol {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 16.71px;
+    color: var(--light-gray-color);
+    transition: all .2s ease;
+    pointer-events: none;
+  }
+  .placeholder {
+    position: absolute;
+    z-index: 1;
+    top: 19px;
+    left: 30px;
+
+    & .required {
+      color: var(--red-color);
     }
+  }
+  .maxSymbol {
+    position: absolute;
+    color: var(--cancel-color);
+    right: 0;
+    top: -20px;
+    z-index: 0;
+    line-height: 17px;
+  }
+  .input.hasError {
+    margin-bottom: 15px;
+  }
+  .input.labeled,
+  .input.focused,
+  .input.withError {
+    margin-top: 10px;
+  }
+  .input.static {
+    margin-top: 0;
+  }
+  .input.labeled .placeholder {
+    left: 0;
+    top: -24px;
+    z-index: 0;
+    line-height: 17px;
+    color: var(--light-gray-color);
+  }
+  .input.focused .placeholder {
+    color: var(--accent-color);
+    left: 0;
+    top: -20px;
+    z-index: 0;
+    line-height: 17px;
+  }
+  .input.withError .placeholder {
+    color: var(--error-color)!important;
+  }
+  .error {
+    color: var(--error-color);
+    font-weight: 400;
+    font-size: 14px;
+    min-height: 1em;
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+    text-align: end;
+  }
+  .error.long {
+    position: relative;
+    display: block;
+    bottom: -1px;
+    margin-bottom: -10px;
+    max-width: 36em;
+  }
+  input, textarea, select {
+    border: 1px solid var(--light-gray-color);
+    border-radius: 10px;
+    text-align: left !important;
+    box-sizing: border-box;
+    padding: 19px 30px;
+    width: inherit;
+    position: relative;
+    resize: vertical;
+    line-height: 16.71px;
+    font-size: 18px;
+  }
+  textarea {
+    min-height: 120px;
+  }
+  input[type=date]:required:invalid::-webkit-datetime-edit {
+      color: transparent;
+  }
+  input[type=date]:focus::-webkit-datetime-edit {
+      color: black !important;
+  }
+  input.with-error,
+  textarea.with-error,
+  select.with-error {
+    border: 1px solid var(--error-color);
+    animation: shake .1s linear 3;
+  }
+  @keyframes shake {
+    0% { left: -5px; }
+    100% { left: 5px; }
+  }
+  input.with-error::placeholder,
+  textarea.with-error::placeholder {
+    color: var(--error-color);
+    opacity: .5;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 16.71px;
+    color: var(--light-gray-color);
+  }
+  .input__eye {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    display: inline-block;
+    cursor: pointer;
+    overflow: hidden;
 
-    & .placeholder {
-      color: rgba(white, .8);
+    & svg {
+      height: 24px;
+      width: 24px;
+      fill: white !important;
     }
   }
-}
-.placeholder,
-.maxSymbol {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 16.71px;
-  color: var(--light-gray-color);
-  transition: all .2s ease;
-  pointer-events: none;
-}
-.placeholder {
-  position: absolute;
-  z-index: 1;
-  top: 19px;
-  left: 30px;
 
-  & .required {
-    color: var(--red-color);
+  .reset {
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    cursor: pointer;
+    transition: all .2s ease;
   }
-}
-.maxSymbol {
-  position: absolute;
-  color: var(--cancel-color);
-  right: 0;
-  top: -20px;
-  z-index: 0;
-  line-height: 17px;
-}
-.input.hasError {
-  margin-bottom: 15px;
-}
-.input.labeled,
-.input.focused,
-.input.withError {
-  margin-top: 10px;
-}
-.input.static {
-  margin-top: 0;
-}
-.input.labeled .placeholder {
-  left: 0;
-  top: -24px;
-  z-index: 0;
-  line-height: 17px;
-  color: var(--light-gray-color);
-}
-.input.focused .placeholder {
-  color: var(--accent-color);
-  left: 0;
-  top: -20px;
-  z-index: 0;
-  line-height: 17px;
-}
-.input.withError .placeholder {
-  color: var(--error-color)!important;
-}
-.error {
-  color: var(--error-color);
-  font-weight: 400;
-  font-size: 14px;
-  min-height: 1em;
-  position: absolute;
-  right: 0;
-  bottom: -20px;
-  text-align: end;
-}
-.error.long {
-  position: relative;
-  display: block;
-  bottom: -1px;
-  margin-bottom: -10px;
-  max-width: 36em;
-}
-input, textarea, select {
-  border: 1px solid var(--light-gray-color);
-  border-radius: 10px;
-  text-align: left !important;
-  box-sizing: border-box;
-  padding: 19px 30px;
-  width: inherit;
-  position: relative;
-  resize: vertical;
-  line-height: 16.71px;
-  font-size: 18px;
-}
-textarea {
-  min-height: 120px;
-}
-input[type=date]:required:invalid::-webkit-datetime-edit {
-    color: transparent;
-}
-input[type=date]:focus::-webkit-datetime-edit {
-    color: black !important;
-}
-input.with-error,
-textarea.with-error,
-select.with-error {
-  border: 1px solid var(--error-color);
-  animation: shake .1s linear 3;
-}
-@keyframes shake {
-  0% { left: -5px; }
-  100% { left: 5px; }
-}
-input.with-error::placeholder,
-textarea.with-error::placeholder {
-  color: var(--error-color);
-  opacity: .5;
-}
-input::placeholder,
-textarea::placeholder {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 16.71px;
-  color: var(--light-gray-color);
-}
-.input__eye {
-  position: absolute;
-  right: 20px;
-  top: 18px;
-  display: inline-block;
-  cursor: pointer;
-  overflow: hidden;
-
-  & svg {
-    height: 24px;
-    width: 24px;
-    fill: white !important;
+  .reset:hover {
+    fill: var(--error-color);
   }
-}
+  input:focus,
+  textarea:focus {
+    border: 1px solid var(--accent-color);
+  }
+  input:focus .placeholder {
+    position: relative;
+  }
+  input.with-error:focus,
+  textarea.with-error:focus {
+    border: 1px solid var(--error-color);
+  }
 
-.reset {
-  position: absolute;
-  right: 15px;
-  top: 18px;
-  cursor: pointer;
-  transition: all .2s ease;
-}
-.reset:hover {
-  fill: var(--error-color);
-}
-input:focus,
-textarea:focus {
-  border: 1px solid var(--accent-color);
-}
-input:focus .placeholder {
-  position: relative;
-}
-input.with-error:focus,
-textarea.with-error:focus {
-  border: 1px solid var(--error-color);
-}
+  .disabled-input {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: rgba(22, 25, 49, 0.05);
+    mix-blend-mode: normal;
+    border-radius: 3px;
+    padding: 16px 18px 17px 18px;
+  }
+  .disabled-input span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    color: var(--primary-color);
+  }
 
-.disabled-input {
-  height: 50px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  background: rgba(22, 25, 49, 0.05);
-  mix-blend-mode: normal;
-  border-radius: 3px;
-  padding: 16px 18px 17px 18px;
-}
-.disabled-input span {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 17px;
-  letter-spacing: 0.02em;
-  color: var(--primary-color);
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: all .2s ease;
-}
-.v-enter-from {
-  transform: translateY(-100%);
-}
-.v-leave-to {
-  transform: translateY(100%);
-}
-.error-enter-active,
-.error-leave-active {
-  transition: all .2s ease;
-}
-.error-enter-from,
-.error-leave-to {
-  opacity: 0;
-  transform: translateY(-50%);
-}
+  .v-enter-active,
+  .v-leave-active {
+    transition: all .2s ease;
+  }
+  .v-enter-from {
+    transform: translateY(-100%);
+  }
+  .v-leave-to {
+    transform: translateY(100%);
+  }
+  .error-enter-active,
+  .error-leave-active {
+    transition: all .2s ease;
+  }
+  .error-enter-from,
+  .error-leave-to {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
 </style>

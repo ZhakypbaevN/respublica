@@ -34,8 +34,8 @@
     <Button
       :name="
         image
-        ? 'Сменить фотографию'
-        : 'Загрузить фотографию'
+        ? $t('button.change-the-photo')
+        : $t('button.upload-a-photo')
       "
       @click="input.click()"
     />
@@ -57,7 +57,7 @@
   import { ref } from 'vue-demi'
   import { File } from 'buffer';
 
-  import ImageCrop from '../../components/common/ImageCrop.vue'
+  import ImageCrop from '@/components/common/ImageCrop.vue'
 
   interface IProps {
     modelValue?: File,

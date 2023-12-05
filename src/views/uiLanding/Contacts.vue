@@ -6,10 +6,10 @@
       <section class="news landing-block" id="newsList">
         <div class="wrapper">
         
-          <h2 class="landing-title">Центральный аппарат</h2>
+          <h2 class="landing-title">{{ $t('contacts.central-office') }}</h2>
           <ContactsCentralOffice />
      
-          <h2 class="landing-title">Филиалы</h2>
+          <h2 class="landing-title">{{ $t('page.branches') }}</h2>
           <ContactsBranch />
         </div>
       </section>
@@ -20,8 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import ContactsBranch from '@/components/uiLanding/contacts/ContactsBranch.vue';
-import ContactsCentralOffice from '@/components/uiLanding/contacts/ContactsCentralOffice.vue';
+import ContactsBranch from '@/components/uiLanding/contacts-page/ContactsBranch.vue';
+import ContactsCentralOffice from '@/components/uiLanding/contacts-page/ContactsCentralOffice.vue';
+
 </script>
 
 <style scoped lang="scss">

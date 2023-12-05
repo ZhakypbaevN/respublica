@@ -1,7 +1,7 @@
 import { LaravelFile } from '.'
 
 export interface INews {
-  id: number
+  id: number,
   title: string,
   preview_text?: string,
   content?: string,
@@ -10,8 +10,8 @@ export interface INews {
 }
 
 export interface NewsValues {
-  tableValues: INews[]
-  total: number
-  isEmpty: boolean
+  tableValues: INews[],
+  total: number,
+  isEmpty: boolean,
   searchEmpty: boolean
 }

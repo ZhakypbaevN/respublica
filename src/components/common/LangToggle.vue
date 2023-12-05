@@ -41,13 +41,13 @@
 
   const langs = [
     {
-      name: 'РУС',
+      name: t('rus'),
       value: 'ru'
     },
-    {
-      name: 'КАЗ',
-      value: 'kz'
-    }
+    // {
+    //   name: t('kaz'),
+    //   value: 'kz'
+    // }
   ];
   
   const selectLang = ref(defaultLocale)

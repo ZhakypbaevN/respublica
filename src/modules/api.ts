@@ -1,9 +1,12 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { useToast } from '../modules/toast.js'
-// import { useAuth } from './auth.ts'
+// import { useI18n } from 'vue-i18n'
 
+import { useToast } from '@/modules/toast'
+import { useAuth } from '@/modules/auth'
+
+// const { t } = useI18n()
 const { toast } = useToast()
-// const { logout } = useAuth()
+const { logout } = useAuth()
 
 type Request = <T = any>(
   url: string,
@@ -68,20 +71,19 @@ const request = function (
       }
     })
     .catch(function (error) {
-      // if (error.response.status === 401) logout()
+      if (error.response.status === 401) logout()
 
       if (!muteError) {
         if (!error.response) {
-          toast({
-            message:
-              'Ошибка запроса! Пожалуйста проверьте подключены ли вы в интернет.',
-            type: 'danger'
-          })
+          // toast({
+          //   message: t('message.request-error-please-check-if-you-are-connected-to-the-internet'),
+          //   type: 'danger'
+          // })
         } else if (error.response.status === 500) {
-          toast({
-            message: 'Ошибка сервера!',
-            type: 'danger'
-          })
+          // toast({
+          //   message: t('message.server-error'),
+          //   type: 'danger'
+          // })
         } else if (typeof error.response.data.errors === 'object') {
           Object.entries(error.response.data.errors).forEach(([key, value]) => {
             toast({
@@ -104,11 +106,10 @@ const request = function (
             })
           }
         } else {
-          toast({
-            message:
-              'Возникла ошибка при запросе! Пожалуйста повторите попытку позднее.',
-            type: 'danger'
-          })
+          // toast({
+          //   message: t('message.an-error-occurred-during-the-request-please-try-again-later'),
+          //   type: 'danger'
+          // })
         }
       }
 
@@ -116,13 +117,13 @@ const request = function (
     })
 }
 
-if (localStorage.getItem('TOKEN') != null) {
+if (localStorage.getItem('access_token') != null) {
   api.defaults.headers.common.Authorization =
-    'Bearer' + ' ' + localStorage.getItem('TOKEN')
+    'Bearer' + ' ' + localStorage.getItem('access_token')
   api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang') == 'kz' ? 'kz-KZ' : 'ru-RU'
-} else if (sessionStorage.getItem('TOKEN') != null) {
+} else if (sessionStorage.getItem('access_token') != null) {
   api.defaults.headers.common.Authorization =
-    'Bearer' + ' ' + sessionStorage.getItem('TOKEN')
+    'Bearer' + ' ' + sessionStorage.getItem('access_token')
   api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang') == 'kz' ? 'kz-KZ' : 'ru-RU'
 }
 

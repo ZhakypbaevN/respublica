@@ -7,8 +7,8 @@
       <div class="wrapper">
         <div class="landing-header regions-header">
           <h2 class="landing-title">
-            <span v-if="controlBtns[0].active">{{ $t('header-regions') }}</span>
-            <span v-else>Представленность членов партии в маслихатах и на должностях акимов всех уровней</span>
+            <span v-if="controlBtns[0].active">{{ $t('regions.regions-and-deputies-of-maslikhats') }}</span>
+            <span v-else>{{ $t('regions.representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels') }}</span>
           </h2>
           
           <div class="regions-controlBtns">
@@ -31,8 +31,6 @@
 
       <div class="faq-block">
         <div class="wrapper">
-          <!--<h2 class="landing-title center">Карта регионов</h2>-->
-
           <Transition>
             <MapWithSideBar v-if="controlBtns[0].active" />
 
@@ -48,29 +46,30 @@
 </template>
 
 <script setup lang="ts">
-import MapWithSideBar from "../../components/uiLanding/regions/mapWithSideBar.vue";
-import ListDeputies from "../../components/uiLanding/regions/listDeputiesOfMaslikhat.vue";
-import { reactive } from "vue";
+  import MapWithSideBar from "@/components/uiLanding/regions-page/MapWithSideBar.vue";
+  import ListDeputies from "@/components/uiLanding/regions-page/ListDeputiesOfMaslikhat.vue";
+  
+  import { reactive } from "vue";
 
-const controlBtns = reactive([
-  {
-    name: 'pin',
-    icon: 'map-control-pin',
-    active: true
-  },
-  {
-    name: 'list',
-    icon: 'map-control-list',
-    active: false
-  }
-])
+  const controlBtns = reactive([
+    {
+      name: 'pin',
+      icon: 'map-control-pin',
+      active: true
+    },
+    {
+      name: 'list',
+      icon: 'map-control-list',
+      active: false
+    }
+  ])
 
-const toggleShow = (idx: number) => {
-  for (let i = 0; i < controlBtns.length; i++) {
-    controlBtns[i].active = false;
+  const toggleShow = (idx: number) => {
+    for (let i = 0; i < controlBtns.length; i++) {
+      controlBtns[i].active = false;
+    }
+    controlBtns[idx].active = true;
   }
-  controlBtns[idx].active = true;
-}
 </script>
 
 <style scoped lang="scss">

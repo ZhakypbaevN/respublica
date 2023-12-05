@@ -50,17 +50,11 @@ interface Emits {
 const props = withDefaults(defineProps<IProps>(), {
   aspectRatio: 16 / 9,
 })
-// const opt = {
-//   width: 920,
-//   height: 514,
-// }
 const emits = defineEmits<Emits>()
 
 const cropper = ref();
 
 const crop = async () => {
-  console.log('props.width', props.width);
-  console.log('props.height', props.height);
   if (cropper.value) {
     const { canvas } = cropper.value.getResult({ width: props.width, height: props.height });
 

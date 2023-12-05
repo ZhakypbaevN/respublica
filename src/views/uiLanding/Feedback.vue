@@ -9,30 +9,34 @@
 
         <div class="feedbackModal-mainBtns">
           <Button
-            name="ВСТУПЛЕНИЕ В ПАРТИЮ"
+            :name="$t('feedback.join-the-party')"
             type="default-blue"
+            uppercase
             @click="() => showModals.joinPartyModal = true"
           />
           <!-- <Button
-            name="ЗАПИСАТЬСЯ НА ПРИЕМ"
+            :name="$t('feedback.make-an-appointment')"
             type="default-blue"
+            uppercase
             @click="() => showModals.makeAnAppointment = true"
           /> -->
           <!-- <Button
-            name="ПОДАТЬ ОБРАЩЕНИЕ"
+            :name="$t('feedback.submit-an-appeal')"
             type="default-blue"
+            uppercase
             @click="() => showModals.submitAnAppeal = true"
           /> -->
           <!-- <Button
-            name="ЗАКАЗАТЬ ЗВОНОК"
+            :name="$t('feedback.order-a-call')"
             type="default-blue"
+            uppercase
             @click="() => showModals.orserACall = true"
           /> -->
         </div>
 
         <RouterLink to="/">
           <Button
-            name="Вернуться в “Главное меню”"
+            :name="$t('button.go-back-to-the-main-menu')"
             type="outline-light"
           />
         </RouterLink>
@@ -64,10 +68,10 @@
 </template>
 
 <script setup lang="ts">
-import SubmitAnAppealModal from '../../components/uiLanding/feedback/submitAnAppealModal.vue';
-import JoinPartyModal from '../../components/uiLanding/feedback/joinPartyModal.vue';
-import OrderACallModal from '../../components/uiLanding/feedback/orderACallModal.vue';
-import MakeAnAppointmentModal from '../../components/uiLanding/feedback/makeAnAppointmentModal.vue';
+import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
+import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
+import OrderACallModal from '@/components/uiLanding/feedback/OrderACallModal.vue';
+import MakeAnAppointmentModal from '@/components/uiLanding/feedback/MakeAnAppointmentModal.vue';
 
 import { reactive } from 'vue';
 

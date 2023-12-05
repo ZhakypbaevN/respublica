@@ -32,7 +32,7 @@ import { useToast } from '@/modules/toast'
 const { toast } = useToast()
 
 const newsList = ref();
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 onMounted(() => {
   getNews();

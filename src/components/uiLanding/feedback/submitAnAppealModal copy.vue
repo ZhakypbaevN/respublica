@@ -175,14 +175,14 @@
 
       <div class="feedbackModal-btns">
         <Button
-          name="Отправить"
+          :name="$t('button.sand')"
           :loading="loading"
           htmlType="submit"
         />
 
         <Button
           type="default-grey"
-          name="Отмена"
+          :name="$t('button.cancel')"
           @click="emits('hide')"
         />
       </div>
@@ -257,7 +257,6 @@ const postFeedback = (
   }
 
   loading.value = true;
-  // const url = `https://tri.codetau.com/appealList`;
   const url = 'https://tri.codetau.com/appealList';
 
   axios({

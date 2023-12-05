@@ -3,11 +3,11 @@
     <div class="wrapper landing-wrapper">
       <div class="landing-header">
         <h2 class="landing-title">
-          {{ $t('home-news') }}
+          {{ $t('page.news') }}
         </h2>
 
         <RouterLink to="/news-all" class="landing-header-link">
-          <span>{{ $t('home-news-see-all') }}</span>
+          <span>{{ $t('button.view-all') }}</span>
           <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
         </RouterLink>
       </div>

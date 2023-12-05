@@ -3,82 +3,87 @@
     v-if="props.show"
     @hide="emits('hide')"
     class="modal"
-    title="Вы уверены?"
+    :title="$t('are-you-sure')"
   >
     <div class="modal-btns">
       <Button
-        name="Подтвердить"
+        :name="$t('button.confirm')"
         :loading="loading"
         @click="postDelete"
         type="default-red"
       />
 
-      <Button type="default-grey" name="Отмена" @click="emits('hide')" />
+      <Button
+        :name="$t('button.cancel')"
+        type="default-grey"
+        @click="emits('hide')"
+      />
     </div>
   </Modal>
 </template>
 
 <script setup lang="ts">
-// Components
-import { ref } from 'vue'
-import axios from 'axios'
+  import axios from 'axios'
 
-// Modules
-import { useToast } from '@/modules/toast'
+  import { ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
 
-const { toast } = useToast()
+  import { useToast } from '@/modules/toast'
 
-interface IProps {
-  show: boolean,
-  id: number
-}
-interface Emits {
-  (event: 'hide'): Function,
-  (event: 'finish'): Function,
-}
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+  interface IProps {
+    show: boolean,
+    id: number
+  }
+  interface Emits {
+    (event: 'hide'): Function,
+    (event: 'finish'): Function,
+  }
 
-const loading = ref(false)
-const token = localStorage.getItem('TOKEN');
+  const props = defineProps<IProps>()
+  const emits = defineEmits<Emits>()
 
-const postDelete = () => {
-  loading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${props.id}`
+  const loading = ref(false)
+  const token = localStorage.getItem('access_token');
 
-  axios({
-    method: "delete",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-      toast({
-        message: 'Новость успешно удалена',
-        type: 'success'
-      })
-      
-      emits('finish')
-      setTimeout(() => {
-        emits('hide')
-      }, 300);
+  const postDelete = () => {
+    loading.value = true;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${props.id}`
 
-      loading.value = false
+    axios({
+      method: "delete",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
     })
-    .catch((err) => {
+      .then((response) => {
+        console.log('response', response);
+        toast({
+          message: t('message.the-news-has-been-successfully-deleted'),
+          type: 'success'
+        })
+        
+        emits('finish')
+        setTimeout(() => {
+          emits('hide')
+        }, 300);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
+        loading.value = false
       })
+      .catch((err) => {
 
-      console.log('err', err);
-      loading.value = false
-    });
-}
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+
+        console.log('err', err);
+        loading.value = false
+      });
+  }
 </script>
 
 <style scoped lang="scss">

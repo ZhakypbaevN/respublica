@@ -118,7 +118,7 @@
 
             <div class="exitParty-btns">
               <Button
-                name="Отправить"
+                :name="$t('button.sand')"
                 class="exitParty-addFileBtn"
                 :loading="isLoading.btn"
                 htmlType="submit"
@@ -126,7 +126,7 @@
               />
               <Button
                 class="exitParty-addFileBtn"
-                name="Отмена"
+                :name="$t('button.cancel')"
                 type="default-grey"
               />
             </div>
@@ -252,7 +252,7 @@ const isLoading = reactive({
   page: true,
   btn: false
 })
-const token = localStorage.getItem('TOKEN');
+const token = localStorage.getItem('access_token');
 
 const clickInputFile = () => {
   document.getElementById('upload-files')?.click();
