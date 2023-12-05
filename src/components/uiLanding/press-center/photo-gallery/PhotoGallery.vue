@@ -56,7 +56,7 @@
 import { reactive, ref } from "vue";
 
 const gallerylist = reactive([]);
-const photosList = ref(gallerylist[0].photos);
+const photosList = ref();
 
 const toggleShow = (idx: number) => {
   for (let i = 0; i < gallerylist.length; i++) {

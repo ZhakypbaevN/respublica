@@ -105,6 +105,7 @@
   "formdata": {
     "iin": "ИИН",
     "fio": "ФИО",
+    "role": "Роль",
     "date": "Дата",
     "address": "Адрес",
     "phone-number": "Телефон номер",
@@ -458,7 +459,13 @@
     "not-subject-to-review": "Не подлежат рассмотрению",
     "pending": "В ожидании",
     "approved": "Подтвержден",
-    "dismissed": "Отклонен"
+    "dismissed": "Отклонен",
+
+    "client": "Клиент",
+    "admin": "Администратор",
+    "manager": "Менеджер",
+    "media": "Пресса",
+    "handling-requests": "Обработка обращений"
   },
   
   "button": {
@@ -535,7 +542,9 @@
     "you-have-successfully-logged-in": "Вы успешно авторизовались!",
     "you-have-successfully-registered": "Вы успешно зарегистрировались!",
     "a-confirmation-code-has-been-sent-to-your-number": "На ваш номер был отправлен код для подтверждение!",
-    "the-password-has-been-successfully-changed": "Пароль успешно изменен!"
+    "the-password-has-been-successfully-changed": "Пароль успешно изменен!",
+    "the-user-has-been-successfully-created": "Пользователь успешно создан!",
+    "the-user-has-been-successfully-edited": "Пользователь был успешно отредактирован!"
   },
 
   "errors": {
@@ -556,6 +565,7 @@
   "parliamentary-inquiries": "Депутатские запросы",
   "are-you-sure": "Вы уверены?",
   "upload-a-picture": "Загрузите снимок!",
+  "editing-a-user": "Редактирование пользователя",
   "total": "Всего",
   "rus": "РУС",
   "kaz": "КАЗ"

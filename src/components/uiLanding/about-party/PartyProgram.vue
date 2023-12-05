@@ -2,7 +2,7 @@
   <section class="partyProgram landing-block" id="party-program">
     <div class="wrapper">
       <div class="partyProgram-item">
-        <img src="/img/about/program-one.jpg" alt="">
+        <img src="/img/uiLanding/about-party/program-one.jpg" alt="">
         <span class="partyProgram-title">{{ $t('about-us-page.party-program.restart-reforma-respublica') }}</span>
         <span class="partyProgram-sub-title">{{ $t('about-us-page.party-program.restart-reforma-respublica-subtitle') }}</span>
         
@@ -14,7 +14,7 @@
       </div>
       
       <div class="partyProgram-item">
-        <img src="/img/about/program-two.jpg" alt="">
+        <img src="/img/uiLanding/about-party/program-two.jpg" alt="">
         <span class="partyProgram-title">{{ $t('about-us-page.party-program.this-is-new-kazakhstan') }}</span>
         <span class="partyProgram-sub-title">{{ $t('about-us-page.party-program.partys-election-program') }}</span>
         

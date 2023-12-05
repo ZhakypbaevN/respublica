@@ -89,7 +89,7 @@
   justify-content: space-between;
   padding: 54px 140px 54px 80px;
   
-  background: url('/img/about-party/people.jpg') center no-repeat;
+  background: url('/img/uiLanding/about-party/people.jpg') center no-repeat;
   background-size: cover;
   border-radius: 20px;
 

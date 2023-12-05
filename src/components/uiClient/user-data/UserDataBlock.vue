@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
 
-import { IUser } from '@/types/user'
+import { IUser } from '@/types/users'
 
 interface IProps {
   userData?: IUser,

@@ -10,14 +10,14 @@
             </div>
 
             <div class="news-preview">
-              <img src="/img/gallery/trips-to-regions/6.jpg" alt="photo" />
-              <img src="/img/gallery/trips-to-regions/2.jpg" alt="photo" />
-              <img src="/img/gallery/trips-to-regions/3.jpg" alt="photo" />
+              <img src="/img/uiLanding/trips-to-regions/6.jpg" alt="photo" />
+              <img src="/img/uiLanding/trips-to-regions/2.jpg" alt="photo" />
+              <img src="/img/uiLanding/trips-to-regions/3.jpg" alt="photo" />
             </div>
             <div class="news-preview">
-              <img src="/img/gallery/trips-to-regions/4.jpg" alt="photo" />
-              <img src="/img/gallery/trips-to-regions/5.jpg" alt="photo" />
-              <img src="/img/gallery/trips-to-regions/1.jpeg" alt="photo" />
+              <img src="/img/uiLanding/trips-to-regions/4.jpg" alt="photo" />
+              <img src="/img/uiLanding/trips-to-regions/5.jpg" alt="photo" />
+              <img src="/img/uiLanding/trips-to-regions/1.jpeg" alt="photo" />
             </div>
 
             <div class="news-text">

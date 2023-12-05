@@ -1,6 +1,17 @@
 <template>
+   <div
+    v-if="imagesValues.isEmpty"
+    class="photoItems"
+  >
+    <CreatePhoto
+      :albomID="albomID"
+      @newPhoto="addNwPhoto"
+    />
+
+    Empty
+  </div>
   <div
-    v-if="loading"
+    v-else-if="loading || !imagesValues.tableValues"
     class="photoItems"
   >
     <div
@@ -9,7 +20,6 @@
       class="photoItems-cardSkeleton skeleton"
     />
   </div>
-
   <div
     v-else
     class="photoItems"
@@ -20,7 +30,7 @@
     />
 
     <PhotoCard
-      v-for="photo of photoList"
+      v-for="photo of imagesValues.tableValues"
       :key="photo.id"
       :data="photo"
     />
@@ -31,27 +41,51 @@
   import CreatePhoto from "@/components/uiMedia/gallery/photo/photo-list/CreatePhoto.vue"
   import PhotoCard from "@/components/uiMedia/gallery/photo/photo-list/PhotoCard.vue"
 
-  import { ref, watch } from "vue";
+  import { watch, reactive, onMounted } from "vue";
 
-  import { IAlbomImage } from '@/types/photo-gallery';
+  import { AlbomImagesValues } from '@/types/photo-gallery';
+  import { getAlbomImagesList } from '@/actions/uiMedia/photo-gallery';
 
   interface IProps {
-    list: IAlbomImage[],
     albomID: number,
     loading: boolean
   }
 
   const props = defineProps<IProps>()
-  const photoList = ref(props.list);
-
-  watch(
-    () => props.list,
-    () => photoList.value = props.list
-  )
+  const imagesValues = reactive<AlbomImagesValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false
+  })
 
   const addNwPhoto = (photo) => {
-    photoList.value.unshift(photo)
+    if (imagesValues.isEmpty) imagesValues.tableValues = [];
+    imagesValues.tableValues.push(photo)
   }
+
+  const getPhotos = async () => {
+    imagesValues.tableValues = null;
+    imagesValues.isEmpty = false;
+
+    const {
+      data,
+      total
+    } = (await getAlbomImagesList(props.albomID)).data
+
+    imagesValues.tableValues = data;
+    imagesValues.total = total;
+
+    if (!total) {
+      imagesValues.isEmpty = true
+    }
+  }
+
+  watch(
+    () => props.albomID,
+    () => getPhotos()
+  )
+  
+  onMounted(() => getPhotos())
 </script>
 
 <style scoped lang="scss">

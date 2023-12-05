@@ -7,3 +7,6 @@ export const getAlbomList = async () =>
 
 export const getAlbomImagesList = async (albomID) =>
   await api.asyncGet<Paginator<IAlbomImage[]>>(`/api/v1/galleries/albums/${albomID}/images?offset=0&limit=1000`)
+
+export const postAlbomImage = (albomID: number, data: FormData) =>
+  api.asyncPost(`/api/v1/admin/galleries/albums/${albomID}/images`, data)

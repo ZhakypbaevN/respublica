@@ -35,6 +35,7 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n'
 
 import { useToast } from '@/modules/toast'
+import { postAlbomImage } from '@/actions/uiMedia/photo-gallery';
 
 const { t } = useI18n()
 const { toast } = useToast()
@@ -51,7 +52,6 @@ const props = defineProps<IProps>()
 const emit = defineEmits<Emits>()
 
 const isLoading = ref(false)
-const token = localStorage.getItem('access_token');
 
 const isShowModal = ref(false)
 const fileUrl = ref()
@@ -77,43 +77,26 @@ const isImage = (fileName) => {
   return imageTypes.includes(type)
 }
 
-// Send Send Photo
-const postPhoto = (photo) => {
+
+// Send Photo
+const postPhoto = async (photo) => {
   isLoading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/galleries/albums/${props.albomID}/images`;
 
-  const formData = new FormData();
-  formData.append("image", photo!);
+  try {
+    const formData = new FormData();
+    formData.append("image", photo!);
+    
+    const response = await postAlbomImage(props.albomID, formData)
 
-  axios({
-    method: "post",
-    url: url,
-    data: formData,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-
-      toast({
-        message: t('message.the-photo-has-been-uploaded'),
-        type: 'success'
-      })
-
-      emit('newPhoto', response.data)
-      
-      isLoading.value = false;
+    toast({
+      message: t('message.the-photo-has-been-uploaded'),
+      type: 'success'
     })
-    .catch((err) => {
-      console.log('err', err);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-      isLoading.value = false;
-    });
+    emit('newPhoto', response.data)
+  } finally {
+    isLoading.value = false
+  }
 }
 </script>
 

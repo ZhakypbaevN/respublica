@@ -1,5 +1,5 @@
 import api from '@/modules/api'
-import { IUser } from '@/types/user'
+import { IUser } from '@/types/users'
 import { Paginator } from '@/types/request'
 
 export const getUsersList = async (filters: any) => {
@@ -13,3 +13,9 @@ export const getUsersList = async (filters: any) => {
     )
   ).data
 }
+
+export const postUser = (data: FormData) =>
+  api.asyncPost('/api/v1/admin/users', data)
+
+export const putUser = (data: FormData) =>
+  api.asyncPost('/api/v1/admin/users/me', data)

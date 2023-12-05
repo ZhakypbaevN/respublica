@@ -39,37 +39,37 @@ defineEmits<Emits>()
 const aboutPartyList = [
   {
     color: '#894BEC',
-    img: '/img/uiLanding/about-party/events-1.jpg',
+    img: '/img/uiLanding/home/about-party/events-1.jpg',
     title: t('home.about-party.item-1')
   },
   {
     color: null,
-    img: '/img/uiLanding/about-party/events-2.jpg',
+    img: '/img/uiLanding/home/about-party/events-2.jpg',
     title: null
   },
   {
     color: '#FF6B00',
-    img: '/img/uiLanding/about-party/events-3.jpg',
+    img: '/img/uiLanding/home/about-party/events-3.jpg',
     title: t('home.about-party.item-3')
   },
   {
     color: null,
-    img: '/img/uiLanding/about-party/events-4.jpg',
+    img: '/img/uiLanding/home/about-party/events-4.jpg',
     title: null
   },
   {
     color: null,
-    img: '/img/uiLanding/about-party/events-5.jpg',
+    img: '/img/uiLanding/home/about-party/events-5.jpg',
     title: null
   },
   {
     color: '#4A78EC',
-    img: '/img/uiLanding/about-party/events-6.jpg',
+    img: '/img/uiLanding/home/about-party/events-6.jpg',
     title: t('home.about-party.item-6')
   },
   {
     color: null,
-    img: '/img/uiLanding/about-party/events-7.jpg',
+    img: '/img/uiLanding/home/about-party/events-7.jpg',
     title: null
   }
 ]

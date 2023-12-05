@@ -13,7 +13,16 @@
         </Button>
       </div>
 
-      <div class="photo-inner">
+      <div v-if="albomValues.isEmpty">
+        Empty
+      </div>
+      <div class="news-items disabled" v-else-if="!albomValues.tableValues">
+        Loading
+      </div>
+      <div
+        v-else
+        class="photo-inner"
+      >
         <PhotoSideBar
           v-model="selectAlbomID"
           :albomlist="albomValues.tableValues"
@@ -21,9 +30,8 @@
         />
 
         <PhotoCardList
-          :list="imagesValues.tableValues"
           :albomID="selectAlbomID"
-          :loading="!imagesValues.tableValues"
+          :loading="!albomValues.tableValues"
         />
       </div>
     </div>
@@ -40,20 +48,15 @@
   import PhotoSideBar from "@/components/uiMedia/gallery/photo/sidebar/PhotoSidebar.vue"
   import CreateAlbomModal from "@/components/uiMedia/gallery/photo/sidebar/CreateAlbomModal.vue"
 
-  import { ref, reactive, onMounted, watch } from "vue";
+  import { ref, reactive, onMounted } from "vue";
   
-  import { AlbomValues, AlbomImagesValues } from '@/types/photo-gallery';
-  import { getAlbomList, getAlbomImagesList } from '@/actions/uiMedia/photo-gallery';
+  import { AlbomValues } from '@/types/photo-gallery';
+  import { getAlbomList } from '@/actions/uiMedia/photo-gallery';
 
   const showModal = ref(false)
 
   const selectAlbomID = ref(1)
   const albomValues = reactive<AlbomValues>({
-    tableValues: null,
-    total: 0,
-    isEmpty: false
-  })
-  const imagesValues = reactive<AlbomImagesValues>({
     tableValues: null,
     total: 0,
     isEmpty: false
@@ -72,36 +75,9 @@
     albomValues.tableValues = data;
     albomValues.total = total;
 
-    if (!total) {
-      albomValues.isEmpty = true
-    } else {
-      selectAlbomID.value = albomValues.tableValues[0].id;
-      getPhotos()
-    }
+    if (!total) albomValues.isEmpty = true;
+    else selectAlbomID.value = albomValues.tableValues[0].id;
   }
-
-  const getPhotos = async () => {
-    imagesValues.tableValues = null;
-    imagesValues.isEmpty = false
-    const {
-      data,
-      total
-    } = (await getAlbomImagesList(selectAlbomID.value)).data
-
-    imagesValues.tableValues = data;
-    imagesValues.total = total;
-
-    if (!total) {
-      imagesValues.isEmpty = true
-    }
-  }
-
-  onMounted(() => getData());
-
-  watch(
-    () => selectAlbomID.value,
-    () => getPhotos()
-  )
 </script>
 
 <style scoped lang="scss">

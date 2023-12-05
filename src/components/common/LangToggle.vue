@@ -44,10 +44,10 @@
       name: t('rus'),
       value: 'ru'
     },
-    {
-      name: t('kaz'),
-      value: 'kz'
-    }
+    // {
+    //   name: t('kaz'),
+    //   value: 'kz'
+    // }
   ];
   
   const selectLang = ref(defaultLocale)

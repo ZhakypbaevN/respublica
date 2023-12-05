@@ -85,7 +85,7 @@ import MediaAnnouncementsList from '@/views/uiMedia/announcements/AnnouncementsL
 import MediaAnnouncementsEdit from '@/views/uiMedia/announcements/AnnouncementsEdit.vue'
 
 // ------------------ UI Client ------------------
-import Users from '@/views/uiAdmin/Users.vue'
+import UsersList from '@/views/uiAdmin/UsersList.vue'
 
 // Layouts
 const MainLayoutAdmin = () => import('@/components/uiAdmin/layouts/MainLayoutAdmin.vue')
@@ -217,13 +217,13 @@ const routes = [
     component: MainLayoutAdmin,
     meta: { title: 'admin', requiresAuth: true },
     redirect: to => {
-      return '/admin/users'
+      return '/admin/users?offset=0&limit=20&search='
     },
     children: [
       {
         path: 'users',
-        name: 'Users',
-        component: Users,
+        name: 'UsersList',
+        component: UsersList,
       },
     ]
   },
@@ -302,7 +302,7 @@ const routes = [
     component: MainLayoutManager,
     meta: { title: 'manager', requiresAuth: true },
     redirect: to => {
-      return '/manager/party-list/active'
+      return '/manager/party-list/active?offset=0&limit=20&published=true&search=&full_name=&ticket_number=&join_date&birth_date'
     },
     children: [
       { path: '/:pathMatch(.*)*', name: 'ManagerNotFound', component: NotFound },
@@ -349,7 +349,7 @@ const routes = [
     component: MainLayoutMedia,
     meta: { title: 'media', requiresAuth: true },
     redirect: to => {
-      return '/media/news-list'
+      return '/media/news-list?offset=0&limit=20&published=true&search='
     },
     children: [
       { path: '/:pathMatch(.*)*', name: 'MediaNotFound', component: NotFound },

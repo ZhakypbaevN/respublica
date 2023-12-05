@@ -39,28 +39,28 @@ const { t } = useI18n()
 const historylist = [
   {
     date: t('about-us-page.history.date-december'),
-    img: '/img/about/history/История 1 съезд (1).jpg',
+    img: '/img/uiLanding/about-party/history/История 1 съезд (1).jpg',
     text: t('about-us-page.history.date-december-text')
   },
   {
     date: t('about-us-page.history.date-january'),
-    img: '/img/about/history/История 1 съезд (2).jpg',
+    img: '/img/uiLanding/about-party/history/История 1 съезд (2).jpg',
     logoSvg: true,
     text: t('about-us-page.history.date-january-text')
   },
   {
     date: t('about-us-page.history.date-february'),
-    img: '/img/about/history/История 1 съезд (2).jpg',
+    img: '/img/uiLanding/about-party/history/История 1 съезд (2).jpg',
     text: t('about-us-page.history.date-february-text')
   },
   {
     date: t('about-us-page.history.date-march'),
-    img: '/img/about/history/История - выборы.jpg',
+    img: '/img/uiLanding/about-party/history/История - выборы.jpg',
     text: t('about-us-page.history.date-march-text')
   },
   {
     date: t('about-us-page.history.date-july'),
-    img: '/img/about/history/История 3 съезд.jpg',
+    img: '/img/uiLanding/about-party/history/История 3 съезд.jpg',
     text: t('about-us-page.history.date-july-text')
   }
 ]

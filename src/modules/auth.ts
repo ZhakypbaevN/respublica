@@ -6,7 +6,7 @@ import router from '@/router/index.js'
 import api from '@/modules/api'
 import { useToast } from '@/modules/toast'
 
-import { IUser } from '@/types/user'
+import { IUser } from '@/types/users'
 
 // const { t } = useI18n()
 const { toast } = useToast()

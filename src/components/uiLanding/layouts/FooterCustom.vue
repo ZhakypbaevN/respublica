@@ -53,7 +53,7 @@
 
           <div>
             <div class="footer-mainNavs-item team">
-              <h4 class="footer-mainNavs-title">{{ $t('footer-team') }}</h4>
+              <h4 class="footer-mainNavs-title">{{ $t('footer.team') }}</h4>
               <div class="footer-mainNavs-links">
                 <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">{{ $t('page.mazhilis-deputies') }}</RouterLink>
                 <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">{{ $t('page.maslikhats-deputies') }}</RouterLink>
