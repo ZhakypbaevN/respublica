@@ -37,7 +37,7 @@
     </div>
 
     <CreateAlbomModal
-      :show="showModal"
+      v-if="showModal"
       @hide="() => showModal = false"
     />
   </section>

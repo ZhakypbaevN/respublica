@@ -1,6 +1,6 @@
 <template>
   <LogInFirstModal
-    :title="$t('feedback.to-make-an-appointment,-you-need-to-log-in-to-the-portal-or-register')"
+    :title="$t('feedback.to-make-an-appointment-you-need-to-log-in-to-the-portal-or-register')"
     @hide="$emit('hide')"
     :show="show && !userType"
   />
