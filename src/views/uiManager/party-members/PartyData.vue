@@ -21,39 +21,39 @@
             <div class="userData-card" v-if="partyData">
               <h5 class="userData-card-title">Партийный билет</h5>
 
-              <div class="userData-cardInfo">
-                <div class="userData-cardInfo-content">
-                
-                  <h4 class="userData-cardInfo-info number">
-                    <span>Партиялық билет</span>
-                    №{{ partyData?.ticket_number }}
-                  </h4>
-
-
-                  <h4 class="userData-cardInfo-info">
-                    <span>Тегі:</span>
-                    {{ partyData.user.last_name }}
-                  </h4>
-                  <h4 class="userData-cardInfo-info">
-                    <span>Аты:</span>
-                    {{ partyData.user.first_name }}
-                  </h4>
-                  <h4 class="userData-cardInfo-info middleName">
-                    <span>Әкесінің аты:</span>
-                    {{ partyData.user.middle_name }}
-                  </h4>
-
-
-                  <h4 class="userData-cardInfo-info dayOfAcceptance">
-                    <span>Берілген күні:</span>
-                    {{ partyData?.join_date }}
-                  </h4>
-
-                </div>
-                <img src="/img/icons/party-card.svg" alt="">
-              </div>
 
               <div class="userData-card-items">
+                <div class="userData-cardInfo">
+                  <div class="userData-cardInfo-content">
+                  
+                    <h4 class="userData-cardInfo-info number">
+                      <span>Партиялық билет</span>
+                      №{{ partyData?.ticket_number }}
+                    </h4>
+
+
+                    <h4 class="userData-cardInfo-info">
+                      <span>Тегі:</span>
+                      {{ partyData.user.last_name }}
+                    </h4>
+                    <h4 class="userData-cardInfo-info">
+                      <span>Аты:</span>
+                      {{ partyData.user.first_name }}
+                    </h4>
+                    <h4 class="userData-cardInfo-info middleName">
+                      <span>Әкесінің аты:</span>
+                      {{ partyData.user.middle_name }}
+                    </h4>
+
+
+                    <h4 class="userData-cardInfo-info dayOfAcceptance">
+                      <span>Берілген күні:</span>
+                      {{ partyData?.join_date }}
+                    </h4>
+
+                  </div>
+                  <img src="/img/icons/party-card.svg" alt="">
+                </div>
                 <div class="userData-cardInfo">
                   <div class="userData-cardInfo-content">
                   
