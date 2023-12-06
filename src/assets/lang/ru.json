@@ -4,7 +4,6 @@
   "contacts": {
     "address": "г.Астана, пр. Мангилик ел, 33/1<br>Бизнес-центр IPLAZA, 9 этаж",
     "phone": "+7 7172 640 777",
-    "email": "info@respublica-partiyasy.kz",
 
     "central-office": "Центральный аппарат",
     "our-address": "Наш адрес",
@@ -12,8 +11,7 @@
       "title": "Пресс-служба (для СМИ)",
       "title-the-republica-party": "Пресс-служба партии Respublica",
       "press-service-contacts": "Контакты пресс-службы",
-      "phone": "+7 701 722 8251",
-      "email": "akparat2020@gmail.com"
+      "phone": "+7 701 722 8251"
     }
   },
 
@@ -511,7 +509,8 @@
     "log-in-to-the-system": "Войти в систему",
     "save-the-password": "Сохранить пароль",
     "get-the-code": "Получить код",
-    "log-out-of-your-account": "Выйти из аккаунта"
+    "log-out-of-your-account": "Выйти из аккаунта",
+    "choose_how_many_items_will_be_per_page": "Выбрать сколько элементов будут на страницу"
   },
 
   "message": {
@@ -566,6 +565,7 @@
   "are-you-sure": "Вы уверены?",
   "upload-a-picture": "Загрузите снимок!",
   "editing-a-user": "Редактирование пользователя",
+  "create-a-user": "Создание пользователя",
   "total": "Всего",
   "rus": "РУС",
   "kaz": "КАЗ"

@@ -11,11 +11,11 @@
       {{ data.phone ? formatPhoneNumber(data.phone) : '-' }}
     </td>
     <td>{{ data.email ?? '-' }}</td>
-    <td>
+    <td class="btn">
       <Button
         class="usersItem-editBtn"
         type="default-light-grey"
-        @click="() => showModal = true"
+        @click="() => $emit('showEditModal')"
       >
         <SvgIcon
           name="pencil-edit-with-bg"
@@ -25,17 +25,10 @@
       </Button>
     </td>
 
-    <EditUserModal
-      :data="data"
-      v-if="showModal"
-      @hide="() => showModal = false"
-    />
   </tr>
 </template>
 
 <script setup lang="ts">
-  import EditUserModal from '@/components/uiAdmin/users/EditUserModal.vue';
-
   import { ref, onMounted } from 'vue';
   import { useI18n } from 'vue-i18n'
 
@@ -45,12 +38,16 @@
   interface IProps {
     data: IUser
   }
-
-  const { t } = useI18n()
+  interface Emits {
+    (event: 'showEditModal'): Function
+  }
   
-  const props = defineProps<IProps>()
+  const { t } = useI18n();
+  
+  const props = defineProps<IProps>();
+  const emit = defineEmits<Emits>();
+
   const userData = ref<IUser>(null);
-  const showModal = ref(false)
 
   onMounted(() => {
     userData.value = Object.assign({}, props.data);
@@ -90,6 +87,10 @@
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
+    }
+
+    &.btn {
+      position: relative;
     }
   }
 

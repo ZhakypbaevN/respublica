@@ -32,7 +32,7 @@
           light
           type="password"
           name="password"
-              :placeholder="$t('formdata.password')"
+          :placeholder="$t('formdata.password')"
           required
         />
       </div>
@@ -96,6 +96,7 @@ import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n'
 
 import { useToast } from '@/modules/toast'
+import { useAuth } from '@/modules/auth'
 import formatPhone from '@/helpers/formatPhone.js'
 
 const { t } = useI18n()
@@ -111,6 +112,7 @@ const props = defineProps<IProps>()
 defineEmits<Emits>()
 
 
+// const { setUser } = useAuth()
 const { toast } = useToast()
 const router = useRouter()
 
@@ -122,7 +124,7 @@ const postLogin = ({ phone, iin, password }: { phone: string, iin: string, passw
   const url = `https://api.respublica-partiyasy.kz/api/v1/auth/login`;
 
   const formData = new FormData();
-  formData.append("username", props.loginWithPhone ? formatPhone(phone) : iin);
+  formData.append("username", props.loginWithPhone ? `+${formatPhone(phone)}` : iin);
   formData.append("password", password);
 
   axios({
@@ -132,8 +134,11 @@ const postLogin = ({ phone, iin, password }: { phone: string, iin: string, passw
   })
     .then((response) => {
       
-      token.value = response.data['access_token'];
-      localStorage.setItem('access_token', token.value);
+      // setUser({
+      //   access_token: response.data.access_token
+      // })
+      token.value = response.data.access_token;
+      localStorage.setItem('access_token', response.data.access_token)
 
       getUserData();
     })
@@ -155,7 +160,6 @@ const postLogin = ({ phone, iin, password }: { phone: string, iin: string, passw
 
 const getUserData = () => {
   const url = `https://api.respublica-partiyasy.kz/api/v1/users/me`;
-  console.log('token.value', token.value);
   axios({
     method: "get",
     url: url,
@@ -170,13 +174,16 @@ const getUserData = () => {
         type: 'success'
       })
 
-      localStorage.setItem('USER_TYPE', 'client');
+      localStorage.setItem('USER_TYPE', response.data.role);
       localStorage.setItem('USER_ID', response.data['id']);
       localStorage.setItem('USER_DATA', JSON.stringify(response.data));
       loading.value = false;
 
       setTimeout(() => {
-        router.push('/client')
+        if (response.data.role === 'admin') router.push('/admin')
+        else if (response.data.role === 'manager') router.push('/manager')
+        else if (response.data.role === 'editor') router.push('/media')
+        else router.push('/client')
       }, 300);
     })
     .catch((err) => {

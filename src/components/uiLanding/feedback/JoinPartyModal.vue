@@ -149,14 +149,14 @@
                 name="pensioner"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.pensioner') }}
+                {{ $t('social-category.user-status-pensioner') }}
               </Checkbox>
 
               <Checkbox
                 name="disabled"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.disabled') }}
+                {{ $t('social-category.user-status-disabled') }}
               </Checkbox>
             </div>
 
@@ -165,14 +165,14 @@
                 name="unemployed"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.unemployed') }}
+                {{ $t('social-category.user-status-unemployed') }}
               </Checkbox>
 
               <Checkbox
                 name="onChildcareLeave"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.on-childcare-leave') }}
+                {{ $t('social-category.user-status-on-childcare-leave') }}
               </Checkbox>
             </div>
           </div>

@@ -1,16 +1,16 @@
 <template>
   <div class="avatarBlock">
-    <button class="avatarBlock-preview">
+    <RouterLink class="avatarBlock-preview" :to="link">
       <SvgIcon
         name="avatar"
         :viewboxWidth="44"
         :viewboxHeight="44"
       />
-    </button>
+    </RouterLink>
 
 
     <div class="avatarBlock-dropDown">
-      <RouterLink
+      <!-- <RouterLink
         v-for="linkData of links"
         :key="linkData.title"
         class="avatarBlock-link"
@@ -20,7 +20,7 @@
           :name="linkData.title"
           type="outline-blue"
         />
-      </RouterLink>
+      </RouterLink> -->
 
       <Button
         class="avatarBlock-btn"
@@ -41,9 +41,22 @@
 
 <script setup lang="ts">
 import { useAuth } from'@/modules/auth'
+import { onMounted } from 'vue';
+import { ref } from 'vue';
 
 const { logout } = useAuth()
+const link = ref('')
 
+onMounted(() => {
+  const userRole = localStorage.getItem('USER_TYPE');
+  console.log('userRole', userRole);
+  console.log(userRole === 'admin');
+  
+  if (userRole === 'admin') link.value = '/admin'
+  else if (userRole === 'manager') link.value = '/manager'
+  else if (userRole === 'editor') link.value = '/media'
+  else link.value = '/client'
+})
 const links = [
   {
     title: 'Личные данные',

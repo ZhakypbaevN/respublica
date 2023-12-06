@@ -24,66 +24,66 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive, ref } from 'vue'
+  import { onMounted, onUnmounted, reactive, ref } from 'vue'
 
-interface IProps {
-  title?: string,
-  subtitle?: string,
-  maxInner?: number
-  big?: boolean
-}
+  interface IProps {
+    title?: string,
+    subtitle?: string,
+    maxInner?: number
+    big?: boolean
+  }
 
-interface Emits {
-  (event: 'hide'): Function
-}
+  interface Emits {
+    (event: 'hide'): Function
+  }
 
-withDefaults(defineProps<IProps>(), {
-  title: undefined,
-  subtitle: undefined,
-  big: false,
-  maxInner: 600
-})
-const emits = defineEmits<Emits>()
+  withDefaults(defineProps<IProps>(), {
+    title: undefined,
+    subtitle: undefined,
+    big: false,
+    maxInner: 600
+  })
+  const emits = defineEmits<Emits>()
 
-const container = reactive({
-  top: '140%',
-  opacity: '0'
-})
-const opacity = ref(0)
+  const container = reactive({
+    top: '140%',
+    opacity: '0'
+  })
+  const opacity = ref(0)
 
-const showModal = () => {
-  setTimeout(() => {
-    opacity.value = 1
-    container.top = '40px'
-    container.opacity = '1'
-  }, 0)
-  document.removeEventListener('mouseover', showModal)
-}
+  const showModal = () => {
+    setTimeout(() => {
+      opacity.value = 1
+      container.top = '40px'
+      container.opacity = '1'
+    }, 0)
+    document.removeEventListener('mouseover', showModal)
+  }
 
-onMounted(() => {
-  // document.addEventListener('keydown', hideModalOnEsc)
-  showModal();
-  document.body.style.overflow = 'hidden'
-})
-onUnmounted(() => {
-  // document.removeEventListener('keydown', hideModalOnEsc)
-  document.body.style.overflow = 'overlay'
-})
+  onMounted(() => {
+    // document.addEventListener('keydown', hideModalOnEsc)
+    showModal();
+    document.body.style.overflow = 'hidden'
+  })
+  onUnmounted(() => {
+    // document.removeEventListener('keydown', hideModalOnEsc)
+    document.body.style.overflow = 'overlay'
+  })
 
 
-// Hide Modal Events
-const hideModal = () => {
-  opacity.value = 0
-  container.top = '140%'
-  container.opacity = '0'
-  setTimeout(() => {
-    emits('hide')
-  }, 300)
-}
+  // Hide Modal Events
+  const hideModal = () => {
+    opacity.value = 0
+    container.top = '140%'
+    container.opacity = '0'
+    setTimeout(() => {
+      emits('hide')
+    }, 300)
+  }
 
-const hideModalOnEsc = () => {
-  hideModal()
-}
+  const hideModalOnEsc = () => {
+    hideModal()
+  }
 </script>
 
 <style scoped lang="scss">

@@ -5,7 +5,7 @@
       <section class="news landing-block" id="newsList">
         <div class="wrapper">
           <h2 class="landing-title center">
-            {{ $t('home-announcements') }}
+            {{ $t('page.announcements') }}
           </h2>
           
           <div class="landing-items">
