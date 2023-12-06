@@ -55,23 +55,23 @@
 
   const sideBarlinks = [
     {
-      title: t('who-are-we'),
+      title: t('home.about-us.who-are-we'),
       link: "#who-are-we"
     },
     {
-      title: t('party-program-and-party-s-election-program'),
+      title: t('home.party-program.party-program-and-party-s-election-program'),
       link: "#party-program"
     },
     {
-      title: t('about-us-page-menu-organizational-structure'),
+      title: t('about-us-page.organizational-structure'),
       link: "#party-structure"
     },
     {
-      title: t('about-us-page-menu-history'),
+      title: t('about-us-page.history.title'),
       link: "#history"
     },
     {
-      title: t('about-us-page-menu-party-leaders'),
+      title: t('about-us-page.party-leaders.title'),
       link: "#party-leaders"
     },
     {

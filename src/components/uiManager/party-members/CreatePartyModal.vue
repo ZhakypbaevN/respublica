@@ -146,14 +146,14 @@
                 name="pensioner"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('formdata.pensioners') }}
+                {{ $t('social-category.pensioners') }}
               </Checkbox>
 
               <Checkbox
                 name="disabled"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('formdata.disabled') }}
+                {{ $t('social-category.disabled') }}
               </Checkbox>
             </div>
 
@@ -162,14 +162,14 @@
                 name="unemployed"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('formdata.unemployed') }}
+                {{ $t('social-category.unemployed') }}
               </Checkbox>
 
               <Checkbox
                 name="onChildcareLeave"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('formdata.on-childcare-leave') }}
+                {{ $t('social-category.on-childcare-leave') }}
               </Checkbox>
             </div>
           </div>
@@ -258,85 +258,85 @@ const socialStatusList = [
   }
 ]
 
-onMounted(() => {
+// onMounted(() => {
 
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
-  axios({
-    method: "get",
-    url: url,
-  })
-    .then((response) => {
-      response.data.forEach(location => {
-        regionList.value.push(
-          {
-            label: location.name,
-            value: location.id.toString(),
-            childrens: location.childrens
-          }
-        );
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
+//   const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
+//   axios({
+//     method: "get",
+//     url: url,
+//   })
+//     .then((response) => {
+//       response.data.forEach(location => {
+//         regionList.value.push(
+//           {
+//             label: location.name,
+//             value: location.id.toString(),
+//             childrens: location.childrens
+//           }
+//         );
+//       });
+//     })
+//     .catch((err) => {
+//       console.log('err', err);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+//       toast({
+//         message: 'Возникли ошибки при запросе'
+//       })
       
-    });
-  getUsers()
-  getTicketNum()
-})
+//     });
+//   // getUsers()
+//   getTicketNum()
+// })
 
-const getUsers = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/users?offset=0&limit=100`;
-  axios({
-    method: "get",
-    url: url,
-  })
-    .then((response) => {
-      response.data.forEach(data => {
-        usersList.value.push(
-          {
-            label: `${data.first_name} ${data.last_name} ${data.middle_name ?? ''}`,
-            value: JSON.stringify(data),
-          }
-        );
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
+// const getUsers = () => {
+//   const url = `https://api.respublica-partiyasy.kz/api/v1/admin/users?offset=0&limit=100`;
+//   axios({
+//     method: "get",
+//     url: url,
+//   })
+//     .then((response) => {
+//       response.data.forEach(data => {
+//         usersList.value.push(
+//           {
+//             label: `${data.first_name} ${data.last_name} ${data.middle_name ?? ''}`,
+//             value: JSON.stringify(data),
+//           }
+//         );
+//       });
+//     })
+//     .catch((err) => {
+//       console.log('err', err);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-}
+//       toast({
+//         message: 'Возникли ошибки при запросе'
+//       })
+//     });
+// }
 
-const getTicketNum = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
-  axios({
-    method: "get",
-    url: url,
-  })
-    .then((response) => {
-      response.data.forEach(num => {
-        ticketNumList.value.push(
-          {
-            label: num.ticket_number,
-            value: num.id.toString(),
-          }
-        );
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
+// const getTicketNum = () => {
+//   const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
+//   axios({
+//     method: "get",
+//     url: url,
+//   })
+//     .then((response) => {
+//       response.data.forEach(num => {
+//         ticketNumList.value.push(
+//           {
+//             label: num.ticket_number,
+//             value: num.id.toString(),
+//           }
+//         );
+//       });
+//     })
+//     .catch((err) => {
+//       console.log('err', err);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-}
+//       toast({
+//         message: 'Возникли ошибки при запросе'
+//       })
+//     });
+// }
 
 watch(
   () => regionID.value,

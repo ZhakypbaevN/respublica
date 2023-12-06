@@ -44,13 +44,11 @@
       name: t('rus'),
       value: 'ru'
     },
-    // {
-    //   name: t('kaz'),
-    //   value: 'kz'
-    // }
+    {
+      name: t('kaz'),
+      value: 'kz'
+    }
   ];
-
-  localStorage.removeItem('lang');
   
   const selectLang = ref(defaultLocale)
   const showDropdown = ref(false);

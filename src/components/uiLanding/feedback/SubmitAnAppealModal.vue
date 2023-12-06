@@ -19,9 +19,9 @@
         <SvgIcon name="call-gery" :viewboxWidth="28" :viewboxHeight="28" />
         <h4 class="contacts-item-title">{{ $t('contacts.phone') }}</h4>
       </a>
-      <a class="contacts-item" :href="`mailto:${$t('contacts.email')}`">
+      <a class="contacts-item" :href="`mailto:info@respublica-partiyasy.kz`">
         <SvgIcon name="envelope-grey" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">{{ $t('contacts.email') }}</h4>
+        <h4 class="contacts-item-title">info@respublica-partiyasy.kz</h4>
       </a>
     </div>
   </Modal>

@@ -2,7 +2,7 @@
   <Modal
     @hide="emit('hide')"
     class="editModal"
-    :title="t('editing-a-user')"
+    :title="data ? t('editing-a-user') : t('create-a-user')"
   >
     <Form
       @finish="onEditUser"
@@ -62,6 +62,14 @@
             name="email"
             v-model="userData.email"
             placeholder="Email"
+            required
+          />
+
+          <Input
+            type="password"
+            name="password"
+            :placeholder="$t('formdata.password')"
+            :required="!data"
           />
         </div>
       </div>
@@ -83,6 +91,7 @@
   import { IUser } from '@/types/users';
   import { postUser, putUser } from '@/actions/uiAdmin/users';
   import { useToast } from '@/modules/toast'
+  import formatPhone from '@/helpers/formatPhone.js'
 
   const { t } = useI18n()
   const { toast } = useToast()
@@ -104,13 +113,14 @@
   onMounted(() => {
     if (props.data) {
       userData.value = Object.assign({}, props.data);
-      if (userData.value.role === null) userData.value.role = 'client';
+      if (userData.value.role === null) userData.value.role = '--';
     } else userData.value = {
       iin: null,
       first_name: null,
       last_name: null,
       middle_name: null,
       phone: null,
+      role: null,
       email: null
     }
   })
@@ -122,7 +132,7 @@
     },
     {
       label: t('status.client'),
-      value: 'client'
+      value: '--'
     },
     {
       label: t('status.manager'),
@@ -138,22 +148,25 @@
     // }
   ]
 
-  const onEditUser = async () => {
+  const onEditUser = async ({ password }: { password: string }) => {
     loading.value = true
     try {
       const formData = new FormData();
   
       for (const key in userData.value) {
-        formData.append(key, userData.value[key]);
+        if (key === 'phone') formData.append(key, formatPhone(userData.value[key]))
+        else formData.append(key, userData.value[key]);
       }
+
+      formData.append('password', password)
       
-      if (props.data) await putUser(formData)
+      if (props.data) await putUser(props.data.id, formData)
       else await postUser(formData)
 
       toast({
         message: props.data
-          ? t('messages.the-user-has-been-successfully-edited')
-          : t('messages.the-user-has-been-successfully-created'),
+          ? t('message.the-user-has-been-successfully-edited')
+          : t('message.the-user-has-been-successfully-created'),
         type: 'success'
       })
 

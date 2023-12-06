@@ -17,5 +17,5 @@ export const getUsersList = async (filters: any) => {
 export const postUser = (data: FormData) =>
   api.asyncPost('/api/v1/admin/users', data)
 
-export const putUser = (data: FormData) =>
-  api.asyncPost('/api/v1/admin/users/me', data)
+export const putUser = (userID: number, data: FormData) =>
+  api.asyncPut(`/api/v1/admin/users/${userID}`, data)

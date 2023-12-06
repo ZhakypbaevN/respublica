@@ -15,10 +15,10 @@
         </h4>
       </a>
 
-      <a class="contacts-item" :href="`mailto:${$t('contacts.email')}`">
+      <a class="contacts-item" :href="`mailto:info@respublica-partiyasy.kz`">
         <SvgIcon name="envelope-grey" :viewboxWidth="28" :viewboxHeight="28" />
         <h4 class="contacts-item-title">
-          {{ $t('contacts.email') }}
+          info@respublica-partiyasy.kz
         </h4>
       </a>
     </div>
@@ -33,10 +33,10 @@
         </h4>
       </a>
 
-      <a class="contacts-item" :href="`mailto:${$t('contacts.press-service-for-the-media.email')}`">
+      <a class="contacts-item" :href="`mailto:akparat2020@gmail.com`">
         <SvgIcon name="envelope-grey" :viewboxWidth="28" :viewboxHeight="28" />
         <h4 class="contacts-item-title">
-          {{ $t('contacts.press-service-for-the-media.email') }}
+          akparat2020@gmail.com
         </h4>
       </a>
     </div>

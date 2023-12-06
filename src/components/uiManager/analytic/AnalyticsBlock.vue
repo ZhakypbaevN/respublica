@@ -98,7 +98,7 @@
   const regionList = ref([]);
   const categoryList = [
     {
-      label: t('social-category.pensioner'),
+      label: t('social-category.pensioners'),
       value: 'pensioner',
     },
     {

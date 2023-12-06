@@ -14,7 +14,7 @@
           <Button
             class="users-header-addNewsBtn"
             type="default-blue"
-            @click="() => showModal = true"
+            @click="onShowCreateModal"
           >
             <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
@@ -37,6 +37,7 @@
               :key="user.id"
               :data="user"
               class="users-table-item"
+              @showEditModal="() => onShowEditModal(user)"
             />
           </tbody>
         </table>
@@ -47,6 +48,7 @@
 
     <EditUserModal
       v-if="showModal"
+      :data="editData"
       @hide="() => showModal = false"
     />
   </div>
@@ -60,7 +62,7 @@
   import { useRoute, useRouter } from 'vue-router';
   
   import debounce from '@/helpers/debounce';
-  import { UsersValues } from '@/types/users';
+  import { IUser, UsersValues } from '@/types/users';
   import { getUsersList } from '@/actions/uiAdmin/users';
 
   const route = useRoute()
@@ -69,12 +71,23 @@
   const search = ref(route.query.search)
 
   const showModal = ref(false);
+  const editData = ref<IUser>()
   const usersValues = reactive<UsersValues>({
     tableValues: null,
     total: 0,
     isEmpty: false,
     searchEmpty: true
   })
+
+  const onShowCreateModal = () => {
+    editData.value = null;
+    showModal.value = true;
+  }
+
+  const onShowEditModal = (data: IUser) => {
+    editData.value = data;
+    showModal.value = true;
+  }
 
   const getData = async () => {
     usersValues.tableValues = null;
