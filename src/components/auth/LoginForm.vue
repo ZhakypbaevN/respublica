@@ -124,7 +124,7 @@ const postLogin = ({ phone, iin, password }: { phone: string, iin: string, passw
   const url = `https://api.respublica-partiyasy.kz/api/v1/auth/login`;
 
   const formData = new FormData();
-  formData.append("username", props.loginWithPhone ? `+${formatPhone(phone)}` : iin);
+  formData.append("username", props.loginWithPhone ? formatPhone(phone) : iin);
   formData.append("password", password);
 
   axios({
