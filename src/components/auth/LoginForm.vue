@@ -116,6 +116,7 @@ defineEmits<Emits>()
 const { toast } = useToast()
 const router = useRouter()
 
+import api from '@/modules/api'
 const loading = ref(false)
 const token = ref();
 
@@ -139,6 +140,10 @@ const postLogin = ({ phone, iin, password }: { phone: string, iin: string, passw
       // })
       token.value = response.data.access_token;
       localStorage.setItem('access_token', response.data.access_token)
+      sessionStorage.setItem('access_token', response.data.access_token)
+
+      api.defaults.headers.common.Authorization =
+        'Bearer' + ' ' + response.data.access_token
 
       getUserData();
     })
