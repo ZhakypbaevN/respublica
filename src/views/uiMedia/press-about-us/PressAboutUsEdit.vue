@@ -1,7 +1,21 @@
 <template>
-  <section class="">
-    <div class="newsEdit wrapper" v-if="route.params.news_id ? !loading.page : true">
-      <h2 class="landing-title">{{ formData.title ? formData.title : route.params.news_id ? 'Редактирование новости' : 'Новая новость' }}</h2>
+  <section class="newsEdit">
+    <div class="wrapper" v-if="newsData">
+      <div class="newsEdit-header">
+        <BackButton />
+
+        <LangToggle dropdown />
+      </div>
+
+      <h2 class="landing-title">
+        {{
+          newsData.title
+            ? newsData.title
+            : route.params.news_id
+              ? $t('page.editing-the-news')
+              : $t('page.new-news')
+        }}
+      </h2>
 
       <Form
         @finish="postNews"
@@ -10,26 +24,62 @@
         <div class="newsEdit-form-main">
           <div class="newsEdit-form-inputs">
             <div class="newsEdit-formItem">
-              <label for="" class="newsEdit-formItem-label">Заголовок</label>
+              <label for="" class="newsEdit-formItem-label">{{ $t('formdata.heading') }}</label>
               <Input
                 name="title"
                 type="textarea"
-                placeholder="Введите текст обращения"
+                :placeholder="$t('formdata.enter-the-name-of-the')"
                 :maxSymbol="150"
-                v-model="formData.title"
+                v-model="newsData.title"
                 staticPlaceholder
                 required
               />
             </div>
 
             <div class="newsEdit-formItem">
-              <label for="" class="newsEdit-formItem-label">Подзаголовок</label>
+              <label for="" class="newsEdit-formItem-label">{{ $t('formdata.subtitle') }}</label>
               <Input
-                name="subtitle"
+                name="preview_text"
                 type="textarea"
-                placeholder="Введите текст обращения"
+                :placeholder="$t('formdata.enter-the-subtitle-of-the')"
                 :maxSymbol="250"
-                v-model="formData.subtitle"
+                v-model="newsData.preview_text"
+                staticPlaceholder
+                required
+              />
+            </div>
+
+            <div class="newsEdit-formItem">
+              <label for="" class="newsEdit-formItem-label">{{ $t('formdata.release-day') }}</label>
+              <Input
+                type="date"
+                name="dateBirthday"
+                v-model="newsData.created_at"
+                :placeholder="$t('formdata.choose-the-day-of-release')"
+                staticPlaceholder
+                required
+              />
+            </div>
+
+            <div class="newsEdit-formItem">
+              <label for="" class="newsEdit-formItem-label">{{ $t('formdata.name-of-the-author') }}</label>
+              <Input
+                name="source_title"
+                :placeholder="$t('formdata.enter-the-author-is-name')"
+                :maxSymbol="250"
+                v-model="newsData.source_title"
+                staticPlaceholder
+                required
+              />
+            </div>
+
+            <div class="newsEdit-formItem">
+              <label for="" class="newsEdit-formItem-label">{{ $t('formdata.link-to-the-author-is-article') }}</label>
+              <Input
+                name="source_url"
+                :placeholder="$t('formdata.a-link-to-the-author-is-article-has-been-entered')"
+                :maxSymbol="250"
+                v-model="newsData.source_url"
                 staticPlaceholder
                 required
               />
@@ -38,176 +88,123 @@
 
           <Upload
             class="newsEdit-preview"
-            v-model="formData.newPhotoFile"
-            :preview="formData.preview"
-            :aspectRatio="16 / 8"
-            :height="440"
+            v-model="newPhotoFile"
+            :preview="newsData.preview_image"
+            :aspectRatio="16 / 9"
+            :height="495"
             :width="880"
-            :previewBottom="50"
+            :previewBottom="56.36"
             required
           />
         </div>
 
-        <Input
-          name="content"
-          type="editor"
-          v-model="formData.content"
-          staticPlaceholder
-          placeholder="Контент"
-          class="newsEdit-formItem-content"
-          required
-        />
 
-        <div class="newsEdit-form-btns">
-          <Button
-            :name="
-              route.params.news_id
-                ? 'Сохранить'
-                : 'Создать новость'
-            "
-            :loading="loading.btn"
-            htmlType="submit"
-          />
-          <Button
-            :name="$t('button.cancel')"
-            htmlType="submit"
-            type="default-grey"
-          />
-        </div>
+        <Button
+          :name="
+            route.params.news_id
+              ? $t('button.save')
+              : $t('button.create')
+          "
+          :loading="isloading"
+          htmlType="submit"
+        />
       </Form>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import getFileUrl from '../../../helpers/getFileUrlByDate'
+  import moment from 'moment';
 
-import { onMounted, reactive } from 'vue'
-import axios from 'axios'
-import { useToast } from '../../../modules/toast'
-import { useRoute } from 'vue-router';
-import { watch } from 'vue';
+  import { useI18n } from 'vue-i18n'
+  import { ref, onMounted } from 'vue'
+  import { useRoute, useRouter } from 'vue-router';
 
-const route = useRoute()
-const { toast } = useToast()
+  import { useToast } from '@/modules/toast'
+  import getFileUrl from '@/helpers/getFileUrlByDate.js'
 
-const loading = reactive({
-  page: true,
-  btn: false
-})
-const token = localStorage.getItem('access_token');
+  import { INews } from '@/types/news';
+  import { getNewsData, postNewsData, putNewsData } from '@/actions/uiMedia/news';
 
-const formData = reactive({
-  title: '',
-  subtitle: '',
-  content: '',
-  preview: null,
-  newPhotoFile: null
-})
+  const route = useRoute()
+  const router = useRouter()
 
-// Get News
-onMounted(() => {
-  if (route.params.news_id) {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`;
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
+  const isloading = ref(false)
+  const newsData = ref<INews>()
+
+  const newPhotoFile = ref(null)
+
+  // Get News
+  onMounted(async () => {
+    if (route.params.news_id) {
+      const response = await getNewsData(route.params.news_id.toString())
+
+      if (response) newsData.value = response.data;
+      newsData.value.preview_image = getFileUrl(response.data.preview_image);
+      newsData.value.created_at = moment(response.data.created_at).format('YYYY-MM-DD');
+
+    } else {
+      newsData.value = {
+        title: 'What is Lorem Ipsum?',
+        preview_text: 'From its medieval origins to the digital era, learn everything there is to know about the ubiquitous lorem ipsum passage.',
+        source_title: 'loremipsum.io',
+        source_url: 'https://loremipsum.io/#lorem-ipsum-all-the-things',
+        published: true,
+        created_at: moment().format('YYYY-MM-DD'),
+        content: 'string',
+        preview_image: null
       }
-    })
-      .then((response) => {
-        console.log('response', response);
-        formData.title = response.data.title;
-        formData.subtitle = response.data.preview_text;
-        formData.preview = getFileUrl(response.data.preview_image);
-        
-        formData.content = response.data.content;
-        loading.page = false
-        
-      })
-      .catch((err) => {
-        console.log('err', err);
-        
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-        loading.page = false
-      });
-
-  }
-})
-
-watch(
-  () => formData.preview,
-  () => {
-    console.log('formData.preview', new File([formData.preview!], "filename"));
-  }
-)
-
-
-// Post
-const postNews = () => {
-  loading.btn = true;
-  const url = route.params.news_id
-    ? `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`
-    : `https://api.respublica-partiyasy.kz/api/v1/admin/articles`;
-
-  const data = new FormData();
-  
-  data.append("title", formData.title);
-  data.append("category_id", '3');
-  data.append("preview_text", formData.subtitle);
-  data.append("content", formData.content);
-  data.append("published", 'true');
-
-  if (formData.newPhotoFile) data.append("preview_image", formData.newPhotoFile);
-
-  axios({
-    method: route.params.news_id ? "put" : "post",
-    url: url,
-    data: data,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
     }
   })
-    .then((response) => {
-      console.log('response', response);
+
+  // Post
+  const postNews = async () => {
+    isloading.value = true;
+    try {
+      const formData = new FormData();
+
+      for (const key in newsData.value) {
+        if (key === 'created_at') formData.append(key, moment(newsData.value[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
+        else if (key !== 'preview_image' && newsData.value[key]) formData.append(key, newsData.value[key]);
+      }
+
+      if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
+      formData.append("alias_category", 'press-about-us');
+      formData.append("content", 'string');
+      
+      if (route.params.news_id) await putNewsData(route.params.news_id.toString(), formData)
+      else await postNewsData(formData)
+
       toast({
-        message: 'Новость успешно создана',
+        message: route.params.news_id
+          ? t('message.the-news-was-successfully-updated')
+          : t('message.the-news-was-successfully-created'),
         type: 'success'
       })
-      loading.btn = false
-      
-    })
-    .catch((err) => {
-      console.log('err', err);
-      
-      if (err.response.data.detail === 'Incorrect username or password') {
-        toast({
-          message: 'Неверный логин или пароль!'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
-      loading.btn = false
-    });
-}
 
+      if (!route.params.news_id) setTimeout(() => router.push('/media/press-about-us?offset=0&limit=20&published=true&search='), 300);
+
+    } finally {
+      isloading.value = false
+    }
+  }
 </script>
 
 <style scoped lang="scss">
-.wrapper {
-  /* background-color: var(--accent-color-op05); */
-  padding-top: 40px;
-}
-
 .newsEdit {
+  padding: 40px 0;
+  
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+  }
+
   &-form {
     &-main {
       display: grid;
@@ -223,11 +220,6 @@ const postNews = () => {
     &-preview {
       display: flex;
       flex-direction: column;
-      grid-gap: 20px;
-    }
-
-    &-btns {
-      display: flex;
       grid-gap: 20px;
     }
   }

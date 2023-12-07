@@ -97,7 +97,7 @@ onMounted(() => {
 })
 
 const goEdit = () => {
-  router.push(`/media/news-list/${props.data.id}`)
+  router.push(`/media/press-about-us/${props.data.id}`)
 }
 
 const togglePublish = () => {

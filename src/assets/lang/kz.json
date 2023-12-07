@@ -1,5 +1,6 @@
 {
   "name": "Republica",
+  "lang": "КАЗ",
 
   "contacts": {
     "address": "Астана қ., Мәңгілік Ел даңғылы, 33/1<br>IPLAZA бизнес орталығы, 9-қабат",
@@ -42,8 +43,10 @@
     "vip-rooms": "VIP нөмерлері",
     "photo-gallery": "Фото галерея",
     "video-gallery": "Бейне галерея",
-    "quitting-the-party": "партиядан шығу",
-    "representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels": "Партия мүшелерінің мәслихаттардағы және барлық деңгейдегі әкімдер лауазымындағы өкілдігі"
+    "quitting-the-party": "Партиядан шығу",
+    "representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels": "Партия мүшелерінің мәслихаттардағы және барлық деңгейдегі әкімдер лауазымындағы өкілдігі",
+    "editing-the-news": "Редакциялау жаңалықтары",
+    "new-news": "Жаңа жаңалық"
   },
 
   "composition-of-faction": {
@@ -86,13 +89,13 @@
     "enter-the-code": "Кодты енгізіңіз",
     "we-have-sent-a-contfirmation-code-to-the-number": "Нөмірге растау кодын жібердік",
     "you-can-get-a-new-code-via": "Жаңа кодты мына арқылы алуға болады",
-    "do-you-have-an-count": "Сізде аккаунт бар ма?",
+    "do-you-have-an-account": "Сізде аккаунт бар ма?",
     "remember-me": "Мені есте сақта",
     "forgot-your-password": "Құпия сөзіңізді ұмыттыңыз ба?",
     "or": "немесе",
     "log-in-using-the-iin": "ЖСН арқылы кіру",
     "log-in-using-the-phone": "Телефон нөмірі арқылы кіру",
-    "don-not-you-have-an-count": "Есептік жазбаңыз жоқ па?",
+    "don-not-you-have-an-account": "Есептік жазбаңыз жоқ па?",
     "register": "Тіркелу",
     "registration": "тіркеу",
     "new-password": "Жаңа құпия сөз",
@@ -166,8 +169,11 @@
     "payment": "төлем",
     "search-by-fio": "Толық аты бойынша іздеу",
     "search-by-name": "Аты бойынша іздеу",
-    "heading": "Айдар",
+    "heading": "Тақырып",
+    "subtitle": "Мазмұн туралы қысқаша",
+    "enter-the-name-of-the": "Тақырыпты енгізіңіз",
     "enter-the-name-of-the-video": "Бейне тақырыбын енгізіңіз",
+    "enter-the-subtitle-of-the": "Мазмұн туралы қысқаша енгізіңіз",
     "youTube-video-code-iframe": "YouTube бейне коды (iframe)",
     "enter-the-youTube-video-code": "YouTube бейне кодын енгізіңіз",
     "ticket-desk-number": "Билет кассасының нөмірі",
@@ -179,7 +185,15 @@
     "reason": "себеп",
     "password": "Құпия сөз",
     "come-up-with-a-password": "Құпия сөзді жасау",
-    "repeat-the-password": "Құпия сөзді қайталау"
+    "repeat-the-password": "Құпия сөзді қайталау",
+    "release-day": "Шығарылым күні",
+    "choose-the-day-of-release": "Шығарылым күнін таңдаңыз",
+    "content": "Мазмұн",
+    "enter-the-content": "Мазмұнды енгізіңіз",
+    "name-of-the-author": "Автордың атауы",
+    "link-to-the-author-is-article": "Автордың мақаласына сілтеме",
+    "enter-the-author-is-name": "Автордың атын енгізіңіз",
+    "a-link-to-the-author-is-article-has-been-entered": "Автордың мақаласына сілтеме енгізіңіз"
   },
   "analytics": {
     "activity-by-region": "Аймақ бойынша белсенділік",
@@ -357,6 +371,7 @@
   },
 
   "party": {
+    "party-card": "Партийный билет",
     "party-data": "Тараптық деректер",
     "party-members": "Партия мүшелері",
     "additional-data-of-the-party-ticket": "Қосымша партиялық билет деректері",
@@ -487,8 +502,9 @@
     "go-back-to-the-main-menu": "Негізгі мәзірге қайту",
     "remove-from-the-batch": "Пакеттен алып тастау",
     "add-albom": "Альбом қосу",
+    "create": "Құру",
     "save": "Сақтау",
-    "create-a-video": "Бейне жасау",
+    "create-a-video": "Бейне құру",
     "filter": "Фильтр",
     "confirm-the-exit": "Шығуды растаңыз",
     "deny": "Бас тарту",
@@ -531,7 +547,9 @@
     "a-confirmation-code-has-been-sent-to-your-number": "Сіздің нөмеріңізге растау коды жіберілді!",
     "the-password-has-been-successfully-changed": "Пароль сәтті түрде өзгертілді",
     "the-user-has-been-successfully-created": "Пайдаланушы сәтті құрылды!",
-    "the-user-has-been-successfully-edited": "Пайдаланушы сәтті өңделді!"
+    "the-user-has-been-successfully-edited": "Пайдаланушы сәтті өңделді!",
+    "the-news-was-successfully-created": "Жаңалық сәтті құрылды!",
+    "the-news-was-successfully-updated": "Жаңалық сәтті жаңартылды!"
   },
 
   "errors": {

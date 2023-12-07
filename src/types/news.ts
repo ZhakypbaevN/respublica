@@ -1,12 +1,13 @@
-import { LaravelFile } from '.'
-
 export interface INews {
-  id: number,
-  title: string,
+  id?: number,
+  title?: string,
   preview_text?: string,
   content?: string,
   published: boolean,
-  preview_image: LaravelFile
+  created_at: string,
+  preview_image?: any,
+  source_title?: string,
+  source_url?: string
 }
 
 export interface NewsValues {

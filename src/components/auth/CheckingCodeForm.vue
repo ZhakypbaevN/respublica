@@ -3,7 +3,7 @@
     <h2 class="wrapper-darkMain-title">{{ $t('auth.enter-the-code') }}</h2>
 
     <div class="modal-message">
-      <h4 class="modal-message-title">{{ $t('auth.we-have-sent-a-confirmation-code-to-the-number') }} <br> {{ formatPhoneNumber('7' + phone) }}</h4>
+      <h4 class="modal-message-title">{{ $t('auth.we-have-sent-a-confirmation-code-to-the-number') }} <br> {{ formatPhoneNumber(phone) }}</h4>
       
       <button
         type="button"

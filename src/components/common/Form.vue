@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="onFinish">
+    {{ hasError }}
     <slot />
   </form>
 </template>

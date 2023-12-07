@@ -4,20 +4,24 @@
       <Filter :list="filterList" />
 
       <div class="news-header">
-        <Input
-          v-model="search"
-          staticPlaceholder
-          :placeholder="$t('formdata.search-by-name')"
-        />
+        <div class="news-header-search">
+          <Input
+            v-model="search"
+            staticPlaceholder
+            :placeholder="$t('formdata.search-by-name')"
+          />
 
-        <RouterLink to="/media/news-list/create">
-          <Button
-            class="news-header-addNewsBtn"
-            type="default-blue"
-          >
-            <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
-          </Button>
-        </RouterLink>
+          <RouterLink to="/media/news-list/create">
+            <Button
+              class="news-header-addNewsBtn"
+              type="default-blue"
+            >
+              <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
+            </Button>
+          </RouterLink>
+        </div>
+
+        <LangToggle dropdown />
       </div>
       
       <div class="news-items" v-if="newsValues.isEmpty">
@@ -107,11 +111,19 @@
 
 .news {
   &-header {
-    max-width: 1160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    display: grid;grid-template-columns: 1fr 60px;
-    grid-gap: 20px;
-    margin-bottom: 30px;
+    &-search {
+      width: 100%;
+      max-width: 1160px;
+
+      display: grid;
+      grid-template-columns: 1fr 60px;
+      grid-gap: 20px;
+      margin-bottom: 30px;
+    }
 
     &-addNewsBtn {
       width: 60px;

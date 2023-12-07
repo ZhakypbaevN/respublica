@@ -24,6 +24,7 @@
 
     <div class="modal-message">
       <h4 class="modal-message-title">{{ $t('auth.do-you-have-an-account') }}  </h4>
+      <span>__</span>
       <RouterLink class="modal-message-btn" to="/auth/login">
         {{ $t('button.login') }}
       </RouterLink>
@@ -115,6 +116,10 @@
 
   &-message {
     margin-bottom: 20px;
+
+    & span {
+      color: transparent;
+    }
 
     &-title,
     & a {

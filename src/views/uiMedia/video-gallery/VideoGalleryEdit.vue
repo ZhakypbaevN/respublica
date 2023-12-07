@@ -1,10 +1,25 @@
 <template>
-  <section class="">
-    <div class="newsEdit wrapper">
-      <h2 class="landing-title">{{ route.params.news_id ? formData.title : 'Новая видео' }}</h2>
+  <section class="newsEdit">
+    <div class="wrapper" v-if="newsData">
+      <div class="newsEdit-header">
+        <BackButton />
+
+        <LangToggle dropdown />
+      </div>
+
+      <h2 class="landing-title">
+        {{
+          newsData.title
+            ? newsData.title
+            : route.params.news_id
+              ? $t('page.editing-the-news')
+              : $t('page.new-news')
+        }}
+      </h2>
 
       <Form
         @finish="postNews"
+        class="newsEdit-form"
       >
         <div class="newsEdit-form-block">
           <div class="newsEdit-form-inputs">
@@ -17,7 +32,7 @@
                 type="textarea"
                 :placeholder="$t('formdata.enter-the-name-of-the-video')"
                 :maxSymbol="150"
-                v-model="formData.title"
+                v-model="newsData.title"
                 staticPlaceholder
               />
             </div>
@@ -27,141 +42,117 @@
               <Input
                 name="content"
                 type="textarea"
-                v-model="formData.content"
+                v-model="newsData.content"
                 :placeholder="$t('formdata.enter-the-youTube-video-code')"
                 staticPlaceholder
               />
             </div>
           </div>
-          <div class="newsEdit-videoPreview" v-html="formData.content"></div>
+          <div class="newsEdit-videoPreview" v-html="newsData.content"></div>
         </div>
 
-        <div class="newsEdit-form-btns">
-          <Button
-            :name="
-              route.params.news_id
-                ? $t('button.save')
-                : $t('button.create-a-video')
-            "
-            htmlType="submit"
-          />
-          <Button
-            :name="$t('button.cancel')"
-            htmlType="submit"
-            type="default-grey"
-          />
-        </div>
+
+        <Button
+          :name="
+            route.params.news_id
+              ? $t('button.save')
+              : $t('button.create')
+          "
+          :loading="isloading"
+          htmlType="submit"
+        />
       </Form>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-  import axios from 'axios'
+  import moment from 'moment';
 
-  import { onMounted, ref, reactive } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useRoute } from 'vue-router';
-  
+  import { ref, onMounted } from 'vue'
+  import { useRoute, useRouter } from 'vue-router';
+
   import { useToast } from '@/modules/toast'
-  
+  import getFileUrl from '@/helpers/getFileUrlByDate.js'
+
+  import { INews } from '@/types/news';
+  import { getNewsData, postNewsData, putNewsData } from '@/actions/uiMedia/news';
+
+  const route = useRoute()
+  const router = useRouter()
+
   const { t } = useI18n()
   const { toast } = useToast()
 
-  const route = useRoute()
-
-  const loading = ref(false)
-  const token = localStorage.getItem('access_token');
-
-  const formData = reactive({
-    title: '',
-    content: '',
-  })
+  const isloading = ref(false)
+  const newsData = ref<INews>()
 
   // Get News
-  onMounted(() => {
+  onMounted(async () => {
     if (route.params.news_id) {
-      const url = `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`;
+      const response = await getNewsData(route.params.news_id.toString())
 
-      axios({
-        method: "get",
-        url: url,
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer ' + token
-        }
-      })
-        .then((response) => {
-          console.log('response', response);
-          formData.title = response.data.title;
-          
-          formData.content = response.data.content;
-          
-        })
-        .catch((err) => {
-          console.log('err', err);
-          
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-          loading.value = false
-        });
+      if (response) newsData.value = response.data;
+      newsData.value.preview_image = getFileUrl(response.data.preview_image);
+      newsData.value.created_at = moment(response.data.created_at).format('YYYY-MM-DD');
 
+    } else {
+      newsData.value = {
+        title: '',
+        preview_text: '',
+        source_title: '',
+        source_url: '',
+        published: true,
+        created_at: moment().format('YYYY-MM-DD'),
+        content: ''
+      }
     }
   })
 
-
   // Post
-  const postNews = () => {
-    loading.value = true;
-    const url = route.params.news_id
-      ? `https://api.respublica-partiyasy.kz/api/v1/admin/articles/${route.params.news_id}`
-      : `https://api.respublica-partiyasy.kz/api/v1/admin/articles`;
+  const postNews = async () => {
+    isloading.value = true;
+    try {
+      const formData = new FormData();
 
-    const data = new FormData();
-    
-    data.append("title", formData.title);
-    data.append("alias_category", 'video-gallery');
-    data.append("content", formData.content);
-    data.append("published", 'true');
-
-    axios({
-      method: route.params.news_id ? "put" : "post",
-      url: url,
-      data: data,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
+      for (const key in newsData.value) {
+        if (key === 'created_at') formData.append(key, moment(newsData.value[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
+        else formData.append(key, newsData.value[key]);
       }
-    })
-      .then((response) => {
-        console.log('response', response);
 
-        toast({
-          message: route.params.news_id
-            ? t('message.the-video-has-been-successfully-edited')
-            : t('message.the-video-has-been-successfully-created'),
-          type: 'success'
-        })
-        
+      formData.append("alias_category", 'video-gallery');
+      
+      if (route.params.news_id) await putNewsData(route.params.news_id.toString(), formData)
+      else await postNewsData(formData)
+
+      toast({
+        message: route.params.news_id
+          ? t('message.the-video-has-been-successfully-edited')
+          : t('message.the-video-has-been-successfully-created'),
+        type: 'success'
       })
-      .catch((err) => {
-        console.log('err', err);
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-        loading.value = false
-      });
+
+      if (!route.params.news_id) setTimeout(() => router.push('/media/video-gallery?offset=0&limit=20&published=true&search='), 300);
+
+    } finally {
+      isloading.value = false
+    }
   }
 </script>
 
 <style scoped lang="scss">
-.wrapper-main {
-  background-color: var(--accent-color-op05);
-  padding: 40px 0;
-}
-
 .newsEdit {
+  padding: 40px 0;
+  
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+  }
+
   &-form {
     &-block {
       max-width: 1200px;
@@ -173,14 +164,9 @@
     &-inputs {
       margin-bottom: 40px;
     }
-    &-btns {
-      display: flex;
-      grid-gap: 20px;
-    }
   }
 
   &-formItem {
-    max-width: 800px;
     margin-bottom: 24px;
 
     &-label {
@@ -190,6 +176,10 @@
       font-weight: 500;
 
       margin-bottom: 10px;
+    }
+
+    &-content {
+      margin-bottom: 40px !important;
     }
   }
 }

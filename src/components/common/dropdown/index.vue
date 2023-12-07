@@ -59,7 +59,7 @@ export interface Dropdown {
 
 defineProps<{
   btnText?: string,
-  loading: boolean,
+  loading?: boolean,
   secondary?: boolean
 }>()
 

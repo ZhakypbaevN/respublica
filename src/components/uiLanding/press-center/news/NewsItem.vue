@@ -2,7 +2,8 @@
   <a
     v-if="pressAboutUs"
     class="newsItem withZoomPreview pressAboutUs"
-    :href="`/news/${data.id}`"
+    target="_blank"
+    :href="data.source_url"
   >
     <div class="newsItem-preview withZoomPreview-preview">
       <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
@@ -17,7 +18,7 @@
     </div>
 
     <div>
-      <a href="kazinform.kz" class="newsItem-author">kazinform.kz</a>
+      <a href="kazinform.kz" class="newsItem-author">{{ data.source_title }}</a>
 
       <h4 class="newsItem-title">{{ data.title }}</h4>
     </div>
