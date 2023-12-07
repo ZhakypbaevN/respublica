@@ -155,7 +155,8 @@
   
       for (const key in userData.value) {
         if (key === 'phone') formData.append(key, formatPhone(userData.value[key]))
-        else formData.append(key, userData.value[key]);
+        else if (key === 'role' && userData.value[key] !== '--') formData.append(key, userData.value[key] == '--' ? null : userData.value[key])
+        else if (key !== 'role') formData.append(key, userData.value[key]);
       }
 
       formData.append('password', password)

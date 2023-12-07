@@ -119,6 +119,7 @@
         />
       </Transition>
     </span>
+
     <SvgIcon
       v-if="resetButton && input.value"
       class="reset"
@@ -417,6 +418,7 @@
     font-size: 14px;
     min-height: 1em;
     position: absolute;
+    text-align: right;
     right: 0;
     bottom: -20px;
     text-align: end;
@@ -426,7 +428,6 @@
     display: block;
     bottom: -1px;
     margin-bottom: -10px;
-    max-width: 36em;
   }
   input, textarea, select {
     border: 1px solid var(--light-gray-color);

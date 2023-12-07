@@ -1,5 +1,6 @@
 {
   "name": "Respublica",
+  "lang": "РУС",
 
   "contacts": {
     "address": "г.Астана, пр. Мангилик ел, 33/1<br>Бизнес-центр IPLAZA, 9 этаж",
@@ -43,7 +44,9 @@
     "photo-gallery": "Фотогалерея",
     "video-gallery": "Видеогалерея",
     "quitting-the-party": "Выход из партии",
-    "representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels": "Представленность членов партии в маслихатах и на должностях акимов всех уровней."
+    "representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels": "Представленность членов партии в маслихатах и на должностях акимов всех уровней.",
+    "editing-the-news": "Редактирование новости",
+    "new-news": "Новая новость"
   },
 
   "composition-of-faction": {
@@ -169,7 +172,10 @@
     "search-by-fio": "Поиск по ФИО",
     "search-by-name": "Поиск по названию",
     "heading": "Заголовок",
+    "subtitle": "Подзаголовок",
     "enter-the-name-of-the-video": "Введите заголовок видео",
+    "enter-the-name-of-the": "Введите заголовок",
+    "enter-the-subtitle-of-the": "Введите подзаголовок",
     "youTube-video-code-iframe": "YouTube код видео (iframe)",
     "enter-the-youTube-video-code": "Введите YouTube код видео",
     "ticket-desk-number": "№ парт билета",
@@ -181,7 +187,15 @@
     "reason": "Причина",
     "password": "Пароль",
     "come-up-with-a-password": "Придумайте пароль",
-    "repeat-the-password": "Повторите пароль"
+    "repeat-the-password": "Повторите пароль",
+    "release-day": "День выпуска",
+    "choose-the-day-of-release": "Выберите день выпуска",
+    "content": "Контент",
+    "enter-the-content": "Введите контент",
+    "name-of-the-author": "Наименование автора",
+    "link-to-the-author-is-article": "Ссылка на статью автора",
+    "enter-the-author-is-name": "Введите название автора",
+    "a-link-to-the-author-is-article-has-been-entered": "Введите ссылку на статью автора"
   },
 
   "analytics": {
@@ -501,6 +515,7 @@
     "add-albom": "Добавить альбом",
     "save": "Сохранить",
     "create-a-video": "Создать видео",
+    "create": "Создать",
     "filter": "Фильтр",
     "confirm-the-exit": "Подтвердить выход",
     "deny": "Отказать",
@@ -543,7 +558,9 @@
     "a-confirmation-code-has-been-sent-to-your-number": "На ваш номер был отправлен код для подтверждение!",
     "the-password-has-been-successfully-changed": "Пароль успешно изменен!",
     "the-user-has-been-successfully-created": "Пользователь успешно создан!",
-    "the-user-has-been-successfully-edited": "Пользователь был успешно отредактирован!"
+    "the-user-has-been-successfully-edited": "Пользователь был успешно отредактирован!",
+    "the-news-was-successfully-created": "Новость была успешно создана!",
+    "the-news-was-successfully-updated": "Новость была успешно обновлена!"
   },
 
   "errors": {

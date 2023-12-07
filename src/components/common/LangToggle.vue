@@ -1,42 +1,66 @@
 <template>
-  <button
-    class="lang"
-    :class="{light: light}"
-    @click="() => showDropdown = !showDropdown"
-  >
-    <span>{{ langName(selectLang) }}</span>
-
-    <div class="lang-dropDown" :class="{show: showDropdown}">
+  <div>
+    <Dropdown
+      v-if="dropdown"
+      :btnText="selectLang === 'ru' ? $t('rus') : $t('kaz')"
+      @click.stop
+    >
       <div
         v-for="lang of langs"
         :key="lang.value"
       >
-        <Button
+        <DropdownItem
           v-if="lang.value !== selectLang"
-          :name="lang.name"
-          type="default-light-blue"
-          @click.stop="() => toggleLang(lang.value)"
-          class="lang-dropDown-btn"
-        />
+          @click="() => toggleLang(lang.value)"
+        >
+          {{ lang.name }}
+        </DropdownItem>
       </div>
-    </div>
-  </button>
+    </Dropdown>
+
+    <button
+      v-else
+      class="lang"
+      :class="{light: light}"
+      @click="() => showDropdown = !showDropdown"
+    >
+      <span>{{ langName(selectLang) }}</span>
+
+      <div class="lang-dropDown" :class="{show: showDropdown}">
+        <div
+          v-for="lang of langs"
+          :key="lang.value"
+        >
+          <Button
+            v-if="lang.value !== selectLang"
+            :name="lang.name"
+            type="default-light-blue"
+            @click.stop="() => toggleLang(lang.value)"
+            class="lang-dropDown-btn"
+          />
+        </div>
+      </div>
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue';
   import { useI18n } from 'vue-i18n'
 
+  import api from '@/modules/api'
   import { defaultLocale } from '@/assets/lang/exports'
 
   const { t } = useI18n()
 
   interface IProps {
     light?: boolean,
+    dropdown?: boolean
   }
 
   withDefaults(defineProps<IProps>(), {
     light: false,
+    dropdown: false
   })
 
   const langs = [
@@ -49,7 +73,7 @@
       value: 'kz'
     }
   ];
-  
+
   const selectLang = ref(defaultLocale)
   const showDropdown = ref(false);
 
@@ -58,6 +82,8 @@
     showDropdown.value = false;
 
     localStorage.setItem('lang', newLang);
+    api.defaults.headers.common['Accept-Language'] =
+      newLang == 'kz' ? 'kz-KZ' : 'ru-RU'
     location.reload();
   }
 

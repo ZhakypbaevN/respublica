@@ -49,8 +49,6 @@ const link = ref('')
 
 onMounted(() => {
   const userRole = localStorage.getItem('USER_TYPE');
-  console.log('userRole', userRole);
-  console.log(userRole === 'admin');
   
   if (userRole === 'admin') link.value = '/admin'
   else if (userRole === 'manager') link.value = '/manager'

@@ -11,7 +11,6 @@
           <div class="exitParty-content">
             <div class="exitParty-content-messege">
               <h4 class="exitParty-content-subtitle">Дорогой пользователь,</h4><br>
-              <p>Мы ценим ваше участие и вклад в нашу партию и организацию. Ваше решение выйти из-под пристального внимания, и мы глубоко уважаем ваш выбор.</p>
             </div>
 
             <div class="exitParty-content-listBlock">
@@ -405,11 +404,6 @@ const postRequestExitParty = () => {
     &-subtitle {
       font-size: 20px;
       font-weight: 700;
-    }
-  
-    &-messege,
-    &-listBlock {
-      margin-bottom: 30px;
     }
 
     &-messege-title {

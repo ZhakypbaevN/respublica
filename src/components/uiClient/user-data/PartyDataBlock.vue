@@ -113,9 +113,7 @@
         </div>
       </div>
     </div>
-    <p class="partyData-description">
-      {{ $t('formdata.agreement.the-charter-and-program-of-the-political-party') }}
-    </p>
+    <p class="partyData-description" v-html="$t('agreement.the-charter-and-program-of-the-political-party')" />
   </div>
 </template>
 
@@ -204,11 +202,6 @@ defineProps<IProps>()
 
   &-description {
     color: var(--light-gray-color);
-
-    & a {
-      color: inherit;
-      text-decoration: underline;
-    }
   }
 
   &-editBtn {
@@ -227,4 +220,10 @@ defineProps<IProps>()
     }
   }
 }
+</style>
+<style>
+  .partyData-description a {
+    color: inherit;
+    text-decoration: underline;
+  }
 </style>

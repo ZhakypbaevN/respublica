@@ -74,7 +74,8 @@
       </button>
 
       <div class="loginForm-message">
-        <h4 class="loginForm-message-title">{{ $t('auth.don-not-you-have-an-account') }}  </h4>
+        <h4 class="loginForm-message-title">{{ $t('auth.don-not-you-have-an-account') }}</h4>
+        <span>__</span>
         <RouterLink
           to="/auth/register"
           class="loginForm-message-btn"
@@ -95,6 +96,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n'
 
+import api from '@/modules/api'
 import { useToast } from '@/modules/toast'
 import { useAuth } from '@/modules/auth'
 import formatPhone from '@/helpers/formatPhone.js'
@@ -116,7 +118,6 @@ defineEmits<Emits>()
 const { toast } = useToast()
 const router = useRouter()
 
-import api from '@/modules/api'
 const loading = ref(false)
 const token = ref();
 
@@ -271,6 +272,10 @@ const getUserData = () => {
   }
 
   &-message {
+    & span {
+      color: transparent;
+    }
+    
     &-title,
     &-btn {
       display: inline;
