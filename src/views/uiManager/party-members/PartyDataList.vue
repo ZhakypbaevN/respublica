@@ -166,10 +166,10 @@
   const getStatusList = (data) => {
     const list = [];
 
-    if (data.is_pensioner) list.push(t('social-category.pensioner'));
-    if (data.is_disabled) list.push(t('social-category.disabled'));
-    if (data.is_unemployed) list.push(t('social-category.unemployed'));
-    if (data.is_on_childcare_leave) list.push(t('social-category.on-childcare-leave'));
+    if (data.is_pensioner) list.push(t('social-category.user-status-pensioner'));
+    if (data.is_disabled) list.push(t('social-category.user-status-disabled'));
+    if (data.is_unemployed) list.push(t('social-category.user-status-unemployed'));
+    if (data.is_on_childcare_leave) list.push(t('social-category.user-status-on-childcare-leave'));
     if (!list.length) return '-'
     return list.join(', ');
   }

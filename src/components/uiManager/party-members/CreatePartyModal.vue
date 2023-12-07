@@ -285,9 +285,9 @@ onMounted(() => {
     .catch((err) => {
       console.log('err', err);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+      // toast({
+      //   message: 'Возникли ошибки при запросе'
+      // })
       
     });
   // getUsers()
@@ -313,9 +313,9 @@ const getUsers = () => {
     .catch((err) => {
       console.log('err', err);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+      // toast({
+      //   message: 'Возникли ошибки при запросе'
+      // })
     });
 }
 
@@ -338,9 +338,9 @@ const getTicketNum = () => {
     .catch((err) => {
       console.log('err', err);
 
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
+      // toast({
+      //   message: 'Возникли ошибки при запросе'
+      // })
     });
 }
 
@@ -406,20 +406,23 @@ const postJoinParty = (
     "house": home,
     "apartment": apartment === '' ? null : apartment,
 
+    "status": "active",
+    "join_date": moment().format('YYYY-MM-DD'),
+
     "is_pensioner": pensioner,
     "is_disabled": disabled,
     "is_unemployed": unemployed,
     "is_on_childcare_leave": onChildcareLeave,
   };
 
-  const formData = new FormData();
+  // const formData = new FormData();
 
-  for (const key in data) {
-    if (key === 'created_at') formData.append(key, moment(data[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-    else if (key !== 'preview_image' && data[key]) formData.append(key, data[key]);
-  }
+  // for (const key in data) {
+  //   if (key === 'created_at') formData.append(key, moment(data[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
+  //   else if (key !== 'preview_image' && data[key]) formData.append(key, data[key]);
+  // }
 
-  postParty(formData);
+  postParty(data);
 }
 
 const postParty = (data) => {
