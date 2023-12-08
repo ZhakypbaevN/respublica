@@ -384,6 +384,7 @@
 
   "party": {
     "party-data": "Партийные данные",
+    "party-card" : "Партийный билет",
     "party-members": "Члены партии",
     "additional-data-of-the-party-ticket": "Дополнительные данные партийного билета",
     "rejection-of-the-exit-from-the-parties": "Отклонение выхода из партий",

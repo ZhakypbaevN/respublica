@@ -122,11 +122,11 @@ if (localStorage.getItem('access_token') != null) {
   api.defaults.headers.common.Authorization =
     'Bearer' + ' ' + localStorage.getItem('access_token')
 
-  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang') == 'kz' ? 'kz-KZ' : 'ru-RU'
+  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang-respublica') == 'kz' ? 'kz-KZ' : 'ru-RU'
 } else if (sessionStorage.getItem('access_token') != null) {
   api.defaults.headers.common.Authorization =
     'Bearer' + ' ' + sessionStorage.getItem('access_token')
-  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang') == 'kz' ? 'kz-KZ' : 'ru-RU'
+  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang-respublica') == 'kz' ? 'kz-KZ' : 'ru-RU'
 }
 
 api.requestGet = function (

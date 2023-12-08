@@ -25,15 +25,15 @@
             </div>
 
             <p>
-              Пожалуйста, обратите внимание, что ваша заявка будет оформлена после получения заполненной формы с вашей подписью. Если у вас возникли какие-либо вопросы или требуется дополнительная помощь, не стесняйтесь обращаться к нашей службе поддержки. +7 707 877777<br>
-              Спасибо за сотрудничество и понимание.
+              Пожалуйста, обратите внимание, что ваша заявка будет оформлена после получения заполненной формы с вашей подписью. По возникшим вопросам обращаться: 
+              <a href="mailto:info@respublica-partiyasy.kz">info@respublica-partiyasy.kz</a>
             </p>
           </div>
 
 
           <Form class="exitParty-form" @finish="postRequestExitParty">
             <div class="exitParty-form-inputs">
-              <div class="exitParty-form-select">
+              <!-- <div class="exitParty-form-select">
                 <label for="position">Выберите причину выхода</label>
                 <Select
                   placeholder="Выберите из списка причину"
@@ -52,11 +52,11 @@
                   v-model="exitPartyDatas.select"
                   required
                 />
-              </div>
+              </div> -->
 
               <TransitionGroup>
                 <div
-                  v-if="!exitPartyDatas.select"
+                  v-if="!exitPartyDatas.select || true"
                   v-collapse
                 >
                   <Input
@@ -97,7 +97,7 @@
               </TransitionGroup>
             </div>
 
-            <div class="exitParty-doc">
+            <div class="exitParty-doc" v-if="exitPartyDatas.document">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <label v-if="!exitPartyDatas.document" for="upload-files" class="exitParty-doc-name empty">Прикрепите обязательно файл заполненной формы</label>
               <div v-else class="exitParty-doc-namEwithAction">
