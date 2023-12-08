@@ -38,7 +38,7 @@
               <td>
                 <a class="text-line" :href="request.docAndDescription!" target="_blank">
                   <div class="text-line-icon">
-                    <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
+                    <SvgIcon name="pdf-blue" :viewboxHeight="32" :viewboxWidth="32" />
                   </div>
 
                   <span>
