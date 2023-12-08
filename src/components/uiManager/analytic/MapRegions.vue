@@ -144,7 +144,7 @@ onMounted(async () => {
     }
   
     const nameToLowerCase = ({id, name}: {id: string, name: string}) => {
-      if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-SKO') return name
+      if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
       return name[0].toUpperCase() + name.slice(1).toLowerCase()
     }
     
@@ -243,7 +243,7 @@ onMounted(async () => {
           || obl.code === 'KZ-SEV'
           || obl.code === 'KZ-AKM'
           || obl.code === 'KZ-KAR'
-          || obl.code === 'KZ-SKO'
+          || obl.code === 'KZ-TUR'
           || obl.code === 'KZ-AKT'
           || obl.code === 'KZ-ATY'
         ) polygon.polygonSettings = { fill: am5.color(0xECEEF2) }

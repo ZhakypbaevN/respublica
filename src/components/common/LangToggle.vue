@@ -81,7 +81,7 @@
     selectLang.value = newLang;
     showDropdown.value = false;
 
-    localStorage.setItem('lang', newLang);
+    localStorage.setItem('lang-respublica', newLang);
     api.defaults.headers.common['Accept-Language'] =
       newLang == 'kz' ? 'kz-KZ' : 'ru-RU'
     location.reload();
