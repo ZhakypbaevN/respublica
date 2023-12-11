@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper-main">
     <div>
-      <Header />
+      <Header withoutWidthMax />
   
       <div class="layout">
         <div class="layout-menu">
@@ -26,7 +26,7 @@
       </div>
     </div>
   
-    <Footer withOutMT />
+    <Footer withOutMT withoutWidthMax />
   </div>
 </template>
   

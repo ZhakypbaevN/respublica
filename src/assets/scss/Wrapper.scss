@@ -4,6 +4,10 @@
   margin: 0 auto;
   padding: 0 50px;
 
+  &.withoutWidthMax {
+    max-width: 100% !important;
+  }
+
   &-main {
     min-height: 100vh;
     display: flex;

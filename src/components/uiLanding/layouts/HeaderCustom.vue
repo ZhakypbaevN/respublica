@@ -2,7 +2,7 @@
   <div>
     <header class="header" :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop, dark: dark }" :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}">
       <div class="header-main" id="header-main">
-        <div class="wrapper">
+        <div class="wrapper" :class="{withoutWidthMax: withoutWidthMax}">
           <div class="header-main-inner">
             <Router-link to="/" class="header-main-logo">
               <SvgIcon
@@ -138,6 +138,7 @@
 
   interface IProps {
     dark?: boolean,
+    withoutWidthMax?: boolean,
     withoutNavs?: boolean,
     defaultFixed?: boolean,
     withoutPaddingBottom?: boolean
@@ -145,6 +146,7 @@
 
   withDefaults(defineProps<IProps>(), {
     withoutNavs: false,
+    withoutWidthMax: false,
     withoutPaddingBottom: false,
     defaultFixed: false,
   })

@@ -25,16 +25,17 @@
           <thead>
             <th>{{ $t('formdata.date') }}</th>
             <th>{{ $t('formdata.file-and-brief-description') }}</th>
-            <!-- <th>{{ $t('formdata.performance') }}</th> -->
             <th>{{ $t('formdata.answer') }}</th>
           </thead>
           <tbody>
             <tr v-for="request of tableContentList" :key="request.title">
+            
               <td class="nowrap">
                 <span>
                   {{ request.title }}
                 </span>
               </td>
+
               <td>
                 <a class="text-line" :href="request.docAndDescription!" target="_blank">
                   <div class="text-line-icon">
@@ -46,6 +47,7 @@
                   </span>
                 </a>
               </td>
+
               <td class="nowrap">
                 <a
                   v-if="request.answerDoc"
@@ -54,19 +56,20 @@
                   target="_blank"
                 >
                   <div class="text-line-icon">
-                    <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
+                    <SvgIcon name="pdf-blue" :viewboxHeight="32" :viewboxWidth="32" />
                   </div>
                   <span>
                     {{ request.answerDate }}
                   </span>
                 </a>
 
-                <div v-else class="text-line">
+                <div v-else-if="request.answerDate" class="text-line">
                   <div class="text-line-icon">
-                    <SvgIcon name="pdf-red" :viewboxHeight="32" :viewboxWidth="32" />
+                    <SvgIcon name="pdf-blue" :viewboxHeight="32" :viewboxWidth="32" />
                   </div>
                   <span>{{ request.answerDate }}</span>
                 </div>
+                
               </td>
             </tr>
           </tbody>
@@ -352,14 +355,6 @@ const toggleShow = (idx: number) => {
 </script>
 
 <style scoped lang="scss">
-.title {
-  color: var(--primary-color);
-  font-family: Tilda Sans;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
 
 .deputies {
   display: flex;
@@ -412,9 +407,11 @@ const toggleShow = (idx: number) => {
 }
 
 .deputy-requests-table {
+  width: 100%;
   max-width: 1490px;
   border: none;
-  border-collapse: collapse;
+  border-spacing: 0 8px;
+
   & thead {
     & th {
       text-align: left;
@@ -422,22 +419,34 @@ const toggleShow = (idx: number) => {
       font-size: 20px;
       font-weight: 400;
       line-height: 27px;
-      padding: 13px 13px 13px 0;
+      
+      padding-right: 13px;
+      padding-right: 0px;
     }
 
     th:first-child {
-      padding: 13px;
+      padding-left: 42px;
+    }
+
+    td:last-child {
+      padding-right: 42px;
     }
   }
-
+  
   & tbody {
-    border-radius: 10px;
-    background-color: var(--white-color);
-
     tr {
       border-bottom: 0.5px solid rgba(129, 143, 167, 0.5);
+
+      
       td {
-        padding: 20px 20px 20px 0;
+        padding: 25px;
+        padding-left: 0px;
+
+        border: 2px solid transparent;
+        background-color: var(--white-color);
+
+        border-color: var(--accent-color-op50);
+        background-color: var(--accent-color-op10);
 
         & span {
           color: var(--primary-color);
@@ -448,17 +457,42 @@ const toggleShow = (idx: number) => {
       }
 
       td:first-child {
-        padding: 20px 20px 20px 20px;
+        padding-left: 42px;
+        
+        border-right: none;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+      }
+
+      td:nth-child(2) {
+        border-left: none;
+        border-right: none;
+      }
+
+      td:last-child {
+        padding-right: 42px;
+        
+        border-left: none;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
       }
     }
   }
 }
 
 .text-line {
-  text-decoration-line: underline;
   cursor: pointer;
-  display: flex;
-  align-items: flex-start;
+
+  display: grid;
+  align-items: center;
+  grid-template-columns: 32px 1fr;
+  grid-gap: 4px;
+  
+  & span {
+    font-size: 18px;
+    text-decoration-line: underline;
+    transition: all .3s ease-in-out;
+  }
 
   &-icon {
     margin-right: 10px;
@@ -467,6 +501,10 @@ const toggleShow = (idx: number) => {
       width: 32px;
       height: 32px;
     }
+  }
+
+  &:hover span {
+    color: var(--accent-color);
   }
 }
 

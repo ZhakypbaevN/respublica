@@ -36,7 +36,6 @@
   import { NewsValues } from '@/types/news';
   import { getNewsList } from '@/actions/uiLanding/news';
 
-  const showJoinPartyModal = ref(false)
   const newsValues = reactive<NewsValues>({
     tableValues: null,
     total: 0,

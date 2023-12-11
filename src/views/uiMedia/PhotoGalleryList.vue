@@ -51,7 +51,7 @@
   import { ref, reactive, onMounted } from "vue";
   
   import { AlbomValues } from '@/types/photo-gallery';
-  import { getAlbomList } from '@/actions/uiMedia/photo-gallery';
+  import { getAlbomList } from '@/actions/uiLanding/photo-gallery';
 
   const showModal = ref(false)
 

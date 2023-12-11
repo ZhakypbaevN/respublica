@@ -87,8 +87,21 @@
         </div>
       </div>
     </section>
-    
-    <PhotoGallery />
+
+    <section class="photo-gallery landing-block" id="photoGallery">
+      <div class="wrapper">
+        <div class="landing-header">
+          <h2 class="landing-title">{{ $t('page.photo-gallery') }}</h2>
+
+          <RouterLink to="photo-gallery" class="landing-header-link">
+            <span>{{ $t('button.view-all') }}</span>
+            <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
+          </RouterLink>
+        </div>
+        
+        <PhotoGallery />
+      </div>
+    </section>
 
     <section class="contacts landing-block" id="contacts">
       <div class="wrapper">
@@ -153,7 +166,7 @@
 
   const onGetNews = async () => {
     newsValues.isEmpty = false
-    const { data, total } = await getNewsList('news', {offset: 0,limit: 3})
+    const { data, total } = await getNewsList('news', {offset: 0,limit: 6})
     newsValues.tableValues = data;
     newsValues.total = total;
     if (!total) {
@@ -163,7 +176,7 @@
 
   const onGetNewsPressAboutUs = async () => {
     newsPressAboutUsValues.isEmpty = false
-    const { data, total } = await getNewsList('press-about-us', {offset: 0,limit: 3})
+    const { data, total } = await getNewsList('press-about-us', {offset: 0,limit: 6})
     newsPressAboutUsValues.tableValues = data;
     newsPressAboutUsValues.total = total;
     if (!total) {
@@ -173,7 +186,7 @@
 
   const onGetNewsYoutube = async () => {
     youtubeVideosValues.isEmpty = false
-    const { data, total } = await getNewsList('video-gallery', {offset: 0,limit: 3})
+    const { data, total } = await getNewsList('video-gallery', {offset: 0,limit: 6})
     youtubeVideosValues.tableValues = data;
     youtubeVideosValues.total = total;
     if (!total) {
@@ -206,8 +219,10 @@
 </script>
 
 <style scoped lang="scss">
+  .photo-gallery {
+    background-color: white;
+  }
   .contacts {
-    margin-top: 120px;
     background-color: var(--accent-color);
     
     &-inner {
