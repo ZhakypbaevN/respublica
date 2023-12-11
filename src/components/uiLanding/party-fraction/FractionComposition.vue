@@ -150,8 +150,11 @@ const fractionList = [
       z-index: 1;
       transform: translateX(-50%);
 
-      -webkit-filter: grayscale(100%);
+      /* -webkit-filter: grayscale(100%); */
       filter: grayscale(100%);
+
+      /* -webkit-filter: sepia(100%) hue-rotate(180deg) grayscale(100%); */
+      /* filter: sepia(100%) hue-rotate(180deg) brightness(80%) contrast(96%) saturate(60%); */
     
       transition: all .3s ease-in-out;
     }

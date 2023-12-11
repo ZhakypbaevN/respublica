@@ -3,11 +3,6 @@
     v-if="imagesValues.isEmpty"
     class="photoItems"
   >
-    <CreatePhoto
-      :albomID="albomID"
-      @newPhoto="addNwPhoto"
-    />
-
     Empty
   </div>
   <div
@@ -24,11 +19,6 @@
     v-else
     class="photoItems"
   >
-    <CreatePhoto
-      :albomID="albomID"
-      @newPhoto="addNwPhoto"
-    />
-
     <PhotoCard
       v-for="photo of imagesValues.tableValues"
       :key="photo.id"
@@ -38,8 +28,7 @@
 </template>
 
 <script setup lang="ts">
-  import CreatePhoto from "@/components/uiMedia/gallery/photo/photo-list/CreatePhoto.vue"
-  import PhotoCard from "@/components/uiMedia/gallery/photo/photo-list/PhotoCard.vue"
+  import PhotoCard from "@/components/uiLanding/press-center/photo-gallery/photo-list/PhotoCard.vue"
 
   import { watch, reactive, onMounted } from "vue";
 
@@ -58,10 +47,6 @@
     isEmpty: false
   })
 
-  const addNwPhoto = (photo) => {
-    if (imagesValues.isEmpty) imagesValues.tableValues = [];
-    imagesValues.tableValues.push(photo)
-  }
 
   const getPhotos = async () => {
     imagesValues.tableValues = null;

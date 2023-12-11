@@ -1,6 +1,6 @@
 <template>
   <footer class="footer" :class="{withOutMT: withOutMT}">
-    <div class="wrapper landing-wrapper">
+    <div class="wrapper" :class="{withoutWidthMax: withoutWidthMax}">
       <div class="footer-main">
         <div class="footer-mainForm">
           <h3 class="footer-mainForm-title">{{ $t('footer.join-the-party') }}</h3>
@@ -96,17 +96,18 @@
 </template>
 
 <script setup lang="ts">
-import SocialNetworks from '@/components/uiLanding/layouts/SocialNetworks.vue';
-import { RouterLink } from 'vue-router';
+  import SocialNetworks from '@/components/uiLanding/layouts/SocialNetworks.vue';
+  import { RouterLink } from 'vue-router';
 
-interface IProps {
-  withOutMT?: boolean,
-}
+  interface IProps {
+    withOutMT?: boolean,
+    withoutWidthMax?: boolean,
+  }
 
-withDefaults(defineProps<IProps>(), {
-  withOutMT: false
-})
-
+  withDefaults(defineProps<IProps>(), {
+    withOutMT: false,
+    withoutWidthMax: false
+  })
 </script>
 
 <style scoped lang="scss">
@@ -156,6 +157,7 @@ withDefaults(defineProps<IProps>(), {
 
   &-mainNavs {
     display: flex;
+    justify-content: space-around;
     grid-gap: 90px;
 
     &-title {
