@@ -1,7 +1,7 @@
 <template>
   <div class="home wrapper-main">
     <div>
-      <Header defaultFixed withoutPaddingBottom dark />
+      <Header defaultFixed withoutPaddingBottom />
 
       <Intro />
 
