@@ -10,7 +10,7 @@
             <BackButton outlined />
 
             <h2 class="landing-title center">
-              {{ $t('page.the-press-about-us') }}
+              {{ $t('page.announcements') }}
             </h2>
           </div>
           
@@ -21,7 +21,6 @@
             <NewsItemSkeleton
               v-for="news in 5"
               :key="news"
-              pressAboutUs
             />
           </div>
           <div class="landing-items" v-else>
@@ -29,7 +28,6 @@
               v-for="news of newsValues.tableValues"
               :key="news.title"
               :data="news"
-              pressAboutUs
             />
 
             <ShowMoreBtn
@@ -70,7 +68,7 @@
     showMore.loading = true;
     newsValues.isEmpty = false;
 
-    const { data, total } = await getNewsList('press-about-us', {offset: showMore.offset, limit: 20})
+    const { data, total } = await getNewsList('announcements', {offset: showMore.offset, limit: 20})
     showMore.loading = false
     newsValues.total = total;
     if (!newsValues.tableValues) newsValues.tableValues = [];

@@ -133,7 +133,7 @@
         type: 'success'
       })
 
-      if (!route.params.news_id) setTimeout(() => router.push('/media/video-gallery?offset=0&limit=20&published=true&search='), 300);
+      // if (!route.params.news_id) setTimeout(() => router.push('/media/video-gallery?offset=0&limit=20&published=true&search='), 300);
 
     } finally {
       isloading.value = false
