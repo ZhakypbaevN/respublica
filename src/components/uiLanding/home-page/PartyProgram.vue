@@ -4,8 +4,8 @@
     <div class="partyProgram-titleBlock">
       <div class="wrapper landing-wrapper">
         <p
+          id="partyProgram-description"
           class="partyProgram-titleBlock-description"
-          v-html="$t('home.party-program.description')"
         />
 
         <h2 v-if="false" class="partyProgram-titleBlock-title">{{ $t("home.party-program.forward") }}</h2>
@@ -67,30 +67,52 @@
 </template>
 
 <script setup lang="ts">
+  import { onMounted } from 'vue';
 import { ref } from 'vue';
-import { useI18n } from 'vue-i18n'
+  import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const showFirst = ref(true)
-const blockList = [
-  {
-    color: '#4A78EC',
-    img: '/img/uiLanding/party-program/R.png',
-    title: t('home.party-program.party-program-respublica'),
-    pdf: "/doc/ru/Программа предвыборная рус.pdf",
-  },
-  {
-    color: '#894BEC',
-    img: '/img/uiLanding/party-program/E.png',
-    title: t('home.party-program.party-election-program-respublica'),
-    pdf: "/doc/ru/Идеологическая платформа партии.pdf",
-  },
-];
+  const showFirst = ref(true)
+  const blockList = [
+    {
+      color: '#4A78EC',
+      img: '/img/uiLanding/party-program/R.png',
+      title: t('home.party-program.party-program-respublica'),
+      pdf: "/doc/ru/Программа предвыборная рус.pdf",
+    },
+    {
+      color: '#894BEC',
+      img: '/img/uiLanding/party-program/E.png',
+      title: t('home.party-program.party-election-program-respublica'),
+      pdf: "/doc/ru/Идеологическая платформа партии.pdf",
+    },
+  ];
 
-const toggleSlider = () => {
-  showFirst.value = !showFirst.value;
-}
+  const toggleSlider = () => {
+    showFirst.value = !showFirst.value;
+  }
+
+  onMounted(() => {
+    descriptionAnimation();
+  })
+
+
+  const descriptionAnimation = () => {
+    const text = t('home.party-program.description');
+    const outputElement = document.getElementById('partyProgram-description');
+    outputElement.innerHTML = '';
+    
+    let i = 0;
+    const intervalId = setInterval(function() {
+      outputElement.innerHTML += text[i];
+      if (text[i] === '.')outputElement.innerHTML += '<br>'
+      i++;
+      if (i === text.length) {
+        clearInterval(intervalId);
+      }
+    }, 100);
+  }
 </script>
 
 <style scoped lang="scss">

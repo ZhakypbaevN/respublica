@@ -73,67 +73,67 @@
 </script>
 
 <style scoped lang="scss">
-.wrapper-main {
-  background-color: var(--accent-color-op05);
-}
-.regions {
-  &-header {
-    align-items: flex-start;
+  .wrapper-main {
+    background-color: var(--accent-color-op05);
   }
-  &-controlBtns {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-
-    &-btn {
-      height: 60px;
-      width: 60px;
-
+  .regions {
+    &-header {
+      align-items: flex-start;
+    }
+    &-controlBtns {
       display: flex;
       align-items: center;
-      justify-content: center;
+      grid-gap: 10px;
 
-      padding: 0px !important;
+      &-btn {
+        height: 60px;
+        width: 60px;
 
-      & svg {
-        height: 32px;
-        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        transition: all .3s ease-in-out;
-      }
+        padding: 0px !important;
 
-      &.active {
-        background-color: var(--accent-color-op30);
-      }
-
-      &.pin {
         & svg {
-          stroke: var(--light-gray-color-op30) !important;
-        }
-        &.active svg {
-          stroke: white !important;
-        }
-      }
+          height: 32px;
+          width: 32px;
 
-      &.list {
-        & svg {
-          fill: var(--light-gray-color-op30) !important;
+          transition: all .3s ease-in-out;
         }
-        &.active svg {
-          fill: white !important;
+
+        &.active {
+          background-color: var(--accent-color-op30);
+        }
+
+        &.pin {
+          & svg {
+            stroke: var(--light-gray-color-op30) !important;
+          }
+          &.active svg {
+            stroke: white !important;
+          }
+        }
+
+        &.list {
+          & svg {
+            fill: var(--light-gray-color-op30) !important;
+          }
+          &.active svg {
+            fill: white !important;
+          }
         }
       }
     }
   }
-}
 
-// Animations
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.3s ease;
-}
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
+  // Animations
+  .v-enter-active,
+  .v-leave-active {
+    transition: all 0.3s ease;
+  }
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
 </style>

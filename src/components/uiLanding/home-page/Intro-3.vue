@@ -6,16 +6,12 @@
       <div class="intro-main-content">
         <div class="wrapper landing-wrapper">
           <div class="intro-main-content-inner">
-            <div class="intro-main-content-images">
-              <SvgIcon
-                class="intro-main-content-logo"
-                name="logo-re-circle"
-                :viewboxWidth="219"
-                :viewboxHeight="219"
-              />
-
-              <img class="intro-main-content-map" src="/img/icons/map.svg" alt="">
-            </div>
+            <SvgIcon
+              class="intro-main-content-logo"
+              name="logo-re-circle"
+              :viewboxWidth="219"
+              :viewboxHeight="219"
+            />
             
             <h2 class="intro-main-content-title">
               <span class="blue" data-aos="zoom-in" data-aos-delay="250">{{ $t("home.intro.new-people") }}</span> <br>
@@ -106,7 +102,7 @@ const showModals = reactive({
       left: 0;
       bottom: 0;
 
-      background-image: url('/img/uiLanding/home/intro/intro-banner-3.jpg');
+      background-image: url('/img/uiLanding/home/intro/intro-banner.jpg');
 
       &::before,
       &::after {
@@ -130,9 +126,9 @@ const showModals = reactive({
         background-position: bottom;
       }
       &::after {
-        height: 100%;
+        height: 40%;
         z-index: 2;
-        background: rgba(31, 76, 154, 0.34);
+        background: linear-gradient(0deg, #042051 0%, rgba(#042051, 0) 100%);
       }
     }
 
@@ -149,12 +145,8 @@ const showModals = reactive({
         display: flex;
         justify-content: center;
         align-items: center;
-        grid-gap: 18px;
+        grid-gap: 59px;
 
-        position: relative;
-      }
-
-      &-images {
         position: relative;
       }
 
@@ -166,15 +158,6 @@ const showModals = reactive({
         transform: rotate(0deg);
       }
 
-      &-map {
-        opacity: .6;
-        position: absolute;
-        left: -25px;
-        top: 50%;
-        z-index: -1;
-        transform: translateY(-50%);
-      }
-
       &-title {
         display: inline-block;
 
@@ -182,10 +165,9 @@ const showModals = reactive({
           color: white;
           font-family: "Montserrat";
           text-transform: uppercase;
-          font-size: 78px;
+          font-size: 68px;
           font-weight: 700;
           line-height: 1.1;
-          letter-spacing: .19rem;
         }
 
         & span.blue {
