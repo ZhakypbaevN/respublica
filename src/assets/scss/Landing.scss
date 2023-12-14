@@ -8,8 +8,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    grid-gap: 20px;
 
     margin-bottom: 40px;
+
+    &.withBackBtn {
+      &::after {
+        content: '';
+
+        display: block;
+        width: 220px;
+      }
+    }
 
     & .landing-title {
       margin-bottom: 0px !important;
@@ -68,6 +78,10 @@
 
     &.litle {
       max-width: 920px;
+    }
+
+    &.withoutWidthMax {
+      max-width: 100% !important;
     }
   }
 
@@ -146,8 +160,57 @@
     grid-gap: 40px;
   }
 
+  &-showMore {
+    grid-column: 1/4;
+    display: flex;
+    justify-content: center;
+
+    padding: 40px 0;
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      grid-gap: 10px;
+  
+      & svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--light-gray-color);
+
+        transform: translateX(0);
+        transition: all .3s ease-in-out;
+      }
+
+      &:hover svg {
+        transform: translateX(10px);
+      }
+    }
+  }
+
   // Adaptation
+  // @media (max-width: 1600px) {
+  //   &-items {
+  //     grid-gap: 30px;
+  //   }
+  // }
+
   // @media (max-width: 1200px) {
+  //   &-items {
+  //     grid-gap: 24px;
+  //   }
+
+  //   &-header {
+  //     flex-direction: column;
+  //     align-items: flex-start;
+  //     grid-gap: 20px;
+
+  //     margin-bottom: 30px;
+
+  //     &::after {
+  //       display: none;
+  //     }
+  //   }
+
   //   &-link.with-line {
   //     grid-gap: 32px;
   
@@ -178,6 +241,28 @@
   // }
 
   // @media (max-width: 992px) {
+  //   &-header {
+  //     margin-bottom: 24px;
+  //   }
+
+  //   &-items {
+  //     grid-template-columns: repeat(2, 1fr);
+  //   }
+
+  //   &-showMore {
+  //     grid-column: 1/3;
+  //     padding: 40px 0;
+  
+  //     &-btn {
+  //       grid-gap: 10px;
+    
+  //       & svg {
+  //         width: 22px;
+  //         height: 22px;
+  //       }
+  //     }
+  //   }
+
   //   &-link.with-line {
   //     grid-gap: 30px;
   
@@ -208,6 +293,29 @@
   // }
 
   // @media (max-width: 768px) {
+  //   &-header {
+  //     margin-bottom: 20px;
+  //   }
+
+  //   &-items {
+  //     grid-template-columns: 1fr;
+  //     grid-gap: 30px;
+  //   }
+
+  //   &-showMore {
+  //     grid-column: 1/2;
+  //     padding: 40px 0;
+  
+  //     &-btn {
+  //       grid-gap: 10px;
+    
+  //       & svg {
+  //         width: 22px;
+  //         height: 22px;
+  //       }
+  //     }
+  //   }
+
   //   &-link.with-line {
   //     grid-gap: 28px;
   

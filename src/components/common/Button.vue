@@ -212,6 +212,10 @@
             color: var(--light-gray-color);
           }
         }
+
+        &:hover {
+          background-color: var(--light-gray-color-op10);
+        }
       }
     }
 

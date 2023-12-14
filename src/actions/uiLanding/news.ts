@@ -1,9 +1,10 @@
 import api from '@/modules/api'
 import { INews } from '@/types/news'
-import { Paginator } from '@/types/request'
+import { IComment } from '@/types/comments'
+import { Paginator, Request } from '@/types/request'
 
 export const getNewsData = async (newsID: string) =>
-   await api.asyncGet(`/api/v1/articles/${newsID}`)
+   await api.asyncGet<Request<INews>>(`/api/v1/articles/${newsID}`)
 
 export const getNewsList = async (newsAlias: string, filters: any) => {
   return (
@@ -17,3 +18,23 @@ export const getNewsList = async (newsAlias: string, filters: any) => {
     )
   ).data
 }
+
+export const getCommentsList = async (newsID: string, filters: any) => {
+  return (
+    await api.asyncGet<Paginator<IComment[]>>(
+      `/api/v1/articles/${newsID}/comments`,
+      {
+        ...filters,
+      },
+      true
+    )
+  ).data
+}
+
+export const postComment = async (newsID: string, comment: string) =>
+  await api.asyncPost<Request<IComment>>(
+    `/api/v1/articles/${newsID}/comments`,
+    {
+      "text": comment
+    }
+  )

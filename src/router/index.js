@@ -9,9 +9,9 @@ import NotFound from '@/views/404NotFound.vue'
 import PageInDevelopment from '@/views/InDevelopment.vue'
 
 import Home from '@/views/uiLanding/Home.vue'
+import Home_2 from '@/views/uiLanding/Home-2.vue'
 import Feedback from '@/views/uiLanding/Feedback.vue'
 import AboutParty from '@/views/uiLanding/AboutParty.vue'
-import News from '@/views/uiLanding/News.vue'
 import Contacts from '@/views/uiLanding/Contacts.vue'
 import PartyFraction from '@/views/uiLanding/PartyFraction.vue'
 import MeetingWithVoters from '@/views/uiLanding/MeetingWithVoters.vue'
@@ -21,20 +21,15 @@ import Marketplace from '@/views/uiLanding/Marketplace.vue'
 import DeputiesOfMajilis from '@/views/uiLanding/deputies/DeputiesOfMajilis.vue';
 import DeputiesOfMaslikhat from '@/views/uiLanding/deputies/DeputiesOfMaslikhat.vue';
 
-// News
-import NewsList from '@/views/uiLanding/news/NewsList.vue'
-import NewsDetail from '@/views/uiLanding/news/NewsDetail.vue'
+// Press Center - News
+import PressCenter from '@/views/uiLanding/press-center/PressCenter.vue'
+import NewsList from '@/views/uiLanding/press-center/news/NewsList.vue'
+import NewsDetail from '@/views/uiLanding/press-center/news/NewsDetail.vue'
+import PressAboutUsList from '@/views/uiLanding/press-center/news/PressAboutUsList.vue'
 
-// Press About Us
-import PressAboutUsList from '@/views/uiLanding/news/PressAboutUsList.vue'
-
-// Announcement
-import AnnouncesList from '@/views/uiLanding/announcement/AnnouncesList.vue'
-import AnnounceDetail from '@/views/uiLanding/announcement/AnnounceDetail.vue'
-
-// Gallery
-import VideoGallery from '@/views/uiLanding/gallery/VideoGallery.vue'
-import PhotoGalleryAll from '@/views/uiLanding/gallery/PhotoGalleryAll.vue'
+// Press Center - Gallery
+import VideoGallery from '@/views/uiLanding/press-center/gallery/VideoGallery.vue'
+import PhotoGalleryAll from '@/views/uiLanding/press-center/gallery/PhotoGalleryAll.vue'
 
 import Regions from '@/views/uiLanding/Regions.vue'
 import Faq from '@/views/uiLanding/Faq.vue'
@@ -109,6 +104,11 @@ const routes = [
     component: Home,
   },
   {
+    path: '/variant-2',
+    name: 'Home_2',
+    component: Home_2,
+  },
+  {
     path: '/about-party',
     name: 'AboutParty',
     component: AboutParty,
@@ -121,7 +121,7 @@ const routes = [
   {
     path: '/news',
     name: 'News',
-    component: News,
+    component: PressCenter,
   },
   {
     path: '/news-all',
@@ -131,12 +131,12 @@ const routes = [
   {
     path: '/announce-list',
     name: 'AnnouncesList',
-    component: AnnouncesList,
+    component: NewsList,
   },
   {
     path: '/announce/:announce_id',
     name: 'AnnounceDetail',
-    component: AnnounceDetail,
+    component: NewsDetail,
   },
   {
     path: '/news/:news_id',

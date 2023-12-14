@@ -54,7 +54,7 @@ const aboutUsList = [
 
 <style scoped lang="scss">
 .aboutUs {
-  margin-top: 70px;
+  margin-top: 25px;
 
   &-inner {
     display: grid;
@@ -74,6 +74,10 @@ const aboutUsList = [
 
     position: relative;
 
+    &:hover .aboutUs-item-preview::after {
+      opacity: .94;
+    }
+
     &-preview {
       height: 100%;
       width: 100%;
@@ -82,6 +86,24 @@ const aboutUsList = [
       top: 0;
       left: 0;
       z-index: -1;
+
+      &::after {
+        content: '';
+
+        display: block;
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+
+        opacity: .75;
+
+        background: linear-gradient(180deg, rgba(4, 32, 81, 0.85) 50%, rgba(74, 120, 236, 0.85) 99.93%);
+        transition: all .3s ease-in-out;
+      }
     }
 
     &-title {
@@ -135,7 +157,7 @@ const aboutUsList = [
 
   // Adaptation
   /* @media (max-width: 1200px) {
-    margin-top: 70px;
+    margin-top: 25px;
 
     &-inner {
       grid-template-columns: repeat(2, 1fr);
@@ -183,7 +205,7 @@ const aboutUsList = [
   }
 
   @media (max-width: 992px) {
-    margin-top: 60px;
+    margin-top: 20px;
 
     &-inner {
       grid-template-columns: 1fr;
@@ -231,7 +253,7 @@ const aboutUsList = [
   }
 
   @media (max-width: 576px) {
-    margin-top: 60px;
+    margin-top: 10px;
 
     &-inner {
       grid-template-columns: 1fr;

@@ -153,6 +153,9 @@ const showModals = reactive({
       &-logo {
         width: 219px;
         height: 219px;
+        animation: spinAndZoom 12s infinite;
+        
+        transform: rotate(0deg);
       }
 
       &-title {
@@ -296,5 +299,18 @@ const showModals = reactive({
 
   @media (max-width: 380px) {
   } */
+}
+
+@keyframes spinAndZoom {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(360deg);
+  }
+  40% {
+  }
+  45% {
+  }
 }
 </style>

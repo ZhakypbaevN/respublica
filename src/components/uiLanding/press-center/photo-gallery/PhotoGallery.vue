@@ -2,7 +2,7 @@
   <section class="photoGallery">
     <div class="photo">
       <div v-if="albomValues.isEmpty">
-        Empty
+        <Empty />
       </div>
       <div class="news-items disabled" v-else-if="!albomValues.tableValues">
         Loading

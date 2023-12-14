@@ -8,7 +8,7 @@
       />
     </Button>
 
-    <div class="default">
+    <div class="default" v-else>
       <SvgIcon
         name="arrow-left-big"
         :viewboxWidth="44"
@@ -59,6 +59,14 @@ const back = () => {
       height: 24px;
   
       fill: var(--light-gray-color);
+      transform: translateX(0);
+      transition: all .3s ease-in-out;
+    }
+
+    &:hover {
+      & svg {
+        transform: translateX(-10px);
+      }
     }
   }
 

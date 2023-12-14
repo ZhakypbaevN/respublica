@@ -7,7 +7,8 @@ export interface INews {
   created_at: string,
   preview_image?: any,
   source_title?: string,
-  source_url?: string
+  source_url?: string,
+  views_count?: number
 }
 
 export interface NewsValues {

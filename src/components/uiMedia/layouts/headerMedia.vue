@@ -16,7 +16,7 @@
             
             <LangToggle />
 
-            <Avatar />
+            <ProfileControl />
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
-import Avatar from '@/components/common/Avatar.vue';
+import ProfileControl from '@/components/common/ProfileControl.vue';
 
 import { ref } from 'vue';
 

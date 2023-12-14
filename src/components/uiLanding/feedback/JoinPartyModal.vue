@@ -110,7 +110,7 @@
               :options="
                 locationList.length
                   ? locationList
-                  : [{label: $t('formdata.first-select-an-area'), value: null}]
+                  : [{label: $t('status.first-select-an-area'), value: null}]
               "
               v-model="locationID"
               required

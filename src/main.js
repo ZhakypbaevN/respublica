@@ -28,8 +28,10 @@ import Input from '@/components/common/Input.vue'
 import Checkbox from '@/components/common/Checkbox.vue'
 import Form from '@/components/common/Form.vue';
 import Modal from '@/components/common/Modal.vue';
+import Empty from '@/components/common/Empty.vue';
 import Filter from '@/components/common/Filter.vue';
 import LangToggle from '@/components/common/LangToggle.vue';
+import ShowMoreBtn from '@/components/common/ShowMoreBtn.vue';
 
 import LandingLayout from '@/components/uiLanding/layouts/LandingLayout.vue';
 import Header from '@/components/uiLanding/layouts/HeaderCustom.vue';
@@ -69,8 +71,10 @@ createApp(App)
   .component('Filter', Filter)
   .component('Form', Form)
   .component('Modal', Modal)
+  .component('Empty', Empty)
   .component('LangToggle', LangToggle)
   .component('LandingLayout', LandingLayout)
+  .component('ShowMoreBtn', ShowMoreBtn)
   .component('Header', Header)
   .component('Footer', Footer)
   .mount('#app')
