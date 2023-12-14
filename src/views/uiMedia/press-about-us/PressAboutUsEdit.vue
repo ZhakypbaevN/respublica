@@ -185,7 +185,7 @@
         type: 'success'
       })
 
-      if (!route.params.news_id) setTimeout(() => router.push('/media/press-about-us?offset=0&limit=20&published=true&search='), 300);
+      // if (!route.params.news_id) setTimeout(() => router.push('/media/press-about-us?offset=0&limit=20&published=true&search='), 300);
 
     } finally {
       isloading.value = false

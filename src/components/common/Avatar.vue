@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 interface IProps {
-  mini: boolean
+  mini?: boolean
 }
 
 withDefaults(defineProps<IProps>(), {

@@ -14,7 +14,7 @@
             </h2>
           </div>
           
-          <div class="landing-items" v-if="newsValues.isEmpty">
+          <div class="landing-items empty" v-if="newsValues.isEmpty">
             <Empty />
           </div>
           <div class="landing-items disabled" v-else-if="!newsValues.tableValues">

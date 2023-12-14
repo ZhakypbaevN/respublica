@@ -27,6 +27,10 @@ import NewsList from '@/views/uiLanding/press-center/news/NewsList.vue'
 import NewsDetail from '@/views/uiLanding/press-center/news/NewsDetail.vue'
 import PressAboutUsList from '@/views/uiLanding/press-center/news/PressAboutUsList.vue'
 
+// Press Center - Announcements
+import AnnouncementDetail from '@/views/uiLanding/press-center/announcements/AnnouncementDetail.vue'
+import AnnouncementsList from '@/views/uiLanding/press-center/announcements/AnnouncementsList.vue'
+
 // Press Center - Gallery
 import VideoGallery from '@/views/uiLanding/press-center/gallery/VideoGallery.vue'
 import PhotoGalleryAll from '@/views/uiLanding/press-center/gallery/PhotoGalleryAll.vue'
@@ -131,12 +135,12 @@ const routes = [
   {
     path: '/announce-list',
     name: 'AnnouncesList',
-    component: NewsList,
+    component: AnnouncementsList,
   },
   {
     path: '/announce/:announce_id',
     name: 'AnnounceDetail',
-    component: NewsDetail,
+    component: AnnouncementDetail,
   },
   {
     path: '/news/:news_id',

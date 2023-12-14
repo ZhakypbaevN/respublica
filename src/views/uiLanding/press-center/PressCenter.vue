@@ -13,7 +13,7 @@
           </RouterLink>
         </div>
         
-        <div class="landing-items" v-if="newsValues.isEmpty">
+        <div class="landing-items empty" v-if="newsValues.isEmpty">
           <Empty />
         </div>
         <div class="landing-items disabled" v-else-if="!newsValues.tableValues">
@@ -45,7 +45,7 @@
           </RouterLink>
         </div>
 
-        <div class="landing-items" v-if="newsPressAboutUsValues.isEmpty">
+        <div class="landing-items empty" v-if="newsPressAboutUsValues.isEmpty">
           <Empty />
         </div>
         <div class="landing-items disabled" v-else-if="!newsPressAboutUsValues.tableValues">
@@ -79,7 +79,7 @@
           </RouterLink>
         </div>
 
-        <div class="landing-items" v-if="youtubeVideosValues.isEmpty">
+        <div class="landing-items empty" v-if="youtubeVideosValues.isEmpty">
           <Empty />
         </div>
         <div class="landing-items disabled" v-else-if="!youtubeVideosValues.tableValues">
