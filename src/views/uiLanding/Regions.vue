@@ -41,7 +41,7 @@
     </section>
   </div>
 
-  <Footer /> 
+  <Footer withoutLandingWrapper /> 
 </div>
 </template>
 

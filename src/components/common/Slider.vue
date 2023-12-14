@@ -101,6 +101,7 @@ onMounted(() => {
   }
 }
 
+// Adaptation
 /* @media (max-width: 1440px) {
   .slider {
     grid-gap: 28px;

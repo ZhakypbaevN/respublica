@@ -28,7 +28,7 @@
     "mazhilis-deputies": "Депутаты Мажилиса",
     "maslikhats-deputies": "Депутаты маслихатов",
     "question-and-answer": "Вопрос – ответ",
-    "announcements": "Закуп",
+    "announcements": "Закупки",
     "branches": "Филиалы",
     "news": "Новости",
     "news-for-the-faction": "Новости для фракции",
@@ -195,7 +195,8 @@
     "name-of-the-author": "Наименование автора",
     "link-to-the-author-is-article": "Ссылка на статью автора",
     "enter-the-author-is-name": "Введите название автора",
-    "a-link-to-the-author-is-article-has-been-entered": "Введите ссылку на статью автора"
+    "a-link-to-the-author-is-article-has-been-entered": "Введите ссылку на статью автора",
+    "enter-your-comments": "Введите свои комментарии"
   },
 
   "analytics": {
@@ -497,6 +498,7 @@
     "donations": "ПОЖЕРТВОВАТЬ СЕЙЧАС",
     "doing-btn": "Узнать больше",
     "view-all": "Смотреть все",
+    "view-more": "Смотреть еще",
     "view": "Посмотреть",
     "send-a-appeal": "Направить обращение",
     "view-pdf": "Посмотреть PDF",
@@ -561,7 +563,9 @@
     "the-user-has-been-successfully-created": "Пользователь успешно создан!",
     "the-user-has-been-successfully-edited": "Пользователь был успешно отредактирован!",
     "the-news-was-successfully-created": "Новость была успешно создана!",
-    "the-news-was-successfully-updated": "Новость была успешно обновлена!"
+    "the-news-was-successfully-updated": "Новость была успешно обновлена!",
+    "сomments-have-been-sent-successfully": "Ваш комментарий был успешно отправлен!",
+    "nothing-seems-to-be-found": "Похоже ничего не найдено!"
   },
 
   "errors": {
@@ -584,6 +588,7 @@
   "upload-a-picture": "Загрузите снимок!",
   "editing-a-user": "Редактирование пользователя",
   "create-a-user": "Создание пользователя",
+  "comments": "Комментрии",
   "total": "Всего",
   "rus": "РУС",
   "kaz": "КАЗ"

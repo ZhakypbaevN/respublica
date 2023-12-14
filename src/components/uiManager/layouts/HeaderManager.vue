@@ -25,13 +25,13 @@
             
             <LangToggle />
 
-            <Avatar />
+            <ProfileControl />
           </div>
         </div>
       </div>
     </div>
 
-    <JoinPartyModal
+    <CreatePartyModal
       :show="showJoinPartyModal"
       @hide="() => showJoinPartyModal = false"
     />
@@ -39,12 +39,12 @@
 </template>
 
 <script setup lang="ts">
-import JoinPartyModal from '@/components/uiManager/party-members/createPartyModal.vue';
-import Avatar from '@/components/common/Avatar.vue';
+  import CreatePartyModal from '@/components/uiManager/party-members/CreatePartyModal.vue';
+  import ProfileControl from '@/components/common/ProfileControl.vue';
 
-import { ref } from 'vue';
+  import { ref } from 'vue';
 
-const showJoinPartyModal = ref(false);
+  const showJoinPartyModal = ref(false);
 </script>
 
 <style scoped lang="scss">

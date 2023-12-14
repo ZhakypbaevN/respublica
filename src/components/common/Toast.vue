@@ -145,10 +145,10 @@ const { toastList, remove } = useToast()
   transition: transform 0.5s ease;
 }
 /* Адаптация */
-@media (max-width: 425px) {
+/* @media (max-width: 425px) {
   .toast-list {
     min-width: 300px;
     max-width: 400px;
   }
-}
+} */
 </style>

@@ -69,13 +69,13 @@
           />
 
           <Button
-            :name="$('status.female')"
+            :name="$t('status.female')"
             :type="data.gender === 'female' ?  'default-blue' : 'outline-grey'"
             @click="() => data.gender = 'female'"
           />
 
           <Button
-          :name="$('status.male')"
+          :name="$t('status.male')"
             :type="data.gender === 'male' ?  'default-blue' : 'outline-grey'"
             @click="() => data.gender = 'male'"
           />
@@ -129,7 +129,7 @@
               :options="
                 locationList.length
                   ? locationList
-                  : [{label: $t('formdata.first-select-an-area'), value: null}]
+                  : [{label: $t('status.first-select-an-area'), value: null}]
               "
               v-model="locationID"
               required

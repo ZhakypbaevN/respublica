@@ -78,7 +78,7 @@
   },
 
   "footer": {
-    "join-the-party": "партияға қосылыңыз",
+    "join-the-party": "Партияға қосылыңыз",
     "party-respublica": "Respublica партиясы",
     "team": "КОМАНДА",
     "all-rights-reserved": "Барлық құқықтар қорғалған.",
@@ -193,7 +193,8 @@
     "name-of-the-author": "Автордың атауы",
     "link-to-the-author-is-article": "Автордың мақаласына сілтеме",
     "enter-the-author-is-name": "Автордың атын енгізіңіз",
-    "a-link-to-the-author-is-article-has-been-entered": "Автордың мақаласына сілтеме енгізіңіз"
+    "a-link-to-the-author-is-article-has-been-entered": "Автордың мақаласына сілтеме енгізіңіз",
+    "enter-your-comments": "Пікірлеріңізді енгізіңіз"
   },
   "analytics": {
     "activity-by-region": "Аймақ бойынша белсенділік",
@@ -485,6 +486,7 @@
     "donations": "Донаттар",
     "doing-btn": "Толығырақ",
     "view-all": "Барлығын көру",
+    "view-more": "Көбірек қарау",
     "view": "View",
     "send-a-appeal": "Апелляция жіберу",
     "view-pdf": "PDF қарау",
@@ -549,7 +551,9 @@
     "the-user-has-been-successfully-created": "Пайдаланушы сәтті құрылды!",
     "the-user-has-been-successfully-edited": "Пайдаланушы сәтті өңделді!",
     "the-news-was-successfully-created": "Жаңалық сәтті құрылды!",
-    "the-news-was-successfully-updated": "Жаңалық сәтті жаңартылды!"
+    "the-news-was-successfully-updated": "Жаңалық сәтті жаңартылды!",
+    "сomments-have-been-sent-successfully": "Сіздің пікіріңіз сәтті жіберілді!",
+    "nothing-seems-to-be-found": "Ештеңе табылмаған сияқты!"
   },
 
   "errors": {
@@ -572,6 +576,7 @@
   "upload-a-picture": "Суретті жүктегіңіз!",
   "editing-a-user": "Пайдаланушыны өңдеу",
   "create-a-user": "Пайдаланушыны құру",
+  "comments": "Пікірлер",
   "total": "Всего",
   "rus": "РУС",
   "kaz": "КАЗ"

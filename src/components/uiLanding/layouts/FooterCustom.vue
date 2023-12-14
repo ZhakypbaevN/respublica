@@ -1,6 +1,6 @@
 <template>
   <footer class="footer" :class="{withOutMT: withOutMT}">
-    <div class="wrapper" :class="{withoutWidthMax: withoutWidthMax}">
+    <div :class="`wrapper ${withoutWidthMax ? 'withoutWidthMax' : withoutLandingWrapper ? '' : 'landing-wrapper'}`">
       <div class="footer-main">
         <div class="footer-mainForm">
           <h3 class="footer-mainForm-title">{{ $t('footer.join-the-party') }}</h3>
@@ -102,11 +102,13 @@
   interface IProps {
     withOutMT?: boolean,
     withoutWidthMax?: boolean,
+    withoutLandingWrapper?: boolean,
   }
 
   withDefaults(defineProps<IProps>(), {
     withOutMT: false,
-    withoutWidthMax: false
+    withoutWidthMax: false,
+    withoutLandingWrapper: false
   })
 </script>
 
@@ -175,7 +177,7 @@
 
     &-link {
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 600;
       text-transform: uppercase;
 
       transition: all .3s ease-in-out;

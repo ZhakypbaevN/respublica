@@ -78,13 +78,13 @@ const blockList = [
     color: '#4A78EC',
     img: '/img/uiLanding/party-program/R.png',
     title: t('home.party-program.party-program-respublica'),
-    pdf: "/doc/ru/Программа партии_.pdf",
+    pdf: "/doc/ru/Программа предвыборная рус.pdf",
   },
   {
     color: '#894BEC',
     img: '/img/uiLanding/party-program/E.png',
     title: t('home.party-program.party-election-program-respublica'),
-    pdf: "/doc/ru/Программа предвыборная рус.pdf",
+    pdf: "/doc/ru/Идеологическая платформа партии.pdf",
   },
 ];
 
@@ -109,7 +109,7 @@ const toggleSlider = () => {
     &-title {
       font-family: 'Montserrat';
       font-size: 64px;
-      font-weight: 700;
+      font-weight: 600;
       text-transform: uppercase;
     }
   }

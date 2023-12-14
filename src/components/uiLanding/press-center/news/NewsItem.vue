@@ -6,7 +6,7 @@
     :href="data.source_url"
   >
     <div class="newsItem-preview withZoomPreview-preview">
-      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
+      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(data.preview_image)});`"></div>
       <div class="newsItem-date">
         <SvgIcon
           name="calendar-check"
@@ -30,7 +30,7 @@
     :to="`/news/${data.id}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
-      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
+      <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(data.preview_image)});`"></div>
       <div class="newsItem-date">
         <SvgIcon
           name="calendar-check"
@@ -56,23 +56,31 @@
     :to="`/news/${data.id}`"
   >
     <div class="newsItemMini-preview withZoomPreview-preview">
-      <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${data.preview_image});`"></div>
+      <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(data.preview_image)});`"></div>
     </div>
-    <div class="newsItemMini-text">
-      <h4 class="newsItemMini-title">{{ data.title }}</h4>
 
-      <p class="newsItemMini-description">{{ data.preview_text }}</p>
+    <div class="newsItemMini-content">
+      <div>
+        <h4 class="newsItemMini-title">{{ data.title }}</h4>
+
+        <p class="newsItemMini-description">{{ data.preview_text }}</p>
+      </div>
 
       <div class="newsItemMini-bottom">
-        <div class="newsItemMini-comment">
-          <SvgIcon name="comment-alt-lines" :viewboxWidth="28" :viewboxHeight="28" />
-          <span>0</span>
+        <div class="newsItemMini-views">
+          <SvgIcon
+            name="view"
+            :viewboxWidth="24"
+            :viewboxHeight="24"
+          />
+          <span>{{ data.views_count }}</span>
         </div>
+
         <div class="newsItemMini-date">
           <SvgIcon
-            name="calendar-check-dark"
-            :viewboxWidth="16"
-            :viewboxHeight="17"
+            name="calendar"
+            :viewboxWidth="24"
+            :viewboxHeight="24"
           />
           <span>{{ convertDateTime(data.created_at) }}</span>
         </div>
@@ -82,18 +90,20 @@
 </template>
 
 <script setup lang="ts">
-import convertDateTime from '@/helpers/convertDateTime.js';
+  import { INews } from '@/types/news';
+  import getFileUrl from '@/helpers/getFileUrlByDate'
+  import convertDateTime from '@/helpers/convertDateTime.js';
 
-interface IProps {
-  data: any,
-  pressAboutUs?: boolean,
-  litle?: boolean,
-}
+  interface IProps {
+    data: INews,
+    pressAboutUs?: boolean,
+    litle?: boolean,
+  }
 
-withDefaults(defineProps<IProps>(), {
-  pressAboutUs: false,
-  litle: false
-})
+  withDefaults(defineProps<IProps>(), {
+    pressAboutUs: false,
+    litle: false
+  })
 </script>
 
 <style scoped lang="scss">
@@ -195,32 +205,43 @@ withDefaults(defineProps<IProps>(), {
   }
 }
 .newsItemMini {
-  display: flex;
-  border-radius: 10px;
-  background: #FFF;
-  padding: 25px;
-  margin-right: 25px;
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: 220px 1fr;
+  grid-gap: 25px;
+
+  &:hover .newsItemMini-title {
+    color: var(--accent-color);
+  }
 
   &-preview {
-    width: 223px;
-    height: 161px;
     border-radius: 10px;
 
     &-img {
-      padding-bottom: 100%;
+      padding-bottom: 72%;
     }
   }
 
-  &-text {
-    width: 446px;
-    margin-left: 25px;
+  &-content {
+    height: 100%;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &-title {
     font-size: 18px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
+
+    transition: all .3s ease-in-out;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
   }
 
 
@@ -228,26 +249,32 @@ withDefaults(defineProps<IProps>(), {
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
   }
 
   &-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 25px;
   }
 
   &-date {
     display: flex;
-    grid-gap: 5px;
+    align-items: center;
+    grid-gap: 8px;
 
     padding: 5px 10px;
     border-radius: 3px;
-    border: 1px solid rgba(129, 143, 167, 0.50);
+    border: 1px solid var(--light-gray-color-op50);
 
     & svg {
-      width: 28px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
 
       /* fill: var(--accent-color); */
     }
@@ -259,8 +286,10 @@ withDefaults(defineProps<IProps>(), {
     }
   }
 
-  &-comment {
+  &-views {
     display: flex;
+    align-items: center;
+    grid-gap: 4px;
 
     & span {
       color: var(--light-gray-color);
@@ -269,22 +298,89 @@ withDefaults(defineProps<IProps>(), {
     }
 
     & svg {
-      width: 28px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
+
       fill: var(--accent-color);
     }
   }
-}
-.svg-btn{
-  width: 24px;
-  height: 24px;
-  fill: #818FA7;
-  margin-left: 10px;
-}
-.content-centre {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 50px;
+
+  // Adaptation
+  /* @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    
+    &-preview {
+      border-radius: 10px;
+
+      &-img {
+        padding-bottom: 50%;
+      }
+    }
+
+    &-content {
+      grid-gap: 24px;
+    }
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    &-date {
+      grid-gap: 8px;
+
+      padding: 5px 10px;
+      border-radius: 3px;
+
+      & svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &-views {
+      & svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    grid-gap: 18px;
+    
+    &-preview {
+      border-radius: 8px;
+    }
+
+    &-content {
+      grid-gap: 22px;
+    }
+
+    &-title {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    &-date {
+      grid-gap: 4px;
+
+      padding: 3px 7px;
+      border-radius: 3px;
+
+      & svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &-views {
+      & svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  } */
 }
 </style>

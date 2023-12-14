@@ -64,7 +64,7 @@
                 />
               </RouterLink>
 
-              <Avatar v-else />
+              <ProfileControl v-else />
 
               <button
                 class="header-main-burger"
@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-  import Avatar from '@/components/common/Avatar.vue';
+  import ProfileControl from '@/components/common/ProfileControl.vue';
 
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router'

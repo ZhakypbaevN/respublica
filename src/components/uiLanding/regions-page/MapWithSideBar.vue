@@ -121,7 +121,7 @@
     // -------- Create polygon series --------
     const getCount = polygonId => {
       const region = deputiesMap.deputiesList.find(region => region.code === polygonId)
-      return region.deputies.length
+      if (region) return region.deputies.length
     }
   
   
