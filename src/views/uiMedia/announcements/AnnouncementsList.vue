@@ -35,6 +35,7 @@
           v-for="news of newsValues.tableValues"
           :key="news.title"
           :data="news"
+          linkToNews="announce"
         />
       </div>
     </div>

@@ -11,7 +11,7 @@
       <div class="newsItem-preview withZoomPreview-preview">
         <div
           class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
-          :style="`background-image:url('https://api.respublica-partiyasy.kz/${data.preview_image}');`"
+          :style="`background-image:url('${getFileUrl(data.preview_image)}');`"
         ></div>
       </div>
 
@@ -72,38 +72,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+  import { ref, onMounted } from 'vue';
+  import { useRouter } from 'vue-router';
 
-import PublishToggle from '@/components/uiMedia/PublishToggle.vue'
-import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
+  import PublishToggle from '@/components/uiMedia/PublishToggle.vue'
+  import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
 
-import convertDateTime from '@/helpers/convertDateTime.js'
+  import convertDateTime from '@/helpers/convertDateTime.js'
+  import getFileUrl from '@/helpers/getFileUrlByDate'
 
-const router = useRouter()
+  const router = useRouter()
 
-interface IProps {
-  data: any,
-}
+  interface IProps {
+    data: any,
+    linkToNews?: string
+  }
 
-const props = defineProps<IProps>()
+  const props = withDefaults(defineProps<IProps>(), {
+    linkToNews: 'news-list'
+  })
 
-const newsData = ref(null);
-const disabled = ref(false);
-const showDeleteModal = ref(false);
+  const newsData = ref(null);
+  const disabled = ref(false);
+  const showDeleteModal = ref(false);
 
-onMounted(() => {
-  newsData.value = Object.assign({}, props.data);
-})
+  onMounted(() => {
+    newsData.value = Object.assign({}, props.data);
+  })
 
-const goEdit = () => {
-  router.push(`/media/news-list/${props.data.id}`)
-}
+  const goEdit = () => {
+    router.push(`/media/${props.linkToNews}/${props.data.id}`)
+  }
 
-const togglePublish = () => {
-  newsData.value.published = !newsData.value.published;
-  disabled.value = true;
-}
+  const togglePublish = () => {
+    newsData.value.published = !newsData.value.published;
+    disabled.value = true;
+  }
 </script>
 
 <style scoped lang="scss">
