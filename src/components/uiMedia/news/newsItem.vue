@@ -72,11 +72,11 @@
 </template>
 
 <script setup lang="ts">
+  import PublishToggle from '@/components/uiMedia/common-for-edit/PublishToggle.vue'
+  import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
+
   import { ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
-
-  import PublishToggle from '@/components/uiMedia/PublishToggle.vue'
-  import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
 
   import convertDateTime from '@/helpers/convertDateTime.js'
   import getFileUrl from '@/helpers/getFileUrlByDate'

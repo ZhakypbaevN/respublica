@@ -31,8 +31,8 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   name: 'lds-ellipsis',
   color: '#000',
-  width: 40,
-  height: 40
+  width: 20,
+  height: 20
 })
 
 const colorProps = ref(props.color)
@@ -117,6 +117,7 @@ const colorProps = ref(props.color)
   }
 }
 .sk-chase {
+  margin: 0 auto;
   position: relative;
   animation: sk-chase 2.5s infinite linear both;
 }

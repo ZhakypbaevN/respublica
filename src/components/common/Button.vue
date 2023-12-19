@@ -14,7 +14,7 @@
   >
     <slot name="left" v-if="!loading" />
     <Transition>
-      <Loading v-if="loading" />
+      <Loading v-if="loading" :name="loadingName" />
     </Transition>
     <span :class="{bigText: uppercase}">{{ name }}</span>
     <slot v-if="!loading" />
@@ -29,11 +29,12 @@
 
   interface IProps {
     name?: string
-    type?: 'default' | 'default-blue' | 'default-green' | 'default-light-blue' | 'default-red' | 'default-grey' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'outline-grey'
+    type?: 'default' | 'default-blue' | 'default-green' | 'default-light-blue' | 'default-light-red' | 'default-red' | 'default-grey' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'outline-grey'
     loading?: boolean
     htmlType?: 'button' | 'submit' | 'reset',
     disabled?: boolean,
     uppercase?: boolean,
+    loadingName?: string,
     ignoreValidate?: any[] | null,
   }
 
@@ -43,6 +44,7 @@
     loading: false,
     htmlType: 'button',
     disabled: false,
+    loadingName: 'lds-ellipsis',
     ignoreValidate: null,
   })
 
@@ -147,6 +149,18 @@
           }
         }
 
+        &-red {
+          background-color: var(--red-color-op15);
+
+          & span {
+            color: var(--red-color);
+          }
+
+          &:hover {
+            background-color: var(--red-color-op30);
+          }
+        }
+
         &-grey {
           background-color: var(--light-gray-color-op10);
 
@@ -220,7 +234,7 @@
     }
 
     // Adaptation
-    /* @media (max-width: 1200px) {
+    @media (max-width: 1200px) {
       padding: 19px 28px;
       border-radius: 10px;
 
@@ -251,6 +265,6 @@
     }
 
     @media (max-width: 380px) {
-    } */
+    }
   }
 </style>

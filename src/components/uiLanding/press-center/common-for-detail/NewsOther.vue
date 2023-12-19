@@ -73,8 +73,8 @@
   grid-gap: 25px;
 
   // Adaptation
-  /* @media (max-width: 576px) {
+  @media (max-width: 576px) {
     grid-gap: 30px;
-  } */
+  }
 }
 </style>

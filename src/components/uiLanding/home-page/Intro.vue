@@ -224,7 +224,7 @@ const showModals = reactive({
   }
 
   // Adaptation
-  /* @media (max-width: 1600px) {
+  @media (max-width: 1600px) {
     &-main {
       &-content {
         bottom: 70px;
@@ -316,7 +316,7 @@ const showModals = reactive({
   }
 
   @media (max-width: 380px) {
-  } */
+  }
 }
 
 @keyframes spinAndZoom {

@@ -124,7 +124,7 @@
   import getFileUrl from '@/helpers/getFileUrlByDate.js'
 
   import { INews } from '@/types/news';
-  import { getNewsData, postNewsData, putNewsData } from '@/actions/uiMedia/news';
+  import { getMediaNewsData, postMediaNewsData, putMediaNewsData } from '@/actions/uiMedia/news';
 
   const route = useRoute()
   const router = useRouter()

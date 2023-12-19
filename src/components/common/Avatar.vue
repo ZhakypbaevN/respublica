@@ -48,7 +48,7 @@ withDefaults(defineProps<IProps>(), {
   }
   
   // Adaptation
-  /* @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     height: 45px;
     width: 45px;
   }
@@ -56,6 +56,6 @@ withDefaults(defineProps<IProps>(), {
   @media (max-width: 992px) {
     height: 42px;
     width: 42px;
-  } */
+  }
 }
 </style>

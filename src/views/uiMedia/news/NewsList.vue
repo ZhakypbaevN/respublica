@@ -53,7 +53,7 @@
   import debounce from '@/helpers/debounce'
 
   import { NewsValues } from '@/types/news';
-  import { getNewsList } from '@/actions/uiMedia/news';
+  import { getMediaNewsList } from '@/actions/uiMedia/news';
 
   const { t } = useI18n()
 
@@ -84,7 +84,7 @@
     const {
       data,
       total
-    } = await getNewsList('news', {
+    } = await getMediaNewsList('news', {
       ...route.query
     })
     newsValues.tableValues = data;

@@ -9,6 +9,7 @@
             <span class="party-charter-title">{{ $t('about-us-page.party-is-charter.title') }}</span>
             <span class="party-charter-title-upper">{{ $t('about-us-page.party-is-charter.alga-respublica') }}</span>
           </div>
+
           <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">
             <Button
               class="party-charter-download"
@@ -28,7 +29,7 @@
         <div class="partyStructure-inner landing-block" id="party-structure">
           <h2 class="landing-title center">{{ $t('about-us-page.organizational-structure') }}</h2>
         
-          <img src="/img/icons/party-structure-2.svg" alt="">
+          <img class="partyStructure-svg" src="/img/icons/party-structure-2.svg" alt="">
         </div>
       </div>
     </section>
@@ -131,16 +132,9 @@
     background: white;
   }
 
-  &-items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    grid-gap: 80px;
-  }
-
   & img {
-    width: 100%;
+    height: 70vh;
+    min-height: 500px;
     padding: 0 70px;
   }
 }

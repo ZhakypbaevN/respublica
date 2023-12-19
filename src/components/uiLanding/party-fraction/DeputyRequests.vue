@@ -144,6 +144,33 @@ const deputieslist = reactive([
   },
 
   {
+    name: "ШУКИЖАНОВА Д.",
+    img: "/img/uiLanding/fraction/shukizhanova.jpg",
+    active: false,
+    data: [
+      {
+        title: "20 Апреля 2023 года",
+        name: "Касательно противодействия и распространения синтетических наркотиков",
+        docAndDescription:
+          "/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23.pdf",
+        video: null,
+        answerDate: "19 Мая 2023 года",
+        answerDoc: "/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23 жауап.pdf",
+      },
+      {
+        title: "25 Мая 2023 года",
+        name:
+          "О необходимости разработки национальной Концепции по развитию использования транспортных средств",
+        docAndDescription:
+          "/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23.pdf",
+        video: null,
+        answerDate: "27 Июня 2023 года",
+        answerDoc: "/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23 жауап.pdf",
+      },
+    ],
+  },
+
+  {
     name: "БЕРДЕНОВ Р.",
     img: "/img/uiLanding/fraction/berdenov.jpg",
     active: false,
@@ -173,6 +200,59 @@ const deputieslist = reactive([
         docAndDescription: "/doc/ru/deputies-requests/berdenov/Берденов 06.09.23.pdf",
         video: null,
         answerDate: "13 Июня 2023 года",
+        answerDoc: null,
+      },
+    ],
+  },
+
+  {
+    name: "ТАУ Н.",
+    img: "/img/uiLanding/fraction/tau.jpg",
+    active: false,
+    data: [
+      {
+        title: "21 Апреля 2023 года",
+        name: "Қосымша білім беру бойынша",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 20.04.23.pdf",
+        video: null,
+        answerDate: "17 Мая 2023 года",
+        answerDoc: "/doc/ru/deputies-requests/tau/Тау 20.04.23 жауап.pdf",
+      },
+      {
+        title: "5 Мая 2023 года ",
+        name:
+          "Білім беру ұйымдарының техникалық персоналының жекелеген санаттарына еңбек демалысына сауықтыру жәрдемақыларын төлеу мәселесі бойынша",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 3.05.23.pdf",
+        video: null,
+        answerDate: "31 Мая 2023 года",
+        answerDoc: "/doc/ru/deputies-requests/tau/Тау 3.05.23 жауап.pdf",
+      },
+      {
+        title: "11 Мая 2023 года",
+        name:
+          "Мектеп оқушылары мен жастар арасында “вейп” атымен танымал тұтынудың электрондық жүйелердің жаппай таралуына тыйым салу туралы ",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 10.05.23.pdf",
+        video: null,
+        answerDate: "6 Июня 2023 года",
+        answerDoc: "/doc/ru/deputies-requests/tau/Тау 10.05.23 жауап.pdf",
+      },
+      {
+        title: "29 Июня 2023 года",
+        name:
+          "Білім беру ұйымдарының техникалық персоналының жекелеген санаттарына еңбек демалысына сауықтыру жәрдемақыларын төлеу мәселесі бойынша",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 27.06.23.pdf",
+        video: null,
+        answerDate: "31 Июля 2023 года",
+        answerDoc: null,
+      },
+
+      // 2nd session
+      {
+        title: "22 Сентября 2023 года",
+        name: "Паллиативтік көмек туралы",
+        docAndDescription: "/doc/ru/deputies-requests/tau/Тау Н. 22.09.23.pdf",
+        video: null,
+        answerDate: "20 Октября 2023 года",
         answerDoc: null,
       },
     ],
@@ -258,86 +338,6 @@ const deputieslist = reactive([
         video: null,
         answerDate: "",
         answerDoc: null,
-      },
-    ],
-  },
-
-  {
-    name: "ТАУ Н.",
-    img: "/img/uiLanding/fraction/tau.jpg",
-    active: false,
-    data: [
-      {
-        title: "21 Апреля 2023 года",
-        name: "Қосымша білім беру бойынша",
-        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 20.04.23.pdf",
-        video: null,
-        answerDate: "17 Мая 2023 года",
-        answerDoc: "/doc/ru/deputies-requests/tau/Тау 20.04.23 жауап.pdf",
-      },
-      {
-        title: "5 Мая 2023 года ",
-        name:
-          "Білім беру ұйымдарының техникалық персоналының жекелеген санаттарына еңбек демалысына сауықтыру жәрдемақыларын төлеу мәселесі бойынша",
-        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 3.05.23.pdf",
-        video: null,
-        answerDate: "31 Мая 2023 года",
-        answerDoc: "/doc/ru/deputies-requests/tau/Тау 3.05.23 жауап.pdf",
-      },
-      {
-        title: "11 Мая 2023 года",
-        name:
-          "Мектеп оқушылары мен жастар арасында “вейп” атымен танымал тұтынудың электрондық жүйелердің жаппай таралуына тыйым салу туралы ",
-        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 10.05.23.pdf",
-        video: null,
-        answerDate: "6 Июня 2023 года",
-        answerDoc: "/doc/ru/deputies-requests/tau/Тау 10.05.23 жауап.pdf",
-      },
-      {
-        title: "29 Июня 2023 года",
-        name:
-          "Білім беру ұйымдарының техникалық персоналының жекелеген санаттарына еңбек демалысына сауықтыру жәрдемақыларын төлеу мәселесі бойынша",
-        docAndDescription: "/doc/ru/deputies-requests/tau/Тау 27.06.23.pdf",
-        video: null,
-        answerDate: "31 Июля 2023 года",
-        answerDoc: null,
-      },
-
-      // 2nd session
-      {
-        title: "22 Сентября 2023 года",
-        name: "Паллиативтік көмек туралы",
-        docAndDescription: "/doc/ru/deputies-requests/tau/Тау Н. 22.09.23.pdf",
-        video: null,
-        answerDate: "20 Октября 2023 года",
-        answerDoc: null,
-      },
-    ],
-  },
-
-  {
-    name: "ШУКИЖАНОВА Д.",
-    img: "/img/uiLanding/fraction/shukizhanova.jpg",
-    active: false,
-    data: [
-      {
-        title: "20 Апреля 2023 года",
-        name: "Касательно противодействия и распространения синтетических наркотиков",
-        docAndDescription:
-          "/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23.pdf",
-        video: null,
-        answerDate: "19 Мая 2023 года",
-        answerDoc: "/doc/ru/deputies-requests/shukizhanova/Шукижанова 20.04.23 жауап.pdf",
-      },
-      {
-        title: "25 Мая 2023 года",
-        name:
-          "О необходимости разработки национальной Концепции по развитию использования транспортных средств",
-        docAndDescription:
-          "/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23.pdf",
-        video: null,
-        answerDate: "27 Июня 2023 года",
-        answerDoc: "/doc/ru/deputies-requests/shukizhanova/Шукижанова 24.05.23 жауап.pdf",
       },
     ],
   },

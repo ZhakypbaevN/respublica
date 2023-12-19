@@ -194,7 +194,7 @@
   }
 
   // Adaptation
-  /* @media (max-width: 1555px) {
+  @media (max-width: 1555px) {
     &-header {
       display: flex;
       flex-direction: column;
@@ -351,6 +351,6 @@
   }
 
   @media (max-width: 380px) {
-  } */
+  }
 }
 </style>

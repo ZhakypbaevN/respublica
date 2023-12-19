@@ -565,7 +565,8 @@
     "the-news-was-successfully-created": "Новость была успешно создана!",
     "the-news-was-successfully-updated": "Новость была успешно обновлена!",
     "сomments-have-been-sent-successfully": "Ваш комментарий был успешно отправлен!",
-    "nothing-seems-to-be-found": "Похоже ничего не найдено!"
+    "nothing-seems-to-be-found": "Похоже ничего не найдено!",
+    "the-comment-was-successfully-deleted": "Комментарий был успешно удален!"
   },
 
   "errors": {

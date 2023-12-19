@@ -41,6 +41,12 @@
         :key="comment.id"
         :data="comment"
       />
+
+      <ShowMoreBtn
+        v-model:offset="showMore.offset"
+        :loading="showMore.loading"
+        :total="commentsValues.total"
+      />
     </div>
   </div>
 </template>
@@ -69,6 +75,11 @@
 
   const comment = ref();
   const isNewCommentLoading = ref(false)
+  
+  const showMore = reactive({
+    offset: 0,
+    loading: false
+  })
   const commentsValues = reactive<CommentsValues>({
     tableValues: null,
     total: 0,
@@ -84,7 +95,7 @@
     isNewCommentLoading.value = true;
     try {
       const response = await postComment(props.newsID, comment.value);
-      if (commentsValues.tableValues === null) commentsValues.tableValues = [];
+      if (!commentsValues.tableValues) commentsValues.tableValues = [];
       commentsValues.tableValues.unshift(response.data);
       commentsValues.total++;
       comment.value = '';
@@ -98,16 +109,17 @@
     }
   }
 
-  const onGetNewsList = async () => {
-    commentsValues.isEmpty = false
-    commentsValues.tableValues = [];
 
-    const { data, total } = await getCommentsList(props.newsID, {offset: 0,limit: 20})
-    data.forEach(item => {
-      commentsValues.tableValues.push(item);
-    })
-    
+  const onGetNewsList = async () => {
+    showMore.loading = true;
+    commentsValues.isEmpty = false;
+
+    const { data, total } = await getCommentsList(props.newsID, {offset: showMore.offset, limit: 20})
+    showMore.loading = false
     commentsValues.total = total;
+    if (!commentsValues.tableValues) commentsValues.tableValues = [];
+    data.forEach(item => commentsValues.tableValues.push(item));
+
     if (!total) {
       commentsValues.isEmpty = true
     }
@@ -120,6 +132,11 @@
       onGetNewsList();
     }
   )
+  
+  watch(
+    () => showMore.offset,
+    () => getData()
+  );
 </script>
 
 <style scoped lang="scss">
@@ -162,7 +179,7 @@
   }
 
   // Adaptation
-  /* @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     margin-bottom: 120px;
 
     &-header {
@@ -264,7 +281,7 @@
     &-items {
       grid-gap: 24px;
     }
-  } */
+  }
 }
 </style>
 <style>
