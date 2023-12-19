@@ -1,33 +1,28 @@
 <template>
   <div class="commentItem withZoomPreview">
-    <Avatar mini />
+    <div class="commentItem-preview withZoomPreview-preview">
+      <div class="commentItem-preview-img bg-cover withZoomPreview-preview-img skeleton"></div>
+    </div>
 
     <div class="commentItem-content">
       <div class="commentItem-author">
-        <h4 class="commentItem-author-name">Test Name</h4>
-        <h5 class="commentItem-author-createDate">{{ timePeriod(data.created_at) }}</h5>
+        <h3 class="commentItem-author-name skeleton middle-text" style="min-width: 120px;"></h3>
+        <h3 class="commentItem-author-name skeleton middle-text" style="min-width: 120px;"></h3>
       </div>
 
       <div class="commentItem-text">
-        {{ data.text }}
+        <p
+          class="skeleton small-text"
+          style="width: 100%;margin-bottom: 10px;"
+          v-for="item in 2"
+          :key="item"
+        ></p>
+        <p class="skeleton small-text" style="min-width: 80%;"></p>
       </div>
     </div>
   </div>
 
 </template>
-
-<script setup lang="ts">
-  import Avatar from '@/components/common/Avatar.vue';
-
-  import { IComment } from '@/types/comments';
-  import timePeriod from '@/helpers/timePeriod';
-
-  interface IProps {
-    data: IComment,
-  }
-
-  defineProps<IProps>()
-</script>
 
 <style scoped lang="scss">
 .commentItem {
@@ -56,6 +51,16 @@
       color: var(--light-gray-color);
       font-size: 16px;
       font-weight: 500;
+    }
+  }
+
+  &-preview {
+    width: 48px;
+    height: 48px;
+    border-radius: 100px;
+
+    &-img {
+      padding-bottom: 100%;
     }
   }
 

@@ -4,7 +4,24 @@
       <div class="newsEdit-header">
         <BackButton />
 
-        <LangToggle dropdown />
+        <div class="newsEdit-header-right">
+          <PublishToggle
+            :data="newsData"
+            @finish="() => newsData.published = !newsData.published"
+          />
+          <Button
+            class="newsEdit-header-delete"
+            type="default-light-red"
+            @click.stop="() => showDeleteModal = true"
+          >
+            <SvgIcon
+              name="trash-edit-with-bg"
+              :viewboxWidth="50"
+              :viewboxHeight="50"
+            />
+          </Button>
+        </div>
+        <!-- <LangToggle dropdown /> -->
       </div>
 
       <h2 class="landing-title">
@@ -87,6 +104,10 @@
           />
         </div>
 
+        <NewsComments
+          v-if="route.params.news_id"
+          :newsID="route.params.news_id.toString()"
+        />
 
         <Button
           :name="
@@ -98,86 +119,100 @@
           htmlType="submit"
         />
       </Form>
+
+      <DeleteModal
+        :show="showDeleteModal"
+        :id="newsData.id!"
+        @click.stop
+        @hide="() => showDeleteModal = false"
+        @finish="onDeletedNews"
+      />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import moment from 'moment';
+  import PublishToggle from '@/components/uiMedia/common-for-edit/PublishToggle.vue'
+  import NewsComments from '@/components/uiMedia/common-for-edit/NewsComments.vue';
+  import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
 
-import { useI18n } from 'vue-i18n'
-import { ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router';
+  import moment from 'moment';
 
-import { useToast } from '@/modules/toast'
-import getFileUrl from '@/helpers/getFileUrlByDate.js'
+  import { useI18n } from 'vue-i18n'
+  import { ref, onMounted } from 'vue'
+  import { useRoute, useRouter } from 'vue-router';
 
-import { INews } from '@/types/news';
-import { getNewsData, postNewsData, putNewsData } from '@/actions/uiMedia/news';
+  import { useToast } from '@/modules/toast'
+  import getFileUrl from '@/helpers/getFileUrlByDate.js'
 
-const route = useRoute()
-const router = useRouter()
+  import { INews } from '@/types/news';
+  import { getMediaNewsData, postMediaNewsData, putMediaNewsData } from '@/actions/uiMedia/news';
 
-const { t } = useI18n()
-const { toast } = useToast()
+  const route = useRoute()
+  const router = useRouter()
 
-const isloading = ref(false)
-const newsData = ref<INews>()
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const newPhotoFile = ref(null)
+  const isloading = ref(false)
+  const newsData = ref<INews>()
 
-// Get News
-onMounted(async () => {
-  if (route.params.news_id) {
-    const response = await getNewsData(route.params.news_id.toString())
+  const newPhotoFile = ref(null);
+  const showDeleteModal = ref(false);
 
-    if (response) newsData.value = response.data;
-    newsData.value.preview_image = getFileUrl(response.data.preview_image);
-    newsData.value.created_at = moment(response.data.created_at).format('YYYY-MM-DD');
+  // Get News
+  onMounted(async () => {
+    if (route.params.news_id) {
+      const response = await getMediaNewsData(route.params.news_id.toString())
 
-  } else {
-    newsData.value = {
-      title: '',
-      preview_text: '',
-      content: '',
-      published: true,
-      created_at: moment().format('YYYY-MM-DD'),
-      preview_image: null
+      if (response) newsData.value = response.data;
+      newsData.value.preview_image = getFileUrl(response.data.preview_image);
+      newsData.value.created_at = moment(response.data.created_at).format('YYYY-MM-DD');
+
+    } else {
+      newsData.value = {
+        title: '',
+        preview_text: '',
+        content: '',
+        published: true,
+        created_at: moment().format('YYYY-MM-DD'),
+        preview_image: null
+      }
+    }
+  })
+
+  // Post
+  const postNews = async () => {
+    isloading.value = true;
+    try {
+      const formData = new FormData();
+
+      for (const key in newsData.value) {
+        if (key === 'created_at') formData.append(key, moment(newsData.value[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
+        else if (key !== 'preview_image' && newsData.value[key]) formData.append(key, newsData.value[key]);
+      }
+
+      if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
+      formData.append("alias_category", 'news');
+      
+      if (route.params.news_id) await putMediaNewsData(route.params.news_id.toString(), formData)
+      else await postMediaNewsData(formData)
+
+      toast({
+        message: route.params.news_id
+          ? t('message.the-news-was-successfully-updated')
+          : t('message.the-news-was-successfully-created'),
+        type: 'success'
+      })
+
+    } finally {
+      isloading.value = false
     }
   }
-})
 
-// Post
-const postNews = async () => {
-  isloading.value = true;
-  try {
-    const formData = new FormData();
-
-    for (const key in newsData.value) {
-      if (key === 'created_at') formData.append(key, moment(newsData.value[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-      else if (key !== 'preview_image' && newsData.value[key]) formData.append(key, newsData.value[key]);
-    }
-
-    if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
-    formData.append("alias_category", 'news');
-    
-    if (route.params.news_id) await putNewsData(route.params.news_id.toString(), formData)
-    else await postNewsData(formData)
-
-    toast({
-      message: route.params.news_id
-        ? t('message.the-news-was-successfully-updated')
-        : t('message.the-news-was-successfully-created'),
-      type: 'success'
-    })
-
-    // if (!route.params.news_id) setTimeout(() => router.push('/media/news-list?offset=0&limit=20&published=true&search='), 300);
-
-  } finally {
-    isloading.value = false
+  const onDeletedNews = () => {
+    setTimeout(() => router.push('/media/news-list?offset=0&limit=20&published=true&search='), 300);
   }
-}
-
 </script>
 
 <style scoped lang="scss">
@@ -190,6 +225,27 @@ const postNews = async () => {
     justify-content: space-between;
 
     margin-bottom: 30px;
+
+    &-right {
+      display: flex;
+      grid-gap: 20px;
+    }
+
+    &-delete {
+      height: 50px;
+      width: 50px;
+
+      cursor: pointer;
+      padding: 0px !important;
+      
+      & svg {
+        height: 50px;
+        width: 50px;
+        stroke: var(--red-color);
+
+        transition: all .3s ease-in-out;
+      }
+    }
   }
 
   &-form {

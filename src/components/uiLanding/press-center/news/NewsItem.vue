@@ -306,7 +306,7 @@
   }
 
   // Adaptation
-  /* @media (max-width: 576px) {
+  @media (max-width: 576px) {
     grid-template-columns: 1fr;
     grid-gap: 20px;
     
@@ -381,6 +381,6 @@
         height: 18px;
       }
     }
-  } */
+  }
 }
 </style>

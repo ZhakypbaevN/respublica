@@ -58,33 +58,6 @@ const { t } = useI18n()
 const fractionList = [
   {
     zIndex: 6,
-    fullName: t('composition-of-faction.nurgul.full-name'),
-    description: t('composition-of-faction.nurgul.post'),
-
-    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-1.png',
-    facebook: 'https://www.facebook.com/nurgul.ttt?mibextid=LQQJ4d',
-    instagram: 'https://instagram.com/nurgul_tau?igshid=NTc4MTIwNjQ2YQ=='
-  },
-  {
-    zIndex: 5,
-    fullName: t('composition-of-faction.kuspenov.full-name'),
-    description: t('composition-of-faction.kuspenov.post'),
-
-    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-2.png',
-    facebook: 'https://www.facebook.com/olzhas.kuspekov',
-    instagram: 'https://www.instagram.com/kuspekov_olzhas/'
-  },
-  {
-    zIndex: 4,
-    fullName: t('composition-of-faction.shukizhanova.full-name'),
-    description: t('composition-of-faction.shukizhanova.post'),
-
-    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-3.png',
-    facebook: 'https://www.facebook.com/dika.ask?mibextid=LQQJ4d',
-    instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ=='
-  },
-  {
-    zIndex: 3,
     fullName: t('composition-of-faction.hodzhanazarov.full-name'),
     description: t('composition-of-faction.hodzhanazarov.post'),
 
@@ -93,7 +66,43 @@ const fractionList = [
     instagram: 'https://instagram.com/a1darbek?igshid=NTc4MTIwNjQ2YQ='
   },
   {
+    zIndex: 5,
+    fullName: t('composition-of-faction.shukizhanova.full-name'),
+    description: t('composition-of-faction.shukizhanova.post'),
+
+    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-3.png',
+    facebook: 'https://www.facebook.com/dika.ask?mibextid=LQQJ4d',
+    instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ=='
+  },
+  {
+    zIndex: 4,
+    fullName: t('composition-of-faction.berdenov.full-name'),
+    description: t('composition-of-faction.berdenov.post'),
+
+    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-6.png',
+    facebook: 'https://www.facebook.com/ruslan.berdenov?mibextid=LQQJ4d',
+    instagram: 'https://instagram.com/ruslan_berdenov?igshid=NTc4MTIwNjQ2YQ=='
+  },
+  {
+    zIndex: 3,
+    fullName: t('composition-of-faction.nurgul.full-name'),
+    description: t('composition-of-faction.nurgul.post'),
+
+    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-1.png',
+    facebook: 'https://www.facebook.com/nurgul.ttt?mibextid=LQQJ4d',
+    instagram: 'https://instagram.com/nurgul_tau?igshid=NTc4MTIwNjQ2YQ=='
+  },
+  {
     zIndex: 2,
+    fullName: t('composition-of-faction.kuspenov.full-name'),
+    description: t('composition-of-faction.kuspenov.post'),
+
+    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-2.png',
+    facebook: 'https://www.facebook.com/olzhas.kuspekov',
+    instagram: 'https://www.instagram.com/kuspekov_olzhas/'
+  },
+  {
+    zIndex: 1,
     fullName: t('composition-of-faction.naumova.full-name'),
     description: t('composition-of-faction.naumova.post'),
 
@@ -101,15 +110,6 @@ const fractionList = [
     facebook: 'https://www.facebook.com/profile.php?id=100048126368212&mibextid=LQQJ4d',
     instagram: 'https://instagram.com/_naumova_dinara?igshid=NTc4MTIwNjQ2YQ=='
   },
-  {
-    zIndex: 1,
-    fullName: t('composition-of-faction.berdenov.full-name'),
-    description: t('composition-of-faction.berdenov.post'),
-
-    img: '/img/uiLanding/fraction/banner-peoples/fraction-people-6.png',
-    facebook: 'https://www.facebook.com/ruslan.berdenov?mibextid=LQQJ4d',
-    instagram: 'https://instagram.com/ruslan_berdenov?igshid=NTc4MTIwNjQ2YQ=='
-  }
 ]
 </script>
 

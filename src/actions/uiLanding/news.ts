@@ -19,6 +19,7 @@ export const getNewsList = async (newsAlias: string, filters: any) => {
   ).data
 }
 
+// Comments
 export const getCommentsList = async (newsID: string, filters: any) => {
   return (
     await api.asyncGet<Paginator<IComment[]>>(

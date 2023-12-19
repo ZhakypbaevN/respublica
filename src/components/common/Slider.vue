@@ -102,7 +102,7 @@ onMounted(() => {
 }
 
 // Adaptation
-/* @media (max-width: 1440px) {
+@media (max-width: 1440px) {
   .slider {
     grid-gap: 28px;
   }
@@ -121,5 +121,5 @@ onMounted(() => {
   .slider {
     grid-gap: 22px;
   }
-} */
+}
 </style>

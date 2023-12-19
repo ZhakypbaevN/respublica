@@ -208,7 +208,7 @@ import { ref } from 'vue';
   }
 
   // Adaptation
-  /* @media (max-width: 1400px) {
+  @media (max-width: 1400px) {
     &-titleBlock {
       padding: 48px 0;
 
@@ -275,6 +275,6 @@ import { ref } from 'vue';
   }
 
   @media (max-width: 380px) {
-  } */
+  }
 }
 </style>

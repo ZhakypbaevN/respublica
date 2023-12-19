@@ -156,7 +156,7 @@ const aboutUsList = [
   }
 
   // Adaptation
-  /* @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     margin-top: 25px;
 
     &-inner {
@@ -298,6 +298,6 @@ const aboutUsList = [
         }
       }
     }
-  } */
+  }
 }
 </style>

@@ -40,9 +40,9 @@ const { toastList, remove } = useToast()
   overflow-x: hidden;
 
   // Adaptation
-  /* @media (max-width: 576px) {
+  @media (max-width: 576px) {
     min-width: 200px;
-  } */
+  }
 }
 
 .toast {
@@ -145,10 +145,10 @@ const { toastList, remove } = useToast()
   transition: transform 0.5s ease;
 }
 /* Адаптация */
-/* @media (max-width: 425px) {
+@media (max-width: 425px) {
   .toast-list {
     min-width: 300px;
     max-width: 400px;
   }
-} */
+}
 </style>
