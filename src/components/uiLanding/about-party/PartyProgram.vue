@@ -6,7 +6,7 @@
         <span class="partyProgram-title">{{ $t('about-us-page.party-program.restart-reforma-respublica') }}</span>
         <span class="partyProgram-sub-title">{{ $t('about-us-page.party-program.restart-reforma-respublica-subtitle') }}</span>
         
-        <a href="/doc/ru/Программа партии_.pdf" target="_blank">
+        <a href="/doc/ru/Программа предвыборная рус.pdf" target="_blank">
           <Button :name="$t('button.view-pdf')" type="outline-blue" class="partyProgram-btn">
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
@@ -18,7 +18,7 @@
         <span class="partyProgram-title">{{ $t('about-us-page.party-program.this-is-new-kazakhstan') }}</span>
         <span class="partyProgram-sub-title">{{ $t('about-us-page.party-program.partys-election-program') }}</span>
         
-        <a href="/doc/ru/Программа предвыборная рус.pdf" target="_blank">
+        <a href="/doc/ru/Идеологическая платформа партии.pdf" target="_blank">
           <Button :name="$t('button.view-pdf')" type="outline-blue" class="partyProgram-btn">
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </Button>
