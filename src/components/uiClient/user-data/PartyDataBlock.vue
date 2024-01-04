@@ -40,12 +40,12 @@
 
       <h4 class="partyData-item">
         <span>{{ $t('formdata.gender') }}:</span>
-        {{ checkGender(partyData?.gender) }}
+        {{ partyData?.gender === 'male' ? $t('male') : partyData?.gender === 'female' ? $t('female') : '-' }}
       </h4>
 
       <h4 class="partyData-item">
         <span>{{ $t('formdata.education') }}:</span>
-        {{ partyData?.education === 'higher_education' ? 'Высшее образование' : partyData?.education === 'secondary_special_education' ? 'Среднее образование' : '-' }}
+        {{ partyData?.education === 'higher_education' ? $t('higher-education') : partyData?.education === 'secondary_special_education' ? $t('secondary-special-education') : '-' }}
       </h4>
 
       <h4 class="partyData-item">
@@ -118,8 +118,6 @@
 </template>
 
 <script setup lang="ts">
-import checkGender from '@/helpers/checkGender.js'
-
 interface IProps {
   partyData: any,
   onEdit?: Function,

@@ -1,5 +1,5 @@
 import { ILocation } from "./location"
-import { IUser } from "./user"
+import { IUser } from "./users"
 
 export interface IPartyMember {
   id: number,
@@ -12,6 +12,7 @@ export interface IPartyMember {
   specialty?: string,
   social_status?: string,
   reason_revoke?: string,
+  workplace?: string,
   position?: string,
   join_date: string,
   education?: string,
