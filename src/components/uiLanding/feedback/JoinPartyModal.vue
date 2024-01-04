@@ -70,8 +70,8 @@
           name="education"
           :placeholder="$t('formdata.specify-your-education')"
           :options="[
-            {label: $t('formdata.higher'), value: 'higher_education'},
-            {label: $t('formdata.average'), value: 'secondary_special_education'},
+            {label: $t('status.higher'), value: 'higher_education'},
+            {label: $t('status.average'), value: 'secondary_special_education'},
           ]"
           required
         />

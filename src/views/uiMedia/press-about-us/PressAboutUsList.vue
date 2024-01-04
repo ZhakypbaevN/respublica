@@ -84,7 +84,7 @@
     const {
       data,
       total
-    } = await getNewsList('press-about-us', {
+    } = await getMediaNewsList('press-about-us', {
       ...route.query
     })
     newsValues.tableValues = data;

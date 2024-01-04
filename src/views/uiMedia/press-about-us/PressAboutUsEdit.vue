@@ -140,7 +140,7 @@
   // Get News
   onMounted(async () => {
     if (route.params.news_id) {
-      const response = await getNewsData(route.params.news_id.toString())
+      const response = await getMediaNewsData(route.params.news_id.toString())
 
       if (response) newsData.value = response.data;
       newsData.value.preview_image = getFileUrl(response.data.preview_image);
@@ -148,10 +148,10 @@
 
     } else {
       newsData.value = {
-        title: 'What is Lorem Ipsum?',
-        preview_text: 'From its medieval origins to the digital era, learn everything there is to know about the ubiquitous lorem ipsum passage.',
-        source_title: 'loremipsum.io',
-        source_url: 'https://loremipsum.io/#lorem-ipsum-all-the-things',
+        title: '',
+        preview_text: '',
+        source_title: '',
+        source_url: '',
         published: true,
         created_at: moment().format('YYYY-MM-DD'),
         content: 'string',
@@ -175,8 +175,8 @@
       formData.append("alias_category", 'press-about-us');
       formData.append("content", 'string');
       
-      if (route.params.news_id) await putNewsData(route.params.news_id.toString(), formData)
-      else await postNewsData(formData)
+      if (route.params.news_id) await putMediaNewsData(route.params.news_id.toString(), formData)
+      else await postMediaNewsData(formData)
 
       toast({
         message: route.params.news_id
@@ -184,8 +184,6 @@
           : t('message.the-news-was-successfully-created'),
         type: 'success'
       })
-
-      // if (!route.params.news_id) setTimeout(() => router.push('/media/press-about-us?offset=0&limit=20&published=true&search='), 300);
 
     } finally {
       isloading.value = false
