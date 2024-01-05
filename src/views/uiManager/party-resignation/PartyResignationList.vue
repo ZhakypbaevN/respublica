@@ -89,7 +89,7 @@
     const {
       data,
       total
-    } = await getPartyResignationsList(route.params.filter.toString(), {
+    } = await getPartyResignationsList(route.params.filter?.toString(), {
       ...route.query
     })
     partyValues.tableValues = data;
