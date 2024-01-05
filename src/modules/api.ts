@@ -122,9 +122,8 @@ const request = function (
 if (localStorage.getItem('access_token') != null) {
   api.defaults.headers.common.Authorization =
     'Bearer' + ' ' + localStorage.getItem('access_token')
-} else if (sessionStorage.getItem('access_token') != null) {
-  api.defaults.headers.common.Authorization =
-    'Bearer' + ' ' + sessionStorage.getItem('access_token')
+} else {
+  api.defaults.headers.common.Authorization = null;
 }
 
 api.defaults.headers.common['Accept-Language'] = getLangForURL();
