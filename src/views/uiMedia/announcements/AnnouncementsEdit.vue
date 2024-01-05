@@ -129,7 +129,7 @@ const newPhotoFile = ref(null)
 // Get News
 onMounted(async () => {
   if (route.params.news_id) {
-    const response = await getNewsData(route.params.news_id.toString())
+    const response = await getMediaNewsData(route.params.news_id.toString())
 
     if (response) newsData.value = response.data;
     newsData.value.preview_image = getFileUrl(response.data.preview_image);
@@ -161,8 +161,8 @@ const postNews = async () => {
     if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
     formData.append("alias_category", 'announcements');
     
-    if (route.params.news_id) await putNewsData(route.params.news_id.toString(), formData)
-    else await postNewsData(formData)
+    if (route.params.news_id) await putMediaNewsData(route.params.news_id.toString(), formData)
+    else await postMediaNewsData(formData)
 
     toast({
       message: route.params.news_id

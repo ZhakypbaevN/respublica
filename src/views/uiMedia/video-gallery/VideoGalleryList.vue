@@ -79,7 +79,7 @@
     const {
       data,
       total
-    } = await getNewsList('video-gallery', {
+    } = await getMediaNewsList('video-gallery', {
       ...route.query
     })
     newsValues.tableValues = data;
