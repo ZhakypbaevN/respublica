@@ -20,7 +20,7 @@
           v-for="(data, index) of ticketNumList"
           :key="data"
           :data="data"
-          @delete="() => removeItem(index)"
+          @delete="() => removeItem({index: index})"
         />
       </div>
     </div>

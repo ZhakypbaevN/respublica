@@ -48,8 +48,7 @@
   import { ref } from 'vue';
   import { useI18n } from 'vue-i18n'
 
-  import api from '@/modules/api'
-  import { defaultLocale } from '@/assets/lang/exports'
+  import { defaultLocale, setNewLang } from '@/assets/lang/exports'
 
   const { t } = useI18n()
 
@@ -81,10 +80,7 @@
     selectLang.value = newLang;
     showDropdown.value = false;
 
-    localStorage.setItem('lang-respublica', newLang);
-    api.defaults.headers.common['Accept-Language'] =
-      newLang == 'kz' ? 'kz-KZ' : 'ru-RU'
-    location.reload();
+    setNewLang(newLang);
   }
 
   const langName = (lang) => {

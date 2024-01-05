@@ -4,6 +4,8 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import { useToast } from '@/modules/toast'
 import { useAuth } from '@/modules/auth'
 
+import { getLangForURL } from '@/assets/lang/exports'
+
 // const { t } = useI18n()
 const { toast } = useToast()
 const { logout } = useAuth()
@@ -122,11 +124,11 @@ if (localStorage.getItem('access_token') != null) {
   api.defaults.headers.common.Authorization =
     'Bearer' + ' ' + localStorage.getItem('access_token')
 
-  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang-respublica') == 'kz' ? 'kz-KZ' : 'ru-RU'
+  api.defaults.headers.common['Accept-Language'] = getLangForURL();
 } else if (sessionStorage.getItem('access_token') != null) {
   api.defaults.headers.common.Authorization =
     'Bearer' + ' ' + sessionStorage.getItem('access_token')
-  api.defaults.headers.common['Accept-Language'] = localStorage.getItem('lang-respublica') == 'kz' ? 'kz-KZ' : 'ru-RU'
+  api.defaults.headers.common['Accept-Language'] = getLangForURL();
 }
 
 api.requestGet = function (

@@ -132,9 +132,9 @@
 </template>
 
 <script setup lang="ts">
-  import PublishToggle from '@/components/uiMedia/common-for-edit/PublishToggle.vue'
-  import NewsComments from '@/components/uiMedia/common-for-edit/NewsComments.vue';
-  import DeleteModal from '@/components/uiMedia/news/DeleteModal.vue'
+  import PublishToggle from '@/components/uiMassMedia/common-for-edit/PublishToggle.vue'
+  import NewsComments from '@/components/uiMassMedia/common-for-edit/NewsComments.vue';
+  import DeleteModal from '@/components/uiMassMedia/news/DeleteModal.vue'
 
   import moment from 'moment';
 

@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import NewsItem from "../../../components/uiMedia/news-for-faction/newsItem.vue"
+import NewsItem from "@/components/uiMassMedia/news-for-faction/newsItem.vue"
 
 import axios from 'axios';
 import { onMounted, reactive, ref } from 'vue';

@@ -82,7 +82,7 @@ import { ref } from 'vue';
       pdf: "/doc/ru/Программа предвыборная рус.pdf",
     },
     {
-      color: '#894BEC',
+      color: '#0b1e52',
       img: '/img/uiLanding/party-program/E.png',
       title: t('home.party-program.party-election-program-respublica'),
       pdf: "/doc/ru/Идеологическая платформа партии.pdf",
@@ -263,15 +263,258 @@ import { ref } from 'vue';
   }
 
   @media (max-width: 1200px) {
+    &-titleBlock {
+      padding: 48px 0;
+
+      &-description {
+        font-size: 28px;
+      }
+
+      &-title {
+        font-size: 58px;
+      }
+    }
+
+    &-slider {
+      grid-template-columns: 360px 1fr 65px;
+      grid-gap: 80px;
+
+      padding: 55px 0;
+
+      &-preview {
+        height: 360px;
+      }
+
+      &-title {
+        font-size: 38px;
+        margin-bottom: 50px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+        border-radius: 100px;
+
+        & svg {
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      &-control {
+        grid-gap: 12px;
+    
+        &-btn svg {
+          height: 60px;
+          width: 60px;
+        }
+
+        &-line {
+          height: 2px;
+          width: 33px;
+        }
+      }
+    }
   }
 
   @media (max-width: 992px) {
+    &-titleBlock {
+      padding: 48px 0;
+
+      &-description {
+        font-size: 28px;
+      }
+
+      &-title {
+        font-size: 38px;
+      }
+    }
+
+    &-slider {
+      grid-template-columns: 280px 1fr;
+      grid-gap: 30px 100px;
+
+      padding: 55px 0;
+
+      &-preview {
+        height: 300px;
+      }
+
+      &-title {
+        font-size: 38px;
+        margin-bottom: 50px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+        border-radius: 100px;
+
+        & svg {
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      &-control {
+        justify-content: center;
+        flex-direction: row;
+        grid-column: 1/3;
+        grid-gap: 12px;
+    
+        &-btn svg {
+          height: 50px;
+          width: 50px;
+        }
+
+        &-btn:first-child {
+          transform: rotate(-90deg);
+        }
+
+        &-btn:last-child {
+          transform: rotate(-90deg);
+        }
+
+        &-line {
+          height: 30px;
+          width: 2px;
+        }
+      }
+    }
   }
 
   @media (max-width: 768px) {
+    &-titleBlock {
+      padding: 48px 0;
+
+      &-description {
+        font-size: 28px;
+      }
+
+      &-title {
+        font-size: 38px;
+      }
+    }
+
+    &-slider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      grid-gap: 70px;
+
+      padding: 55px 0;
+
+      &-preview {
+        height: 280px;
+      }
+
+      &-title {
+        font-size: 38px;
+        margin-bottom: 30px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+        border-radius: 100px;
+
+        & svg {
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      &-control {
+        justify-content: center;
+        flex-direction: row;
+        grid-column: 1;
+        grid-gap: 12px;
+    
+        &-btn svg {
+          height: 50px;
+          width: 50px;
+        }
+
+        &-btn:first-child {
+          transform: rotate(-90deg);
+        }
+
+        &-btn:last-child {
+          transform: rotate(-90deg);
+        }
+
+        &-line {
+          height: 30px;
+          width: 2px;
+        }
+      }
+    }
   }
 
   @media (max-width: 576px) {
+    &-titleBlock {
+      padding: 48px 0;
+
+      &-description {
+        font-size: 28px;
+      }
+
+      &-title {
+        font-size: 38px;
+      }
+    }
+
+    &-slider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      grid-gap: 50px;
+
+      padding: 55px 0;
+
+      &-preview {
+        height: 220px;
+      }
+
+      &-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+      }
+
+      &-link {
+        grid-gap: 10px;
+        border-radius: 100px;
+
+        & svg {
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      &-control {
+        justify-content: center;
+        flex-direction: row;
+        grid-column: 1;
+        grid-gap: 12px;
+    
+        &-btn svg {
+          height: 50px;
+          width: 50px;
+        }
+
+        &-btn:first-child {
+          transform: rotate(-90deg);
+        }
+
+        &-btn:last-child {
+          transform: rotate(-90deg);
+        }
+
+        &-line {
+          height: 30px;
+          width: 2px;
+        }
+      }
+    }
   }
 
   @media (max-width: 380px) {
