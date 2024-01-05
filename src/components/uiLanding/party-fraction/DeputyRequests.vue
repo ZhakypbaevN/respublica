@@ -84,20 +84,10 @@ import { reactive, ref } from "vue";
 
 const deputieslist = reactive([
   {
-    name: "Ходжаназаров А.",
+    name: "А. Ходжаназаров",
     img: "/img/uiLanding/fraction/khodzhanazarov.jpg",
     active: true,
     data: [
-      {
-        title: "14 Апреля 2023 года",
-        docAndDescription:
-          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23.pdf",
-        name: "Касательно мер по ликвидации засухи",
-        video: null,
-        answerDate: "17 Мая 2023 года",
-        answerDoc:
-          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23 жауап.pdf",
-      },
       {
         title: "16 Июня 2023 года",
         docAndDescription:
@@ -137,14 +127,24 @@ const deputieslist = reactive([
         docAndDescription:
           "public/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 13.09.23.pdf",
         video: null,
-        answerDate: "15 мая 2023 года",
+        answerDate: "15 Мая 2023 года",
         answerDoc: null,
+      },
+      {
+        title: "14 Апреля 2023 года",
+        docAndDescription:
+          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23.pdf",
+        name: "Касательно мер по ликвидации засухи",
+        video: null,
+        answerDate: "17 Мая 2023 года",
+        answerDoc:
+          "/doc/ru/deputies-requests/khodzhanazarov/Ходжаназаров 12.04.23 жауап.pdf",
       },
     ],
   },
 
   {
-    name: "ШУКИЖАНОВА Д.",
+    name: "Д. ШУКИЖАНОВА",
     img: "/img/uiLanding/fraction/shukizhanova.jpg",
     active: false,
     data: [
@@ -171,7 +171,7 @@ const deputieslist = reactive([
   },
 
   {
-    name: "БЕРДЕНОВ Р.",
+    name: "Р. БЕРДЕНОВ",
     img: "/img/uiLanding/fraction/berdenov.jpg",
     active: false,
     data: [
@@ -206,7 +206,7 @@ const deputieslist = reactive([
   },
 
   {
-    name: "ТАУ Н.",
+    name: "Н. ТАУ",
     img: "/img/uiLanding/fraction/tau.jpg",
     active: false,
     data: [
@@ -259,7 +259,7 @@ const deputieslist = reactive([
   },
 
   {
-    name: "КУСПЕКОВ О.",
+    name: "О. КУСПЕКОВ",
     img: "/img/uiLanding/fraction/kuspekov.jpg",
     active: false,
     data: [
@@ -309,7 +309,7 @@ const deputieslist = reactive([
   },
 
   {
-    name: "НАУМОВА Д.",
+    name: "Д. НАУМОВА",
     img: "/img/uiLanding/fraction/naumova.jpg",
     active: false,
     data: [
@@ -350,7 +350,7 @@ const toggleShow = (idx: number) => {
     deputieslist[i].active = false;
   }
   deputieslist[idx].active = true;
-  tableContentList.value = deputieslist[idx].data;
+  tableContentList.value = deputieslist[idx].data.map(item => item).reverse();
 };
 </script>
 

@@ -44,9 +44,9 @@
 </template>
 
 <script setup lang="ts">
-  import PhotoCardList from "@/components/uiMedia/gallery/photo/photo-list/PhotoCardList.vue"
-  import PhotoSideBar from "@/components/uiMedia/gallery/photo/sidebar/PhotoSidebar.vue"
-  import CreateAlbomModal from "@/components/uiMedia/gallery/photo/sidebar/CreateAlbomModal.vue"
+  import PhotoCardList from "@/components/uiMassMedia/gallery/photo/photo-list/PhotoCardList.vue"
+  import PhotoSideBar from "@/components/uiMassMedia/gallery/photo/sidebar/PhotoSidebar.vue"
+  import CreateAlbomModal from "@/components/uiMassMedia/gallery/photo/sidebar/CreateAlbomModal.vue"
 
   import { ref, reactive, onMounted } from "vue";
   

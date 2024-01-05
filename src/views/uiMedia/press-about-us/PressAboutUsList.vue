@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-  import NewsItem from "@/components/uiMedia/press-about-us/NewsItem.vue"
+  import NewsItem from "@/components/uiMassMedia/press-about-us/NewsItem.vue"
 
   import { useI18n } from 'vue-i18n'
   import { useRoute, useRouter } from 'vue-router'

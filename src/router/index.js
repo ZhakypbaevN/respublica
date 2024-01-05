@@ -9,7 +9,6 @@ import NotFound from '@/views/404NotFound.vue'
 import PageInDevelopment from '@/views/InDevelopment.vue'
 
 import Home from '@/views/uiLanding/Home.vue'
-import Home_2 from '@/views/uiLanding/Home-2.vue'
 import Feedback from '@/views/uiLanding/Feedback.vue'
 import AboutParty from '@/views/uiLanding/AboutParty.vue'
 import Contacts from '@/views/uiLanding/Contacts.vue'
@@ -40,9 +39,9 @@ import Faq from '@/views/uiLanding/Faq.vue'
 import Donations from '@/views/uiLanding/Donations.vue'
 
 
-// ------------------ UI Bussiness ------------------
-import BusinessAppealList from '@/views/uiBusiness/appeal/AppealList.vue'
-import BusinessAppealDetail from '@/views/uiBusiness/appeal/AppealDetail.vue'
+// ------------------ UI Reception ------------------
+import ReceptionAppealList from '@/views/uiReception/appeal/AppealList.vue'
+import ReceptionAppealDetail from '@/views/uiReception/appeal/AppealDetail.vue'
 
 
 // ------------------ UI Manager ------------------
@@ -88,10 +87,10 @@ import UsersList from '@/views/uiAdmin/UsersList.vue'
 
 // Layouts
 const MainLayoutAdmin = () => import('@/components/uiAdmin/layouts/MainLayoutAdmin.vue')
-const MainLayoutBusiness = () => import('@/components/uiBusiness/layouts/MainLayoutBusiness.vue')
+const MainLayoutReception = () => import('@/components/uiReception/layouts/MainLayoutReception.vue')
 const MainLayoutClient = () => import('@/components/uiClient/layouts/MainLayoutClient.vue')
 const MainLayoutManager = () => import('@/components/uiManager/layouts/MainLayoutManager.vue')
-const MainLayoutMedia = () => import('@/components/uiMedia/layouts/MainLayoutMedia.vue')
+const MainLayoutMedia = () => import('@/components/uiMassMedia/layouts/MainLayoutMedia.vue')
 
 const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
@@ -106,11 +105,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-  },
-  {
-    path: '/variant-2',
-    name: 'Home_2',
-    component: Home_2,
   },
   {
     path: '/about-party',
@@ -267,31 +261,31 @@ const routes = [
     ]
   },
 
-  // UI Business
+  // UI Reception
   {
-    path: '/business',
-    name: 'Business',
-    component: MainLayoutBusiness,
-    meta: { title: 'business', requiresAuth: true },
+    path: '/reception',
+    name: 'Reception',
+    component: MainLayoutReception,
+    meta: { title: 'reception', requiresAuth: true },
     redirect: to => {
-      return '/business/appeal-list/new'
+      return '/reception/appeal-list/new'
     },
     children: [
-      { path: '/:pathMatch(.*)*', name: 'BusinessNotFound', component: NotFound },
-      { path: '/page-in-development', name: 'BusinessPageInDevelopment', component: PageInDevelopment },
+      { path: '/:pathMatch(.*)*', name: 'ReceptionNotFound', component: NotFound },
+      { path: '/page-in-development', name: 'ReceptionPageInDevelopment', component: PageInDevelopment },
       {
         path: 'appeal-list/:filter',
-        name: 'BusinessAppealList',
-        component: BusinessAppealList
+        name: 'ReceptionAppealList',
+        component: ReceptionAppealList
       },
       {
         path: 'appeal-data/:appeal_id',
-        name: 'BusinessAppealDetail',
-        component: BusinessAppealDetail
+        name: 'ReceptionAppealDetail',
+        component: ReceptionAppealDetail
       },
       {
         path: 'analytics',
-        name: 'BusinessAnalytics',
+        name: 'ReceptionAnalytics',
         component: Analytics
       }
     ]

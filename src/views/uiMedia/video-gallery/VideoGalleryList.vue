@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-  import YoutubeItem from '@/components/uiMedia/gallery/video/YoutubeItem.vue'
+  import YoutubeItem from '@/components/uiMassMedia/gallery/video/YoutubeItem.vue'
 
   import { onMounted, reactive, watch, ref } from 'vue';
   import { useRoute, useRouter } from 'vue-router'
