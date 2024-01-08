@@ -99,5 +99,37 @@
       color: var(--grey-color);
     }
   }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    grid-template-columns: 80px 1fr;
+    grid-gap: 12px;
+    
+    padding: 10px 14px;
+
+    &-info {
+      &-name {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      &-date {
+        font-size: 16px;
+        margin-bottom: 2px;
+      }
+
+      &-city {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    border-bottom-color: transparent;
+  }
+
+  @media (max-width: 660px) {
+    border-bottom-color: var(--light-gray-color-op20);
+  }
 }
 </style>

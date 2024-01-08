@@ -112,6 +112,10 @@
     & .newsItem-preview-img {
       padding-bottom: 50%;;
     }
+
+    & .newsItem-title {
+      margin-bottom: 0px !important;
+    }
   }
 
   &:hover {
@@ -200,8 +204,6 @@
   &-description {
     font-size: 20px;
     line-height: 1.2;
-
-    margin-bottom: 15px;
   }
 }
 .newsItemMini {

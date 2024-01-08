@@ -1,6 +1,6 @@
 <template>
   <LandingLayout :list="sideBarlinks">
-    <section class="news landing-block" id="newsList">
+    <section class="pressCenter landing-block" id="newsList">
       <div class="wrapper">
         <div class="landing-header">
           <h2 class="landing-title">
@@ -32,7 +32,7 @@
       </div>
     </section>
 
-    <section class="news landing-block" id="pressAboutUS">
+    <section class="pressCenter landing-block" id="pressAboutUS">
       <div class="wrapper">
         <div class="landing-header">
           <h2 class="landing-title">
@@ -66,7 +66,7 @@
       </div>
     </section>
 
-    <section class="news landing-block" id="videoGallery">
+    <section class="pressCenter landing-block" id="videoGallery">
       <div class="wrapper">
         <div class="landing-header">
           <h2 class="landing-title">
@@ -232,10 +232,21 @@
 </script>
 
 <style scoped lang="scss">
+  .pressCenter .landing-items {
+    // Adaptation
+    @media (max-width: 1400px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
   .photo-gallery {
     background-color: white;
   }
   .contacts {
+    margin-top: 40px;
     background-color: var(--accent-color);
     
     &-inner {
@@ -251,8 +262,9 @@
     }
 
     &-link {
-      display: flex;
+      display: grid;
       align-items: center;
+      grid-template-columns: 52px 1fr;
       grid-gap: 20px;
 
       & svg {
@@ -265,6 +277,124 @@
         font-size: 28px;
         font-weight: 600;
       }
+    }
+
+    // Adaptation
+    @media (max-width: 1700px) {
+      &-inner {
+        grid-gap: 60px;
+      }
+
+      &-title {
+        font-size: 34px;
+      }
+
+      &-link {
+        grid-template-columns: 52px 1fr;
+        grid-gap: 20px;
+
+        & svg {
+          height: 52px;
+          width: 52px;
+        }
+
+        & span {
+          font-size: 24px;
+        }
+      }
+    }
+
+    @media (max-width: 1570px) {
+      padding: 20px 0;
+
+      &-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 24px 40px;
+      }
+
+      &-title {
+        grid-column: 1/3;
+        font-size: 34px;
+      }
+
+      &-link {
+        grid-template-columns: 52px 1fr;
+        grid-gap: 20px;
+
+        & svg {
+          height: 52px;
+          width: 52px;
+        }
+
+        & span {
+          font-size: 24px;
+        }
+      }
+    }
+
+    @media (max-width: 1200px) {
+      padding: 20px 0;
+
+      &-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px 40px;
+      }
+
+      &-title {
+        font-size: 28px;
+      }
+
+      &-link {
+        grid-template-columns: 48px 1fr;
+        grid-gap: 18px;
+
+        & svg {
+          height: 48px;
+          width: 48px;
+        }
+
+        & span {
+          font-size: 20px;
+        }
+      }
+    }
+
+    @media (max-width: 660px) {
+      &-title {
+        font-size: 24px;
+      }
+
+      &-link {
+        grid-template-columns: 32px 1fr;
+        grid-gap: 10px;
+
+        & svg {
+          height: 32px;
+          width: 32px;
+        }
+
+        & span {
+          font-size: 18px;
+        }
+      }
+    }
+
+    @media (max-width: 500px) {
+      margin-top: 30px;
+
+      &-inner {
+        grid-template-columns: 1fr;
+        grid-gap: 14px;
+      }
+
+      &-title {
+        grid-column: 1/2;
+      }
+    }
+
+    @media (max-width: 380px) {
     }
   }
 </style>

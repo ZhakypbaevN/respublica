@@ -79,6 +79,7 @@ const aboutPartyList = [
 .aboutParty {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  padding-bottom: 0px !important;
 
   &-item {
     padding-bottom: 100%;

@@ -77,18 +77,23 @@
                 />
               </button>
             </div>
+            
 
-            <button
-              v-else
-              class="header-main-close"
-              @click="back"
-            >
-              <SvgIcon
-                name="close"
-                :viewboxHeight="37"
-                :viewboxWidth="37"
-              />
-            </button>
+            <div class="header-main-right" style="grid-gap: 30px;" v-else>
+              <LangToggle :light="false" />
+
+              <button
+                class="header-main-close"
+                @click="back"
+              >
+                <SvgIcon
+                  name="close"
+                  :viewboxHeight="37"
+                  :viewboxWidth="37"
+                />
+              </button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -97,17 +102,22 @@
     <div class="headerSidebar" :class="{show: showSideBar}">
       <div class="headerSidebar-header">
         <h3 class="headerSidebar-header-title">{{ $t('button.menu') }}</h3>
-        <button
-          class="headerSidebar-header-exitBtn"
-          @click="() => showSideBar = false"
-        >
-          <SvgIcon
-            name="x"
-            class="headerSidebar-header-exitBtn-icon"
-            :viewboxHeight="14"
-            :viewboxWidth="14"
-          />
-        </button>
+
+        <div class="headerSidebar-header-right">
+          <LangToggle :light="false" />
+
+          <button
+            class="headerSidebar-header-exitBtn"
+            @click="() => showSideBar = false"
+          >
+            <SvgIcon
+              name="x"
+              class="headerSidebar-header-exitBtn-icon"
+              :viewboxHeight="14"
+              :viewboxWidth="14"
+            />
+          </button>
+        </div>
       </div>
       
       <div class="headerSidebar-content">
@@ -194,7 +204,7 @@
     headerClingingToTop.value = window.pageYOffset === 0;
     if (window.pageYOffset >= headerOffsetTop.value) {
       isSticky.value = true;
-      if (headerMain) paddingBottom.value = headerMain!.offsetHeight + 'px';
+      if (headerMain) paddingBottom.value = headerMain!['offsetHeight'] + 'px';
       sideBar?.classList.add('fixed');
     } else {
       isSticky.value = false;
@@ -207,8 +217,9 @@
     window.addEventListener('scroll', handleScroll);
     const headerMain = document.querySelector('#header-main');
     
-    if (headerMain) headerOffsetTop.value = headerMain!.offsetTop;
-    document.body.style ='height:auto;overflow:auto;';
+    if (headerMain) headerOffsetTop.value = headerMain!['offsetTop'];
+    document.body.style.height = 'auto';
+    document.body.style.overflow = 'auto';
     handleScroll();
   });
 
@@ -615,6 +626,11 @@
     &-title {
       font-size: 22px;
       font-weight: 600;
+    }
+
+    &-right {
+      display: flex;
+      grid-gap: 20px;
     }
 
     &-exitBtn {
