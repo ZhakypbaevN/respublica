@@ -5,18 +5,16 @@
   
       <div class="layout">
         <div class="layout-menu">
-          <div class="left-menu" id="sideBar">
-            <div class="left-menu-list">
-              <ul>
-                <a
-                  v-for="link of list"
-                  :key="link.title"
-                  :href="link.link"
-                >
-                    <li>{{ link.title }}</li>
-                </a>
-              </ul>
-            </div>
+          <div class="layout-menu-inner" id="sideBar">
+            <ul class="layout-menu-inner-list">
+              <a
+                v-for="link of list"
+                :key="link.title"
+                :href="link.link"
+              >
+                  <li>{{ link.title }}</li>
+              </a>
+            </ul>
           </div>
         </div>
         
@@ -49,7 +47,35 @@ withDefaults(defineProps<IProps>(), {})
 
   &-menu {
     width: 325px;
-    background: #041a3f;
+    background: var(--primary-color);
+
+    &-inner {
+      top: 70px;
+      position: sticky;
+      padding-top: 30px;
+      transition: all .3s ease-in-out;
+      overflow-y: auto;
+
+      &.fixed {
+        padding-top: 45px;
+      }
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 40px;
+
+        padding: 20px 30px;
+
+        & li {
+          color: #FFF;
+          font-size: 18px;
+          font-weight: 400;
+          word-wrap: break-word;
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   &-content {
@@ -59,31 +85,92 @@ withDefaults(defineProps<IProps>(), {})
     flex-direction: column;
     justify-content: center;
   }
-}
 
-.left-menu {
-  top: 70px;
-  position: sticky;
-  padding-top: 50px;
-  transition: all .3s ease-in-out;
-  overflow-y: auto;
+  // Adaptation
 
-  &.fixed {
-    padding-top: 90px;
-  }
-
-  &-list {
-    margin-left: 47px;
-
-    & ul li {
-      color: #FFF;
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 41px;
-      word-wrap: break-word;
-      width: 210px;
-      cursor: pointer;
+  @media (max-width: 1200px) {
+    &-menu {
+      width: 300px;
     }
   }
+
+  @media (max-width: 992px) {
+    display: block;
+
+    &-menu {
+      width: 100%;
+
+      &-inner {
+        position: static;
+        top: 0px;
+        padding: 30px;
+
+        &.fixed {
+          padding: 30px;
+        }
+
+        &-list {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          
+          grid-gap: 20px;
+          padding: 0px;
+
+          & li {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 660px) {
+    &-menu {
+      &-inner {
+        padding: 30px;
+
+        &.fixed {
+          padding: 30px;
+        }
+
+        &-list {
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 18px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-menu {
+      &-inner {
+        padding: 30px;
+
+        &.fixed {
+          padding: 30px;
+        }
+
+        &-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+  }
 }
+</style>
+<style lang="scss">
+  .layout-content .wrapper {
+    padding: 0 30px !important;
+
+    @media (max-width: 768px) {
+      padding: 0 20px !important;
+    }
+
+    @media (max-width: 576px) {
+      padding: 0 14px !important;
+    }
+  }
 </style>

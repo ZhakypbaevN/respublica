@@ -78,8 +78,8 @@ import { ref } from 'vue';
     {
       color: '#4A78EC',
       img: '/img/uiLanding/party-program/R.png',
-      title: t('home.party-program.party-program-respublica'),
-      pdf: "/doc/ru/Программа предвыборная рус.pdf",
+      title: t('about-us-page.party-program.partys-election-program'),
+      pdf: "/doc/ru/Программа партии_.pdf",
     },
     {
       color: '#0b1e52',

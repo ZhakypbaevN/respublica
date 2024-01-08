@@ -83,5 +83,32 @@
     border-radius: 10px;
     padding-bottom: 72%;
   }
+
+  // Adaptation
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px 20px;
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
+  }
+
+  @media (max-width: 660px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 14px;
+  }
+
+  @media (max-width: 576px) {
+    grid-gap: 10px;
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 </style>

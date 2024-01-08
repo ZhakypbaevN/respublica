@@ -41,5 +41,25 @@
   display: flex;
   flex-direction: column;
   grid-gap: 10px;
+
+  @media (max-width: 992px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 660px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
+  }
 }
+</style>
+<style>
+  .sidebar .albom:last-child {
+    border-bottom-color: transparent !important;
+  }
 </style>

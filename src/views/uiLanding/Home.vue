@@ -1,5 +1,5 @@
 <template>
-  <div class="home wrapper-main">
+  <main class="home wrapper-main">
     <div>
       <Header defaultFixed withoutPaddingBottom />
 
@@ -17,7 +17,7 @@
     </div>
 
     <Footer /> 
-  </div>
+  </main>
 
   <JoinPartyModal
     :show="showJoinPartyModal"

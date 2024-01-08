@@ -64,33 +64,48 @@
 <style scoped lang="scss">
   .photo {
     &-inner {
-      min-height: 700px;
-
       display: grid;
       grid-template-columns: 1fr 520px;
-      align-items: flex-start;
       grid-gap: 40px;
-
-      padding: 25px;
-      border-radius: 10px;
     }
 
-    &-addBtn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      grid-gap: 10px;
-
-      padding: 8px 14px !important;
-      padding-left: 26px !important;
-
-
-      & svg {
-        height: 40px;
-        width: 40px;
-
-        fill: var(--accent-color);
+    // Adaptation
+    @media (max-width: 1900px) {
+      &-inner {
+        grid-template-columns: 1fr 400px;
+        grid-gap: 40px;
       }
+    }
+
+    @media (max-width: 1400px) {
+      &-inner {
+        grid-template-columns: 1fr 400px;
+        grid-gap: 30px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      &-inner {
+        grid-template-columns: 1fr 320px;
+        grid-gap: 20px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      &-inner {
+        display: flex;
+        flex-direction: column-reverse;
+        grid-gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 576px) {
+    }
+
+    @media (max-width: 380px) {
     }
   }
 </style>
