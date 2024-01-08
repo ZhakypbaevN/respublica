@@ -107,16 +107,26 @@
     root.setThemes([
       am5themes_Animated.new(root)
     ]);
-    let chart = root.container.children.push(
-      am5map.MapChart.new(root, {
-        panX: "none",
-        panY: "none",
-        projection: am5map.geoMercator(),
-        wheelY: "none",
-        minZoomLevel: 1,
-        maxZoomLevel: 1
-      })
-    );
+    let chart = window.innerWidth <= 992
+      ? root.container.children.push(
+          am5map.MapChart.new(root, {
+            panX: "rotateX",
+            wheelY: "zoom",
+            minZoomLevel: 0.5,
+            maxZoomLevel: 16,
+            projection: am5map.geoMercator()
+          })
+        )
+      : root.container.children.push(
+          am5map.MapChart.new(root, {
+            panX: "none",
+            panY: "none",
+            projection: am5map.geoMercator(),
+            wheelY: "none",
+            minZoomLevel: 1,
+            maxZoomLevel: 1
+          })
+        );
   
     // -------- Create polygon series --------
     const getCount = polygonId => {
@@ -301,6 +311,30 @@
 .map {
   width: 100%;
   height: 900px;
+
+  // Adaptation
+  @media (max-width: 1750px) {
+    height: 800px;
+  }
+
+  @media (max-width: 1600px) {
+    height: 700px;
+  }
+
+  @media (max-width: 1400px) {
+    height: 600px;
+  }
+
+  @media (max-width: 1200px) {
+    height: 500px;
+  }
+
+  @media (max-width: 992px) {
+    height: 380px;
+
+    border: 2px dashed var(--accent-color-op50);
+    background-color: var(--accent-color-op05);
+  }
 }
 
 .mapSidebar {

@@ -29,14 +29,12 @@
         </div>
       </div>
 
-      <div class="faq-block">
-        <div class="wrapper">
-          <Transition>
-            <MapWithSideBar v-if="controlBtns[0].active" />
+      <div class="wrapper">
+        <Transition>
+          <MapWithSideBar v-if="controlBtns[0].active" />
 
-            <ListDeputies v-else />
-          </Transition>
-        </div>
+          <ListDeputies v-else />
+        </Transition>
       </div>
     </section>
   </div>

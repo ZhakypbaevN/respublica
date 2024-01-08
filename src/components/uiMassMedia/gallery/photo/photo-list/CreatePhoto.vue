@@ -30,7 +30,6 @@
 <script setup lang="ts">
 import ImageCrop from '@/components/common/ImageCrop.vue'
 
-import axios from 'axios'
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n'
 
