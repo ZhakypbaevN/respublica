@@ -118,6 +118,7 @@
       padding: 6px;
       border-radius: 10px;
       background-color: white;
+      box-shadow: 0 4px 8px rgba(160,174,192,.25);
 
       transition: opacity .3s ease-in-out, top .3s ease-in-out;
 

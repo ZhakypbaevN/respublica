@@ -134,21 +134,30 @@ const snList = [
   }
 
   // Adaptation
-  @media (max-width: 992px) {
+  @media (max-width: 1200px) {
     grid-gap: 18px;
-
-    &-item {
-      height: 30px;
-      width: 30px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    grid-gap: 16px;
 
     &-item {
       height: 28px;
       width: 28px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    grid-gap: 16px;
+
+    &-item {
+      height: 26px;
+      width: 26px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-gap: 14px;
+
+    &-item {
+      height: 24px;
+      width: 24px;
     }
   }
 

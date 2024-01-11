@@ -10,7 +10,7 @@
   >
     <div class="wrapper">
       <div class="links-wrapper scroll-top" id="links">
-        <div class="links">
+        <div class="partyFraction-links-items">
           <RouterLink to="/meeting-with-voters/1" class="landing-link with-line" id="meetings-with-voters">
             <span>
               {{ $t('meeting-with-voters.title') }}
@@ -67,19 +67,45 @@ const sideBarlinks = [
 </script>
   
 <style scoped lang="scss">
-.links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 32%;
+.partyFraction-links {
+  padding-bottom: 100px;
+
+  &-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 32%;
+  }
 
   & .landing-link:last-child {
     margin-bottom: 0px;
   }
+
+  // Adaptation
+  @media (max-width: 992px) {
+    padding-bottom: 90px;
+
+    &-items {
+      padding-left: 20%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-bottom: 80px;
+
+    &-items {
+      padding-left: 15%;
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding-bottom: 60px;
+
+    &-items {
+      padding-left: 0;
+    }
+  }
 }
 
-.partyFraction-links {
-  padding-bottom: 100px;
-}
 </style>
   

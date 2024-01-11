@@ -1,7 +1,8 @@
 <template>
   <section class="deputyRequests landing-block" id="deputy-requests">
     <div class="wrapper">
-      <h2 class="landing-title">Депутатские запросы</h2>
+      <h2 class="landing-title">{{ $t('parliamentary-inquiries') }}</h2>
+
       <div class="request-wrapper">
         <div class="deputies">
           <button
@@ -30,13 +31,13 @@
           <tbody>
             <tr v-for="request of tableContentList" :key="request.title">
             
-              <td class="nowrap">
+              <td>
                 <span>
                   {{ request.title }}
                 </span>
               </td>
 
-              <td>
+              <td :data-title="$t('formdata.file-and-brief-description')">
                 <a class="text-line" :href="request.docAndDescription!" target="_blank">
                   <div class="text-line-icon">
                     <SvgIcon name="pdf-blue" :viewboxHeight="32" :viewboxWidth="32" />
@@ -48,7 +49,7 @@
                 </a>
               </td>
 
-              <td class="nowrap">
+              <td :data-title="$t('formdata.answer')">
                 <a
                   v-if="request.answerDoc"
                   class="text-line"
@@ -69,7 +70,6 @@
                   </div>
                   <span>{{ request.answerDate }}</span>
                 </div>
-                
               </td>
             </tr>
           </tbody>
@@ -358,8 +358,9 @@ const toggleShow = (idx: number) => {
 
 .deputies {
   display: flex;
+  flex-wrap: wrap;
   grid-gap: 15px;
-  margin: 50px 0;
+  margin-bottom: 50px;
 
   &-deputy {
     display: grid;
@@ -404,6 +405,86 @@ const toggleShow = (idx: number) => {
       transition: all 0.3s ease-in-out;
     }
   }
+
+  // Adaptation
+  @media (max-width: 1400px) {
+    grid-gap: 15px;
+    margin-bottom: 50px;
+
+    &-deputy {
+      grid-template-columns: 42px 1fr;
+      grid-gap: 10px;
+
+      padding: 8px 15px 8px 8px;
+
+      & span {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    grid-gap: 12px;
+    margin-bottom: 40px;
+
+    &-deputy {
+      grid-template-columns: 38px 1fr;
+      grid-gap: 8px;
+
+      padding: 4px 10px 4px 4px;
+
+      & span {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    grid-gap: 10px;
+    margin-bottom: 30px;
+
+    &-deputy {
+      grid-template-columns: 36px 1fr;
+      grid-gap: 8px;
+
+      padding: 4px 10px 4px 4px;
+
+      & span {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-gap: 10px 12px;
+    margin-bottom: 26px;
+
+    &-deputy {
+      grid-template-columns: 30px 1fr;
+      grid-gap: 8px;
+
+      padding: 2px 10px 2px 2px;
+
+      & span {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    grid-gap: 8px 10px;
+    margin-bottom: 22px;
+
+    &-deputy {
+      grid-template-columns: 26px 1fr;
+      grid-gap: 6px;
+
+      padding: 1.4px 8px 1.4px 1.4px;
+    }
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 
 .deputy-requests-table {
@@ -412,20 +493,27 @@ const toggleShow = (idx: number) => {
   border: none;
   border-spacing: 0 8px;
 
+  table-layout: fixed;
+
   & thead {
     & th {
       text-align: left;
       color: var(--primary-color);
       font-size: 20px;
       font-weight: 400;
-      line-height: 27px;
+      line-height: 1.2;
       
       padding-right: 13px;
       padding-right: 0px;
     }
 
     th:first-child {
+      width: 250px;
       padding-left: 42px;
+    }
+
+    th:last-child {
+      width: 270px;
     }
 
     td:last-child {
@@ -437,7 +525,6 @@ const toggleShow = (idx: number) => {
     tr {
       border-bottom: 0.5px solid rgba(129, 143, 167, 0.5);
 
-      
       td {
         padding: 25px;
         padding-left: 0px;
@@ -449,10 +536,9 @@ const toggleShow = (idx: number) => {
         background-color: var(--accent-color-op10);
 
         & span {
-          color: var(--primary-color);
           font-size: 20px;
           font-weight: 400;
-          line-height: 27px;
+          line-height: 1.2;
         }
       }
 
@@ -478,37 +564,298 @@ const toggleShow = (idx: number) => {
       }
     }
   }
-}
 
-.text-line {
-  cursor: pointer;
+  & .text-line {
+    cursor: pointer;
 
-  display: grid;
-  align-items: center;
-  grid-template-columns: 32px 1fr;
-  grid-gap: 4px;
-  
-  & span {
-    font-size: 18px;
-    text-decoration-line: underline;
-    transition: all .3s ease-in-out;
-  }
+    display: grid;
+    align-items: center;
+    grid-template-columns: 32px 1fr;
+    grid-gap: 4px;
+    
+    & span {
+      font-size: 18px;
+      text-decoration-line: underline;
+      transition: all .3s ease-in-out;
 
-  &-icon {
-    margin-right: 10px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+              line-clamp: 2; 
+      -webkit-box-orient: vertical;
+    }
 
-    & svg {
-      width: 32px;
-      height: 32px;
+    &-icon {
+      margin-right: 10px;
+
+      & svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    &:hover span {
+      color: var(--accent-color);
     }
   }
 
-  &:hover span {
-    color: var(--accent-color);
-  }
-}
+  // Adaptation
+  @media (max-width: 1400px) {
+    border-spacing: 0 8px;
 
-.nowrap {
-  white-space: nowrap;
+    & thead {
+      & th {
+        font-size: 20px;
+        padding-right: 10px;
+      }
+
+      th:first-child {
+        width: 250px;
+        padding-left: 32px;
+      }
+
+      th:last-child {
+        width: 270px;
+      }
+
+      td:last-child {
+        padding-right: 32px;
+      }
+    }
+    
+    & tbody {
+      tr {
+        td {
+          padding: 18px 20px;
+          padding-left: 0px;
+
+          & span {
+            font-size: 20px;
+          }
+        }
+
+        td:first-child {
+          padding-left: 32px;
+        }
+
+        td:last-child {
+          padding-right: 32px;
+        }
+      }
+    }
+
+    & .text-line {
+      grid-template-columns: 30px 1fr;
+      grid-gap: 4px;
+      
+      & span {
+        font-size: 18px;
+      }
+
+      &-icon {
+        margin-right: 10px;
+
+        & svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    border-spacing: 0 6px;
+
+    & thead {
+      & th {
+        font-size: 18px;
+        padding-right: 10px;
+      }
+
+      th:first-child {
+        width: 180px;
+        padding-left: 28px;
+      }
+
+      th:last-child {
+        width: 180px;
+      }
+
+      td:last-child {
+        padding-right: 28px;
+      }
+    }
+    
+    & tbody {
+      tr {
+        td {
+          padding: 14px 16px;
+          padding-left: 0px;
+
+          & span {
+            font-size: 18px;
+          }
+        }
+
+        td:first-child {
+          padding-left: 28px;
+        }
+
+        td:last-child {
+          padding-right: 28px;
+        }
+      }
+    }
+
+    & .text-line {
+      grid-template-columns: 26px 1fr;
+      grid-gap: 4px;
+      
+      & span {
+        font-size: 18px;
+      }
+
+      &-icon {
+        margin-right: 10px;
+
+        & svg {
+          width: 26px;
+          height: 26px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    border-spacing: 0 4px;
+
+    & thead {
+      display: none;
+    }
+    
+    & tbody {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 14px;
+
+      tr {
+        display: flex;
+        flex-direction: column;
+
+        padding: 14px;
+        background-color: var(--accent-color-op10);
+        border: 1.4px solid var(--accent-color-op50);
+        border-radius: 10px;
+
+        td {
+          padding: 0px !important;
+          border: none;
+          background-color: transparent;
+          margin-bottom: 16px;
+        }
+
+        td:last-child {
+          margin-bottom: 0px;
+        }
+      }
+    }
+
+    & .text-line {
+      grid-template-columns: 26px 1fr;
+      grid-gap: 4px;
+      
+      & span {
+        font-size: 16px;
+      }
+
+      &-icon {
+        margin-right: 10px;
+
+        & svg {
+          width: 26px;
+          height: 26px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    border-spacing: 0 4px;
+
+    & thead {
+      & th {
+        padding-right: 10px;
+      }
+
+      th:first-child {
+        width: 120px;
+        padding-left: 20px;
+      }
+
+      th:last-child {
+        width: 120px;
+      }
+
+      td:last-child {
+        padding-right: 20px;
+      }
+    }
+    
+    & tbody {
+      tr {
+        td {
+          border-width: 1.2px;
+          padding: 10px 12px;
+          padding-left: 0px;
+
+          &::before {
+            content: attr(data-title)':';
+
+            display: inline-block;
+            margin-bottom: 10px;
+
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.2;
+          }
+        }
+
+        td:first-child {
+          padding-left: 20px;
+
+          &::before {
+            display: none;
+          }
+
+          & span {
+            color: var(--accent-color);
+            font-weight: 600;
+          }
+        }
+
+        td:last-child {
+          padding-right: 20px;
+        }
+      }
+    }
+
+    & .text-line {
+      grid-template-columns: 24px 1fr;
+      grid-gap: 4px;
+      
+      &-icon {
+        margin-right: 10px;
+
+        & svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 </style>

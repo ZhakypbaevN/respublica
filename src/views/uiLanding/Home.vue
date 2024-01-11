@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-  import Intro from '@/components/uiLanding/home-page/Intro.vue'
+  import Intro from '@/components/uiLanding/home-page/intro/Intro.vue'
   import AboutUs from '@/components/uiLanding/home-page/AboutUs.vue'
   import PartyProgram from '@/components/uiLanding/home-page/PartyProgram.vue'
   import AboutParty from '@/components/uiLanding/home-page/AboutParty.vue'

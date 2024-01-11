@@ -6,13 +6,13 @@
       <div class="wrapper">
         <div class="party-charter">
           <div class="party-charter-text">
-            <span class="party-charter-title">{{ $t('about-us-page.party-is-charter.title') }}</span>
-            <span class="party-charter-title-upper">{{ $t('about-us-page.party-is-charter.alga-respublica') }}</span>
+            <h2 class="party-charter-title">{{ $t('about-us-page.party-is-charter.title') }}</h2>
+            <h2 class="party-charter-title">{{ $t('about-us-page.party-is-charter.alga-respublica') }}</h2>
           </div>
 
           <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">
             <Button
-              class="party-charter-download"
+              class="party-charter-pdfBtn"
               :name="$t('about-us-page.party-is-charter.view-the-charter-btn')"
               type="default-blue"
               uppercase
@@ -24,15 +24,7 @@
 
     <PartyProgram />
 
-    <section class="partyStructure">
-      <div class="wrapper">
-        <div class="partyStructure-inner landing-block" id="party-structure">
-          <h2 class="landing-title center">{{ $t('about-us-page.organizational-structure') }}</h2>
-        
-          <img class="partyStructure-svg" src="/img/icons/party-structure-2.svg" alt="">
-        </div>
-      </div>
-    </section>
+    <PartyStructure />
 
     <History />
 
@@ -48,6 +40,7 @@
   import History from '@/components/uiLanding/about-party/History.vue';
   import PartyLeaders from '@/components/uiLanding/about-party/PartyLeaders.vue';
   import PartyProgram from '@/components/uiLanding/about-party/PartyProgram.vue';
+  import PartyStructure from '@/components/uiLanding/about-party/PartyStructure.vue';
   import RespublicaJastary from '@/components/uiLanding/about-party/RespublicaJastary.vue';
 
   import { useI18n } from 'vue-i18n'
@@ -83,7 +76,6 @@
 </script>
   
 <style scoped lang="scss">
-
 .party-charter {
   display: flex;
   align-items: center;
@@ -97,50 +89,97 @@
   &-text {
     display: flex;
     flex-direction: column;
+      grid-gap: 30px;
   }
-
 
   &-title {
     color: #FFF;
     font-size: 36px;
     font-weight: 700;
   }
-
-  &-title-upper {
-    color: #FFF;
-    font-size: 36px;
-    font-weight: 700;
-    margin-top: 30px;
-  }
-
-  &-download {
-    height: 64px;
-  }
-}
-
-.partyStructure {
-  border-radius: 10px;
-  padding: 0px !important;
-
-  
-  &-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    border-radius: 20px;
-    background: white;
-  }
-
-  & img {
-    height: 70vh;
-    min-height: 500px;
-    padding: 0 70px;
-  }
 }
 
 .party-leaders {
   background-color: white;
+}
+
+// Adaptation
+@media (max-width: 1600px) {
+  .party-charter {
+    padding: 46px 110px 46px 60px;
+    border-radius: 20px;
+
+    &-text {
+      grid-gap: 26px;
+    }
+
+    &-title {
+      font-size: 36px;
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .party-charter {
+    padding: 24px 40px 24px 30px;
+    border-radius: 18px;
+
+    &-text {
+      grid-gap: 12px;
+    }
+
+    &-title {
+      font-size: 30px;
+    }
+
+    &-pdfBtn {
+      padding: 16px 18px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .party-charter {
+    flex-direction: column;
+    align-items: flex-start;
+    grid-gap: 30px;
+
+    padding: 28px 30px;
+    border-radius: 16px;
+
+    &-text {
+      grid-gap: 10px;
+    }
+
+    &-title {
+      font-size: 28px;
+    }
+
+    &-pdfBtn {
+      padding: 16px 18px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .party-charter {
+    grid-gap: 24px;
+
+    padding: 22px 20px;
+    border-radius: 14px;
+
+    &-text {
+      grid-gap: 8px;
+    }
+
+    &-title {
+      font-size: 22px;
+    }
+
+    &-pdfBtn {
+      padding: 14px 16px;
+    }
+  }
 }
 </style>
   

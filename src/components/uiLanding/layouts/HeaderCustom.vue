@@ -1,99 +1,110 @@
 <template>
   <div>
-    <header class="header" :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop, dark: dark }" :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}">
+    <header
+      class="header"
+      :class="{ sticky: isSticky, logoBig: withoutNavs || headerClingingToTop, defaultFixedLight: defaultFixed && headerClingingToTop, dark: dark }"
+      :style="{paddingBottom: withoutPaddingBottom ? '0px' : paddingBottom}"
+    >
       <div class="header-main" id="header-main">
         <div class="wrapper" :class="{withoutWidthMax: withoutWidthMax}">
-          <div class="header-main-inner">
-            <Router-link to="/" class="header-main-logo">
-              <SvgIcon
-                v-if="defaultFixed && headerClingingToTop && !dark"
-                class="logo-big"
-                name="logo-light"
-                :viewboxWidth="329"
-                :viewboxHeight="62"
-              />
 
-              <SvgIcon
-                v-else
-                class="logo-big"
-                name="logo"
-                :viewboxWidth="260"
-                :viewboxHeight="49"
-              />
+          <div
+            :data-aos="defaultFixed ? 'fade-down' : null"
+            data-aos-delay="100"
+            data-aos-duration="1000"
+          >
+            <div class="header-main-inner">
+              <Router-link to="/" class="header-main-logo">
+                <SvgIcon
+                  v-if="defaultFixed && headerClingingToTop && !dark"
+                  class="logo-big"
+                  name="logo-light"
+                  :viewboxWidth="329"
+                  :viewboxHeight="62"
+                />
 
-              <SvgIcon
-                class="logo-mini"
-                name="logo-mini"
-                :viewboxWidth="96"
-                :viewboxHeight="95"
-              />
-            </Router-link>
+                <SvgIcon
+                  v-else
+                  class="logo-big"
+                  name="logo"
+                  :viewboxWidth="260"
+                  :viewboxHeight="49"
+                />
 
-            <nav class="header-main-navs" v-if="!withoutNavs">
-              <Router-link
-                class="header-main-navs-item"
-                v-for="nav of navsList"
-                :key="nav.link"
-                :to="nav.link"
-              >
-                {{ nav.title }}
+                <SvgIcon
+                  class="logo-mini"
+                  name="logo-mini"
+                  :viewboxWidth="96"
+                  :viewboxHeight="95"
+                />
               </Router-link>
-            </nav>
-          
-            <div class="header-main-right" v-if="!withoutNavs">
-              <LangToggle
-                class="header-main-lang"
-                :light="defaultFixed && headerClingingToTop && !dark"
-              />
-              
-              <!-- <button class="header-main-search">
-                <SvgIcon
-                  name="search"
-                  :viewboxWidth="30"
-                  :viewboxHeight="30"
-                />
-              </button> -->
-              
-              <RouterLink
-                v-if="!userType"
-                to="/auth"
-              >
-                <Button
-                  :name="$t('page.authorization')"
-                  :type="defaultFixed && headerClingingToTop && !dark ? 'outline-light' : 'outline-default'"
-                />
-              </RouterLink>
 
-              <ProfileControl v-else />
-
-              <button
-                class="header-main-burger"
-                @click="() => showSideBar = true"
-              >
-                <SvgIcon
-                  name="map-control-list"
-                  :viewboxHeight="32"
-                  :viewboxWidth="32"
-                />
-              </button>
-            </div>
+              <nav class="header-main-navs" v-if="!withoutNavs">
+                <Router-link
+                  class="header-main-navs-item"
+                  v-for="nav of navsList"
+                  :key="nav.link"
+                  :to="nav.link"
+                >
+                  {{ nav.title }}
+                </Router-link>
+              </nav>
             
-
-            <div class="header-main-right" style="grid-gap: 30px;" v-else>
-              <LangToggle :light="false" />
-
-              <button
-                class="header-main-close"
-                @click="back"
-              >
-                <SvgIcon
-                  name="close"
-                  :viewboxHeight="37"
-                  :viewboxWidth="37"
+              <div class="header-main-right" v-if="!withoutNavs">
+                <LangToggle
+                  class="header-main-lang"
+                  :light="defaultFixed && headerClingingToTop && !dark"
                 />
-              </button>
-            </div>
+                
+                <!-- <button class="header-main-search">
+                  <SvgIcon
+                    name="search"
+                    :viewboxWidth="30"
+                    :viewboxHeight="30"
+                  />
+                </button> -->
+                
+                <RouterLink
+                  v-if="!userType"
+                  to="/auth"
+                >
+                  <Button
+                    :name="$t('page.authorization')"
+                    :type="defaultFixed && headerClingingToTop && !dark ? 'outline-light' : 'outline-default'"
+                  />
+                </RouterLink>
 
+                <ProfileControl v-else />
+
+                <button
+                  class="header-main-burger"
+                  @click="() => showSideBar = true"
+                >
+                  <SvgIcon
+                    name="map-control-list"
+                    :viewboxHeight="32"
+                    :viewboxWidth="32"
+                  />
+                </button>
+              </div>
+              
+
+              <div class="header-main-right" style="grid-gap: 30px;" v-else>
+                <LangToggle :light="false" />
+
+                <button
+                  class="header-main-close"
+                  @click="back"
+                >
+                  <SvgIcon
+                    name="close"
+                    :viewboxHeight="37"
+                    :viewboxWidth="37"
+                  />
+                </button>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -104,7 +115,7 @@
         <h3 class="headerSidebar-header-title">{{ $t('button.menu') }}</h3>
 
         <div class="headerSidebar-header-right">
-          <LangToggle :light="false" />
+          <LangToggle class="headerSidebar-header-right-lang" :light="false" />
 
           <button
             class="headerSidebar-header-exitBtn"
@@ -322,6 +333,8 @@
         display: flex;
         align-items: center;
         grid-gap: 30px;
+
+
       }
     }
 
@@ -518,10 +531,6 @@
     }
   }
 
-  @media (max-width: 992px) {
-    
-  }
-
   @media (max-width: 768px) {
     &.sticky .header-main-logo {
       width: 50px;
@@ -574,6 +583,9 @@
     }
     
     &-main {
+      &-inner {
+        grid-gap: 0px;
+      }
       &-logo {
         height: 48px;
         width: 48px;
@@ -631,6 +643,11 @@
     &-right {
       display: flex;
       grid-gap: 20px;
+
+      &-lang {
+        position: relative;
+        z-index: 10;
+      }
     }
 
     &-exitBtn {

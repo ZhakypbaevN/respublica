@@ -56,9 +56,8 @@
 
 <script setup lang="ts">
   import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
-import { onMounted } from 'vue';
 
-  import { reactive, ref } from 'vue';
+  import { onMounted, reactive, ref } from 'vue';
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()

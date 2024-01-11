@@ -160,7 +160,7 @@
   &-items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
+    grid-gap: 50px 40px;
 
     &.empty {
       display: block !important;
@@ -197,7 +197,7 @@
   // Adaptation
   @media (max-width: 1600px) {
     &-items {
-      grid-gap: 30px;
+      grid-gap: 40px 30px;
     }
   }
 
@@ -211,7 +211,7 @@
     }
 
     &-items {
-      grid-gap: 24px;
+      grid-gap: 32px 24px;
     }
 
     &-title {
@@ -312,7 +312,7 @@
 
     &-items {
       grid-template-columns: 1fr;
-      grid-gap: 30px;
+      grid-gap: 38px 30px;
     }
 
     &-title {
@@ -369,7 +369,6 @@
     }
 
     &-title {
-      font-size: 22px;
       margin-bottom: 30px;
     }
 

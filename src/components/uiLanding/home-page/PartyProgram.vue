@@ -264,14 +264,14 @@ import { ref } from 'vue';
 
   @media (max-width: 1200px) {
     &-titleBlock {
-      padding: 48px 0;
+      padding: 40px 0;
 
       &-description {
-        font-size: 28px;
+        font-size: 24px;
       }
 
       &-title {
-        font-size: 58px;
+        font-size: 54px;
       }
     }
 
@@ -318,14 +318,14 @@ import { ref } from 'vue';
 
   @media (max-width: 992px) {
     &-titleBlock {
-      padding: 48px 0;
+      padding: 30px 0;
 
       &-description {
-        font-size: 28px;
+        font-size: 20px;
       }
 
       &-title {
-        font-size: 38px;
+        font-size: 34px;
       }
     }
 
@@ -383,14 +383,14 @@ import { ref } from 'vue';
 
   @media (max-width: 768px) {
     &-titleBlock {
-      padding: 48px 0;
+      padding: 24px 0;
 
       &-description {
-        font-size: 28px;
+        font-size: 18px;
       }
 
       &-title {
-        font-size: 38px;
+        font-size: 30px;
       }
     }
 
@@ -451,14 +451,14 @@ import { ref } from 'vue';
 
   @media (max-width: 576px) {
     &-titleBlock {
-      padding: 48px 0;
+      padding: 20px 0;
 
       &-description {
-        font-size: 28px;
+        font-size: 16px;
       }
 
       &-title {
-        font-size: 38px;
+        font-size: 26px;
       }
     }
 
