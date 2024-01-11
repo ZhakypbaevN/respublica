@@ -183,13 +183,16 @@
       if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
       return name[0].toUpperCase() + name.slice(1).toLowerCase()
     }
+
+    if (window.innerWidth > 992) {
+      polygonSeries.mapPolygons.template.setAll({
+        interactive: true,
+        tooltipHTML: generateToolTip(),
+        templateField: "polygonSettings",
+        showTooltipOn: 'hover'
+      });
+    }
   
-    polygonSeries.mapPolygons.template.setAll({
-      interactive: true,
-      tooltipHTML: generateToolTip(),
-      templateField: "polygonSettings",
-      showTooltipOn: 'hover'
-    });
 
     polygonSeries.mapPolygons.template.events.on("click", function(ev) {
       showSideBar.value = true;
@@ -449,6 +452,40 @@
 
       &-description {
         font-size: 14px;
+      }
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 576px) {
+    width: 320px;
+
+    &-header {
+      align-items: center;
+      &-title {
+        grid-column: 1/4;
+      }
+
+      &-exitBtn {
+        grid-row: 1/2;
+        grid-column: 3/4;
+      }
+    }
+
+    &-content {
+      padding: 10px;
+
+      &-item {
+        grid-template-columns: 60px 1fr;
+        grid-gap: 14px;
+
+        padding: 12px;
+        border: 1.4px solid #e9ebed;
+        border-radius: 6px;
+
+        &-name {
+          margin-bottom: 6px;
+        }
       }
     }
   }

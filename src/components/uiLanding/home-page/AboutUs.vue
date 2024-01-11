@@ -160,8 +160,11 @@ const aboutUsList = [
     margin-top: 25px;
 
     &-inner {
+      max-width: 800px;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 40px;
+      grid-gap: 30px;
+
+      margin: 0 auto;
 
       & .aboutUs-item:last-child {
         grid-column: 1/3;
@@ -171,12 +174,12 @@ const aboutUsList = [
     &-item {
       grid-gap: 30px;
 
-      padding: 35px 40px 40px;
+      padding: 28px 30px 30px;
       border-radius: 10px;
 
       &-title {
         font-size: 28px;
-        margin-bottom: 30px;
+        margin-bottom: 28px;
       }
 
       &-description {
@@ -249,6 +252,12 @@ const aboutUsList = [
           height: 24px;
         }
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-inner {
+      max-width: 500px;
     }
   }
 

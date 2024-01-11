@@ -42,11 +42,10 @@ withDefaults(defineProps<IProps>(), {})
 }
 
 .layout {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 325px 1fr;
 
   &-menu {
-    width: 325px;
     background: var(--primary-color);
 
     &-inner {
@@ -79,26 +78,25 @@ withDefaults(defineProps<IProps>(), {})
   }
 
   &-content {
-    width: -webkit-fill-available;
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
   // Adaptation
+  @media (max-width: 1600px) {
+    grid-template-columns: 280px 1fr;
+  }
 
-  @media (max-width: 1200px) {
-    &-menu {
-      width: 300px;
-    }
+  @media (max-width: 1400px) {
+    grid-template-columns: 220px 1fr;
   }
 
   @media (max-width: 992px) {
     display: block;
 
+    grid-template-columns: 1fr;
     &-menu {
-      width: 100%;
 
       &-inner {
         position: static;
@@ -156,16 +154,13 @@ withDefaults(defineProps<IProps>(), {})
       }
     }
   }
-
-  @media (max-width: 380px) {
-  }
 }
 </style>
 <style lang="scss">
   .layout-content .wrapper {
     padding: 0 30px !important;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
       padding: 0 20px !important;
     }
 

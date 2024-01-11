@@ -108,6 +108,7 @@
 
 <style scoped lang="scss">
 .newsItem {
+  overflow: hidden;
   &.pressAboutUs {
     & .newsItem-preview-img {
       padding-bottom: 50%;;
@@ -150,7 +151,7 @@
     background-color: var(--primary-color);
 
     padding: 5px 15px;
-    border-radius: 0px 10px 0px 0px;
+    border-top-right-radius: 10px;
 
     & svg {
       width: 16px;
@@ -176,6 +177,7 @@
 
   &-title,
   &-description {
+    width: 100%;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -204,6 +206,134 @@
   &-description {
     font-size: 20px;
     line-height: 1.2;
+  }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    &-preview {
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    &-date {
+      grid-gap: 7px;
+      padding: 5px 15px;
+
+      & svg {
+        width: 16px;
+        height: 17px;
+      }
+
+      & span {
+        font-size: 16px;
+      }
+    }
+
+    &-author {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    &-line {
+      height: 3px;
+      margin-bottom: 12px;
+    }
+
+    &-description {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-preview {
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    &-date {
+      grid-gap: 7px;
+      padding: 5px 15px;
+
+      & svg {
+        width: 16px;
+        height: 17px;
+      }
+
+      & span {
+        font-size: 16px;
+      }
+    }
+
+    &-author {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    &-line {
+      height: 3px;
+      margin-bottom: 10px;
+    }
+
+    &-description {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-preview {
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    &-date {
+      grid-gap: 7px;
+      padding: 4px 10px;
+
+      & svg {
+        width: 16px;
+        height: 17px;
+      }
+
+      & span {
+        font-size: 16px;
+      }
+    }
+
+    &-author {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    &-line {
+      height: 2.6px;
+      margin-bottom: 8px;
+    }
+
+    &-description {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
   }
 }
 .newsItemMini {

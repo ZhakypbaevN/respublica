@@ -5,10 +5,14 @@
       v-for="item of aboutPartyList"
       :key="item.img"
     >
-      <div class="aboutParty-item-preview withZoomPreview-preview-img" :style="`background-image: url('${item.img}');`"></div>
+      <div
+        class="aboutParty-item-preview withZoomPreview-preview-img"
+        :style="`background-image: url('${item.img}');`"
+      ></div>
 
       <div v-if="item.title" class="aboutParty-item-content">
         <div class="aboutParty-item-content-bg" :style="{backgroundColor: item.color}"></div>
+
         <p class="aboutParty-item-content-text">{{ item.title }}</p>
       </div>
     </div>
@@ -17,9 +21,9 @@
     <div class="aboutParty-item aboutParty-item-btn">
       <Button
         :name="$t('feedback.join-the-party')"
+        @click="() => $emit('showJoinPartyModal')"
         type="outline-light"
         uppercase
-        @click="() => $emit('showJoinPartyModal')"
       />
     </div>
   </section>
@@ -143,6 +147,140 @@ const aboutPartyList = [
         padding: 50px 30px;
         border-radius: 0;
       }
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(4, 1fr);
+
+    &-item {
+      &-content {
+        padding: 46px;
+
+        &-text {
+          font-size: 24px;
+        }
+      }
+
+      &-btn button {
+        padding: 46px 24px;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+
+    &-item:last-child {
+      grid-column: 2/4;
+      padding-bottom: 0;
+    }
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+
+    &-item {
+      &-content {
+        padding: 42px;
+
+        &-text {
+          font-size: 20px;
+        }
+      }
+
+      &-btn button {
+        padding: 40px 26px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    &-item {
+      &-content {
+        padding: 38px;
+
+        &-text {
+          font-size: 20px;
+        }
+      }
+
+      &-btn button {
+        padding: 36px 22px;
+      }
+    }
+
+    &-item:nth-child(3),
+    &-item:nth-child(5) {
+      grid-column: 2/3;
+    }
+
+    &-item:nth-child(4) {
+      grid-row: 2/3;
+    }
+
+    &-item:nth-child(6) {
+      grid-row: 3/4;
+    }
+
+    &-item:last-child {
+      grid-column: auto;
+    }
+  }
+
+  @media (max-width: 490px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    &-item {
+      &-content {
+        padding: 32px;
+
+        &-text {
+          font-size: 16px;
+        }
+      }
+
+      &-btn button {
+        padding: 32px 22px;
+      }
+    }
+
+    &-item:nth-child(7) {
+      display: none;
+    }
+
+    &-item:last-child {
+      padding-bottom: 50%;
+      grid-column: 1/3;
+    }
+  }
+
+  @media (max-width: 380px) {
+    grid-template-columns: 1fr;
+
+    &-item {
+      grid-row: auto;
+      grid-column: auto;
+      padding-bottom: 78% !important;
+
+      &-content {
+        padding: 32px;
+
+        &-text {
+          font-size: 18px;
+        }
+      }
+
+      &-btn button {
+        padding: 32px 22px;
+      }
+    }
+
+    &-item:nth-child(7) {
+      display: block;
     }
   }
 }

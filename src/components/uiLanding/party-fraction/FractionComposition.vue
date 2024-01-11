@@ -1,5 +1,5 @@
 <template>
-  <section class="fractionComposition landing-block" id="fraction-composition">
+  <section class="fraction landing-block" id="fraction-composition">
     <div class="wrapper" :class="{'landing-wrapper': single}">
       <h2 v-if="single" class="landing-title center">{{ $t('page.mazhilis-deputies') }}</h2>
       <h2 v-else class="landing-title">{{ $t('composition-of-faction.title') }}</h2>
@@ -221,6 +221,29 @@ const fractionList = [
         }
       }
     }
+  }
+
+  // Adaptation
+  @media (max-width: 1600px) {
+  }
+
+  @media (max-width: 1400px) {
+    display: none;
+  }
+
+  @media (max-width: 1200px) {
+  }
+
+  @media (max-width: 992px) {
+  }
+
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
   }
 }
 </style>
