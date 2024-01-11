@@ -68,6 +68,9 @@ const historylist = [
 
 </script>
 <style scoped lang="scss">
+#history {
+  overflow: hidden;
+}
 .timeline {
   padding-left: 280px;
 
@@ -293,15 +296,17 @@ const historylist = [
         margin-bottom: 18px;
       }
 
+      &-logo {
+        width: 160px;
+        height: 30px;
+        float:left;
+        margin: 0 16px 16px 0; 
+      }
+
       &-preview {
         width: 100%;
         border-radius: 8px;
         overflow: hidden;
-      }
-
-      &-logo {
-        width: 160px;
-        height: 30px;
       }
     }
   }

@@ -11,14 +11,14 @@
     <div class="wrapper">
       <div class="links-wrapper scroll-top" id="links">
         <div class="partyFraction-links-items">
-          <RouterLink to="/meeting-with-voters/1" class="landing-link with-line" id="meetings-with-voters">
+          <RouterLink to="/meeting-with-voters/1" class="toPageLink with-line" id="meetings-with-voters">
             <span>
               {{ $t('meeting-with-voters.title') }}
             </span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="20" :viewboxHeight="20" />
           </RouterLink>
           <!-- <button 
-            class="landing-link with-line"
+            class="toPageLink with-line"
             @click="() => showSubmitAnAppeal = true"
           >
             <span>
@@ -77,7 +77,7 @@ const sideBarlinks = [
     padding-left: 32%;
   }
 
-  & .landing-link:last-child {
+  & .toPageLink:last-child {
     margin-bottom: 0px;
   }
 

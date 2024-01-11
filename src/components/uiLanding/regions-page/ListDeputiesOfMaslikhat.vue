@@ -7,7 +7,7 @@
       class="region-deputies"
     >
       <button
-        class="landing-link with-line"
+        class="toPageLink with-line"
         :class="{active: region.active}"
         @click="() => toggleShow(idx)"
       >

@@ -7,7 +7,7 @@
             {{ $t('page.news') }}
           </h2>
 
-          <RouterLink to="/news-all" class="landing-header-link">
+          <RouterLink to="/news-all" class="itemsList-viewAll">
             <span>{{ $t('button.view-all') }}</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </RouterLink>
@@ -39,7 +39,7 @@
             {{ $t('page.the-press-about-us') }}
           </h2>
 
-          <RouterLink to="/press-about-us-list" class="landing-header-link">
+          <RouterLink to="/press-about-us-list" class="itemsList-viewAll">
             <span>{{ $t('button.view-all') }}</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </RouterLink>
@@ -73,7 +73,7 @@
             {{ $t('page.video-gallery') }}
           </h2>
 
-          <RouterLink to="/video-gallery" class="landing-header-link">
+          <RouterLink to="/video-gallery" class="itemsList-viewAll">
             <span>{{ $t('button.view-all') }}</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </RouterLink>
@@ -105,7 +105,7 @@
         <div class="landing-header">
           <h2 class="landing-title">{{ $t('page.photo-gallery') }}</h2>
 
-          <RouterLink to="photo-gallery" class="landing-header-link">
+          <RouterLink to="photo-gallery" class="itemsList-viewAll">
             <span>{{ $t('button.view-all') }}</span>
             <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
           </RouterLink>

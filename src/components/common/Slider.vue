@@ -5,7 +5,7 @@
       {{ title }}
     </h2>
 
-    <RouterLink v-if="link" :to="link" class="landing-header-link">
+    <RouterLink v-if="link" :to="link" class="itemsList-viewAll">
       <span>{{ $t('button.view-all') }}</span>
       <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
     </RouterLink>

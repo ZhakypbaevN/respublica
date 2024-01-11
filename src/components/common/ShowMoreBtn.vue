@@ -1,7 +1,7 @@
 <template>
-  <div class="landing-showMore" v-if="offset + 20 < total">
+  <div class="itemsList-showMore" v-if="offset + 20 < total">
     <Button
-      class="landing-showMore-btn"
+      class="itemsList-showMore-btn"
       :name="$t('button.view-more')"
       type="outline-grey"
       :loading="loading"
