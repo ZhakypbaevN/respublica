@@ -470,21 +470,6 @@ const toggleShow = (idx: number) => {
       }
     }
   }
-
-  @media (max-width: 576px) {
-    grid-gap: 8px 10px;
-    margin-bottom: 22px;
-
-    &-deputy {
-      grid-template-columns: 26px 1fr;
-      grid-gap: 6px;
-
-      padding: 1.4px 8px 1.4px 1.4px;
-    }
-  }
-
-  @media (max-width: 380px) {
-  }
 }
 
 .deputy-requests-table {

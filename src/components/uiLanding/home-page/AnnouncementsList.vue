@@ -6,7 +6,7 @@
           {{ $t('page.announcements') }}
         </h2>
 
-        <RouterLink to="/news-all" class="landing-header-link">
+        <RouterLink to="/news-all" class="itemsList-viewAll">
           <span>{{ $t('button.view-all') }}</span>
           <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
         </RouterLink>

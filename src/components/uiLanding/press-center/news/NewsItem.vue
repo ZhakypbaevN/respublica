@@ -109,6 +109,7 @@
 <style scoped lang="scss">
 .newsItem {
   overflow: hidden;
+  
   &.pressAboutUs {
     & .newsItem-preview-img {
       padding-bottom: 50%;;

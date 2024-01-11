@@ -12,7 +12,6 @@
   
 <style scoped lang="scss">
 .partyStructure {
-  display: none;
   border-radius: 10px;
   padding: 0px !important;
 

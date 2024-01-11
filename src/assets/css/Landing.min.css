@@ -11,18 +11,18 @@
 .landing-header .landing-title {
   margin-bottom: 0px !important;
 }
-.landing-header-link {
+.itemsList-viewAll {
   display: inline-flex;
   align-items: center;
   grid-gap: 10px;
 }
-.landing-header-link span {
+.itemsList-viewAll span {
   color: var(--primary-color);
   font-size: 20px;
   font-weight: 600;
   transition: all 0.3s ease-in-out;
 }
-.landing-header-link svg {
+.itemsList-viewAll svg {
   width: 24px;
   height: 24px;
   fill: var(--primary-color);
@@ -30,10 +30,10 @@
   right: 0;
   transition: all 0.3s ease-in-out;
 }
-.landing-header-link:hover span {
+.itemsList-viewAll:hover span {
   color: var(--accent-color);
 }
-.landing-header-link:hover svg {
+.itemsList-viewAll:hover svg {
   fill: var(--accent-color);
   right: -8px;
 }
@@ -52,7 +52,7 @@
 .landing-wrapper.litle {
   max-width: 920px;
 }
-.landing-link.with-line {
+.toPageLink.with-line {
   display: inline-flex;
   align-items: center;
   grid-gap: 36px;
@@ -60,7 +60,7 @@
   margin-bottom: 20px;
   position: relative;
 }
-.landing-link.with-line::before {
+.toPageLink.with-line::before {
   content: "";
   display: block;
   height: 100%;
@@ -73,14 +73,14 @@
   background-color: var(--accent-color);
   transition: all 0.2s ease-in-out;
 }
-.landing-link.with-line span {
+.toPageLink.with-line span {
   font-size: 36px;
   font-weight: 600;
   position: relative;
   z-index: 2;
   transition: all 0.2s ease-in-out;
 }
-.landing-link.with-line svg {
+.toPageLink.with-line svg {
   width: 32px;
   height: 32px;
   fill: var(--accent-color);
@@ -89,15 +89,15 @@
   right: 0;
   transition: all 0.2s ease-in-out;
 }
-.landing-link.with-line:hover::before {
+.toPageLink.with-line:hover::before {
   min-width: 600px;
   width: 120%;
   background-color: var(--accent-color);
 }
-.landing-link.with-line:hover span {
+.toPageLink.with-line:hover span {
   color: white;
 }
-.landing-link.with-line:hover svg {
+.toPageLink.with-line:hover svg {
   fill: white;
   right: -15px;
 }
