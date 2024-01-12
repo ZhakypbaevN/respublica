@@ -17,7 +17,7 @@
             </div>
 
             <div class="newsDetail-preview withZoomPreview-preview">
-              <div class="newsDetail-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(https://api.respublica-partiyasy.kz/${newsData.preview_image});`"></div>
+              <div class="newsDetail-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(newsData.preview_image)});`"></div>
             </div>
 
             <div class="newsDetail-subtitle">{{ newsData.preview_text }}</div>
@@ -73,8 +73,10 @@
   import { useRoute } from 'vue-router'
 
   import { INews } from '@/types/news';
+  
   import { getNewsData } from '@/actions/uiLanding/news';
   import convertDateTime from '@/helpers/convertDateTime.js';
+  import getFileUrl from '@/helpers/getFileUrlByDate';
   
   const route = useRoute();
   

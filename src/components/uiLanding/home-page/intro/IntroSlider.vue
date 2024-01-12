@@ -153,7 +153,7 @@
   // Adaptation
   @media (max-width: 576px) {
     display: block;
-    
+
     &-teams {
       height: 280px;
       width: min-content;
@@ -165,7 +165,7 @@
       left: 50%;
       transform: translateX(-50%);
 
-      animation: sliderAnimation 20s infinite;
+      animation: sliderAnimation 24s infinite;
       animation-delay: 10000;
     }
   }
@@ -180,7 +180,7 @@
 }
 
 @keyframes sliderAnimation {
-  5% {
+  12% {
     left: 50%;
     transform: translateX(-50%);
   }
@@ -192,7 +192,7 @@
     left: 75%;
     transform: translateX(-90%);
   }
-  95% {
+  90% {
     left: 50%;
     transform: translateX(-50%);
   }

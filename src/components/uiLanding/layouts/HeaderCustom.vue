@@ -78,7 +78,7 @@
 
                 <button
                   class="header-main-burger"
-                  @click="() => showSideBar = true"
+                  @click="onShowSideBar"
                 >
                   <SvgIcon
                     name="map-control-list"
@@ -110,7 +110,11 @@
       </div>
 
     </header>
-    <div class="headerSidebar" :class="{show: showSideBar}">
+    <div
+      class="headerSidebar"
+      :class="{show: showSideBar}"
+      v-click-outside="() => showSideBar = false"
+    >
       <div class="headerSidebar-header">
         <h3 class="headerSidebar-header-title">{{ $t('button.menu') }}</h3>
 
@@ -237,6 +241,10 @@
   onBeforeUnmount(() => {
     window.removeEventListener('scroll', handleScroll);
   });
+
+  const onShowSideBar = () => setTimeout(() => {
+    showSideBar.value = true;
+  }, 10)
 </script>
 
 <style scoped lang="scss">

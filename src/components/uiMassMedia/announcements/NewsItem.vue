@@ -9,7 +9,7 @@
       <div class="newsItem-preview withZoomPreview-preview">
         <div
           class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
-          :style="`background-image:url('https://api.respublica-partiyasy.kz/${data.preview_image}');`"
+          :style="`background-image:url('${getFileUrl(data.preview_image)}');`"
         ></div>
       </div>
 
@@ -71,24 +71,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import DeleteModal from '@/components/uiMassMedia/announcements/DeleteModal.vue'
+  import DeleteModal from '@/components/uiMassMedia/announcements/DeleteModal.vue'
 
-import { useRouter } from 'vue-router';
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
-const router = useRouter()
+  import getFileUrl from '@/helpers/getFileUrlByDate';
 
-interface IProps {
-  data: any,
-}
+  const router = useRouter()
 
-const props = defineProps<IProps>()
+  interface IProps {
+    data: any,
+  }
 
-const showDeleteModal = ref(false);
+  const props = defineProps<IProps>()
 
-const goEdit = () => {
-  router.push(`/media/announcements/${props.data.id}`)
-}
+  const showDeleteModal = ref(false);
+
+  const goEdit = () => {
+    router.push(`/media/announcements/${props.data.id}`)
+  }
 </script>
 
 <style scoped lang="scss">

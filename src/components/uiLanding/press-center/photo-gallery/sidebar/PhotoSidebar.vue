@@ -40,7 +40,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  grid-gap: 10px;
+  grid-gap: 4px;
 
   @media (max-width: 992px) {
     display: grid;
@@ -59,7 +59,7 @@
 }
 </style>
 <style>
-  .sidebar .albom:last-child {
+  .sidebar .albom:last-child::after {
     border-bottom-color: transparent !important;
   }
 </style>
