@@ -151,8 +151,11 @@
   }
 
   // Adaptation
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     display: block;
+  }
+
+  @media (max-width: 576px) {
 
     &-teams {
       height: 280px;
