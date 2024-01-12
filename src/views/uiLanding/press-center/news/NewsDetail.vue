@@ -3,7 +3,6 @@
     <div class="content">
       <Header />
       <section class="landing-block">
-
         <div class="wrapper landing-wrapper litle" v-if="newsData">
           <div class="newsDetail">
             

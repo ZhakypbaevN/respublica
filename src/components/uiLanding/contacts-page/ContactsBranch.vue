@@ -41,7 +41,7 @@
   const karagandyData = deputiesMap.deputiesList.find(region => region.code === 'KZ-KAR')
   
   const branchData = reactive({
-    title: karagandyData.name,
+    title: karagandyData.title,
     address: karagandyData.address,
     deputies: null,
     email: karagandyData.email
@@ -50,36 +50,42 @@
   onMounted(() => {
     const map = document.querySelector('.branch-map');
     let root = am5.Root.new(map);
-  
+
     root._logo!.dispose();
     root.setThemes([
       am5themes_Animated.new(root)
     ]);
-    let chart = root.container.children.push(
-      am5map.MapChart.new(root, {
-        panX: "none",
-        panY: "none",
-        projection: am5map.geoMercator(),
-        wheelY: "none",
-        minZoomLevel: 1,
-        maxZoomLevel: 1
-      })
-    );
+    let chart = window.innerWidth <= 992
+      ? root.container.children.push(
+          am5map.MapChart.new(root, {
+            panX: "rotateX",
+            wheelY: "zoom",
+            minZoomLevel: 0.5,
+            maxZoomLevel: 16,
+            projection: am5map.geoMercator()
+          })
+        )
+      : root.container.children.push(
+          am5map.MapChart.new(root, {
+            panX: "none",
+            panY: "none",
+            projection: am5map.geoMercator(),
+            wheelY: "none",
+            minZoomLevel: 1,
+            maxZoomLevel: 1
+          })
+        );
   
     // -------- Create polygon series --------
     const getCount = polygonId => {
-      const regions = deputiesMap.deputiesList.filter(region => region.code === polygonId)
-      let sum = 0;
-      regions.forEach((region) => {
-        sum += region.deputies.length
-      })
-      return sum
+      const region = deputiesMap.deputiesList.find(region => region.code === polygonId)
+      if (region) return region.deputies.length
     }
   
   
     const customMap = am5geodata_kazakhstanMap.features.map(polygon => {
       let customPolygon = polygon
-      customPolygon.properties.count = getCount(polygon.id)
+      customPolygon.properties.count = getCount(polygon.id);
       return customPolygon
     })
   
@@ -110,13 +116,16 @@
       if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
       return name[0].toUpperCase() + name.slice(1).toLowerCase()
     }
+
+    if (window.innerWidth > 992) {
+      polygonSeries.mapPolygons.template.setAll({
+        interactive: true,
+        tooltipHTML: generateToolTip(),
+        templateField: "polygonSettings",
+        showTooltipOn: 'hover'
+      });
+    }
   
-    polygonSeries.mapPolygons.template.setAll({
-      interactive: true,
-      tooltipHTML: generateToolTip(),
-      templateField: "polygonSettings",
-      showTooltipOn: 'hover'
-    });
 
     polygonSeries.mapPolygons.template.events.on("click", function(ev) {
       regions.forEach(region => {
@@ -124,6 +133,7 @@
           deputiesMap.deputiesList.forEach(obl => {
             if (obl.code === ev.target.dataItem!.dataContext!.id) {
               branchData.title = region.title;
+              branchData.deputies = region.deputies;
               branchData.address = Object.assign({}, obl).address;
               branchData.email = Object.assign({}, obl).email;
             }
@@ -135,17 +145,22 @@
       polygonSeries.data.setAll(deputiesMap.deputiesList.map(obl => {
         const polygon = {}
         polygon.id = obl.code
+        polygon.address = obl.address;
+        polygon.email = obl.email;
+        
         polygon.name = nameToLowerCase({ id: obl.code, name: obl.title })
+        
         if (obl.code === ev.target.dataItem.dataContext.id) {
           polygon.polygonSettings = {
             fill: am5.color('#FCC952'),
             stroke: am5.color('#FCC952'),
-            strokeWidth: 7,
+            strokeWidth: 16,
             strokeOpacity: 0.4
           }
         }
         return polygon
       }));
+
     });
   
     let tooltip = am5.Tooltip.new(root, {
@@ -161,7 +176,7 @@
   
     polygonSeries.mapPolygons.template.setAll({
       stroke: am5.color('#ffffff'),
-      strokeWidth: 1,
+      strokeWidth: 2,
     });
     
     polygonSeries.mapPolygons.template.states.create("hover", {
@@ -181,20 +196,37 @@
     );
     
     pointSeries.data.setAll(deputiesMap.deputiesList.map(obl => {
+      const name = nameToLowerCase({id: obl.code, name: obl.title});
+      let nameArray = name.split(' ')
+      
       return {
         cityId: obl.code,
-        name: '',
+        name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`,
         address: obl.address
       }
     }));
-  
+
     pointSeries.bullets.push(function() {
-      return am5.Bullet.new(root, {
-        sprite: am5.Circle.new(root, {
-          radius: 5,
-          fill: am5.color(0xFFFFFF)
-        })
-      });
+      if (window.innerWidth > 992) {
+        return am5.Bullet.new(root, {
+          sprite: am5.Circle.new(root, {
+            radius: 5,
+            fill: am5.color(0xFFFFFF)
+          })
+        });
+      } else {
+        return am5.Bullet.new(root, {
+          sprite: am5.Label.new(root, {
+            centerX: am5.p50,
+            centerY: am5.p50,
+            text: "{name}",
+            fontSize: 14,
+            fontStyle: 'Tilda Sans',
+            fill: am5.color(0xFFFFFF),
+            populateText: true
+          })
+        });
+      }
     });
   
     polygonSeries.data.setAll(
@@ -203,24 +235,17 @@
           id: '',
           name: '',
           address: '',
+          email: '',
           polygonSettings: {}
         };
         polygon.id = obl.code
         polygon.name = nameToLowerCase({id: obl.code, name: obl.title})
-        polygon.address = obl.address
+        polygon.address = obl.address;
+        polygon.email = obl.email;
         
-        if (obl.code === 'KZ-KAR') {
-          polygon.polygonSettings = {
-            fill: am5.color('#FCC952'),
-            stroke: am5.color('#FCC952'),
-            strokeWidth: 7,
-            strokeOpacity: 0.4
-          }
-        }
         return polygon
       })
     );
-
   
     return { root };
   })
@@ -309,8 +334,8 @@
     grid-gap: 60px;
     
     &-map {
-      width: 875px;
-      height: 500px;
+      width: 760px;
+      height: 434px;
     }
 
     &-content {
@@ -340,26 +365,26 @@
   }
 
   @media (max-width: 1400px) {
-    grid-gap: 40px;
+    grid-gap: 20px;
     
     &-map {
-      width: 875px;
-      height: 500px;
+      width: 660px;
+      height: 378px;
     }
 
     &-content {
       max-width: 400px;
       min-height: 280px;
 
-      padding: 27px 20px;
+      padding: 20px 18px;
 
       &-header {
         grid-gap: 20px;
-        margin-bottom: 30px;
+        margin-bottom: 14px;
 
         &-icon {
-          width: 40px;
-          height: 40px;
+          width: 36px;
+          height: 36px;
         }
       
         &-title {
@@ -374,15 +399,99 @@
   }
 
   @media (max-width: 1200px) {
+    grid-gap: 20px;
+    
+    &-map {
+      width: 580px;
+      height: 332px;
+    }
+
+    &-content {
+      max-width: 300px;
+      min-height: auto;
+
+      padding: 14px 14px 26px;
+
+      &-header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        grid-gap: 10px;
+        margin-bottom: 12px;
+
+        &-icon {
+          width: 30px;
+          height: 30px;
+        }
+      
+        &-title {
+          font-size: 18px;
+        }
+      }
+    
+      &-info {
+        font-size: 16px;
+      }
+    }
   }
 
   @media (max-width: 992px) {
+    flex-direction: column;
+    align-items: flex-start;
+    grid-gap: 40px;
+    
+    &-map {
+      width: 100%;
+      height: 380px;
+
+      border: 2px dashed var(--accent-color-op50);
+      background-color: var(--accent-color-op05);
+    }
+
+    &-content {
+      max-width: 100%;
+      min-height: auto;
+
+      padding: 14px 14px 26px;
+
+      &-header {
+        flex-direction: row;
+        align-items: center;
+
+        grid-gap: 10px;
+        margin-bottom: 12px;
+
+        &-icon {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
   }
 
   @media (max-width: 768px) {
+    grid-gap: 32px;
+    
+    &-map {
+      height: 328px;
+    }
   }
 
   @media (max-width: 576px) {
+    grid-gap: 30px;
+    
+    &-map {
+      height: 200px;
+    }
+
+    &-content {
+      &-header {
+        &-icon {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
   }
 
   @media (max-width: 380px) {

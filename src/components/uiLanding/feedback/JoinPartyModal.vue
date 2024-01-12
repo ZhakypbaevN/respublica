@@ -501,6 +501,83 @@ const postParty = (data) => {
       }
     }
   }
+
+  // Adaptation
+  @media (max-width: 768px) {
+    &-userData {
+      margin-bottom: 34px;
+
+      &-item {
+        margin-bottom: 10px;
+      }
+
+      &-title,
+      &-value {
+        font-size: 16px;
+      }
+    }
+    
+    &-inputs {
+      &-home {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 12px;
+
+        & .input:first-child {
+          grid-column: 1/3;
+        }
+      }
+
+      &-gender {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 12px 18px;
+        margin-bottom: 8px;
+
+        & .input:first-child {
+          grid-column: 1/3;
+        }
+
+        & button {
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-userData {
+      margin-bottom: 28px;
+
+      &-item {
+        margin-bottom: 8px;
+      }
+    }
+    
+    &-inputs {
+      &-home {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+
+        & .input:first-child {
+          grid-column: auto;
+        }
+      }
+
+      &-gender {
+        grid-template-columns: 1fr;
+        grid-gap: 10px 16px;
+        margin-bottom: 8px;
+
+        & .input:first-child {
+          grid-column: auto;
+        }
+
+        & button {
+          height: 58px;
+        }
+      }
+    }
+  }
 }
 
 </style>

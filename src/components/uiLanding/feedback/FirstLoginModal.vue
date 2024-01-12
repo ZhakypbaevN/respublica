@@ -22,6 +22,7 @@
       </RouterLink>
 
       <Button
+        class="logInFirst-btns-close"
         :name="$t('button.cancel')"
         type="default-grey"
         @click="() => $emit('hide')"
@@ -49,6 +50,29 @@ defineEmits<Emits>()
     display: flex;
     justify-content: center;
     grid-gap: 20px;
+  }
+
+  // Adaptation
+  @media (max-width: 768px) {
+    &-btns-close {
+      display: none;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-btns {
+      flex-direction: column;
+      align-items: center;
+      grid-gap: 18px;
+
+      & a, & button {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
   }
 }
 </style>

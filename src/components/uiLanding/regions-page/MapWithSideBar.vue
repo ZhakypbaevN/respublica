@@ -2,7 +2,7 @@
   <div>
     <div class="map" ref="chartdiv"></div>
 
-    <div class="mapSidebar" :class="{show: showSideBar}">
+    <div class="mapSidebar" :class="{show: showSideBar}" v-click-outside="() => showSideBar = false">
       <div class="mapSidebar-topBlock" ref="mapSidebarTopBlock"></div>
       <div class="mapSidebar-header">
         <SvgIcon
@@ -195,39 +195,42 @@
   
 
     polygonSeries.mapPolygons.template.events.on("click", function(ev) {
-      showSideBar.value = true;
-      regions.forEach(region => {
-        if (region.code === ev.target.dataItem!.dataContext!.id) {
-          deputiesMap.deputiesList.forEach(obl => {
-            if (obl.code === ev.target.dataItem!.dataContext!.id) {
-              sideBarData.title = region.title;
-              sideBarData.deputies = region.deputies;
-              sideBarData.address = Object.assign({}, obl).address;
-              sideBarData.email = Object.assign({}, obl).email;
+      setTimeout(() => {
+        regions.forEach(region => {
+          if (region.code === ev.target.dataItem!.dataContext!.id) {
+            deputiesMap.deputiesList.forEach(obl => {
+              if (obl.code === ev.target.dataItem!.dataContext!.id) {
+                sideBarData.title = region.title;
+                sideBarData.deputies = region.deputies;
+                sideBarData.address = Object.assign({}, obl).address;
+                sideBarData.email = Object.assign({}, obl).email;
+              }
+            })
+            region.active = true;
+          } else region.active = false;
+        })
+  
+        polygonSeries.data.setAll(deputiesMap.deputiesList.map(obl => {
+          const polygon = {}
+          polygon.id = obl.code
+          polygon.address = obl.address;
+          polygon.email = obl.email;
+          
+          polygon.name = nameToLowerCase({ id: obl.code, name: obl.title })
+          
+          if (obl.code === ev.target.dataItem.dataContext.id) {
+            polygon.polygonSettings = {
+              fill: am5.color('#FCC952'),
+              stroke: am5.color('#FCC952'),
+              strokeWidth: 16,
+              strokeOpacity: 0.4
             }
-          })
-          region.active = true;
-        } else region.active = false;
-      })
-
-      polygonSeries.data.setAll(deputiesMap.deputiesList.map(obl => {
-        const polygon = {}
-        polygon.id = obl.code
-        polygon.address = obl.address;
-        polygon.email = obl.email;
-        
-        polygon.name = nameToLowerCase({ id: obl.code, name: obl.title })
-        
-        if (obl.code === ev.target.dataItem.dataContext.id) {
-          polygon.polygonSettings = {
-            fill: am5.color('#FCC952'),
-            stroke: am5.color('#FCC952'),
-            strokeWidth: 16,
-            strokeOpacity: 0.4
           }
-        }
-        return polygon
-      }));
+          return polygon
+        }));
+
+        showSideBar.value = true;
+      }, 300)
 
     });
   
@@ -353,7 +356,7 @@
   background-color: white;
   box-shadow: 0 4px 20px rgba(160,174,192,.25);
 
-  transition: all .3s ease-in-out;
+  transition: all .24s linear;
 
   &.show {
     right: 0;
@@ -461,6 +464,7 @@
     width: 320px;
 
     &-header {
+      padding-top: 30px;
       align-items: center;
       &-title {
         grid-column: 1/4;
