@@ -281,6 +281,14 @@
       &-search svg {
         stroke: white !important;
       }
+
+      &-burger svg {
+        fill: white;
+      }
+
+      & svg.logo-mini {
+        fill: white;
+      }
     }
   }
 
@@ -333,8 +341,6 @@
         display: flex;
         align-items: center;
         grid-gap: 30px;
-
-
       }
     }
 
@@ -371,7 +377,9 @@
         transform: rotate(0deg);
         animation: none;
 
-        transition: opacity .2s ease-in-out;
+        fill: var(--accent-color);
+
+        transition: opacity .2s ease-in-out, ;
       }
     }
 
@@ -451,11 +459,11 @@
 
     &-burger {
       display: none;
-
       height: 40px;
       width: 40px;
 
-      fill: var(--accent-color);
+      fill: var(--primary-color);
+      transition: all .3s ease-in-out;
     }
   }
 

@@ -8,9 +8,10 @@
               <h2 class="modal-title" v-if="title">{{ title }}</h2>
               <p class="modal-subtitle" v-if="subtitle">{{ subtitle }}</p>
             </div>
+
             <SvgIcon
               name="close"
-              class="close"
+              class="modal-close"
               :viewboxHeight="37"
               :viewboxWidth="37"
               @click="hideModal"
@@ -126,8 +127,9 @@
   }
 
   &-form {
-    min-width: 985px;
-    width: fit-content;
+    width: 100%;
+    min-width: auto;
+    max-width: 985px;
 
     display: flex;
     flex-direction: column;
@@ -145,7 +147,7 @@
     }
 
     &.big {
-      min-width: 1500px;
+      max-width: 1500px;
 
       & .modal-form-inner {
         max-width: 900px;
@@ -154,31 +156,150 @@
   }
 
   &-header {
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
 
   &-title {
     font-size: 36px;
     font-weight: 700;
     text-align: center;
-    color: var(--primary-color);
-    margin-bottom: 48px;
   }
 
   &-subtitle {
     font-weight: 500;
     font-size: 30px;
-    color: #222222;
   }
-}
-.close {
-  width: 37px;
-  height: 37px;
 
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  cursor: pointer;
+  &-close {
+    width: 37px;
+    height: 37px;
+
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    cursor: pointer;
+  }
+
+  // Adaptation
+  @media (max-width: 992px) {
+    &-inner {
+      padding: 30px 20px 60px;
+    }
+
+    &-form {
+      padding: 48px 42px;
+    }
+
+    &-header {
+      margin-bottom: 48px;
+    }
+
+    &-title {
+      font-size: 34px;
+    }
+
+    &-subtitle {
+      font-size: 28px;
+    }
+
+    &-close {
+      width: 36px;
+      height: 36px;
+
+      top: 18px;
+      right: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-inner {
+      padding: 28px 14px 52px;
+    }
+
+    &-form {
+      padding: 40px 20px;
+    }
+
+    &-header {
+      margin-bottom: 42px;
+    }
+
+    &-title {
+      font-size: 32px;
+    }
+
+    &-subtitle {
+      font-size: 22px;
+    }
+
+    &-close {
+      width: 32px;
+      height: 32px;
+
+      top: 18px;
+      right: 20px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-inner {
+      padding: 24px 12px 48px;
+    }
+
+    &-form {
+      padding: 40px 18px;
+    }
+
+    &-header {
+      margin-bottom: 40px;
+    }
+
+    &-title {
+      font-size: 32px;
+    }
+
+    &-subtitle {
+      font-size: 18px;
+    }
+
+    &-close {
+      width: 30px;
+      height: 30px;
+
+      top: 12px;
+      right: 12px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-inner {
+      padding: 24px 12px 48px;
+    }
+
+    &-form {
+      padding: 38px 14px;
+    }
+
+    &-header {
+      margin-bottom: 36px;
+    }
+
+    &-title {
+      font-size: 28px;
+    }
+
+    &-subtitle {
+      font-size: 18px;
+    }
+
+    &-close {
+      width: 26px;
+      height: 26px;
+
+      top: 10px;
+      right: 10px;
+    }
+  }
 }
 
 .v-enter-active,

@@ -460,9 +460,6 @@ const toggleShow = (idx: number) => {
     margin-bottom: 26px;
 
     &-deputy {
-      grid-template-columns: 30px 1fr;
-      grid-gap: 8px;
-
       padding: 2px 10px 2px 2px;
 
       & span {

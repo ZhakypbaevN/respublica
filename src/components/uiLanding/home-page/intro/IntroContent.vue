@@ -330,7 +330,9 @@
   }
 
   @media (max-width: 768px) {
-    bottom: 28px;
+    position: relative;
+    bottom: auto;
+    margin-bottom: 30px;
 
     &-inner {
       grid-gap: 12px;
@@ -356,15 +358,48 @@
     }
 
     &-title span {
-      font-size: 28px;
+      font-size: 26px;
     }
   }
 
   @media (max-width: 576px) {
-    display: none;
+    margin-bottom: 20px;
+
+    &-inner {
+      display: block;
+      position: relative;
+    }
+
+    &-images {
+      position: static;
+    }
+
+    &-logo {
+      display: none !important;
+    }
+
+    &-map {
+      left: 0;
+    }
+
+    &-title {
+      width: 100%;
+      text-align: center;
+
+      & span {
+        font-size: 25px;
+        letter-spacing: normal;
+      }
+    }
   }
 
   @media (max-width: 380px) {
+    margin-bottom: 18px;
+
+    &-title span {
+      font-size: 21px;
+      font-weight: bold;
+    }
   }
 }
 

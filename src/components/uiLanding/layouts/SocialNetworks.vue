@@ -151,20 +151,5 @@ const snList = [
       width: 26px;
     }
   }
-
-  @media (max-width: 768px) {
-    grid-gap: 14px;
-
-    &-item {
-      height: 24px;
-      width: 24px;
-    }
-  }
-
-  @media (max-width: 576px) {
-  }
-
-  @media (max-width: 380px) {
-  }
 }
 </style>

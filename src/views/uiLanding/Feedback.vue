@@ -124,5 +124,54 @@ const showModals = reactive({
 
     margin-bottom: 60px;
   }
+
+  // Adaptation
+  @media (max-width: 768px) {
+    &-inputs {
+      margin-bottom: 28px;
+    }
+
+    &-checkboxList {
+      grid-gap: 14px;
+      margin-bottom: 32px;
+
+      &-block {
+        grid-gap: 30px;
+        padding-bottom: 20px;
+      }
+    }
+
+    &-mainBtns {
+      margin-bottom: 50px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-inputs {
+      margin-bottom: 28px;
+    }
+
+    &-checkboxList {
+      grid-gap: 14px;
+      margin-bottom: 28px;
+
+      &-block {
+        flex-direction: column;
+        grid-gap: 14px;
+        padding-bottom: 20px;
+
+        & .feedbackModal-checkboxList {
+          margin-bottom: 0px !important;
+        }
+      }
+    }
+
+    &-mainBtns {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 </style>

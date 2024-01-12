@@ -1,6 +1,7 @@
 <template>
   <section class="intro">
     <IntroList />
+    <IntroSlider />
 
     <IntroBottom />
   </section>
@@ -9,6 +10,7 @@
 <script setup lang="ts">
 import IntroList from '@/components/uiLanding/home-page/intro/IntroList.vue';
 import IntroBottom from '@/components/uiLanding/home-page/intro/IntroBottom.vue';
+import IntroSlider from '@/components/uiLanding/home-page/intro/IntroSlider.vue';
 </script>
 
 <style scoped lang="scss">

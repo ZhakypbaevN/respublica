@@ -2,44 +2,43 @@
 <div class="wrapper-main">
   <div>
     <Header />
+
     <section class="faq-block landing-block">
       <div class="wrapper landing-wrapper">
         <h2 class="landing-title center">{{ $t('faq.faq-title') }}</h2>
 
-        <div class="faq-items">
-          <div
-            class="faq-item"
-            v-for="(faqItem, idx) of faqList"
-            :key="faqItem.question"
-            :class="{active: faqItem.active}"
-          >
-            <button class="faq-item-btn" @click="() => toggleShow(idx)">
-              <h4 class="faq-item-title">{{ faqItem.question }}</h4>
+        <div
+          class="faqItem"
+          v-for="(faqItem, idx) of faqList"
+          :key="faqItem.question"
+          :class="{active: faqItem.active}"
+        >
+          <button class="faqItem-btn" @click="() => toggleShow(idx)">
+            <h4 class="faqItem-title">{{ faqItem.question }}</h4>
 
-              <SvgIcon
-                class="faq-item-btn-arrow"
-                name="arrow-outline-down"
-                :viewboxWidth="32"
-                :viewboxHeight="32"
-              />
-            </button>
+            <SvgIcon
+              class="faqItem-btn-arrow"
+              name="arrow-outline-down"
+              :viewboxWidth="32"
+              :viewboxHeight="32"
+            />
+          </button>
 
-            <Transition>
-              <div v-if="faqItem.active" v-collapse>
-                <div class="faq-item-answer">
+          <Transition>
+            <div v-if="faqItem.active" v-collapse>
+              <div class="faqItem-answer">
 
-                  <div v-html="faqItem.answer"></div>
-                  <button
-                    v-if="faqItem.name === 'faq-item-7'"
-                    @click="showSubmitAnAppealModal = true"
-                  >
-                    «{{ t('button.sand') }}»
-                  </button>
+                <div v-html="faqItem.answer"></div>
+                <button
+                  v-if="faqItem.name === 'faqItem-7'"
+                  @click="showSubmitAnAppealModal = true"
+                >
+                  «{{ t('button.sand') }}»
+                </button>
 
-                </div>
               </div>
-            </Transition>
-          </div>
+            </div>
+          </Transition>
         </div>
       </div>
     </section>
@@ -69,7 +68,7 @@
   onMounted(() => {
     for (let idx = 1; idx <= 8; idx++) {
       faqList.push({
-        name: `faq-item-${idx}`,
+        name: `faqItem-${idx}`,
         question: t(`faq.faq-item-${idx}.question`),
         answer: t(`faq.faq-item-${idx}.answer`),
         active: false
@@ -89,83 +88,222 @@
 </script>
 
 <style scoped lang="scss">
-  .wrapper-main {
-    background-color: var(--accent-color-op05);
+.wrapper-main {
+  background-color: var(--accent-color-op05);
+}
+
+.faqItem {
+  border-radius: 10px;
+  background: white;
+  margin-bottom: 15px;
+
+  &.active .faqItem-btn-arrow {
+    transform: rotate(-180deg);
   }
 
-  .faq {
-    &-item {
-      border-radius: 10px;
-      background: #FFF;
-      margin-bottom: 15px;
+  &-btn {
+    padding: 28px 30px;
+    width: 100%;
 
-      &.active .faq-item-btn-arrow {
-        transform: rotate(-180deg);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 32px;
+    grid-gap: 80px;
+
+    &-arrow {
+      height: 32px;
+      width: 32px;
+      stroke: var(--primary-color);
+
+      transition:  .3s ease-in-out;
+    }
+
+    &:hover {
+      & .faqItem-title {
+        color: var(--accent-color);
       }
 
-      &-btn {
-        padding: 28px 30px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        grid-gap: 80px;
-
-        &-arrow {
-          height: 32px;
-          width: 32px;
-          stroke: var(--primary-color);
-
-          transition:  .3s ease-in-out;
-        }
-
-        &:hover {
-          & .faq-item-title {
-            color: var(--accent-color);
-          }
-
-          & .faq-item-btn-arrow {
-            stroke: var(--accent-color);
-          }
-        }
-      }
-
-      &-title {
-        font-size: 25px;
-        font-weight: 500;
-        line-height: 1.2;
-        text-align: left;
-
-        transition: color .3s ease-in-out;
-      }
-
-      &-answer {
-        padding: 2px 30px 30px;
-        
-        & * {
-          display: inline-block;
-
-          font-size: 20px;
-          line-height: 1.4;
-
-          margin-bottom: 0px !important;
-        }
-
-        & a, & button {
-          color: var(--accent-color);
-        }
-
-        & button {
-          margin-top: 20px;
-        }
+      & .faqItem-btn-arrow {
+        stroke: var(--accent-color);
       }
     }
   }
+
+  &-title {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: left;
+
+    transition: color .3s ease-in-out;
+  }
+
+  &-answer {
+    padding: 2px 30px 30px;
+    
+    & * {
+      display: inline-block;
+
+      font-size: 20px;
+      line-height: 1.4;
+
+      margin-bottom: 0px !important;
+    }
+
+    & a, & button {
+      color: var(--accent-color);
+    }
+
+    & button {
+      margin-top: 20px;
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    &-btn {
+      padding: 26px 28px;
+    }
+
+    &-answer {
+      padding: 2px 28px 28px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    border-radius: 10px;
+    margin-bottom: 15px;
+
+    &-btn {
+      padding: 26px 24px;
+
+      grid-template-columns: 1fr 30px;
+      grid-gap: 40px;
+
+      &-arrow {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    &-title {
+      font-size: 22px;
+    }
+
+    &-answer {
+      padding: 2px 24px 24px;
+      
+      & * {
+        font-size: 18px;
+      }
+
+      & button {
+        margin-top: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    border-radius: 10px;
+    margin-bottom: 12px;
+
+    &-btn {
+      padding: 24px 22px;
+
+      grid-template-columns: 1fr 28px;
+      grid-gap: 30px;
+
+      &-arrow {
+        height: 28px;
+        width: 28px;
+      }
+    }
+
+    &-title {
+      font-size: 20px;
+    }
+
+    &-answer {
+      padding: 2px 22px 22px;
+      
+      & * {
+        font-size: 18px;
+      }
+
+      & button {
+        margin-top: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    border-radius: 8px;
+    margin-bottom: 10px;
+
+    &-btn {
+      padding: 22px 18px;
+
+      grid-template-columns: 1fr 22px;
+      grid-gap: 20px;
+
+      &-arrow {
+        height: 22px;
+        width: 22px;
+      }
+    }
+
+    &-title {
+      font-size: 18px;
+    }
+
+    &-answer {
+      padding: 2px 18px 18px;
+      
+      & * {
+        font-size: 16px;
+      }
+
+      & button {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-btn {
+      padding: 20px 14px;
+
+      grid-template-columns: 1fr 20px;
+      grid-gap: 20px;
+
+      &-arrow {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    &-title {
+      font-size: 16px;
+    }
+
+    &-answer {
+      padding: 2px 14px 14px;
+      
+      & * {
+        font-size: 16px;
+      }
+
+      & button {
+        margin-top: 10px;
+      }
+    }
+  }
+}
 </style>
 
 
 <style>
-  .faq-item-answer a {
+  .faqItem-answer a {
     color: var(--accent-color);
   }
 </style>

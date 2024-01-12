@@ -1,10 +1,12 @@
 <template>
-  <div class="introList">
-    <div class="introList-preview bg-cover"></div>
+  <div class="introSlider">
+    <div class="introSlider-preview bg-cover"></div>
 
-    <div class="introList-teams">
+    <IntroContent />
+
+    <div class="introSlider-teams">
       <div
-        class="introList-teams-item"
+        class="introSlider-teams-item"
         v-for="(people, idx) of teamList"
         :key="people.zIndex"
         :style="{zIndex: people.zIndex}"
@@ -12,16 +14,14 @@
         :data-aos-delay="people.aosDelay"
         data-aos-duration="1200"
       >
-        <div class="introList-teams-item-preview">
+        <div class="introSlider-teams-item-preview">
           <img
-            class="introList-teams-item-preview-img"
+            class="introSlider-teams-item-preview-img"
             :src="people.img"
           />
         </div>
       </div>
     </div>
-
-    <IntroContent />
   </div>
 
 </template>
@@ -82,8 +82,9 @@
 </script>
 
 <style scoped lang="scss">
-.introList {
-  padding-top: 8%;
+.introSlider {
+  display: none;
+  padding-top: 90px;
   position: relative;
   overflow: hidden;
 
@@ -129,7 +130,7 @@
     display: flex;
     justify-content: space-around;
 
-    padding: 0 120px;
+    padding: 0 10px;
 
     &-item {
       padding-bottom: 36%;
@@ -150,32 +151,50 @@
   }
 
   // Adaptation
-  @media (max-width: 1900px) {
+  @media (max-width: 576px) {
+    display: block;
+    
     &-teams {
+      height: 280px;
+      width: min-content;
+      grid-gap: 100px;
+
+      padding: 0 100px;
+
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+
+      animation: sliderAnimation 20s infinite;
+      animation-delay: 10000;
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-teams {
+      height: 220px;
+      grid-gap: 100px;
       padding: 0 100px;
     }
   }
+}
 
-  @media (max-width: 1600px) {
-    &-teams {
-      padding: 0 80px;
-    }
+@keyframes sliderAnimation {
+  5% {
+    left: 50%;
+    transform: translateX(-50%);
   }
-
-  @media (max-width: 1400px) {
-    &-teams {
-      padding: 0 40px;
-    }
+  40% {
+    left: 0;
+    transform: translateX(-2%);
   }
-
-  @media (max-width: 1200px) {
-    &-teams {
-      padding: 0 20px;
-    }
+  60% {
+    left: 75%;
+    transform: translateX(-90%);
   }
-
-  @media (max-width: 768px) {
-    display: none;
+  95% {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 </style>
