@@ -156,6 +156,7 @@ withDefaults(defineProps<IProps>(), {})
   }
 }
 </style>
+
 <style lang="scss">
   .layout-content .wrapper {
     padding: 0 30px !important;

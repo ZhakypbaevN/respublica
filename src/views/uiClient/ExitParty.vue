@@ -145,7 +145,7 @@
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <div class="exitParty-doc-namEwithAction">
-                <a class="exitParty-doc-name" :href="'https://api.respublica-partiyasy.kz/' + exitPartyDatas.document?.name">{{ exitPartyDatas.document?.name }}</a>
+                <a class="exitParty-doc-name" :href="getFileUrl(exitPartyDatas.document?.name)">{{ exitPartyDatas.document?.name }}</a>
               </div>
             </div>
 
@@ -175,7 +175,7 @@
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <div class="exitParty-doc-namEwithAction">
-                <a class="exitParty-doc-name" :href="'https://api.respublica-partiyasy.kz/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
+                <a class="exitParty-doc-name" :href="getFileUrl(oldExitRequest.document)">{{ oldExitRequest.document }}</a>
               </div>
             </div>
             <p>
@@ -205,7 +205,7 @@
             <div class="exitParty-doc">
               <h4 class="exitParty-doc-title">Документ:</h4>
               <div class="exitParty-doc-namEwithAction">
-                <a class="exitParty-doc-name" :href="'https://api.respublica-partiyasy.kz/' + oldExitRequest.document">{{ oldExitRequest.document }}</a>
+                <a class="exitParty-doc-name" :href="getFileUrl(oldExitRequest.document)">{{ oldExitRequest.document }}</a>
               </div>
             </div>
             <p>
@@ -225,166 +225,169 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
-import { reactive, ref } from 'vue';
+  import axios from 'axios'
 
-// Modules
-import { useToast } from '../../modules/toast'
-import { onMounted } from 'vue';
-import moment from 'moment';
+  import { reactive, ref } from 'vue';
+  import { onMounted } from 'vue';
 
-const { toast } = useToast()
+  import moment from 'moment';
 
-const partyData = ref();
-const exitPartyDatas = reactive({
-  select: 'Несогласие с политикой партии',
-  text: null,
-  document: null,
-  status: null
-})
-const oldExitRequest = ref({
-  status: null
-});
-const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'PNG', 'JPG'];
+  // Modules
+  import { useToast } from '@/modules/toast'
+  import getFileUrl from '@/helpers/getFileUrlByDate';
 
-const isLoading = reactive({
-  page: true,
-  btn: false
-})
-const token = localStorage.getItem('access_token');
+  const { toast } = useToast()
 
-const clickInputFile = () => {
-  document.getElementById('upload-files')?.click();
-}
+  const partyData = ref();
+  const exitPartyDatas = reactive({
+    select: 'Несогласие с политикой партии',
+    text: null,
+    document: null,
+    status: null
+  })
+  const oldExitRequest = ref({
+    status: null
+  });
+  const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'PNG', 'JPG'];
 
-const deleteFile = () => {
-  exitPartyDatas.document = null;
-}
+  const isLoading = reactive({
+    page: true,
+    btn: false
+  })
+  const token = localStorage.getItem('access_token');
 
-const uploadFiles = (event) => {
-  if (event.target.files.length > 0) {
-    if (isDocx(event.target.files[0].name)) exitPartyDatas.document = event.target.files[0];
-    else {
-      toast({
-        message: 'Документ должен быть с рачширением ' + fileTypes.join(', ')
-      })
+  const clickInputFile = () => {
+    document.getElementById('upload-files')?.click();
+  }
+
+  const deleteFile = () => {
+    exitPartyDatas.document = null;
+  }
+
+  const uploadFiles = (event) => {
+    if (event.target.files.length > 0) {
+      if (isDocx(event.target.files[0].name)) exitPartyDatas.document = event.target.files[0];
+      else {
+        toast({
+          message: 'Документ должен быть с рачширением ' + fileTypes.join(', ')
+        })
+      }
     }
   }
-}
 
-const isDocx = (fileName) => {
-  const type = fileName.split(".")
-  return fileTypes.includes(type[type.length - 1])
-}
+  const isDocx = (fileName) => {
+    const type = fileName.split(".")
+    return fileTypes.includes(type[type.length - 1])
+  }
 
-// Get Party Data
-const getPartData = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      partyData.value = response.data;
+  // Get Party Data
+  const getPartData = () => {
+    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
     })
-    .catch((err) => {
-      console.log('err', err);
-      // toast({
-      //   message: 'Возникли ошибки при запросе'
-      // })
-    });
-}
-
-
-// Get Exit Party Data
-
-onMounted(() => {
-  getPartData();
-  getRequestExitParty();
-});
-
-const getRequestExitParty = () => {
-  isLoading.page = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation`;
-
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-      
-      if (response.data.status === 'pending') {
-        exitPartyDatas.document = {};
-        exitPartyDatas.document.name = response.data.document;
-        exitPartyDatas.select = response.data.reason_for_resignation;
-        exitPartyDatas.status = response.data.status;
-      } else oldExitRequest.value = response.data;
-
-      isLoading.page = false;
-    })
-    .catch((err) => {
-      console.log('err', err);
-
-     
+      .then((response) => {
+        partyData.value = response.data;
+      })
+      .catch((err) => {
+        console.log('err', err);
         // toast({
         //   message: 'Возникли ошибки при запросе'
         // })
-      isLoading.page = false;
-    });
-}
+      });
+  }
 
-// Send Exit From Party
-const postRequestExitParty = () => {
-  isLoading.btn = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation?reason_for_resignation=${exitPartyDatas.select ?? exitPartyDatas.text!}`;
 
-  const formData = new FormData();
-  formData.append("document", exitPartyDatas.document!);
+  // Get Exit Party Data
 
-  axios({
-    method: "post",
-    url: url,
-    data: formData,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
+  onMounted(() => {
+    getPartData();
+    getRequestExitParty();
+  });
 
-      toast({
-        message: 'Заявка успешно отправлена',
-        type: 'success'
-      })
-      
-      exitPartyDatas.status = 'pending';
-      isLoading.btn = false;
-    })
-    .catch((err) => {
-      console.log('err', err);
+  const getRequestExitParty = () => {
+    isLoading.page = true;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation`;
 
-      if (err.response.data.detail === 'Pending resignation request already exists.') {
-        toast({
-          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
       }
-      isLoading.btn = false;
-    });
-}
+    })
+      .then((response) => {
+        console.log('response', response);
+        
+        if (response.data.status === 'pending') {
+          exitPartyDatas.document = {};
+          exitPartyDatas.document.name = response.data.document;
+          exitPartyDatas.select = response.data.reason_for_resignation;
+          exitPartyDatas.status = response.data.status;
+        } else oldExitRequest.value = response.data;
+
+        isLoading.page = false;
+      })
+      .catch((err) => {
+        console.log('err', err);
+
+      
+          // toast({
+          //   message: 'Возникли ошибки при запросе'
+          // })
+        isLoading.page = false;
+      });
+  }
+
+  // Send Exit From Party
+  const postRequestExitParty = () => {
+    isLoading.btn = true;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation?reason_for_resignation=${exitPartyDatas.select ?? exitPartyDatas.text!}`;
+
+    const formData = new FormData();
+    formData.append("document", exitPartyDatas.document!);
+
+    axios({
+      method: "post",
+      url: url,
+      data: formData,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then((response) => {
+        console.log('response', response);
+
+        toast({
+          message: 'Заявка успешно отправлена',
+          type: 'success'
+        })
+        
+        exitPartyDatas.status = 'pending';
+        isLoading.btn = false;
+      })
+      .catch((err) => {
+        console.log('err', err);
+
+        if (err.response.data.detail === 'Pending resignation request already exists.') {
+          toast({
+            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+          })
+        } else {
+          toast({
+            message: 'Возникли ошибки при запросе'
+          })
+        }
+        isLoading.btn = false;
+      });
+  }
 </script>
 
 <style scoped lang="scss">

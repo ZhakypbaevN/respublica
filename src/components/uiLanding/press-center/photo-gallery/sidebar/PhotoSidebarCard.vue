@@ -43,12 +43,26 @@
 
   border-radius: 0px;
   border: 2px solid transparent;
-  border-bottom-color: var(--light-gray-color-op20);
   
   cursor: pointer;
   transition: 0.3s ease-in-out;
 
   position: relative;
+
+  &::after {
+    content: '';
+
+    display: block;
+    width: 100%;
+    height: 0px;
+
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    z-index: 2;
+
+    border-bottom: 2px solid var(--light-gray-color-op20);
+  }
 
   &:hover {
     background-color: var(--accent-color-op10);
