@@ -82,6 +82,7 @@
     }
 
     & span,
+    & *,
     & a {
       display: inline;
       color: var(--light-gray-color);

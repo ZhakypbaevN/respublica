@@ -26,17 +26,10 @@
     <div class="contacts-items">
       <h4 class="contacts-items-title">{{ $t('contacts.press-service-for-the-media.title') }}</h4>
 
-      <a class="contacts-item" :href="`tel:${$t('contacts.press-service-for-the-media.phone')}`">
-        <SvgIcon name="call-gery" :viewboxWidth="28" :viewboxHeight="28" />
-        <h4 class="contacts-item-title">
-          {{ $t('contacts.press-service-for-the-media.phone') }}
-        </h4>
-      </a>
-
-      <a class="contacts-item" :href="`mailto:akparat2020@gmail.com`">
+      <a class="contacts-item" :href="`mailto:a.ensebaeva@respublica-partiyasy.kz`">
         <SvgIcon name="envelope-grey" :viewboxWidth="28" :viewboxHeight="28" />
         <h4 class="contacts-item-title">
-          akparat2020@gmail.com
+          a.ensebaeva@respublica-partiyasy.kz
         </h4>
       </a>
     </div>

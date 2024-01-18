@@ -7,8 +7,6 @@
       :albomID="albomID"
       @newPhoto="addNwPhoto"
     />
-
-    Empty
   </div>
   <div
     v-else-if="loading || !imagesValues.tableValues"

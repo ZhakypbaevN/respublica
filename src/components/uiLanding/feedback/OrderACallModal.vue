@@ -73,9 +73,6 @@ const emits = defineEmits<Emits>()
 const loading = ref(false)
 
 const postFeedback = ({ name, phone, comment }: { name: string, phone: string, comment: string }) => {
-  console.log('name', name);
-  console.log('name', phone);
-  console.log('name', comment);
 }
 </script>
 

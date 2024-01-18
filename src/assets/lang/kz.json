@@ -471,6 +471,8 @@
   },
   
   "button": {
+    "edit": "Өңдеу",
+    "delete": "Жою",
     "all": "Барлығы",
     "menu": "Мәзір",
     "publish": "Жариялау",
@@ -532,6 +534,8 @@
     "the-photo-has-been-uploaded": "Фото сәтті қосылды!",
     "the-photo-has-been-deleted": "Фото сәтті өшірілді!",
     "the-album-has-been-successfully-created": "Альбом сәтті жасалды!",
+    "the-album-has-been-successfully-deleted": "Альбом сәтті жойылды!",
+    "the-album-has-been-successfully-edited": "Альбом сәтті өңделді!",
     "the-video-has-been-successfully-deleted": "Видео сәтті өшірілді!",
     "the-news-has-been-successfully-deleted": "Жаңалық сәтті өшірілді!",
     "request-error-please-check-if-you-are-connected-to-the-internet": "Сұрау қателігі! Өтінеміз, интернет желісіне қосылғаныңызды тексеріңіз",
@@ -554,7 +558,8 @@
     "the-news-was-successfully-updated": "Жаңалық сәтті жаңартылды!",
     "сomments-have-been-sent-successfully": "Сіздің пікіріңіз сәтті жіберілді!",
     "nothing-seems-to-be-found": "Ештеңе табылмаған сияқты!",
-    "the-comment-was-successfully-deleted": "Пікір сәтті жойылды!"
+    "the-comment-was-successfully-deleted": "Пікір сәтті жойылды!",
+    "you-have-successfully-joined-the-party": "Сіз партияға сәтті кірдіңіз!"
   },
 
   "errors": {
@@ -567,7 +572,8 @@
   },
 
   "gallery": {
-    "creating-an-album": "Альбом жасау"
+    "creating-an-album": "Альбом жасау",
+    "editing-an-album": "Альбомды өңдеу"
   },
 
   "male": "Ер адам",

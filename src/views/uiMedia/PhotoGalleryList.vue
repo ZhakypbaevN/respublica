@@ -8,6 +8,7 @@
           type="outline-blue"
           :name="$t('button.add-albom')"
           @click="() => showModal = true"
+          @finish=""
         >
           <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
         </Button>
@@ -39,6 +40,7 @@
     <CreateAlbomModal
       v-if="showModal"
       @hide="() => showModal = false"
+      @finish="onCreatedAlbom"
     />
   </section>
 </template>
@@ -50,7 +52,7 @@
 
   import { ref, reactive, onMounted } from "vue";
   
-  import { AlbomValues } from '@/types/photo-gallery';
+  import { AlbomValues, IAlbom } from '@/types/photo-gallery';
   import { getAlbomList } from '@/actions/uiLanding/photo-gallery';
 
   const showModal = ref(false)
@@ -78,6 +80,9 @@
     if (!total) albomValues.isEmpty = true;
     else selectAlbomID.value = albomValues.tableValues[0].id;
   }
+
+  const onCreatedAlbom = (albom) =>
+    albomValues.tableValues.push(albom);
 </script>
 
 <style scoped lang="scss">

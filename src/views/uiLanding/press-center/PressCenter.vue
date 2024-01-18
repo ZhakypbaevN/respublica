@@ -127,9 +127,9 @@
             <span>{{ $t('contacts.press-service-for-the-media.phone') }}</span>
           </a>
 
-          <a class="contacts-link" :href="`mailto:akparat2020@gmail.com`">
+          <a class="contacts-link" :href="`mailto:a.ensebaeva@respublica-partiyasy.kz`">
             <SvgIcon name="mail-white" :viewboxWidth="52" :viewboxHeight="52" />
-            <span>akparat2020@gmail.com</span>
+            <span>a.ensebaeva@respublica-partiyasy.kz</span>
           </a>
         </div>
       </div>
