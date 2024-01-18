@@ -6,8 +6,6 @@ import router from '@/router/index.js'
 import api from '@/modules/api'
 import { useToast } from '@/modules/toast'
 
-import { IUser } from '@/types/users'
-
 // const { t } = useI18n()
 const { toast } = useToast()
 
@@ -31,7 +29,7 @@ export const selectedSchool = ref(getSelectedSchool())
 
 export const getUser = () => {
   try {
-    return JSON.parse(localStorage.getItem('user'))
+    return JSON.parse(localStorage.getItem('USER_DATA')!)
   } catch (error) {
     console.error(error)
     return {}

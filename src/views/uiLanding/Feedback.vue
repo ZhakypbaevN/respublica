@@ -170,8 +170,5 @@ const showModals = reactive({
       margin-bottom: 40px;
     }
   }
-
-  @media (max-width: 380px) {
-  }
 }
 </style>

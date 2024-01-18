@@ -89,9 +89,6 @@ const loading = ref(false);
 const userType = localStorage.getItem('USER_TYPE');
 
 const postFeedback = ({ name, phone, comment }: { name: string, phone: string, comment: string }) => {
-  console.log('name', name);
-  console.log('name', phone);
-  console.log('name', comment);
 }
 </script>
 

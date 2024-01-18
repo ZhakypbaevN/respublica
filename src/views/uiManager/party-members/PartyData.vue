@@ -128,7 +128,7 @@
       @hide="() => showModal.delete = false"
     />
 
-    <JoinPartyModal
+    <EditPartyModal
       :show="showModal.edit"
       :data="partyData"
       @hide="() => showModal.edit = false"
@@ -138,80 +138,81 @@
 </template>
 
 <script setup lang="ts">
-import UserDataBlock from '@/components/uiClient/user-data/UserDataBlock.vue'
-import PartyDataBlock from '@/components/uiClient/user-data/PartyDataBlock.vue';
-import DeleteModal from '@/components/uiManager/party-members/DeleteModal.vue'
-import JoinPartyModal from '@/components/uiManager/party-members/EditModal.vue';
+  import UserDataBlock from '@/components/uiClient/user-data/UserDataBlock.vue'
+  import PartyDataBlock from '@/components/uiClient/user-data/PartyDataBlock.vue';
+  import DeleteModal from '@/components/uiManager/party-members/DeleteModal.vue'
+  import EditPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
 
-import axios from 'axios';
+  import axios from 'axios';
 
-import { onMounted, ref, reactive } from 'vue';
-import { useRoute } from 'vue-router'
+  import { onMounted, ref, reactive } from 'vue';
+  import { useRoute } from 'vue-router'
 
-import { useToast } from '@/modules/toast'
+  import { useToast } from '@/modules/toast'
 
-const { toast } = useToast()
-const route = useRoute()
+  const { toast } = useToast()
+  const route = useRoute()
 
-const isLoadingPDF = ref(false);
-const partyData = ref(null);
-const showModal = reactive({
-  delete: false,
-  edit: false
-});
-const token = localStorage.getItem('access_token');
+  const isLoadingPDF = ref(false);
+  const partyData = ref(null);
+  const showModal = reactive({
+    delete: false,
+    edit: false
+  });
+  const token = localStorage.getItem('access_token');
 
-onMounted(() => {
-  getPartData();
-})
-
-const getPartData = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/${route.params.party_id}`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
+  onMounted(() => {
+    getPartData();
   })
+
+
+  const getPartData = () => {
+    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/${route.params.party_id}`;
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then((response) => {
+        partyData.value = response.data;
+      })
+      .catch((err) => {
+        console.log('err', err);
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      });
+  }
+
+  const downloadPDFCard = () => {
+    isLoadingPDF.value = true;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/pdf/${route.params.party_id}`;
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/pdf',
+        Authorization: 'Bearer ' + token
+      },
+      responseType: 'arraybuffer'
+    })
     .then((response) => {
-      partyData.value = response.data;
+      const blob = new Blob([response.data], {type: 'application/pdf'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      isLoadingPDF.value = false;
     })
     .catch((err) => {
       console.log('err', err);
+      isLoadingPDF.value = false;
       toast({
         message: 'Возникли ошибки при запросе'
       })
     });
-}
-
-const downloadPDFCard = () => {
-  isLoadingPDF.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/pdf/${route.params.party_id}`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/pdf',
-      Authorization: 'Bearer ' + token
-    },
-    responseType: 'arraybuffer'
-  })
-  .then((response) => {
-    const blob = new Blob([response.data], {type: 'application/pdf'});
-    const url = window.URL.createObjectURL(blob);
-    window.open(url, '_blank');
-    isLoadingPDF.value = false;
-  })
-  .catch((err) => {
-    console.log('err', err);
-    isLoadingPDF.value = false;
-    toast({
-      message: 'Возникли ошибки при запросе'
-    })
-  });
-}
+  }
 </script>
 
 <style scoped lang="scss">

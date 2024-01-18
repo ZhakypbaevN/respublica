@@ -1,8 +1,8 @@
 <template>
   <LogInFirstModal
+    :show="show"
     :title="t('feedback.to-join-the-party-you-need-to-log-in-to-the-portal-or-register')"
     @hide="emits('hide')"
-    :show="show && !userData.role"
   />
   
   <Modal

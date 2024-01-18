@@ -483,6 +483,8 @@
   },
   
   "button": {
+    "edit": "Редактировать",
+    "delete": "Удалить",
     "all": "Все",
     "menu": "Меню",
     "publish": "Опубликовать",
@@ -544,6 +546,8 @@
     "the-photo-has-been-uploaded": "Фотография успешно загружена!",
     "the-photo-has-been-deleted": "Фотография успешно удалена!",
     "the-album-has-been-successfully-created": "Альбом успешно создан!",
+    "the-album-has-been-successfully-deleted": "Альбом успешно был успешно удален!",
+    "the-album-has-been-successfully-edited": "Альбом успешно был успешно отредактирован!",
     "the-video-has-been-successfully-deleted": "Видео успешно удалена!",
     "the-news-has-been-successfully-deleted": "Новость успешно удалена!",
     "request-error-please-check-if-you-are-connected-to-the-internet": "Ошибка запроса! Пожалуйста проверьте подключены ли вы в интернет.",
@@ -566,7 +570,10 @@
     "the-news-was-successfully-updated": "Новость была успешно обновлена!",
     "сomments-have-been-sent-successfully": "Ваш комментарий был успешно отправлен!",
     "nothing-seems-to-be-found": "Похоже ничего не найдено!",
-    "the-comment-was-successfully-deleted": "Комментарий был успешно удален!"
+    "the-comment-was-successfully-deleted": "Комментарий был успешно удален!",
+    "you-have-successfully-joined-the-party": "Вы успешно вступили в партию!"
+
+    
   },
 
   "errors": {
@@ -579,7 +586,8 @@
   },
 
   "gallery": {
-    "creating-an-album": "Создание альбома"
+    "creating-an-album": "Создание альбома",
+    "editing-an-album": "Редактирование альбома"
   },
 
   "male": "Мужчина",

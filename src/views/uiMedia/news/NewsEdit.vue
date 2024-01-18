@@ -115,7 +115,7 @@
               ? $t('button.save')
               : $t('button.create')
           "
-          :loading="isloading"
+          :loading="isLoading"
           htmlType="submit"
         />
       </Form>
@@ -154,7 +154,7 @@
   const { t } = useI18n()
   const { toast } = useToast()
 
-  const isloading = ref(false)
+  const isLoading = ref(false)
   const newsData = ref<INews>()
 
   const newPhotoFile = ref(null);
@@ -183,7 +183,7 @@
 
   // Post
   const postNews = async () => {
-    isloading.value = true;
+    isLoading.value = true;
     try {
       const formData = new FormData();
 
@@ -206,7 +206,7 @@
       })
 
     } finally {
-      isloading.value = false
+      isLoading.value = false
     }
   }
 

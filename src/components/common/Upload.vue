@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue-demi'
+  import { watch, ref } from 'vue'
   import { File } from 'buffer';
 
   import ImageCrop from '@/components/common/ImageCrop.vue'
@@ -79,6 +79,11 @@
   })
 
   const image = ref(props.preview);
+
+  watch(
+    () => props.preview,
+    () => image.value = props.preview
+  );
 
   const drag = ref(false)
   const input = ref(null)
