@@ -19,66 +19,39 @@
             </div>
 
             <div class="userData-card" v-if="partyData">
-              <h5 class="userData-card-title">Партийный билет</h5>
+              <h5 class="userData-card-title">{{ $t('party.party-card') }}</h5>
 
 
               <div class="userData-card-items">
-                <div class="userData-cardInfo">
+                <div
+                  class="userData-cardInfo"
+                  v-for="lang of ['kaz', 'rus']"
+                  :key="lang"
+                >
                   <div class="userData-cardInfo-content">
                   
                     <h4 class="userData-cardInfo-info number">
-                      <span>Партиялық билет</span>
+                      <span>{{ $t(`party.party-card-${lang}.title`) }}</span>
                       №{{ partyData?.ticket_number }}
                     </h4>
 
 
                     <h4 class="userData-cardInfo-info">
-                      <span>Тегі:</span>
+                      <span>{{ $t(`party.party-card-${lang}.surname`) }}:</span>
                       {{ partyData.user.last_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info">
-                      <span>Аты:</span>
+                      <span>{{ $t(`party.party-card-${lang}.name`) }}:</span>
                       {{ partyData.user.first_name }}
                     </h4>
                     <h4 class="userData-cardInfo-info middleName">
-                      <span>Әкесінің аты:</span>
+                      <span>{{ $t(`party.party-card-${lang}.middle-name`) }}:</span>
                       {{ partyData.user.middle_name }}
                     </h4>
 
 
                     <h4 class="userData-cardInfo-info dayOfAcceptance">
-                      <span>Берілген күні:</span>
-                      {{ partyData?.join_date }}
-                    </h4>
-
-                  </div>
-                  <img src="/img/icons/party-card.svg" alt="">
-                </div>
-                <div class="userData-cardInfo">
-                  <div class="userData-cardInfo-content">
-                  
-                    <h4 class="userData-cardInfo-info number">
-                      <span>Партийный билет</span>
-                      №{{ partyData?.ticket_number }}
-                    </h4>
-
-
-                    <h4 class="userData-cardInfo-info">
-                      <span>Фамилия:</span>
-                      {{ partyData.user.last_name }}
-                    </h4>
-                    <h4 class="userData-cardInfo-info">
-                      <span>Имя:</span>
-                      {{ partyData.user.first_name }}
-                    </h4>
-                    <h4 class="userData-cardInfo-info middleName">
-                      <span>Отчество:</span>
-                      {{ partyData.user.middle_name }}
-                    </h4>
-
-
-                    <h4 class="userData-cardInfo-info dayOfAcceptance">
-                      <span>Дата выдачи:</span>
+                      <span>{{ $t(`party.party-card-${lang}.date-of-issue`) }}:</span>
                       {{ partyData?.join_date }}
                     </h4>
 
@@ -141,7 +114,7 @@
   import UserDataBlock from '@/components/uiClient/user-data/UserDataBlock.vue'
   import PartyDataBlock from '@/components/uiClient/user-data/PartyDataBlock.vue';
   import DeleteModal from '@/components/uiManager/party-members/DeleteModal.vue'
-  import EditPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
+  import EditPartyModal from '@/components/uiManager/party-members/CreatePartyModal.vue';
 
   import axios from 'axios';
 
