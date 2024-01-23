@@ -1,14 +1,11 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-// import { useI18n } from 'vue-i18n'
 
 import { useToast } from '@/modules/toast'
 import { useAuth } from '@/modules/auth'
 
 import { getLangForURL } from '@/assets/lang/exports'
-
-// const { t } = useI18n()
-const { toast } = useToast()
-const { logout } = useAuth()
+import { languages } from '@/assets/lang/exports'
+import i18n from '@/assets/lang'
 
 type Request = <T = any>(
   url: string,
@@ -59,6 +56,8 @@ const request = function (
 
   api[httpType](url, data)
     .then(function (response) {
+      const { toast } = useToast()
+
       if (response.data.message) {
         toast({
           message: response.data.message,
@@ -73,20 +72,22 @@ const request = function (
       }
     })
     .catch(function (error) {
+      const { toast } = useToast()
+      const { logout } = useAuth()
       const userType = localStorage.getItem('USER_TYPE');
       if (error.response.status === 401 && userType) logout()
 
       if (!muteError) {
         if (!error.response) {
-          // toast({
-          //   message: t('message.request-error-please-check-if-you-are-connected-to-the-internet'),
-          //   type: 'danger'
-          // })
+          toast({
+            message: languages[i18n.global.locale.value].message['request-error-please-check-if-you-are-connected-to-the-internet'],
+            type: 'danger'
+          })
         } else if (error.response.status === 500) {
-          // toast({
-          //   message: t('message.server-error'),
-          //   type: 'danger'
-          // })
+          toast({
+            message: languages[i18n.global.locale.value].message['server-error'],
+            type: 'danger'
+          })
         } else if (typeof error.response.data.errors === 'object') {
           Object.entries(error.response.data.errors).forEach(([key, value]) => {
             toast({
@@ -109,10 +110,10 @@ const request = function (
             })
           }
         } else {
-          // toast({
-          //   message: t('message.an-error-occurred-during-the-request-please-try-again-later'),
-          //   type: 'danger'
-          // })
+          toast({
+            message: languages[i18n.global.locale.value].message['an-error-occurred-during-the-request-please-try-again-later'],
+            type: 'danger'
+          })
         }
       }
 

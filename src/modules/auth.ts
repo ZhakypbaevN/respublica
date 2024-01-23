@@ -1,14 +1,15 @@
-import { ref, watch } from 'vue'
-// import { useI18n } from 'vue-i18n'
-
+import { ref } from 'vue'
 import router from '@/router/index.js'
 
 import api from '@/modules/api'
 import { useToast } from '@/modules/toast'
+
 import { getUserData } from '@/actions/auth'
 import { IUser } from '@/types/users'
 
-// const { t } = useI18n()
+import { languages } from '@/assets/lang/exports'
+import i18n from '@/assets/lang'
+
 const { toast } = useToast()
 
 const user = ref<IUser>({
@@ -90,7 +91,7 @@ export const useAuth = () => {
       last_name: ''
     }
     loaded.value = false
-    // toast({ message: t('message.you-are-logged-out') })
+    toast({ message: languages[i18n.global.locale.value].message['you-are-logged-out'], type: 'success' })
 
     if (router.currentRoute.value.name === 'Home') {
       location.reload();

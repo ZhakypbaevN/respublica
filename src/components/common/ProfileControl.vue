@@ -6,18 +6,6 @@
 
 
     <div class="avatarBlock-dropDown">
-      <!-- <RouterLink
-        v-for="linkData of links"
-        :key="linkData.title"
-        class="avatarBlock-link"
-        :to="linkData.link"
-      >
-        <Button
-          :name="linkData.title"
-          type="outline-blue"
-        />
-      </RouterLink> -->
-
       <Button
         class="avatarBlock-btn"
         :name="$t('button.log-out-of-your-account')"
@@ -37,40 +25,26 @@
 
 <script setup lang="ts">
   import Avatar from '@/components/common/Avatar.vue';
+
   import { ref, onMounted } from 'vue';
 
+  import { getUser } from '@/modules/auth';
   import { useAuth } from'@/modules/auth'
+
+  import { IUser } from '@/types/users';
 
   const { logout } = useAuth()
   const link = ref('')
+  const userData = ref<IUser>();
 
-  onMounted(() => {
-    const userRole = localStorage.getItem('USER_TYPE');
+  onMounted(async () => {
+    userData.value = await getUser();
     
-    if (userRole === 'admin') link.value = '/admin'
-    else if (userRole === 'manager') link.value = '/manager'
-    else if (userRole === 'editor') link.value = '/media'
+    if (userData.value.role === 'admin') link.value = '/admin'
+    else if (userData.value.role === 'manager') link.value = '/manager'
+    else if (userData.value.role === 'editor') link.value = '/media'
     else link.value = '/client'
   })
-  
-  const links = [
-    {
-      title: 'Личные данные',
-      link: '/client'
-    },
-    {
-      title: 'Менеджер',
-      link: '/manager/party-list/active?offset=0&limit=20&published=true&search='
-    },
-    {
-      title: 'Пресс-центр',
-      link: '/media/news-list?offset=0&limit=20&published=true&search='
-    },
-    {
-      title: 'Для просмотра обращении',
-      link: '/business'
-    }
-  ]
 </script>
 
 <style scoped lang="scss">
@@ -92,7 +66,6 @@
       justify-content: center;
 
       border-radius: 50%;
-      /* border: 2px solid var(--primary-color); */
       background-color: var(--accent-color-op15);
 
       & svg {

@@ -25,7 +25,7 @@
       </div>
       
       <div class="news-items" v-if="newsValues.isEmpty">
-        Empty
+        <Empty />
       </div>
       <div class="news-items disabled" v-else-if="!newsValues.tableValues">
         Loading
