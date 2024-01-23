@@ -572,8 +572,6 @@
     "nothing-seems-to-be-found": "Похоже ничего не найдено!",
     "the-comment-was-successfully-deleted": "Комментарий был успешно удален!",
     "you-have-successfully-joined-the-party": "Вы успешно вступили в партию!"
-
-    
   },
 
   "errors": {
@@ -587,7 +585,9 @@
     "this-number-is-not-registered": "Этот номер не зарегистрирован!",
     "the-processing-period-has-expired-repeat-again": "Срок обработки истек, повторите заново!",
     "the-phone-number-is-already-registered": "Номер телефона уже зарегистрирован!",
-    "invalid-code": "Неверный код!"
+    "invalid-code": "Неверный код!",
+    "you-have-already-joined-the-parties": "Вы уже присоединились к партий!",
+    "accommodation-under-the-age-of-18-is-not-allowed": "Проживание в возрасте до 18 лет не допускается!"
   },
 
   "gallery": {

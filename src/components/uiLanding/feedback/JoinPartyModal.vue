@@ -5,6 +5,10 @@
     :show="show && !userData"
   />
 
+  <AlreadyJoinedPartyModal
+    :show="show && false"
+    @hide="emits('hide')"
+  />
   
   <Modal
     v-if="show && userData?.role"
@@ -234,6 +238,7 @@
 
 <script setup lang="ts">
   import LogInFirstModal from '@/components/uiLanding/feedback/FirstLoginModal.vue';
+  import AlreadyJoinedPartyModal from '@/components/uiLanding/feedback/AlreadyJoinedPartyModal.vue';
 
   import moment from 'moment'
   import { useI18n } from 'vue-i18n'
@@ -395,7 +400,7 @@
 
       if (response) {
         toast({
-          message: 'Вы успешно вступили в партию',
+          message: t('message.you-have-successfully-joined-the-party'),
           type: 'success'
         })
   
@@ -404,17 +409,18 @@
           emits('hide')
         }, 300);
       }
-      
-      // if (err.response.data.detail === 'Duplicate membership is not allowed.') {
-      //   toast({
-      //     message: 'Вы уже присоединились к партий'
-      //   })
-      // } else if (err.response.data.detail === 'Age under 18 is not allowed.') {
-      //   toast({
-      //     message: 'Проживание в возрасте до 18 лет не допускается'
-      //   })
-      // }
-
+    } catch (err) {
+      if (err.response.data.detail === 'Duplicate membership is not allowed.') {
+        toast({
+          message: t('errors.you-have-already-joined-the-parties'),
+          type: 'warning'
+        })
+      } else if (err.response.data.detail === 'Age under 18 is not allowed.') {
+        toast({
+          message: t('errors.accommodation-under-the-age-of-18-is-not-allowed'),
+          type: 'warning'
+        })
+      }
     } finally {
       isLoading.value = false
     }

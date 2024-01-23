@@ -573,7 +573,9 @@
     "this-number-is-not-registered": "Бұл нөмір тіркелген жоқ!",
     "the-processing-period-has-expired-repeat-again": "Өңдеу мерзімі аяқталды, қайтадан қайталаңыз!",
     "the-phone-number-is-already-registered": "Телефон нөмірі тіркелген!",
-    "invalid-code": "Қате код!"
+    "invalid-code": "Қате код!",
+    "you-have-already-joined-the-parties": "Сіз қазірдің өзінде партияларға қосылдыңыз!",
+    "accommodation-under-the-age-of-18-is-not-allowed": "18 жасқа дейін тұруға рұқсат етілмейді!"
   },
 
   "gallery": {
