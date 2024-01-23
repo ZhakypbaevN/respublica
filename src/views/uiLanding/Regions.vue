@@ -29,12 +29,16 @@
         </div>
       </div>
 
-      <div class="wrapper">
+      <div class="wrapper regions-toggleContent">
         <Transition>
           <MapWithSideBar v-if="controlBtns[0].active" />
 
           <ListDeputies v-else />
         </Transition>
+      </div>
+
+      <div class="wrapper regions-deputiesList">
+        <ListDeputies />
       </div>
     </section>
   </div>
@@ -121,6 +125,22 @@
             fill: white !important;
           }
         }
+      }
+    }
+    &-deputiesList {
+      display: none;
+    }
+
+    // Adaptation
+    @media (max-width: 576px) {
+      &-controlBtns {
+        display: none;
+      }
+      &-toggleContent {
+        display: none;
+      }
+      &-deputiesList {
+        display: block;
       }
     }
   }

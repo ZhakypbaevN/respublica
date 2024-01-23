@@ -9,9 +9,9 @@
         name="password"
         v-model="firstPassword"
         :placeholder="$t('formdata.come-up-with-a-password')"
+        validation="password"
         required
       />
-        <!-- validation="password" -->
 
       <Input
         light
@@ -27,81 +27,56 @@
       class="modal-btn"
       :name="$t('button.save-the-password')"
       type="default-blue"
-      :loading="loading"
+      :loading="isLoading"
       htmlType="submit"
     />
   </Form>
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
+  import { ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useRouter } from 'vue-router';
 
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router';
+  import { useToast } from '@/modules/toast'
+  import { postResetPasswordFinish } from '@/actions/auth';
 
-import { useToast } from '@/modules/toast'
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const { t } = useI18n()
-const { toast } = useToast()
+  const router = useRouter()
 
-const router = useRouter()
+  interface IProps {
+    phone: string,
+    token: string
+  }
+  const props = defineProps<IProps>()
 
-interface IProps {
-  phone: string,
-  token: string
-}
+  const isLoading = ref(false)
+  const firstPassword = ref('');
 
-const props = defineProps<IProps>()
+  const postRegister = async ({ password }: { password: string }) => {
+    isLoading.value = true;
 
-const loading = ref(false)
-const firstPassword = ref('');
-
-const postRegister = (
-    { password }:
-    {
-      password: string,
-    }
-  ) => {
-  loading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/password/reset`;
-  axios({
-    method: "post",
-    url: url,
-    data: {
-      "token": props.token,
-      "password": password,
-    }
-  })
-  .then((response) => {
-      console.log('response', response);
-
+    try {
+      await postResetPasswordFinish(password, props.token)
       toast({
         message: t('message.the-password-has-been-successfully-changed'),
         type: 'success'
       })
 
-      setTimeout(() => {
-        router.push('/auth/login')
-      }, 300);
-      
-      loading.value = false
-    })
-    .catch((err) => {
-      
-      console.log('err', err);
+      setTimeout(() => { router.push('/auth/login') }, 300);
+    } catch (err) {
       if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
         toast({
-          message: 'Срок обработки истек, повторите заново!'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
+          message: t('errors.the-processing-period-has-expired-repeat-again'),
+          type: 'warning'
         })
       }
-      loading.value = false
-    });
-}
+    } finally {
+      isLoading.value = false
+    }
+  }
 </script>
 
 <style scoped lang="scss">

@@ -1,4 +1,4 @@
-import { Status, LaravelBoolean, Gender, LaravelFile } from '.'
+import { Status, LaravelBoolean, Gender } from '.'
 
 export interface IUser {
   id?: number

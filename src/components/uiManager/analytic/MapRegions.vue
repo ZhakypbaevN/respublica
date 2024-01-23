@@ -145,6 +145,7 @@ onMounted(async () => {
   
     const nameToLowerCase = ({id, name}: {id: string, name: string}) => {
       if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
+      else if (id === 'KZ-TUR-SHUMKENT' || id === 'KZ-AKM-ASTANA' || id === 'KZ-ALM-CITY') return name.slice(0, 2) + name[2].toUpperCase() + name.slice(3).toLowerCase();
       return name[0].toUpperCase() + name.slice(1).toLowerCase()
     }
     
@@ -250,6 +251,93 @@ onMounted(async () => {
         return polygon
       })
     );
+
+    // Load routes in GeoJSON format
+    var routes = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+          },
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                71.45325759764486,
+                51.14250514464325
+              ],
+              [
+                80.2292212723155,
+                52.649003915028686
+              ],
+              [
+                83.13527630391866,
+                52.631206731742935
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+          },
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                76.9411148348155,
+                43.238551759658264
+              ],
+              [
+                83.19416384672371,
+                41.612421738292994
+              ],
+              [
+                85.90684196486126,
+                41.58765682564248
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+          },
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                69.62599369771937,
+                42.39713863399908
+              ],
+              [
+                72.47072934005126,
+                39.615669198941504
+              ],
+              [
+                75.17887965163419,
+                39.61371617624161
+              ]
+            ]
+          }
+        }
+      ]
+    };
+
+    // Create line series
+    var lineSeries = chart.series.push(
+      am5map.MapLineSeries.new(root, {
+        geoJSON: routes
+      })
+    );
+      
+    lineSeries.mapLines.template.setAll({
+      stroke: am5.color(0x16355B),
+      strokeDasharray: [6, 3, 6],
+      strokeWidth: 1.2,
+      strokeOpacity: 1
+    });
   
   
     return { root };

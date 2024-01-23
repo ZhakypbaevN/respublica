@@ -1,6 +1,6 @@
 <template>
   <Form class="wrapper-darkMain-form" @finish="postRegister">
-    <h2 class="wrapper-darkMain-title">Введите ваши данные</h2>
+    <h2 class="wrapper-darkMain-title">{{ $t('enter-your-details') }}</h2>
 
     <div class="modal-inputs">
       <Input
@@ -35,21 +35,19 @@
         light
         type="email"
         name="email"
+        validation="email"
         placeholder="Email"
       />
-
-      <!-- validation="email" -->
-
      
       <Input
         light
         type="password"
         name="password"
+        validation="password"
         v-model="firstPassword"
         :placeholder="$t('formdata.come-up-with-a-password')"
         required
       />
-        <!-- validation="password" -->
 
       <Input
         light
@@ -65,7 +63,7 @@
       class="modal-btn"
       :name="$t('auth.register')"
       type="default-blue"
-      :loading="loading"
+      :loading="isLoading"
       htmlType="submit"
     />
 
@@ -82,16 +80,19 @@
 </template>
 
 <script setup lang="ts">
-  import axios from 'axios'
-
   import { ref } from 'vue'
   import { useRouter } from 'vue-router';
   import { useI18n } from 'vue-i18n'
 
+  import api from '@/modules/api'
   import { useToast } from '@/modules/toast'
+  import { useAuth } from '@/modules/auth';
+
+  import { postRegisterFinish, postLogin, getUserData } from '@/actions/auth';
 
   const { t } = useI18n()
   const { toast } = useToast()
+  const { setUser } = useAuth()
 
   const router = useRouter()
 
@@ -101,11 +102,10 @@
   }
   const props = defineProps<IProps>()
 
-  const loading = ref(false)
+  const isLoading = ref(false)
   const firstPassword = ref('');
-  const tokenNew = ref();
 
-  const postRegister = (
+  const postRegister = async (
       { iin, name, lastname, middleName, email, password }:
       {
         iin: string,
@@ -116,12 +116,10 @@
         password: string,
       }
     ) => {
-    loading.value = true;
-    const url = `https://api.respublica-partiyasy.kz/api/v1/auth/register/extra`;
-    axios({
-      method: "post",
-      url: url,
-      data: {
+    isLoading.value = true;
+
+    try {
+      await postRegisterFinish({
         "token": props.token,
         "password": password,
         "email": email.length ? email : null,
@@ -129,118 +127,70 @@
         "last_name": lastname,
         "middle_name": middleName.length ? middleName : null,
         "iin": iin
-      }
-    })
-    .then((response) => {
-        console.log('response', response);
-        postLogin({password: password});
       })
-      .catch((err) => {
-        console.log('err', err);
-        if (err.response.data.detail === 'IIN is already registered!') {
-          toast({
-            message: t('message.the-iin-is-already-registered')
-          })
-        } else if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
-          toast({
-            message: 'Срок обработки истек, повторите заново!'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
-        loading.value = false
-      });
+      onPostLoginData({password: password});
+    } catch (err) {
+      if (err.response.data.detail === 'IIN is already registered!') {
+        toast({
+          message: t('errors.message.the-iin-is-already-registered'),
+          type: 'warning'
+        })
+      } else if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
+        toast({
+          message: t('errors.the-processing-period-has-expired-repeat-again'),
+          type: 'warning'
+        })
+      }
+      isLoading.value = false
+    }
   }
 
-
-  const postLogin = ({ password }: { password: string }) => {
-    loading.value = true;
-    const url = `https://api.respublica-partiyasy.kz/api/v1/auth/login`;
-
+  const onPostLoginData = async ({ password }: { password: string }) => {
     const formData = new FormData();
     formData.append("username", props.phone);
     formData.append("password", password);
 
-    const userType = ref('client'); 
-
-    if (props.phone === '77473392659') userType.value = 'manager';
-    else if (props.phone === '77055523019') userType.value = 'media';
-    else if (props.phone === '77471098845') userType.value = 'business';
-    
-    if (userType.value !== 'client') {
-      localStorage.setItem('USER_TYPE', userType.value);
-      toast({
-        message: t('message.you-have-successfully-logged-in'),
-        type: 'success'
+    isLoading.value = true;
+    try {
+      const response = await postLogin(formData);
+      setUser({
+        access_token: response
       })
-
-      setTimeout(() => {
-        router.push(`/${userType.value}`)
-      }, 300);
-    } else {
-
-      axios({
-        method: "post",
-        url: url,
-        data: formData
-      })
-        .then((response) => {
-          
-          tokenNew.value = response.data['access_token'];
-          localStorage.setItem('access_token', tokenNew.value);
-    
-          getUserData();
+      localStorage.setItem('access_token', response);
+      sessionStorage.setItem('access_token', response);
+  
+      api.defaults.headers.common.Authorization =
+        'Bearer' + ' ' + response;
+  
+      onGetUserData();
+    } catch (err) {
+      if (err.response.data.detail === 'Incorrect username or password') {
+        toast({
+          message: t('errors.invalid-username-or-password'),
+          type: 'warning'
         })
-        .catch((err) => {
-          console.log('err', err);
-          
-          if (err.response.data.detail === 'Incorrect username or password') {
-            toast({
-              message: 'Неверный логин или пароль!'
-            })
-          } else {
-            toast({
-              message: 'Возникли ошибки при запросе'
-            })
-          }
-          loading.value = false
-        });
+      } 
+      isLoading.value = false;
     }
   }
 
-  const getUserData = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/users/me`;
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + tokenNew.value
-      }
-    })
-      .then((response) => {
-        toast({
-          message: t('message.you-have-successfully-registered'),
-          type: 'success'
-        })
-
-        localStorage.setItem('USER_TYPE', 'client');
-        localStorage.setItem('USER_ID', response.data['id']);
-        localStorage.setItem('USER_DATA', JSON.stringify(response.data));
-        loading.value = false;
-
-        setTimeout(() => {
-          router.push('/client')
-        }, 300);
+  const onGetUserData = async () => {
+    try {
+      const response = await getUserData();
+  
+      toast({
+        message: t('message.you-have-successfully-registered'),
+        type: 'success'
       })
-      .catch((err) => {
-        console.log('err', err);
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      });
+      setTimeout(() => {
+        if (response.role === 'admin') router.push('/admin')
+        else if (response.role === 'manager') router.push('/manager')
+        else if (response.role === 'editor') router.push('/media')
+        else router.push('/client')
+      }, 300);
+    } finally {
+      isLoading.value = false;
+    }
   }
 </script>
 

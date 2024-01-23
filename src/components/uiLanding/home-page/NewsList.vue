@@ -12,10 +12,12 @@
         </RouterLink>
       </div>
       <div class="landing-items" v-if="newsValues.isEmpty">
-        Empty
+        <Empty />
       </div>
       <div class="landing-items disabled" v-else-if="!newsValues.tableValues">
-        Loading
+        <NewsItemSkeleton />
+        <NewsItemSkeleton />
+        <NewsItemSkeleton />
       </div>
       <div class="landing-items" v-else>
         <NewsItem
@@ -30,6 +32,7 @@
 
 <script setup lang="ts">
   import NewsItem from '@/components/uiLanding/press-center/news/NewsItem.vue'
+  import NewsItemSkeleton from '@/components/uiLanding/press-center/news/NewsItemSkeleton.vue';
 
   import { onMounted, reactive, ref } from 'vue';
 

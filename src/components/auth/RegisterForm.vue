@@ -1,23 +1,23 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postRegister">
+  <Form class="wrapper-darkMain-form" @finish="onPostRegister">
     <h2 class="wrapper-darkMain-title">{{ $t('auth.registration') }}</h2>
     <div class="modal-inputs">
       <Input
-        type="tel"
         light
+        :min="17"
+        type="tel"
         name="phone"
         :placeholder="$t('formdata.your-phone-number')"
         validation="phone"
-        :min="17"
         required
       />
     </div>
 
     <div class="modal-btn">
       <Button
-        name="Получить код"
+        :name="$t('get-the-code')"
         type="default-blue"
-        :loading="loading"
+        :loading="isLoading"
         htmlType="submit"
       />
     </div>
@@ -35,13 +35,13 @@
 </template>
 
 <script setup lang="ts">
-  import axios from "axios";
-
   import { ref } from "vue";
   import { useI18n } from 'vue-i18n'
 
   import { useToast } from "@/modules/toast";
   import formatPhone from "@/helpers/formatPhone.js";
+
+  import { postRegisterGetCode } from '@/actions/auth';
 
   const { t } = useI18n()
   const { toast } = useToast();
@@ -59,44 +59,30 @@
   defineProps<IProps>();
   const emit = defineEmits<Emits>();
 
-  const loading = ref(false);
+  const isLoading = ref(false);
 
-  const postRegister = ({ phone }: { phone: string }) => {
-    loading.value = true;
-    const url = `https://api.respublica-partiyasy.kz/api/v1/auth/register`;
+  const onPostRegister = async ({ phone }: { phone: string }) => {
+    isLoading.value = true;
+    try {
+      const response = await postRegisterGetCode(formatPhone(phone))
 
-    axios({
-      method: "post",
-      url: url,
-      data: {
-        phone: formatPhone(phone),
-      },
-    })
-      .then((response) => {
-        console.log("response", response);
-        toast({
-          message: t('message.a-confirmation-code-has-been-sent-to-your-number'),
-          type: "success",
-        });
-        emit("update:phone", formatPhone(phone));
-        emit("update:token", response.data.token);
-        emit("toCheck");
-
-        loading.value = false;
-      })
-      .catch((err) => {
-        console.log("err", err);
-        if (err.response.data.detail === "Phone number is already registered") {
-          toast({
-            message: "Номер телефона уже зарегистрирован!",
-          });
-        } else {
-          toast({
-            message: "Возникли ошибки при запросе",
-          });
-        }
-        loading.value = false;
+      toast({
+        message: t('message.a-confirmation-code-has-been-sent-to-your-number'),
+        type: "success"
       });
+      emit("update:phone", formatPhone(phone));
+      emit("update:token", response);
+      emit("toCheck");
+    } catch (err) {
+      if (err.response.data.detail === "Phone number is already registered") {
+        toast({
+          message: t('errors.the-phone-number-is-already-registered'),
+          type: 'warning'
+        });
+      }
+    } finally {
+      isLoading.value = false;
+    }
   };
 </script>
 

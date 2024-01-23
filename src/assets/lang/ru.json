@@ -582,7 +582,12 @@
     "the-password-must-contain-at-least-8-characters": "Пароль должен содержать минимум 8 символов. И в нем должны быть минимум, одна цифра,одна большая буква и одна маленькая буква",
     "the-fields-don-not-match": "Поля не совпадают",
     "enter-the-field-correctly": "Введите поле правильно",
-    "this-field-is-required": "Это поле обязателно"
+    "this-field-is-required": "Это поле обязателно",
+    "invalid-username-or-password": "Неверный логин или пароль!",
+    "this-number-is-not-registered": "Этот номер не зарегистрирован!",
+    "the-processing-period-has-expired-repeat-again": "Срок обработки истек, повторите заново!",
+    "the-phone-number-is-already-registered": "Номер телефона уже зарегистрирован!",
+    "invalid-code": "Неверный код!"
   },
 
   "gallery": {
@@ -590,6 +595,7 @@
     "editing-an-album": "Редактирование альбома"
   },
 
+  "enter-your-details": "Введите ваши данные",
   "male": "Мужчина",
   "female": "Женщина",
   "higher-education": "Высшее образование",

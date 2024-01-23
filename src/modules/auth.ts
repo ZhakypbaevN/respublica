@@ -5,27 +5,20 @@ import router from '@/router/index.js'
 
 import api from '@/modules/api'
 import { useToast } from '@/modules/toast'
+import { getUserData } from '@/actions/auth'
+import { IUser } from '@/types/users'
 
 // const { t } = useI18n()
 const { toast } = useToast()
 
-const user = ref<{ data?: any }>({
-  data: {
-    name: '...'
-  }
+const user = ref<IUser>({
+  first_name: '...',
+  last_name: ''
 })
 let hookCallbacks: Function[] = [() => null]
 const onChange = callback => {
   hookCallbacks = [...hookCallbacks, callback]
 }
-export const getSelectedSchool = () => {
-  try {
-    return JSON.parse(localStorage.getItem('selected_school'))
-  } catch (error) {
-    return null
-  }
-}
-export const selectedSchool = ref(getSelectedSchool())
 
 export const getUser = () => {
   try {
@@ -36,34 +29,11 @@ export const getUser = () => {
   }
 }
 
-watch(
-  () => selectedSchool.value,
-  () => { localStorage.setItem('selected_school', JSON.stringify(selectedSchool.value)) },
-  {
-    deep: true
-  }
-)
-watch(
-  () => user.value,
-  () => {
-    hookCallbacks.forEach(callback => callback(user.value.data))
-    localStorage.setItem('user', JSON.stringify(user.value.data))
-    if (user.value.data?.schools?.length && selectedSchool.value?.id) {
-      user.value.data.schools.forEach(school => {
-        if (school.id === selectedSchool.value.id) selectedSchool.value = school
-      })
-    }
-  },
-  {
-    deep: true
-  }
-)
-
 const loaded = ref(false)
 
 export const useAuth = () => {
   const logged = () => {
-    if (Object.entries(user.value.data).length === 1) {
+    if (Object.entries(user.value).length === 1) {
       if (
         localStorage.getItem('access_token') != null ||
         sessionStorage.getItem('access_token') != null
@@ -82,8 +52,8 @@ export const useAuth = () => {
       return user
     }
 
-    const { data } = await api.asyncGet('/api/user', null, true)
-    user.value = data
+    const response = await getUserData();
+    user.value = response;
     loaded.value = true
 
     return user
@@ -114,8 +84,9 @@ export const useAuth = () => {
     localStorage.removeItem('access_token')
     sessionStorage.removeItem('access_token')
     
-    user.value.data = {
-      name: '...'
+    user.value = {
+      first_name: '...',
+      last_name: ''
     }
     loaded.value = false
     // toast({ message: t('message.you-are-logged-out') })
@@ -130,7 +101,6 @@ export const useAuth = () => {
 
   return {
     user,
-    selectedSchool,
     loaded,
     getUser,
     setUser,
