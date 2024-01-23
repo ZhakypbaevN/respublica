@@ -5,6 +5,7 @@
     class="feedbackModal"
     :title="$t('party.creating-a-party-ticket')"
   >
+  
     <Form
       @finish="postJoinParty"
       :ignores="disabledLocationSelect ? ['locality'] : null"
