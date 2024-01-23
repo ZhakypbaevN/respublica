@@ -15,7 +15,7 @@
           <div class="header-main-right">
             <LangToggle />
 
-            <Avatar />
+            <ProfileControl />
           </div>
         </div>
       </div>
@@ -24,7 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import Avatar from '@/components/common/Avatar.vue';
+import ProfileControl from '@/components/common/ProfileControl.vue';
+
 </script>
 
 <style scoped lang="scss">

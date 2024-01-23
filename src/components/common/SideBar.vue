@@ -134,7 +134,7 @@ const listValue = ref(props.list)
 
       & .sideBar-link {
         & span {
-          color: var(--accent-color-op50);
+          color: rgba(white, .6);
         }
 
         &:hover span,

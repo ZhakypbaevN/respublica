@@ -16,6 +16,7 @@
   },
 
   "page": {
+    "home": "Respublica - Қазақстанның жаңа, заманауи партиясы",
     "main": "Негізгі",
     "about-party": "Партия туралы",
     "party-faction": "Партия фракциясы",
@@ -45,7 +46,24 @@
     "quitting-the-party": "Партиядан шығу",
     "representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels": "Партия мүшелерінің мәслихаттардағы және барлық деңгейдегі әкімдер лауазымындағы өкілдігі",
     "editing-the-news": "Жаңалықты өңдеу",
-    "new-news": "Жаңа жаңалық"
+    "new-news": "Жаңа жаңалық",
+    "meeting-with-voters": "Таңдаушылармен кездестіру",
+    "marketpalce": "Сауда алаңы",
+    "feedback": "Кері байланыс",
+    "my-appeals": "Менің мұрагерлерім",
+    "my-appeals-detail": "Менің мұрагерлерімдің толығы",
+    "requests-for-deletion-detail": "Жою талаптарының толығы",
+    "party-members-data": "Партия қолданушыларының деректері",
+    "deleted-party-members": "Жойылған партия қолданушылары",
+    "create-news-for-the-faction": "Фракция үшін жаңалықты құру",
+    "edit-news-for-the-faction": "Фракция үшін жаңалықты редакциялау",
+    "create-press-about-us": "Біз туралы прессаны жаңарту",
+    "edit-press-about-us": "Біз туралы прессаны редакциялау",
+    "create-video": "Жаңа видео",
+    "edit-video": "Видеоны редакциялау",
+    "create-announcements": "Жаңа хабарлама",
+    "edit-announcements": "Хабарламаны редакциялау",
+    "party": "Партия"
   },
 
   "composition-of-faction": {

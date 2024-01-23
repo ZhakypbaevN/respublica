@@ -42,7 +42,7 @@ const sideBarlinks = [
   },
   {
     title: t('page.deleted'),
-    link: "/manager/party-list/revoked?offset=0&limit=20&published=true&search="
+    link: "/manager/deleted-party-list/revoked?offset=0&limit=20&published=true&search="
   },
   {
     title: t('page.vip-rooms'),

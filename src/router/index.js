@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { defaultLocale } from '@/assets/lang/exports'
+import { languages, defaultLocale } from '@/assets/lang/exports'
 import i18n from '@/assets/lang'
+
+import { useAuth } from '@/modules/auth'
+import Progress from '@/modules/progress'
 
 // -------------  Pages ---------------
 import Authorization from '@/views/Authorization.vue'
@@ -100,112 +103,127 @@ const routes = [
     path: '/auth/:logOrReg?',
     name: 'Authorization',
     component: Authorization,
+    meta: { title: 'authorization' }
   },
   {
     path: '/',
     name: 'Home',
     component: Home,
+    meta: { title: 'home' }
   },
   {
     path: '/about-party',
     name: 'AboutParty',
     component: AboutParty,
-  },
-  {
-    path: '/feedback',
-    name: 'Feedback',
-    component: Feedback,
-  },
-  {
-    path: '/news',
-    name: 'News',
-    component: PressCenter,
-  },
-  {
-    path: '/news-all',
-    name: 'NewsList',
-    component: NewsList,
-  },
-  {
-    path: '/announce-list',
-    name: 'AnnouncesList',
-    component: AnnouncementsList,
-  },
-  {
-    path: '/announce/:announce_id',
-    name: 'AnnounceDetail',
-    component: AnnouncementDetail,
-  },
-  {
-    path: '/news/:news_id',
-    name: 'NewsDetail',
-    component: NewsDetail,
-  },
-  {
-    path: '/press-about-us-list',
-    name: 'PressAboutUsList',
-    component: PressAboutUsList,
-  },
-  {
-    path: '/video-gallery',
-    name: 'VideoGallery',
-    component: VideoGallery,
-  },
-  {
-    path: '/photo-gallery',
-    name: 'PhotoGalleryAll',
-    component: PhotoGalleryAll,
-  },
-  {
-    path: '/contacts/:centralOfficeOrBranches?',
-    name: 'Contacts',
-    component: Contacts,
+    meta: { title: 'about-party' }
   },
   {
     path: '/party-fraction',
     name: 'PartyFraction',
     component: PartyFraction,
+    meta: { title: 'party-faction' }
   },
-  {
-    path: '/regions',
-    name: 'Regions',
-    component: Regions,
-  },
-  
   {
     path: '/regions/:region_id?',
     name: 'Regions',
     component: Regions,
+    meta: { title: 'regions' }
   },
   {
     path: '/faq',
     name: 'Faq',
     component: Faq,
+    meta: { title: 'question-and-answer' }
   },
   {
     path: '/donations',
     name: 'Donations',
     component: Donations,
+    meta: { title: 'donations' }
   },
   {
     path: '/deputies-of-majilis',
     name: 'DeputiesOfMajilis',
-    component: DeputiesOfMajilis
+    component: DeputiesOfMajilis,
+    meta: { title: 'mazhilis-deputies' }
   },
   {
     path: '/deputies-of-maslikhat/:region_id?',
     name: 'DeputiesOfMaslikhat',
-    component: DeputiesOfMaslikhat
+    component: DeputiesOfMaslikhat,
+    meta: { title: 'maslikhats-deputies' }
   },
   {
     path: '/meeting-with-voters/:meetingWithVoters_id',
     name: 'MeetingWithVoters',
-    component: MeetingWithVoters
+    component: MeetingWithVoters,
+    meta: { title: 'meeting-with-voters' }
   },
   {
     path: '/marketplace',
     name: 'Marketplace',
-    component: Marketplace
+    component: Marketplace,
+    meta: { title: 'marketpalce' }
+  },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: Feedback,
+    meta: { title: 'feedback' }
+  },
+  {
+    path: '/news',
+    name: 'News',
+    component: PressCenter,
+    meta: { title: 'press-center' }
+  },
+  {
+    path: '/news-all',
+    name: 'NewsList',
+    component: NewsList,
+    meta: { title: 'news' }
+  },
+  {
+    path: '/news/:news_id',
+    name: 'NewsDetail',
+    component: NewsDetail,
+    meta: { title: 'news' }
+  },
+  {
+    path: '/press-about-us-list',
+    name: 'PressAboutUsList',
+    component: PressAboutUsList,
+    meta: { title: 'the-press-about-us' }
+  },
+  {
+    path: '/announce-list',
+    name: 'AnnouncesList',
+    component: AnnouncementsList,
+    meta: { title: 'announcements' }
+  },
+  {
+    path: '/announce/:announce_id',
+    name: 'AnnounceDetail',
+    component: AnnouncementDetail,
+    meta: { title: 'announcements' }
+  },
+  {
+    path: '/video-gallery',
+    name: 'VideoGallery',
+    component: VideoGallery,
+    meta: { title: 'video-gallery' }
+  },
+  {
+    path: '/photo-gallery',
+    name: 'PhotoGalleryAll',
+    component: PhotoGalleryAll,
+    meta: { title: 'photo-gallery' }
+  },
+  {
+    path: '/contacts/:centralOfficeOrBranches?',
+    name: 'Contacts',
+    component: Contacts,
+    meta: { title: 'contacts' }
   },
 
   // UI Admin
@@ -222,7 +240,153 @@ const routes = [
         path: 'users',
         name: 'UsersList',
         component: UsersList,
+        meta: { title: 'users' }
       },
+
+      // Manager
+      {
+        path: 'party-list/:filter',
+        name: 'AdminPartyDataList',
+        component: ManagerPartyDataList,
+        meta: { title: 'party-members' }
+      },
+      {
+        path: 'deleted-party-list/:filter',
+        name: 'AdminDeletedPartyDataList',
+        component: ManagerPartyDataList,
+        meta: { title: 'deleted-party-members' }
+      },
+      {
+        path: 'party-data/:party_id',
+        name: 'AdminPartyData',
+        component: ManagerPartyData,
+        meta: { title: 'party-members-data' }
+      },
+
+      {
+        path: 'party-resignation-list',
+        name: 'AdminPartyResignationList',
+        component: ManagerPartyResignationList,
+        meta: { title: 'requests-for-deletion' }
+      },
+      {
+        path: 'party-resignation-data/:party_id',
+        name: 'AdminPartyResignationData',
+        component: ManagerPartyResignationData,
+        meta: { title: 'requests-for-deletion-detail' }
+      },
+      {
+        path: 'ticket-num-data-list',
+        name: 'AdminTicketNumList',
+        component: TicketNumList,
+        meta: { title: 'vip-rooms' }
+      },
+      {
+        path: 'analytics',
+        name: 'AdminAnalytics',
+        component: Analytics,
+        meta: { title: 'analytics' }
+      },
+
+      // Media
+      {
+        path: 'news-list',
+        name: 'AdminNewsList',
+        component: MediaNewsList,
+        meta: { title: 'news' }
+      },
+      {
+        path: 'news-list/create',
+        name: 'AdminNewsCreate',
+        component: MediaNewsEdit,
+        meta: { title: 'editing-the-news' }
+      },
+      {
+        path: 'news-list/:news_id',
+        name: 'AdminNewsEdit',
+        component: MediaNewsEdit,
+        meta: { title: 'new-news' }
+      },
+      {
+        path: 'news-for-fraction',
+        name: 'AdminNewsForFractionList',
+        component: MediaNewsForFractionList,
+        meta: { title: 'news-for-the-faction' }
+      },
+      {
+        path: 'news-for-fraction/create',
+        name: 'AdminNewsForFractionCreate',
+        component: MediaNewsForFractionEdit,
+        meta: { title: 'create-news-for-the-faction' }
+      },
+      {
+        path: 'news-for-fraction/:news_id',
+        name: 'AdminNewsForFractionEdit',
+        component: MediaNewsForFractionEdit,
+        meta: { title: 'edit-news-for-the-faction' }
+      },
+      {
+        path: 'press-about-us',
+        name: 'AdminPressAboutUsList',
+        component: MediaPressAboutUsList,
+        meta: { title: 'the-press-about-us' }
+      },
+      {
+        path: 'press-about-us/create',
+        name: 'AdminPressAboutUsCreate',
+        component: MediaPressAboutUsEdit,
+        meta: { title: 'create-press-about-us' }
+      },
+      {
+        path: 'press-about-us/:news_id',
+        name: 'AdminPressAboutUsEdit',
+        component: MediaPressAboutUsEdit,
+        meta: { title: 'edit-press-about-us' }
+      },
+      {
+        path: 'video-gallery',
+        name: 'AdminVideoGalleryList',
+        component: MediaVideoGalleryList,
+        meta: { title: 'video-gallery' }
+      },
+      {
+        path: 'video-gallery/create',
+        name: 'AdminVideoGalleryCreate',
+        component: MediaVideoGalleryEdit,
+        meta: { title: 'create-video' }
+      },
+      {
+        path: 'video-gallery/:news_id',
+        name: 'AdminVideoGalleryEdit',
+        component: MediaVideoGalleryEdit,
+        meta: { title: 'edit-video' }
+      },
+      
+      {
+        path: 'photo-gallery',
+        name: 'AdminPhotoGalleryList',
+        component: MediaPhotoGalleryList,
+        meta: { title: 'photo-gallery' }
+      },
+
+      {
+        path: 'announcements',
+        name: 'AdminAnnouncementsList',
+        component: MediaAnnouncementsList,
+        meta: { title: 'announcements' }
+      },
+      {
+        path: 'announcements/create',
+        name: 'AdminAnnouncementsCreate',
+        component: MediaAnnouncementsEdit,
+        meta: { title: 'create-announcements' }
+      },
+      {
+        path: 'announcements/:news_id',
+        name: 'AdminAnnouncementsEdit',
+        component: MediaAnnouncementsEdit,
+        meta: { title: 'edit-announcements' }
+      }
     ]
   },
 
@@ -242,24 +406,29 @@ const routes = [
         path: 'my-requests',
         name: 'MyRequests',
         component: MyRequests,
+        meta: { title: 'my-appeals' }
       },
       {
         path: 'my-requests/:request_id',
         name: 'MyRequestDetail',
-        component: MyRequestDetail
+        component: MyRequestDetail,
+        meta: { title: 'my-appeals-detail' }
       },
       {
         path: 'user-data',
         name: 'UserData',
         component: UserData,
+        meta: { title: 'personal-data' }
       },
       {
         path: 'party-data/exit-party',
         name: 'ExitParty',
-        component: ExitParty
+        component: ExitParty,
+        meta: { title: 'quitting-the-party' }
       },
     ]
   },
+
 
   // UI Reception
   {
@@ -276,17 +445,20 @@ const routes = [
       {
         path: 'appeal-list/:filter',
         name: 'ReceptionAppealList',
-        component: ReceptionAppealList
+        component: ReceptionAppealList,
+        meta: { title: 'the-history-of-appeals' }
       },
       {
         path: 'appeal-data/:appeal_id',
         name: 'ReceptionAppealDetail',
-        component: ReceptionAppealDetail
+        component: ReceptionAppealDetail,
+        meta: { title: 'requests-for-deletion-detail' }
       },
       {
         path: 'analytics',
         name: 'ReceptionAnalytics',
-        component: Analytics
+        component: Analytics,
+        meta: { title: 'analytics' }
       }
     ]
   },
@@ -308,33 +480,45 @@ const routes = [
       {
         path: 'party-list/:filter',
         name: 'ManagerPartyDataList',
-        component: ManagerPartyDataList
+        component: ManagerPartyDataList,
+        meta: { title: 'party-members' }
+      },
+      {
+        path: 'deleted-party-list/:filter',
+        name: 'ManagerDeletedPartyDataList',
+        component: ManagerPartyDataList,
+        meta: { title: 'deleted-party-members' }
       },
       {
         path: 'party-data/:party_id',
         name: 'ManagerPartyData',
-        component: ManagerPartyData
+        component: ManagerPartyData,
+        meta: { title: 'party-members-data' }
       },
 
       {
         path: 'party-resignation-list',
         name: 'ManagerPartyResignationList',
-        component: ManagerPartyResignationList
+        component: ManagerPartyResignationList,
+        meta: { title: 'requests-for-deletion' }
       },
       {
         path: 'party-resignation-data/:party_id',
         name: 'ManagerPartyResignationData',
-        component: ManagerPartyResignationData
+        component: ManagerPartyResignationData,
+        meta: { title: 'requests-for-deletion-detail' }
       },
       {
         path: 'ticket-num-data-list',
         name: 'TicketNumList',
-        component: TicketNumList
+        component: TicketNumList,
+        meta: { title: 'vip-rooms' }
       },
       {
         path: 'analytics',
         name: 'Analytics',
-        component: Analytics
+        component: Analytics,
+        meta: { title: 'analytics' }
       }
     ]
   },
@@ -356,112 +540,160 @@ const routes = [
         path: 'news-list',
         name: 'MediaNewsList',
         component: MediaNewsList,
+        meta: { title: 'news' }
       },
       {
         path: 'news-list/create',
         name: 'MediaNewsCreate',
-        component: MediaNewsEdit
+        component: MediaNewsEdit,
+        meta: { title: 'editing-the-news' }
       },
       {
         path: 'news-list/:news_id',
         name: 'MediaNewsEdit',
-        component: MediaNewsEdit
+        component: MediaNewsEdit,
+        meta: { title: 'new-news' }
       },
-
       {
         path: 'news-for-fraction',
         name: 'MediaNewsForFractionList',
         component: MediaNewsForFractionList,
+        meta: { title: 'news-for-the-faction' }
       },
       {
         path: 'news-for-fraction/create',
         name: 'MediaNewsForFractionCreate',
-        component: MediaNewsForFractionEdit
+        component: MediaNewsForFractionEdit,
+        meta: { title: 'create-news-for-the-faction' }
       },
       {
         path: 'news-for-fraction/:news_id',
         name: 'MediaNewsForFractionEdit',
-        component: MediaNewsForFractionEdit
+        component: MediaNewsForFractionEdit,
+        meta: { title: 'edit-news-for-the-faction' }
       },
       
       {
         path: 'press-about-us',
         name: 'MediaPressAboutUsList',
         component: MediaPressAboutUsList,
+        meta: { title: 'the-press-about-us' }
       },
       {
         path: 'press-about-us/create',
         name: 'MediaPressAboutUsCreate',
-        component: MediaPressAboutUsEdit
+        component: MediaPressAboutUsEdit,
+        meta: { title: 'create-press-about-us' }
       },
       {
         path: 'press-about-us/:news_id',
         name: 'MediaPressAboutUsEdit',
-        component: MediaPressAboutUsEdit
+        component: MediaPressAboutUsEdit,
+        meta: { title: 'edit-press-about-us' }
       },
       
       {
         path: 'video-gallery',
         name: 'MediaVideoGalleryList',
         component: MediaVideoGalleryList,
+        meta: { title: 'video-gallery' }
       },
       {
         path: 'video-gallery/create',
         name: 'MediaVideoGalleryCreate',
-        component: MediaVideoGalleryEdit
+        component: MediaVideoGalleryEdit,
+        meta: { title: 'create-video' }
       },
       {
         path: 'video-gallery/:news_id',
         name: 'MediaVideoGalleryEdit',
-        component: MediaVideoGalleryEdit
+        component: MediaVideoGalleryEdit,
+        meta: { title: 'edit-video' }
       },
       
       {
         path: 'photo-gallery',
         name: 'MediaPhotoGalleryList',
         component: MediaPhotoGalleryList,
+        meta: { title: 'photo-gallery' }
       },
 
       {
         path: 'announcements',
         name: 'MediaAnnouncementsList',
         component: MediaAnnouncementsList,
+        meta: { title: 'announcements' }
       },
       {
         path: 'announcements/create',
         name: 'MediaAnnouncementsCreate',
-        component: MediaAnnouncementsEdit
+        component: MediaAnnouncementsEdit,
+        meta: { title: 'create-announcements' }
       },
       {
         path: 'announcements/:news_id',
         name: 'MediaAnnouncementsEdit',
-        component: MediaAnnouncementsEdit
-      },
+        component: MediaAnnouncementsEdit,
+        meta: { title: 'edit-announcements' }
+      }
     ]
   }
 ]
 
+const progress = new Progress()
 const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
-      return { el: to.hash };
+      return { el: to.hash }
     } else if (savedPosition) {
-      return savedPosition;
+      return savedPosition
     }
-    return { top: 0 };
+    return { top: 0 }
   }
-});
+})
 
-router.beforeEach((to, from, next) => {
+const { user, loaded, logged, getUser, logout } = useAuth()
+
+router.beforeEach(async (to, from, next) => {
   const lang = to.params.lang || defaultLocale;
   i18n.global.locale.value = lang;
+  if ([to.meta.title] != 'home') document.title = languages[i18n.global.locale.value].page[to.meta.title] + ' - Respublica'
+  else document.title = languages[i18n.global.locale.value].page[to.meta.title]
 
-  // Установка заголовка для текущего языка
-  if (to.meta.titleKey) to.meta.title = i18n.global.t(to.meta.titleKey);
+  progress.start()
 
-  next();
-});
+  if (to.matched[0].name === 'Client' || to.matched[0].name === 'Admin' || to.matched[0].name === 'Reception' || to.matched[0].name === 'Manager' || to.matched[0].name === 'Media') {
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1920, initial-scale=1')
+  } else {
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0')
+  }
 
-export default router;
+  if (!to.meta.requiresAuth) {
+    next()
+    return
+  }
+
+  if (!logged()) {
+    next({ name: 'Authorization', params: { logOrReg: 'login' } })
+    return
+  }
+
+  if (loaded.value) {
+    next()
+    return
+  }
+
+  try {
+    await getUser()
+    next()
+  } catch (error) {
+    logout()
+    next({ name: 'Authorization', params: { logOrReg: 'login' } })
+  }
+})
+
+router.afterEach(progress.end)
+
+export default router

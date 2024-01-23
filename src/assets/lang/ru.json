@@ -16,6 +16,7 @@
   },
 
   "page": {
+    "home": "Respublica - это новая, современная партия Казахстана",
     "main": "Главная",
     "about-party": "О партии",
     "party-faction": "Партийная фракция",
@@ -45,7 +46,24 @@
     "quitting-the-party": "Выход из партии",
     "representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels": "Представленность членов партии в маслихатах и на должностях акимов всех уровней.",
     "editing-the-news": "Редактирование новости",
-    "new-news": "Новая новость"
+    "new-news": "Новая новость",
+    "meeting-with-voters": "Встречи с избирателями",
+    "marketpalce": "Маркетплейс",
+    "feedback": "Обратная связь",
+    "my-appeals": "Мои обращения",
+    "my-appeals-detail": "Подробности моих обращений",
+    "requests-for-deletion-detail": "Подробности заявки на удаление",
+    "party-members-data": "Данные партийца",
+    "deleted-party-members": "Удаленные члены партии",
+    "create-news-for-the-faction": "Новая новость для фракции",
+    "edit-news-for-the-faction": "Редактирование новости для фракции",
+    "create-press-about-us": "Новая новость от прессы",
+    "edit-press-about-us": "Редактирование новости от прессы",
+    "create-video": "Новое видео",
+    "edit-video": "Редактирование видео",
+    "create-announcements": "Новая закупка",
+    "edit-announcements": "Редактирование закупки",
+    "party": "Партия"
   },
 
   "composition-of-faction": {
@@ -536,7 +554,7 @@
   "message": {
     "news-published": "Новость опубликована!",
     "news-unpublished": "Новость больше не публикуется!",
-    "this-functionality-is-still-in-development": "Данный функционал еще в разработке",
+    "this-functionality-is-still-in-development": "Данный функционал еще в разработке!",
     "but-you-can-submit-an-appeal-by-contacting-us": "Но вы можете подать обращение связавшись с нами!",
     "the-document-must-be-extended": "Документ должен быть с расширением",
     "the-user-has-been-successfully-excluded-from-the-party": "Пользователь успешно исключен из партии!",
@@ -550,9 +568,9 @@
     "the-album-has-been-successfully-edited": "Альбом успешно был успешно отредактирован!",
     "the-video-has-been-successfully-deleted": "Видео успешно удалена!",
     "the-news-has-been-successfully-deleted": "Новость успешно удалена!",
-    "request-error-please-check-if-you-are-connected-to-the-internet": "Ошибка запроса! Пожалуйста проверьте подключены ли вы в интернет.",
+    "request-error-please-check-if-you-are-connected-to-the-internet": "Ошибка запроса! Пожалуйста проверьте подключены ли вы в интернет!",
     "server-error": "Ошибка сервера!",
-    "an-error-occurred-during-the-request-please-try-again-later": "Возникла ошибка при запросе! Пожалуйста повторите попытку позднее.",
+    "an-error-occurred-during-the-request-please-try-again-later": "Возникла ошибка при запросе! Пожалуйста повторите попытку позднее!",
     "you-are-logged-out": "Вы вышли из системы!",
     "the-functionality-is-under-development": "Функционал находится в разработке!",
     "the-video-has-been-successfully-created": "Видео успешно создано!",

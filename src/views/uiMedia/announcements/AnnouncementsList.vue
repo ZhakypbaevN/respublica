@@ -25,7 +25,7 @@
       </div>
       
       <div class="news-items" v-if="newsValues.isEmpty">
-        Empty
+        <Empty />
       </div>
       <div class="news-items disabled" v-else-if="!newsValues.tableValues">
         Loading
@@ -55,6 +55,7 @@
 
   import { NewsValues } from '@/types/news';
   import { getMediaNewsList } from '@/actions/uiMedia/news';
+import Empty from "@/components/common/Empty.vue";
 
   const { t } = useI18n()
 
