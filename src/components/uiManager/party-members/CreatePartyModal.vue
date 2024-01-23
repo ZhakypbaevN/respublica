@@ -1,49 +1,37 @@
 <template>
   <Modal
-    v-if="props.show"
+    v-if="show"
     @hide="emits('hide')"
     class="feedbackModal"
-    :title="$t('party.creating-a-party-ticket')"
+    :title="t('feedback.join-the-party')"
   >
-  
+    <!-- <div class="feedbackModal-userData">
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.iin') }}: </h4>
+        <p class="feedbackModal-userData-value">{{ userData.iin }}</p>
+      </div>
+
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.fio') }}: </h4>
+        <p class="feedbackModal-userData-value">{{ `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}` }}</p>
+      </div>
+
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.phone-number') }}: </h4>
+        <p class="feedbackModal-userData-value">{{ formatPhoneNumber(userData.phone) }}</p>
+      </div>
+
+      <div class="feedbackModal-userData-item">
+        <h4 class="feedbackModal-userData-title">{{ $t('formdata.email-address') }}: </h4>
+        <p class="feedbackModal-userData-value">{{ userData.email ?? '-' }}</p>
+      </div>
+    </div> -->
+    
     <Form
-      @finish="postJoinParty"
+      @finish="onCollectData"
       :ignores="disabledLocationSelect ? ['locality'] : null"
     >
       <div class="feedbackModal-inputs">
-        <!-- <Select
-          name="user-data"
-          :placeholder="$t('formdata.select-a-user')"
-          :options="usersList"
-          v-model="userData"
-          required
-        /> -->
-
-        <Input
-          name="user_id"
-          placeholder="ID Пользователя"
-          required
-        />
-        
-        <!-- <Checkbox
-          name="confirm-3"
-          class="feedbackModal-inputs-customTicketNum"
-          v-model="autoGenerateTicketNum"
-        >
-          {{ $t('party.automatic-number-generation') }}
-        </Checkbox>
-
-        <div class="feedbackModal-inputs-ticketNumSelect" :class="{disabled: autoGenerateTicketNum}">
-          <Select
-            name="ticket-num"
-            :placeholder="$t('formdata.specify-the-ticket-number')"
-            :options="ticketNumList"
-            v-model="ticketNum"
-            required
-          />
-        </div> -->
-
-
         <div class="feedbackModal-inputs-gender">
           <Input
             type="date"
@@ -74,7 +62,7 @@
 
         <Select
           name="education"
-          :placeholder="$t('formdata.specify-the-education')"
+          :placeholder="$t('formdata.specify-your-education')"
           :options="[
             {label: $t('status.higher'), value: 'higher_education'},
             {label: $t('status.average'), value: 'secondary_special_education'},
@@ -128,11 +116,13 @@
           <Input
             name="streat"
             :placeholder="$t('formdata.street-prospect-mkr')"
+            required
           />
 
           <Input
             name="home"
             :placeholder="$t('formdata.house')"
+            required
           />
 
           <Input
@@ -153,14 +143,14 @@
                 name="pensioner"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.pensioners') }}
+                {{ $t('social-category.user-status-pensioner') }}
               </Checkbox>
 
               <Checkbox
                 name="disabled"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.disabled') }}
+                {{ $t('social-category.user-status-disabled') }}
               </Checkbox>
             </div>
 
@@ -169,14 +159,14 @@
                 name="unemployed"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.unemployed') }}
+                {{ $t('social-category.user-status-unemployed') }}
               </Checkbox>
 
               <Checkbox
                 name="onChildcareLeave"
                 class="feedbackModal-checkboxList-item"
               >
-                {{ $t('social-category.on-childcare-leave') }}
+                {{ $t('social-category.user-status-on-childcare-leave') }}
               </Checkbox>
             </div>
           </div>
@@ -185,313 +175,244 @@
 
       <Button
         :name="$t('button.send-a-request')"
-        :loading="loading"
+        :loading="isLoading"
         htmlType="submit"
         :ignoreValidate="disabledLocationSelect ? ['locality'] : null"
       />
-
     </Form>
   </Modal>
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
-import moment from 'moment'
-import { useI18n } from 'vue-i18n'
-import { onMounted, ref, watch } from 'vue'
+  import moment from 'moment'
+  import { useI18n } from 'vue-i18n'
+  import { onMounted, ref, watch } from 'vue'
 
-import { useToast } from '@/modules/toast'
+  import { getUser } from '@/modules/auth';
+  import { useToast } from '@/modules/toast'
 
-const { t } = useI18n()
-const { toast } = useToast()
+  import { getLocationsList } from '@/actions/uiAdmin/locations';
+  import { postJoinParty } from '@/actions/uiClient/party-data';
 
-interface IProps {
-  show: boolean,
-}
-interface Emits {
-  (event: 'hide'): Function,
-  (event: 'finish'): Function,
-}
+  import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
+  import { IUser } from '@/types/users';
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const loading = ref(false)
-const gender = ref('female');
-const token = localStorage.getItem('access_token');
-
-const regionList = ref([]);
-const locationList = ref([]);
-
-const regionID = ref(null);
-const locationID = ref(null);
-const disabledLocationSelect = ref(false);
-
-const usersList = ref([]);
-const userData = ref();
-
-const autoGenerateTicketNum = ref(true);
-const ticketNum = ref(null);
-const ticketNumList = ref([]);
-
-const socialStatusList = [
-  {
-    label: t('social-status.self-employed-persons-with-disabilities'),
-    value: t('social-status.self-employed-persons-with-disabilities')
-  },
-  {
-    label: t('social-status.student'),
-    value: t('social-status.student')
-  },
-  {
-    label: t('social-status.persons-on-parental-leave'),
-    value: t('social-status.persons-on-parental-leave')
-  },
-  {
-    label: t('social-status.pensioners'),
-    value: t('social-status.pensioners')
-  },
-  {
-    label: t('social-status.unemployed'),
-    value: t('social-status.unemployed')
-  },
-  {
-    label: t('social-status.working'),
-    value: t('social-status.working')
-  },
-  {
-    label: t('social-status.large-families'),
-    value: t('social-status.large-families')
+  interface IProps {
+    show: boolean,
   }
-]
+  interface Emits {
+    (event: 'hide'): Function,
+    (event: 'finish'): Function,
+  }
 
-onMounted(() => {
+  defineProps<IProps>()
+  const emits = defineEmits<Emits>()
 
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
-  axios({
-    method: "get",
-    url: url,
-  })
-    .then((response) => {
-      response.data.data.forEach(location => {
-        regionList.value.push(
-          {
-            label: location.name,
-            value: location.id.toString(),
-            childrens: location.childrens
-          }
-        );
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
+  const isLoading = ref(false)
+  const gender = ref('female');
+  const userData = ref<IUser>();
 
-      // toast({
-      //   message: 'Возникли ошибки при запросе'
-      // })
-      
+  const regionList = ref([]);
+  const locationList = ref([]);
+
+  const regionID = ref(null);
+  const locationID = ref(null);
+  const disabledLocationSelect = ref(false);
+
+  const socialStatusList = [
+    {
+      label: t('social-status.self-employed-persons-with-disabilities'),
+      value: t('social-status.self-employed-persons-with-disabilities')
+    },
+    {
+      label: t('social-status.student'),
+      value: t('social-status.student')
+    },
+    {
+      label: t('social-status.persons-on-parental-leave'),
+      value: t('social-status.persons-on-parental-leave')
+    },
+    {
+      label: t('social-status.pensioners'),
+      value: t('social-status.pensioners')
+    },
+    {
+      label: t('social-status.unemployed'),
+      value: t('social-status.unemployed')
+    },
+    {
+      label: t('social-status.working'),
+      value: t('social-status.working')
+    },
+    {
+      label: t('social-status.large-families'),
+      value: t('social-status.large-families')
+    }
+  ]
+
+  onMounted(async () => {
+    userData.value = await getUser();
+
+    const response = await getLocationsList()
+    response.data.data.forEach(location => {
+      regionList.value.push(
+        {
+          label: location.name,
+          value: location.id.toString(),
+          childrens: location.childrens
+        }
+      );
     });
-  // getUsers()
-  getTicketNum()
-})
-
-const getUsers = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/users?offset=0&limit=100`;
-  axios({
-    method: "get",
-    url: url,
   })
-    .then((response) => {
-      response.data.forEach(data => {
-        usersList.value.push(
-          {
-            label: `${data.first_name} ${data.last_name} ${data.middle_name ?? ''}`,
-            value: JSON.stringify(data),
-          }
-        );
+
+  watch(
+    () => regionID.value,
+    () => {
+      locationList.value = [];
+      locationID.value = null;
+      disabledLocationSelect.value = false;
+
+      regionList.value.forEach(region => {
+        if (Number(region.value) === Number(regionID.value)) {
+          if (!region.childrens.length) disabledLocationSelect.value = true;
+          region.childrens.forEach(location => {
+            locationList.value.push(
+              {
+                label: location.name,
+                value: location.id.toString()
+              }
+            );
+          })
+        }
       });
-    })
-    .catch((err) => {
-      console.log('err', err);
+    }
+  )
 
-      // toast({
-      //   message: 'Возникли ошибки при запросе'
-      // })
-    });
-}
+  const onCollectData = (
+      {
+        education, specialization, workPlace, post, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave, socialStatus
+      }:
+      {
+        education: string,
+        specialization: string,
+        workPlace: string,
+        dateBirthday: string,
+        post: string,
+        streat: string,
+        home: string,
+        apartment: string|null,
+        pensioner: boolean,
+        disabled: boolean,
+        unemployed: boolean,
+        onChildcareLeave: boolean,
+        socialStatus: string
+      }
+    ) => {
 
-const getTicketNum = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
-  axios({
-    method: "get",
-    url: url,
-  })
-    .then((response) => {
-      response.data.forEach(num => {
-        ticketNumList.value.push(
-          {
-            label: num.ticket_number,
-            value: num.id.toString(),
-          }
-        );
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
+    const data = {
+      "birth_date": moment(dateBirthday).format('YYYY-MM-DD'), 
+      "gender": gender.value,
 
-      // toast({
-      //   message: 'Возникли ошибки при запросе'
-      // })
-    });
-}
+      "education": education,
+      "specialty": specialization.length ? specialization : null,
+      "workplace": workPlace.length ? workPlace : null,
+      "position": post.length ? post : null,
+      "social_status": socialStatus,
+    
+      "location_id": Number(locationID.value ?? regionID.value),
 
-watch(
-  () => regionID.value,
-  () => {
-    locationList.value = [];
-    locationID.value = null;
-    disabledLocationSelect.value = false;
+      "street": streat,
+      "house": home,
+      "apartment": apartment === '' ? null : apartment,
 
-    regionList.value.forEach(region => {
-      if (Number(region.value) === Number(regionID.value)) {
-        if (!region.childrens.length) disabledLocationSelect.value = true;
-        region.childrens.forEach(location => {
-          locationList.value.push(
-            {
-              label: location.name,
-              value: location.id.toString()
-            }
-          );
+      "is_pensioner": pensioner,
+      "is_disabled": disabled,
+      "is_unemployed": unemployed,
+      "is_on_childcare_leave": onChildcareLeave,
+    };
+
+    postParty(data);
+  }
+
+  const postParty = async (data) => {
+    isLoading.value = true;
+    try {
+      const response = await postJoinParty(data);
+
+      if (response) {
+        toast({
+          message: t('message.you-have-successfully-joined-the-party'),
+          type: 'success'
+        })
+  
+        emits('finish')
+        setTimeout(() => {
+          emits('hide')
+        }, 300);
+      }
+    } catch (err) {
+      if (err.response.data.detail === 'Duplicate membership is not allowed.') {
+        toast({
+          message: t('errors.you-have-already-joined-the-parties'),
+          type: 'warning'
+        })
+      } else if (err.response.data.detail === 'Age under 18 is not allowed.') {
+        toast({
+          message: t('errors.accommodation-under-the-age-of-18-is-not-allowed'),
+          type: 'warning'
         })
       }
-    });
+    } finally {
+      isLoading.value = false
+    }
   }
-)
-
-const postJoinParty = (
-    {
-      user_id, education, specialization, workPlace, post, streat, home, apartment, dateBirthday, pensioner, disabled, unemployed, onChildcareLeave, socialStatus
-    }:
-    {
-      user_id: string,
-      education: string,
-      specialization: string,
-      workPlace: string,
-      dateBirthday: string,
-      post: string,
-      streat: string,
-      home: string,
-      apartment: string|null,
-      pensioner: boolean,
-      disabled: boolean,
-      unemployed: boolean,
-      onChildcareLeave: boolean,
-      socialStatus: string
-    }
-  ) => {
-
-  const data = {
-    "user_id": user_id,
-    "birth_date": moment(dateBirthday).format('YYYY-MM-DD'), 
-    "gender": gender.value,
-
-    "education": education,
-    "specialty": specialization.length ? specialization : null,
-    "workplace": workPlace.length ? workPlace : null,
-    "position": post.length ? post : null,
-    "social_status": socialStatus,
-  
-    "location_id": Number(locationID.value ?? regionID.value),
-
-    "street": streat,
-    "house": home,
-    "apartment": apartment === '' ? null : apartment,
-
-    "status": "active",
-    "join_date": moment().format('YYYY-MM-DD'),
-
-    "is_pensioner": pensioner,
-    "is_disabled": disabled,
-    "is_unemployed": unemployed,
-    "is_on_childcare_leave": onChildcareLeave,
-  };
-
-  // const formData = new FormData();
-
-  // for (const key in data) {
-  //   if (key === 'created_at') formData.append(key, moment(data[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-  //   else if (key !== 'preview_image' && data[key]) formData.append(key, data[key]);
-  // }
-
-  postParty(data);
-}
-
-const postParty = (data) => {
-  loading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships`;
-
-  axios({
-    method: "post",
-    url: url,
-    data: data,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
-      toast({
-        message: 'Вы успешно создали партиица',
-        type: 'success'
-      })
-      
-      emits('finish')
-      setTimeout(() => {
-        emits('hide')
-      }, 300);
-
-      loading.value = false
-    })
-    .catch((err) => {
-
-    
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-
-      console.log('err', err);
-      loading.value = false
-    });
-}
 </script>
+
 
 <style scoped lang="scss">
 .feedbackModal {
+  &-userData {
+    margin-bottom: 40px;
+
+    &-item {
+      margin-bottom: 12px;
+    }
+
+    &-title,
+    &-value {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    &-title {
+      display: inline;
+      color: var(--light-gray-color);
+    }
+
+    &-value {
+      display: inline;
+    }
+
+    &-item:last-child {
+      margin-bottom: 0px;
+    }
+  }
+  
   &-inputs {
     &-home {
       display: grid;
       grid-template-columns: 1fr 135px 135px;
       grid-gap: 16px;
     }
+
     &-subtitle {
       display: block;
       font-size: 20px;
       font-weight: 500;
       margin-bottom: 10px;
-    }
-
-    &-customTicketNum {
-      margin-bottom: 10px !important;
-    }
-
-    &-ticketNumSelect {
-      opacity: 1;
-      transition: all .3s ease-in-out;
-      &.disabled {
-        pointer-events: none;
-        opacity: .4;
-      }
     }
 
     &-gender {
@@ -505,9 +426,89 @@ const postParty = (data) => {
     }
   }
 
-  &-checkboxList-block {
-    padding-bottom: 0px;
-    border-bottom: 0px;
+  &-checkboxList {
+    margin-bottom: 0px !important;
+
+    &-block {
+      border-bottom: none;
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 768px) {
+    &-userData {
+      margin-bottom: 34px;
+
+      &-item {
+        margin-bottom: 10px;
+      }
+
+      &-title,
+      &-value {
+        font-size: 16px;
+      }
+    }
+    
+    &-inputs {
+      &-home {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 12px;
+
+        & .input:first-child {
+          grid-column: 1/3;
+        }
+      }
+
+      &-gender {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 12px 18px;
+        margin-bottom: 8px;
+
+        & .input:first-child {
+          grid-column: 1/3;
+        }
+
+        & button {
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-userData {
+      margin-bottom: 28px;
+
+      &-item {
+        margin-bottom: 8px;
+      }
+    }
+    
+    &-inputs {
+      &-home {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+
+        & .input:first-child {
+          grid-column: auto;
+        }
+      }
+
+      &-gender {
+        grid-template-columns: 1fr;
+        grid-gap: 10px 16px;
+        margin-bottom: 8px;
+
+        & .input:first-child {
+          grid-column: auto;
+        }
+
+        & button {
+          height: 58px;
+        }
+      }
+    }
   }
 }
 
