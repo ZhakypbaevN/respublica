@@ -2,11 +2,12 @@
   <LogInFirstModal
     :title="t('feedback.to-join-the-party-you-need-to-log-in-to-the-portal-or-register')"
     @hide="emits('hide')"
-    :show="show && !userData.role"
+    :show="show && !userData"
   />
+
   
   <Modal
-    v-if="show && userData.role"
+    v-if="show && userData?.role"
     @hide="emits('hide')"
     class="feedbackModal"
     :title="t('feedback.join-the-party')"
