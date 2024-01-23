@@ -1,5 +1,5 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postResetPassword">
+  <Form class="wrapper-darkMain-form" @finish="onPostResetPassword">
     <h2 class="wrapper-darkMain-title">
       {{ $t('auth.recover-password') }}
     </h2>
@@ -24,7 +24,8 @@
     />
 
     <div class="modal-message">
-      <h4 class="modal-message-title">{{ $t('auth.do-you-have-an-account') }}  </h4>
+      <h4 class="modal-message-title">{{ $t('auth.do-you-have-an-account') }}</h4>
+      <span>__</span>
       <RouterLink
         class="modal-message-btn"
         to="/auth/login"
@@ -36,69 +37,55 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
+  import { ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
 
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+  import { useToast } from '@/modules/toast'
+  import formatPhone from '@/helpers/formatPhone.js'
 
-import { useToast } from '@/modules/toast'
-import formatPhone from '@/helpers/formatPhone.js'
+  import { postResetPasswordGetCode } from '@/actions/auth';
 
-const { t } = useI18n()
-const { toast } = useToast()
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-interface IProps {
-  phone: string
-}
+  interface IProps {
+    phone: string
+  }
 
-interface Emits {
-  (event: 'update:phone', value: string): void,
-  (event: 'update:token', value: string): void,
-  (event: 'toCheck'): Function,
-}
+  interface Emits {
+    (event: 'update:phone', value: string): void,
+    (event: 'update:token', value: string): void,
+    (event: 'toCheck'): Function,
+  }
 
-defineProps<IProps>()
-const emit = defineEmits<Emits>()
+  defineProps<IProps>()
+  const emit = defineEmits<Emits>()
 
-const loading = ref(false)
+  const loading = ref(false)
 
-const postResetPassword = ({ phone }: { phone: string }) => {
-  loading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/auth/password/send-sms`;
-    
-  axios({
-    method: "post",
-    url: url,
-    data: {
-      "phone": formatPhone(phone),
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
+  const onPostResetPassword = async ({ phone }: { phone: string }) => {
+    loading.value = true;
+
+    try {
+      const response = await postResetPasswordGetCode(formatPhone(phone))
       toast({
         message: t('message.a-confirmation-code-has-been-sent-to-your-number'),
         type: 'success'
       })
       emit('update:phone', formatPhone(phone));
-      emit('update:token', response.data.token);
+      emit('update:token', response);
       emit('toCheck');
-
-      loading.value = false
-    })
-    .catch((err) => {
-      console.log('err', err);
+    } catch (err) {
       if (err.response.data.detail === 'This number is not registered') {
         toast({
-          message: 'Этот номер не зарегистрирован!'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
+          message: t('errors.this-number-is-not-registered'),
+          type: 'warning'
         })
       }
+    } finally {
       loading.value = false
-    });
-}
+    }
+  }
 </script>
 
 <style scoped lang="scss">
@@ -123,6 +110,9 @@ const postResetPassword = ({ phone }: { phone: string }) => {
   }
 
   &-message {
+    & span {
+      color: transparent;
+    }
     &-title,
     & a {
       display: inline;

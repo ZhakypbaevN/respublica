@@ -213,12 +213,12 @@
   const inputName = props.name ?? 'example'
 
   const rules = {
-    email: () => /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$/
+    email: () => /^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
       .test(String(input.value).toLowerCase()) ? false : t('errors.enter-the-correct-email-address'),
 
     phone: () => input.value && String(input.value).length === 17 ? false : t('errors.enter-the-correct-number'),
 
-    password: () => /^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+    password: () => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
       .test(String(input.value)) ? false : t('errors.the-password-must-contain-at-least-8-characters'),
 
     sameAs: () => input.value.toString() === props.sameAs ? false : t('errors.the-fields-don-not-match'),

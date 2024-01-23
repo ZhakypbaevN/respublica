@@ -73,7 +73,8 @@ const request = function (
       }
     })
     .catch(function (error) {
-      if (error.response.status === 401) logout()
+      const userType = localStorage.getItem('USER_TYPE');
+      if (error.response.status === 401 && userType) logout()
 
       if (!muteError) {
         if (!error.response) {

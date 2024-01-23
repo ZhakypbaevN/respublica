@@ -563,12 +563,17 @@
   },
 
   "errors": {
-    "enter-the-correct-email-address": "Дұрыс почта енгізіңіз",
-    "enter-the-correct-number": "Дұрыс нөмер енгізіңіз",
-    "the-password-must-contain-at-least-8-characters": "Құпия сөз кем дегенде 8 таңбадан тұруы тиіс. Және кем дегенде, бір цифр,бір бас әріп және бір кішкентай әріпі болуы тиіс, ",
-    "the-fields-don-not-match": "Жолдар сәйкес келмейді",
-    "enter-the-field-correctly": "Дұрыс толтырыңыз",
-    "this-field-is-required": "Міндетті түрде толтыру қажет"
+    "enter-the-correct-email-address": "Дұрыс почта енгізіңіз!",
+    "enter-the-correct-number": "Дұрыс нөмер енгізіңіз!",
+    "the-password-must-contain-at-least-8-characters": "Құпия сөз кем дегенде 8 таңбадан тұруы тиіс. Және кем дегенде, бір цифр,бір бас әріп және бір кішкентай әріпі болуы тиіс!",
+    "the-fields-don-not-match": "Жолдар сәйкес келмейді!",
+    "enter-the-field-correctly": "Дұрыс толтырыңыз!",
+    "this-field-is-required": "Міндетті түрде толтыру қажет!",
+    "invalid-username-or-password": "Логин немесе пароль дұрыс емес!",
+    "this-number-is-not-registered": "Бұл нөмір тіркелген жоқ!",
+    "the-processing-period-has-expired-repeat-again": "Өңдеу мерзімі аяқталды, қайтадан қайталаңыз!",
+    "the-phone-number-is-already-registered": "Телефон нөмірі тіркелген!",
+    "invalid-code": "Қате код!"
   },
 
   "gallery": {
@@ -576,6 +581,7 @@
     "editing-an-album": "Альбомды өңдеу"
   },
 
+  "enter-your-details": "Деректеріңізді енгізіңіз",
   "male": "Ер адам",
   "female": "Әйел",
   "higher-education": "Жоғары білім",

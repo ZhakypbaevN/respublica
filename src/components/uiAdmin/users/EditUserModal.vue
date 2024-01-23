@@ -62,12 +62,14 @@
             name="email"
             v-model="userData.email"
             placeholder="Email"
+            validation="email"
             required
           />
 
           <Input
             type="password"
             name="password"
+            validation="password"
             :placeholder="$t('formdata.password')"
             :required="!data"
           />
@@ -79,7 +81,6 @@
         :loading="loading"
         htmlType="submit"
       />
-
     </Form>
   </Modal>
 </template>

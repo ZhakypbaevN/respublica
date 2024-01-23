@@ -88,6 +88,7 @@
     }
 
     &.loading {
+      pointer-events: none;
       & span {
         opacity: 0;
       }

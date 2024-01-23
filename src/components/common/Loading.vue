@@ -31,8 +31,8 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   name: 'lds-ellipsis',
   color: '#000',
-  width: 20,
-  height: 20
+  width: 24,
+  height: 24
 })
 
 const colorProps = ref(props.color)

@@ -23,7 +23,7 @@
           <CheckCodeForm
             v-if="showForm.checkCode"
             :phone="checkData.phone"
-            :token="checkData.token"
+            v-model:token="checkData.token"
             :fromResetPassword="fromResetPassword"
             @toBack="() => {fromResetPassword ? showResetPasswordForm() : showRegistrationForm()}"
             @toNext="() => {fromResetPassword ? showFinishResetPasswordForm() : showFinishRegistrationForm()}"

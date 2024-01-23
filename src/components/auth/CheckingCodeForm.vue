@@ -1,5 +1,5 @@
 <template>
-  <Form class="wrapper-darkMain-form" @finish="postCheckCode">
+  <Form class="wrapper-darkMain-form" @finish="onPostCheckCode">
     <h2 class="wrapper-darkMain-title">{{ $t('auth.enter-the-code') }}</h2>
 
     <div class="modal-message">
@@ -31,15 +31,19 @@
     <div class="modal-message">
       <TransitionGroup>
         <div v-if="time > 0">
-          <h4 class="modal-message-title">{{ $t('auth.you-can-get-a-new-code-via') }} </h4>
+          <h4 class="modal-message-title">{{ $t('auth.you-can-get-a-new-code-via') }}</h4>
+          <span class="space">_</span>
           <span>{{ timeLeft }}</span>
         </div>
-        <button
+        <Button
           v-else
-          @click="newCode"
+          loadingName="sk"
+          :loading="isLoading.newCode"
+          @click="onGetNewCode"
+          class="modal-btn-newCode"
         >
           <span>{{ $t('button.send-it-again') }}</span>
-        </button>
+        </Button>
       </TransitionGroup>
     </div>
 
@@ -47,8 +51,8 @@
       class="modal-btn"
       name="Готово"
       type="default-blue"
-      :loading="loading"
       htmlType="submit"
+      :loading="isLoading.form"
     />
 
     <div class="modal-message">
@@ -65,11 +69,11 @@
 </template>
 
 <script setup lang="ts">
-  import axios from 'axios'
-  import { ref } from 'vue'
+  import { ref, reactive, computed } from 'vue'
   import { useI18n } from 'vue-i18n'
 
   import { useToast } from '@/modules/toast'
+  import { postCheckCode, postResetPasswordGetCode, postRegisterGetCode } from '@/actions/auth';
 
   import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
 
@@ -85,6 +89,7 @@
     (event: 'toBack'): Function,
     (event: 'toLogin'): Function,
     (event: 'toNext'): Function,
+    (event: 'update:token', value: string): void,
   }
 
   const props = withDefaults(defineProps<IProps>(), {})
@@ -92,7 +97,15 @@
 
   const verificationCode = ref('')
   const timeLeft = ref('01:00')
-  const loading = ref(false)
+  const isLoading = reactive({
+    form: false,
+    newCode: false
+  })
+
+  const tokenValue = computed({
+    get: () => props.token,
+    set: (val) => emit('update:token', val)
+  })
 
   const inputHandler = (inputId: number) => {
     const previousInput = document.querySelector(`.input-code-${inputId - 1}`)
@@ -148,52 +161,72 @@
       .padStart(2, "0")}`;
   }, 1000);
 
-  const newCode = () => {
-    clearInterval(timer);
-  }
-
-  const postCheckCode = () => {
-    loading.value = true;
+  const onPostCheckCode = async () => {
+    isLoading.form = true;
     const url = props.fromResetPassword
-      ? 'https://api.respublica-partiyasy.kz/api/v1/auth/password/verify-sms'
-      : 'https://api.respublica-partiyasy.kz/api/v1/auth/register/phone-confirm';
-      
-    axios({
-      method: "post",
-      url: url,
-      data: {
-        "code": verificationCode.value,
-        "token": props.token
-      }
-    })
-      .then((response) => {
-        console.log('response', response);
+      ? '/api/v1/auth/password/verify-sms'
+      : '/api/v1/auth/register/phone-confirm';
+    
+    try {
+      await postCheckCode(url, verificationCode.value, tokenValue.value)
 
+      toast({
+        message: t('message.the-code-has-been-successfully-confirmed'),
+        type: 'success'
+      })
+
+      emit('toNext')
+    } catch (err) {
+      if (err.response.data.detail === 'Code is invalid') {
         toast({
-          message: t('message.the-code-has-been-successfully-confirmed'),
-          type: 'success'
+          message: t('errors.invalid-code'),
+          type: 'warning'
         })
 
-        emit('toNext')
-        loading.value = false
-      })
-      .catch((err) => {
-        console.log('err', err);
-        if (err.response.data.detail === 'Code is invalid') {
-          toast({
-            message: 'Неверный код!'
-          })
-        } else if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
-          toast({
-            message: 'Срок обработки истек, повторите заново!'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
-        loading.value = false
-      });
+      } else if (err.response.data.detail === 'Token is expired' || err.response.data.detail === 'Token is invalid') {
+        toast({
+          message: t('errors.the-processing-period-has-expired-repeat-again'),
+          type: 'warning'
+        })
+      }
+    } finally {
+      isLoading.form = false
+    }
+  }
+
+  const onGetNewCode = async () => {
+    time.value = 60;
+    // isLoading.newCode = true;
+
+    // try {
+    //   const response =
+    //     props.fromResetPassword
+    //       ? await postResetPasswordGetCode(props.phone)
+    //       : await postRegisterGetCode(props.phone)
+    //   tokenValue.value = response;
+    //   toast({
+    //     message: t('message.a-confirmation-code-has-been-sent-to-your-number'),
+    //     type: "success"
+    //   });
+    //   clearInterval(timer);
+    // } catch (err) {
+    //   if (err.response.data.detail === 'This number is not registered') {
+    //     toast({
+    //       message: t('errors.this-number-is-not-registered'),
+    //       type: 'warning'
+    //     })
+    //     emit('toBack')
+    //   }
+    //   if (err.response.data.detail === "Phone number is already registered") {
+    //     toast({
+    //       message: t('errors.the-phone-number-is-already-registered'),
+    //       type: 'warning'
+    //     });
+    //     emit('toBack')
+    //   }
+    // } finally {
+    //   isLoading.newCode = false;
+    // }
   }
 </script>
 
@@ -222,6 +255,14 @@
   &-btn {
     width: 100%;
     margin-bottom: 50px;
+
+    &-newCode {
+      padding: 0px !important;
+      
+      &:hover {
+        background-color: transparent !important;
+      }
+    }
   }
 
   &-message {
@@ -232,6 +273,10 @@
       display: inline;
       font-size: 18px;
       font-weight: 500;
+    }
+
+    & span.space {
+      color: transparent;
     }
 
     &-btn {
@@ -257,5 +302,10 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+</style>
+<style>
+.modal-btn-newCode .sk-chase-dot:before {
+  background: var(--accent-color) !important;
 }
 </style>
