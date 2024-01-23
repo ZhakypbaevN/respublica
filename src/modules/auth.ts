@@ -80,6 +80,7 @@ export const useAuth = () => {
   }
 
   const logout = () => {
+    localStorage.removeItem('USER_DATA');
     localStorage.removeItem('USER_TYPE');
     localStorage.removeItem('access_token')
     sessionStorage.removeItem('access_token')
