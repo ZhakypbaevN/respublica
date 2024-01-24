@@ -405,6 +405,9 @@
     "automatic-number-generation": "Сандарды автоматты түрде ұсыну",
     "exclusion-from-the-party": "партиядан шығару",
     "creating-a-vip-room": "VIP номер жасау",
+    "creating-a-party-member": "Партия мүшесін құру",
+    "editing-a-party-member": "Партиялық редакциялау",
+
     "party-card-rus": {
       "title": "Партиялық билет",
       "surname": "Тегі",
@@ -536,7 +539,8 @@
     "save-the-password": "Құпиясөзді сақтау",
     "get-the-code": "Кодты жіберу",
     "log-out-of-your-account": "Аккаунттан шығу",
-    "choose_how_many_items_will_be_per_page": "Бір бетте қанша элемент болатынын таңдаңыз"
+    "choose_how_many_items_will_be_per_page": "Бір бетте қанша элемент болатынын таңдаңыз",
+    "create-a-party-member": "Партия мүшесін құру"
   },
 
   "message": {

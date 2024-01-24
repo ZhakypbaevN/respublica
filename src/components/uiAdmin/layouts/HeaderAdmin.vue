@@ -13,6 +13,12 @@
           </Router-link>
 
           <div class="header-main-right">
+            <Button
+              :name="$t('button.create-a-party-member')"
+              type="default-blue"
+              @click="() => showJoinPartyModal = true"
+            />
+
             <LangToggle />
 
             <ProfileControl />
@@ -20,12 +26,21 @@
         </div>
       </div>
     </div>
+
+    <CreatePartyModal
+      :show="showJoinPartyModal"
+      @hide="() => showJoinPartyModal = false"
+    />
   </header>
 </template>
 
 <script setup lang="ts">
-import ProfileControl from '@/components/common/ProfileControl.vue';
+  import ProfileControl from '@/components/common/ProfileControl.vue';
+  import CreatePartyModal from '@/components/uiManager/party-members/create/CreatePartyModal.vue';
 
+  import { ref } from 'vue';
+
+  const showJoinPartyModal = ref(false);
 </script>
 
 <style scoped lang="scss">

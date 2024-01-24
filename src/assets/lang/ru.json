@@ -411,6 +411,8 @@
     "automatic-number-generation": "Автоматическая генерация номера",
     "exclusion-from-the-party": "Исключение из партии",
     "creating-a-vip-room": "Создание VIP номера",
+    "creating-a-party-member": "Создание партийца",
+    "editing-a-party-member": "Редактирование партийца",
 
     "party-card-rus": {
       "title": "Партийный билет",
@@ -548,7 +550,8 @@
     "save-the-password": "Сохранить пароль",
     "get-the-code": "Получить код",
     "log-out-of-your-account": "Выйти из аккаунта",
-    "choose_how_many_items_will_be_per_page": "Выбрать сколько элементов будут на страницу"
+    "choose_how_many_items_will_be_per_page": "Выбрать сколько элементов будут на страницу",
+    "create-a-party-member": "Создать члена партии"
   },
 
   "message": {

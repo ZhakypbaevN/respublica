@@ -13,15 +13,11 @@
           </RouterLink>
          
           <div class="header-main-right">
-            <button
+            <Button
+              :name="$t('button.create-a-party-member')"
+              type="default-blue"
               @click="() => showJoinPartyModal = true"
-              class="header-main-logo"
-            >
-              <Button
-                name="Создать члена партии"
-                type="default-blue"
-              />
-            </button>
+            />
             
             <LangToggle />
 
@@ -39,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-  import CreatePartyModal from '@/components/uiManager/party-members/CreatePartyModal.vue';
+  import CreatePartyModal from '@/components/uiManager/party-members/create/CreatePartyModal.vue';
   import ProfileControl from '@/components/common/ProfileControl.vue';
 
   import { ref } from 'vue';

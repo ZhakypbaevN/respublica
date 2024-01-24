@@ -3,7 +3,7 @@
     v-if="show"
     @hide="emits('hide')"
     class="feedbackModal"
-    :title="t('feedback.join-the-party')"
+    :title="t('party.creating-a-party-member')"
   >
     <!-- <div class="feedbackModal-userData">
       <div class="feedbackModal-userData-item">
