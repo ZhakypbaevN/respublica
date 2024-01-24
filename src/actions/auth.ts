@@ -26,7 +26,9 @@ export const postCheckCode = (url: string, code: string, token: string) =>
 
 // Register
 export const postRegisterGetCode = async (phone: string) => {
-  const response = await api.asyncPost<string>('/api/v1/auth/register', {});
+  const response = await api.asyncPost<string>('/api/v1/auth/register', {
+    'phone': phone
+  });
   if (response.data['token']) return response.data['token'];
 }
 

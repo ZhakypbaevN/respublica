@@ -15,7 +15,7 @@
 
     <div class="modal-btn">
       <Button
-        :name="$t('get-the-code')"
+        :name="$t('button.get-the-code')"
         type="default-blue"
         :loading="isLoading"
         htmlType="submit"

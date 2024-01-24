@@ -1,6 +1,6 @@
 <template>
   <div class="managerLayout">
-    <HeaderClient />
+    <HeaderAdmin />
 
     <div class="managerLayout-inner">
       <SideBar :list="sideBarlinks"></SideBar>
@@ -20,7 +20,7 @@
 
 <script setup>
 import SideBar from '@/components/common/SideBar.vue';
-import HeaderClient from '@/components/uiAdmin/layouts/HeaderClient.vue';
+import HeaderAdmin from '@/components/uiAdmin/layouts/HeaderAdmin.vue';
 
 import { useI18n } from 'vue-i18n'
 
