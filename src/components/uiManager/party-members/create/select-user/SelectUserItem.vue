@@ -1,5 +1,5 @@
 <template>
-  <tr class="usersItem">
+  <tr class="usersItem" @click="() => $emit('select')">
     <td>{{ data.iin ?? '-' }}</td>
     <td class="name">
       {{ `${data.last_name} ${data.first_name} ${data.middle_name ?? ''}` }}
@@ -11,20 +11,6 @@
       {{ data.phone ? formatPhoneNumber(data.phone) : '-' }}
     </td>
     <td>{{ data.email ?? '-' }}</td>
-    <td class="btn">
-      <Button
-        class="usersItem-editBtn"
-        type="default-light-grey"
-        @click="() => $emit('showEditModal')"
-      >
-        <SvgIcon
-          name="pencil-edit-with-bg"
-          :viewboxWidth="50"
-          :viewboxHeight="50"
-        />
-      </Button>
-    </td>
-
   </tr>
 </template>
 
@@ -39,7 +25,7 @@
     data: IUser
   }
   interface Emits {
-    (event: 'showEditModal'): Function
+    (event: 'select'): Function
   }
   
   const { t } = useI18n();
@@ -63,6 +49,13 @@
 
 <style scoped lang="scss">
 .usersItem {
+  &:hover td {
+    cursor: pointer;
+    background-color: var(--accent-color-op10);
+    &.name {
+      color: var(--accent-color) !important;
+    }
+  }
   & td {
     font-size: 18px;
     font-weight: 500;
@@ -70,6 +63,7 @@
     padding: 20px;
 
     background-color: white;
+    transition: all .3s ease-in-out;
 
     &.name {
       font-weight: 600;

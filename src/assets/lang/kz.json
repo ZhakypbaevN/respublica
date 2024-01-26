@@ -540,7 +540,9 @@
     "get-the-code": "Кодты жіберу",
     "log-out-of-your-account": "Аккаунттан шығу",
     "choose_how_many_items_will_be_per_page": "Бір бетте қанша элемент болатынын таңдаңыз",
-    "create-a-party-member": "Партия мүшесін құру"
+    "create-a-party-member": "Партия мүшесін құру",
+    "create-a-user": "Пайдаланушы құру",
+    "select-a-user": "Пайдаланушыны таңдау"
   },
 
   "message": {
@@ -581,7 +583,9 @@
     "сomments-have-been-sent-successfully": "Сіздің пікіріңіз сәтті жіберілді!",
     "nothing-seems-to-be-found": "Ештеңе табылмаған сияқты!",
     "the-comment-was-successfully-deleted": "Пікір сәтті жойылды!",
-    "you-have-successfully-joined-the-party": "Сіз партияға сәтті кірдіңіз!"
+    "you-have-successfully-joined-the-party": "Сіз партияға сәтті кірдіңіз!",
+    "iin-is-already": "ЖСН тіркелген!",
+    "phone-number-is-already": "Телефон нөмірі тіркелген!"
   },
 
   "errors": {

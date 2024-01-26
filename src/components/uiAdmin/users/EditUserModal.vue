@@ -11,7 +11,7 @@
         <div class="editModal-inputs">
           <Input
             name="iin"
-            :placeholder="$t('formdata.your-iin')"
+            :placeholder="$t('formdata.iin')"
             mask="############"
             v-model="userData.iin"
             required
@@ -77,7 +77,11 @@
       </div>
 
       <Button
-        :name="$t('button.save')"
+        :name="$t(
+          data
+            ? 'button.save'
+            : 'button.create'
+        )"
         :loading="loading"
         htmlType="submit"
       />
@@ -102,7 +106,8 @@
   }
   interface Emits {
     (event: 'hide'): Function,
-    (event: 'reloadTable'): Function
+    (event: 'reloadTable'): Function,
+    (event: 'update:data', value: any): void
   }
 
   const props = defineProps<IProps>()
@@ -162,8 +167,9 @@
 
       formData.append('password', password)
       
-      if (props.data) await putUser(props.data.id, formData)
-      else await postUser(formData)
+      const response = props.data
+        ? await putUser(props.data.id, formData)
+        : await postUser(formData)
 
       toast({
         message: props.data
@@ -172,8 +178,22 @@
         type: 'success'
       })
 
+      emit('update:data', response)
       emit('reloadTable')
       emit('hide')
+      
+    } catch (err) {
+      if (err.response.data.detail === 'IIN is already!') {
+        toast({
+          message: t('message.iin-is-already'),
+          type: 'warning'
+        })
+      } else if (err.response.data.detail === 'Phone number is already!') {
+        toast({
+          message: t('message.phone-number-is-already'),
+          type: 'warning'
+        })
+      }
     } finally {
       loading.value = false
     }

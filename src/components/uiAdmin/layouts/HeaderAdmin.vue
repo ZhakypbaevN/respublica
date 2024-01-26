@@ -28,7 +28,7 @@
     </div>
 
     <CreatePartyModal
-      :show="showJoinPartyModal"
+      v-if="showJoinPartyModal"
       @hide="() => showJoinPartyModal = false"
     />
   </header>

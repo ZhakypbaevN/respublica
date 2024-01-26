@@ -3,43 +3,29 @@
     <span class="count">{{ visibleCount }} из {{ total }}</span>
     <div class="pagination" v-if="pagesCount > 1">
       <button
+        class="pagination-arrowBtn"
         @click="paginate({ offset: currentOffset - currentLimit, limit: currentLimit })"
         v-if="currentOffset !== 0"
       >
-        
-        <!-- <SvgIcon
-          name="pagination-chevron-left"
-          :viewboxHeight="18"
-          :viewboxWidth="11"
-          :width="11"
-          :height="18"
-          fill="#161931"
-        /> -->
         &lt;
       </button>
-      <div
-        v-for="page in pagesCount"
-        :key="page"
-      >
-        <button
-          @click="paginate({ offset: currentLimit * (page - 1), limit: currentLimit })"
-          :class="{ active: currentLimit * (page - 1) === currentOffset }"
-        >
-          {{ page }}
-        </button>
+
+      <div class="pagination-list">
+        <div v-for="page in visiblePages" :key="page">
+          <button
+            @click="page === '...' ? null : paginate({ offset: currentLimit * (page - 1), limit: currentLimit })"
+            :class="{ active: currentPage === page, disabled: page === '...' }"
+          >
+            {{ page }}
+          </button>
+        </div>
       </div>
+
       <button
+        class="pagination-arrowBtn"
         @click="paginate({ offset: currentOffset + currentLimit, limit: currentLimit })"
-        v-if="currentOffset !== currentLimit - currentOffset"
+        v-if="currentPage !== pagesCount"
       >
-        <!-- <SvgIcon
-          name="pagination-chevron-right"
-          :viewboxHeight="18"
-          :viewboxWidth="11"
-          :width="11"
-          :height="18"
-          fill="#161931"
-        /> -->
         &gt;
       </button>
     </div>
@@ -53,9 +39,9 @@
         @change="paginate({ offset: currentOffset, limit: Number(($event.target as HTMLInputElement).value) })"
         :value="currentLimit"
       >
-        <option value="20">20</option>
-        <option value="40">40</option>
-        <option value="80">80</option>
+        <option :value="20">20</option>
+        <option :value="40">40</option>
+        <option :value="80">80</option>
       </select>
     </div>
   </div>
@@ -68,13 +54,14 @@ import { useRoute, useRouter } from 'vue-router'
 interface IProps {
   total: number
   offset?: number
-  Limit?: number
-  withRouter: boolean
+  limit?: number
+  withRouter?: boolean
 }
 type PaginateProps = { offset?: number; limit?: number }
 
 interface IEmits {
-  (event: 'paginate', props: PaginateProps): void
+  (event: 'update:offset', value: number): void,
+  (event: 'update:limit', value: number): void,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -89,12 +76,9 @@ const emit = defineEmits<IEmits>()
 const route = useRoute()
 const router = useRouter()
 
-const currentLimit = computed(() =>
-  Number(route.query.limit ?? props.limit)
-)
-
-const currentOffset = computed(() => Number(route.query.offset ?? props.offset))
-
+const currentLimit = computed(() => Number(props.withRouter ? route.query.limit : props.limit))
+const currentOffset = computed(() => Number(props.withRouter ? route.query.offset : props.offset))
+const currentPage = computed(() => (currentOffset.value + currentLimit.value) / currentLimit.value);
 const pagesCount = computed(() => Math.ceil(props.total / currentLimit.value))
 
 const visibleCount = computed(() => {
@@ -102,15 +86,34 @@ const visibleCount = computed(() => {
 
   if (total < limit) return total
 
-  const totalLimit = currentOffset.value * currentLimit.value
+  return currentOffset.value + currentLimit.value
+})
 
-  if (totalLimit > total) return total
+const visiblePages = computed(() => {
+  const dotsLimit = 4;
 
-  return totalLimit
+  const pages = [];
+  for (let i = 1; i <= pagesCount.value; i++) {
+    if (currentPage.value > i - dotsLimit && currentPage.value < i + dotsLimit) pages.push(i);
+  }
+
+  if (currentPage.value > dotsLimit + 1) {
+    pages.unshift("...");
+    if (currentPage.value >= 5) pages.unshift(1);
+  }
+
+  if (currentPage.value < pagesCount.value - dotsLimit) {
+    pages.push("...");
+    if (currentPage.value <= pagesCount.value - 5) pages.push(pagesCount.value);
+  }
+
+  return pages;
 })
 
 const paginate = ({ offset, limit }: PaginateProps) => {
-  emit('paginate', { offset, limit })
+  emit('update:offset', offset)
+  emit('update:limit', limit)
+
   if (props.withRouter) {
     router.push({
       query: {
@@ -123,7 +126,7 @@ const paginate = ({ offset, limit }: PaginateProps) => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .footer {
   padding: 0 20px;
   display: flex;
@@ -133,9 +136,13 @@ const paginate = ({ offset, limit }: PaginateProps) => {
 .pagination {
   display: flex;
   align-items: center;
-  gap: 5px;
-  max-width: 500px;
-  overflow: overlay;
+  gap: 25px;
+
+  &-list {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 }
 button {
   border: 1px solid rgba(22, 25, 49, 0.3);

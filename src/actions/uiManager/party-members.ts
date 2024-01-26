@@ -14,3 +14,6 @@ export const getPartyMembersList = async (status: string, filters: any) => {
     )
   ).data
 }
+
+export const postNewPartyMember = (data: IPartyMember) =>
+  api.asyncPost('/api/v1/admin/parties/memberships', data)

@@ -1,215 +1,249 @@
 <template>
-  <Modal
-    v-if="show"
-    @hide="emits('hide')"
-    class="feedbackModal"
-    :title="t('party.creating-a-party-member')"
-  >
-    <!-- <div class="feedbackModal-userData">
-      <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">{{ $t('formdata.iin') }}: </h4>
-        <p class="feedbackModal-userData-value">{{ userData.iin }}</p>
-      </div>
-
-      <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">{{ $t('formdata.fio') }}: </h4>
-        <p class="feedbackModal-userData-value">{{ `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}` }}</p>
-      </div>
-
-      <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">{{ $t('formdata.phone-number') }}: </h4>
-        <p class="feedbackModal-userData-value">{{ formatPhoneNumber(userData.phone) }}</p>
-      </div>
-
-      <div class="feedbackModal-userData-item">
-        <h4 class="feedbackModal-userData-title">{{ $t('formdata.email-address') }}: </h4>
-        <p class="feedbackModal-userData-value">{{ userData.email ?? '-' }}</p>
-      </div>
-    </div> -->
-    
-    <Form
-      @finish="onCollectData"
-      :ignores="disabledLocationSelect ? ['locality'] : null"
+  <div>
+    <Modal
+      @hide="emits('hide')"
+      class="feedbackModal"
+      :title="t('party.creating-a-party-member')"
     >
-      <div class="feedbackModal-inputs">
-        <div class="feedbackModal-inputs-gender">
-          <Input
-            type="date"
-            name="dateBirthday"
-            :placeholder="$t('formdata.date-of-birth')"
-            required
-          />
-
-          <Button
-            :name="$t('status.female')"
-            :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
-            @click="() => gender = 'female'"
-          />
-
-          <Button
-            :name="$t('status.male')"
-            :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
-            @click="() => gender = 'male'"
-          />
-        </div>
-
-        <Select
-          name="socialStatus"
-          :placeholder="$t('formdata.social-status')"
-          :options="socialStatusList"
-          required
-        />
-
-        <Select
-          name="education"
-          :placeholder="$t('formdata.specify-your-education')"
-          :options="[
-            {label: $t('status.higher'), value: 'higher_education'},
-            {label: $t('status.average'), value: 'secondary_special_education'},
-          ]"
-          required
-        />
-
-        <Input
-          name="specialization"
-          :placeholder="$t('formdata.specialization')"
-        />
-
-        <Input
-          name="workPlace"
-          :placeholder="$t('formdata.place-of-work')"
-        />
-
-        <Input
-          name="post"
-          :placeholder="$t('formdata.post')"
-        />
-
-        <Select
-          name="region"
-          :placeholder="$t('formdata.specify-the-area')"
-          :options="regionList"
-          v-model="regionID"
-          required
-        />
-
-        <Transition>
-          <div
-            v-if="!disabledLocationSelect"
-            v-collapse
-          >
-            <Select
-              name="locality"
-              :placeholder="$t('formdata.locality')"
-              :options="
-                locationList.length
-                  ? locationList
-                  : [{label: $t('status.first-select-an-area'), value: null}]
-              "
-              v-model="locationID"
-              required
+      <div class="feedbackModal-selectPeopleBlock">
+        <Button
+          class="feedbackModal-selectPeopleBlock-btn"
+          :class="{ active: userData }"
+          :name="
+            userData
+              ? `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}`
+              : $t('button.select-a-user')
+          "
+          type="outline-grey"
+          v-slot:left
+          @click="() => showModal.selectUser = true"
+ы        >
+          <div class="feedbackModal-selectPeopleBlock-btn-avatar">
+            <SvgIcon
+              name="avatar"
+              :viewboxWidth="44"
+              :viewboxHeight="44"
             />
           </div>
-        </Transition>
+        </Button>
 
-        <div class="feedbackModal-inputs-home">
-          <Input
-            name="streat"
-            :placeholder="$t('formdata.street-prospect-mkr')"
+        <Button
+          type="default-light-blue"
+          class="feedbackModal-selectPeopleBlock-tip"
+          @click="() => showModal.selectUser = true"
+        >
+          <SvgIcon
+            :name="userData  ? 'loop' : 'touch'"
+            :viewboxWidth="24"
+            :viewboxHeight="24"
+          />
+        </Button>
+        <button
+          class="feedbackModal-selectPeopleBlock-createBtn"
+          @click="() => showModal.createUser = true"
+        >
+          {{ $t('button.create-a-user') }}
+        </button>
+      </div>
+
+      <Form
+        @finish="onCollectData"
+        :ignores="disabledLocationSelect ? ['locality'] : null"
+      >
+        <div class="feedbackModal-inputs">
+          <div class="feedbackModal-inputs-gender">
+            <Input
+              type="date"
+              name="dateBirthday"
+              :placeholder="$t('formdata.date-of-birth')"
+              required
+            />
+
+            <Button
+              :name="$t('status.female')"
+              :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
+              @click="() => gender = 'female'"
+            />
+
+            <Button
+              :name="$t('status.male')"
+              :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
+              @click="() => gender = 'male'"
+            />
+          </div>
+
+          <Select
+            name="socialStatus"
+            :placeholder="$t('formdata.social-status')"
+            :options="socialStatusList"
+            required
+          />
+
+          <Select
+            name="education"
+            :placeholder="$t('formdata.specify-your-education')"
+            :options="[
+              {label: $t('status.higher'), value: 'higher_education'},
+              {label: $t('status.average'), value: 'secondary_special_education'},
+            ]"
             required
           />
 
           <Input
-            name="home"
-            :placeholder="$t('formdata.house')"
-            required
+            name="specialization"
+            :placeholder="$t('formdata.specialization')"
           />
 
           <Input
-            name="apartment"
-            :placeholder="$t('formdata.sq')"
+            name="workPlace"
+            :placeholder="$t('formdata.place-of-work')"
           />
-        </div>
 
+          <Input
+            name="post"
+            :placeholder="$t('formdata.post')"
+          />
 
-        <div>
-          <h4 class="feedbackModal-inputs-subtitle">
-            {{ $t('formdata.do-you-belong-to-the-category') }}
-          </h4>
+          <Select
+            name="region"
+            :placeholder="$t('formdata.specify-the-area')"
+            :options="regionList"
+            v-model="regionID"
+            required
+          />
 
-          <div class="feedbackModal-checkboxList-block">
-            <div class="feedbackModal-checkboxList">
-              <Checkbox
-                name="pensioner"
-                class="feedbackModal-checkboxList-item"
-              >
-                {{ $t('social-category.user-status-pensioner') }}
-              </Checkbox>
-
-              <Checkbox
-                name="disabled"
-                class="feedbackModal-checkboxList-item"
-              >
-                {{ $t('social-category.user-status-disabled') }}
-              </Checkbox>
+          <Transition>
+            <div
+              v-if="!disabledLocationSelect"
+              v-collapse
+            >
+              <Select
+                name="locality"
+                :placeholder="$t('formdata.locality')"
+                :options="
+                  locationList.length
+                    ? locationList
+                    : [{label: $t('status.first-select-an-area'), value: null}]
+                "
+                v-model="locationID"
+                required
+              />
             </div>
+          </Transition>
 
-            <div class="feedbackModal-checkboxList">
-              <Checkbox
-                name="unemployed"
-                class="feedbackModal-checkboxList-item"
-              >
-                {{ $t('social-category.user-status-unemployed') }}
-              </Checkbox>
+          <div class="feedbackModal-inputs-home">
+            <Input
+              name="streat"
+              :placeholder="$t('formdata.street-prospect-mkr')"
+              required
+            />
 
-              <Checkbox
-                name="onChildcareLeave"
-                class="feedbackModal-checkboxList-item"
-              >
-                {{ $t('social-category.user-status-on-childcare-leave') }}
-              </Checkbox>
+            <Input
+              name="home"
+              :placeholder="$t('formdata.house')"
+              required
+            />
+
+            <Input
+              name="apartment"
+              :placeholder="$t('formdata.sq')"
+            />
+          </div>
+
+
+          <div>
+            <h4 class="feedbackModal-inputs-subtitle">
+              {{ $t('formdata.do-you-belong-to-the-category') }}
+            </h4>
+
+            <div class="feedbackModal-checkboxList-block">
+              <div class="feedbackModal-checkboxList">
+                <Checkbox
+                  name="pensioner"
+                  class="feedbackModal-checkboxList-item"
+                >
+                  {{ $t('social-category.user-status-pensioner') }}
+                </Checkbox>
+
+                <Checkbox
+                  name="disabled"
+                  class="feedbackModal-checkboxList-item"
+                >
+                  {{ $t('social-category.user-status-disabled') }}
+                </Checkbox>
+              </div>
+
+              <div class="feedbackModal-checkboxList">
+                <Checkbox
+                  name="unemployed"
+                  class="feedbackModal-checkboxList-item"
+                >
+                  {{ $t('social-category.user-status-unemployed') }}
+                </Checkbox>
+
+                <Checkbox
+                  name="onChildcareLeave"
+                  class="feedbackModal-checkboxList-item"
+                >
+                  {{ $t('social-category.user-status-on-childcare-leave') }}
+                </Checkbox>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <Button
-        :name="$t('button.send-a-request')"
-        :loading="isLoading"
-        htmlType="submit"
-        :ignoreValidate="disabledLocationSelect ? ['locality'] : null"
-      />
-    </Form>
-  </Modal>
+        <Button
+          :name="$t('button.create')"
+          :loading="isLoading"
+          htmlType="submit"
+          :ignoreValidate="disabledLocationSelect ? ['locality'] : null"
+        />
+      </Form>
+    </Modal>
+
+    <SelectUserModal
+      :show="showModal.selectUser"
+      v-model:select="userData"
+      @hide="() => showModal.selectUser = false"
+    />
+
+    <EditUserModal
+      v-if="showModal.createUser"
+      @hide="() => showModal.createUser = false"
+      v-model:data="userData"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
+  import SelectUserModal from '@/components/uiManager/party-members/create/select-user/SelectUserModal.vue'
+  import EditUserModal from '@/components/uiAdmin/users/EditUserModal.vue';
+  
   import moment from 'moment'
   import { useI18n } from 'vue-i18n'
-  import { onMounted, ref, watch } from 'vue'
+  import { onMounted, ref, watch, reactive } from 'vue'
 
-  import { getUser } from '@/modules/auth';
   import { useToast } from '@/modules/toast'
 
   import { getLocationsList } from '@/actions/uiAdmin/locations';
-  import { postJoinParty } from '@/actions/uiClient/party-data';
+  import { postNewPartyMember } from '@/actions/uiManager/party-members';
 
-  import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
   import { IUser } from '@/types/users';
 
   const { t } = useI18n()
   const { toast } = useToast()
 
-  interface IProps {
-    show: boolean,
-  }
   interface Emits {
     (event: 'hide'): Function,
     (event: 'finish'): Function,
   }
 
-  defineProps<IProps>()
   const emits = defineEmits<Emits>()
+
+  const showModal = reactive({
+    selectUser: false,
+    createUser: false
+  });
 
   const isLoading = ref(false)
   const gender = ref('female');
@@ -254,8 +288,6 @@
   ]
 
   onMounted(async () => {
-    userData.value = await getUser();
-
     const response = await getLocationsList()
     response.data.data.forEach(location => {
       regionList.value.push(
@@ -332,6 +364,12 @@
       "is_disabled": disabled,
       "is_unemployed": unemployed,
       "is_on_childcare_leave": onChildcareLeave,
+
+      "user_id": userData.value.id,
+      "status": "active",
+
+      "join_date": null,
+      "ticket_number": null
     };
 
     postParty(data);
@@ -340,7 +378,7 @@
   const postParty = async (data) => {
     isLoading.value = true;
     try {
-      const response = await postJoinParty(data);
+      const response = await postNewPartyMember(data);
 
       if (response) {
         toast({
@@ -371,33 +409,62 @@
   }
 </script>
 
-
 <style scoped lang="scss">
 .feedbackModal {
-  &-userData {
+  &-selectPeopleBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
     margin-bottom: 40px;
+    position: relative;
+    
+    &-btn {
+      width: 100%;
 
-    &-item {
-      margin-bottom: 12px;
+      display: flex;
+      grid-gap: 18px;
+      align-items: center;
+
+      padding: 14px 24px;
+      margin-bottom: 4px;
+
+      &-avatar {
+        height: 45px;
+        width: 45px;
+  
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        border-radius: 50%;
+        background-color: var(--accent-color-op15);
+  
+        & svg {
+          width: 30px;
+          height: 30px;
+  
+          stroke: var(--accent-color);
+        }
+      }
     }
 
-    &-title,
-    &-value {
+    &-tip {
+      padding: 14px;
+
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      & svg {
+        height: 24px;
+        width: 24px;
+      }
+    }
+
+    &-createBtn {
       font-size: 18px;
       font-weight: 500;
-    }
-    
-    &-title {
-      display: inline;
-      color: var(--light-gray-color);
-    }
-
-    &-value {
-      display: inline;
-    }
-
-    &-item:last-child {
-      margin-bottom: 0px;
+      color: var(--accent-color);
     }
   }
   
@@ -433,83 +500,11 @@
       border-bottom: none;
     }
   }
-
-  // Adaptation
-  @media (max-width: 768px) {
-    &-userData {
-      margin-bottom: 34px;
-
-      &-item {
-        margin-bottom: 10px;
-      }
-
-      &-title,
-      &-value {
-        font-size: 16px;
-      }
-    }
-    
-    &-inputs {
-      &-home {
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 12px;
-
-        & .input:first-child {
-          grid-column: 1/3;
-        }
-      }
-
-      &-gender {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 12px 18px;
-        margin-bottom: 8px;
-
-        & .input:first-child {
-          grid-column: 1/3;
-        }
-
-        & button {
-          height: 60px;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 380px) {
-    &-userData {
-      margin-bottom: 28px;
-
-      &-item {
-        margin-bottom: 8px;
-      }
-    }
-    
-    &-inputs {
-      &-home {
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
-
-        & .input:first-child {
-          grid-column: auto;
-        }
-      }
-
-      &-gender {
-        grid-template-columns: 1fr;
-        grid-gap: 10px 16px;
-        margin-bottom: 8px;
-
-        & .input:first-child {
-          grid-column: auto;
-        }
-
-        & button {
-          height: 58px;
-        }
-      }
-    }
-  }
 }
 
+</style>
+<style>
+.feedbackModal-selectPeopleBlock-btn.active span {
+  color: var(--primary-color);
+}
 </style>
