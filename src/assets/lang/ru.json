@@ -551,7 +551,9 @@
     "get-the-code": "Получить код",
     "log-out-of-your-account": "Выйти из аккаунта",
     "choose_how_many_items_will_be_per_page": "Выбрать сколько элементов будут на страницу",
-    "create-a-party-member": "Создать члена партии"
+    "create-a-party-member": "Создать члена партии",
+    "create-a-user": "Создать пользователя",
+    "select-a-user": "Выбрать пользователя"
   },
 
   "message": {
@@ -592,7 +594,9 @@
     "сomments-have-been-sent-successfully": "Ваш комментарий был успешно отправлен!",
     "nothing-seems-to-be-found": "Похоже ничего не найдено!",
     "the-comment-was-successfully-deleted": "Комментарий был успешно удален!",
-    "you-have-successfully-joined-the-party": "Вы успешно вступили в партию!"
+    "you-have-successfully-joined-the-party": "Вы успешно вступили в партию!",
+    "iin-is-already": "ИИН уже зарегистрирован!",
+    "phone-number-is-already": "Телефон номер уже зарегистрирован!"
   },
 
   "errors": {

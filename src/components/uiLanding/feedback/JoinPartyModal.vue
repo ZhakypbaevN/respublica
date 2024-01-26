@@ -11,7 +11,7 @@
   />
   
   <Modal
-    v-if="show && userData?.role"
+    v-if="show && userData?.first_name"
     @hide="emits('hide')"
     class="feedbackModal"
     :title="t('feedback.join-the-party')"
@@ -264,7 +264,7 @@
     (event: 'finish'): Function,
   }
 
-  defineProps<IProps>()
+  const props = defineProps<IProps>()
   const emits = defineEmits<Emits>()
 
   const isLoading = ref(false)
@@ -418,6 +418,16 @@
       } else if (err.response.data.detail === 'Age under 18 is not allowed.') {
         toast({
           message: t('errors.accommodation-under-the-age-of-18-is-not-allowed'),
+          type: 'warning'
+        })
+      } else if (err.response.data.detail === 'IIN is already!') {
+        toast({
+          message: t('message.iin-is-already'),
+          type: 'warning'
+        })
+      } else if (err.response.data.detail === 'Phone number is already!') {
+        toast({
+          message: t('message.phone-number-is-already'),
           type: 'warning'
         })
       }
