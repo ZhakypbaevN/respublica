@@ -101,7 +101,8 @@
     usersValues.tableValues = data;
     usersValues.total = total;
     if (!total) {
-      usersValues.isEmpty = true
+      usersValues.tableValues = [];
+      usersValues.isEmpty = true;
     }
   }
 

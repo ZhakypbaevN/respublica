@@ -121,6 +121,7 @@
     data.forEach(item => commentsValues.tableValues.push(item));
 
     if (!total) {
+      commentsValues.tableValues = [];
       commentsValues.isEmpty = true
     }
   }

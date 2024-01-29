@@ -11,6 +11,7 @@
     </h3>
 
     <Button
+      v-if="!withoutDelete"
       class="ticketNumItem-btn"
       type="default-light-grey"
       @click.stop="() => showDeleteModal = true"
@@ -39,13 +40,15 @@ import { ref } from 'vue';
 
 interface IProps {
   data: any,
+  withoutDelete: boolean,
   onDelete: Function
 }
 
-defineProps<IProps>()
+withDefaults(defineProps<IProps>(), {
+  withoutDelete: false
+})
 
 const showDeleteModal = ref(false);
-
 </script>
 
 <style scoped lang="scss">
@@ -77,8 +80,8 @@ const showDeleteModal = ref(false);
 
   &-symbol {
     position: absolute;
-    left: -8px;
-    bottom: -45px;
+    left: 2px;
+    bottom: -50px;
 
     color: var(--light-gray-color-op10);
     font-size: 110px;

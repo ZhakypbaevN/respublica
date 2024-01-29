@@ -1,98 +1,117 @@
 <template>
-  <section class="wrapper-main">
-    <div class="ticketNum wrapper">
+  <div class="wrapper-main">
+    <section class="ticketNum">
+      <div class="wrapper">
+        <div class="ticketNum-header">
+          <Input
+            :placeholder="$t('formdata.search-by-name')"
+            staticPlaceholder
+          />
+          <Button
+            class="ticketNum-header-addticketNumBtn"
+            type="default-blue"
+            @click="() => showCreateModal = true"
+          >
+            <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
+          </Button>
+        </div>
 
-      <div class="ticketNum-header">
-        <Input
-          :placeholder="$t('formdata.search-by-name')"
-          staticPlaceholder
-        />
-        <Button
-          class="ticketNum-header-addticketNumBtn"
-          type="default-blue"
-          @click="() => showCreateModal = true"
-        >
-          <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
-        </Button>
+        <div class="landing-items" v-if="ticketNumValues.isEmpty">
+          <Empty />
+        </div>
+        <div class="landing-items disabled" v-else-if="!ticketNumValues.tableValues">
+          <TicketNumItemSkeleton v-for="item in 5" :key="item" />
+        </div>
+        <div class="landing-items" v-else>
+          <TicketNumItem
+            v-for="(data, index) of ticketNumValues.tableValues"
+            :key="data.ticket_number"
+            :data="data"
+            @delete="() => removeItem({index: index})"
+          />
+        </div>
       </div>
-      <div class="ticketNum-items">
-        <TicketNumItem
-          v-for="(data, index) of ticketNumList"
-          :key="data"
-          :data="data"
-          @delete="() => removeItem({index: index})"
-        />
-      </div>
-    </div>
+
+      <Pagination :total="ticketNumValues.total" withRouter />
+    </section>
 
     <CreateTicketNumModal
       :show="showCreateModal"
       @hide="() => showCreateModal = false"
+      @finish="onPushNewTicketNum"
     />
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">
-  import TicketNumItem from "@/components/uiManager/ticket-num/TicketNumItem.vue"
-  import CreateTicketNumModal from "@/components/uiManager/ticket-num/CreateTicketNumModal.vue";
+  import CreateTicketNumModal from '@/components/uiManager/ticket-num/CreateTicketNumModal.vue';
+  import TicketNumItem from '@/components/uiManager/ticket-num/TicketNumItem.vue';
+  import TicketNumItemSkeleton from '@/components/uiManager/ticket-num/TicketNumItemSkeleton.vue';
 
-  import axios from 'axios';
-  import { onMounted, ref } from 'vue';
+  import { onMounted, reactive, watch, ref } from 'vue';
+  import { useRoute, useRouter } from 'vue-router'
 
-  import { useToast } from '@/modules/toast'
+  import debounce from '@/helpers/debounce'
+  import { ITicketNumbersValues } from '@/types/ticket-number'
+  import { getTicketNumbersList } from '@/actions/uiManager/ticket-numbers';
 
-  const { toast } = useToast()
-
-  const isLoading = ref(false)
-  const token = localStorage.getItem('access_token');
-  const ticketNumList = ref([]);
-
+  const route = useRoute()
+  const router = useRouter()
+  const search = ref(null);
+  
   const showCreateModal = ref(false);
 
   const removeItem = ({index}: {index: number}) => {
-    ticketNumList.value.splice(index, 1);
+    ticketNumValues.tableValues.splice(index, 1);
   }
 
-  onMounted(() => getPhotos());
-  const getPhotos = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers?offset=0&limit=100`;
+  const ticketNumValues = reactive<ITicketNumbersValues>({
+    tableValues: null,
+    total: 0,
+    isEmpty: false,
+    searchEmpty: true
+  })
 
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
+  const getData = async () => {
+    ticketNumValues.tableValues = null;
+    ticketNumValues.isEmpty = false
+    const {
+      data,
+      total
+    } = await getTicketNumbersList({
+      ...route.query
     })
-      .then((response) => {
-        console.log('response', response);
-
-        ticketNumList.value = response.data.data;
-        isLoading.value = false;
-      })
-      .catch((err) => {
-        console.log('err', err);
-
-        if (err.response.data.detail === 'Pending resignation request already exists.') {
-          toast({
-            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
-        isLoading.value = false;
-      });
+    ticketNumValues.tableValues = data;
+    ticketNumValues.total = total;
+    if (!total) {
+      ticketNumValues.tableValues = [];
+      ticketNumValues.isEmpty = true
+    }
   }
 
+  onMounted(() => getData());
+
+  watch(() => route.query, debounce(getData), { deep: true })
+  watch(
+    () => search.value,
+    () => router.push({ query: { ...route.query, search: search.value } })
+  )
+
+  onMounted(() => getData());
+
+  const onPushNewTicketNum = (newTicketNum) => {
+    ticketNumValues.tableValues.push(newTicketNum);
+  }
 </script>
 
 <style scoped lang="scss">
-  .wrapper-main {
-    background-color: var(--accent-color-op05);
-    padding: 40px 0;
+  .wrapper {
+    margin-bottom: 50px;
+
+    &-main {
+      background-color: var(--accent-color-op05);
+      padding: 40px 0;
+    }
   }
 
   .ticketNum {
@@ -120,6 +139,7 @@
         }
       }
     }
+
     &-items {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;

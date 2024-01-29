@@ -56,14 +56,14 @@ const request = function (
 
   api[httpType](url, data)
     .then(function (response) {
-      const { toast } = useToast()
+      // const { toast } = useToast()
 
-      if (response.data.message) {
-        toast({
-          message: response.data.message,
-          type: 'success'
-        })
-      }
+      // if (response.data.message) {
+      //   toast({
+      //     message: response.data.message,
+      //     type: 'success'
+      //   })
+      // }
 
       try {
         callbackSuccess(response)

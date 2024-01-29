@@ -667,9 +667,9 @@ router.beforeEach(async (to, from, next) => {
   const htmlElementApp = document.querySelector('div#app');
 
   if (to.matched[0].name === 'Client' || to.matched[0].name === 'Admin' || to.matched[0].name === 'Reception' || to.matched[0].name === 'Manager' || to.matched[0].name === 'Media') {
-    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1920, initial-scale=1')
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1300, initial-scale=1')
     htmlElementBody.style = 'overflow:overlay !important;'
-    htmlElementApp.style = 'min-width:1920px !important;'
+    htmlElementApp.style = 'min-width:1300px !important;'
   } else {
     document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0')
     htmlElementBody.style = ''

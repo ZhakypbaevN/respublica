@@ -8,7 +8,7 @@
     <div class="modal-btns">
       <Button
         :name="$t('button.confirm')"
-        :loading="loading"
+        :loading="isLoading"
         @click="postDelete"
         type="default-red"
       />
@@ -23,45 +23,35 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
+  import { ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
 
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+  import { useToast } from '@/modules/toast'
+  import { deleteTicketNum } from '@/actions/uiManager/ticket-numbers';
 
-import { useToast } from '@/modules/toast'
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const { t } = useI18n()
-const { toast } = useToast()
+  interface IProps {
+    show: boolean,
+    id: number
+  }
+  interface Emits {
+    (event: 'hide'): Function,
+    (event: 'finish'): Function,
+  }
 
-interface IProps {
-  show: boolean,
-  id: number
-}
-interface Emits {
-  (event: 'hide'): Function,
-  (event: 'finish'): Function,
-}
+  const props = defineProps<IProps>()
+  const emits = defineEmits<Emits>()
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+  const isLoading = ref(false)
 
-const loading = ref(false)
-const token = localStorage.getItem('access_token');
+  const postDelete = async () => {
+    isLoading.value = true;
 
-const postDelete = () => {
-  loading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers/${props.id}`
+    try {
+      await deleteTicketNum(props.id);
 
-  axios({
-    method: "delete",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
       toast({
         message: t('message.vip-number-has-been-successfully-deleted'),
         type: 'success'
@@ -71,19 +61,10 @@ const postDelete = () => {
       setTimeout(() => {
         emits('hide')
       }, 300);
-
-      loading.value = false
-    })
-    .catch((err) => {
-
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-
-      console.log('err', err);
-      loading.value = false
-    });
-}
+    } finally {
+      isLoading.value = false
+    }
+  }
 </script>
 
 <style scoped lang="scss">

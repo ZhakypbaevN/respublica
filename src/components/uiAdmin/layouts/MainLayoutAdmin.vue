@@ -106,7 +106,7 @@ const sideBarlinks = [
   &-inner {
     display: grid;
     align-items: stretch;
-    grid-template-columns: 290px 1fr;
+    grid-template-columns: 240px 1fr;
   }
 
   &-content {

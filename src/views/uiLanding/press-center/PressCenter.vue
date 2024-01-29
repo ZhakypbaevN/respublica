@@ -192,9 +192,7 @@
     const { data, total } = await getNewsList('press-about-us', {offset: 0,limit: 6})
     newsPressAboutUsValues.tableValues = data;
     newsPressAboutUsValues.total = total;
-    if (!total) {
-      newsPressAboutUsValues.isEmpty = true
-    }
+    if (!total) newsPressAboutUsValues.isEmpty = true
   }
 
   const onGetNewsYoutube = async () => {
@@ -202,9 +200,7 @@
     const { data, total } = await getNewsList('video-gallery', {offset: 0,limit: 6})
     youtubeVideosValues.tableValues = data;
     youtubeVideosValues.total = total;
-    if (!total) {
-      youtubeVideosValues.isEmpty = true
-    }
+    if (!total) youtubeVideosValues.isEmpty = true
   }
 
   const sideBarlinks = [

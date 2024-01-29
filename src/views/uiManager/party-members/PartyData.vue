@@ -102,8 +102,8 @@
     />
 
     <EditPartyModal
-      :show="showModal.edit"
-      :data="partyData"
+      v-if="showModal.edit"
+      :partyData="partyData"
       @hide="() => showModal.edit = false"
       @finish="getPartData"
     />
@@ -114,7 +114,7 @@
   import UserDataBlock from '@/components/uiClient/user-data/UserDataBlock.vue'
   import PartyDataBlock from '@/components/uiClient/user-data/PartyDataBlock.vue';
   import DeleteModal from '@/components/uiManager/party-members/DeleteModal.vue'
-  import EditPartyModal from '@/components/uiManager/party-members/create/CreatePartyModal.vue';
+  import EditPartyModal from '@/components/uiManager/party-members/create/EditPartyModal.vue';
 
   import axios from 'axios';
 

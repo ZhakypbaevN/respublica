@@ -61,6 +61,7 @@
     imagesValues.total = total;
 
     if (!total) {
+      imagesValues.tableValues = [];
       imagesValues.isEmpty = true
     }
   }

@@ -85,6 +85,7 @@
     newsValues.tableValues = data;
     newsValues.total = total;
     if (!total) {
+      newsValues.tableValues = [];
       newsValues.isEmpty = true
     }
   }

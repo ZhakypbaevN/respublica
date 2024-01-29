@@ -77,8 +77,10 @@
     albomValues.tableValues = data;
     albomValues.total = total;
 
-    if (!total) albomValues.isEmpty = true;
-    else selectAlbomID.value = albomValues.tableValues[0].id;
+    if (!total) {
+      albomValues.isEmpty = true;
+      albomValues.tableValues = [];
+    } else selectAlbomID.value = albomValues.tableValues[0].id;
   }
 
   const onCreatedAlbom = (albom) =>

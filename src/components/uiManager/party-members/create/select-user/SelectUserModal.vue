@@ -5,7 +5,7 @@
       v-if="show"
       @hide="$emit('hide')"
       class="selectUserModal"
-      :title="$t('errors.you-have-already-joined-the-parties')"
+      :title="$t('page.users')"
       :maxInner="1400"
     >
       <div class="users">
@@ -118,6 +118,7 @@
     usersValues.tableValues = data;
     usersValues.total = total;
     if (!total) {
+      usersValues.tableValues = [];
       usersValues.isEmpty = true
     }
   }

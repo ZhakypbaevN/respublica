@@ -56,8 +56,10 @@
     albomValues.tableValues = data;
     albomValues.total = total;
 
-    if (!total) albomValues.isEmpty = true;
-    else selectAlbomID.value = albomValues.tableValues[0].id;
+    if (!total) {
+      albomValues.tableValues = [];
+      albomValues.isEmpty = true;
+    } else selectAlbomID.value = albomValues.tableValues[0].id;
   }
 </script>
 

@@ -139,12 +139,13 @@
     const {
       data,
       total
-    } = await getPartyMembersList(route.params.filter.toString(), {
+    } = await getPartyMembersList(route.params.filter?.toString(), {
       ...route.query
     })
     partyValues.tableValues = data;
     partyValues.total = total;
     if (!total) {
+      partyValues.tableValues = [];
       partyValues.isEmpty = true
     }
   }
