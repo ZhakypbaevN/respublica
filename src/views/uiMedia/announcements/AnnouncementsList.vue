@@ -92,7 +92,8 @@ import Empty from "@/components/common/Empty.vue";
     newsValues.tableValues = data;
     newsValues.total = total;
     if (!total) {
-      newsValues.isEmpty = true
+      newsValues.isEmpty = true;
+      newsValues.tableValues = [];
     }
   }
 

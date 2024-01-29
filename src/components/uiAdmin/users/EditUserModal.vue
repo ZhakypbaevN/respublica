@@ -68,8 +68,8 @@
 
           <Input
             type="password"
-            name="password"
             validation="password"
+            :name="!data ? 'password' : ''"
             :placeholder="$t('formdata.password')"
             :required="!data"
           />

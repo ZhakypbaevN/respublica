@@ -127,7 +127,7 @@ const useForm = () => {
 }
 
 const checkSelectLabel = () => {
-  if (!props.multiple && props.options !== null) states.inputValue = (props.options.find(option => option.value === selectedOptions.value || option.value.toString() === selectedOptions.value))?.label
+  if (!props.multiple && props.options !== null) states.inputValue = (props.options.find(option => option.value === selectedOptions.value || option.value?.toString() === selectedOptions.value?.toString()))?.label
   else states.inputValue = ''
 }
 
@@ -152,7 +152,7 @@ watch(
 )
 
 watch(
-  () => selectedOptions.value,
+  () => [selectedOptions.value, states.inputValue],
   () => {
     emit('update:modelValue', selectedOptions.value)
     useForm()

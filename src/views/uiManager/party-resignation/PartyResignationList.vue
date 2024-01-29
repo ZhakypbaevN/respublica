@@ -95,6 +95,7 @@
     partyValues.tableValues = data;
     partyValues.total = total;
     if (!total) {
+      partyValues.tableValues = [];
       partyValues.isEmpty = true
     }
   }

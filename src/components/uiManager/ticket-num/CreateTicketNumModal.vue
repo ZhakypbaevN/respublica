@@ -34,122 +34,73 @@
       
 
       <Button
-        :name="$t('button.send-a-request')"
-        :loading="loading"
+        :name="$t('button.create')"
+        :loading="isLoading"
         htmlType="submit"
       />
-
     </Form>
   </Modal>
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
+  import { onMounted, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
 
-import { onMounted, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+  import { useToast } from '@/modules/toast'
+  import { getLocationsList } from '@/actions/uiAdmin/locations';
+  import { postTicketNum } from '@/actions/uiManager/ticket-numbers';
 
-import { useToast } from '@/modules/toast'
+  const { t } = useI18n()
+  const { toast } = useToast()
 
-const { t } = useI18n()
-const { toast } = useToast()
+  interface IProps {
+    show: boolean,
+  }
+  interface Emits {
+    (event: 'hide'): Function,
+    (event: 'finish', value: any): void
+  }
 
-interface IProps {
-  show: boolean,
-}
-interface Emits {
-  (event: 'hide'): Function,
-  (event: 'finish', value: any): void
-}
+  const props = defineProps<IProps>()
+  const emits = defineEmits<Emits>()
 
-const props = defineProps<IProps>()
-const emits = defineEmits<Emits>()
+  const isLoading = ref(false);
+  const regionList = ref([]);
+  const region = ref(null);
 
-const token = localStorage.getItem('access_token');
-
-const loading = ref(false);
-const regionList = ref([]);
-const region = ref(null);
-
-onMounted(() => {
-
-const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
-axios({
-  method: "get",
-  url: url,
-})
-  .then((response) => {
-    response.data.forEach(location => {
+  onMounted(async () => {
+    const response = await getLocationsList()
+    response.data.data.forEach(location => {
       regionList.value.push(
         {
           label: location.name,
-          value: location.ticket_prefix,
+          value: location.ticket_prefix
         }
       );
     });
   })
-  .catch((err) => {
-    console.log('err', err);
 
-    toast({
-      message: 'Возникли ошибки при запросе'
-    })
-    
-  });
-})
+  const postNewVipNumber = async ({ ticketNum }: { ticketNum: string }) => {
+    isLoading.value = true;
 
-const postNewVipNumber = (
-    { ticketNum }: { ticketNum: string }
-  ) => {
+    try {
+      const response = await postTicketNum({ticket_number: region.value + ticketNum});
 
-  loading.value = true;
-  const url = `https://api.respublica-partiyasy.kz/api/v1/admin/parties/memberships/reserved-ticket-numbers`;
-
-  axios({
-    method: "post",
-    url: url,
-    data: {
-      ticket_number: region.value + ticketNum
-    },
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      console.log('response', response);
       toast({
         message: t('message.vip-number-has-been-successfully-created'),
         type: 'success'
       })
       
-      emits('finish', response.data)
+      emits('finish', response)
       setTimeout(() => {
         emits('hide')
       }, 300);
-
-      loading.value = false
-    })
-    .catch((err) => {
-
-      if (err.response.data.detail === 'Duplicate membership is not allowed.') {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      } else if (err.response.data.detail === 'Age under 18 is not allowed.') {
-        toast({
-          message: 'Проживание в возрасте до 18 лет не допускается'
-        })
-      } else {
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      }
-
-      console.log('err', err);
-      loading.value = false
-    });
-}
+    } catch (err) {
+      console.log('err.response.data.detail', err.response.data.detail);
+    } finally {
+      isLoading.value = false
+    }
+  }
 </script>
 
 <style scoped lang="scss">

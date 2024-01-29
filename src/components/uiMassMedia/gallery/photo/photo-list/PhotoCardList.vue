@@ -74,7 +74,8 @@
     imagesValues.total = total;
 
     if (!total) {
-      imagesValues.isEmpty = true
+      imagesValues.tableValues = [];
+      imagesValues.isEmpty = true;
     }
   }
 

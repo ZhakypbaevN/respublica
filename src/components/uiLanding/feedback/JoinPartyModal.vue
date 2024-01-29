@@ -420,16 +420,6 @@
           message: t('errors.accommodation-under-the-age-of-18-is-not-allowed'),
           type: 'warning'
         })
-      } else if (err.response.data.detail === 'IIN is already!') {
-        toast({
-          message: t('message.iin-is-already'),
-          type: 'warning'
-        })
-      } else if (err.response.data.detail === 'Phone number is already!') {
-        toast({
-          message: t('message.phone-number-is-already'),
-          type: 'warning'
-        })
       }
     } finally {
       isLoading.value = false
