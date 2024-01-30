@@ -199,37 +199,79 @@
       })
     );
     
-    pointSeries.data.setAll(deputiesMap.deputiesList.map(obl => {
-      const name = nameToLowerCase({id: obl.code, name: obl.title});
-      let nameArray = name.split(' ')
-      
-      return {
-        cityId: obl.code,
-        name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`,
-        address: obl.address
-      }
-    }));
+    pointSeries.data.setAll([
+      ...deputiesMap.deputiesList.map(obl => {
+        const name = nameToLowerCase({id: obl.code, name: obl.title});
+        let nameArray = name.split(' ')
+        
+        return {
+          cityId: obl.code,
+          name: `${nameArray[0]}\n${nameArray.slice(1, 5)}`,
+          address: obl.address
+        }
+      }),
+      {
+        geometry: {
+          type: "Point",
+          coordinates: [71.45325759764486, 51.14250514464325]
+        }
+      },
+      {
+        geometry: {
+          type: "Point",
+          coordinates: [76.9411148348155, 43.238551759658264]
+        }
+      },
+      {
+        geometry: {
+          type: "Point",
+          coordinates: [69.62599369771937, 42.39713863399908]
+        }
+      },
+    ]);
 
-    pointSeries.bullets.push(function() {
+    pointSeries.bullets.push(function(root, series, dataItem) {
       if (window.innerWidth > 992) {
-        return am5.Bullet.new(root, {
-          sprite: am5.Circle.new(root, {
-            radius: 5,
-            fill: am5.color(0xFFFFFF)
-          })
-        });
+        return am5.Bullet.new(root,
+          !dataItem.dataContext?.name
+            ? {
+                sprite: am5.Circle.new(root, {
+                  radius: 3,
+                  fill: am5.color(0x000000)
+                })
+              }
+            : {
+              sprite: am5.Circle.new(root, {
+                centerX: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(100) : am5.p50,
+                centerY: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(720) : am5.p50,
+                radius: 5,
+                fill: am5.color(0xFFFFFF)
+              })
+            }
+        );
       } else {
-        return am5.Bullet.new(root, {
-          sprite: am5.Label.new(root, {
-            centerX: am5.p50,
-            centerY: am5.p50,
-            text: "{name}",
-            fontSize: 14,
-            fontStyle: 'Tilda Sans',
-            fill: am5.color(0xFFFFFF),
-            populateText: true
-          })
-        });
+        return am5.Bullet.new(root,
+          !dataItem.dataContext?.name
+            ? {
+                sprite: am5.Circle.new(root, {
+                  centerX: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(100) : am5.p50,
+                  centerY: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(720) : am5.p50,
+                  radius: 2,
+                  fill: am5.color(0xFFFFFF)
+                })
+              }
+            : {
+              sprite: am5.Label.new(root, {
+                centerX: am5.p50,
+                centerY: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(720) : am5.p50,
+                text: "{name}",
+                fontSize: 14,
+                fontStyle: 'Tilda Sans',
+                fill: am5.color(0xFFFFFF),
+                populateText: true
+              })
+            }
+        );
       }
     });
   

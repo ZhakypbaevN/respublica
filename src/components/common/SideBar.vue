@@ -145,6 +145,31 @@ const listValue = ref(props.list)
     }
   }
 
+  // Adaptation
+  @media (max-width: 1200px) {
+    padding: 30px 18px;
+    
+    &-list {
+      grid-gap: 30px;
+    }
+
+    &-link span {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 992px) {
+  }
+
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
+  }
+
   & .sideBar-link.btnStyle,
   & .sideBar-dropDown-btn {
     padding: 16px 25px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="avatarBlock" :class="{mini: mini}">
+  <div class="avatar" :class="{mini: mini}">
     <SvgIcon
       name="avatar"
       :viewboxWidth="44"
@@ -19,7 +19,7 @@ withDefaults(defineProps<IProps>(), {
 </script>
 
 <style scoped lang="scss">
-.avatarBlock {
+.avatar {
   height: 65px;
   width: 65px;
 
@@ -56,6 +56,16 @@ withDefaults(defineProps<IProps>(), {
   @media (max-width: 992px) {
     height: 42px;
     width: 42px;
+
+    &.mini {
+      height: 40px !important;
+      width: 40px !important;
+
+      & svg {
+        width: 34px !important;
+        height: 34px !important;
+      }
+    }
   }
 }
 </style>

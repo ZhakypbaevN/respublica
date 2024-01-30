@@ -65,7 +65,21 @@ import MyRequestDetail from '@/views/uiClient/requests/MyRequestDetail.vue'
 
 import UserData from '@/views/uiClient/UserData.vue'
 import ExitParty from '@/views/uiClient/ExitParty.vue'
+import ClientDonations from '@/views/uiClient/Donations.vue'
 
+// Press Center - News
+import ClientPressCenter from '@/views/uiClient/press-center/PressCenter.vue'
+import ClientNewsList from '@/views/uiClient/press-center/news/NewsList.vue'
+import ClientNewsDetail from '@/views/uiClient/press-center/news/NewsDetail.vue'
+import ClientPressAboutUsList from '@/views/uiClient/press-center/news/PressAboutUsList.vue'
+
+// Press Center - Announcements
+import ClientAnnouncementDetail from '@/views/uiClient/press-center/announcements/AnnouncementDetail.vue'
+import ClientAnnouncementsList from '@/views/uiClient/press-center/announcements/AnnouncementsList.vue'
+
+// Press Center - Gallery
+import ClientVideoGallery from '@/views/uiClient/press-center/gallery/VideoGallery.vue'
+import ClientPhotoGalleryAll from '@/views/uiClient/press-center/gallery/PhotoGalleryAll.vue'
 
 
 // ------------------ UI Media ------------------
@@ -97,7 +111,7 @@ const MainLayoutManager = () => import('@/components/uiManager/layouts/MainLayou
 const MainLayoutMedia = () => import('@/components/uiMassMedia/layouts/MainLayoutMedia.vue')
 
 const routes = [
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound, meta: { title: '404' } },
   { path: '/page-in-development', name: 'PageInDevelopment', component: PageInDevelopment },
   // ------------- UI Landing Pages ---------------
   {
@@ -433,6 +447,60 @@ const routes = [
         component: ExitParty,
         meta: { title: 'quitting-the-party' }
       },
+      {
+        path: 'news',
+        name: 'ClientNews',
+        component: ClientPressCenter,
+        meta: { title: 'press-center' }
+      },
+      {
+        path: 'news-all',
+        name: 'ClientNewsList',
+        component: ClientNewsList,
+        meta: { title: 'news' }
+      },
+      {
+        path: 'news/:news_id',
+        name: 'ClientNewsDetail',
+        component: ClientNewsDetail,
+        meta: { title: 'news' }
+      },
+      {
+        path: 'press-about-us-list',
+        name: 'ClientPressAboutUsList',
+        component: ClientPressAboutUsList,
+        meta: { title: 'the-press-about-us' }
+      },
+      {
+        path: 'announce-list',
+        name: 'ClientAnnouncesList',
+        component: ClientAnnouncementsList,
+        meta: { title: 'announcements' }
+      },
+      {
+        path: 'announce/:announce_id',
+        name: 'ClientAnnounceDetail',
+        component: ClientAnnouncementDetail,
+        meta: { title: 'announcements' }
+      },
+      {
+        path: 'video-gallery',
+        name: 'ClientVideoGallery',
+        component: ClientVideoGallery,
+        meta: { title: 'video-gallery' }
+      },
+      {
+        path: 'photo-gallery',
+        name: 'ClientPhotoGalleryAll',
+        component: ClientPhotoGalleryAll,
+        meta: { title: 'photo-gallery' }
+      },
+      {
+        path: 'donations',
+        name: 'ClientDonations',
+        component: ClientDonations,
+        meta: { title: 'donations' }
+      }
     ]
   },
 
@@ -673,7 +741,7 @@ router.beforeEach(async (to, from, next) => {
   const htmlElementBody = document.querySelector('body');
   const htmlElementApp = document.querySelector('div#app');
 
-  if (to.matched[0].name === 'Client' || to.matched[0].name === 'Admin' || to.matched[0].name === 'Reception' || to.matched[0].name === 'Manager' || to.matched[0].name === 'Media') {
+  if (to.matched[0].name === 'Admin' || to.matched[0].name === 'Reception' || to.matched[0].name === 'Manager' || to.matched[0].name === 'Media') {
     document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1300, initial-scale=1')
     htmlElementBody.style = 'overflow:overlay !important;'
     htmlElementApp.style = 'min-width:1300px !important;'

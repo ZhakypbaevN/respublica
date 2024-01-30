@@ -1,7 +1,7 @@
 <template>
   <div class="avatarBlock">
     <RouterLink class="avatarBlock-preview" :to="link">
-      <Avatar />
+      <Avatar :mini="mini" />
     </RouterLink>
 
 
@@ -33,6 +33,14 @@
 
   import { IUser } from '@/types/users';
 
+  interface IProps {
+    mini?: boolean
+  }
+
+  withDefaults(defineProps<IProps>(), {
+    mini: false
+  })
+
   const { logout } = useAuth()
   const link = ref('')
   const userData = ref<IUser>();
@@ -55,25 +63,6 @@
       top: 120%;
       opacity: 1;
       visibility: visible;
-    }
-
-    &-preview {
-      height: 65px;
-      width: 65px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-      background-color: var(--accent-color-op15);
-
-      & svg {
-        width: 40px;
-        height: 40px;
-
-        stroke: var(--accent-color);
-      }
     }
 
     &-dropDown {
@@ -123,30 +112,6 @@
 
         fill: var(--red-color);
       }
-    }
-
-    // Adaptation
-    @media (max-width: 1200px) {
-      &-preview {
-        height: 45px;
-        width: 45px;
-      }
-    }
-
-    @media (max-width: 992px) {
-      &-preview {
-        height: 42px;
-        width: 42px;
-      }
-    }
-
-    @media (max-width: 768px) {
-    }
-
-    @media (max-width: 576px) {
-    }
-
-    @media (max-width: 380px) {
     }
   }
 </style>
