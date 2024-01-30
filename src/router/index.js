@@ -12,6 +12,7 @@ import NotFound from '@/views/404NotFound.vue'
 import PageInDevelopment from '@/views/InDevelopment.vue'
 
 import Home from '@/views/uiLanding/Home.vue'
+import Home2 from '@/views/uiLanding/Home2.vue'
 import Feedback from '@/views/uiLanding/Feedback.vue'
 import AboutParty from '@/views/uiLanding/AboutParty.vue'
 import Contacts from '@/views/uiLanding/Contacts.vue'
@@ -109,6 +110,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    meta: { title: 'home' }
+  },
+  {
+    path: '/v2',
+    name: 'Home2',
+    component: Home2,
     meta: { title: 'home' }
   },
   {
