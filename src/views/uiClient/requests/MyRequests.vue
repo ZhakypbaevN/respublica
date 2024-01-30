@@ -14,8 +14,7 @@
               <th>Статус</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- <tr > -->
+          <!-- <tbody>
             <tr
               class="myRequests-item"
               v-for="request in requestsList"
@@ -35,8 +34,9 @@
               <td class="myRequests-item-city">{{ request.city }}</td>
               <td :class="`myRequests-item-status ${request.status.state}`">{{ request.status.text }}</td>
             </tr>
-          </tbody>
+          </tbody> -->
         </table>
+        <Empty />
       </div>
     </section>
   </div>
@@ -44,42 +44,42 @@
 
 <script setup lang="ts">
 const requestsList = [
-  {
-    id: 1,
-    category: 'Экология',
-    title: 'Участие в мероприятиях. Вступление в партию',
-    date: '07.10.2020',
-    fileCount: 4,
-    city: 'Алматы',
-    status: {
-      state: 'accepted',
-      text: 'Принято'
-    }
-  },
-  {
-    id: 2,
-    category: 'Экология',
-    title: 'Участие в мероприятиях. Вступление в партию',
-    date: '07.10.2020',
-    fileCount: 4,
-    city: 'Алматы',
-    status: {
-      state: 'in-the-competent-authority',
-      text: 'В компетентном органе'
-    },
-  },
-  {
-    id: 3,
-    category: 'Экология',
-    title: 'Участие в мероприятиях. Вступление в партию',
-    date: '07.10.2020',
-    fileCount: 4,
-    city: 'Алматы',
-    status: {
-      state: 'rejected',
-      text: 'Отклонено'
-    }
-  }
+  // {
+  //   id: 1,
+  //   category: 'Экология',
+  //   title: 'Участие в мероприятиях. Вступление в партию',
+  //   date: '07.10.2020',
+  //   fileCount: 4,
+  //   city: 'Алматы',
+  //   status: {
+  //     state: 'accepted',
+  //     text: 'Принято'
+  //   }
+  // },
+  // {
+  //   id: 2,
+  //   category: 'Экология',
+  //   title: 'Участие в мероприятиях. Вступление в партию',
+  //   date: '07.10.2020',
+  //   fileCount: 4,
+  //   city: 'Алматы',
+  //   status: {
+  //     state: 'in-the-competent-authority',
+  //     text: 'В компетентном органе'
+  //   },
+  // },
+  // {
+  //   id: 3,
+  //   category: 'Экология',
+  //   title: 'Участие в мероприятиях. Вступление в партию',
+  //   date: '07.10.2020',
+  //   fileCount: 4,
+  //   city: 'Алматы',
+  //   status: {
+  //     state: 'rejected',
+  //     text: 'Отклонено'
+  //   }
+  // }
 ]
 </script>
 
