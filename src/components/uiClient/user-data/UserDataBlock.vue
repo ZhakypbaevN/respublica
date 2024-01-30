@@ -96,5 +96,117 @@ defineProps<IProps>()
   &-item:last-of-type {
     margin-bottom: 0px;
   }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    padding: 20px;
+    border-radius: 10px;
+
+    &.disabled .userData-item {
+      grid-gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    &-title {
+      font-size: 26px;
+      margin-bottom: 24px;
+    }
+
+    &-item {
+      font-size: 16px;
+      margin-bottom: 10px;
+
+      &.checked::after {
+        height: 22px;
+        width: 22px;
+
+        top: 4.4px;
+        left: 8px;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    padding: 18px;
+    border-radius: 8px;
+
+    &.disabled .userData-item {
+      grid-gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    &-title {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    &-item {
+      margin-bottom: 8px;
+
+      &.checked::after {
+        height: 22px;
+        width: 22px;
+
+        top: 4.4px;
+        left: 8px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    border-radius: 6px;
+
+    &.disabled .userData-item {
+      grid-gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    &-title {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    &-item {
+      margin-bottom: 6px;
+
+      &.checked::after {
+        height: 20px;
+        width: 20px;
+
+        top: 4px;
+        left: 8px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 14px;
+
+    &.disabled .userData-item {
+      grid-gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    &-item {
+      margin-bottom: 6px;
+
+      &.checked::after {
+        height: 18px;
+        width: 18px;
+
+        top: 3px;
+        left: 8px;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 </style>

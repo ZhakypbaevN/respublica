@@ -132,5 +132,34 @@
         padding: 10px 12px;
       }
     }
+
+    // Adaptation
+    @media (max-width: 992px) {
+      & span {
+        font-size: 18px;
+      }
+
+      &-dropDown {
+        padding: 5px;
+        border-radius: 8px;
+
+        &.show {
+          top: calc(100% + 18px);
+        }
+
+        &-btn {
+          padding: 8px 10px;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 576px) {
+    }
+
+    @media (max-width: 380px) {
+    }
   }
 </style>

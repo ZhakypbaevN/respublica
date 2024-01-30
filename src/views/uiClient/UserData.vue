@@ -216,12 +216,27 @@ const downloadPDFCard = () => {
 .wrapper-main {
   padding: 40px 0 80px;
   background-color: var(--accent-color-op05);
+
+  // Adaptation
+  @media (max-width: 992px) {
+    padding: 30px 0 60px;
+  }
+
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 576px) {
+  }
+
+  @media (max-width: 380px) {
+  }
 }
 
 .userData {
   &-inner {
+    max-width: 1400px;
     display: grid;
-    grid-template-columns: 780px 1fr;
+    grid-template-columns: 1fr auto;
     grid-gap: 30px;
 
     margin-bottom: 25px;
@@ -310,6 +325,191 @@ const downloadPDFCard = () => {
     & svg {
       width: 32px;
       height: 32px;
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    &-inner {
+      display: block;
+    }
+
+    &-mainInfo {
+      margin-bottom: 30px;
+    }
+
+    &-card {
+      &-title {
+        font-size: 24px;
+        margin-bottom: 22px;
+      }
+
+      &-items {
+        grid-gap: 12px;
+        margin-bottom: 22px;
+      }
+    }
+
+    &-cardInfo {
+      height: 200px;
+      width: 320px;
+
+      &-content {
+        top: 62px;
+        left: 24px;
+      }
+
+      &-info {
+        font-size: 12px;
+
+        &.number,
+        &.middleName {
+          margin-bottom: 10px;
+        }
+
+        &.join_date {
+          font-size: 10px;
+        }
+      }
+    }
+
+    &-btn {
+      grid-gap: 8px;
+      margin-bottom: 38px;
+
+      &.exit {
+        padding: 10px 18px;
+        
+        svg {
+          width: 26px;
+          height: 26px;
+        }
+      }
+
+      & svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-mainInfo {
+      margin-bottom: 30px;
+    }
+
+    &-card {
+      &-title {
+        font-size: 24px;
+        margin-bottom: 22px;
+      }
+
+      &-items {
+        grid-gap: 12px;
+        margin-bottom: 22px;
+      }
+    }
+
+    &-cardInfo {
+      height: 200px;
+      width: 320px;
+
+      &-content {
+        top: 62px;
+        left: 24px;
+      }
+
+      &-info {
+        font-size: 12px;
+
+        &.number,
+        &.middleName {
+          margin-bottom: 10px;
+        }
+
+        &.join_date {
+          font-size: 10px;
+        }
+      }
+    }
+
+    &-btn {
+      grid-gap: 8px;
+      margin-bottom: 38px;
+
+      &.exit {
+        padding: 10px 18px;
+        
+        svg {
+          width: 26px;
+          height: 26px;
+        }
+      }
+
+      & svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-mainInfo {
+      margin-bottom: 20px;
+    }
+
+    &-card {
+      &-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+
+      &-items {
+        grid-gap: 10px;
+        margin-bottom: 20px;
+      }
+    }
+
+    &-cardInfo {
+      height: 175px;
+      width: 280px;
+
+      &-content {
+        top: 54px;
+        left: 22px;
+      }
+
+      &-info {
+        font-size: 10px;
+
+        &.number,
+        &.middleName {
+          margin-bottom: 8px;
+        }
+
+        &.join_date {
+          font-size: 9px;
+        }
+      }
+    }
+
+    &-btn {
+      grid-gap: 6px;
+      margin-bottom: 36px;
+
+      &.exit {
+        padding: 8px 16px;
+        
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      & svg {
+        width: 26px;
+        height: 26px;
+      }
     }
   }
 }

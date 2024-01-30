@@ -16,6 +16,7 @@
         :key="news.title"
         :data="news"
         litle
+        :toClient="toClient"
       />
     </div>
   </div>
@@ -32,7 +33,8 @@
 
   interface IProps {
     newsID: string,
-    category: string
+    category: string,
+    toClient?: boolean
   }
 
   const props = defineProps<IProps>()

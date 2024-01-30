@@ -27,7 +27,7 @@
   <RouterLink
     v-else-if="!litle"
     class="newsItem withZoomPreview"
-    :to="`/news/${data.id}`"
+    :to="`${toClient ? '/client' : ''}/news/${data.id}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
       <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(data.preview_image)});`"></div>
@@ -53,7 +53,7 @@
   <RouterLink
     v-else
     class="newsItemMini withZoomPreview"
-    :to="`/news/${data.id}`"
+    :to="`${toClient ? '/client' : ''}/news/${data.id}`"
   >
     <div class="newsItemMini-preview withZoomPreview-preview">
       <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(data.preview_image)});`"></div>
@@ -98,11 +98,13 @@
     data: INews,
     pressAboutUs?: boolean,
     litle?: boolean,
+    toClient?: boolean
   }
 
   withDefaults(defineProps<IProps>(), {
     pressAboutUs: false,
-    litle: false
+    litle: false,
+    toClient: false
   })
 </script>
 
