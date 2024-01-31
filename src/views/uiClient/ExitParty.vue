@@ -3,31 +3,21 @@
     <section class="exitParty">
       <div class="wrapper">
         <h2 class="landing-title">
-          <!-- {{ exitPartyDatas.status === 'approved' ? 'Дорогой пользователь!' : 'Выйти из партии' }} -->
-          Выйти из партии
+          {{ $t('page.quit-the-party') }}
         </h2>
 
         <div class="exitParty-inner" v-if="(!exitPartyDatas.status || exitPartyDatas.status === 'rejected' || exitPartyDatas.status === 'approved') && !isLoading.page && partyData">
           <div class="exitParty-content">
             <div class="exitParty-content-messege">
-              <h4 class="exitParty-content-subtitle">Дорогой пользователь,</h4><br>
+              <h4 class="exitParty-content-subtitle">{{ $t('quit-party.dear-user') }}</h4><br>
             </div>
 
             <div class="exitParty-content-listBlock">
-              <h4 class="exitParty-content-subtitle">Для выполнения этой процедуры, пожалуйста, следуйте инструкциям ниже:</h4>
-              <ul class="exitParty-content-listBlock-list">
-                <li>Заполните форму, предоставленную по следующей ссылке: <a href="/doc/ru/Respublica. Партиядан шығу туралы өтініш. Заявление о выходе из партии .docx">"Открыть"</a>.</li>
-                <li>После того как вы заполнили форму, пожалуйста, распечатайте ее.</li>
-                <li>Подпишитесь на распечатанной форме, удостоверяя тем самым ваше намерение выйти из партии.</li>
-                <li>Отсканируйте или сфотографируйте заполненную и подписанную форму.</li>
-                <li>Прикрепите отсканированный/сфотографированный документ к данному сообщению</li>
-              </ul>
+              <h4 class="exitParty-content-subtitle">{{ $t('quit-party.rules.title') }}</h4>
+              <ul class="exitParty-content-listBlock-list" v-html="$t('quit-party.rules.list')" />
             </div>
 
-            <p>
-              Пожалуйста, обратите внимание, что ваша заявка будет оформлена после получения заполненной формы с вашей подписью. По возникшим вопросам обращаться: 
-              <a href="mailto:info@respublica-partiyasy.kz">info@respublica-partiyasy.kz</a>
-            </p>
+            <p v-html="$t('quit-party.rules.notice')" />
           </div>
 
 
@@ -63,7 +53,7 @@
                     name="position"
                     type="textarea"
                     v-model="exitPartyDatas.text"
-                    placeholder="Введите причину выхода"
+                    :placeholder="$t('formdata.enter-the-reason-for-the-exit')"
                     staticPlaceholder
                     required
                   />
@@ -75,7 +65,7 @@
                 >
                   <Button
                     class="exitParty-form-addFileBtn"
-                    name="Прикрепить файл"
+                    :name="$t('button.attach-a-file')"
                     type="outline-blue"
                     v-slot:left
                     @click="clickInputFile"
@@ -98,8 +88,9 @@
             </div>
 
             <div class="exitParty-doc" v-if="exitPartyDatas.document">
-              <h4 class="exitParty-doc-title">Документ:</h4>
-              <label v-if="!exitPartyDatas.document" for="upload-files" class="exitParty-doc-name empty">Прикрепите обязательно файл заполненной формы</label>
+              <h4 class="exitParty-doc-title">{{ $t("formdata.document") }}:</h4>
+
+              <label v-if="!exitPartyDatas.document" for="upload-files" class="exitParty-doc-name empty">{{ $t("formdata.be-sure-to-attach-the-file-of-the-completed-form") }}</label>
               <div v-else class="exitParty-doc-namEwithAction">
                 <div class="exitParty-doc-name">{{ exitPartyDatas.document?.name }}</div>
                 <SvgIcon
@@ -134,88 +125,68 @@
 
         <div class="exitParty-inner" v-else-if="exitPartyDatas.status === 'pending'">
           <div class="exitParty-content">
-            <h4 class="exitParty-content-messege-title green">ЗАЯВКА УСПЕШНО ОТПРАВЛЕНА</h4>
+            <h4 class="exitParty-content-messege-title green">{{ $t('quit-party.pending.title') }}</h4>
 
 
             <div class="exitParty-motive">
-              <h4 class="exitParty-motive-title">Причина:</h4>
+              <h4 class="exitParty-motive-title">{{ $t("formdata.reason") }}:</h4>
               <p class="exitParty-motive-text">{{ exitPartyDatas.select ?? exitPartyDatas.text }}</p>
             </div>
 
             <div class="exitParty-doc">
-              <h4 class="exitParty-doc-title">Документ:</h4>
+              <h4 class="exitParty-doc-title">{{ $t("formdata.document") }}:</h4>
               <div class="exitParty-doc-namEwithAction">
                 <a class="exitParty-doc-name" :href="getFileUrl(exitPartyDatas.document?.name)">{{ exitPartyDatas.document?.name }}</a>
               </div>
             </div>
 
-            <p>
-              Спасибо за отправленную заявку. 
-              Мы уведомим вас, как будет обработан и подтвержден ваш запрос. 
-              Ваше решение имеет для нас большое значение, и мы ценим ваше участие в нашей работе.
-              Пожалуйста, ожидайте дополнительную информацию от нас в ближайшее время. 
-              Если у вас возникли какие-либо вопросы или вам потребуется дополнительная помощь, не стесняйтесь обращаться к нашей службе поддержки.
-            </p>
+            <p v-html="$t('quit-party.pending.description')" />
           </div>
         </div>
 
         <div class="exitParty-inner" v-if="oldExitRequest.status === 'approved'">
           <div class="exitParty-content">
             <h4 class="exitParty-content-messege-title blue">
-              ВАША ЗАЯВКА УСПЕШНО ОБРАБОТАНА
+              {{ $t('quit-party.approved.title') }}
               <span style="color:grey">{{ moment(oldExitRequest.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
             </h4>
             <br>
 
             <div class="exitParty-motive">
-              <h4 class="exitParty-motive-title">Причина:</h4>
+              <h4 class="exitParty-motive-title">{{}}:</h4>
               <p class="exitParty-motive-text">{{ oldExitRequest.reason_for_resignation }}</p>
             </div>
 
             <div class="exitParty-doc">
-              <h4 class="exitParty-doc-title">Документ:</h4>
+              <h4 class="exitParty-doc-title">{{ $t("formdata.document") }}:</h4>
               <div class="exitParty-doc-namEwithAction">
                 <a class="exitParty-doc-name" :href="getFileUrl(oldExitRequest.document)">{{ oldExitRequest.document }}</a>
               </div>
             </div>
-            <p>
-              Спасибо за вашу активность и участие в жизни наших участников. Желаем вам удачи в ваших будущих усилиях и началах.
-              Если в будущем вы решите вернуться или изменить свою позицию, помните, что мы всегда открыты для диалога и готовы приветствовать вас обратно.
-            </p><br><br>
-
-            <p>
-              С уважением, Партия Respublica!
-            </p>
+            <p v-html="$t('quit-party.approved.description')" />
           </div>
         </div>
 
         <div class="exitParty-inner" v-if="oldExitRequest.status === 'rejected'">
           <div class="exitParty-content">
             <h4 class="exitParty-content-messege-title blue">
-              Вам отказали
+              {{ $t('quit-party.rejected.title') }}
               <span style="color:grey">{{ moment(oldExitRequest.created_at).format('MMMM Do YYYY, h:mm:ss a') }}</span>
             </h4>
             <br>
 
             <div class="exitParty-motive">
-              <h4 class="exitParty-motive-title">Причина:</h4>
+              <h4 class="exitParty-motive-title">{{}}:</h4>
               <p class="exitParty-motive-text">{{ oldExitRequest.reason_for_resignation }}</p>
             </div>
 
             <div class="exitParty-doc">
-              <h4 class="exitParty-doc-title">Документ:</h4>
+              <h4 class="exitParty-doc-title">{{ $t("formdata.document") }}:</h4>
               <div class="exitParty-doc-namEwithAction">
                 <a class="exitParty-doc-name" :href="getFileUrl(oldExitRequest.document)">{{ oldExitRequest.document }}</a>
               </div>
             </div>
-            <p>
-              Спасибо за вашу активность и участие в жизни наших участников. Желаем вам удачи в ваших будущих усилиях и началах.
-              Если в будущем вы решите вернуться или изменить свою позицию, помните, что мы всегда открыты для диалога и готовы приветствовать вас обратно.
-            </p><br><br>
-
-            <p>
-              С уважением, Партия Respublica!
-            </p>
+            <p v-html="$t('quit-party.rejected.description')" />
           </div>
         </div>
         
@@ -227,8 +198,8 @@
 <script setup lang="ts">
   import axios from 'axios'
 
-  import { reactive, ref } from 'vue';
-  import { onMounted } from 'vue';
+  import { reactive, ref, onMounted } from 'vue';
+  import { useI18n } from 'vue-i18n'
 
   import moment from 'moment';
 
@@ -236,11 +207,13 @@
   import { useToast } from '@/modules/toast'
   import getFileUrl from '@/helpers/getFileUrlByDate';
 
+  
+  const { t } = useI18n()
   const { toast } = useToast()
 
   const partyData = ref();
   const exitPartyDatas = reactive({
-    select: 'Несогласие с политикой партии',
+    select: t('quit-party.disagreement-with-the-party-is-policy'),
     text: null,
     document: null,
     status: null
