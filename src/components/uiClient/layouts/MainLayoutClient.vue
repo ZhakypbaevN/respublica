@@ -130,14 +130,14 @@
       z-index: 99;
 
       opacity: 0;
-      overflow: hidden;
+      visibility: hidden;
       
       background: rgba(33, 37, 41, 0.8);
       transition: all .3s ease-in-out;
 
       &.show {
         opacity: 1;
-        overflow: visible;
+        visibility: visible;
       }
     }
   }

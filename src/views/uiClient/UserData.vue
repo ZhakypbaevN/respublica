@@ -222,12 +222,11 @@
   }
 
   @media (max-width: 768px) {
+    padding: 30px 0 50px;
   }
 
   @media (max-width: 576px) {
-  }
-
-  @media (max-width: 380px) {
+    padding: 30px 0 40px;
   }
 }
 
