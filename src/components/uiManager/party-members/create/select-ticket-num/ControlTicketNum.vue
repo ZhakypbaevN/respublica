@@ -2,11 +2,11 @@
   <div class="controlTicketNum">
     <Button
       class="controlTicketNum-btn"
-      :class="{ active: ticketNum }"
+      :class="{ active: num }"
       :name="
-        ticketNum
-          ? `${ticketNum}`
-          : $t('button.select-a-user')
+        num
+          ? `${num}`
+          : $t('button.select-number-of-party-card')
       "
       type="outline-grey"
       v-slot:left
@@ -14,9 +14,9 @@
     >
       <div class="controlTicketNum-btn-avatar">
         <SvgIcon
-          name="avatar"
-          :viewboxWidth="44"
-          :viewboxHeight="44"
+          name="ticket-num"
+          :viewboxWidth="24"
+          :viewboxHeight="24"
         />
       </div>
     </Button>
@@ -24,10 +24,14 @@
     <Button
       type="default-light-blue"
       class="controlTicketNum-tip"
-      @click="() => $emit('showModalSelect')"
+      @click="
+        () => num && num != defaultNum
+          ? $emit('toDefault')
+          : $emit('showModalSelect')
+      "
     >
       <SvgIcon
-        :name="ticketNum  ? 'loop' : 'touch'"
+        :name="num && num != defaultNum ? 'loop' : 'touch'"
         :viewboxWidth="24"
         :viewboxHeight="24"
       />
@@ -36,15 +40,20 @@
 </template>
 
 <script setup lang="ts">
+  import { ITicketNumber } from '@/types/ticket-number';
+
   interface IProps {
-    ticketNum: any
+    ticketNum?: ITicketNumber,
+    num?: string,
+    defaultNum?: string
   }
   interface Emits {
-    (event: 'showModalSelect'): Function
+    (event: 'showModalSelect'): Function,
+    (event: 'toDefault'): Function,
   }
   
   defineProps<IProps>()
-  const emit = defineEmits<Emits>()
+  defineEmits<Emits>()
 </script>
 
 <style scoped lang="scss">
@@ -52,9 +61,11 @@
   display: flex;
   flex-direction: column;
   align-items: end;
-  position: relative;
 
-  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 14px;
   
   &-btn {
     width: 100%;
@@ -64,7 +75,10 @@
     align-items: center;
 
     padding: 14px 24px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+  
+    position: relative;
+    z-index: 2;
 
     &-avatar {
       height: 45px;
@@ -82,7 +96,13 @@
         height: 30px;
 
         stroke: var(--accent-color);
+        fill: transparent;
       }
+    }
+
+    &:hover {
+      border-color: var(--accent-color) !important;
+      background-color: var(--accent-color-op10) !important;
     }
   }
 
@@ -92,6 +112,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: 2;
 
     & svg {
       height: 24px;

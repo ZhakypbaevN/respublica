@@ -17,12 +17,18 @@
       {{ `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}` }}
     </h2>
 
-    <h4 class="userData-item checked">
+    <h4
+      class="userData-item"
+      :class="{checked: userData.iin}"
+    >
       <span>{{ $t('formdata.iin') }}:</span>
       {{ userData.iin ?? '-' }}
     </h4>
 
-    <h4 class="userData-item checked">
+    <h4
+      class="userData-item"
+      :class="{checked: userData.phone}"
+    >
       <span>{{ $t('formdata.phone') }}:</span>
       {{ userData.phone ? formatPhoneNumber(userData.phone) : '-' }}
     </h4>
@@ -147,7 +153,7 @@ defineProps<IProps>()
         height: 22px;
         width: 22px;
 
-        top: 4.4px;
+        top: 4px;
         left: 8px;
       }
     }
@@ -169,14 +175,6 @@ defineProps<IProps>()
 
     &-item {
       margin-bottom: 6px;
-
-      &.checked::after {
-        height: 20px;
-        width: 20px;
-
-        top: 4px;
-        left: 8px;
-      }
     }
   }
 
@@ -195,14 +193,6 @@ defineProps<IProps>()
 
     &-item {
       margin-bottom: 6px;
-
-      &.checked::after {
-        height: 18px;
-        width: 18px;
-
-        top: 3px;
-        left: 8px;
-      }
     }
   }
 

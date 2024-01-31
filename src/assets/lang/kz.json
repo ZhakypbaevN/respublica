@@ -543,7 +543,9 @@
     "choose_how_many_items_will_be_per_page": "Бір бетте қанша элемент болатынын таңдаңыз",
     "create-a-party-member": "Партия мүшесін құру",
     "create-a-user": "Пайдаланушы құру",
-    "select-a-user": "Пайдаланушыны таңдау"
+    "select-a-user": "Пайдаланушыны таңдау",
+    "select-number-of-party-card": "Партиялық билет нөмірін таңдаңыз",
+    "select-a-vip-room": "VIP нөмірін таңдаңыз"
   },
 
   "message": {

@@ -554,7 +554,9 @@
     "choose_how_many_items_will_be_per_page": "Выбрать сколько элементов будут на страницу",
     "create-a-party-member": "Создать члена партии",
     "create-a-user": "Создать пользователя",
-    "select-a-user": "Выбрать пользователя"
+    "select-a-user": "Выбрать пользователя",
+    "select-number-of-party-card": "Выбрать номер партийного билета",
+    "select-a-vip-room": "Выбрать VIP номер"
   },
 
   "message": {

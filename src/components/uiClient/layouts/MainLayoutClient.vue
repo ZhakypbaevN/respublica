@@ -6,6 +6,12 @@
       <SideBar
         class="managerLayout-sideBar"
         :list="sideBarlinks"
+        @clickNav="() => showSideBar = false"
+      />
+      <div
+        class="managerLayout-sideBar-back"
+        :class="{show: showSideBar}"
+        @click="() => showSideBar = false"
       />
 
       <div class="managerLayout-content">
@@ -112,6 +118,28 @@
     z-index: 100;
 
     transition: all .3s ease-in-out;
+
+    &-back {
+      display: none;
+      height: 100vh;
+      width: 100%;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+
+      opacity: 0;
+      overflow: hidden;
+      
+      background: rgba(33, 37, 41, 0.8);
+      transition: all .3s ease-in-out;
+
+      &.show {
+        opacity: 1;
+        overflow: visible;
+      }
+    }
   }
 
   &-content {
@@ -143,6 +171,10 @@
     &-sideBar {
       width: 190px;
       box-shadow: 0 4px 20px rgba(#000,.25);
+
+      &-back {
+        display: block;
+      }
     }
 
     &-content {
