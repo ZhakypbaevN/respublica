@@ -110,106 +110,105 @@
 </template>
 
 <script setup lang="ts">
-import UserDataBlock from '@/components/uiClient/user-data/UserDataBlock.vue'
-import PartyDataBlock from '@/components/uiClient/user-data/PartyDataBlock.vue';
-import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
+  import UserDataBlock from '@/components/uiClient/user-data/UserDataBlock.vue'
+  import PartyDataBlock from '@/components/uiClient/user-data/PartyDataBlock.vue';
+  import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
 
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useToast } from '@/modules/toast'
-import { reactive } from 'vue';
+  import axios from 'axios';
+  import { onMounted, ref } from 'vue';
+  import { useToast } from '@/modules/toast'
+  import { reactive } from 'vue';
 
-const { toast } = useToast()
+  const { toast } = useToast()
 
-const partyData = ref(null);
-const userData = ref(null);
-const showJoinPartyModal = ref(false);
-const token = localStorage.getItem('access_token');
+  const partyData = ref(null);
+  const userData = ref(null);
+  const showJoinPartyModal = ref(false);
+  const token = localStorage.getItem('access_token');
 
-const isLoading = reactive({
-  party: true,
-  downloadPDF: false
-})
-
-onMounted(() => {
-  getUserData();
-  getPartData();
-})
-
-const getUserData = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/users/me`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
+  const isLoading = reactive({
+    party: true,
+    downloadPDF: false
   })
-    .then((response) => {
-      console.log('response', response);
 
-      userData.value = response.data;
+  onMounted(() => {
+    getUserData();
+    getPartData();
+  })
+
+  const getUserData = () => {
+    const url = `https://api.respublica-partiyasy.kz/api/v1/users/me`;
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then((response) => {
+        console.log('response', response);
+
+        userData.value = response.data;
+      })
+      .catch((err) => {
+        console.log('err', err);
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
+      });
+  }
+
+  const getPartData = () => {
+    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then((response) => {
+        if (response.data.status !== 'revoked') partyData.value = response.data;
+        isLoading.party = false;
+      })
+      .catch((err) => {
+        console.log('err', err);
+        isLoading.party = false;
+        // toast({
+        //   message: 'Возникли ошибки при запросе'
+        // })
+      });
+  }
+
+  const downloadPDFCard = () => {
+    isLoading.downloadPDF = true;
+    console.log('userData', userData.value);
+    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/pdf/${partyData.value.id}`;
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        accept: 'application/pdf',
+        Authorization: 'Bearer ' + token
+      },
+      responseType: 'arraybuffer'
+    })
+    .then((response) => {
+      const blob = new Blob([response.data], {type: 'application/pdf'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      isLoading.downloadPDF = false;
     })
     .catch((err) => {
       console.log('err', err);
+      isLoading.downloadPDF = false;
       toast({
         message: 'Возникли ошибки при запросе'
       })
     });
-}
-
-const getPartData = () => {
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + token
-    }
-  })
-    .then((response) => {
-      if (response.data.status !== 'revoked') partyData.value = response.data;
-      isLoading.party = false;
-    })
-    .catch((err) => {
-      console.log('err', err);
-      isLoading.party = false;
-      // toast({
-      //   message: 'Возникли ошибки при запросе'
-      // })
-    });
-}
-
-const downloadPDFCard = () => {
-  isLoading.downloadPDF = true;
-  console.log('userData', userData.value);
-  const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/pdf/${partyData.value.id}`;
-  axios({
-    method: "get",
-    url: url,
-    headers: {
-      accept: 'application/pdf',
-      Authorization: 'Bearer ' + token
-    },
-    responseType: 'arraybuffer'
-  })
-  .then((response) => {
-    const blob = new Blob([response.data], {type: 'application/pdf'});
-    const url = window.URL.createObjectURL(blob);
-    window.open(url, '_blank');
-    isLoading.downloadPDF = false;
-  })
-  .catch((err) => {
-    console.log('err', err);
-    isLoading.downloadPDF = false;
-    toast({
-      message: 'Возникли ошибки при запросе'
-    })
-  });
-}
-
+  }
 </script>
 
 <style scoped lang="scss">
@@ -223,12 +222,11 @@ const downloadPDFCard = () => {
   }
 
   @media (max-width: 768px) {
+    padding: 30px 0 50px;
   }
 
   @media (max-width: 576px) {
-  }
-
-  @media (max-width: 380px) {
+    padding: 30px 0 40px;
   }
 }
 

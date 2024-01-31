@@ -2,7 +2,7 @@
   <div class="sideBar">
     <div class="sideBar-list">
       <div
-        v-for="link of listValue"
+        v-for="link of list"
         :key="link.title"
         class=""
       > 
@@ -11,6 +11,7 @@
           class="sideBar-link"
           :class="{btnStyle: link.typeButton}"
           :to="link.link"
+          @click="() => $emit('clickNav')"
         >
           <span>{{ link.title }}</span>
         </RouterLink>
@@ -64,14 +65,15 @@
 </template>
   
 <script setup lang="ts">
-import { ref } from 'vue';
+  interface IProps {
+    list: Array<any>,
+  }
+  interface Emits {
+    (event: 'clickNav'): Function
+  }
 
-interface IProps {
-  list: Array<any>,
-}
-
-const props = defineProps<IProps>()
-const listValue = ref(props.list)
+  defineProps<IProps>()
+  defineEmits<Emits>()
 </script>
   
 <style scoped lang="scss">

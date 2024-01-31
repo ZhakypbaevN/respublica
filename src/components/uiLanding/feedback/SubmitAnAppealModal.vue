@@ -70,7 +70,7 @@ defineEmits<Emits>();
 
     &-title {
       color: var(--accent-color);
-      text-align: center;
+      text-align: left;
       font-size: 24px;
       font-weight: 600;
       margin-bottom: 8px;
@@ -98,6 +98,132 @@ defineEmits<Emits>();
       font-weight: 600;
 
       transition: all 0.3s ease-in-out;
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 992px) {
+    &-settings {
+      &-icon {
+        height: 120px;
+        width: 120px;
+        margin: 0 auto 14px;
+      }
+
+      &-title {
+        font-size: 34px;
+        margin-bottom: 64px;
+      }
+    }
+
+    &-items {
+      &-title {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+    }
+
+    &-item {
+      grid-gap: 12px;
+
+      & svg {
+        height: 30px;
+        width: 30px;
+      }
+
+      &-title {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-settings {
+      &-icon {
+        height: 110px;
+        width: 110px;
+        margin: 0 auto 12px;
+      }
+
+      &-title {
+        font-size: 30px;
+        margin-bottom: 58px;
+      }
+    }
+
+    &-items {
+      &-title {
+        font-size: 20px;
+      }
+    }
+
+    &-item {
+      grid-gap: 10px;
+
+      & svg {
+        height: 26px;
+        width: 26px;
+      }
+
+      &-title {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-settings {
+      &-icon {
+        height: 90px;
+        width: 90px;
+        margin: 0 auto 10px;
+      }
+
+      &-title {
+        font-size: 24px;
+        margin-bottom: 54px;
+      }
+    }
+
+    &-items {
+      &-title {
+        font-size: 18px;
+      }
+    }
+
+    &-item {
+      & svg {
+        height: 24px;
+        width: 24px;
+      }
+
+      &-title {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-settings {
+      &-icon {
+        height: 70px;
+        width: 70px;
+        margin: 0 auto 10px;
+      }
+
+      &-title {
+        font-size: 20px;
+        margin-bottom: 54px;
+      }
+    }
+
+    &-items-title {
+      font-size: 16px;
+    }
+
+    &-item svg {
+      height: 22px;
+      width: 22px;
     }
   }
 }

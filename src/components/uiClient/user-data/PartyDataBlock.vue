@@ -70,12 +70,12 @@
       
       <h4 class="partyData-item">
         <span>{{ $t('formdata.area') }}:</span>
-        {{ partyData?.location.parent?.name ?? '-' }}
+        {{ partyData?.location.parent ? partyData?.location.parent?.name : (partyData?.location ? partyData?.location?.name : '-') }}
       </h4>
 
       <h4 class="partyData-item">
         <span>{{ $t('formdata.locality') }}:</span>
-        {{ partyData?.location.name ?? '-' }}
+        {{ partyData?.location.parent ? partyData?.location?.name : '-' }}
       </h4>
 
       <h4 class="partyData-item">

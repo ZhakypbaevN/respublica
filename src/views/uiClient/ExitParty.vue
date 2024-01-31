@@ -392,8 +392,21 @@
 
 <style scoped lang="scss">
 .wrapper-main {
-  padding-top: 40px;
+  padding: 40px 0 80px;
   background-color: var(--accent-color-op05);
+
+  // Adaptation
+  @media (max-width: 992px) {
+    padding: 30px 0 60px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 0 50px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 30px 0 40px;
+  }
 }
 
 .exitParty {
@@ -528,6 +541,309 @@
   &-btns {
     display: flex;
     grid-gap: 20px;
+  }
+
+  // Adaptation
+  @media (max-width: 1200px) {
+    &-inner {
+      margin-bottom: 90px;
+    }
+    
+    &-content {
+      margin-bottom: 60px;
+
+      &-subtitle {
+        font-size: 18px;
+      }
+
+      &-messege-title {
+        font-size: 34px;
+        margin-bottom: 28px;
+      }
+    
+      &-listBlock-list {
+        padding-left: 22px;
+    
+        & li {
+          font-size: 20px;
+        }
+      }
+    
+      & p {
+        font-size: 20px;
+      }
+    }
+
+    &-form {
+      &-inputs {
+        margin-bottom: 36px;
+      }
+
+      &-select label {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      &-addFileBtn {
+        grid-gap: 10px;
+    
+        & svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    &-motive {
+      grid-gap: 8px;
+      margin-bottom: 18px;
+
+      &-title {
+        font-size: 20px;
+      }
+
+      &-text {
+        font-size: 20px;
+      }
+    }
+
+    &-doc {
+      grid-gap: 9px;
+      margin-bottom: 48px;
+
+      &-title {
+        font-size: 20px;
+      }
+
+      &-name {
+        font-size: 20px;
+      }
+
+      &-namEwithAction {
+        grid-gap: 10px;
+      }
+
+      &-remove {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    &-btns {
+      grid-gap: 20px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-inner {
+      margin-bottom: 86px;
+    }
+    
+    &-content {
+      margin-bottom: 56px;
+
+      &-subtitle {
+        font-size: 18px;
+      }
+
+      &-messege-title {
+        font-size: 32px;
+        margin-bottom: 26px;
+      }
+    
+      &-listBlock-list {
+        padding-left: 22px;
+    
+        & li {
+          font-size: 18px;
+        }
+      }
+    
+      & p {
+        font-size: 18px;
+      }
+    }
+
+    &-form {
+      &-inputs {
+        margin-bottom: 34px;
+      }
+
+      &-select label {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      &-addFileBtn {
+        grid-gap: 10px;
+    
+        & svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    &-motive {
+      grid-gap: 8px;
+      margin-bottom: 18px;
+
+      &-title {
+        font-size: 18px;
+      }
+
+      &-text {
+        font-size: 18px;
+      }
+    }
+
+    &-doc {
+      grid-gap: 9px;
+      margin-bottom: 46px;
+
+      &-title {
+        font-size: 18px;
+      }
+
+      &-name {
+        font-size: 18px;
+      }
+
+      &-namEwithAction {
+        grid-gap: 10px;
+      }
+
+      &-remove {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    &-btns {
+      grid-gap: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-inner {
+      margin-bottom: 82px;
+    }
+    
+    &-content {
+      margin-bottom: 52px;
+
+      &-subtitle {
+        font-size: 16px;
+      }
+
+      &-messege-title {
+        font-size: 30px;
+        margin-bottom: 24px;
+      }
+    
+      &-listBlock-list {
+        padding-left: 20px;
+    
+        & li {
+          font-size: 16px;
+        }
+      }
+    
+      & p {
+        font-size: 16px;
+      }
+    }
+
+    &-form {
+      &-inputs {
+        margin-bottom: 32px;
+      }
+
+      &-select label {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      &-addFileBtn {
+        grid-gap: 8px;
+    
+        & svg {
+          width: 22px;
+          height: 22px;
+        }
+      }
+    }
+
+    &-motive {
+      grid-gap: 6px;
+      margin-bottom: 16px;
+
+      &-title {
+        font-size: 16px;
+      }
+
+      &-text {
+        font-size: 16px;
+      }
+    }
+
+    &-doc {
+      grid-gap: 9px;
+      margin-bottom: 44px;
+
+      &-title {
+        font-size: 16px;
+      }
+
+      &-name {
+        font-size: 16px;
+      }
+
+      &-namEwithAction {
+        grid-gap: 9px;
+      }
+
+      &-remove {
+        height: 16px;
+        width: 16px;
+      }
+    }
+
+    &-btns {
+      grid-gap: 16px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-inner {
+      margin-bottom: 76px;
+    }
+    
+    &-content {
+      margin-bottom: 48px;
+
+      &-messege-title {
+        font-size: 28px;
+        margin-bottom: 22px;
+      }
+    
+      &-listBlock-list {
+        padding-left: 18px;
+      }
+    }
+
+    &-form {
+      &-inputs {
+        margin-bottom: 28px;
+      }
+    }
+
+    &-doc {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 380px) {
   }
 }
 </style>

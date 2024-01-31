@@ -9,15 +9,10 @@
         <Button
           class="feedbackModal-selectPeopleBlock-btn"
           :class="{ active: userData }"
-          :name="
-            userData
-              ? `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}`
-              : $t('button.select-a-user')
-          "
           type="outline-grey"
           v-slot:left
           @click="() => showModal.selectUser = true"
-ы        >
+        >
           <div class="feedbackModal-selectPeopleBlock-btn-avatar">
             <SvgIcon
               name="avatar"
@@ -25,6 +20,15 @@
               :viewboxHeight="44"
             />
           </div>
+
+          <span
+            class="feedbackModal-selectPeopleBlock-btn-text"
+            v-html="
+              userData
+                ? `${userData.last_name} ${userData.first_name} ${userData.middle_name ?? ''}`
+                : `${$t('button.select-a-user')} <span>*</span>`
+            "
+          />
         </Button>
 
         <Button
@@ -48,9 +52,36 @@
 
       <Form
         @finish="onCollectData"
-        :ignores="disabledLocationSelect ? ['locality'] : null"
+        :ignores="disabledSelect.location ? ['locality'] : null"
       >
+        <Checkbox
+          class="feedbackModal-inputs-ticketNum-checkBox"
+          v-model="disabledSelect.ticketNum"
+        >
+          {{ $t('button.select-a-vip-room') }}
+        </Checkbox>
+
+        <ControlTicketNum
+          class="feedbackModal-inputs-ticketNum"
+          :class="{disabled: !disabledSelect.ticketNum}"
+          :num="formData.ticketNum?.ticket_number"
+          :ticketNum="formData.ticketNum"
+          :defaultNum="null"
+          @showModalSelect="() => showModal.selectTicketNum = true"
+          @toDefault="() => formData.ticketNum = null"
+        />
+
         <div class="feedbackModal-inputs">
+          <div class="feedbackModal-inputs-joinDate">
+            <Input
+              type="date"
+              name="joinDate"
+              :placeholder="$t('formdata.date-of-issue-of-the-ticket')"
+              v-model="formData.joinDate"
+              required
+            />
+          </div>
+
           <div class="feedbackModal-inputs-gender">
             <Input
               type="date"
@@ -61,14 +92,14 @@
 
             <Button
               :name="$t('status.female')"
-              :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
-              @click="() => gender = 'female'"
+              :type="formData.gender === 'female' ?  'default-blue' : 'outline-grey'"
+              @click="() => formData.gender = 'female'"
             />
 
             <Button
               :name="$t('status.male')"
-              :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
-              @click="() => gender = 'male'"
+              :type="formData.gender === 'male' ?  'default-blue' : 'outline-grey'"
+              @click="() => formData.gender = 'male'"
             />
           </div>
 
@@ -108,13 +139,13 @@
             name="region"
             :placeholder="$t('formdata.specify-the-area')"
             :options="regionList"
-            v-model="regionID"
+            v-model="formData.regionID"
             required
           />
 
           <Transition>
             <div
-              v-if="!disabledLocationSelect"
+              v-if="!disabledSelect.location"
               v-collapse
             >
               <Select
@@ -125,7 +156,7 @@
                     ? locationList
                     : [{label: $t('status.first-select-an-area'), value: null}]
                 "
-                v-model="locationID"
+                v-model="formData.locationID"
                 required
               />
             </div>
@@ -196,7 +227,7 @@
           :name="$t('button.create')"
           :loading="isLoading"
           htmlType="submit"
-          :ignoreValidate="disabledLocationSelect ? ['locality'] : null"
+          :ignoreValidate="disabledSelect.location ? ['locality'] : null"
         />
       </Form>
     </Modal>
@@ -212,21 +243,30 @@
       @hide="() => showModal.createUser = false"
       v-model:data="userData"
     />
+    
+    <SelectTicketNumModal
+      :show="showModal.selectTicketNum"
+      @select="(data) => formData.ticketNum = data"
+      @hide="() => showModal.selectTicketNum = false"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+  import SelectTicketNumModal from '@/components/uiManager/party-members/create/select-ticket-num/SelectTicketNumModal.vue';
+  import ControlTicketNum from '@/components/uiManager/party-members/create/select-ticket-num/ControlTicketNum.vue'
   import SelectUserModal from '@/components/uiManager/party-members/create/select-user/SelectUserModal.vue'
   import EditUserModal from '@/components/uiAdmin/users/EditUserModal.vue';
   
   import moment from 'moment'
   import { useI18n } from 'vue-i18n'
   import { onMounted, ref, watch, reactive } from 'vue'
-
+  
   import { useToast } from '@/modules/toast'
-
+  
   import { getLocationsList } from '@/actions/uiAdmin/locations';
   import { postNewPartyMember } from '@/actions/uiManager/party-members';
+  import { deleteTicketNum } from '@/actions/uiManager/ticket-numbers';
 
   import { IUser } from '@/types/users';
 
@@ -242,19 +282,27 @@
 
   const showModal = reactive({
     selectUser: false,
-    createUser: false
+    createUser: false,
+    selectTicketNum: false
   });
 
   const isLoading = ref(false)
-  const gender = ref('female');
   const userData = ref<IUser>();
 
   const regionList = ref([]);
   const locationList = ref([]);
 
-  const regionID = ref(null);
-  const locationID = ref(null);
-  const disabledLocationSelect = ref(false);
+  const formData = reactive({
+    regionID: null,
+    locationID: null,
+    ticketNum: null,
+    gender: 'female',
+    joinDate: moment().format('YYYY-MM-DD')
+  })
+  const disabledSelect = reactive({
+    location: false,
+    ticketNum: false
+  });
 
   const socialStatusList = [
     {
@@ -301,15 +349,15 @@
   })
 
   watch(
-    () => regionID.value,
+    () => formData.regionID,
     () => {
       locationList.value = [];
-      locationID.value = null;
-      disabledLocationSelect.value = false;
+      formData.locationID = null;
+      disabledSelect.location = false;
 
       regionList.value.forEach(region => {
-        if (Number(region.value) === Number(regionID.value)) {
-          if (!region.childrens.length) disabledLocationSelect.value = true;
+        if (Number(region.value) === Number(formData.regionID)) {
+          if (!region.childrens.length) disabledSelect.location = true;
           region.childrens.forEach(location => {
             locationList.value.push(
               {
@@ -346,7 +394,7 @@
 
     const data = {
       "birth_date": moment(dateBirthday).format('YYYY-MM-DD'), 
-      "gender": gender.value,
+      "gender": formData.gender,
 
       "education": education,
       "specialty": specialization.length ? specialization : null,
@@ -354,7 +402,7 @@
       "position": post.length ? post : null,
       "social_status": socialStatus,
     
-      "location_id": Number(locationID.value ?? regionID.value),
+      "location_id": Number(formData.locationID ?? formData.regionID),
 
       "street": streat,
       "house": home,
@@ -368,8 +416,10 @@
       "user_id": userData.value.id,
       "status": "active",
 
-      "join_date": null,
-      "ticket_number": null
+      "join_date": moment(formData.joinDate).format('YYYY-MM-DD'),
+      "ticket_number": disabledSelect.ticketNum
+        ? (formData.ticketNum ? formData.ticketNum.ticket_number : null)
+        : null
     };
 
     postParty(data);
@@ -377,6 +427,7 @@
 
   const postParty = async (data) => {
     isLoading.value = true;
+
     try {
       const response = await postNewPartyMember(data);
 
@@ -385,6 +436,14 @@
           message: t('message.you-have-successfully-joined-the-party'),
           type: 'success'
         })
+
+        if (disabledSelect.ticketNum) {
+          await deleteTicketNum(formData.ticketNum.id);
+          toast({
+            message: t('message.vip-number-has-been-successfully-deleted'),
+            type: 'success'
+          })
+        }
   
         emits('finish')
         setTimeout(() => {
@@ -446,6 +505,17 @@
           stroke: var(--accent-color);
         }
       }
+
+      &-text {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-color-op50);
+      }
+
+      &:hover {
+        border-color: var(--accent-color) !important;
+        background-color: var(--accent-color-op10) !important;
+      }
     }
 
     &-tip {
@@ -469,6 +539,14 @@
   }
   
   &-inputs {
+    &-ticketNum-checkBox {
+      margin-bottom: 10px !important;
+    }
+
+    &-joinDate {
+      margin-bottom: 30px;
+    }
+    
     &-home {
       display: grid;
       grid-template-columns: 1fr 135px 135px;
@@ -506,5 +584,9 @@
 <style>
 .feedbackModal-selectPeopleBlock-btn.active span {
   color: var(--primary-color);
+}
+.feedbackModal-selectPeopleBlock-btn-text span {
+  font-weight: 400;
+  color: var(--red-color);
 }
 </style>

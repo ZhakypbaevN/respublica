@@ -12,8 +12,14 @@
         <div class="feedbackModal-inputs">
           <ControlTicketNum
             class="feedbackModal-inputs-ticketNum"
-            :ticketNum="partyData.ticket_number"
+            :num="partyData.ticket_number"
+            :ticketNum="formData.newTicketNum"
+            :defaultNum="formData.defaultTicketNum"
             @showModalSelect="() => showTicketNumModal = true"
+            @toDefault="() => {
+              formData.newTicketNum = null;
+              partyData.ticket_number = formData.defaultTicketNum;
+            }"
           />
           
           <div class="feedbackModal-inputs-joinDate">
@@ -37,14 +43,14 @@
 
             <Button
               :name="$t('status.female')"
-              :type="gender === 'female' ?  'default-blue' : 'outline-grey'"
-              @click="() => gender = 'female'"
+              :type="formData.gender === 'female' ?  'default-blue' : 'outline-grey'"
+              @click="() => formData.gender = 'female'"
             />
 
             <Button
               :name="$t('status.male')"
-              :type="gender === 'male' ?  'default-blue' : 'outline-grey'"
-              @click="() => gender = 'male'"
+              :type="formData.gender === 'male' ?  'default-blue' : 'outline-grey'"
+              @click="() => formData.gender = 'male'"
             />
           </div>
 
@@ -89,7 +95,7 @@
             name="region"
             :placeholder="$t('formdata.specify-the-area')"
             :options="regionList"
-            v-model="regionID"
+            v-model="formData.regionID"
             required
           />
 
@@ -106,7 +112,7 @@
                     ? locationList
                     : [{label: $t('status.first-select-an-area'), value: null}]
                 "
-                v-model="locationID"
+                v-model="formData.locationID"
                 required
               />
             </div>
@@ -188,13 +194,13 @@
         />
       </Form>
     </Modal>
+    
+    <SelectTicketNumModal
+      :show="showTicketNumModal"
+      @select="(data) => onNewTicketNum(data)"
+      @hide="() => showTicketNumModal = false"
+    />
   </div>
-
-  <SelectTicketNumModal
-    :show="showTicketNumModal"
-    @select="(data) => onNewTicketNum(data)"
-    @hide="() => showTicketNumModal = false"
-  />
 </template>
 
 <script setup lang="ts">
@@ -203,7 +209,7 @@
 
   import moment from 'moment'
   import { useI18n } from 'vue-i18n'
-  import { onMounted, ref, watch } from 'vue'
+  import { onMounted, ref, watch, reactive } from 'vue'
 
   import { useToast } from '@/modules/toast'
 
@@ -211,7 +217,6 @@
   import { putPartyMember } from '@/actions/uiManager/party-members';
   import { deleteTicketNum } from '@/actions/uiManager/ticket-numbers';
 
-  import { ITicketNumber } from '@/types/ticket-number'
   import { IPartyMember } from '@/types/party-member';
 
   const { t } = useI18n()
@@ -229,18 +234,22 @@
   const props = defineProps<IProps>()
   const emits = defineEmits<Emits>()
   
+  const partyMember = ref<IPartyMember>(props.partyData);
+
   const isLoading = ref(false)
   const showTicketNumModal = ref(false)
-  const gender = ref(props.partyData.gender);
-  const partyMember = ref<IPartyMember>(props.partyData);
-  const newTicketNum = ref<ITicketNumber>()
 
   const regionList = ref([]);
   const locationList = ref([]);
+  const disabledLocationSelect = ref(true);
 
-  const regionID = ref(props.partyData.location.parent ? props.partyData.location.parent.id : props.partyData.location.id);
-  const locationID = ref();
-  const disabledLocationSelect = ref(false);
+  const formData = reactive({
+    defaultTicketNum: props.partyData.ticket_number,
+    gender: props.partyData.gender,
+    newTicketNum: null,
+    regionID: props.partyData.location.parent ? props.partyData.location.parent.id : props.partyData.location.id,
+    locationID: null
+  });
 
   const socialStatusList = [
     {
@@ -287,11 +296,11 @@
 
     if (props.partyData.location.parent) {
       locationList.value = [];
-      locationID.value = props.partyData.location.id;
+      formData.locationID = props.partyData.location.id;
       disabledLocationSelect.value = false;
       
       regionList.value.forEach(region => {
-        if (Number(region.value) === Number(regionID.value)) {
+        if (Number(region.value) === Number(formData.regionID)) {
           if (!region.childrens.length) disabledLocationSelect.value = true;
           region.childrens.forEach(location => {
             locationList.value.push(
@@ -307,14 +316,14 @@
   })
 
   watch(
-    () => regionID.value,
+    () => formData.regionID,
     () => {
       locationList.value = [];
-      locationID.value = null;
+      formData.locationID = null;
       disabledLocationSelect.value = false;
 
       regionList.value.forEach(region => {
-        if (Number(region.value) === Number(regionID.value)) {
+        if (Number(region.value) === Number(formData.regionID)) {
           if (!region.childrens.length) disabledLocationSelect.value = true;
           region.childrens.forEach(location => {
             locationList.value.push(
@@ -353,7 +362,7 @@
 
     const data = {
       "birth_date": moment(dateBirthday).format('YYYY-MM-DD'), 
-      "gender": gender.value,
+      "gender": formData.gender,
 
       "education": education,
       "specialty": specialization.length ? specialization : null,
@@ -361,7 +370,7 @@
       "position": post.length ? post : null,
       "social_status": socialStatus,
     
-      "location_id": Number(locationID.value ?? regionID.value),
+      "location_id": Number(formData.locationID ?? formData.regionID),
 
       "street": streat,
       "house": home,
@@ -381,19 +390,6 @@
 
   const postParty = async (data) => {
     isLoading.value = true;
-    if (newTicketNum.value) {
-      try {
-        await deleteTicketNum(newTicketNum.value.id);
-  
-        toast({
-          message: t('message.vip-number-has-been-successfully-deleted'),
-          type: 'success'
-        })
-      } finally {
-        isLoading.value = false
-      }
-    }
-  
     try {
       const response = await putPartyMember(partyMember.value.id, data);
       if (response) {
@@ -401,6 +397,19 @@
           message: t('message.you-have-successfully-joined-the-party'),
           type: 'success'
         })
+
+        if (formData.newTicketNum) {
+          try {
+            await deleteTicketNum(formData.newTicketNum.id);
+      
+            toast({
+              message: t('message.vip-number-has-been-successfully-deleted'),
+              type: 'success'
+            })
+          } finally {
+            isLoading.value = false
+          }
+        }
   
         emits('finish')
         setTimeout(() => {
@@ -425,7 +434,7 @@
   }
 
   const onNewTicketNum = (newTicket) => {
-    newTicketNum.value = newTicket;
+    formData.newTicketNum = newTicket;
     partyMember.value.ticket_number = newTicket.ticket_number;
   }
 </script>
