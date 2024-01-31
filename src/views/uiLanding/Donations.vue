@@ -32,9 +32,6 @@
 
               <Form v-if="currentStep === 1" @finish="enterSum">
                 <div class="donations-form-title">{{ $t('formdata.enter-the-amount-tenge-with-staples') }}</div>
-                <p class="donations-form-description">
-                  {{ $t('donations.your-donation-will-benefit-the-party') }}
-                </p>
 
                 <div class="donations-form-inputs">
                   <Input
