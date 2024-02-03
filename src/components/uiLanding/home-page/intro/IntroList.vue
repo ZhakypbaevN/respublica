@@ -1,6 +1,14 @@
 <template>
   <div class="introList">
-    <div class="introList-preview bg-cover"></div>
+    <div class="introList-preview-bg" />
+
+    <div
+      v-for="(bg, idx) of bannersList"
+      :key="bg"
+      class="introList-preview bg-cover"
+      :class="{show: showBanner === idx}"
+      :style="`background-image: url('${bg}');`"
+    />
 
     <div class="introList-teams">
       <div
@@ -27,8 +35,9 @@
 </template>
 
 <script setup lang="ts">
+  import { ref, onMounted } from 'vue';
   import IntroContent from '@/components/uiLanding/home-page/intro/IntroContent.vue';
-
+  
   const teamList = [
     {
       zIndex: 3,
@@ -79,6 +88,21 @@
       aosDelay: '1000'
     },
   ]
+  
+  const showBanner = ref(0);
+  const bannersList = [
+    '/img/uiLanding/home/intro/intro-banner-3.jpg',
+    '/img/uiLanding/home/intro/intro-banner-2.jpg',
+    '/img/uiLanding/home/intro/intro-banner-3.jpg',
+    '/img/uiLanding/home/intro/intro-banner-2.jpg',
+  ]
+
+  onMounted(() => {
+    setInterval(() => {
+      if (showBanner.value < 3)  showBanner.value++;
+      else showBanner.value = 0;
+    }, 10000);
+  })
 </script>
 
 <style scoped lang="scss">
@@ -101,27 +125,30 @@
     background: rgba(31, 76, 154, 0.34);
   }
 
-  &-preview {
+  &-preview,
+  &-preview-bg {
     width: 100%;
     height: 100%;
 
     position: absolute;
     left: 0;
     bottom: 0;
+    z-index: 2;
+  }
+
+  &-preview {
+    opacity: 0;
 
     background-image: url('/img/uiLanding/home/intro/intro-banner-3.jpg');
+    transition: all .7s linear;
 
-    &::before,
-    &::after {
-      content: '';
-  
-      display: block;
-      width: 100%;
-      height: 100%;
-  
-      position: absolute;
-      left: 0;
-      bottom: 0;
+    &.show {
+      opacity: 1;
+    }
+
+    &-bg {
+      z-index: 1;
+      background-color: var(--primary-color);
     }
   }
 
