@@ -6,7 +6,11 @@
       <SideBar
         class="managerLayout-sideBar"
         :list="sideBarlinks"
-        @clickNav="() => showSideBar = false"
+        @clickNav="() =>
+          window.innerWidth >= 992
+            ? showSideBar = false
+            : null
+        "
       />
       <div
         class="managerLayout-sideBar-back"
@@ -40,10 +44,7 @@
   import { ref } from 'vue';
   import { useI18n } from 'vue-i18n'
 
-  import { useToast } from '@/modules/toast'
-
   const { t } = useI18n()
-  const { toast } = useToast()
 
   const showModalSubmitAnAppeal = ref(false);
   const showSideBar = ref(window.innerWidth >= 992);
@@ -62,20 +63,11 @@
     },
     {
       title: t('feedback.make-an-appointment'),
-      func: () => {
-        toast({
-          message: t('status.the-page-is-in-development')
-        })
-      }
+      link: '/client/make-an-appointment'
     },
     {
       title: t('page.the-history-of-appeals'),
-      // link: "/client/my-requests",
-      func: () => {
-        toast({
-          message: t('status.the-page-is-in-development')
-        })
-      }
+      link: "/client/my-requests",
     },
     {
       title: t('feedback.submit-an-appeal'),

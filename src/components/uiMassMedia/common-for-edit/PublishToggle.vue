@@ -17,6 +17,8 @@
 
   import { useToast } from '@/modules/toast'
   import { putMediaNewsData } from '@/actions/uiMedia/news';
+  
+  import { getLangForURL } from '@/assets/lang/exports';
 
   interface IProps {
     data: any
@@ -44,7 +46,7 @@
         else if (key !== 'preview_image' && props.data[key]) formData.append(key, props.data[key]);
       }
 
-      await putMediaNewsData(props.data.id.toString(), formData)
+      await putMediaNewsData(props.data.id.toString(), formData, getLangForURL())
 
       toast({
         message: !props.data.published ? t('message.news-published') : t('message.news-unpublished'),

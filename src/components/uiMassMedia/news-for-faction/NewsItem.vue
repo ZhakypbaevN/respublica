@@ -71,7 +71,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import DeleteModal from '@/components/uiMassMedia/news-for-faction/DeleteModal.vue'
+import DeleteModal from '@/components/uiMassMedia/news-for-fraction/DeleteModal.vue'
 
 import { useRouter } from 'vue-router';
 

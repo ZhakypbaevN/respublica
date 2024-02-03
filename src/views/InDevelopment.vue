@@ -4,13 +4,8 @@
       <Header />
       <section class="faq-block landing-block">
         <div class="wrapper landing-wrapper">
-          <SvgIcon
-            class="icon"
-            name="grid-masonry"
-            :viewboxHeight="24"
-            :viewboxWidth="24"
-          />
-          <h2 class="title">{{ $t('status.the-page-is-in-development') }}</h2>
+          <SvgIcon class="inDevelepmont-icon" name="settings-develop" :viewboxWidth="300" :viewboxHeight="300" />
+          <h2 class="inDevelepmont-title">{{ $t('message.this-functionality-is-still-in-development') }}</h2>
         </div>
       </section>
     </div>
@@ -18,9 +13,6 @@
     <Footer /> 
   </div>
 </template>
-
-<script setup>
-</script>
 
 <style scoped lang="scss">
 .wrapper {
@@ -32,19 +24,76 @@
 
   background-size: cover;
 }
-.icon {
-  display: block;
-  height: 200px;
-  width: 200px;
-}
-.title {
-  font-size: 60px;
+.inDevelepmont {
+  &-icon {
+    height: 200px;
+    width: 200px;
+    fill: var(--light-gray-color-op50);
+
+    margin: 0 auto 15px;
+  }
+
+  &-title {
+    width: 100%;
+    
+    color: var(--light-gray-color-op50);
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  // Adaptation
+  @media (max-width: 992px) {
+    &-icon {
+      height: 180px;
+      width: 180px;
+      margin: 0 auto 14px;
+    }
+
+    &-title {
+      font-size: 40px;
+      margin-bottom: 64px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-icon {
+      height: 160px;
+      width: 160px;
+      margin: 0 auto 12px;
+    }
+
+    &-title {
+      font-size: 38px;
+      margin-bottom: 58px;
+    }
+  }
 
   @media (max-width: 576px) {
-    font-size: 100px;
+    &-icon {
+      height: 140px;
+      width: 140px;
+      margin: 0 auto 10px;
+    }
+
+    &-title {
+      font-size: 36px;
+      margin-bottom: 54px;
+    }
   }
-}
-img {
-  height: 100%;
+
+  @media (max-width: 380px) {
+    &-icon {
+      height: 120px;
+      width: 120px;
+      margin: 0 auto 10px;
+    }
+
+    &-title {
+      font-size: 34px;
+      margin-bottom: 54px;
+    }
+  }
 }
 </style>
