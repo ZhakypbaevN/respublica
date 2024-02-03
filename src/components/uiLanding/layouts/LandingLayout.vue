@@ -49,7 +49,7 @@ withDefaults(defineProps<IProps>(), {})
     background: var(--primary-color);
 
     &-inner {
-      top: 70px;
+      top: 100px;
       position: sticky;
       padding-top: 30px;
       transition: all .3s ease-in-out;
