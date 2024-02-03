@@ -1,19 +1,60 @@
 <template>
   <section class="newsEdit">
-    <div class="wrapper" v-if="newsData">
+    <div class="wrapper" v-if="isLoading.page">
       <div class="newsEdit-header">
         <BackButton />
-
-        <LangToggle dropdown />
       </div>
 
       <h2 class="landing-title">
         {{
-          newsData.title
-            ? newsData.title
-            : route.params.news_id
-              ? $t('page.editing-the-news')
-              : $t('page.new-news')
+          route.params.news_id
+            ? $t('page.edit-video')
+            : $t('page.create-video')
+        }}
+      </h2>
+
+      <div class="newsEdit-loading">
+        <Loading
+          name="sk"
+          :width="80"
+          :height="80"
+          color="#4A78EC"
+        />
+      </div>
+    </div>
+
+    <div class="wrapper" v-else>
+      <div class="newsEdit-header">
+        <BackButton />
+
+        <div class="newsEdit-header-right">
+          <PublishToggle
+            :data="newsData"
+            @finish="() => {
+              newsData.ru.published = !newsData.ru.published;
+              newsData.kz.published = !newsData.kz.published;
+            }"
+          />
+          <Button
+            v-if="route.params.news_id"
+            class="newsEdit-header-delete"
+            type="default-light-red"
+            @click.stop="() => showDeleteModal = true"
+          >
+            <SvgIcon
+              name="trash-edit-with-bg"
+              :viewboxWidth="50"
+              :viewboxHeight="50"
+            />
+          </Button>
+        </div>
+      </div>
+
+      <h2 class="landing-title">
+        {{
+          route.params.news_id
+            ? $t('page.edit-video')
+            : $t('page.create-video')
         }}
       </h2>
 
@@ -23,32 +64,37 @@
       >
         <div class="newsEdit-form-block">
           <div class="newsEdit-form-inputs">
-            <div class="newsEdit-formItem">
-              <label for="" class="newsEdit-formItem-label">
-                {{ $t('formdata.heading') }}
-              </label>
+
+            <div
+              class="newsEdit-formItem"
+              v-for="lang of langItems"
+              :key="lang.value"
+            >
+              <label :for="`${lang.value}-title`" class="newsEdit-formItem-label">{{ `${lang.title} - ${lang.form.titleInput.title}` }}</label>
               <Input
-                name="title"
+                :name="`${lang.value}-title`"
                 type="textarea"
-                :placeholder="$t('formdata.enter-the-name-of-the-video')"
+                :placeholder="lang.form.titleInput.placeholder"
                 :maxSymbol="150"
-                v-model="newsData.title"
+                v-model="newsData[lang.value].title"
                 staticPlaceholder
+                required
               />
             </div>
-            
+
             <div class="newsEdit-formItem">
               <label for="content" class="newsEdit-formItem-label">{{ $t('formdata.youTube-video-code-iframe') }}</label>
               <Input
                 name="content"
                 type="textarea"
-                v-model="newsData.content"
+                v-model="newsData.ru.content"
                 :placeholder="$t('formdata.enter-the-youTube-video-code')"
                 staticPlaceholder
               />
             </div>
+            
           </div>
-          <div class="newsEdit-videoPreview" v-html="newsData.content"></div>
+          <div class="newsEdit-videoPreview" v-html="newsData.ru.content"></div>
         </div>
 
 
@@ -58,26 +104,42 @@
               ? $t('button.save')
               : $t('button.create')
           "
-          :loading="isloading"
+          :loading="isLoading.btn"
           htmlType="submit"
         />
       </Form>
+
+      <DeleteModal
+        v-if="route.params.news_id"
+        :show="showDeleteModal"
+        :id="newsData.ru?.id"
+        @click.stop
+        @hide="() => showDeleteModal = false"
+        @finish="onDeletedNews"
+      />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+  import PublishToggle from '@/components/uiMassMedia/common-for-edit/PublishToggle.vue'
+  import DeleteModal from '@/components/uiMassMedia/news/DeleteModal.vue'
+
   import moment from 'moment';
 
   import { useI18n } from 'vue-i18n'
-  import { ref, onMounted } from 'vue'
+  import { onMounted, ref, reactive } from 'vue'
   import { useRoute, useRouter } from 'vue-router';
 
   import { useToast } from '@/modules/toast'
-  import getFileUrl from '@/helpers/getFileUrlByDate.js'
 
   import { INews } from '@/types/news';
   import { getMediaNewsData, postMediaNewsData, putMediaNewsData } from '@/actions/uiMedia/news';
+
+  type INewsForm = {
+    ru: INews,
+    kz: INews
+  }
 
   const route = useRoute()
   const router = useRouter()
@@ -85,59 +147,105 @@
   const { t } = useI18n()
   const { toast } = useToast()
 
-  const isloading = ref(false)
-  const newsData = ref<INews>()
+  const isLoading = reactive({
+    page: true,
+    btn: false
+  })
+  const newsData = reactive<INewsForm>({
+    ru: null,
+    kz: null
+  })
+
+  const langItems = [
+    {
+      title: 'Русский',
+      value: 'ru',
+      api: 'ru-RU',
+
+      form: {
+        titleInput: {
+          title: 'Заголовок',
+          placeholder: 'Введите заголовок'
+        }
+      }
+    },
+    {
+      title: 'Қазақша',
+      value: 'kz',
+      api: 'kz-KZ',
+
+      form: {
+        titleInput: {
+          title: 'Атауы',
+          placeholder: 'Тақырыпты енгізіңіз'
+        }
+      }
+    }
+  ];
+  const showDeleteModal = ref(false);
 
   // Get News
   onMounted(async () => {
     if (route.params.news_id) {
-      const response = await getMediaNewsData(route.params.news_id.toString())
+      for (const lang of langItems) {
+        const response = await getMediaNewsData(route.params.news_id.toString(), lang.api);
 
-      if (response) newsData.value = response.data;
-      newsData.value.preview_image = getFileUrl(response.data.preview_image);
-      newsData.value.created_at = moment(response.data.created_at).format('YYYY-MM-DD');
+        if (response) newsData[lang.value] = response.data;
+        newsData[lang.value].created_at = moment(response.data.created_at).format('YYYY-MM-DD');
 
+        if (lang.value === 'kz') isLoading.page = false;
+      }
     } else {
-      newsData.value = {
+      const defaultValues = {
         title: '',
         preview_text: '',
-        source_title: '',
-        source_url: '',
+        content: '',
         published: true,
         created_at: moment().format('YYYY-MM-DD'),
-        content: ''
+        preview_image: null
       }
+
+      newsData.ru = Object.assign({}, defaultValues);
+      newsData.kz = Object.assign({}, defaultValues);
+      isLoading.page = false;
     }
   })
 
   // Post
   const postNews = async () => {
-    isloading.value = true;
+    isLoading.btn = true;
+    let newsID = route.params.news_id;
+    
     try {
-      const formData = new FormData();
+      for (const lang of langItems) {
+        const formData = new FormData();
 
-      for (const key in newsData.value) {
-        if (key === 'created_at') formData.append(key, moment(newsData.value[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-        else formData.append(key, newsData.value[key]);
+        for (const key in newsData[lang.value]) {
+          if (key === 'created_at') formData.append(key, moment(newsData.ru[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
+          else if (newsData[lang.value][key]) formData.append(key, newsData[lang.value][key]);
+        }
+
+        formData.append("alias_category", 'video-gallery');
+
+        if (newsID) await putMediaNewsData(newsID.toString(), formData, lang.api)
+        else newsID = (await postMediaNewsData(formData, lang.api)).id.toString();
       }
-
-      formData.append("alias_category", 'video-gallery');
       
-      if (route.params.news_id) await putMediaNewsData(route.params.news_id.toString(), formData)
-      else await postMediaNewsData(formData)
-
       toast({
         message: route.params.news_id
           ? t('message.the-video-has-been-successfully-edited')
           : t('message.the-video-has-been-successfully-created'),
         type: 'success'
       })
-
-      // if (!route.params.news_id) setTimeout(() => router.push('/media/video-gallery?offset=0&limit=20&published=true&search='), 300);
+      router.replace(`/media/video-gallery/${newsID}`);
 
     } finally {
-      isloading.value = false
+      isLoading.btn = false
     }
+  }
+
+  const onDeletedNews = () => {
+    setTimeout(() => router.push('/media/video-gallery?offset=0&limit=20&published=true&search='), 300);
   }
 </script>
 
@@ -151,6 +259,27 @@
     justify-content: space-between;
 
     margin-bottom: 30px;
+
+    &-right {
+      display: flex;
+      grid-gap: 20px;
+    }
+
+    &-delete {
+      height: 50px;
+      width: 50px;
+
+      cursor: pointer;
+      padding: 0px !important;
+      
+      & svg {
+        height: 50px;
+        width: 50px;
+        stroke: var(--red-color);
+
+        transition: all .3s ease-in-out;
+      }
+    }
   }
 
   &-form {

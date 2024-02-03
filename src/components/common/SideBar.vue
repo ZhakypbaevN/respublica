@@ -2,7 +2,7 @@
   <div class="sideBar">
     <div class="sideBar-list">
       <div
-        v-for="link of list"
+        v-for="link of listData"
         :key="link.title"
         class=""
       > 
@@ -32,7 +32,6 @@
             @click="() => link.active = !link.active"
           >
             <span>{{ link.title }}</span>
-
             <SvgIcon
               name="chevron-down"
               viewboxHeight="56"
@@ -65,15 +64,22 @@
 </template>
   
 <script setup lang="ts">
+  import { computed } from 'vue'
   interface IProps {
     list: Array<any>,
   }
   interface Emits {
-    (event: 'clickNav'): Function
+    (event: 'clickNav'): Function,
+    (event: 'update:list', value: any): void
   }
 
-  defineProps<IProps>()
-  defineEmits<Emits>()
+  const props = defineProps<IProps>()
+  const emit = defineEmits<Emits>()
+
+  const listData = computed({
+    get: () => props.list,
+    set: (val) => emit('update:list', val)
+  })
 </script>
   
 <style scoped lang="scss">

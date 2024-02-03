@@ -10,6 +10,7 @@ import Progress from '@/modules/progress'
 import Authorization from '@/views/Authorization.vue'
 import NotFound from '@/views/404NotFound.vue'
 import PageInDevelopment from '@/views/InDevelopment.vue'
+import PageInDevelopmentWithoutLayout from '@/views/InDevelopmentWithoutLayout.vue'
 
 import Home from '@/views/uiLanding/Home.vue'
 import Home2 from '@/views/uiLanding/Home2.vue'
@@ -86,8 +87,8 @@ import ClientPhotoGalleryAll from '@/views/uiClient/press-center/gallery/PhotoGa
 import MediaNewsList from '@/views/uiMedia/news/NewsList.vue'
 import MediaNewsEdit from '@/views/uiMedia/news/NewsEdit.vue'
 
-import MediaNewsForFractionList from '@/views/uiMedia/news-for-faction/NewsFactionList.vue'
-import MediaNewsForFractionEdit from '@/views/uiMedia/news-for-faction/NewsFactionEdit.vue'
+import MediaNewsForFractionList from '@/views/uiMedia/news-for-fraction/NewsFractionList.vue'
+import MediaNewsForFractionEdit from '@/views/uiMedia/news-for-fraction/NewsFractionEdit.vue'
 
 import MediaPressAboutUsList from '@/views/uiMedia/press-about-us/PressAboutUsList.vue'
 import MediaPressAboutUsEdit from '@/views/uiMedia/press-about-us/PressAboutUsEdit.vue'
@@ -422,11 +423,17 @@ const routes = [
     },
     children: [
       { path: '/:pathMatch(.*)*', name: 'ClientNotFound', component: NotFound },
-      { path: '/page-in-development', name: 'ClientPageInDevelopment', component: PageInDevelopment },
+      {
+        path: 'make-an-appointment',
+        name: 'MakeAnAppointment',
+        component: PageInDevelopmentWithoutLayout,
+        meta: { title: 'make-an-appointment' }
+      },
       {
         path: 'my-requests',
         name: 'MyRequests',
-        component: MyRequests,
+        component: PageInDevelopmentWithoutLayout,
+        // component: MyRequests,
         meta: { title: 'my-appeals' }
       },
       {

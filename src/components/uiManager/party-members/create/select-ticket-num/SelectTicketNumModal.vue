@@ -24,13 +24,15 @@
           </Button>
         </div>
 
-        <div class="landing-items" v-if="ticketNumValues.isEmpty">
+        <div class="ticketNum-items" v-if="ticketNumValues.isEmpty">
           <Empty />
         </div>
-        <div class="landing-items disabled" v-else-if="!ticketNumValues.tableValues">
+
+        <div class="ticketNum-items disabled" v-else-if="!ticketNumValues.tableValues">
           <TicketNumItemSkeleton v-for="item in 5" :key="item" withoutDelete />
         </div>
-        <div class="landing-items" v-else>
+
+        <div class="ticketNum-items" v-else>
           <TicketNumItem
             v-for="(data, index) of ticketNumValues.tableValues"
             :key="data.ticket_number"
@@ -164,6 +166,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
+
+    margin-bottom: 50px;
   }
 }
 </style>

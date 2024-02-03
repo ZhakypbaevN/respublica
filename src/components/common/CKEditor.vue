@@ -66,3 +66,8 @@ const editorConfig = {
   language: 'ru'
 }
 </script>
+<style>
+  .ck-content {
+    min-height: 200px;
+  }
+</style>

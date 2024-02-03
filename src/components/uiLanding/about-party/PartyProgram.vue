@@ -2,9 +2,11 @@
   <section class="partyProgram landing-block" id="party-program">
     <div class="wrapper">
       <div class="partyProgram-items">
-        <div
+        <button
           class="partyProgram-item withZoomPreview"
-          v-for="item of partyList"
+          v-for="(item, idx) of partyList"
+          :key="item.title"
+          @click="focusToDropDown(`partyProgram-pdfDropDown-${idx}`)"
         >
           <div class="partyProgram-item-preview withZoomPreview-preview">
             <div class="partyProgram-item-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url('${item.img}');`"></div>
@@ -13,36 +15,49 @@
           <span class="partyProgram-title">{{ item.title }}</span>
           <span class="partyProgram-sub-title">{{ item.subtitle }}</span>
           
-          <a :href="item.pdflink" target="_blank">
-            <Button :name="$t('button.view-pdf')" type="outline-blue" class="partyProgram-btn">
-              <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
-            </Button>
-          </a>
-        </div>
+          <DropDownPDF
+            :id="`partyProgram-pdfDropDown-${idx}`"
+            :pdflinks="item.pdflinks"
+          />
+        </button>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+  import DropDownPDF from '@/components/common/DropDownPDF.vue';
+  import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const partyList = [
-  {
-    img: '/img/uiLanding/about-party/program-one.jpg',
-    title: t('about-us-page.party-program.restart-reforma-respublica'),
-    subtitle: t('about-us-page.party-program.restart-reforma-respublica-subtitle'),
-    pdflink: '/doc/ru/Программа предвыборная рус.pdf'
-  },
-  {
-    img: '/img/uiLanding/about-party/program-two.jpg',
-    title: t('about-us-page.party-program.this-is-new-kazakhstan'),
-    subtitle: t('about-us-page.party-program.partys-election-program'),
-    pdflink: '/doc/ru/Программа партии_.pdf'
+  const partyList = [
+    {
+      img: '/img/uiLanding/about-party/program-one.jpg',
+      title: t('about-us-page.party-program.restart-reforma-respublica'),
+      subtitle: t('about-us-page.party-program.restart-reforma-respublica-subtitle'),
+      pdflinks: {
+        ru: '/doc/ru/Программа предвыборная рус.pdf',
+        kz: '/doc/kz/Re программа 05022023 каз.pptx'
+      }
+    },
+    {
+      img: '/img/uiLanding/about-party/program-two.jpg',
+      title: t('about-us-page.party-program.this-is-new-kazakhstan'),
+      subtitle: t('about-us-page.party-program.partys-election-program'),
+      pdflinks: {
+        ru: '/doc/ru/Программа партии_.pdf',
+        kz: '/doc/kz/Re_Предвыборная_программа_партии_max_КАЗ.DOCX'
+      }
+    }
+  ]
+
+  const focusToDropDown = (idName) => {
+    setTimeout(() => {
+      const button = document.querySelector(`#${idName} .ac-dropdown_btn`);
+      if (button) button.click();
+    }, 100)
   }
-]
 </script>
 
 <style scoped lang="scss">
@@ -61,6 +76,7 @@ const partyList = [
     padding: 20px;
     padding-bottom: 30px;
     border-radius: 20px;
+    cursor: pointer;
 
     &-preview {
       width: 100%;
@@ -94,19 +110,6 @@ const partyList = [
     margin-bottom: 20px;
   }
 
-  &-btn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    border-radius: 100px;
-
-    & svg {
-      height: 24px;
-      width: 24px;
-      fill: var(--accent-color);
-    }
-  }
-
   // Adaptation
   @media (max-width: 1400px) {
     &-items {
@@ -132,15 +135,6 @@ const partyList = [
     &-sub-title {
       font-size: 18px;
       margin-bottom: 20px;
-    }
-
-    &-btn {
-      grid-gap: 10px;
-
-      & svg {
-        height: 22px;
-        width: 22px;
-      }
     }
   }
 
@@ -169,16 +163,6 @@ const partyList = [
       font-size: 18px;
       margin-bottom: 22px;
     }
-
-    &-btn {
-      padding: 16px 20px;
-      grid-gap: 10px;
-
-      & svg {
-        height: 22px;
-        width: 22px;
-      }
-    }
   }
 
   @media (max-width: 992px) {
@@ -205,16 +189,6 @@ const partyList = [
     &-sub-title {
       font-size: 18px;
       margin-bottom: 22px;
-    }
-
-    &-btn {
-      padding: 14px 18px;
-      grid-gap: 8px;
-
-      & svg {
-        height: 20px;
-        width: 20px;
-      }
     }
   }
 
@@ -252,16 +226,6 @@ const partyList = [
     &-sub-title {
       font-size: 16px;
       margin-bottom: 18px;
-    }
-
-    &-btn {
-      padding: 14px 16px;
-      grid-gap: 8px;
-
-      & svg {
-        height: 18px;
-        width: 18px;
-      }
     }
   }
 }

@@ -20,8 +20,8 @@ withDefaults(defineProps<IProps>(), {
 
 <style scoped lang="scss">
 .avatar {
-  height: 65px;
-  width: 65px;
+  height: 55px;
+  width: 55px;
 
   display: flex;
   align-items: center;
@@ -31,8 +31,8 @@ withDefaults(defineProps<IProps>(), {
   background-color: var(--accent-color-op15);
 
   & svg {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
 
     stroke: var(--accent-color);
   }

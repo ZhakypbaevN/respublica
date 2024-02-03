@@ -32,6 +32,7 @@ import Empty from '@/components/common/Empty.vue';
 import Filter from '@/components/common/Filter.vue';
 import LangToggle from '@/components/common/LangToggle.vue';
 import ShowMoreBtn from '@/components/common/ShowMoreBtn.vue';
+import Loading from '@/components/common/Loading.vue';
 
 import LandingLayout from '@/components/uiLanding/layouts/LandingLayout.vue';
 import Header from '@/components/uiLanding/layouts/HeaderCustom.vue';
@@ -59,6 +60,7 @@ createApp(App)
   .directive('collapse', Collapse)
   .directive('loading', loading())
   .component('Checkbox', Checkbox)
+  .component('Loading', Loading)
   .component('SvgIcon', SvgIcon)
   .component('Upload', Upload)
   .component('Select', Select)

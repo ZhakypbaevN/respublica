@@ -96,7 +96,12 @@
         emits('hide')
       }, 300);
     } catch (err) {
-      console.log('err.response.data.detail', err.response.data.detail);
+      if (err.response.data.detail === 'Ticket number already reserved.') {
+        toast({
+          message: t('message.vip-number-has-been-successfully-created'),
+          type: 'warning'
+        })
+      }
     } finally {
       isLoading.value = false
     }

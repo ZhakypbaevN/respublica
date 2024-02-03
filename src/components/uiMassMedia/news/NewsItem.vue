@@ -85,7 +85,7 @@
 
   interface IProps {
     data: any,
-    linkToNews?: string
+    linkToNews?: string,
   }
 
   const props = withDefaults(defineProps<IProps>(), {

@@ -10,7 +10,7 @@
     <slot name="triggerer" :visible="dropdown.visible">
       <Button
         :name="btnText ?? 'dropdown'"
-        type="default-light-blue"
+        :type="btnType"
         class="ac-dropdown_btn"
         :loading="loading"
       >
@@ -57,11 +57,16 @@ export interface Dropdown {
   visible: boolean
 }
 
-defineProps<{
+interface IProps {
   btnText?: string,
   loading?: boolean,
-  secondary?: boolean
-}>()
+  secondary?: boolean,
+  btnType?: string
+}
+
+withDefaults(defineProps<IProps>(), {
+  btnType: 'default-light-blue'
+})
 
 const dropdown = reactive<Dropdown>({
   items: [],
@@ -139,6 +144,7 @@ provide('dropdown', dropdown)
     li {
       font-size: 18px;
       padding: 8px 12px;
+      text-align: left;
       cursor: pointer;
       &:hover {
         background-color: var(--hover-color);

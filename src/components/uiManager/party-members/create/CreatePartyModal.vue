@@ -337,7 +337,9 @@
 
   onMounted(async () => {
     const response = await getLocationsList()
+    const regionsName = []
     response.data.data.forEach(location => {
+      regionsName.push(location.name)
       regionList.value.push(
         {
           label: location.name,
@@ -346,6 +348,9 @@
         }
       );
     });
+
+    console.log(regionsName);
+    console.log(regionsName.join(','));
   })
 
   watch(
