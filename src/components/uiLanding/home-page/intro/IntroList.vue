@@ -91,10 +91,10 @@
   
   const showBanner = ref(0);
   const bannersList = [
-    '/img/uiLanding/home/intro/intro-banner-3.jpg',
+    '/img/uiLanding/home/intro/intro-banner-1.jpg',
     '/img/uiLanding/home/intro/intro-banner-2.jpg',
     '/img/uiLanding/home/intro/intro-banner-3.jpg',
-    '/img/uiLanding/home/intro/intro-banner-2.jpg',
+    '/img/uiLanding/home/intro/intro-banner-4.jpg',
   ]
 
   onMounted(() => {
@@ -122,7 +122,7 @@
     left: 0;
     bottom: 0;
     z-index: 10;
-    background: rgba(31, 76, 154, 0.34);
+    background: rgba(31, 76, 154, 0.2);
   }
 
   &-preview,
