@@ -1,7 +1,7 @@
 {
   "deputiesList": [
     {
-      "title": "АБАЙСКАЯ область",
+      "title": "Абайская область",
       "code": "KZ-ABY",
       "email": "A.Oraz@respublica-partiyasy.kz",
       "address": "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "title": "АКМОЛИНСКАЯ область",
+      "title": "Актюбинская область",
       "code": "KZ-AKM",
       "email": "M.Baktibayev@respublica-partiyasy.kz",
       "address": "г.Кокшетау, Е.Н.АУЕЛЬБЕКОВА, 117",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "title": "АКТЮБИНСКАЯ область",
+      "title": "Актюбинская область",
       "code": "KZ-AKT",
       "email": "G.Kaiyrbayeva@respublica-partiyasy.kz",
       "address": "г. Актобе, ул. Тилеу Батыр 10, БЦ AQTAS, 5 этаж",
@@ -46,7 +46,7 @@
       "deputies": []
     },
     {
-      "title": "АЛМАТИНСКАЯ область ",
+      "title": "Алматинская область ",
       "code": "KZ-ALM",
       "email": "B.Kabasov@respublica-partiyasy.kz",
       "address": "г. Конаев, мкр-н 1, уч. 35/10",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "title": "АТЫРАУСКАЯ область",
+      "title": "Атырауская область",
       "code": "KZ-ATY",
       "email": "G.Utebayev@respublica-partiyasy.kz",
       "address": "г. Атырау, пр. Султан Бейбарыс, 450",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "title": "ЖАМБЫЛСКАЯ область",
+      "title": "Жамбылская область",
       "code": "KZ-ZHA",
       "email": "n.iuldasheva@respublica-partiyasy.kz",
       "address": "г.Тараз, ул. Каныша Сатбаева, 19-а, 1 этаж",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "title": "ЖЕТЫСУСКАЯ область",
+      "title": "Жетысуыская область",
       "code": "KZ-ZHT",
       "email": "N.Kambayeva@respublica-partiyasy.kz",
       "address": "г. Талдыкорган, ул. Абылай хана, 186",
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "title": "КАРАГАНДИНСКАЯ область",
+      "title": "Карагандинкая область",
       "code": "KZ-KAR",
       "email": "a.amandykov@respublica-partiyasy.kz",
       "address": "г. Караганда, р-н им. Казыбек Би, пр. Н.Назарбаева, 46",
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "title": "КОСТАНАЙСКАЯ область",
+      "title": "Костанайская область",
       "code": "KZ-KUS",
       "email": "M.Madinina@respublica-partiyasy.kz",
       "address": "г. Костанай, пр. Аль-Фараби, 114, БЦ TURAN",
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "title": "КЫЗЫЛОРДИНСКАЯ область",
+      "title": "Кызылординская область",
       "code": "KZ-KZY",
       "email": "N.Talgatova@respublica-partiyasy.kz",
       "address": "г. Кызылорда, ул. Конаева, 19-а, 1 этаж",
@@ -269,7 +269,7 @@
       "deputies": []
     },
     {
-      "title": "МАНГИСТАУСКАЯ область",
+      "title": "Мангистауская область",
       "code": "KZ-MAN",
       "email": "S.Beisembayeva@respublica-partiyasy.kz",
       "address": "г. Актау, 16 мкрн, д. 25, БЦ Prime",
@@ -277,7 +277,7 @@
       "deputies": []
     },
     {
-      "title": "ПАВЛОДАРСКАЯ область",
+      "title": "Павлодарская область",
       "code": "KZ-PAV",
       "email": "Zh.Arganbai@respublica-partiyasy.kz",
       "address": "г. Павлодар, ул. Луговая 16, 9 этаж, каб. 908",
@@ -296,7 +296,7 @@
       ]
     },
     {
-      "title": "УЛЫТАУСКАЯ область",
+      "title": "Улытауская область",
       "code": "KZ-ULT",
       "email": "Zh.Iztuleuov@respublica-partiyasy.kz",
       "address": "г. Жезказган, ул. Мира 1",
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "title": "г.АСТАНА",
+      "title": "г.Астана",
       "code": "KZ-AKM-ASTANA",
       "email": "info@respublica-partiyasy.kz",
       "address": "Мангилик ел, 33/1, Бизнес-центр IPLAZA, 9 этаж",
@@ -398,7 +398,7 @@
       "deputies": []
     },
     {
-      "title": "г.АЛМАТЫ",
+      "title": "г.Алматы",
       "code": "KZ-ALM-CITY",
       "email": "S.Raiymbek@respublica-partiyasy.kz",
       "address": "г.Алматы, ул. Жарокова, 41, 1 этаж",
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "title": "г.ШЫМКЕНТ",
+      "title": "г.Шымкент",
       "code": "KZ-TUR-SHUMKENT",
       "email": "T.Yeszhan@respublica-partiyasy.kz",
       "address": "г.Шымкент, Аль-Фарабийский р-н, ул. Жандосова, зд. 21-а",
