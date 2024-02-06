@@ -230,3 +230,8 @@
   }
 }
 </style>
+<style>
+  .partyProgram .pdfDropDown .ac-dropdown_btn {
+    border-radius: 100px;
+  }
+</style>

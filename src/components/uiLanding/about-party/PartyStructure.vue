@@ -4,7 +4,11 @@
       <div class="partyStructure-inner" id="party-structure">
         <h2 class="partyStructure-title landing-title center">{{ $t('about-us-page.organizational-structure') }}</h2>
       
-        <img class="partyStructure-svg" src="/img/icons/party-structure-2.svg" alt="">
+        <img
+          class="partyStructure-svg"
+          :src="`/img/icons/party-structure-${$t('localy')}.svg`"
+          :alt="$t('about-us-page.organizational-structure')"
+        >
       </div>
     </div>
   </section>

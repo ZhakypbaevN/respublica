@@ -16,7 +16,7 @@
           />
           <div class="info-item-content">
             <h3 class="info-item-title">
-              {{ info.title }}
+              {{ info.title.toUpperCase() }}
             </h3>
 
             <span v-if="info.text" class="info-item-text">

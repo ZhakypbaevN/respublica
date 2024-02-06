@@ -1,8 +1,8 @@
 <template>
   <Dropdown
     class="pdfDropDown"
-    :btnText="$t('button.view-pdf')"
-    btnType="outline-blue"
+    :btnText="name ?? $t('button.view-pdf')"
+    :btnType="btnStyle"
     @click.stop
   >
     <DropdownItem
@@ -17,10 +17,14 @@
 
 <script setup lang="ts">
   interface IProps {
-    pdflinks: any
+    pdflinks: any,
+    name?: string,
+    btnStyle: string
   }
 
-  defineProps<IProps>()
+  withDefaults(defineProps<IProps>(), {
+    btnStyle: 'outline-blue'
+  })
 
   const langItems = [
     {
@@ -35,8 +39,3 @@
 
   const toPdf = (pdflink) => window.open(pdflink, '_blank')
 </script>
-<style>
-.pdfDropDown .ac-dropdown_btn {
-  border-radius: 100px;
-}
-</style>
