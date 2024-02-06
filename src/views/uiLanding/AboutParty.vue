@@ -4,20 +4,21 @@
     
     <section class="landing-block">
       <div class="wrapper">
-        <div class="party-charter">
+        <div
+          class="party-charter"
+          @click="focusToDropDown(`partyProgram-pdfDropDown-charter`)"
+        >
           <div class="party-charter-text">
             <h2 class="party-charter-title">{{ $t('about-us-page.party-is-charter.title') }}</h2>
             <h2 class="party-charter-title">{{ $t('about-us-page.party-is-charter.alga-respublica') }}</h2>
           </div>
 
-          <a href="/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf" target="_blank">
-            <Button
-              class="party-charter-pdfBtn"
-              :name="$t('about-us-page.party-is-charter.view-the-charter-btn')"
-              type="default-blue"
-              uppercase
-            />
-          </a>
+          <DropDownPDF
+            :pdflinks="charterLangs"
+            :name="$t('about-us-page.party-is-charter.view-the-charter-btn').toUpperCase()"
+            id="partyProgram-pdfDropDown-charter"
+            btnStyle="default-blue"
+          />
         </div>
       </div>
     </section>
@@ -36,6 +37,8 @@
 </template>
   
 <script setup lang="ts">
+  import DropDownPDF from '@/components/common/DropDownPDF.vue';
+
   import AboutUs from '@/components/uiLanding/about-party/AboutUs.vue';
   import History from '@/components/uiLanding/about-party/History.vue';
   import PartyLeaders from '@/components/uiLanding/about-party/PartyLeaders.vue';
@@ -73,6 +76,18 @@
       link: "#respublica-jastary"
     }
   ]
+
+  const charterLangs = {
+    ru: '/doc/ru/Устав_проект_новой_редакции_устав_в_новой_редакции_29_07_2023.pdf',
+    kz: '/doc/kz/Устав Respublica.pdf'
+  }
+
+  const focusToDropDown = (idName) => {
+    setTimeout(() => {
+      const button = document.querySelector(`#${idName} .ac-dropdown_btn`);
+      if (button) button.click();
+    }, 100)
+  }
 </script>
   
 <style scoped lang="scss">
@@ -175,11 +190,27 @@
     &-title {
       font-size: 22px;
     }
-
-    &-pdfBtn {
-      padding: 14px 16px;
-    }
   }
 }
 </style>
-  
+<style lang="scss">
+  .party-charter .pdfDropDown .ac-dropdown_btn {
+    padding: 20px 30px !important;
+    
+    & svg {
+      fill: white;
+    }
+
+    @media (max-width: 1400px) {
+      padding: 16px 18px !important;
+    }
+
+    @media (max-width: 768px) {
+      padding: 16px 18px !important;
+    }
+    
+    @media (max-width: 576px) {
+      padding: 14px 16px !important;
+    }
+  }
+</style>

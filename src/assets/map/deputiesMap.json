@@ -1,7 +1,7 @@
 {
   "deputiesList": [
     {
-      "title": "Абайская область",
+      "title": "Область Абай",
       "code": "KZ-ABY",
       "email": "A.Oraz@respublica-partiyasy.kz",
       "address": "г. Семей, ул. К.Бозтаева, д. 17-е, кв. 199",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "title": "Жетысуыская область",
+      "title": "Область Жетісу",
       "code": "KZ-ZHT",
       "email": "N.Kambayeva@respublica-partiyasy.kz",
       "address": "г. Талдыкорган, ул. Абылай хана, 186",
@@ -296,7 +296,7 @@
       ]
     },
     {
-      "title": "Улытауская область",
+      "title": "Область Ұлытау",
       "code": "KZ-ULT",
       "email": "Zh.Iztuleuov@respublica-partiyasy.kz",
       "address": "г. Жезказган, ул. Мира 1",
