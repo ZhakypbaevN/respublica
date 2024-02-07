@@ -71,10 +71,12 @@
 // Components
 import { ref } from 'vue'
 import axios from 'axios'
+import { useI18n } from 'vue-i18n'
 
 // Modules
 import { useToast } from '@/modules/toast'
 
+const { t } = useI18n()
 const { toast } = useToast()
 
 interface IProps {

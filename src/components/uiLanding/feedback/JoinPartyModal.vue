@@ -404,6 +404,7 @@
           message: t('message.you-have-successfully-joined-the-party'),
           type: 'success'
         })
+        
   
         emits('finish')
         setTimeout(() => {
