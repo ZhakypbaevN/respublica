@@ -1,0 +1,448 @@
+{
+  "deputiesList": [
+    {
+      "title": "Абай облысы",
+      "code": "KZ-ABY",
+      "email": "A.Oraz@respublica-partiyasy.kz",
+      "address": "Семей қаласы,Қ.Бозтаев көшесі, 17-е үй,199 пәтер",
+      "locationID": 194,
+      "deputies": [
+        {
+          "name": "Ахметқанов Арман Шамаевич",
+          "role": "Абай облысы мәслихатының депутаты"
+        },
+        {
+          "name": "Абдуллин Асқар Талғатұлы",
+          "role": "Семей қаласы мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/Abdullin-Askar.jpg"
+        },
+        {
+          "name": "Жұматов Қайыржан Серікұлы",
+          "role": "Ақсуат аудандық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/abay/zhumatov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Ақмола облысы",
+      "code": "KZ-AKM",
+      "email": "M.Baktibayev@respublica-partiyasy.kz",
+      "address": "Көкшетау қаласы, Е.Н.Әуелбеков, 117 үй",
+      "locationID": 4,
+      "deputies": [
+        {
+          "name": "Жақыпов Жанат Еркінұлы",
+          "role": "Көкшетау қалалық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/akmol/Zhakupov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Ақтөбе облысы",
+      "code": "KZ-AKT",
+      "email": "G.Kaiyrbayeva@respublica-partiyasy.kz",
+      "address": "Ақтөбе қаласы, Тілеу Батыр 10, AQTAS СО, 5 қабат",
+      "locationID": 25,
+      "deputies": []
+    },
+    {
+      "title": "Алматы облысы",
+      "code": "KZ-ALM",
+      "email": "B.Kabasov@respublica-partiyasy.kz",
+      "address": "Қонаев қ., 1 ықшамаудан, 35/10 уч.",
+      "locationID": 39,
+      "deputies": [
+        {
+          "name": "Ақберген Қияс Жапарбекұлы",
+          "role": "Алматы облыстық мәслихатының депутаты"
+        },
+        {
+          "name": "Түсібиянова Гүлжан Нұрбекқызы",
+          "role": "Алматы облыстық мәслихатының депутаты"
+        }
+      ]
+    },
+    {
+      "title": "Атырау облысы",
+      "code": "KZ-ATY",
+      "email": "G.Utebayev@respublica-partiyasy.kz",
+      "address": "Атырау қаласы, Сұлтан Бейбарыс к., 450 үй",
+      "locationID": 51,
+      "deputies": [
+        {
+          "name": "Қасенов Серік",
+          "role": "Атырау облыстық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/Kasenov-Serik.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Жамбыл облысы",
+      "code": "KZ-ZHA",
+      "email": "n.iuldasheva@respublica-partiyasy.kz",
+      "address": "Тараз қаласы, Қаныш Сәтбаев к., 19-а, 1 қабат",
+      "locationID": 74,
+      "deputies": [
+        {
+		      "name": "Серік Данияр",
+          "role": "Жамбыл облыстық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/Serik-Daniyar.jpg"
+        },
+        {
+          "name": "Темірхан Нұрсұлтан Талғатұлы",
+          "role": "Жамбыл облыстық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/jambyl/Temirkhan.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Жетісу облысы",
+      "code": "KZ-ZHT",
+      "email": "N.Kambayeva@respublica-partiyasy.kz",
+      "address": "Талдықорған қ., Абылай хан к., 186 үй",
+      "locationID": 205,
+      "deputies": [
+        {
+           "name": "Габдракипова Алсу Фаритовна",
+          "role": "Талдықорған қалалық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Gabdrakipova.jpg"
+        },
+        {
+          "name": "Есмаханов Әзиз Абылайұлы",
+          "role": "Талдықорған қалалық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
+        },
+        {
+          "name": "Жуанышев Талғат Жұмашұлы",
+          "role": "Ақсу аудандық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
+        },
+        {
+          "name": "Қылышбеков Темірлан Бақытбекұлы",
+          "role": "Жетісу облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Kylyshbekov.jpg"
+        },
+        {
+          "name": "Махкамова Нұржамал Асанбайқызы",
+          "role": "Алакөл аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mahkamova.jpg"
+        },
+        {
+          "name": "Мұстапова Гүлназия Садыбековна",
+          "role": "Жетісу облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mustapova.jpg"
+        },
+        {
+          "name": "Машеков Батыр Оралбайұлы",
+          "role": "Талдықорған қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Mashekov.jpg"
+        },
+        {
+          "name": "Садиев Алмат Тезекбайұлы",
+          "role": "Жетісу облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zhetisu/Sadiev.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Қарағанды облысы",
+      "code": "KZ-KAR",
+      "email": "a.amandykov@respublica-partiyasy.kz",
+      "address": "Қарағанды қ., Қазыбек Би ауданы, Н.Назарбаев даңғылы, 46 үй",
+      "locationID": 86,
+      "deputies": [
+        {
+          "name": "Әлиіжанов Арман Жақанұлы",
+          "role": "Қарағанды облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Arman-Alimzhanov.jpg"
+        },
+        {
+          "name": "Ахмадин Дидар Айдарұлы",
+          "role": "Қарағанды қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/karaganda/Ahmadin.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Қостанай облысы",
+      "code": "KZ-KUS",
+      "email": "M.Madinina@respublica-partiyasy.kz",
+      "address": "Қостанайқ., Әль-Фараби даңғылы, 114, TURAN СҮ",
+      "locationID": 100,
+      "deputies": [
+        {
+          "name": "Ақдәулетов Әуез Әбілдәұлы",
+          "role": "Қостанай аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/kostanay/Agdavletov.jpg"
+        },
+        {
+          "name": "Ахметжанов Асылбек Қосылбекұлы",
+          "role": "Жангелді аудандық мәслихат депутаты"
+        },
+        {
+          "name": "Байназаров Алексей Мерекеұлы",
+          "role": "Федоров аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/almaty/baynazarov.jpg"
+        },
+        {
+          "name": "Жамансарин Айдар Ақтайұлы",
+          "role": "Амангелді аудандық мәслихат депутаты"
+        },
+        {
+          "name": "Ищанова Венера Ибрагимовна",
+          "role": "Жетіқара аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Ishchanova-Venus.jpg"
+        },
+        {
+          "name": "Колесникова Наталья Аатольевна",
+          "role": "Сарыкөл аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Natalia-Kolesnikova.jpg"
+        },
+        {
+          "name": "Латыпов Қуаныш Жеңісұлы",
+          "role": "Арқалық қалалық мәслихат депутаты"
+        },
+        {
+          "name": "Маишев Қайрат Әлембайұлы",
+          "role": "Қостанай облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/kostanay/Maishev.jpg"
+        },
+		{
+          "name": "Мұстафин Ермек Әбдуғалиұлы",
+          "role": "Әулиекөл аудандық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/kostanay/mustafin.jpg"
+        },
+        {
+          "name": "Молдамұратова Динара Амангелдіқызы",
+          "role": "Лисаковск қалалық мәслихат депутаты"
+        },
+        {
+          "name": "Нұрмағамбетов Дидар Батырбайұлы",
+          "role": "Мендіқара аудандық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/kostanay/nurmagambet.jpg"
+        },
+        {
+          "name": "Омаров Жанболат Сартайұлы",
+          "role": "Ұзынкөл аудандық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/Omarov-Zhanbulat.jpg"
+        },
+        {
+          "name": "Руднева Наталья Дмитриевна",
+          "role": "Бейімбет Майлина атындағы аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/kostanay/Rudneva.jpg"
+        },
+        {
+          "name": "Тасанов Данияр Маратұлы",
+          "role": "Наурызым аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Asanov-Daniyar.jpg"
+        },
+        {
+          "name": "Усов Михаил Александрович",
+          "role": "Қарабалық аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Mikhail-Usov.jpg"
+        },
+        {
+          "name": "Фицнер Дмитрий Сергеевич",
+          "role": "Алтынсарин аудандық мәслихат депутаты"
+        },
+        {
+          "name": "Шишов Игорь Игоревич",
+          "role": "Рудный қалалық мәслихат депутаты"
+        },
+        {
+          "name": "Жүсіпова Әсия Жұмаққызы",
+          "role": "Қостанай қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/kostanay/Yusupova.jpg"
+        },
+        {
+          "name": "Жұмабаева Ақерке Тілендіқызы",
+          "role": "Денисов аудандық мәслихат депутаты"
+        }
+      ]
+    },
+    {
+      "title": "Қызылорда облысы",
+      "code": "KZ-KZY",
+      "email": "N.Talgatova@respublica-partiyasy.kz",
+      "address": "Қызылорда қ., Қонаев к., 19-а, 1 қабат",
+      "locationID": 121,
+      "deputies": []
+    },
+    {
+      "title": "Маңғыстау облысы",
+      "code": "KZ-MAN",
+      "email": "S.Beisembayeva@respublica-partiyasy.kz",
+      "address": "Ақтау қ., 16 ықшамаудан, 25 үй, Prime СҮ",
+      "locationID": 130,
+      "deputies": []
+    },
+    {
+      "title": "Павлодар облысы",
+      "code": "KZ-PAV",
+      "email": "Zh.Arganbai@respublica-partiyasy.kz",
+      "address": "Павлодар қаласы, Луговая к. 16, 9 қабат, 908 каб.",
+      "locationID": 138,
+      "deputies": [
+        {
+          "name": "Маханбет Амангелді",
+          "role": "Павлодар облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Makhambet-Amangeldy.jpg"
+        },
+        {
+          "name": "Мантыков Сабиден Сағитханұлы",
+          "role": "Павлодар облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Mantykov-Sabiden.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Ұлытау облысы",
+      "code": "KZ-ULT",
+      "email": "Zh.Iztuleuov@respublica-partiyasy.kz",
+      "address": "Жезқазған қ., Бейбітшілік к., 1",
+      "locationID": 215,
+      "deputies": []
+    },
+    {
+      "title": "Солтүстік Қазақстан облысы",
+      "code": "KZ-SEV",
+      "email": "a.beliyalov@respublica-partiyasy.kz",
+      "address": "Петропав қаласы, Алтынсарин к., 168-б",
+      "locationID": 152,
+      "deputies": [
+        {
+          "name": "Домаев Сергей Александрович",
+          "role": "Солтүстік Қазақстан облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/sko/Domaev.jpg"
+        },
+        {
+          "name": "Крель Дмитрий",
+          "role": "Аққайың аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/sko/Krel.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Батыс Қазақстан облысы",
+      "code": "KZ-ZAP",
+      "email": "d.makatov@respublica-partiyasy.kz",
+      "address": "Орал қ., Желаево к., Трудовая ауылы, 6/3",
+      "locationID": 59,
+      "deputies": [
+        {
+          "name": "Аминов Асланбек Талапқалиұлы",
+          "role": "Батыс Қазақстан облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zko/Aminov.jpg"
+        },
+        {
+		  "name": "Бисенов Армат Гимранұлы",
+          "role": "Бәйтерек аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zko/Bisenov.jpg"
+        },
+        {
+          "name": "Ғабдуалиев Мереке Тілекұлы",
+          "role": "Орал қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/zko/Gabdualiev.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Восточно-Казахстанская область",
+      "code": "KZ-VOS",
+      "email": "Zh.Hogzhilbek@respublica-partiyasy.kz",
+      "address": "Өскемен қаласы, Чехов к., 69, 1 пәтер",
+      "locationID": 167,
+      "deputies": [
+        {
+          "name": "Бейсов Тілек Мұратұлы",
+          "role": "Өскемен қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/vko/Beysov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Түркістан облысы",
+      "code": "KZ-TUR",
+      "email": "B.Rysbekov@respublica-partiyasy.kz",
+      "address": "Түркістан қаласы, Б.Батырбеков к., 33 үй, 13 пәтер",
+      "locationID": 177,
+      "deputies": [
+        {
+          "name": "Айтқұлов Бекжан Бахтыбекұлы",
+          "role": "Түркістан облыстық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Aitkulov-Bekzhan.jpg"
+        },
+        {
+		  "name": "Абдуллаев Нұрсұлтан Пархадұлы",
+          "role": "Сауран аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/turkestan/Abdullaev.jpg"
+        },
+        {
+          "name": "Жұмагелдиева Гүлдариға",
+          "role": "Кентау қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/turkestan/Zhumageldieva.jpg"
+        },
+        {
+          "name": "Құрақбаев  Жақсыбай Болатұлы",
+          "role": "Мақтаарал аудандық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/turkestan/Kurakbaev.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Астана қаласы",
+      "code": "KZ-AKM-ASTANA",
+      "email": "info@respublica-partiyasy.kz",
+      "address": "Мәңгілік ел, 33/1, IPLAZA сауда үйі, 9 қабат",
+      "locationID": 1,
+      "deputies": []
+    },
+    {
+      "title": "Алматы қаласы",
+      "code": "KZ-ALM-CITY",
+      "email": "S.Raiymbek@respublica-partiyasy.kz",
+      "address": "Алматы қ., Жароков к., 41, 1 қабат",
+      "locationID": 2,
+      "deputies": [
+        {
+          "name": "Бегалин Қайрат Талапұлы",
+          "role": "Алматы қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/almaty/begalin.jpg"
+        },
+        {
+          "name": "Ыдырысов Руслан Рашитұлы",
+          "role": "Алматы қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/almaty/idrisov.jpg"
+        },
+        {
+          "name": "Жайнарбай Жалынбек",
+          "role": "Алматы қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/almaty/zhainarbay.jpg"
+        },
+        {
+          "name": "Серіова Салтанат Бахтиярқызы",
+          "role": "Алматы қалалық мәслихат депутаты"
+        },
+        {
+          "name": "Тұрсынов Әкім Хазретәлиұлы",
+          "role": "Алматы қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/almaty/Tursunov.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Шымкент қаласы",
+      "code": "KZ-TUR-SHUMKENT",
+      "email": "T.Yeszhan@respublica-partiyasy.kz",
+      "address": "Шымкент қ., Әл-Фараби ауданы, Жандосов көшесі, 21-а ғимараты",
+      "locationID": 3,
+      "deputies": [
+        {
+          "name": "Нұрлыбаев Асхат Мелдебекұлы",
+          "role": "Шымкент қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Nurlybaev-Askhat.jpg"
+        }
+      ]
+    }
+  ]
+}

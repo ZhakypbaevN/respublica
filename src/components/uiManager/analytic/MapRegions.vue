@@ -19,7 +19,8 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap.json";
-import deputiesMap from "@/assets/map/deputiesMap.json";
+import deputiesMapRU from "@/assets/map/deputiesMap-ru.json";
+import deputiesMapKZ from "@/assets/map/deputiesMap-kz.json";
 
 import { IAnalyticsRegionalMemberships } from '@/types/analytics';
 import { getRegionalMembershipsList } from '@/actions/uiManager/analytics';
@@ -29,7 +30,8 @@ const { t } = useI18n();
 const mapData = ref<IAnalyticsRegionalMemberships[]>();
 
 const period = ref()
-const regions = reactive(deputiesMap.deputiesList.map((x) => x))
+const deputiesMapList = (t('localy') === 'ru' ? deputiesMapRU : deputiesMapKZ).deputiesList;
+const regions = reactive(deputiesMapList.map((x) => x))
 
 onMounted(async () => {
   const response = await getRegionalMembershipsList();
@@ -39,12 +41,6 @@ onMounted(async () => {
     
     const map = document.querySelector('.map');
     let root = am5.Root.new(map);
-
-    // const cityDotsList = [
-    //   { name: 'г. Алматы', locationID: 2, location: [43.2380, 76.8829] },
-    //   { name: 'г. Астана', locationID: 1, location: [51.1655, 71.4272] },
-    //   { name: 'г. Шымкент', locationID: 3, location: [42.3205, 69.5876] }
-    // ];
 
     // DOTS GeoJSON data
     var cityDotsData = {
@@ -100,7 +96,7 @@ onMounted(async () => {
   
     // -------- Create polygon series --------
     const getCount = polygonId => {
-      const polygon = deputiesMap.deputiesList.find(region => region.code === polygonId)
+      const polygon = deputiesMapList.find(region => region.code === polygonId)
 
       let sum = 0;
       const region = mapData.value.find((region) => polygon.locationID === region.location_id)
@@ -117,7 +113,7 @@ onMounted(async () => {
     let polygonSeries = chart.series.push(
       am5map.MapPolygonSeries.new(root, {
         geoJSON: { type: am5geodata_kazakhstanMap.type, features: customMap },
-        include: deputiesMap.deputiesList.map(obl => {
+        include: deputiesMapList.map(obl => {
           return obl.code
         }),
         fill: am5.color(0xF2F4F6),
@@ -145,7 +141,7 @@ onMounted(async () => {
   
     const nameToLowerCase = ({id, name}: {id: string, name: string}) => {
       if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
-      else if (id === 'KZ-TUR-SHUMKENT' || id === 'KZ-AKM-ASTANA' || id === 'KZ-ALM-CITY') return name.slice(0, 2) + name[2].toUpperCase() + name.slice(3).toLowerCase();
+      else if (t('localy') === 'ru' && (id === 'KZ-TUR-SHUMKENT' || id === 'KZ-AKM-ASTANA' || id === 'KZ-ALM-CITY')) return name.slice(0, 2) + name[2].toUpperCase() + name.slice(3).toLowerCase();
       return name[0].toUpperCase() + name.slice(1).toLowerCase()
     }
     
@@ -201,7 +197,7 @@ onMounted(async () => {
     );
     
     pointSeries.data.setAll([
-      ...deputiesMap.deputiesList.map(obl => {
+      ...deputiesMapList.map(obl => {
         const name = nameToLowerCase({id: obl.code, name: obl.title});
         let nameArray = name.split(' ')
         
@@ -255,7 +251,7 @@ onMounted(async () => {
     });
   
     polygonSeries.data.setAll(
-      deputiesMap.deputiesList.map(obl => {
+      deputiesMapList.map(obl => {
         const polygon = {
           id: '',
           name: '',

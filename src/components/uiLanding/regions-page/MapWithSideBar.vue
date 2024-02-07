@@ -78,14 +78,16 @@
   import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
   
   import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap.json";
-  import deputiesMap from "@/assets/map/deputiesMap.json";
+  import deputiesMapRU from "@/assets/map/deputiesMap-ru.json";
+  import deputiesMapKZ from "@/assets/map/deputiesMap-kz.json";
   
   import { onMounted, reactive, ref } from 'vue';
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()
   
-  const regions = reactive(deputiesMap.deputiesList.map((x) => x))
+  const deputiesMapList = (t('localy') === 'ru' ? deputiesMapRU : deputiesMapKZ).deputiesList;
+  const regions = reactive(deputiesMapList.map((x) => x))
   
   const showSideBar = ref(false)
   const mapSidebarTopBlock = ref(null)
@@ -130,7 +132,7 @@
   
     // -------- Create polygon series --------
     const getCount = polygonId => {
-      const region = deputiesMap.deputiesList.find(region => region.code === polygonId)
+      const region = deputiesMapList.find(region => region.code === polygonId)
       if (region) return region.deputies.length
     }
   
@@ -144,7 +146,7 @@
     let polygonSeries = chart.series.push(
       am5map.MapPolygonSeries.new(root, {
         geoJSON: { type: am5geodata_kazakhstanMap.type, features: customMap },
-        include: deputiesMap.deputiesList.map(obl => {
+        include: deputiesMapList.map(obl => {
           return obl.code
         }),
         fill: am5.color(0x5882ED),
@@ -181,7 +183,7 @@
   
     const nameToLowerCase = ({id, name}: {id: string, name: string}) => {
       if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
-      else if (id === 'KZ-TUR-SHUMKENT' || id === 'KZ-AKM-ASTANA' || id === 'KZ-ALM-CITY') return name.slice(0, 2) + name[2].toUpperCase() + name.slice(3).toLowerCase();
+      else if (t('localy') === 'ru' && (id === 'KZ-TUR-SHUMKENT' || id === 'KZ-AKM-ASTANA' || id === 'KZ-ALM-CITY')) return name.slice(0, 2) + name[2].toUpperCase() + name.slice(3).toLowerCase();
       return name[0].toUpperCase() + name.slice(1).toLowerCase()
     }
 
@@ -199,7 +201,7 @@
       setTimeout(() => {
         regions.forEach(region => {
           if (region.code === ev.target.dataItem!.dataContext!.id) {
-            deputiesMap.deputiesList.forEach(obl => {
+            deputiesMapList.forEach(obl => {
               if (obl.code === ev.target.dataItem!.dataContext!.id) {
                 sideBarData.title = region.title;
                 sideBarData.deputies = region.deputies;
@@ -211,7 +213,7 @@
           } else region.active = false;
         })
   
-        polygonSeries.data.setAll(deputiesMap.deputiesList.map(obl => {
+        polygonSeries.data.setAll(deputiesMapList.map(obl => {
           const polygon = {}
           polygon.id = obl.code
           polygon.address = obl.address;
@@ -268,7 +270,7 @@
     );
     
     pointSeries.data.setAll([
-      ...deputiesMap.deputiesList.map(obl => {
+      ...deputiesMapList.map(obl => {
         const name = nameToLowerCase({id: obl.code, name: obl.title});
         let nameArray = name.split(' ')
         
@@ -322,7 +324,7 @@
     });
   
     polygonSeries.data.setAll(
-      deputiesMap.deputiesList.map(obl => {
+      deputiesMapList.map(obl => {
         const polygon = {
           id: '',
           name: '',

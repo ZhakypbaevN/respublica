@@ -47,11 +47,16 @@
 </template>
 
 <script setup lang="ts">
-import deputiesMap from "@/assets/map/deputiesMap.json";
+import deputiesMapRU from "@/assets/map/deputiesMap-ru.json";
+import deputiesMapKZ from "@/assets/map/deputiesMap-kz.json";
 
 import { reactive } from 'vue';
+import { useI18n } from 'vue-i18n'
 
-const regions = reactive(deputiesMap.deputiesList.map((x) => x))
+const { t } = useI18n();
+
+const deputiesMapList = (t('localy') === 'ru' ? deputiesMapRU : deputiesMapKZ).deputiesList;
+const regions = reactive(deputiesMapList.map((x) => x))
 
 const toggleShow = (idx: number) => {
   if (regions[idx].active) regions[idx].active = false;
