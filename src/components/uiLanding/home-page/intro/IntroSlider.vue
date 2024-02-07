@@ -123,7 +123,7 @@
     left: 0;
     bottom: 0;
     z-index: 10;
-    background: rgba(31, 76, 154, 0.34);
+    background: rgba(31, 76, 154, 0.2);
   }
 
   &-preview,
