@@ -187,42 +187,6 @@ const deputieslist = reactive([
             doc: "/doc/ru/deputies-requests/berdenov/answer/«Қазақстан темір жолы» ҰК» АҚ қызметіне қатысты 13.10.23 ответ.pdf",
           }
         ]
-      },
-      {
-        date: "",
-        name: "",
-        doc: "",
-        
-        answer: [
-          {
-            date: "12.05.23",
-            doc: "/doc/ru/deputies-requests/berdenov/answer/12.05.23 pdf.pdf",
-          }
-        ]
-      },
-      {
-        date: "",
-        name: "",
-        doc: "",
-        
-        answer: [
-          {
-            date: "14.07.23",
-            doc: "/doc/ru/deputies-requests/berdenov/answer/14.07.23 pdf.pdf",
-          }
-        ]
-      },
-      {
-        date: "",
-        name: "",
-        doc: "",
-        
-        answer: [
-          {
-            date: "12.10.23",
-            doc: "/doc/ru/deputies-requests/berdenov/answer/12.10.23 pdf.pdf",
-          }
-        ]
       }
     ],
   },
