@@ -29,7 +29,7 @@
 
         <div class="newsEdit-header-right">
           <PublishToggle
-            :data="newsData"
+            :data="newsData.ru"
             @finish="() => {
               newsData.ru.published = !newsData.ru.published;
               newsData.kz.published = !newsData.kz.published;
@@ -123,6 +123,29 @@
                       required
                     />
                   </div>
+
+                  <div class="newsEdit-formItem">
+                    <label for="author" class="newsEdit-formItem-label">{{ lang.form.authtorNameInput.placeholder }}</label>
+                    <Input
+                      name="author"
+                      type="textarea"
+                      v-model="newsData[lang.value].source_title"
+                      :placeholder="lang.form.authtorNameInput.placeholder"
+                      staticPlaceholder
+                    />
+                  </div>
+
+                  <div class="newsEdit-formItem">
+                    <label for="url" class="newsEdit-formItem-label">{{ lang.form.subtitleInput.placeholder }}</label>
+                    <Input
+                      name="url"
+                      type="textarea"
+                      v-model="newsData.ru.source_url"
+                      :placeholder="lang.form.urlInput.placeholder"
+                      staticPlaceholder
+                    />
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -140,12 +163,7 @@
             required
           />
         </div>
-
-        <NewsComments
-          v-if="route.params.news_id"
-          :newsID="route.params.news_id.toString()"
-        />
-
+        
         <Button
           :name="
             route.params.news_id
@@ -220,6 +238,14 @@
         subtitleInput: {
           title: 'Подзаголовок',
           placeholder: 'Введите подзаголовок'
+        },
+        authtorNameInput: {
+          title: 'Название прессы',
+          placeholder: 'Введите название прессы'
+        },
+        urlInput: {
+          title: 'Ссылку на статью автора',
+          placeholder: 'Введите ссылку на статью автора'
         }
       }
     },
@@ -236,6 +262,14 @@
         subtitleInput: {
           title: 'Қысқа мазмұны',
           placeholder: 'Қысқаша мазмұнын енгізіңіз'
+        },
+        authtorNameInput: {
+          title: 'Баспасөз атауы',
+          placeholder: 'Баспасөз атауын енгізіңіз'
+        },
+        urlInput: {
+          title: 'Автордың мақаласына сілтеме',
+          placeholder: 'Автордың мақаласына сілтеме енгізіңіз'
         }
       }
     }
@@ -262,6 +296,8 @@
         title: '',
         preview_text: '',
         content: '',
+        source_title: '',
+        source_url: '',
         published: true,
         created_at: moment().format('YYYY-MM-DD'),
         preview_image: null
@@ -284,10 +320,11 @@
   
         for (const key in newsData[lang.value]) {
           if (key === 'created_at') formData.append(key, moment(newsData.ru[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-          else if (key !== 'preview_image' && newsData[lang.value][key]) formData.append(key, newsData[lang.value][key]);
+          else if (key !== 'preview_image' && key !== 'source_url' && newsData[lang.value][key]) formData.append(key, newsData[lang.value][key]);
         }
   
         if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
+        formData.append("source_url", newsData.ru.source_url);
         formData.append("alias_category", 'press-about-us');
 
         if (newsID) await putMediaNewsData(newsID.toString(), formData, lang.api)
