@@ -1,3 +1,5 @@
+import { defaultLocale } from '@/assets/lang/exports'
+
 function convertDateTime(datetimeStr) {
   const datetime = new Date(datetimeStr);
 
@@ -16,7 +18,7 @@ function convertDateTime(datetimeStr) {
   const russianDateTime = datetime.toLocaleString('ru-RU', optionsRussian);
   const kazakhDateTime = datetime.toLocaleString('kk-KZ', optionsKazakh);
 
-  return russianDateTime
+  return defaultLocale == 'ru' ? russianDateTime : kazakhDateTime;
 }
 
 export default convertDateTime

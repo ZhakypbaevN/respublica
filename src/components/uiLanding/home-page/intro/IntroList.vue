@@ -91,7 +91,7 @@
   
   const showBanner = ref(0);
   const bannersList = [
-    '/img/uiLanding/home/intro/intro-banner-1.jpg',
+    '/img/uiLanding/home/intro/intro-banner-1-test.jpg',
     '/img/uiLanding/home/intro/intro-banner-2.jpg',
     '/img/uiLanding/home/intro/intro-banner-3.jpg',
     '/img/uiLanding/home/intro/intro-banner-4.jpg',
