@@ -222,10 +222,11 @@
 
         for (const key in newsData[lang.value]) {
           if (key === 'created_at') formData.append(key, moment(newsData.ru[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-          else if (newsData[lang.value][key]) formData.append(key, newsData[lang.value][key]);
+          else if (key !== 'content' && newsData[lang.value][key]) formData.append(key, newsData[lang.value][key]);
         }
 
         formData.append("alias_category", 'video-gallery');
+        formData.append("content", newsData.ru.content);
 
         if (newsID) await putMediaNewsData(newsID.toString(), formData, lang.api)
         else newsID = (await postMediaNewsData(formData, lang.api)).id.toString();

@@ -1,10 +1,10 @@
 <template>
   <Dropdown
-    :btnText="data.ru.published ? $t('status.published') : $t('status.unpublished')"
+    :btnText="data.published ? $t('status.published') : $t('status.unpublished')"
     :loading="isloading"
     @click.stop
   >
-    <DropdownItem v-if="!data.ru.published" @click="togglePublishNews">{{ $t('button.publish') }}</DropdownItem>
+    <DropdownItem v-if="!data.published" @click="togglePublishNews">{{ $t('button.publish') }}</DropdownItem>
     <DropdownItem v-else @click="togglePublishNews">{{ $t('button.unpublish') }}</DropdownItem>
   </Dropdown>
 </template>
