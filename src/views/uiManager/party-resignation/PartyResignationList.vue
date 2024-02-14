@@ -67,7 +67,7 @@
   import { useRoute, useRouter } from 'vue-router'
 
   import debounce from '@/helpers/debounce'
-  import { PartyResignationsValues } from '@/types/party-resignations'
+  import { IPartyResignationsValues } from '@/types/party-resignations'
   import { getPartyResignationsList } from '@/actions/uiManager/party-resignations';
 
   const { t } = useI18n()
@@ -76,7 +76,7 @@
   const router = useRouter()
   const search = ref(null);
 
-  const partyValues = reactive<PartyResignationsValues>({
+  const partyValues = reactive<IPartyResignationsValues>({
     tableValues: null,
     total: 0,
     isEmpty: false,
