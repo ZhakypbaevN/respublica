@@ -266,9 +266,11 @@
     })
       .then((response) => {
         partyData.value = response.data;
+        isLoading.page = false;
       })
       .catch((err) => {
         console.log('err', err);
+        isLoading.page = false;
         // toast({
         //   message: 'Возникли ошибки при запросе'
         // })
@@ -407,6 +409,10 @@
       &.blue {
         color: var(--accent-color);
       }
+    }
+
+    &-listBlock {
+      margin-bottom: 30px;
     }
   
     &-listBlock-list {
@@ -818,5 +824,10 @@
 
   @media (max-width: 380px) {
   }
+}
+</style>
+<style>
+.exitParty-content-listBlock-list li  a {
+  color: var(--accent-color);
 }
 </style>
