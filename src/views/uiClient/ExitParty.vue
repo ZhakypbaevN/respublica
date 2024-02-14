@@ -17,48 +17,27 @@
               <ul class="exitParty-content-listBlock-list" v-html="$t('quit-party.rules.list')" />
             </div>
 
-            <p v-html="$t('quit-party.rules.notice')" />
+            <p>
+              <span v-html="$t('quit-party.rules.notice')" />
+              <a href="mailto:info@respublica-partiyasy.kz">info@respublica-partiyasy.kz</a>
+            </p>
           </div>
 
 
-          <Form class="exitParty-form" @finish="postRequestExitParty">
+          <Form class="exitParty-form" @finish="onPostRequestExitParty">
             <div class="exitParty-form-inputs">
-              <!-- <div class="exitParty-form-select">
-                <label for="position">Выберите причину выхода</label>
-                <Select
-                  placeholder="Выберите из списка причину"
+              <div>
+                <Input
+                  name="position"
+                  type="textarea"
+                  v-model="exitPartyDatas.text"
+                  :placeholder="$t('formdata.enter-the-reason-for-the-exit')"
                   staticPlaceholder
-                  :options="[
-                    {label: 'Несогласие с политикой партии', value: 'Несогласие с политикой партии'},
-                    {label: 'Разочарование в лидерстве партии', value: 'Разочарование в лидерстве партии'},
-                    {label: 'Несоответствие партийных ценностей с собственными убеждениями', value: 'Несоответствие партийных ценностей с собственными убеждениями'},
-                    {label: 'Отсутствие эффективных механизмов для осуществления изменений в партии', value: 'Отсутствие эффективных механизмов для осуществления изменений в партии'},
-                    {label: 'Недовольство сделанными партией решениями или действиями', value: 'Недовольство сделанными партией решениями или действиями'},
-                    {label: 'Неудовлетворительное взаимодействие с другими членами партии', value: 'Неудовлетворительное взаимодействие с другими членами партии'},
-                    {label: 'Потеря доверия к партии и ее руководству', value: 'Потеря доверия к партии и ее руководству'},
-                    {label: 'Желание присоединиться к другой партии, которая лучше соответствует своим убеждениям', value: 'Желание присоединиться к другой партии, которая лучше соответствует своим убеждениям'},
-                    {label: 'Другое', value: null}
-                  ]"
-                  v-model="exitPartyDatas.select"
                   required
                 />
-              </div> -->
+              </div>
 
-              <TransitionGroup>
-                <div
-                  v-if="!exitPartyDatas.select || true"
-                  v-collapse
-                >
-                  <Input
-                    name="position"
-                    type="textarea"
-                    v-model="exitPartyDatas.text"
-                    :placeholder="$t('formdata.enter-the-reason-for-the-exit')"
-                    staticPlaceholder
-                    required
-                  />
-                </div>
-
+              <Transition>
                 <div
                   v-if="!exitPartyDatas.document"
                   v-collapse
@@ -84,7 +63,7 @@
                     />
                   </Button>
                 </div>
-              </TransitionGroup>
+              </Transition>
             </div>
 
             <div class="exitParty-doc" v-if="exitPartyDatas.document">
@@ -130,7 +109,7 @@
 
             <div class="exitParty-motive">
               <h4 class="exitParty-motive-title">{{ $t("formdata.reason") }}:</h4>
-              <p class="exitParty-motive-text">{{ exitPartyDatas.select ?? exitPartyDatas.text }}</p>
+              <p class="exitParty-motive-text">{{ exitPartyDatas.text }}</p>
             </div>
 
             <div class="exitParty-doc">
@@ -196,29 +175,29 @@
 </template>
 
 <script setup lang="ts">
-  import axios from 'axios'
-
   import { reactive, ref, onMounted } from 'vue';
   import { useI18n } from 'vue-i18n'
 
   import moment from 'moment';
 
-  // Modules
+  // Modules & Helpers
   import { useToast } from '@/modules/toast'
   import getFileUrl from '@/helpers/getFileUrlByDate';
 
+  // types
+  import { IExitPartyData, IPartyResignation } from '@/types/party-resignations';
+  import { getPartyData, getRequestExitParty, postRequestExitParty } from '@/actions/uiClient/party-data';
   
   const { t } = useI18n()
   const { toast } = useToast()
 
   const partyData = ref();
-  const exitPartyDatas = reactive({
-    select: t('quit-party.disagreement-with-the-party-is-policy'),
+  const exitPartyDatas = reactive(<IExitPartyData>{
     text: null,
     document: null,
     status: null
   })
-  const oldExitRequest = ref({
+  const oldExitRequest = ref(<IPartyResignation>{
     status: null
   });
   const fileTypes = ['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg', 'PNG', 'JPG'];
@@ -227,6 +206,7 @@
     page: true,
     btn: false
   })
+
   const token = localStorage.getItem('access_token');
 
   const clickInputFile = () => {
@@ -253,115 +233,62 @@
     return fileTypes.includes(type[type.length - 1])
   }
 
-  // Get Party Data
-  const getPartData = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships`;
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then((response) => {
-        partyData.value = response.data;
-      })
-      .catch((err) => {
-        console.log('err', err);
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      });
-  }
-
-
-  // Get Exit Party Data
-
-  onMounted(() => {
-    getPartData();
-    getRequestExitParty();
-  });
-
-  const getRequestExitParty = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation`;
-
-    try {
-      axios({
-        method: "get",
-        url: url,
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer ' + token
-        }
-      })
-        .then((response) => {
-          console.log('response', response);
-          
-          if (response.data.status === 'pending') {
-            exitPartyDatas.document = {};
-            exitPartyDatas.document.name = response.data.document;
-            exitPartyDatas.select = response.data.reason_for_resignation;
-            exitPartyDatas.status = response.data.status;
-          } else oldExitRequest.value = response.data;
-  
-          isLoading.page = false;
-        })
-        .catch((err) => {
-  
-        
-            // toast({
-            //   message: 'Возникли ошибки при запросе'
-            // })
-        });
-    } finally {
-      isLoading.page = false;
-    }
-  }
-
-  // Send Exit From Party
-  const postRequestExitParty = () => {
+  // Send Exit Request
+  const onPostRequestExitParty = async () => {
     isLoading.btn = true;
-    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation?reason_for_resignation=${exitPartyDatas.select ?? exitPartyDatas.text!}`;
+    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation?reason_for_resignation=${exitPartyDatas.text!}`;
 
     const formData = new FormData();
     formData.append("document", exitPartyDatas.document!);
 
-    axios({
-      method: "post",
-      url: url,
-      data: formData,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then((response) => {
-        console.log('response', response);
-
-        toast({
-          message: 'Заявка успешно отправлена',
-          type: 'success'
-        })
-        
-        exitPartyDatas.status = 'pending';
-        isLoading.btn = false;
+    try {
+      await postRequestExitParty(exitPartyDatas.text!, formData)
+      toast({
+        message: 'Заявка успешно отправлена',
+        type: 'success'
       })
-      .catch((err) => {
-        console.log('err', err);
+      exitPartyDatas.status = 'pending';
+      isLoading.btn = false;
+    } catch (err) {
+      if (err.response.data.detail === 'Pending resignation request already exists.') {
+        toast({
+          message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
+        })
+      }
+    } finally {
 
-        if (err.response.data.detail === 'Pending resignation request already exists.') {
-          toast({
-            message: 'Ожидающий рассмотрения запрос об отставке уже существует.'
-          })
-        } else {
-          toast({
-            message: 'Возникли ошибки при запросе'
-          })
-        }
-        isLoading.btn = false;
-      });
+    }
   }
+
+  // Get Party Data
+  const onGetPartData = async () => {
+    try {
+      const response = await getPartyData();
+      partyData.value = response;
+
+      onGetRequestExitParty();
+    } finally {
+
+    }
+  }
+  
+  // Get Exit Party Data
+  const onGetRequestExitParty = async () => {
+    try {
+      const response = await getRequestExitParty();
+      
+      if (response.status === 'pending') {
+        exitPartyDatas.document = {};
+        exitPartyDatas.document.name = response.document;
+        exitPartyDatas.text = response.reason_for_resignation;
+        exitPartyDatas.status = response.status;
+      } else oldExitRequest.value = response;
+    } finally {
+      isLoading.page = false;
+    }
+  }
+  
+  onMounted(onGetPartData);
 </script>
 
 <style scoped lang="scss">
@@ -429,6 +356,10 @@
   
     & p {
       font-size: 20px;
+    }
+    
+    & a {
+      color: var(--accent-color) !important;
     }
   }
 
