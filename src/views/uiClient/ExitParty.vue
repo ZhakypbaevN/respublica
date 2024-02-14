@@ -266,14 +266,12 @@
     })
       .then((response) => {
         partyData.value = response.data;
-        isLoading.page = false;
       })
       .catch((err) => {
         console.log('err', err);
-        isLoading.page = false;
-        // toast({
-        //   message: 'Возникли ошибки при запросе'
-        // })
+        toast({
+          message: 'Возникли ошибки при запросе'
+        })
       });
   }
 
@@ -286,38 +284,39 @@
   });
 
   const getRequestExitParty = () => {
-    isLoading.page = true;
     const url = `https://api.respublica-partiyasy.kz/api/v1/parties/memberships/resignation`;
 
-    axios({
-      method: "get",
-      url: url,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then((response) => {
-        console.log('response', response);
-        
-        if (response.data.status === 'pending') {
-          exitPartyDatas.document = {};
-          exitPartyDatas.document.name = response.data.document;
-          exitPartyDatas.select = response.data.reason_for_resignation;
-          exitPartyDatas.status = response.data.status;
-        } else oldExitRequest.value = response.data;
-
-        isLoading.page = false;
+    try {
+      axios({
+        method: "get",
+        url: url,
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer ' + token
+        }
       })
-      .catch((err) => {
-        console.log('err', err);
-
-      
-          // toast({
-          //   message: 'Возникли ошибки при запросе'
-          // })
-        isLoading.page = false;
-      });
+        .then((response) => {
+          console.log('response', response);
+          
+          if (response.data.status === 'pending') {
+            exitPartyDatas.document = {};
+            exitPartyDatas.document.name = response.data.document;
+            exitPartyDatas.select = response.data.reason_for_resignation;
+            exitPartyDatas.status = response.data.status;
+          } else oldExitRequest.value = response.data;
+  
+          isLoading.page = false;
+        })
+        .catch((err) => {
+  
+        
+            // toast({
+            //   message: 'Возникли ошибки при запросе'
+            // })
+        });
+    } finally {
+      isLoading.page = false;
+    }
   }
 
   // Send Exit From Party
