@@ -1,7 +1,7 @@
 <template>
   <div
     class="ac-dropdown"
-    :class="{ secondary: secondary }"
+    :class="{ secondary: secondary, light: light }"
     ref="dropdownTemplate"
     @click="dropdown.visible = !dropdown.visible"
     v-click-outside="() => (dropdown.visible = false)"
@@ -61,11 +61,13 @@ interface IProps {
   btnText?: string,
   loading?: boolean,
   secondary?: boolean,
+  light?: boolean,
   btnType?: string
 }
 
 withDefaults(defineProps<IProps>(), {
-  btnType: 'default-light-blue'
+  btnType: 'default-light-blue',
+  light: false
 })
 
 const dropdown = reactive<Dropdown>({
@@ -105,6 +107,13 @@ provide('dropdown', dropdown)
 .ac-dropdown {
   position: relative;
   width: fit-content;
+
+  &.light {
+    svg {
+      fill: white;
+    }
+  }
+
   &_btn {
     display: flex;
     align-items: center;

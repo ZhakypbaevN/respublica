@@ -141,8 +141,7 @@ onMounted(async () => {
   
     const nameToLowerCase = ({id, name}: {id: string, name: string}) => {
       if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
-      else if (t('localy') === 'ru' && (id === 'KZ-TUR-SHUMKENT' || id === 'KZ-AKM-ASTANA' || id === 'KZ-ALM-CITY')) return name.slice(0, 2) + name[2].toUpperCase() + name.slice(3).toLowerCase();
-      return name[0].toUpperCase() + name.slice(1).toLowerCase()
+      return name
     }
     
   

@@ -13,16 +13,16 @@
               />
             </RouterLink>
 
-            <SocialNetworks class="footer-mainForm-sn" />
+            <SocialNetworks class="footer-mainForm-sn" withAnimation />
           </div>
 
           <div class="footer-mainForm-btns">
-            <RouterLink to="/feedback">
+            <!-- <RouterLink to="/feedback">
               <Button :name="$t('feedback.title')" type="default-blue" uppercase />
-            </RouterLink>
+            </RouterLink> -->
             <RouterLink to="/donations">
               <Button
-                :name="$t('button.donations')"
+                :name="$t('page.donations')"
                 class="footer-mainNavs-donatBtn"
                 type="default-red"
                 uppercase

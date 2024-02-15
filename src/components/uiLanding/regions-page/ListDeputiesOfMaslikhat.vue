@@ -61,9 +61,6 @@ const regions = reactive(deputiesMapList.map((x) => x))
 const toggleShow = (idx: number) => {
   if (regions[idx].active) regions[idx].active = false;
   else {
-    for (let i = 0; i < regions.length; i++) {
-      regions[i].active = false;
-    }
     regions[idx].active = true;
   }
 }
