@@ -314,7 +314,7 @@
       "deputies": []
     },
     {
-      "title": "СКО",
+      "title": "Северо Казахстанская область",
       "code": "KZ-SEV",
       "email": "a.beliyalov@respublica-partiyasy.kz",
       "address": "г. Петропавловск, ул. Алтынсарина, 168-б",
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "title": "ЗКО",
+      "title": "Западно Казахстанская область",
       "code": "KZ-ZAP",
       "email": "d.makatov@respublica-partiyasy.kz",
       "address": "г. Уральск, с. Желаево, ул.Трудовая, 6/3",
@@ -357,7 +357,7 @@
       ]
     },
     {
-      "title": "ВКО",
+      "title": "Восточно Казахстанская область",
       "code": "KZ-VOS",
       "email": "Zh.Hogzhilbek@respublica-partiyasy.kz",
       "address": "г. Усть-Каменогорск, ул. Чехова, 69, кв.1",
