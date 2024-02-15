@@ -140,7 +140,7 @@ onMounted(async () => {
     }
   
     const nameToLowerCase = ({id, name}: {id: string, name: string}) => {
-      if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV' || id === 'KZ-TUR') return name
+      if (id === 'KZ-ZAP' || id === 'KZ-VOS' || id === 'KZ-SEV') return name.split(' ').map(word => word.substring(0, 1)).join('').toUpperCase()
       return name
     }
     
