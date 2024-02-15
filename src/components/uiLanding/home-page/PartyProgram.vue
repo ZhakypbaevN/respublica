@@ -22,19 +22,12 @@
           <div class="partyProgram-slider-content">
             <h2 class="partyProgram-slider-title" v-html="blockList[showFirst ? 0 : 1].title" />
 
-            <a :href="blockList[showFirst ? 0 : 1].pdf" target="_blank">
-              <Button
-                :name="$t('button.view-the-file')"
-                type="outline-light"
-                class="partyProgram-slider-link"
-              >
-                <SvgIcon
-                  name="double-arrow-right"
-                  :viewboxWidth="24"
-                  :viewboxHeight="24"
-                />
-              </Button>
-            </a>
+            <DropDownPDF
+              :id="`partyProgram-pdfDropDown-${showFirst ? 0 : 1}`"
+              :pdflinks="blockList[showFirst ? 0 : 1].pdflinks"
+              btnStyle="outline-light"
+              light
+            />
           </div>
 
           <div class="partyProgram-slider-control">
@@ -67,6 +60,7 @@
 </template>
 
 <script setup lang="ts">
+  import DropDownPDF from '@/components/common/DropDownPDF.vue';
   import { onMounted, ref } from 'vue';
   import { useI18n } from 'vue-i18n'
 
@@ -78,13 +72,18 @@
       color: '#4A78EC',
       img: '/img/uiLanding/party-program/R.png',
       title: t('about-us-page.party-program.partys-election-program'),
-      pdf: "/doc/ru/Программа партии_.pdf",
+      pdflinks: {
+        ru: '/doc/ru/Программа партии_.pdf',
+        kz: '/doc/kz/Re_Предвыборная_программа_партии_max_КАЗ.DOCX'
+      }
     },
     {
       color: '#0b1e52',
       img: '/img/uiLanding/party-program/E.png',
       title: t('home.party-program.party-election-program-respublica'),
-      pdf: "/doc/ru/Идеологическая платформа партии.pdf",
+      pdflinks: {
+        ru: '/doc/ru/Идеологическая платформа партии.pdf',
+      }
     },
   ];
 

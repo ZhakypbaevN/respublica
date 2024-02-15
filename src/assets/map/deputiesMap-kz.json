@@ -118,7 +118,7 @@
         {
           "name": "Жуанышев Талғат Жұмашұлы",
           "role": "Ақсу аудандық мәслихатының депутаты",
-          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/Zhuanyshev.jpg"
         },
         {
           "name": "Қылышбеков Темірлан Бақытбекұлы",
@@ -213,14 +213,15 @@
           "role": "Қостанай облыстық мәслихат депутаты",
           "img": "/img/uiLanding/maslikhats/kostanay/Maishev.jpg"
         },
-		{
+		    {
           "name": "Мұстафин Ермек Әбдуғалиұлы",
           "role": "Әулиекөл аудандық мәслихатының депутаты",
           "img": "/img/uiLanding/maslikhats/kostanay/mustafin.jpg"
         },
         {
           "name": "Молдамұратова Динара Амангелдіқызы",
-          "role": "Лисаковск қалалық мәслихат депутаты"
+          "role": "Лисаковск қалалық мәслихат депутаты",
+          "img": "/img/uiLanding/maslikhats/Dinara-Moldamuratova.jpg"
         },
         {
           "name": "Нұрмағамбетов Дидар Батырбайұлы",
@@ -313,7 +314,7 @@
       "deputies": []
     },
     {
-      "title": "Солтүстік Қазақстан облысы",
+      "title": "СҚО",
       "code": "KZ-SEV",
       "email": "a.beliyalov@respublica-partiyasy.kz",
       "address": "Петропав қаласы, Алтынсарин к., 168-б",
@@ -332,7 +333,7 @@
       ]
     },
     {
-      "title": "Батыс Қазақстан облысы",
+      "title": "БҚО",
       "code": "KZ-ZAP",
       "email": "d.makatov@respublica-partiyasy.kz",
       "address": "Орал қ., Желаево к., Трудовая ауылы, 6/3",
@@ -356,7 +357,7 @@
       ]
     },
     {
-      "title": "Восточно-Казахстанская область",
+      "title": "ОҚО",
       "code": "KZ-VOS",
       "email": "Zh.Hogzhilbek@respublica-partiyasy.kz",
       "address": "Өскемен қаласы, Чехов к., 69, 1 пәтер",
@@ -429,7 +430,7 @@
           "img": "/img/uiLanding/maslikhats/almaty/zhainarbay.jpg"
         },
         {
-          "name": "Серіова Салтанат Бахтиярқызы",
+          "name": "Серікова Салтанат Бахтиярқызы",
           "role": "Алматы қалалық мәслихат депутаты",
           "img": "/img/uiLanding/maslikhats/Serikova-Saltanat.jpg"
         },

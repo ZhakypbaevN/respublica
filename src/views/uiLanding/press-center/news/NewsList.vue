@@ -68,7 +68,7 @@
     showMore.loading = true;
     newsValues.isEmpty = false;
 
-    const { data, total } = await getNewsList('news', {offset: showMore.offset, limit: 20})
+    const { data, total } = await getNewsList('news', {offset: showMore.offset, limit: 21})
     showMore.loading = false
     newsValues.total = total;
     if (!newsValues.tableValues) newsValues.tableValues = [];

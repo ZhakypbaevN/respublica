@@ -12,14 +12,12 @@
             :name="$t('feedback.join-the-party')"
             type="default-blue"
             @click="() => showModals.joinPartyModal = true"
-            data-aos="fade-left"
             uppercase
           />
           <RouterLink to="/donations">
             <Button
               :name="$t('page.donations')"
               type="default-blue"
-              data-aos="fade-left"
               uppercase
             />
           </RouterLink>

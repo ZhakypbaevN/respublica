@@ -5,7 +5,7 @@
       :href="sn.link"
       target="_blank"
       class="snList-item"
-      data-aos="fade-right"
+      :data-aos="withAnimation ? 'fade-right' : ''"
       :data-aos-delay="`${idx}00`"
     >
       <SvgIcon
@@ -31,13 +31,16 @@
 </template>
 
 <script setup lang="ts">
+
 interface IProps {
   light?: boolean,
-  lightBlue?: boolean
+  lightBlue?: boolean,
+  withAnimation?: boolean,
 }
 
 withDefaults(defineProps<IProps>(), {
-  light: false
+  light: false,
+  withAnimation: false
 })
 const snList = [
   {

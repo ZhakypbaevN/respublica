@@ -91,10 +91,9 @@
   
   const showBanner = ref(0);
   const bannersList = [
-    '/img/uiLanding/home/intro/intro-banner-1-test.jpg',
+    '/img/uiLanding/home/intro/intro-banner-1.jpg',
     '/img/uiLanding/home/intro/intro-banner-2.jpg',
-    '/img/uiLanding/home/intro/intro-banner-3.jpg',
-    '/img/uiLanding/home/intro/intro-banner-4.jpg',
+    '/img/uiLanding/home/intro/intro-banner-3.jpg'
   ]
 
   onMounted(() => {
@@ -139,7 +138,7 @@
   &-preview {
     opacity: 0;
 
-    background-image: url('/img/uiLanding/home/intro/intro-banner-3.jpg');
+    background-image: url('/img/uiLanding/home/intro/intro-banner-1.jpg');
     transition: all .7s linear;
 
     &.show {

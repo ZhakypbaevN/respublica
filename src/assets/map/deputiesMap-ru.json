@@ -118,7 +118,7 @@
         {
           "name": "Жуанышев Талгат Жумашевич",
           "role": "Депутат Аксуского районного маслихата",
-          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
+          "img": "/img/uiLanding/maslikhats/Zhuanyshev.jpg"
         },
         {
           "name": "Қылышбеков Темірлан Бақытбекұлы",
@@ -220,7 +220,8 @@
         },
         {
           "name": "Молдамуратова Динара Амангельдыевна",
-          "role": "Депутат Лисаковского городского маслихата"
+          "role": "Депутат Лисаковского городского маслихата",
+          "img": "/img/uiLanding/maslikhats/Dinara-Moldamuratova.jpg"
         },
         {
           "name": "Нурмагамбетов Дидар Батырбаевич",
@@ -313,7 +314,7 @@
       "deputies": []
     },
     {
-      "title": "Северо-Казахстанская область",
+      "title": "СКО",
       "code": "KZ-SEV",
       "email": "a.beliyalov@respublica-partiyasy.kz",
       "address": "г. Петропавловск, ул. Алтынсарина, 168-б",
@@ -332,7 +333,7 @@
       ]
     },
     {
-      "title": "Западно-Казахстанская область",
+      "title": "ЗКО",
       "code": "KZ-ZAP",
       "email": "d.makatov@respublica-partiyasy.kz",
       "address": "г. Уральск, с. Желаево, ул.Трудовая, 6/3",
@@ -356,7 +357,7 @@
       ]
     },
     {
-      "title": "Восточно-Казахстанская область",
+      "title": "ВКО",
       "code": "KZ-VOS",
       "email": "Zh.Hogzhilbek@respublica-partiyasy.kz",
       "address": "г. Усть-Каменогорск, ул. Чехова, 69, кв.1",
