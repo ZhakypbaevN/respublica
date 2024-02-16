@@ -21,6 +21,7 @@
           </div>
 
           <div class="meetingWithVoters-text" v-html="$t('meeting-with-voters.content')" />
+          <h4 class="meetingWithVoters-bittomTitle" v-html="$t('meeting-with-voters.bottom-title')" />
         </div>
       </section>
     </div>
@@ -58,6 +59,12 @@ const photoList = [
   &-text {
     font-size: 22px;
     line-height: 1.2;
+    margin-bottom: 30px;
+  }
+
+  &-bittomTitle {
+    font-size: 24px;
+    font-weight: 600;
   }
 
   // Adaptation
@@ -69,6 +76,11 @@ const photoList = [
 
     &-text {
       font-size: 20px;
+      margin-bottom: 28px;
+    }
+
+    &-bittomTitle {
+      font-size: 22px;
     }
   }
 
@@ -80,6 +92,11 @@ const photoList = [
 
     &-text {
       font-size: 18px;
+      margin-bottom: 26px;
+    }
+
+    &-bittomTitle {
+      font-size: 20px;
     }
   }
 
@@ -91,6 +108,11 @@ const photoList = [
 
     &-text {
       font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    &-bittomTitle {
+      font-size: 18px;
     }
   }
 }

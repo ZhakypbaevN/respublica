@@ -10,14 +10,14 @@
         <div class="introBottom-btns">
           <Button
             :name="$t('feedback.join-the-party')"
-            type="outline-light"
+            type="default-blue"
             @click="() => showModals.joinPartyModal = true"
             uppercase
           />
           <RouterLink to="/donations">
             <Button
               :name="$t('page.donations')"
-              type="outline-light"
+              type="default-blue"
               uppercase
             />
           </RouterLink>
@@ -59,18 +59,15 @@
     justify-content: space-between;
     align-items: center;
     grid-gap: 160px;
-
-    padding: 28px 0;
   }
 
   &-btns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
 
     & button.default-blue {
-      /* padding: 48px 20px; */
-      /* border-radius: 0px; */
+      padding: 48px 20px;
+      border-radius: 0px;
 
       &:hover {
         background-color: var(--primary-color-op10) !important;
@@ -94,29 +91,31 @@
   @media (max-width: 1200px) {
     &-inner {
       grid-gap: 80px;
+    }
 
-      padding: 24px 0;
+    &-btns {
+      & button.default-blue {
+        padding: 30px 20px;
+      }
     }
   }
 
   @media (max-width: 992px) {
     &-inner {
       grid-gap: 60px;
-
-      padding: 22px 0;
     }
 
     &-btns {
-      grid-gap: 18px;
+      & button.default-blue {
+        padding: 28px 20px;
+      }
     }
   }
 
   @media (max-width: 768px) {
     &-inner {
       flex-direction: column;
-      grid-gap: 20px;
-
-      padding: 20px 0;
+      grid-gap: 0;
     }
 
     &-sn {
@@ -129,7 +128,9 @@
 
     &-btns {
       width: 100%;
-      grid-gap: 16px;
+      & button.default-blue {
+        padding: 20px 20px;
+      }
     }
   }
 
@@ -141,15 +142,10 @@
       padding: 16px 0;
       border-bottom: 1px solid rgba(white, .2);
     }
-  }
 
-  @media (max-width: 420px) {
     &-btns {
-      display: flex;
-      flex-direction: column;
-
-      & a, & button {
-        width: 100%;
+      & button.default-blue {
+        padding: 20px 10px;
       }
     }
   }
@@ -161,6 +157,21 @@
 
       padding: 14px 0;
       border-bottom: 1px solid rgba(white, .2);
+    }
+
+    &-btns {
+      display: block;
+
+      & a, & button {
+        width: 100%;
+      }
+      & button.default-blue {
+        padding: 18px 10px;
+      }
+
+      & button:first-child {
+        border-bottom: 1px solid rgba(white, .2);
+      }
     }
   }
 }
