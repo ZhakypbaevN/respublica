@@ -139,7 +139,7 @@ const deputieslist = reactive([
       {
         date: "17.11.23",
         name: "Жылыжай мәселесі туралы",
-        doc: "public/doc/ru/deputies-requests/khodzhanazarov/request/4_Жылыжай_мәселесы_туралы_17.11.23_ДЗ.docx",
+        doc: "/doc/ru/deputies-requests/khodzhanazarov/request/4_Жылыжай_мәселесы_туралы_17.11.23_ДЗ.pdf",
         
         answer: [
           {
