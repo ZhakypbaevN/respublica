@@ -31,18 +31,14 @@ const { toastList, remove } = useToast()
   top: 0;
   left: calc(50%);
   transform: translateX(-50%);
-  min-width: 500px;
+  width: 100%;
+  padding: 0 15px;
   max-width: 800px;
   position: fixed;
   z-index: 999999;
   display: flex;
   flex-direction: column-reverse;
   overflow-x: hidden;
-
-  // Adaptation
-  @media (max-width: 576px) {
-    min-width: 200px;
-  }
 }
 
 .toast {
@@ -143,12 +139,5 @@ const { toastList, remove } = useToast()
 }
 .fade-move {
   transition: transform 0.5s ease;
-}
-/* Адаптация */
-@media (max-width: 425px) {
-  .toast-list {
-    min-width: 300px;
-    max-width: 400px;
-  }
 }
 </style>

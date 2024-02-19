@@ -9,6 +9,7 @@
           <LoginForm
             v-if="showForm.login && loginWithPhone"
             :loginWithPhone="true"
+            @toResetPassword="showResetPasswordForm"
             @changeMethod="() => loginWithPhone = !loginWithPhone"
           />
 
@@ -16,6 +17,7 @@
           <LoginForm
             v-else-if="showForm.login"
             :loginWithPhone="false"
+            @toResetPassword="showResetPasswordForm"
             @changeMethod="() => loginWithPhone = !loginWithPhone"
           />
 
@@ -23,8 +25,9 @@
           <CheckCodeForm
             v-if="showForm.checkCode"
             :phone="checkData.phone"
-            v-model:token="checkData.token"
             :fromResetPassword="fromResetPassword"
+            v-model:token="checkData.token"
+            @toLogin="showLoginForm"
             @toBack="() => {fromResetPassword ? showResetPasswordForm() : showRegistrationForm()}"
             @toNext="() => {fromResetPassword ? showFinishResetPasswordForm() : showFinishRegistrationForm()}"
           />
@@ -51,6 +54,7 @@
             v-model:phone="checkData.phone"
             v-model:token="checkData.token"
             @toCheck="showCheckForm"
+            @toLogin="showLoginForm"
           />
 
           <ResetPasswordFinishForm
@@ -113,6 +117,11 @@
     fromResetPassword.value = showForm.resetPassword === true;
     objElementsToFalse();
     showForm.checkCode = true;
+  }
+
+  const showLoginForm = () => {
+    objElementsToFalse();
+    showForm.login = true;
   }
 
   const showRegistrationForm = () => {

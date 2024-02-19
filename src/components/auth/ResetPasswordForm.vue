@@ -26,12 +26,13 @@
     <div class="modal-message">
       <h4 class="modal-message-title">{{ $t('auth.do-you-have-an-account') }}</h4>
       <span>__</span>
-      <RouterLink
+      <button
+        type="button"
         class="modal-message-btn"
-        to="/auth/login"
+        @click="() => $emit('toLogin')"
       >
         {{ $t('button.login') }}
-      </RouterLink>
+      </button>
     </div>
   </Form>
 </template>
@@ -56,6 +57,7 @@
     (event: 'update:phone', value: string): void,
     (event: 'update:token', value: string): void,
     (event: 'toCheck'): Function,
+    (event: 'toLogin'): Function,
   }
 
   defineProps<IProps>()
@@ -114,13 +116,13 @@
       color: transparent;
     }
     &-title,
-    & a {
+    &-btn {
       display: inline;
       font-size: 18px;
       font-weight: 500;
     }
 
-    & a {
+    &-btn {
       color: var(--accent-color);
     }
   }

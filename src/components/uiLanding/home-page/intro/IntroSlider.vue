@@ -98,7 +98,7 @@
 
   onMounted(() => {
     setInterval(() => {
-      if (showBanner.value < 3)  showBanner.value++;
+      if (showBanner.value < 2)  showBanner.value++;
       else showBanner.value = 0;
     }, 10000);
   })
