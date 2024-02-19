@@ -30,7 +30,7 @@
 
     <div class="modal-message">
       <TransitionGroup>
-        <div v-if="time > 0">
+        <div v-if="!showGetNewCodeBtn">
           <h4 class="modal-message-title">{{ $t('auth.you-can-get-a-new-code-via') }}</h4>
           <span class="space">_</span>
           <span>{{ timeLeft }}</span>
@@ -76,6 +76,7 @@
   import { postCheckCode, postResetPasswordGetCode, postRegisterGetCode } from '@/actions/auth';
 
   import formatPhoneNumber from '@/helpers/formatPhoneNumber.js'
+import { onMounted } from 'vue';
 
   const { t } = useI18n()
   const { toast } = useToast()
@@ -108,58 +109,81 @@
   })
 
   const inputHandler = (inputId: number) => {
-    const previousInput = document.querySelector(`.input-code-${inputId - 1}`)
-    const currentInput = document.querySelector(`.input-code-${inputId}`)
-    const nextInput = document.querySelector(`.input-code-${inputId + 1}`)
-    verificationCode.value = ''
-    const inputs = document.querySelectorAll('input[name="code"]')
-    for (const i of inputs) {
-      verificationCode.value = verificationCode.value + i.value;
+    const previousInput = document.querySelector<HTMLInputElement>(`.input-code-${inputId - 1}`);
+    const currentInput = document.querySelector<HTMLInputElement>(`.input-code-${inputId}`);
+    const nextInput = document.querySelector<HTMLInputElement>(`.input-code-${inputId + 1}`);
+    const verificationCode = document.querySelector<HTMLInputElement>('#verificationCode'); // assuming verificationCode is an input element with id "verificationCode"
+    
+    if (!previousInput || !currentInput || !nextInput || !verificationCode) {
+      return; // Handle if any of the elements is not found
     }
-    const btn = document.querySelectorAll('button[type="submit"]')
+
+    verificationCode.value = '';
+
+    const inputs = document.querySelectorAll<HTMLInputElement>('input[name="code"]');
+    for (const i of inputs) {
+      verificationCode.value += i.value;
+    }
+
+    const btn = document.querySelectorAll<HTMLButtonElement>('button[type="submit"]');
     if (verificationCode.value.length === 6) {
       for (const el of btn) {
-        el.classList.remove('disabled')
+        el.classList.remove('disabled');
       }
     } else {
-      document.querySelectorAll('button[type="submit"]')
       for (const el of btn) {
-        el.classList.add('disabled')
+        el.classList.add('disabled');
       }
     }
+
     if (currentInput.value.length > 0 && inputId !== 6) {
-      nextInput.focus()
+      nextInput.focus();
     }
-    const backSpace = event => {
+
+    const backSpace = (event: KeyboardEvent) => {
       if (event.keyCode === 8) {
-        currentInput.value = null
+        currentInput.value = '';
         if (inputId !== 1) {
-          previousInput.focus()
+          previousInput.focus();
         }
       }
+
       if (verificationCode.value.length === 6) {
         for (const el of btn) {
-          el.classList.remove('disabled')
+          el.classList.remove('disabled');
         }
       } else {
-        document.querySelectorAll('button[type="submit"]')
         for (const el of btn) {
-          el.classList.add('disabled')
+          el.classList.add('disabled');
         }
       }
-    }
-    currentInput.addEventListener('keydown', backSpace)
-  }
+    };
 
-  const time = ref(60);
-  const timer = setInterval(() => {
-    time.value--;
-    const minutes = Math.floor(time.value / 60);
-    const seconds = time.value % 60;
-    timeLeft.value = `${minutes.toString().padStart(2, "0")}:${seconds
-      .toString()
-      .padStart(2, "0")}`;
-  }, 1000);
+    currentInput.addEventListener('keydown', backSpace);
+  };
+
+
+  const showGetNewCodeBtn = ref(false);
+  let timerId: number;
+  const startTimer = (initialValue: number) => {
+    showGetNewCodeBtn.value = false;
+    let timeValue = initialValue;
+
+    function updateTimer() {
+      timeValue--;
+      const minutes = Math.floor(timeValue / 60);
+      const seconds = timeValue % 60;
+      timeLeft.value = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+      if (timeValue === 0) {
+        clearInterval(timerId);
+        showGetNewCodeBtn.value = true;
+      }
+    }
+
+    clearInterval(timerId); // Остановить предыдущий таймер, если он существует
+    timerId = setInterval(updateTimer, 1000);
+  }
 
   const onPostCheckCode = async () => {
     isLoading.form = true;
@@ -195,39 +219,40 @@
   }
 
   const onGetNewCode = async () => {
-    time.value = 60;
-    // isLoading.newCode = true;
+    startTimer(60);
+    isLoading.newCode = true;
 
-    // try {
-    //   const response =
-    //     props.fromResetPassword
-    //       ? await postResetPasswordGetCode(props.phone)
-    //       : await postRegisterGetCode(props.phone)
-    //   tokenValue.value = response;
-    //   toast({
-    //     message: t('message.a-confirmation-code-has-been-sent-to-your-number'),
-    //     type: "success"
-    //   });
-    //   clearInterval(timer);
-    // } catch (err) {
-    //   if (err.response.data.detail === 'This number is not registered') {
-    //     toast({
-    //       message: t('errors.this-number-is-not-registered'),
-    //       type: 'warning'
-    //     })
-    //     emit('toBack')
-    //   }
-    //   if (err.response.data.detail === "Phone number is already registered") {
-    //     toast({
-    //       message: t('errors.the-phone-number-is-already-registered'),
-    //       type: 'warning'
-    //     });
-    //     emit('toBack')
-    //   }
-    // } finally {
-    //   isLoading.newCode = false;
-    // }
+    try {
+      const response =
+        props.fromResetPassword
+          ? await postResetPasswordGetCode(props.phone)
+          : await postRegisterGetCode(props.phone)
+      tokenValue.value = response;
+      toast({
+        message: t('message.a-confirmation-code-has-been-sent-to-your-number'),
+        type: "success"
+      });
+    } catch (err) {
+      if (err.response.data.detail === 'This number is not registered') {
+        toast({
+          message: t('errors.this-number-is-not-registered'),
+          type: 'warning'
+        })
+        emit('toBack')
+      }
+      if (err.response.data.detail === "Phone number is already registered") {
+        toast({
+          message: t('errors.the-phone-number-is-already-registered'),
+          type: 'warning'
+        });
+        emit('toBack')
+      }
+    } finally {
+      isLoading.newCode = false;
+    }
   }
+
+  onMounted(() => startTimer(60));
 </script>
 
 <style scoped lang="scss">
@@ -286,6 +311,83 @@
 
     & span{
       color: var(--accent-color);
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 768px) {
+    &-inputs {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 36px;
+
+      & input[name="code"] {
+        width: inherit;
+        height: 60px;
+
+        padding: 8px;
+        border-radius: 8px;
+      }
+    }
+
+    &-btn {
+      margin-bottom: 46px;
+    }
+
+    &-message {
+      margin-bottom: 46px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-inputs {
+      gap: 10px;
+      margin-bottom: 34px;
+
+      & input[name="code"] {
+        height: 56px;
+
+        padding: 6px;
+        border-radius: 6px;
+      }
+    }
+
+    &-btn {
+      margin-bottom: 42px;
+    }
+
+    &-message {
+      margin-bottom: 42px;
+
+      &-title,
+      & span {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-inputs {
+      gap: 8px;
+      margin-bottom: 30px;
+
+      & input[name="code"] {
+        height: 52px;
+      }
+    }
+
+    &-btn {
+      margin-bottom: 38px;
+    }
+
+    &-message {
+      margin-bottom: 38px;
+
+      & br {
+        display: none;
+      }
     }
   }
 }

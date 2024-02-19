@@ -42,9 +42,12 @@
         <Checkbox light name="remember">
           {{ $t('auth.remember-me') }}
         </Checkbox>
-        <RouterLink to="/auth/reset-password">
+        <button
+          type="button"
+          @click="() => $emit('toResetPassword')"
+        >
           {{ $t('auth.forgot-your-password') }}
-        </RouterLink>
+        </button>
       </div>
 
       <Button
@@ -108,7 +111,8 @@
     loginWithPhone: boolean,
   }
   interface Emits {
-    (event: 'changeMethod'): Function
+    (event: 'changeMethod'): Function,
+    (event: 'toResetPassword'): Function,
   }
 
   const props = defineProps<IProps>()
