@@ -44,7 +44,7 @@ withDefaults(defineProps<IProps>(), {
 })
 const snList = [
   {
-    link: 'https://www.facebook.com/profile.php?id=100090395200403&mibextid=D4KYlr',
+    link: 'https://www.facebook.com/profile.php/?id=100088160092654',
     icon_withOutColorLightBlue: 'facebook-light',
     icon_withOutColor: 'facebook-light',
     icon: 'facebook'
