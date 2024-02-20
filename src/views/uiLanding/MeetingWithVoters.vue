@@ -5,7 +5,7 @@
       
       <section class="landing-block">
         <div class="wrapper landing-wrapper litle">
-          <div class="landing-title center">{{ $t('meeting-with-voters.title') }}</div>
+          <h2 class="landing-title center">{{ $t('meeting-with-voters.title') }}</h2>
           
           <div class="meetingWithVoters-photoItems">
             <div
@@ -21,7 +21,23 @@
           </div>
 
           <div class="meetingWithVoters-text" v-html="$t('meeting-with-voters.content')" />
-          <h4 class="meetingWithVoters-bittomTitle" v-html="$t('meeting-with-voters.bottom-title')" />
+          <h4 class="meetingWithVoters-bottomTitle" v-html="$t('meeting-with-voters.bottom-title')" />
+
+
+          <h2 class="landing-title">{{ $t('meeting-with-voters.january-2024.title') }}</h2>
+          <div class="meetingWithVoters-photoItems">
+            <div
+              class="meetingWithVoters-preview withZoomPreview-preview"
+              v-for="photo of january2024_photoList"
+              :key="photo"
+            >
+              <div
+                class="meetingWithVoters-preview-img bg-cover withZoomPreview-preview-img"
+                :style="`background-image: url(${photo});`"
+              ></div>
+            </div>
+          </div>
+          <div class="meetingWithVoters-text" v-html="$t('meeting-with-voters.january-2024.content')" />
         </div>
       </section>
     </div>
@@ -31,12 +47,23 @@
 
 <script setup lang="ts">
 const photoList = [
-  '/img/uiLanding/trips-to-regions/6.jpg',
-  '/img/uiLanding/trips-to-regions/2.jpg',
-  '/img/uiLanding/trips-to-regions/3.jpg',
-  '/img/uiLanding/trips-to-regions/4.jpg',
-  '/img/uiLanding/trips-to-regions/5.jpg',
-  '/img/uiLanding/trips-to-regions/1.jpeg',
+  '/img/uiLanding/meeting-with-voters/6.jpg',
+  '/img/uiLanding/meeting-with-voters/2.jpg',
+  '/img/uiLanding/meeting-with-voters/3.jpg',
+  '/img/uiLanding/meeting-with-voters/4.jpg',
+  '/img/uiLanding/meeting-with-voters/5.jpg',
+  '/img/uiLanding/meeting-with-voters/1.jpeg',
+]
+
+const january2024_photoList = [
+  '/img/uiLanding/meeting-with-voters/january2024/1.jpg',
+  '/img/uiLanding/meeting-with-voters/january2024/2.jpg',
+  '/img/uiLanding/meeting-with-voters/january2024/3.jpg',
+  '/img/uiLanding/meeting-with-voters/january2024/4.jpg',
+  '/img/uiLanding/meeting-with-voters/january2024/5.jpg',
+  '/img/uiLanding/meeting-with-voters/january2024/6.jpg',
+  '/img/uiLanding/meeting-with-voters/january2024/7.jpg',
+  '/img/uiLanding/meeting-with-voters/january2024/8.jpg',
 ]
 </script>
 
@@ -62,9 +89,11 @@ const photoList = [
     margin-bottom: 30px;
   }
 
-  &-bittomTitle {
+  &-bottomTitle {
     font-size: 24px;
     font-weight: 600;
+
+    margin-bottom: 100px;
   }
 
   // Adaptation
@@ -79,7 +108,7 @@ const photoList = [
       margin-bottom: 28px;
     }
 
-    &-bittomTitle {
+    &-bottomTitle {
       font-size: 22px;
     }
   }
@@ -95,8 +124,9 @@ const photoList = [
       margin-bottom: 26px;
     }
 
-    &-bittomTitle {
+    &-bottomTitle {
       font-size: 20px;
+      margin-bottom: 80px;
     }
   }
 
@@ -111,8 +141,9 @@ const photoList = [
       margin-bottom: 24px;
     }
 
-    &-bittomTitle {
+    &-bottomTitle {
       font-size: 18px;
+      margin-bottom: 60px;
     }
   }
 }
