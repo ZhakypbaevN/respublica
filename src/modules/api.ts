@@ -13,14 +13,16 @@ type Request = <T = any>(
   callbackSuccess: (response: T) => void,
   callbackError: (response: T) => void,
   muteError: boolean,
-  lang: string
+  lang: string,
+  accept: string
 ) => void
 
 type AsyncRequest = <T extends any>(
   url: string,
   data?: object,
   mute?: boolean,
-  lang?: string
+  lang?: string,
+  accept?: string
 ) => Promise<AxiosResponse<T>>
 
 interface Api extends AxiosInstance {
@@ -38,7 +40,8 @@ interface Api extends AxiosInstance {
     url: string,
     data?: object,
     mute?: boolean,
-    lang?: string
+    lang?: string,
+    accept?: string
   ) => Promise<AxiosResponse<T>>
 }
 
@@ -52,22 +55,14 @@ const request = function (
   callbackSuccess: (response: any) => any,
   callbackError: (response: any) => any,
   muteError: boolean,
-  lang: string
+  lang: string,
+  accept: string
 ) {
   if (httpType === 'get') data = { params: data }
   api.defaults.headers.common['Accept-Language'] = lang;
 
   api[httpType](url, data)
     .then(function (response) {
-      // const { toast } = useToast()
-
-      // if (response.data.message) {
-      //   toast({
-      //     message: response.data.message,
-      //     type: 'success'
-      //   })
-      // }
-
       try {
         callbackSuccess(response)
       } catch (err) {
@@ -137,9 +132,10 @@ api.requestGet = function (
   callbackSuccess = function () {},
   callbackError = function () {},
   muteError = false,
-  lang
+  lang,
+  accept
 ) {
-  request('get', url, data, callbackSuccess, callbackError, muteError, lang)
+  request('get', url, data, callbackSuccess, callbackError, muteError, lang, accept)
 }
 api.requestPost = function (
   url,
@@ -147,9 +143,10 @@ api.requestPost = function (
   callbackSuccess = function () {},
   callbackError = function () {},
   muteError = false,
-  lang
+  lang,
+  accept
 ) {
-  request('post', url, data, callbackSuccess, callbackError, muteError, lang)
+  request('post', url, data, callbackSuccess, callbackError, muteError, lang, accept)
 }
 api.requestPut = function (
   url,
@@ -157,9 +154,10 @@ api.requestPut = function (
   callbackSuccess = function () {},
   callbackError = function () {},
   muteError = false,
-  lang
+  lang,
+  accept
 ) {
-  request('put', url, data, callbackSuccess, callbackError, muteError, lang)
+  request('put', url, data, callbackSuccess, callbackError, muteError, lang, accept)
 }
 api.requestPatch = function (
   url,
@@ -167,9 +165,10 @@ api.requestPatch = function (
   callbackSuccess = function () {},
   callbackError = function () {},
   muteError = false,
-  lang
+  lang,
+  accept
 ) {
-  request('patch', url, data, callbackSuccess, callbackError, muteError, lang)
+  request('patch', url, data, callbackSuccess, callbackError, muteError, lang, accept)
 }
 api.requestDelete = function (
   url,
@@ -177,12 +176,13 @@ api.requestDelete = function (
   callbackSuccess = function () {},
   callbackError = function () {},
   muteError = false,
-  lang
+  lang,
+  accept
 ) {
-  request('delete', url, data, callbackSuccess, callbackError, muteError, lang)
+  request('delete', url, data, callbackSuccess, callbackError, muteError, lang, accept)
 }
 
-api.asyncGet = (url, data = {}, mute = false, lang = getLangForURL()) => {
+api.asyncGet = (url, data = {}, mute = false, lang = getLangForURL(), accept = 'application/json, text/plain, */*') => {
   return new Promise((resolve, reject) => {
     api.requestGet(
       url,
@@ -190,11 +190,12 @@ api.asyncGet = (url, data = {}, mute = false, lang = getLangForURL()) => {
       (response) => resolve(response),
       (error) => reject(error),
       mute,
-      lang
+      lang,
+      accept
     )
   })
 }
-api.asyncPost = (url, data = {}, mute = false, lang = getLangForURL()) => {
+api.asyncPost = (url, data = {}, mute = false, lang = getLangForURL(), accept = 'application/json, text/plain, */*') => {
   return new Promise((resolve, reject) => {
     api.requestPost(
       url,
@@ -202,11 +203,12 @@ api.asyncPost = (url, data = {}, mute = false, lang = getLangForURL()) => {
       (response) => resolve(response),
       (error) => reject(error),
       mute,
-      lang
+      lang,
+      accept
     )
   })
 }
-api.asyncPut = (url, data = {}, mute = false, lang = getLangForURL()) => {
+api.asyncPut = (url, data = {}, mute = false, lang = getLangForURL(), accept = 'application/json, text/plain, */*') => {
   return new Promise((resolve, reject) => {
     api.requestPut(
       url,
@@ -214,11 +216,12 @@ api.asyncPut = (url, data = {}, mute = false, lang = getLangForURL()) => {
       (response) => resolve(response),
       (error) => reject(error),
       mute,
-      lang
+      lang,
+      accept
     )
   })
 }
-api.asyncPatch = (url, data = {}, mute = false, lang = getLangForURL()) => {
+api.asyncPatch = (url, data = {}, mute = false, lang = getLangForURL(), accept = 'application/json, text/plain, */*') => {
   return new Promise((resolve, reject) => {
     api.requestPatch(
       url,
@@ -226,11 +229,12 @@ api.asyncPatch = (url, data = {}, mute = false, lang = getLangForURL()) => {
       (response) => resolve(response),
       (error) => reject(error),
       mute,
-      lang
+      lang,
+      accept
     )
   })
 }
-api.asyncDelete = (url, data = {}, mute = false, lang = getLangForURL()) => {
+api.asyncDelete = (url, data = {}, mute = false, lang = getLangForURL(), accept = 'application/json, text/plain, */*') => {
   return new Promise((resolve, reject) => {
     api.requestDelete(
       url,
@@ -238,7 +242,8 @@ api.asyncDelete = (url, data = {}, mute = false, lang = getLangForURL()) => {
       (response) => resolve(response),
       (error) => reject(error),
       mute,
-      lang
+      lang,
+      accept
     )
   })
 }

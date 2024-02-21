@@ -1,3 +1,4 @@
+import { getLangForURL } from '@/assets/lang/exports'
 import api from '@/modules/api'
 import { IPartyMember } from '@/types/party-member'
 import { Paginator } from '@/types/request'
@@ -11,6 +12,21 @@ export const getPartyMembersList = async (status: string, filters: any) => {
         ...filters,
       },
       true
+    )
+  ).data
+}
+
+export const getPartyMembersExport = async (status: string, filters: any) => {
+  return (
+    await api.asyncGet(
+      '/api/v1/admin/parties/memberships/export',
+      {
+        status: status,
+        ...filters,
+      },
+      true,
+      getLangForURL(),
+      'arraybuffer'
     )
   ).data
 }
