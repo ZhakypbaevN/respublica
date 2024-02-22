@@ -128,7 +128,6 @@
                     <label for="author" class="newsEdit-formItem-label">{{ lang.form.authtorNameInput.placeholder }}</label>
                     <Input
                       name="author"
-                      type="textarea"
                       v-model="newsData[lang.value].source_title"
                       :placeholder="lang.form.authtorNameInput.placeholder"
                       staticPlaceholder
@@ -136,10 +135,9 @@
                   </div>
 
                   <div class="newsEdit-formItem">
-                    <label for="url" class="newsEdit-formItem-label">{{ lang.form.subtitleInput.placeholder }}</label>
+                    <label for="url" class="newsEdit-formItem-label">{{ lang.form.urlInput.placeholder }}</label>
                     <Input
                       name="url"
-                      type="textarea"
                       v-model="newsData.ru.source_url"
                       :placeholder="lang.form.urlInput.placeholder"
                       staticPlaceholder
@@ -326,6 +324,7 @@
         if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
         formData.append("source_url", newsData.ru.source_url);
         formData.append("alias_category", 'press-about-us');
+        formData.append("content", 'string');
 
         if (newsID) await putMediaNewsData(newsID.toString(), formData, lang.api)
         else newsID = (await postMediaNewsData(formData, lang.api)).id.toString();
