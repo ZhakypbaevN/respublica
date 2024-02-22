@@ -37,17 +37,17 @@
       title: t('about-us-page.party-program.restart-reforma-respublica'),
       subtitle: t('about-us-page.party-program.restart-reforma-respublica-subtitle'),
       pdflinks: {
-        ru: '/doc/ru/Программа предвыборная рус.pdf',
-        kz: '/doc/kz/Re программа 05022023 каз.pptx'
+        ru: '/doc/ru/Программа партии_.pdf',
+        kz: '/doc/kz/Re_Предвыборная_программа_партии_max_КАЗ.pdf'
       }
     },
     {
       img: '/img/uiLanding/about-party/program-two.jpg',
       title: t('about-us-page.party-program.this-is-new-kazakhstan'),
-      subtitle: t('about-us-page.party-program.partys-election-program'),
+      subtitle: t('about-us-page.party-program.party-election-program-respublica'),
       pdflinks: {
-        ru: '/doc/ru/Программа партии_.pdf',
-        kz: '/doc/kz/Re_Предвыборная_программа_партии_max_КАЗ.DOCX'
+        ru: '/doc/ru/Идеологическая платформа партии.pdf',
+        kz: '/doc/kz/Идеологиялық бағдарламасы.pdf'
       }
     }
   ]

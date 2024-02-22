@@ -50,7 +50,7 @@
       "title": "Алматы облысы",
       "code": "KZ-ALM",
       "email": "B.Kabasov@respublica-partiyasy.kz",
-      "address": "Қонаев қ., 1 ықшамаудан, 35/10 уч.",
+      "address": "Қонаев қаласы, 1 ықшамаудан, 35/10 уч.",
       "locationID": 39,
       "deputies": [
         {
@@ -102,7 +102,7 @@
       "title": "Жетісу облысы",
       "code": "KZ-ZHT",
       "email": "N.Kambayeva@respublica-partiyasy.kz",
-      "address": "Талдықорған қ., Абылай хан к., 186 үй",
+      "address": "Талдықорған қаласы, Абылай хан к., 186 үй",
       "locationID": 205,
       "deputies": [
         {
@@ -118,7 +118,7 @@
         {
           "name": "Жуанышев Талғат Жұмашұлы",
           "role": "Ақсу аудандық мәслихатының депутаты",
-          "img": "/img/uiLanding/maslikhats/Zhuanyshev.jpg"
+          "img": "/img/uiLanding/maslikhats/zhetisu/Zhumageldieva.jpg"
         },
         {
           "name": "Қылышбеков Темірлан Бақытбекұлы",
@@ -151,7 +151,7 @@
       "title": "Қарағанды облысы",
       "code": "KZ-KAR",
       "email": "a.amandykov@respublica-partiyasy.kz",
-      "address": "Қарағанды қ., Қазыбек Би ауданы, Н.Назарбаев даңғылы, 46 үй",
+      "address": "Қарағанды қаласы, Қазыбек Би ауданы, Н.Назарбаев даңғылы, 46 үй",
       "locationID": 86,
       "deputies": [
         {
@@ -170,7 +170,7 @@
       "title": "Қостанай облысы",
       "code": "KZ-KUS",
       "email": "M.Madinina@respublica-partiyasy.kz",
-      "address": "Қостанайқ., Әль-Фараби даңғылы, 114, TURAN СҮ",
+      "address": "Қостанай қаласы, Әль-Фараби даңғылы, 114, TURAN СҮ",
       "locationID": 100,
       "deputies": [
         {
@@ -213,15 +213,14 @@
           "role": "Қостанай облыстық мәслихат депутаты",
           "img": "/img/uiLanding/maslikhats/kostanay/Maishev.jpg"
         },
-		    {
+		{
           "name": "Мұстафин Ермек Әбдуғалиұлы",
           "role": "Әулиекөл аудандық мәслихатының депутаты",
           "img": "/img/uiLanding/maslikhats/kostanay/mustafin.jpg"
         },
         {
           "name": "Молдамұратова Динара Амангелдіқызы",
-          "role": "Лисаковск қалалық мәслихат депутаты",
-          "img": "/img/uiLanding/maslikhats/Dinara-Moldamuratova.jpg"
+          "role": "Лисаковск қалалық мәслихат депутаты"
         },
         {
           "name": "Нұрмағамбетов Дидар Батырбайұлы",
@@ -274,7 +273,7 @@
       "title": "Қызылорда облысы",
       "code": "KZ-KZY",
       "email": "N.Talgatova@respublica-partiyasy.kz",
-      "address": "Қызылорда қ., Қонаев к., 19-а, 1 қабат",
+      "address": "Қызылорда қаласы, Қонаев к., 19-а, 1 қабат",
       "locationID": 121,
       "deputies": []
     },
@@ -282,7 +281,7 @@
       "title": "Маңғыстау облысы",
       "code": "KZ-MAN",
       "email": "S.Beisembayeva@respublica-partiyasy.kz",
-      "address": "Ақтау қ., 16 ықшамаудан, 25 үй, Prime СҮ",
+      "address": "Ақтау қаласы, 16 ықшамаудан, 25 үй, Prime СҮ",
       "locationID": 130,
       "deputies": []
     },
@@ -309,7 +308,7 @@
       "title": "Ұлытау облысы",
       "code": "KZ-ULT",
       "email": "Zh.Iztuleuov@respublica-partiyasy.kz",
-      "address": "Жезқазған қ., Бейбітшілік к., 1",
+      "address": "Жезқазған қаласы, Бейбітшілік к., 1",
       "locationID": 215,
       "deputies": []
     },
@@ -336,7 +335,7 @@
       "title": "Батыс Қазақстан облысы",
       "code": "KZ-ZAP",
       "email": "d.makatov@respublica-partiyasy.kz",
-      "address": "Орал қ., Желаево к., Трудовая ауылы, 6/3",
+      "address": "Орал қаласы, Желаево к., Трудовая ауылы, 6/3",
       "locationID": 59,
       "deputies": [
         {
@@ -411,7 +410,7 @@
       "title": "Алматы қаласы",
       "code": "KZ-ALM-CITY",
       "email": "S.Raiymbek@respublica-partiyasy.kz",
-      "address": "Алматы қ., Жароков к., 41, 1 қабат",
+      "address": "Алматы қаласы, Жароков к., 41, 1 қабат",
       "locationID": 2,
       "deputies": [
         {
@@ -445,7 +444,7 @@
       "title": "Шымкент қаласы",
       "code": "KZ-TUR-SHUMKENT",
       "email": "T.Yeszhan@respublica-partiyasy.kz",
-      "address": "Шымкент қ., Әл-Фараби ауданы, Жандосов көшесі, 21-а ғимараты",
+      "address": "Шымкент қаласы, Әл-Фараби ауданы, Жандосов көшесі, 21-а ғимараты",
       "locationID": 3,
       "deputies": [
         {
