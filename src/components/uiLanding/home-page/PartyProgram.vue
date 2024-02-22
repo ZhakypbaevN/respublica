@@ -71,10 +71,10 @@
     {
       color: '#4A78EC',
       img: '/img/uiLanding/party-program/R.png',
-      title: t('about-us-page.party-program.partys-election-program'),
+      title: t('home.party-program.party-program-respublica'),
       pdflinks: {
         ru: '/doc/ru/Программа партии_.pdf',
-        kz: '/doc/kz/Re_Предвыборная_программа_партии_max_КАЗ.DOCX'
+        kz: '/doc/kz/Re_Предвыборная_программа_партии_max_КАЗ.pdf'
       }
     },
     {
@@ -83,6 +83,7 @@
       title: t('home.party-program.party-election-program-respublica'),
       pdflinks: {
         ru: '/doc/ru/Идеологическая платформа партии.pdf',
+        kz: '/doc/kz/Идеологиялық бағдарламасы.pdf'
       }
     },
   ];

@@ -36,7 +36,7 @@
         class="cursor"
         :style="curserStyle"
       >
-        <div class="cursor-content">
+        <div class="cursor-content" id="cursor-content">
           <h4 class="cursor-content-name">
             {{ cardContent.fullName }}
           </h4>
@@ -67,8 +67,10 @@
   });
 
   document.addEventListener('mousemove', (e) => {
+    let cursorContentStyle = document.querySelector('#cursor-content');
+    
     curserStyle.top = `${e.pageY + 18}px`;
-    curserStyle.left = `${e.pageX + 18}px`;
+    curserStyle.left = (e.pageX > window.innerWidth / 2) ? `${e.pageX + 18 - 200}px` : `${e.pageX + 18}px`;
   });
 
   const onHandleHoverFraction = (fraction) => {
@@ -98,17 +100,6 @@
     },
     {
       zIndex: 5,
-      fullName: t('composition-of-faction.shukizhanova.full-name'),
-      description: t('composition-of-faction.shukizhanova.post'),
-
-      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-3.png',
-      facebook: 'https://www.facebook.com/dika.ask?mibextid=LQQJ4d',
-      instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ==',
-      
-      aosDelay: '400',
-    },
-    {
-      zIndex: 4,
       fullName: t('composition-of-faction.berdenov.full-name'),
       description: t('composition-of-faction.berdenov.post'),
 
@@ -116,16 +107,27 @@
       facebook: 'https://www.facebook.com/ruslan.berdenov?mibextid=LQQJ4d',
       instagram: 'https://instagram.com/ruslan_berdenov?igshid=NTc4MTIwNjQ2YQ==',
       
-      aosDelay: '600',
+      aosDelay: '400',
     },
     {
-      zIndex: 3,
+      zIndex: 4,
       fullName: t('composition-of-faction.nurgul.full-name'),
       description: t('composition-of-faction.nurgul.post'),
 
       img: '/img/uiLanding/fraction/banner-peoples/fraction-people-1.png',
       facebook: 'https://www.facebook.com/nurgul.ttt?mibextid=LQQJ4d',
       instagram: 'https://instagram.com/nurgul_tau?igshid=NTc4MTIwNjQ2YQ==',
+      
+      aosDelay: '600',
+    },
+    {
+      zIndex: 3,
+      fullName: t('composition-of-faction.naumova.full-name'),
+      description: t('composition-of-faction.naumova.post'),
+
+      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-5.png',
+      facebook: 'https://www.facebook.com/profile.php?id=100048126368212&mibextid=LQQJ4d',
+      instagram: 'https://instagram.com/_naumova_dinara?igshid=NTc4MTIwNjQ2YQ==',
       
       aosDelay: '800',
     },
@@ -142,15 +144,15 @@
     },
     {
       zIndex: 1,
-      fullName: t('composition-of-faction.naumova.full-name'),
-      description: t('composition-of-faction.naumova.post'),
+      fullName: t('composition-of-faction.koshmambetov.full-name'),
+      description: t('composition-of-faction.koshmambetov.post'),
 
-      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-5.png',
-      facebook: 'https://www.facebook.com/profile.php?id=100048126368212&mibextid=LQQJ4d',
-      instagram: 'https://instagram.com/_naumova_dinara?igshid=NTc4MTIwNjQ2YQ==',
+      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-7.png',
+      facebook: 'https://www.facebook.com/a.koshmambetov?mibextid=YMEMSu',
+      instagram: 'https://www.instagram.com/koshmambetov?igsh=MTNlOGZ5eTVwZGFoYQ==',
       
       aosDelay: '1200',
-    },
+    }
   ]
 </script>
 

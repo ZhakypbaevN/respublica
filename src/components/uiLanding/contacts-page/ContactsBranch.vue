@@ -46,7 +46,7 @@
   
   const deputiesMapList = (t('localy') === 'ru' ? deputiesMapRU : deputiesMapKZ).deputiesList;
   const regions = reactive(deputiesMapList.map((x) => x))
-  const karagandyData = deputiesMapList.find(region => region.code === 'KZ-KAR')
+  const karagandyData = deputiesMapList.find(region => region.code === 'KZ-AKM-ASTANA')
   
   const branchData = reactive({
     title: karagandyData.title,
@@ -159,6 +159,7 @@
         polygon.name = nameToLowerCase({ id: obl.code, name: obl.title })
         
         if (obl.code === ev.target.dataItem.dataContext.id) {
+          console.log('KZ-AKM-ASTANA', obl.code);
           polygon.polygonSettings = {
             fill: am5.color('#FCC952'),
             stroke: am5.color('#FCC952'),

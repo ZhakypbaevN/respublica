@@ -56,14 +56,12 @@ const photoList = [
 ]
 
 const january2024_photoList = [
-  '/img/uiLanding/meeting-with-voters/january2024/1.jpg',
   '/img/uiLanding/meeting-with-voters/january2024/2.jpg',
   '/img/uiLanding/meeting-with-voters/january2024/3.jpg',
   '/img/uiLanding/meeting-with-voters/january2024/4.jpg',
   '/img/uiLanding/meeting-with-voters/january2024/5.jpg',
   '/img/uiLanding/meeting-with-voters/january2024/6.jpg',
   '/img/uiLanding/meeting-with-voters/january2024/7.jpg',
-  '/img/uiLanding/meeting-with-voters/january2024/8.jpg',
 ]
 </script>
 

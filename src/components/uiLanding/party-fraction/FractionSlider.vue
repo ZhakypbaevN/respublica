@@ -86,14 +86,6 @@
       instagram: 'https://instagram.com/a1darbek?igshid=NTc4MTIwNjQ2YQ=',
     },
     {
-      fullName: t('composition-of-faction.shukizhanova.full-name'),
-      description: t('composition-of-faction.shukizhanova.post'),
-
-      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-3.png',
-      facebook: 'https://www.facebook.com/dika.ask?mibextid=LQQJ4d',
-      instagram: 'https://instagram.com/dinarashukizhanova?igshid=NTc4MTIwNjQ2YQ==',
-    },
-    {
       fullName: t('composition-of-faction.berdenov.full-name'),
       description: t('composition-of-faction.berdenov.post'),
 
@@ -110,6 +102,14 @@
       instagram: 'https://instagram.com/nurgul_tau?igshid=NTc4MTIwNjQ2YQ==',
     },
     {
+      fullName: t('composition-of-faction.naumova.full-name'),
+      description: t('composition-of-faction.naumova.post'),
+
+      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-5.png',
+      facebook: 'https://www.facebook.com/profile.php?id=100048126368212&mibextid=LQQJ4d',
+      instagram: 'https://instagram.com/_naumova_dinara?igshid=NTc4MTIwNjQ2YQ==',
+    },
+    {
       fullName: t('composition-of-faction.kuspenov.full-name'),
       description: t('composition-of-faction.kuspenov.post'),
 
@@ -118,13 +118,13 @@
       instagram: 'https://www.instagram.com/kuspekov_olzhas/',
     },
     {
-      fullName: t('composition-of-faction.naumova.full-name'),
-      description: t('composition-of-faction.naumova.post'),
+      fullName: t('composition-of-faction.koshmambetov.full-name'),
+      description: t('composition-of-faction.koshmambetov.post'),
 
-      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-5.png',
-      facebook: 'https://www.facebook.com/profile.php?id=100048126368212&mibextid=LQQJ4d',
-      instagram: 'https://instagram.com/_naumova_dinara?igshid=NTc4MTIwNjQ2YQ==',
-    },
+      img: '/img/uiLanding/fraction/banner-peoples/fraction-people-7.png',
+      facebook: 'https://www.facebook.com/a.koshmambetov?mibextid=YMEMSu',
+      instagram: 'https://www.instagram.com/koshmambetov?igsh=MTNlOGZ5eTVwZGFoYQ==',
+    }
   ];
 
   const showSlider = ref(0);
