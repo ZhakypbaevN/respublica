@@ -29,7 +29,7 @@
   interface IProps {
     pdflinks: any,
     name?: string,
-    btnStyle: 'outline-blue' | 'outline-light'
+    btnStyle: 'outline-blue' | 'outline-light' | 'default-blue'
   }
 
   const props = withDefaults(defineProps<IProps>(), {

@@ -93,12 +93,21 @@
   const bannersList = [
     '/img/uiLanding/home/intro/intro-banner-1.jpg',
     '/img/uiLanding/home/intro/intro-banner-2.jpg',
-    '/img/uiLanding/home/intro/intro-banner-3.jpg'
+    '/img/uiLanding/home/intro/intro-banner-3.jpg',
+    '/img/uiLanding/home/intro/intro-banner-4.jpg',
+    '/img/uiLanding/home/intro/intro-banner-5.jpg',
+    '/img/uiLanding/home/intro/intro-banner-6.jpg',
+    '/img/uiLanding/home/intro/intro-banner-7.jpg',
+    '/img/uiLanding/home/intro/intro-banner-8.jpg',
+    '/img/uiLanding/home/intro/intro-banner-9.jpg',
+    '/img/uiLanding/home/intro/intro-banner-10.jpg',
+    '/img/uiLanding/home/intro/intro-banner-11.jpg',
+    '/img/uiLanding/home/intro/intro-banner-12.jpg',
   ]
 
   onMounted(() => {
     setInterval(() => {
-      if (showBanner.value < 2)  showBanner.value++;
+      if (showBanner.value < 11)  showBanner.value++;
       else showBanner.value = 0;
     }, 10000);
   })
