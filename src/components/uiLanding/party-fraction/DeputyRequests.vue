@@ -151,6 +151,11 @@
               doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/4 Касательно мер по ликвидации засухи 16.10.23 ответ.pdf",
             }
           ]
+        },
+        {
+          date: "31.01.24",
+          name: "По проблемным вопросам учета и статистики в сельском хозяйстве",
+          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/31.01.2024 Ходжаназаров ПО ПРОБЛЕМНЫМ ВОПРОСАМ УЧЕТА И СТАТИСТИКИ В СЕЛЬСКОМ ХОЗЯЙСТВЕ.pdf.pdf"
         }
       ],
     },
@@ -171,6 +176,16 @@
               doc: "/doc/ru/deputies-requests/berdenov/answer/«Қазақстан темір жолы» ҰК» АҚ қызметіне қатысты 13.10.23 ответ.pdf",
             }
           ]
+        },
+        {
+          date: "25.01.24",
+          name: "Эквайринг процессі туралы",
+          doc: "/doc/ru/deputies-requests/berdenov/request/25.01.2024 ДЗ Берденов Эквайринг процессі туралы.pdf",
+        },
+        {
+          date: "15.02.24",
+          name: "Бөлшек салығы режиміне қатысты",
+          doc: "/doc/ru/deputies-requests/berdenov/request/15.02.24 ДЗ Берденов Бөлшек салығы режиміне қатысты.pdf",
         }
       ],
     },
@@ -215,6 +230,11 @@
               doc: "/doc/ru/deputies-requests/tau/answer/3 Отандық кинематография мәселелері бойынша 12.12.23 ответ.pdf",
             }
           ]
+        },
+        {
+          date: "26.01.24",
+          name: "Жатақханалардың жағдайы туралы",
+          doc: "/doc/ru/deputies-requests/tau/request/26.01.2024 ДЗ Тау Жатақханалардың жағдайы туралы.pdf",
         }
       ],
     },
@@ -280,6 +300,11 @@
               doc: "/doc/ru/deputies-requests/kuspekov/answer/Автокөлік лизингі мәселелері бойынша 30.10.23 ответ.pdf",
             }
           ]
+        },
+        {
+          date: "02.02.24",
+          name: "Куспеков Агломерация мәселесі",
+          doc: "/doc/ru/deputies-requests/kuspekov/request/02.02.24 ДЗ Куспеков Агломерация мәселесі.pdf"
         }
       ],
     },

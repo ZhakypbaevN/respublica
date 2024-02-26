@@ -16,7 +16,7 @@
       </button>
     </div>
 
-    <div class="modal-inputs">
+    <!-- <div class="modal-inputs">
       <input
         type="tel"
         name="code"
@@ -26,6 +26,26 @@
         :class="'input-code-' + i"
         autocomplete="off"
       >
+    </div> -->
+    <div class="modal-inputs solo">
+      <!-- <input
+        type="tel"
+        name="code"
+        maxlength="1"
+        @input="inputHandler(i)"
+        v-for="i in 6" :key="i"
+        :class="'input-code-' + i"
+        autocomplete="off"
+      > -->
+      <Input
+        light
+        name="code"
+        type="number"
+        mask="######"
+        :placeholder="$t('auth.enter-the-code')"
+        autofocus
+        required
+      />
     </div>
 
     <div class="modal-message">
@@ -185,14 +205,14 @@ import { onMounted } from 'vue';
     timerId = setInterval(updateTimer, 1000);
   }
 
-  const onPostCheckCode = async () => {
+  const onPostCheckCode = async ({code}: {code: number}) => {
     isLoading.form = true;
     const url = props.fromResetPassword
       ? '/api/v1/auth/password/verify-sms'
       : '/api/v1/auth/register/phone-confirm';
     
     try {
-      await postCheckCode(url, verificationCode.value, tokenValue.value)
+      await postCheckCode(url, code.toString(), tokenValue.value)
 
       toast({
         message: t('message.the-code-has-been-successfully-confirmed'),

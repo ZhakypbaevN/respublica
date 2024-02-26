@@ -12,7 +12,7 @@
                 :key="link.title"
                 :href="link.link"
               >
-                  <li>{{ link.title }}</li>
+                  <li v-html="link.title"></li>
               </a>
             </ul>
           </div>
