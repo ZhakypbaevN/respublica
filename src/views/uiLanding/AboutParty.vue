@@ -56,7 +56,7 @@
       link: "#who-are-we"
     },
     {
-      title: `${t('about-us-page.party-program.restart-reforma-respublica-subtitle')},\n ${t('about-us-page.party-program.party-election-program-respublica')}`,
+      title: `${t('about-us-page.party-program.restart-reforma-respublica-subtitle')}<br> ${t('about-us-page.party-program.party-election-program-respublica')}`,
       link: "#party-program"
     },
     {
