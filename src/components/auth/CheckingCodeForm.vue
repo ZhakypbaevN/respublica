@@ -283,6 +283,15 @@ import { onMounted } from 'vue';
     gap: 14px;
     margin-bottom: 40px;
 
+    &.solo {
+      display: block;
+      
+      & input[name="code"] {
+        width: 100%;
+        height: auto;
+      }
+    }
+
     & input[name="code"] {
       display: block;
       width: 72px;
