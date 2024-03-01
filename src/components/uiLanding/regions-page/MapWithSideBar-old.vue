@@ -101,9 +101,6 @@
   onMounted(() => {
     const map = document.querySelector('.map');
     let root = am5.Root.new(map);
-    root.setThemes([
-      am5themes_Animated.new(root)
-    ]);
 
     const headerMain = document.querySelector('#header-main');
     mapSidebarTopBlock.value.style.paddingTop = headerMain!.offsetHeight + 'px';
@@ -112,11 +109,11 @@
     root.setThemes([
       am5themes_Animated.new(root)
     ]);
-    let chart = window.innerWidth <= 992 || true
+    let chart = window.innerWidth <= 992
       ? root.container.children.push(
           am5map.MapChart.new(root, {
             panX: "rotateX",
-            wheelY: "none",
+            wheelY: "zoom",
             minZoomLevel: 0.5,
             maxZoomLevel: 16,
             projection: am5map.geoMercator()
@@ -197,6 +194,7 @@
         showTooltipOn: 'hover'
       });
     }
+  
 
     polygonSeries.mapPolygons.template.events.on("click", function(ev) {
       setTimeout(() => {
@@ -233,8 +231,6 @@
           return polygon
         }));
 
-        polygonSeries.zoomToDataItem(ev.target.dataItem);
-
         showSideBar.value = true;
       }, 300)
 
@@ -256,13 +252,13 @@
       strokeWidth: 2,
     });
     
-    // polygonSeries.mapPolygons.template.states.create("hover", {
-    //   fill: am5.color('#FCC952'),
-    //   fillOpacity: .8,
-    //   stroke: am5.color('#FCC952'),
-    //   strokeWidth: 10,
-    //   strokeOpacity: 0.2
-    // });
+    polygonSeries.mapPolygons.template.states.create("hover", {
+      fill: am5.color('#FCC952'),
+      fillOpacity: .8,
+      stroke: am5.color('#FCC952'),
+      strokeWidth: 10,
+      strokeOpacity: 0.2
+    });
   
     // -------- Map Point Settings --------
   
@@ -305,7 +301,14 @@
   
     pointSeries.bullets.push(function(root, series, dataItem) {
       return am5.Bullet.new(root,
-        {
+        !dataItem.dataContext?.name
+          ? {
+              sprite: am5.Circle.new(root, {
+                radius: 5,
+                fill: am5.color(0xFFFFFF)
+              })
+            }
+          : {
             sprite: am5.Label.new(root, {
               centerX: am5.p50,
               centerY: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(300) : am5.p50,
@@ -337,37 +340,93 @@
       })
     );
 
-    // Add button to go back to continents view
-  var zoomControl = chart.set("zoomControl", am5map.ZoomControl.new(root, {
-    x: 10,
-    centerX: am5.p0,
-    y: 10,
-    centerY: am5.p0,
-  }));
+    // Load routes in GeoJSON format
+    var routes = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+          },
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                71.45325759764486,
+                51.14250514464325
+              ],
+              [
+                80.2292212723155,
+                52.649003915028686
+              ],
+              [
+                83.13527630391866,
+                52.631206731742935
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+          },
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                76.9411148348155,
+                43.238551759658264
+              ],
+              [
+                83.19416384672371,
+                41.612421738292994
+              ],
+              [
+                85.90684196486126,
+                41.58765682564248
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+          },
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                69.62599369771937,
+                42.39713863399908
+              ],
+              [
+                72.47072934005126,
+                39.615669198941504
+              ],
+              [
+                75.17887965163419,
+                39.61371617624161
+              ]
+            ]
+          }
+        }
+      ]
+    };
 
-  var homeButton = zoomControl.children.moveValue(am5.Button.new(root, {
-    paddingTop: 10,
-    paddingBottom: 10,
-    x: am5.p0,
-    centerX: am5.p0,
-    y: am5.p0,
-    centerY: am5.p0,
-    icon:
-      am5.Graphics.new(root, {
-        svgPath: "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8",
-        fill: am5.color(0xffffff)
+    // Create line series
+    var lineSeries = chart.series.push(
+      am5map.MapLineSeries.new(root, {
+        geoJSON: routes
       })
-  }), 0)
-  homeButton.events.on("click", function() {
-    chart.goHome();
-    // if (currentDataItem) {
-    //   polygonSeries.zoomToDataItem(currentDataItem);
-    // }
-    // else {
-    //   chart.goHome();
-    // }
-  })
-
+    );
+      
+    lineSeries.mapLines.template.setAll({
+      stroke: am5.color(0x16355B),
+      strokeDasharray: [6, 3, 6],
+      strokeWidth: 1.2,
+      strokeOpacity: 1
+    });
+  
     return { root };
   })
 </script>
