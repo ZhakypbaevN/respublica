@@ -8,6 +8,7 @@ import '@/assets/scss/Skeleton.scss';
 import '@/assets/scss/CKEditor-reset.scss';
 import '@/assets/fonts/tilda-sans/stylesheet.css';
 import '@/assets/fonts/montserrat/stylesheet.css';
+import '@/assets/fonts/SFProDisplay/SFProDisplay.css';
 
 import App from '@/App.vue'
 import router from '@/router/index'

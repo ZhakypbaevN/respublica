@@ -42,6 +42,7 @@ import PhotoGalleryAll from '@/views/uiLanding/press-center/gallery/PhotoGallery
 import Regions from '@/views/uiLanding/Regions.vue'
 import Faq from '@/views/uiLanding/Faq.vue'
 import Donations from '@/views/uiLanding/Donations.vue'
+import Hackathon from '@/views/uiLanding/Hackathon.vue'
 
 
 // ------------------ UI Reception ------------------
@@ -246,6 +247,12 @@ const routes = [
     name: 'Contacts',
     component: Contacts,
     meta: { title: 'contacts' }
+  },
+  {
+    path: '/hackathon',
+    name: 'Hackathon',
+    component: Hackathon,
+    meta: { title: 'hackathon' }
   },
 
   // UI Admin
