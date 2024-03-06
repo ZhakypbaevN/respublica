@@ -20,10 +20,12 @@
 
 
           <div class="hackathonIntro-content-btns">
-            <Button
-              :name="$t('auth.register')"
-              type="default-orange"
-            />
+            <a href="https://forms.office.com/r/C2vGaALmV1" target="_blank">
+              <Button
+                :name="$t('auth.register')"
+                type="default-orange"
+              />
+            </a>
             <Button
               class="hackathonIntro-content-btns-play"
               :name="$t('hackathon.intro.btn-play')"

@@ -15,11 +15,13 @@
           </div>
         </div>
 
-        <Button
-          class="hackathonIntro-content-btns-play"
-          :name="$t('hackathon.information.btn')"
-          type="outline-light"
-        />
+        <a href="https://forms.office.com/r/C2vGaALmV1" target="_blank">
+          <Button
+            class="hackathonIntro-content-btns-play"
+            :name="$t('hackathon.information.btn')"
+            type="outline-light"
+          />
+        </a>
       </div>
     </div>
   </section>

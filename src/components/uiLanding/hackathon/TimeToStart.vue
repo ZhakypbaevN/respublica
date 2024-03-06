@@ -15,9 +15,9 @@
           </div>
         </div>
 
-        <Button
-          :name="$t('hackathon.time.btn')"
-        />
+        <a href="https://forms.office.com/r/C2vGaALmV1" target="_blank">
+          <Button :name="$t('hackathon.time.btn')" />
+        </a>
       </div>
     </div>
   </section>
