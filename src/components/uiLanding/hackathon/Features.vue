@@ -1,5 +1,5 @@
 <template>
-  <section class="hackathonFeatures landing-block">
+  <section class="hackathonFeatures landing-block" id="features">
     <div class="wrapper landing-wrapper">
       <div class="hackathonFeatures-inner">
         <h2 class="landing-title">{{ $t('hackathon.features.title') }}</h2>

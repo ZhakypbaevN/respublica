@@ -55,8 +55,16 @@
 
   const navsList = [
     {
-      link: '/hackathon#partners',
-      title: t('hackathon.header.general-partners')
+      link: '/hackathon#conditions',
+      title: t('hackathon.header.hackathon-rules')
+    },
+    {
+      link: '/hackathon#program',
+      title: t('hackathon.header.program')
+    },
+    {
+      link: '/hackathon#features',
+      title: t('hackathon.header.features')
     },
     // {
     //   link: '/hackathon#sdcs',
@@ -66,14 +74,6 @@
     //   link: '/hackathon#sdcs',
     //   title: t('hackathon.header.jury')
     // },
-    {
-      link: '/hackathon#program',
-      title: t('hackathon.header.program')
-    },
-    {
-      link: '/hackathon#conditions',
-      title: t('hackathon.header.hackathon-rules')
-    }
   ]
 
   const handleScroll = () => {
