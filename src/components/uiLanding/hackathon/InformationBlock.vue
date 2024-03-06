@@ -15,19 +15,27 @@
           </div>
         </div>
 
-        <a href="https://forms.office.com/r/C2vGaALmV1" target="_blank">
-          <Button
-            class="hackathonIntro-content-btns-play"
-            :name="$t('hackathon.information.btn')"
-            type="outline-light"
-          />
-        </a>
+        <Button
+          class="hackathonIntro-content-btns-play"
+          :name="$t('hackathon.information.btn')"
+          type="outline-light"
+          @click="() => showJoinPartyModal = true"
+        />
       </div>
     </div>
+
+    <JoinPartyModal
+      :show="showJoinPartyModal"
+      @hide="() => showJoinPartyModal = false"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
+  import JoinPartyModal from '@/components/uiLanding/feedback/JoinPartyModal.vue';
+
+  import { ref } from 'vue';
+
   interface IProps {
     bg?: string,
   }
@@ -35,6 +43,8 @@
   withDefaults(defineProps<IProps>(), {
     bg: 'blue'
   })
+
+  const showJoinPartyModal = ref(false);
 </script>
 
 <style scoped lang="scss">
