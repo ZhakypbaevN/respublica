@@ -128,7 +128,6 @@ import SvgIcon from '@/components/common/SvgIcon.vue';
 
     padding-left: 42%;
     background: url('/img/uiLanding/hackathon/intro-preview.png') center no-repeat;
-    background-size: cover;
   }
 }
 </style>
