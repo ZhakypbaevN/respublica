@@ -8,6 +8,13 @@
         />
 
         <div class="introBottom-btns">
+          <RouterLink to="/hackathon">
+            <Button
+              name="Hackathon ReCodetau"
+              type="outline-light"
+              uppercase
+            />
+          </RouterLink>
           <Button
             :name="$t('feedback.join-the-party')"
             type="outline-light"
@@ -65,7 +72,7 @@
 
   &-btns {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
 
     & button.default-blue {
@@ -101,22 +108,10 @@
 
   @media (max-width: 992px) {
     &-inner {
-      grid-gap: 60px;
-
-      padding: 22px 0;
-    }
-
-    &-btns {
-      grid-gap: 18px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    &-inner {
       flex-direction: column;
       grid-gap: 20px;
 
-      padding: 20px 0;
+      padding: 22px 0;
     }
 
     &-sn {
@@ -128,8 +123,23 @@
     }
 
     &-btns {
+      grid-gap: 18px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-inner {
+      padding: 20px 0;
+    }
+
+    &-btns {
       width: 100%;
       grid-gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+
+      & a:first-child {
+        grid-column: 1/3;
+      }
     }
   }
 
@@ -139,7 +149,6 @@
       justify-content: center;
 
       padding: 16px 0;
-      border-bottom: 1px solid rgba(white, .2);
     }
   }
 
