@@ -250,9 +250,6 @@ import SvgIcon from '@/components/common/SvgIcon.vue';
         }
       }
     }
-
-    &-preview {
-    }
   }
 
   @media (max-width: 1200px) {
