@@ -50,15 +50,40 @@
   & * {
     font-family: 'SF Pro Display';
   }
-
-  & .landing-block {
-    padding: 100px 0;
-  }
-
+  
   & .landing-title {
     font-weight: 500;
   }
 
+  & .landing-block {
+    padding: 100px 0;
+    
+    // Adaptation
+    @media (max-width: 1400px) {
+      padding: 90px 0;
+    }
+
+    @media (max-width: 1200px) {
+      padding: 80px 0;
+    }
+
+    @media (max-width: 992px) {
+      padding: 70px 0;
+    }
+
+    @media (max-width: 768px) {
+      padding: 60px 0;
+    }
+
+    @media (max-width: 576px) {
+      padding: 50px 0;
+    }
+
+    @media (max-width: 380px) {
+      padding: 40px 0;
+    }
+  }
+  
   /* & .footer {
     margin-top: 0px !important;
   } */

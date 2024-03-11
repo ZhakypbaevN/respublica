@@ -234,6 +234,9 @@
         grid-gap: 5px 7px;
 
         & .hackathonProgram-table-times-block:first-child {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           text-align: center;
         }
       }
@@ -245,6 +248,283 @@
         &-text {
           font-size: 20px;
           font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Adaptation
+  @media (max-width: 1400px) {
+    &-headers {
+      grid-gap: 28px;
+      margin-bottom: 28px;
+
+      &-item {
+        padding: 32px 52px 46px 52px;
+
+        &-subtitle {
+          font-size: 22px;
+          margin-bottom: 2px;
+        }
+
+        &-title {
+          font-size: 46px;
+        }
+      }
+    }
+
+    &-tables {
+      grid-gap: 28px;
+    }
+
+    &-table {
+      grid-template-columns: 244px 1fr;
+      grid-gap: 7px;
+
+      &-titles {
+        padding: 28px;
+
+        &-title {
+          font-size: 46px;
+
+          margin-bottom: 2px;
+        }
+
+        &-subtitle {
+          font-size: 28px;
+        }
+      }
+
+      &-times {
+        grid-gap: 5px;
+
+        &-item {
+          grid-template-columns: 204px 1fr;
+          grid-gap: 5px 7px;
+        }
+
+        &-block {
+          padding: 16px 26px;
+
+          &-text {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &-headers {
+      grid-gap: 26px;
+      margin-bottom: 26px;
+
+      &-item {
+        padding: 30px 50px 36px 50px;
+
+        &-subtitle {
+          font-size: 20px;
+          margin-bottom: 2px;
+        }
+
+        &-title {
+          font-size: 38px;
+        }
+      }
+    }
+
+    &-tables {
+      grid-gap: 26px;
+    }
+
+    &-table {
+      grid-template-columns: 210px 1fr;
+      grid-gap: 7px;
+
+      &-titles {
+        padding: 26px;
+
+        &-title {
+          font-size: 32px;
+          margin-bottom: 2px;
+        }
+
+        &-subtitle {
+          font-size: 26px;
+        }
+      }
+
+      &-times {
+        grid-gap: 5px;
+
+        &-item {
+          grid-template-columns: 180px 1fr;
+          grid-gap: 5px 7px;
+        }
+
+        &-block {
+          padding: 14px 24px;
+
+          &-text {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-headers {
+      grid-gap: 24px;
+      margin-bottom: 24px;
+
+      &-item {
+        padding: 24px 32px 32px 32px;
+
+        &-subtitle {
+          font-size: 18px;
+          margin-bottom: 2px;
+        }
+
+        &-title {
+          font-size: 32px;
+        }
+      }
+    }
+
+    &-tables {
+      grid-gap: 24px;
+    }
+
+    &-table {
+      grid-template-columns: 1fr;
+      grid-gap: 7px;
+
+      &-titles {
+        padding: 24px;
+
+        &-title {
+          font-size: 30px;
+          margin-bottom: 2px;
+        }
+
+        &-subtitle {
+          font-size: 24px;
+        }
+      }
+
+      &-times {
+        grid-gap: 5px;
+
+        &-item {
+          grid-template-columns: 160px 1fr;
+          grid-gap: 4px 6px;
+        }
+
+        &-block {
+          padding: 12px 22px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-headers {
+      grid-template-columns: 1fr;
+      grid-gap: 22px;
+      margin-bottom: 22px;
+
+      &-item {
+        padding: 22px 30px 30px 30px;
+
+        &-title {
+          font-size: 30px;
+        }
+      }
+    }
+
+    &-tables {
+      grid-gap: 22px;
+    }
+
+    &-table {
+      grid-gap: 4px;
+
+      &-titles {
+        padding: 22px;
+
+        &-title {
+          font-size: 28px;
+          margin-bottom: 0px;
+        }
+
+        &-subtitle {
+          font-size: 22px;
+        }
+      }
+
+      &-times {
+        grid-gap: 5px;
+
+        &-item {
+          grid-template-columns: 140px 1fr;
+          grid-gap: 2px 4px;
+        }
+
+        &-block {
+          padding: 11px 20px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-headers {
+      grid-gap: 20px;
+      margin-bottom: 20px;
+
+      &-item {
+        padding: 20px 26px 26px 26px;
+
+        &-subtitle {
+          font-size: 16px;
+        }
+
+        &-title {
+          font-size: 22px;
+        }
+      }
+    }
+
+    &-tables {
+      grid-gap: 20px;
+    }
+
+    &-table {
+      grid-gap: 4px;
+
+      &-titles {
+        padding: 20px;
+
+        &-title {
+          font-size: 24px;
+        }
+
+        &-subtitle {
+          font-size: 18px;
+        }
+      }
+
+      &-times {
+        grid-gap: 5px;
+
+        &-item {
+          grid-template-columns: 120px 1fr;
+          grid-gap: 2px 4px;
+        }
+
+        &-block {
+          padding: 11px 10px;
         }
       }
     }

@@ -30,22 +30,10 @@
   const { t } = useI18n()
 
   const items = ref([
-    {
-      name: 'day',
-      title: '0'
-    },
-    {
-      name: 'hour',
-      title: '0'
-    },
-    {
-      name: 'minute',
-      title: '0'
-    },
-    {
-      name: 'second',
-      title: '0'
-    },
+    { name: 'day', title: '0' },
+    { name: 'hour', title: '0' },
+    { name: 'minute', title: '0' },
+    { name: 'second', title: '0' },
   ]);
 
   const countDown = () => {
@@ -84,25 +72,25 @@
     if (type === 'day') {
       if (num == 1) return t('day')
       if (num < 5 && num != 0) return t('days_v1')
-      if (num > 4) return t('days_v2')
+      if (num > 4 || num == 0) return t('days_v2')
     }
 
     if (type === 'hour') {
       if (num == 1) return t('hour')
       if (num < 5 && num != 0) return t('hour_s')
-      if (num > 4) return t('hours')
+      if (num > 4 || num == 0) return t('hours')
     }
 
     if (type === 'minute') {
       if (num == 1) return t('one_minute')
       if (num < 5 && num != 0) return t('minutes_v2')
-      if (num > 4) return t('minutes')
+      if (num > 4 || num == 0) return t('minutes')
     }
 
     if (type === 'second') {
       if (num == 1) return t('one_second')
       if (num < 5 && num != 0) return t('seconds_v2')
-      if (num > 4) return t('seconds')
+      if (num > 4 || num == 0) return t('seconds')
     }
   }
 </script>
@@ -146,6 +134,125 @@
         font-size: 24px;
         font-weight: 700;
         text-transform: uppercase;
+      }
+    }
+  }
+
+
+  // Adaptation
+  @media (max-width: 1400px) {
+    &-items {
+      grid-gap: 30px;
+
+      margin-bottom: 50px;
+
+      &-item {
+        padding: 32px;
+
+        &-title {
+          font-size: 68px;
+        }
+
+        &-subtitle {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &-items {
+      grid-gap: 28px;
+
+      margin-bottom: 45px;
+
+      &-item {
+        padding: 30px;
+
+        &-title {
+          font-size: 66px;
+        }
+
+        &-subtitle {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-items {
+      grid-gap: 22px;
+
+      margin-bottom: 40px;
+
+      &-item {
+        padding: 28px;
+
+        &-title {
+          font-size: 50px;
+        }
+
+        &-subtitle {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-items {
+      grid-gap: 18px;
+      margin-bottom: 36px;
+
+      &-item {
+        padding: 20px;
+
+        &-title {
+          font-size: 38px;
+        }
+
+        &-subtitle {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-items {
+      grid-gap: 10px;
+      margin-bottom: 30px;
+
+      &-item {
+        padding: 10px;
+
+        &-title {
+          font-size: 30px;
+        }
+
+        &-subtitle {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    &-items {
+      grid-gap: 8px;
+      margin-bottom: 30px;
+
+      &-item {
+        padding: 5px;
+
+        &-title {
+          font-size: 22px;
+        }
+
+        &-subtitle {
+          font-size: 12px;
+        }
       }
     }
   }

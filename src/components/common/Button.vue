@@ -269,5 +269,23 @@
         font-size: 15px;
       }
     }
+
+    @media (max-width: 576px) {
+      padding: 14px 22px;
+      border-radius: 6px;
+
+      & span {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      padding: 14px 20px;
+      border-radius: 6px;
+
+      & span {
+        font-size: 15px;
+      }
+    }
   }
 </style>
