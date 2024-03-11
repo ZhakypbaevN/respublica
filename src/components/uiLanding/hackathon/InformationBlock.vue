@@ -16,7 +16,6 @@
         </div>
 
         <Button
-          class="hackathonIntro-content-btns-play"
           :name="$t('hackathon.information.btn')"
           type="outline-light"
           @click="() => showJoinPartyModal = true"
