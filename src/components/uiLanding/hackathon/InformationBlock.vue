@@ -85,5 +85,124 @@
     font-size: 30px;
     font-weight: 700;
   }
+  
+  // Adaptation
+  @media (max-width: 1400px) {
+    &-inner {
+      grid-gap: 55px;
+
+      &-left {
+        grid-gap: 40px;
+
+        & svg {
+          height: 110px;
+          width: 110px;
+        }
+      }
+    }
+
+    &-subtitle {
+      font-size: 20px;
+    }
+
+    &-title {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &-inner {
+      grid-gap: 55px;
+
+      &-left {
+        grid-gap: 40px;
+
+        & svg {
+          height: 110px;
+          width: 110px;
+        }
+      }
+    }
+
+    &-subtitle {
+      font-size: 20px;
+    }
+
+    &-title {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-inner {
+      grid-gap: 30px;
+
+      &-left {
+        grid-gap: 26px;
+
+        & svg {
+          height: 90px;
+          width: 90px;
+        }
+      }
+    }
+
+    &-subtitle {
+      font-size: 18px;
+    }
+
+    &-title {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-inner {
+      flex-direction: column;
+      grid-gap: 30px;
+
+      &-left {
+        grid-gap: 24px;
+
+        & svg {
+          height: 80px;
+          width: 80px;
+        }
+      }
+    }
+
+    &-subtitle {
+      font-size: 18px;
+    }
+
+    &-title {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-inner {
+      grid-gap: 28px;
+
+      &-left {
+        flex-direction: column;
+        grid-gap: 20px;
+
+        & svg {
+          height: 80px;
+          width: 80px;
+        }
+      }
+    }
+
+    &-subtitle,
+    &-title {
+      text-align: center;
+    }
+
+    &-subtitle {
+      font-size: 16px;
+    }
+  }
 }
 </style>
