@@ -142,6 +142,7 @@
             v-for="nav of navsList"
             :key="nav.link"
             :to="nav.link"
+            @click="() => showSideBar = false"
           >
             {{ nav.title }}
           </Router-link>
