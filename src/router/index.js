@@ -755,9 +755,6 @@ router.beforeEach(async (to, from, next) => {
   const htmlElementBody = document.querySelector('body');
   const htmlElementApp = document.querySelector('div#app');
 
-  console.log('to', to.name);
-  console.log('to.matched', to.matched);
-
   if (to.matched[0].name === 'Admin' || to.matched[0].name === 'Reception' || to.matched[0].name === 'Manager' || to.matched[0].name === 'Media') {
     document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1300, initial-scale=1')
     htmlElementBody.style = 'overflow:overlay !important;'

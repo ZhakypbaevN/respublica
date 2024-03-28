@@ -85,6 +85,7 @@
 
   const langName = (lang) => {
     const select = langs.find(langItem => langItem.value === lang)
+    if (!select) toggleLang(langs[0].value);
     return select.name
   }
 </script>

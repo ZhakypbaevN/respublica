@@ -7,7 +7,7 @@ import { useToast } from '@/modules/toast'
 import { getUserData } from '@/actions/auth'
 import { IUser } from '@/types/users'
 
-import { languages } from '@/assets/lang/exports'
+import { getLangForURL, languages } from '@/assets/lang/exports'
 import i18n from '@/assets/lang'
 
 const { toast } = useToast()
@@ -68,7 +68,9 @@ export const useAuth = () => {
         user.value = response.data
       },
       () => {},
-      true
+      true,
+      getLangForURL(),
+      'application/json, text/plain, */*'
     )
   }
 

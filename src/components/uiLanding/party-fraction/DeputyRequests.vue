@@ -54,7 +54,7 @@
                   class="text-line"
                   target="_blank"
                   v-for="answer of request.answer"
-                  :href="answer.doc"
+                  :href="answer['doc']"
                 >
                   <div class="text-line-icon">
                     <SvgIcon name="pdf-blue" :viewboxHeight="32" :viewboxWidth="32" />
@@ -155,8 +155,15 @@
         {
           date: "31.01.24",
           name: "По проблемным вопросам учета и статистики в сельском хозяйстве",
-          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/31.01.2024 Ходжаназаров ПО ПРОБЛЕМНЫМ ВОПРОСАМ УЧЕТА И СТАТИСТИКИ В СЕЛЬСКОМ ХОЗЯЙСТВЕ.pdf"
-        }
+          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/31.01.2024 Ходжаназаров ПО ПРОБЛЕМНЫМ ВОПРОСАМ УЧЕТА И СТАТИСТИКИ В СЕЛЬСКОМ ХОЗЯЙСТВЕ.pdf",
+          
+          answer: [
+            {
+              date: "31.01.24",
+              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/31.01.2024 ответ Ходжаназаров Статистика мәселесі бойынша.pdf",
+            }
+          ]
+        },
       ],
     },
 
@@ -181,6 +188,13 @@
           date: "25.01.24",
           name: "Эквайринг процессі туралы",
           doc: "/doc/ru/deputies-requests/berdenov/request/25.01.2024 ДЗ Берденов Эквайринг процессі туралы.pdf",
+          
+          answer: [
+            {
+              date: "25.01.24",
+              doc: "/doc/ru/deputies-requests/berdenov/answer/25.01.2024 ответ Берденов Эквайринг процессі туралы.pdf",
+            }
+          ]
         },
         {
           date: "15.02.24",
@@ -235,6 +249,13 @@
           date: "26.01.24",
           name: "Жатақханалардың жағдайы туралы",
           doc: "/doc/ru/deputies-requests/tau/request/26.01.2024 ДЗ Тау Жатақханалардың жағдайы туралы.pdf",
+
+          answer: [
+            {
+              date: "26.01.24",
+              doc: "/doc/ru/deputies-requests/tau/answer/26.01.2024 ответ Тау Жатақханалардың жағдайы туралы.pdf",
+            }
+          ]
         }
       ],
     },
@@ -304,7 +325,18 @@
         {
           date: "02.02.24",
           name: "Куспеков Агломерация мәселесі",
-          doc: "/doc/ru/deputies-requests/kuspekov/request/02.02.24 ДЗ Куспеков Агломерация мәселесі.pdf"
+          doc: "/doc/ru/deputies-requests/kuspekov/request/02.02.24 ДЗ Куспеков Агломерация мәселесі.pdf",
+          
+          answer: [
+            {
+              date: "02.02.24",
+              doc: "/doc/ru/deputies-requests/kuspekov/answer/02.02.24 ответ акимат Куспеков Агломерация мәселесі.pdf",
+            },
+            {
+              date: "02.02.24",
+              doc: "/doc/ru/deputies-requests/kuspekov/answer/02.02.24 ответ ПМ Куспеков Агломерация мәселесі.pdf",
+            }
+          ]
         }
       ],
     },
