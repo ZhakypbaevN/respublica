@@ -6,6 +6,7 @@
           class="partyProgram-item withZoomPreview"
           v-for="(item, idx) of partyList"
           :key="item.title"
+          :id="item.id"
           @click="focusToDropDown(`partyProgram-pdfDropDown-${idx}`)"
         >
           <div class="partyProgram-item-preview withZoomPreview-preview">
@@ -34,6 +35,7 @@
   const partyList = [
     {
       img: '/img/uiLanding/about-party/program-one.jpg',
+      id: 'restart-reforma-respublica',
       title: t('about-us-page.party-program.restart-reforma-respublica'),
       subtitle: t('about-us-page.party-program.restart-reforma-respublica-subtitle'),
       pdflinks: {
@@ -43,6 +45,7 @@
     },
     {
       img: '/img/uiLanding/about-party/program-two.jpg',
+      id: 'this-is-new-kazakhstan',
       title: t('about-us-page.party-program.this-is-new-kazakhstan'),
       subtitle: t('about-us-page.party-program.party-election-program-respublica'),
       pdflinks: {

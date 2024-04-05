@@ -194,7 +194,9 @@
   import { useRoute, useRouter } from 'vue-router';
 
   import { useToast } from '@/modules/toast'
+
   import getFileUrl from '@/helpers/getFileUrlByDate.js'
+  import removeNbsp from '@/helpers/removeNbsp'
 
   import { INews } from '@/types/news';
   import { getMediaNewsData, postMediaNewsData, putMediaNewsData } from '@/actions/uiMedia/news';
@@ -305,8 +307,9 @@
   
         for (const key in newsData[lang.value]) {
           if (key === 'created_at') formData.append(key, moment(newsData.ru[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-          else if (key !== 'preview_image' && newsData[lang.value][key]) formData.append(key, newsData[lang.value][key]);
+          else if (key !== 'preview_image' && newsData[lang.value][key]) formData.append(key, removeNbsp(newsData[lang.value][key]));
         }
+
   
         if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
         formData.append("alias_category", 'news');

@@ -26,8 +26,6 @@ function formatDateKazakh(inputDate) {
 // Пример использования
 const currentDate = new Date();
 const formattedDateStringKazakh = formatDateKazakh(currentDate);
-console.log(formattedDateStringKazakh);
-
 
 function convertDateTime(datetimeStr) {
   const datetime = new Date(datetimeStr);

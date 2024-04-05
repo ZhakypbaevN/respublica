@@ -1,0 +1,519 @@
+{
+  "staticInfoList": [
+    {
+      "page-title": "page.main",
+      "link": "/",
+
+      "keywords-ru": ["главная страница", "новые", "люди", "новые возможности", "обновление", "перспективы", "развитие", "инновации", "смена", "потенциал", "впечатления"],
+      "keywords-kz": ["негізгі", "басты", "жаңа адамдар", "жаңа қадамдар"],
+      "blocks": [
+        {
+          "block-title": "home.about-us.title",
+          "description": null,
+          "block-id": "#about-us",
+
+          "keywords-ru": ["Кратко о партии"],
+          "keywords-kz": ["Партия туралы қысқаша"],
+          "content": [
+            {
+              "title": "home.about-us.what-are-we-doing",
+              "description": "home.about-us.what-are-we-doing-text",
+        
+              "content-id": "#what-are-we-doing",
+
+              "keywords-ru": ["дела", "Respublica", "опытные", "эффективные", "управленцы", "лидеры", "преграды", "задачи", "будущее", "Казахстан"],
+              "keywords-kz": ["істеу", "Respublica", "адамдар", "партия", "тәжірибелі", "басқарушылар", "кедергілер", "мәселелер", "болашақ", "Қазақстан"]
+            },
+            {
+              "title": "home.about-us.who-are-we",
+              "description": "home.about-us.contribute-text",
+        
+              "content-id": "#who-are-we",
+
+              "keywords-ru": ["чиновники", "созидатели", "рабочие места", "личная история успеха", "помощь", "сограждане", "будущее", "молодые", "амбициозные", "сильные"],
+              "keywords-kz": ["шенеу", "жасау", "жұмыс орын", "отандастар", "сенім", "бой", "жас", "өршіл", "күш", "санасу"]
+            },
+            {
+              "title": "home.about-us.contribute",
+              "description": "home.about-us.contribute-text",
+        
+              "content-id": "#contribute",
+
+              "keywords-ru": ["вклад", "территория", "Respublica", "филиалы", "депутаты", "Мажилис", "парламент", "маслихаты", "поддержка", "организация", "работа", "местах", "защита", "избиратели", "приоритеты"],
+              "keywords-kz": ["үлес", "Respublica", "парламент", "мәслихат", "филиалдар", "депутаттар", "қолдау", "жұмыс", "сайлаушылар", "қорғау", "басқа басымдықтар"]
+            }
+          ]
+        },
+        {
+          "block-title": "home.party-program.title",
+          "description": "home.party-program.description",
+          "block-id": "#party-program",
+
+          "keywords-ru": ["Программа партии", "ИДЕОЛОГИЧЕСКАЯ ПРОГРАММА ПАРТИИ", "ПРЕДВЫБОРНАЯ ПРОГРАММА ПАРТИИ", "Respublica", "МЕТА-партия", "структурные преобразования", "сферы", "общественная жизнь", "Казахстан", "цифровые номады"],
+          "keywords-kz": ["Партия бағдарламасы", "ПАРТИЯНЫҢ САЙЛАУАЛДЫ БАҒДАРЛАМАСЫ", "ПАРТИЯНЫҢ ИДЕОЛОГИЯЛЫҚ ПРОГРАММАСЫ", "Respublica", "META", "партия", "қоғамдық", "өмір", "салалар", "қайта құру", "Қазақстан", "халқы", "цифрлық", "көшпенділер"],
+          "content": []
+        },
+        {
+          "block-title": "home.about-party.title",
+          "description": "home.about-party.item-1",
+          "block-id": "#about-party",
+
+          "keywords-ru": ["Мы стремимся решать вопросы, волнующие наших избирателей в разных уголках страны", "Мы открыты для диалога и намерены действовать активно", "Примите участие в нашем сообществе, чтобы изменить свою жизнь и жизнь ваших близких"],
+          "keywords-kz": ["Біз еліміздің әр түкпіріндегі сайлаушыларымызды толғандыратын мәселелерді шешуге тырысамыз", "Біз диалогқа ашықпыз және белсенді болуға ниеттіміз", "Өз өміріңізді және жақындарыңыздың өмірін өзгерту үшін біздің қатарымызға қосылыңыз"],
+          "content": []
+        }
+      ]
+    },
+
+    {
+      "page-title": "page.about-party",
+      "link": "/about-party",
+
+      "keywords-ru": ["партия", "политическая", "организация", "программа", "идеология", "деятельность", "цели", "задачи", "принципы", "участие"],
+      "keywords-kz": ["партия", "организация", "деятельность", "цели", "программа", "идеология", "история", "участие", "политика", "структура"],
+      "blocks": [
+        {
+          "block-title": "about-us-page.who-are-we-block.title",
+          "description": null,
+          "block-id": "#who-are-we",
+
+          "keywords-ru": ["идентификация", "личность", "группа", "самоопределение", "самоидентификация", "определение", "сущность", "характеристика", "направленность", "цель"],
+          "keywords-kz": ["кімбіз", "идентификация", "группа", "самоопределение", "самоидентификация", "определение", "сущность", "характеристика", "направленность", "цель"],
+          "content": [
+            {
+              "title": "about-us-page.who-are-we-block.respublica",
+              "description": "about-us-page.who-are-we-block.resbublica-description",
+        
+              "content-id": "#respublica",
+
+              "keywords-ru": ["Respublica", "общее", "общественное", "государственное дело", "структурные преобразования", "сферы жизни", "общество"],
+              "keywords-kz": ["RESPUBLICA", "латын тілі", "жалпы", "қоғамдық", "мемлекеттік істер", "құрылымдық", "қайта құру"]
+            },
+            {
+              "title": "about-us-page.who-are-we-block.metaparty",
+              "description": "about-us-page.who-are-we-block.metaparty-description",
+        
+              "content-id": "#metaparty",
+
+              "keywords-ru": ["МЕТАПАРТИЯ", "цифровые номады", "Новый Казахстан", "центральная Евразия", "принадлежность", "Европа", "Азия"],
+              "keywords-kz": ["МЕТАПАРТИЯ", "цифрлық", "көшпенділер", "Жаңа Қазақстан", "халқы", "Еуропа", "Азия", "Орталық Еуразия", "сезіну"]
+            },
+            {
+              "title": "about-us-page.who-are-we-block.our-tasks",
+              "description": "about-us-page.who-are-we-block.our-tasks-description",
+        
+              "content-id": "#our-tasks",
+
+              "keywords-ru": ["задачи", "достижения", "страна", "речи", "политики", "жизнь", "казахстанец", "время", "счастье"],
+              "keywords-kz": ["міндеттер", "жарқын болашағы", "сөз жүзінде", "саясаткерлер", "өміріне тікелей әсер етуі", "бақытты", "кез келді"]
+            },
+            {
+              "title": "about-us-page.who-are-we-block.our-priorities",
+              "description": "about-us-page.who-are-we-block.our-priorities-educated-nation",
+        
+              "content-id": "#our-priorities",
+
+              "keywords-ru": ["приоритеты", "образование", "нация", "счастье", "здоровье", "казахстанская культура", "общество", "благополучие", "устаревшие шаблоны"],
+              "keywords-kz": ["басымдықтар", "білімді ұлт", "деннің сау болуы", "бақыт", "қазақ мәдениеті", "негіз", "берекелі", "қазақстандықтар", "тозығы", "жеткен", "үлгілер", "бастарту"]
+            },
+            {
+              "title": "about-us-page.who-are-we-block.our-leaders",
+              "description": "about-us-page.who-are-we-block.our-leaders-description",
+        
+              "content-id": "#our-leaders",
+
+              "keywords-ru": ["лидеры", "опытные", "эффективные", "управленцы", "история успеха"],
+              "keywords-kz": ["көшбасшылар", "жеке табыс", "тәжірибелі", "тіскең менеджерлер"]
+            },
+            {
+              "title": "about-us-page.who-are-we-block.all-regions-and-districs",
+              "description": "about-us-page.who-are-we-block.all-regions-and-districs-description",
+        
+              "content-id": "#all-regions-and-districs",
+
+              "keywords-ru": ["регионы", "районы", "города", "поселки", "филиалы", "депутаты", "активисты"],
+              "keywords-kz": ["аймақтар", "аудандар", "қалалар", "елді-мекені", "филиалдар", "депутаттар", "белсенділер"]
+            }
+          ]
+        },
+        {
+          "block-title": "about-us-page.party-is-charter.title",
+          "description": "about-us-page.party-is-charter.alga-respublica",
+          "block-id": "#party-is-charter",
+
+          "keywords-ru": ["устав", "партия", "Алға", "Қазақстан", "Respublica", "Вперед"],
+          "keywords-kz": ["партия", "жарғы", "Алға", "Қазақстан", "Respublica"],
+          "content": []
+        },
+        {
+          "block-title": "about-us-page.party-program.title",
+          "description": null,
+          "block-id": "#party-program",
+
+          "keywords-ru": ["предвыборная", "программа", "партия", "идеологическая", "программа"],
+          "keywords-kz": ["партия", "сайлауалды бағдарламасы", "идеологиялық программасы"],
+          "content": [
+            {
+              "title": "about-us-page.party-program.restart-reforma-respublica",
+              "description": "about-us-page.party-program.restart-reforma-respublica-subtitle",
+        
+              "content-id": "#restart-reforma-respublica",
+
+              "keywords-ru": ["Restart", "Reforma", "Respublica", "предвыборная", "программа", "партия"],
+              "keywords-kz": ["RESTART", "REFORMA", "RESPUBLICA", "партия", "сайлау", "бағдарламасы"]
+            },
+            {
+              "title": "about-us-page.party-program.this-is-new-kazakhstan",
+              "description": "about-us-page.party-program.party-election-program-respublica",
+        
+              "content-id": "#this-is-new-kazakhstan",
+
+              "keywords-ru": ["Новый Казахстан", "партия", "идеологическая", "программа"],
+              "keywords-kz": ["Жаңа Қазақстан", "партия", "идеология", "программа"]
+            }
+          ]
+        },
+        {
+          "block-title": "about-us-page.organizational-structure",
+          "description": "about-us-page.organizational-structure-subtite",
+          "block-id": "#party-structure",
+
+          "keywords-ru": ["организационная", "структура", "аппарат", "партия", "Respublica"],
+          "keywords-kz": ["Республика партиясы", "аппарат", "ұйымдық", "құрылымы"],
+          "content": []
+        },
+        {
+          "block-title": "about-us-page.history.title",
+          "description": null,
+          "block-id": "#history",
+
+          "keywords-ru": ["История"],
+          "keywords-kz": ["Тарих"],
+          "content": [
+            {
+              "title": "about-us-page.history.date-december",
+              "description": "about-us-page.history.date-december-text",
+        
+              "content-id": "#history-date-december",
+
+              "keywords-ru": ["Учредительный съезд", "политическая партия", "Respublica", "Устав", "Программа", "руководящий орган", "высшие руководящие лица", "контрольно-ревизионный орган", "региональные филиалы", "председатель", "глава компании", "Олжа Агро", "Айдарбек Ходжаназаров", "предприниматели", "Бейбит Алибеков", "Максим Барышев", "Руслан Берденов", "Нурлан Коянбаев", "Сырымбек Тау", "Куаныш Шонбай", "Динара Шукижанова"],
+              "keywords-kz": ["2022 жылы", "3 желтоқсан", "Алматыда", "құрылтай съезі", "саяси партия", "құру", "Respublica партиясы", "Жарғысы", "Бағдарламасы", "басшы органы", "бақылау-тексеру органы", "облыстық филиалдар", "төрағасы", "Олжа Агро", "Айдарбек Хожаназаров", "Бейбіт Әлібеков", "Максим Барышев", "Руслан Берденов", "Нұрлан Қоянбаев", "Сырымбек Тау", "Қуаныш Шонбай", "Динара Шүкіжанова"]
+            },
+            {
+              "title": "about-us-page.history.date-january",
+              "description": "about-us-page.history.date-january-text",
+        
+              "content-id": "#history-date-january",
+
+              "keywords-ru": ["Общественное объединение", "Партия", "Respublica", "зарегистрировано", "Министерство юстиции", "Республика Казахстан", "регистрация", "филиалы"],
+              "keywords-kz": ["Respublica партиясы", "қоғамдық бірлестігі", "Қазақстан Республикасы", "Әділет министрлігі", "тіркелді", "2023 жыл", "18 қаңтар", "филиалдары", "бастады"]
+            },
+            {
+              "title": "about-us-page.history.date-february",
+              "description": "about-us-page.history.date-february-text",
+        
+              "content-id": "#history-date-february",
+
+              "keywords-ru": ["съезд", "Respublica", "решение", "кандидаты", "депутаты", "Мажилис", "Парламент", "Республика Казахстан", "партийные списки", "территориальные избирательные округа", "Предвыборная программа", "изменения", "дополнения", "Устав"],
+              "keywords-kz": ["Астана", "Respublica партиясының II съезі", "Қазақстан Республикасы Парламенті Мәжілісі", "VIII шақырылым", "депутат", "кандидаттар", "ұсыну", "шешім", "Партиялық тізімдер", "мандат", "аумақтық округтер", "сайлауалды бағдарлама", "өзгерістер", "толықтырулар"]
+            },
+            {
+              "title": "about-us-page.history.date-march",
+              "description": "about-us-page.history.date-march-text",
+        
+              "content-id": "#history-date-march",
+
+              "keywords-ru": ["внеочередные выборы", "депутаты", "Мажилис", "Парламент", "Respublica", "голоса избирателей", "мандаты", "фракция", "регистрация", "Постановление", "Бюро", "Собрание", "утвержден", "список", "состав", "заседание", "руководитель", "маслихаты", "избрано", "депутаты"],
+              "keywords-kz": ["Парламент Мәжілісі VIII шақырылымы", "депутаттар", "кезектен тыс сайлау", "қорытынды", "Respublica партиясы", "пайыз дауыс", "төменгі палата", "мандат", "фракция", "Қазақстан Республикасы Парламенті Мәжілісі", "Қаулылар Бюросы", "тіркелді", "шешім", "депутаттарының тізімі", "бекітілді", "Қожаназаров А.А.", "Берденов Р.А.", "Құспеков О.Х.", "Наумова Д.Р.", "Тау Н.", "Шүкіжанова Д.А.", "мүшелері", "төрағасы", "Мәслихаттар", "сайланды"]
+            },
+            {
+              "title": "about-us-page.history.date-july",
+              "description": "about-us-page.history.date-july-text",
+        
+              "content-id": "#history-date-july",
+
+              "keywords-ru": ["внеочередной съезд", "Бурабай", "Акмолинская область", "Решение", "изменения", "Устав", "Центральный совет", "Правила", "контрольно-ревизионная комиссия", "решение", "молодежное объединение", "Respublica jastary"],
+              "keywords-kz": ["кезектен тыс съезд", "Ақмола облысы", "Бурабай ауылы", "шешім", "Жарғысы", "Орталық кеңес", "құрамы", "бақылау кеңесі", "тексеру комиссиясы", "ереже", "қабылданды", "Respublica jastary", "жастар бірлестігі"]
+            }
+          ]
+        },
+        {
+          "block-title": "about-us-page.respublica-jastary.title",
+          "description": "about-us-page.respublica-jastary.text-one",
+          "block-id": "#respublica-jastary",
+
+          "keywords-ru": ["Respublica", "III съезд", "Respublica Jastary", "Айдарбек Ходжаназаров", "Мухтар Баймагулов", "патриотическое чувство", "предвыборная программа", "государственная молодежная политика", "молодежный резерв", "маслихаты всех уровней", "равные условия", "семейные ценности", "государственное управление", "азартные игры", "инклюзивное общество", "наркотики", "здоровый образ жизни", "образование"],
+          "keywords-kz": ["Respublica партиясы", "III съезі", "Respublica jastary", "Мұхтар Баймағұлов", "жастар саясаты", "қауымдастық", "Мәжілісі депутаттығы", "құқықтары мен мүдделері", "жастардың мемлекеттік басқару", "«Республика жастары»", "құмар ойындар мен лотереялар", "инклюзивті қоғам құру", "есірткіге қарсы күрес", "салауатты өмір салтын", "оқу мен білім беру"],
+          "content": []
+        }
+      ]
+    },
+
+    {
+      "page-title": "page.meeting-with-voters",
+      "link": "/meeting-with-voters",
+
+      "keywords-ru": ["Встречи с избирателями"],
+      "keywords-kz": ["Сайлаушылармен кездесу"],
+      "blocks": [
+        {
+          "block-title": "meeting-with-voters.title",
+          "description": "meeting-with-voters.content",
+          "block-id": "#meeting-with-voters",
+
+          "keywords-ru": ["Встречи с избирателями", "Мажилис Парламента", "фракция Respublica", "законопроекты", "поправки", "региональные поездки", "сельское хозяйство", "здравоохранение", "жилищно-коммунальная сфера", "труд и социальная защита", "образование", "бизнес", "анализ", "партийная фракция"],
+          "keywords-kz": ["сессия", "фракция", "депутаты", "законопроекты", "области", "экономика", "социальные_вопросы", "аулы_и_города", "бизнес", "букмекерство", "лотереи", "вейпинг", "здравоохранение", "наука", "электромобили", "инфраструктура", "голосование", "опросы"],
+          "content": []
+        },
+        {
+          "block-title": "meeting-with-voters.january-2024.title",
+          "description": "meeting-with-voters.january-2024.content",
+          "block-id": "#january-2024",
+
+          "keywords-ru": ["поездки в регионы", "Мажилис Парламента", "Respublica", "проблемы фермеров", "насосная станция", "предприниматели", "здравоохранение", "социальное обеспечение", "жилищные условия", "инвалидность", "дети", "школы", "дороги", "транспорт", "студенты"],
+          "keywords-kz": ["2024 жылғы қаңтардағы іссапарлары", "Мәжіліс Парламенті", "Respublica партиясы", "фракция", "Қазақстан", "өңірлер", "сайлаушылар", "белсенділер", "әлеуметтік мәселелер", "экономикалық мәселелер", "фермерлер", "насосная станция", "предприниматели", "салық", "легпром", "госзакуп", "артезиан су", "инфляция", "жалпы табыс декларациясы", "санитарлық-эпидемиологиялық және антитеррорлық қорғау", "гранттар", "жиынға", "жер қойнау", "школалар", "отандық қызметкерлер", "мемлекеттік көмек", "кризис орталығы", "инва-такси", "автокөлік", "әлеуметтік портал"],
+          "content": []
+        }
+      ]
+    },
+
+    {
+      "page-title": "page.contacts",
+      "link": "/contacts",
+
+      "keywords-ru": ["Контакты, Наш адрес", "ПРЕСС-СЛУЖБА (ДЛЯ СМИ)"],
+      "keywords-kz": [""],
+      "blocks": [
+        {
+          "block-title": "contacts.central-office",
+          "description": null,
+          "block-id": "#central-office",
+
+          "keywords-ru": ["г.Астана", "пр. Мангилик ел", "33/1", "Бизнес-центр IPLAZA", "9 этаж", "+7 7172 640 777", "info@respublica-partiyasy.kz"],
+          "keywords-kz": [""],
+          "content": [
+            {
+              "title": "contacts.our-address",
+              "description": "contacts.address",
+        
+              "content-id": "#our-address",
+
+              "keywords-ru": ["г.Астана", "пр. Мангилик ел", "33/1", "Бизнес-центр IPLAZA", "9 этаж", "+7 7172 640 777", "info@respublica-partiyasy.kz"],
+              "keywords-kz": ["Астана қ.", "Мәңгілік Ел даңғылы", "33/1", "IPLAZA бизнес орталығы", "9-қабат", "+7 7172 640 777", "info@respublica-partiyasy.kz"]
+            },
+            {
+              "title": "contacts.press-service-for-the-media.title",
+              "description": "contacts.press-service-for-the-media.title",
+        
+              "content-id": "#press-service-for-the-media",
+
+              "keywords-ru": ["Баспасөз қызметі (БАҚ үшін)", "a.ensebaeva@respublica-partiyasy.kz"],
+              "keywords-kz": ["Пресс-служба (для СМИ)", "a.ensebaeva@respublica-partiyasy.kz"]
+            }
+          ]
+        },
+        {
+          "block-title": "page.branches",
+          "description": "contacts.branches-description",
+          "block-id": "#filials",
+
+          "keywords-ru": ["Филиалы"],
+          "keywords-kz": ["Филиалдар"],
+          "content": []
+        }
+      ]
+    },
+
+
+    {
+      "page-title": "page.question-and-answer",
+      "link": "/faq",
+
+      "keywords-ru": ["faq"],
+      "keywords-kz": ["faq"],
+      "blocks": [
+        {
+          "block-title": "faq.faq-title",
+          "description": "faq.faq-item-1.answer",
+          "block-id": "#faq",
+
+          "keywords-ru": ["faq"],
+          "keywords-kz": ["faq"],
+          "content": [
+            {
+              "title": "faq.faq-item-1.question",
+              "description": "faq.faq-item-1.answer",
+        
+              "content-id": "#faq-item-1",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-2.question",
+              "description": "faq.faq-item-2.answer",
+        
+              "content-id": "#faq-item-2",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-3.question",
+              "description": "faq.faq-item-3.answer",
+        
+              "content-id": "#faq-item-3",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-4.question",
+              "description": "faq.faq-item-4.answer",
+        
+              "content-id": "#faq-item-4",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-5.question",
+              "description": "faq.faq-item-5.answer",
+        
+              "content-id": "#faq-item-5",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-6.question",
+              "description": "faq.faq-item-6.answer",
+        
+              "content-id": "#faq-item-6",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-7.question",
+              "description": "faq.faq-item-7.answer",
+        
+              "content-id": "#faq-item-7",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-8.question",
+              "description": "faq.faq-item-8.answer",
+        
+              "content-id": "#faq-item-8",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "page-title": "page.authorization",
+      "link": "/auth",
+
+      "keywords-ru": ["Авторизация"],
+      "keywords-kz": ["Авторизация"],
+      "blocks": [
+        {
+          "block-title": "button.login",
+          "description": "auth.login-description",
+          "block-id": null,
+          "link": "/auth/login",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        },
+        {
+          "block-title": "auth.registration",
+          "description": "auth.register-description",
+          "block-id": null,
+          "link": "/auth/register",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        }
+      ]
+    },
+
+    {
+      "page-title": "page.maslikhats-deputies",
+      "link": "/deputies-of-maslikhat",
+
+      "keywords-ru": [""],
+      "keywords-kz": [""],
+      "blocks": [
+        {
+          "block-title": "regions.regions-and-deputies-of-maslikhats",
+          "description": "page.representation-of-party-members-in-maslikhats-and-in-positions-of-akims-at-all-levels",
+          "block-id": "#",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        }
+      ]
+    },
+
+    {
+      "page-title": "page.press-center",
+      "link": "/news",
+
+      "keywords-ru": [""],
+      "keywords-kz": [""],
+      "blocks": [
+        {
+          "block-title": "page.news",
+          "description": "news.news-description",
+          "block-id": null,
+          "link": "/news-all",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        },
+        {
+          "block-title": "page.the-press-about-us",
+          "description": "news.press-about-us-description",
+          "block-id": null,
+          "link": "/press-about-us-list",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        },
+        {
+          "block-title": "page.video-gallery",
+          "description": "news.video-gallery-description",
+          "block-id": null,
+          "link": "/video-gallery",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        },
+        {
+          "block-title": "page.photo-gallery",
+          "description": "news.photo-gallery-description",
+          "block-id": null,
+          "link": "/photo-gallery",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        }
+      ]
+    }
+  ]
+}

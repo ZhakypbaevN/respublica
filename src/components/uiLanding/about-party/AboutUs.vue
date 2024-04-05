@@ -8,6 +8,7 @@
           class="info-item"
           v-for="info of infoList"
           :key="info.title"
+          :id="info.id"
         >
           <SvgIcon
             :name="info.icon"
@@ -46,11 +47,13 @@ const { t } = useI18n()
 const infoList = [
   {
     title: t("about-us-page.who-are-we-block.respublica"),
+    id: "respublica",
     icon: 'respublica-logo',
     text: t("about-us-page.who-are-we-block.resbublica-description")
   },
   {
     title: t("about-us-page.who-are-we-block.our-priorities"),
+    id: "our-priorities",
     icon: 'equal-representatives',
     list: [
       t("about-us-page.who-are-we-block.our-priorities-educated-nation"),
@@ -62,21 +65,25 @@ const infoList = [
   },
   {
     title: t("about-us-page.who-are-we-block.metaparty"),
+    id: "metaparty",
     icon: 'metaparty',
     text: t("about-us-page.who-are-we-block.metaparty-description"),
   },
   {
     title: t("about-us-page.who-are-we-block.our-leaders"),
+    id: "our-leaders",
     icon: 'businessman',
     text: t("about-us-page.who-are-we-block.our-leaders-description"),
   },
   {
     title: t("about-us-page.who-are-we-block.our-tasks"),
+    id: "our-tasks",
     icon: 'businessman',
     text: t("about-us-page.who-are-we-block.our-tasks-description"),
   },
   {
     title: t('about-us-page.who-are-we-block.all-regions-and-districs'),
+    id: "all-regions-and-districs",
     icon: 'marker',
     text: t('about-us-page.who-are-we-block.all-regions-and-districs-description')
   }

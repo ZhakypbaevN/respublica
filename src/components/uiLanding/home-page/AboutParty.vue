@@ -1,5 +1,5 @@
 <template>
-  <section class="aboutParty landing-block">
+  <section class="aboutParty landing-block" id="about-party">
     <div
       class="aboutParty-item withZoomPreview"
       v-for="item of aboutPartyList"

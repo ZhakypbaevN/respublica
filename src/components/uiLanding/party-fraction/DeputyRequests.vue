@@ -350,29 +350,6 @@
     },
   ]);
 
-  const archiveDeputiesRequests = [
-    {
-      name: "ШҮКІЖАНОВА Динара",
-      img: "/img/uiLanding/fraction/shukizhanova.jpg",
-      active: false,
-      data: [
-        {
-          date: "",
-          name: "",
-          doc: "",
-          
-          answer: [
-            {
-              date: "",
-              name: "",
-              doc: "",
-            }
-          ]
-        },
-      ],
-    },
-  ]
-
   const tableContentList = ref(deputieslist[0].data);
 
   const toggleShow = (idx: number) => {

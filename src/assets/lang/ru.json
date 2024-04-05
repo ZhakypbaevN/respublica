@@ -4,6 +4,7 @@
   "lang": "РУС",
 
   "contacts": {
+    "branches-description": "Информация о наших филиалах и их расположении",
     "address": "г.Астана, пр. Мангилик ел, 33/1<br>Бизнес-центр IPLAZA, 9 этаж",
     "phone": "+7 7172 640 777",
     "central-office": "Центральный аппарат",
@@ -17,7 +18,9 @@
   },
 
   "page": {
+    "title": "Страница",
     "home": "Respublica - это новая, современная партия Казахстана",
+    "search": "Поиск по сайту",
     "main": "Главная",
     "about-party": "О партии",
     "party-faction": "Партийная фракция",
@@ -109,6 +112,8 @@
   },
 
   "auth": {
+    "login-description": "Получите доступ к вашему аккаунту",
+    "register-description": "Зарегистрируйтесь и начните пользоваться нашими услугами",
     "enter-the-code": "Введите код",
     "we-have-sent-a-confirmation-code-to-the-number": "Мы отправили код подтверждения на номер",
     "you-can-get-a-new-code-via": "Получить новый код можно через",
@@ -123,6 +128,13 @@
     "registration": "Регистрация",
     "new-password": "Новый пароль",
     "recover-password": "Восстановить пароль"
+  },
+
+  "news": {
+    "news-description": "Узнавайте последние новости и обновления",
+    "press-about-us-description": "Статьи и обзоры о нашей компании в прессе",
+    "video-gallery-description": "Просмотрите наши видеоматериалы",
+    "photo-gallery-description": "Посмотрите наши фотографии и снимки"
   },
 
   "formdata": {
@@ -219,7 +231,8 @@
     "enter-the-author-is-name": "Введите название автора",
     "a-link-to-the-author-is-article-has-been-entered": "Введите ссылку на статью автора",
     "enter-your-comments": "Введите свои комментарии",
-    "enter-the-reason-for-the-exit": "Введите причину выхода"
+    "enter-the-reason-for-the-exit": "Введите причину выхода",
+    "enter-a-search-query": "Введите поисковый запрос"
   },
 
   "analytics": {
@@ -286,11 +299,13 @@
       "new-opportunities": "новые возможности!"
     },
     "about-party": {
+      "title": "О партии - Фотокарточки",
       "item-1": "Мы стремимся решать вопросы, волнующие наших избирателей в разных уголках страны",
       "item-3": "Мы открыты для диалога и намерены действовать активно",
       "item-6": "Примите участие в нашем сообществе, чтобы изменить свою жизнь и жизнь ваших близких"
     },
     "about-us": {
+      "title": "Кратко о партии",
       "what-are-we-doing": "Что мы делаем?",
       "what-are-we-doing-text": "Партия Respublica – это партия людей дела. Мы опытные и эффективные управленцы, лидеры с опытом преодоления преград и решения сложных задач.<br> Мы связываем свое будущее с Казахстаном.",
       "who-are-we": "Кто мы?",
@@ -299,6 +314,7 @@
       "contribute-text": "На территории всей страны у партии Respublica есть филиалы и действуют депутаты в Мажилисе Парламента и маслихатах всех уровней.<br>  Ваша поддержка будет направлена на организацию работы на местах, усилия по защите избирателей и другие приоритеты."
     },
     "party-program": {
+      "title": "Программа партии",
       "description": "Партия Respublica – это МЕТА-партия. Мы нацелены на структурные преобразования во всех сферах общественной жизни. Мы являемся людьми нового Казахстана, цифровыми номадами!",
       "forward": "Алға, Қазақстан! Алға, Respublica!",
       "party-program-respublica": "Предвыборная программа партии",
@@ -375,13 +391,15 @@
     },
 
     "party-program": {
+      "title": "Предвыборная программа партии и Идеологическая программа партии",
       "restart-reforma-respublica": "Restart. Reforma. Respublica",
       "restart-reforma-respublica-subtitle": "Предвыборная программа партии",
       "this-is-new-kazakhstan": "Это Новый Казахстан!",
       "party-election-program-respublica": "Идеологическая программа партии"
     },
 
-    "organizational-structure": "Организационная структура аппарата партии «Respublica»"
+    "organizational-structure": "Организационная структура аппарата партии «Respublica»",
+    "organizational-structure-subtite": "Структура аппарата партии 'Respublica' включает отделы по административным вопросам, связям с общественностью и политике."
   },
 
   "regions": {
@@ -675,7 +693,8 @@
     "create-a-user": "Создать пользователя",
     "select-a-user": "Выбрать пользователя",
     "select-number-of-party-card": "Выбрать номер партийного билета",
-    "select-a-vip-room": "Выбрать VIP номер"
+    "select-a-vip-room": "Выбрать VIP номер",
+    "go-over": "Перейти"
   },
 
   "message": {
@@ -751,11 +770,12 @@
   "deputies-count": "Депутатов",
   "deputies": "Депутаты",
   "parliamentary-inquiries": "Депутатские запросы",
+  "parliamentary-inquiries-in-archive": "Депутатские запросы на Архиве",
   "are-you-sure": "Вы уверены?",
   "upload-a-picture": "Загрузите снимок!",
   "editing-a-user": "Редактирование пользователя",
   "create-a-user": "Создание пользователя",
-  "comments": "Комментрии",
+  "comments": "Комментарии",
   "total": "Всего",
   "rus": "РУС",
   "kaz": "КАЗ",

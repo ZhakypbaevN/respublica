@@ -1,5 +1,5 @@
 <template>
-  <section class="partyStructure">
+  <section class="partyStructure" id="party-structure">
     <div class="wrapper">
       <div class="partyStructure-inner" id="party-structure">
         <h2 class="partyStructure-title landing-title center">{{ $t('about-us-page.organizational-structure') }}</h2>
