@@ -1,5 +1,5 @@
 <template>
-  <section class="partyProgram landing-block">
+  <section class="partyProgram landing-block" id="party-program">
 
     <div class="partyProgram-titleBlock">
       <div class="wrapper landing-wrapper">

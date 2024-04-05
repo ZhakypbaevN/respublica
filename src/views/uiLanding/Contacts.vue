@@ -6,10 +6,10 @@
       <section class="news landing-block" id="newsList">
         <div class="wrapper">
         
-          <h2 class="landing-title">{{ $t('contacts.central-office') }}</h2>
+          <h2 class="landing-title" id="central-office">{{ $t('contacts.central-office') }}</h2>
           <ContactsCentralOffice />
      
-          <h2 class="landing-title">{{ $t('page.branches') }}</h2>
+          <h2 class="landing-title" id="branches">{{ $t('page.branches') }}</h2>
           <ContactsBranch />
         </div>
       </section>

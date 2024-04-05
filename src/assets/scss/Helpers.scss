@@ -23,6 +23,16 @@
     align-items: center;
     grid-gap: 10px;
 
+    &.accent {
+      & span {
+        color: var(--accent-color);
+      }
+
+      & svg {
+        fill: var(--accent-color);
+      }
+    }
+
     & span {
       color: var(--primary-color);
       font-size: 20px;

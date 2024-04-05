@@ -1,5 +1,5 @@
 <template>
-  <div class="branch">
+  <div class="branch" id="filials">
     <div class="branch-map" ref="chartdiv"></div>
 
     <div class="branch-content">
@@ -35,7 +35,7 @@
   import * as am5map from "@amcharts/amcharts5/map";
   import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
   
-  import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap.json";
+  import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap-withCities.json";
   import deputiesMapRU from "@/assets/map/deputiesMap-ru.json";
   import deputiesMapKZ from "@/assets/map/deputiesMap-kz.json";
   

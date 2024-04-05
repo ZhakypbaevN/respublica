@@ -1,0 +1,62 @@
+{
+  "staticInfoList": [
+    {
+      "page-title": "question-and-answer",
+      "link": "/faq",
+
+      "keywords-ru": ["faq"],
+      "keywords-kz": ["faq"],
+      "blocks": [
+        {
+          "block-title": "faq.faq-title",
+          "description": "faq.faq-item-1.answer",
+          "block-id": "#faq",
+
+          "keywords-ru": ["faq"],
+          "keywords-kz": ["faq"],
+          "content": [
+            {
+              "title": "faq.faq-item-1.question",
+              "description": "faq.faq-item-1.answer",
+        
+              "content-id": "#faq-item-1",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            },
+            {
+              "title": "faq.faq-item-2.question",
+              "description": "faq.faq-item-2.answer",
+        
+              "content-id": "#faq-item-2",
+
+              "keywords-ru": [""],
+              "keywords-kz": [""]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "page-title": "press-center",
+      "link": "/news",
+
+      "keywords-ru": [""],
+      "keywords-kz": [""],
+      "blocks": [
+        {
+          "block-title": "news",
+          "description": "news.news-description",
+          "block-id": null,
+          "link": "/news-all",
+
+          "keywords-ru": [""],
+          "keywords-kz": [""],
+          "content": []
+        }
+      ]
+    }
+  ]
+
+}

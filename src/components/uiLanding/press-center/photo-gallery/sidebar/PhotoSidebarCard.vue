@@ -110,7 +110,7 @@
     &-city {
       font-size: 18px;
       font-weight: 400;
-      color: var(--grey-color);
+      color: var(--gray-color);
     }
   }
 

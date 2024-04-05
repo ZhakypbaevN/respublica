@@ -1,5 +1,5 @@
 <template>
-  <section class="aboutUs landing-block">
+  <section class="aboutUs landing-block" id="about-us">
     <div class="wrapper landing-wrapper">
       <div class="aboutUs-inner">
         <RouterLink
@@ -7,6 +7,7 @@
           v-for="item of aboutUsList"
           :key="item.title"
           :to="item.link"
+          :id="item.id"
         >
           <div class="aboutUs-item-preview withZoomPreview-preview-img" :style="`background-image: url('${item.img}');`"></div>
           <div>
@@ -33,6 +34,7 @@ const aboutUsList = [
     title: t('home.about-us.what-are-we-doing'),
     text: t('home.about-us.what-are-we-doing-text'),
     btn: t('button.doing-btn'),
+    id: "what-are-we-doing",
     link: "/about-party",
   },
   {
@@ -40,6 +42,7 @@ const aboutUsList = [
     title: t('home.about-us.who-are-we'),
     text: t('home.about-us.who-are-we-text'),
     btn: t('button.doing-btn'),
+    id: "who-are-we",
     link: "/about-party",
   },
   {
@@ -47,6 +50,7 @@ const aboutUsList = [
     title: t('home.about-us.contribute'),
     text: t('home.about-us.contribute-text'),
     btn: t('button.doing-btn'),
+    id: "contribute",
     link: "/donations",
   },
 ];

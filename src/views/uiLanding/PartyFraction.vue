@@ -4,6 +4,8 @@
 
   <DeputyRequests />
 
+  <!-- <ArchiveDeputyRequests /> -->
+
   <section
     class="partyFraction-links landing-block"
     id="send-an-appeal"
@@ -11,7 +13,7 @@
     <div class="wrapper">
       <div class="links-wrapper scroll-top" id="links">
         <div class="partyFraction-links-items">
-          <RouterLink to="/meeting-with-voters/1" class="toPageLink with-line" id="meetings-with-voters">
+          <RouterLink to="/meeting-with-voters" class="toPageLink with-line" id="meetings-with-voters">
             <span>
               {{ $t('meeting-with-voters.title') }}
             </span>
@@ -43,6 +45,7 @@
 import FractionComposition from '@/components/uiLanding/party-fraction/FractionComposition.vue';
 import DeputyRequests from '@/components/uiLanding/party-fraction/DeputyRequests.vue';
 import SubmitAnAppealModal from '@/components/uiLanding/feedback/SubmitAnAppealModal.vue';
+import ArchiveDeputyRequests from '@/components/uiLanding/party-fraction/ArchiveDeputyRequests.vue';
 
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n'

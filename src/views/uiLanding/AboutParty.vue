@@ -2,7 +2,7 @@
   <LandingLayout :list="sideBarlinks">
     <AboutUs />
     
-    <section class="landing-block">
+    <section class="landing-block" id="party-is-charter">
       <div class="wrapper">
         <div
           class="party-charter"

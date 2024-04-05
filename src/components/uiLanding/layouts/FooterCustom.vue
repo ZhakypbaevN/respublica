@@ -57,7 +57,7 @@
               <div class="footer-mainNavs-links">
                 <RouterLink to="/deputies-of-majilis" class="footer-mainNavs-link">{{ $t('page.mazhilis-deputies') }}</RouterLink>
                 <RouterLink to="/deputies-of-maslikhat" class="footer-mainNavs-link">{{ $t('page.maslikhats-deputies') }}</RouterLink>
-                <RouterLink to="/contacts/filials" class="footer-mainNavs-link">{{ $t('page.branches') }}</RouterLink>
+                <RouterLink to="/contacts#filials" class="footer-mainNavs-link">{{ $t('page.branches') }}</RouterLink>
                 <RouterLink to="/marketplace">
                  <Button :name="$t('footer.marketpalce')" type="default-blue" uppercase />
                </RouterLink>  

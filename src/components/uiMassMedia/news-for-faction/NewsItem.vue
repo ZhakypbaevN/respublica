@@ -151,7 +151,7 @@ const goEdit = () => {
     }
 
     &-description {
-      color: var(--grey-color);
+      color: var(--gray-color);
       font-size: 18px;
       font-weight: 400;
       

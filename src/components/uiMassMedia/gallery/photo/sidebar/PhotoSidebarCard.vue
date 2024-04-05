@@ -162,7 +162,7 @@
     &-city {
       font-size: 16px;
       font-weight: 400;
-      color: var(--grey-color);
+      color: var(--gray-color);
     }
   }
 

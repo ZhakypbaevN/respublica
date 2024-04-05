@@ -3,7 +3,7 @@
     <div class="content">
       <Header />
       
-      <section class="landing-block">
+      <section class="landing-block" id="meeting-with-voters">
         <div class="wrapper landing-wrapper litle">
           <h2 class="landing-title center">{{ $t('meeting-with-voters.title') }}</h2>
           
@@ -24,7 +24,13 @@
           <h4 class="meetingWithVoters-bottomTitle" v-html="$t('meeting-with-voters.bottom-title')" />
 
 
-          <h2 class="landing-title">{{ $t('meeting-with-voters.january-2024.title') }}</h2>
+          <h2
+            class="landing-title"
+            id="january-2024"
+          >
+            {{ $t('meeting-with-voters.january-2024.title') }}
+          </h2>
+          
           <div class="meetingWithVoters-photoItems">
             <div
               class="meetingWithVoters-preview withZoomPreview-preview"

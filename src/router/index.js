@@ -12,6 +12,7 @@ import NotFound from '@/views/404NotFound.vue'
 import PageInDevelopment from '@/views/InDevelopment.vue'
 import PageInDevelopmentWithoutLayout from '@/views/InDevelopmentWithoutLayout.vue'
 
+import Search from '@/views/uiLanding/Search.vue'
 import Home from '@/views/uiLanding/Home.vue'
 import Home2 from '@/views/uiLanding/Home2.vue'
 import Feedback from '@/views/uiLanding/Feedback.vue'
@@ -123,6 +124,12 @@ const routes = [
     meta: { title: 'authorization' }
   },
   {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+    meta: { title: 'search' }
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
@@ -177,7 +184,7 @@ const routes = [
     meta: { title: 'maslikhats-deputies' }
   },
   {
-    path: '/meeting-with-voters/:meetingWithVoters_id',
+    path: '/meeting-with-voters',
     name: 'MeetingWithVoters',
     component: MeetingWithVoters,
     meta: { title: 'meeting-with-voters' }

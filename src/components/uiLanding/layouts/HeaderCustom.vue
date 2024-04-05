@@ -14,7 +14,7 @@
             data-aos-duration="1000"
           >
             <div class="header-main-inner">
-              <Router-link to="/" class="header-main-logo">
+              <RouterLink to="/" class="header-main-logo">
                 <SvgIcon
                   v-if="defaultFixed && headerClingingToTop && !dark"
                   class="logo-big"
@@ -37,32 +37,36 @@
                   :viewboxWidth="96"
                   :viewboxHeight="95"
                 />
-              </Router-link>
+              </RouterLink>
 
               <nav class="header-main-navs" v-if="!withoutNavs">
-                <Router-link
+                <RouterLink
                   class="header-main-navs-item"
                   v-for="nav of navsList"
                   :key="nav.link"
                   :to="nav.link"
                 >
                   {{ nav.title }}
-                </Router-link>
+                </RouterLink>
               </nav>
             
               <div class="header-main-right" v-if="!withoutNavs">
-                <LangToggle
-                  class="header-main-lang"
-                  :light="defaultFixed && headerClingingToTop && !dark"
-                />
-                
-                <!-- <button class="header-main-search">
+                <RouterLink
+                  class="header-main-search"
+                  to="/search"
+                >
                   <SvgIcon
                     name="search"
                     :viewboxWidth="30"
                     :viewboxHeight="30"
                   />
-                </button> -->
+                </RouterLink>
+                
+                <LangToggle
+                  class="header-main-lang"
+                  :light="defaultFixed && headerClingingToTop && !dark"
+                />
+                
                 
                 <RouterLink
                   v-if="!userType"
@@ -90,6 +94,17 @@
               
 
               <div class="header-main-right" style="grid-gap: 30px;" v-else>
+                <RouterLink
+                  class="header-main-search"
+                  to="/search"
+                >
+                  <SvgIcon
+                    name="search"
+                    :viewboxWidth="30"
+                    :viewboxHeight="30"
+                  />
+                </RouterLink>
+                
                 <LangToggle :light="false" />
 
                 <button
@@ -119,6 +134,17 @@
         <h3 class="headerSidebar-header-title">{{ $t('button.menu') }}</h3>
 
         <div class="headerSidebar-header-right">
+          <RouterLink
+            class="headerSidebar-header-right-search"
+            to="/search"
+          >
+            <SvgIcon
+              name="search"
+              :viewboxWidth="30"
+              :viewboxHeight="30"
+            />
+          </RouterLink>
+          
           <LangToggle class="headerSidebar-header-right-lang" :light="false" />
 
           <button
@@ -137,7 +163,7 @@
       
       <div class="headerSidebar-content">
         <nav class="headerSidebar-content-navs">
-          <Router-link
+          <RouterLink
             class="headerSidebar-content-navs-item"
             v-for="nav of navsList"
             :key="nav.link"
@@ -145,7 +171,7 @@
             @click="() => showSideBar = false"
           >
             {{ nav.title }}
-          </Router-link>
+          </RouterLink>
         </nav>
       </div>
     </div>
@@ -675,6 +701,20 @@
     &-right {
       display: flex;
       grid-gap: 20px;
+
+      &-search {
+        display: block;
+        height: 30px;
+        width: 30px;
+
+        & svg {
+          height: 100%;
+          width: 100%;
+
+          stroke: var(--primary-color);
+          transition: all .3s ease-in-out;
+        }
+      }
 
       &-lang {
         position: relative;

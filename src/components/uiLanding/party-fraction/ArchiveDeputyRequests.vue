@@ -1,12 +1,12 @@
 <template>
   <section class="deputyRequests landing-block" id="deputy-requests">
     <div class="wrapper">
-      <h2 class="landing-title">{{ $t('parliamentary-inquiries') }}</h2>
+      <h2 class="landing-title">{{ $t('parliamentary-inquiries-in-archive') }}</h2>
 
       <div class="request-wrapper">
         <div class="deputies">
           <button
-            v-for="(deputy, idx) of deputieslist"
+            v-for="(deputy, idx) of archiveDeputiesRequests"
             :key="deputy.name"
             class="deputies-deputy withZoomPreview"
             :class="{ active: deputy.active }"
@@ -93,12 +93,12 @@
 
     return isoDate;
   }
-
-  const deputieslist = reactive([
+  
+  const archiveDeputiesRequests = [
     {
-      name: t('composition-of-faction.hodzhanazarov.full-name'),
-      img: "/img/uiLanding/fraction/khodzhanazarov.jpg",
-      active: true,
+      name: "ШҮКІЖАНОВА Динара",
+      img: "/img/uiLanding/fraction/shukizhanova.jpg",
+      active: false,
       data: [
         {
           date: "12.04.23",
@@ -116,254 +116,46 @@
             }
           ]
         },
-        {
-          date: "25.05.23",
-          name: "Ауыл шаруашылығы өнімдерін экспортауда қойылатын шектеулер туралы",
-          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/2 Ауыл шаруашылығы өнімдерін экспортауда қойылатын шектеулер туралы 25.05.23 ДЗ.pdf",
+        // {
+        //   date: "",
+        //   name: "",
+        //   doc: "",
           
-          answer: [
-            {
-              date: "21.06.23",
-              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/2 Ауыл шаруашылығы өнімдерін экспортауда қойылатын шектеулер туралы 21.06.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "14.09.23",
-          name: "Касательно мер по ликвидации засухи",
-          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/3 Касательно мер по ликвидации засухи 14.09.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "14.12.23",
-              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/3 Жылыжай мәселесі туралы 14.12.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "17.11.23",
-          name: "Жылыжай мәселесі туралы",
-          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/4_Жылыжай_мәселесы_туралы_17.11.23_ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "16.10.23",
-              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/4 Касательно мер по ликвидации засухи 16.10.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "31.01.24",
-          name: "По проблемным вопросам учета и статистики в сельском хозяйстве",
-          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/31.01.2024 Ходжаназаров ПО ПРОБЛЕМНЫМ ВОПРОСАМ УЧЕТА И СТАТИСТИКИ В СЕЛЬСКОМ ХОЗЯЙСТВЕ.pdf",
-          
-          answer: [
-            {
-              date: "31.01.24",
-              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/31.01.2024 ответ Ходжаназаров Статистика мәселесі бойынша.pdf",
-            }
-          ]
-        },
+        //   answer: [
+        //     {
+        //       date: "",
+        //       name: "",
+        //       doc: "",
+        //     }
+        //   ]
+        // },
       ],
     },
+  ]
 
-    {
-      name: t('composition-of-faction.berdenov.full-name'),
-      img: "/img/uiLanding/fraction/berdenov.jpg",
-      active: false,
-      data: [
-        {
-          date: "07.09.23",
-          name: "ҚТЖ және оған бағынышты мекемелер туралы",
-          doc: "/doc/ru/deputies-requests/berdenov/request/ҚТЖ және оған бағынышты мекемелер туралы 07.09.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "13.10.23",
-              doc: "/doc/ru/deputies-requests/berdenov/answer/«Қазақстан темір жолы» ҰК» АҚ қызметіне қатысты 13.10.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "25.01.24",
-          name: "Эквайринг процессі туралы",
-          doc: "/doc/ru/deputies-requests/berdenov/request/25.01.2024 ДЗ Берденов Эквайринг процессі туралы.pdf",
-          
-          answer: [
-            {
-              date: "25.01.24",
-              doc: "/doc/ru/deputies-requests/berdenov/answer/25.01.2024 ответ Берденов Эквайринг процессі туралы.pdf",
-            }
-          ]
-        },
-        {
-          date: "15.02.24",
-          name: "Бөлшек салығы режиміне қатысты",
-          doc: "/doc/ru/deputies-requests/berdenov/request/15.02.24 ДЗ Берденов Бөлшек салығы режиміне қатысты.pdf",
-        }
-      ],
-    },
-
-    {
-      name: t('composition-of-faction.nurgul.full-name'),
-      img: "/img/uiLanding/fraction/tau.jpg",
-      active: false,
-      data: [
-        {
-          date: "29.06.23",
-          name: "Қазақстандағы отбасы, әйелдер және балалар мен жастардың проблемалық мәселелері",
-          doc: "/doc/ru/deputies-requests/tau/request/1 Қазақстандағы отбасы, әйелдер және балалар мен жастардың проблемалық мәселелері 29.06.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "31.07.23",
-              doc: "/doc/ru/deputies-requests/tau/answer/1 Қазақстандағы отбасыларды, әйелдерді, балалар мен жастарды қолдау жөніндегі 31.07.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "22.09.23",
-          name: "Паллиативтік көмек туралы",
-          doc: "/doc/ru/deputies-requests/tau/request/2 Паллиативтік көмек туралы 22.09.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "20.10.23",
-              doc: "/doc/ru/deputies-requests/tau/answer/2 Паллиативтік көмек көрсету мәселелеріне қатысты 20.10.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "10.11.23",
-          name: "Отандық киноиндустрия төңірегіндегі өзекті мәселелер бойынша",
-          doc: "/doc/ru/deputies-requests/tau/request/3 Отандық киноиндустрия төңірегіндегі өзекті мәселелер бойынша 10.11.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "12.12.23",
-              doc: "/doc/ru/deputies-requests/tau/answer/3 Отандық кинематография мәселелері бойынша 12.12.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "26.01.24",
-          name: "Жатақханалардың жағдайы туралы",
-          doc: "/doc/ru/deputies-requests/tau/request/26.01.2024 ДЗ Тау Жатақханалардың жағдайы туралы.pdf",
-
-          answer: [
-            {
-              date: "26.01.24",
-              doc: "/doc/ru/deputies-requests/tau/answer/26.01.2024 ответ Тау Жатақханалардың жағдайы туралы.pdf",
-            }
-          ]
-        }
-      ],
-    },
-
-    {
-      name: t('composition-of-faction.naumova.full-name'),
-      img: "/img/uiLanding/fraction/naumova.jpg",
-      active: false,
-      data: [
-        {
-          date: "04.10.23",
-          name: "Об обеспечении жильем граждан с инвалидностью и семей, имеющих детей-инвалидов",
-          doc: "/doc/ru/deputies-requests/naumova/request/Об обеспечении жильем граждан с инвалидностью и семей, имеющих детей-инвалидов 04.10.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "03.11.23",
-              name: "Об обеспечении жильем граждан с инвалидностью и семей, имеющих детей-инвалидов",
-              doc: "/doc/ru/deputies-requests/naumova/answer/Об обеспечении жильем граждан с инвалидностью и семей, имеющих детей-инвалидов 03.11.23 ответ.pdf",
-            }
-          ]
-        }
-      ],
-    },
-
-    {
-      name: t('composition-of-faction.kuspenov.full-name'),
-      img: "/img/uiLanding/fraction/kuspekov.jpg",
-      active: false,
-      data: [
-        {
-          date: "05.05.23",
-          name: "Адами капиталды дамыту бойынша",
-          doc: "/doc/ru/deputies-requests/kuspekov/request/1 Адами капиталды дамыту бойынша 05.05.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "26.05.23",
-              doc: "/doc/ru/deputies-requests/kuspekov/answer/Адами капиталды дамыту жөніндегі ұлттық бағдарлама түріндегі стратегиялық құжатты әзірлеу жөніндегі 26.05.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "16.06.23",
-          name: "Колледждердің дамуы бойынша",
-          doc: "/doc/ru/deputies-requests/kuspekov/request/2 Колледждердің дамуы бойынша 16.06.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "17.07.23",
-              doc: "/doc/ru/deputies-requests/kuspekov/answer/Колледждердің дамуы бойынша 17.07.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "05.10.23",
-          name: "Автокөлік лизингі мәселелері бойынша",
-          doc: "/doc/ru/deputies-requests/kuspekov/request/3 Автокөлік лизингі мәселелері бойынша 05.10.23 ДЗ.pdf",
-          
-          answer: [
-            {
-              date: "30.10.23",
-              doc: "/doc/ru/deputies-requests/kuspekov/answer/Автокөлік лизингі мәселелері бойынша 30.10.23 ответ.pdf",
-            }
-          ]
-        },
-        {
-          date: "02.02.24",
-          name: "Куспеков Агломерация мәселесі",
-          doc: "/doc/ru/deputies-requests/kuspekov/request/02.02.24 ДЗ Куспеков Агломерация мәселесі.pdf",
-          
-          answer: [
-            {
-              date: "02.02.24",
-              doc: "/doc/ru/deputies-requests/kuspekov/answer/02.02.24 ответ акимат Куспеков Агломерация мәселесі.pdf",
-            },
-            {
-              date: "02.02.24",
-              doc: "/doc/ru/deputies-requests/kuspekov/answer/02.02.24 ответ ПМ Куспеков Агломерация мәселесі.pdf",
-            }
-          ]
-        }
-      ],
-    },
-
-    {
-      name: t('composition-of-faction.koshmambetov.full-name'),
-      img: "/img/uiLanding/fraction/koshmambetov.jpg",
-      active: false,
-      data: [
-      ],
-    },
-  ]);
-
-  const tableContentList = ref(deputieslist[0].data);
+  const tableContentList = ref(archiveDeputiesRequests[0].data);
 
   const toggleShow = (idx: number) => {
-    for (let i = 0; i < deputieslist.length; i++) {
-      deputieslist[i].active = false;
+    for (let i = 0; i < archiveDeputiesRequests.length; i++) {
+      archiveDeputiesRequests[i].active = false;
     }
-    deputieslist[idx].active = true;
-    tableContentList.value = deputieslist[idx].data.map(item => item).reverse();
+    archiveDeputiesRequests[idx].active = true;
+    tableContentList.value = archiveDeputiesRequests[idx].data.map(item => item).reverse();
   };
 
   onMounted(() => toggleShow(0))
 </script>
 
 <style scoped lang="scss">
+
+.landing-title {
+  color: var(--light-gray-color);
+}
+
+.deputyRequests {
+  -webkit-filter: grayscale(80%);
+  filter: grayscale(80%);
+}
 
 .deputies {
   max-width: 900px;
