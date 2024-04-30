@@ -90,6 +90,7 @@
   const regions = reactive(deputiesMapList.map((x) => x))
   
   const showSideBar = ref(false)
+  const activeRegionID = ref()
   const mapSidebarTopBlock = ref(null)
   const sideBarData = reactive({
     title: '',
@@ -199,6 +200,7 @@
     }
 
     polygonSeries.mapPolygons.template.events.on("click", function(ev) {
+      if (activeRegionID.value === ev.target.dataItem!.dataContext!.id) return
       setTimeout(() => {
         regions.forEach(region => {
           if (region.code === ev.target.dataItem!.dataContext!.id) {
@@ -232,6 +234,8 @@
           }
           return polygon
         }));
+
+        activeRegionID.value = ev.target.dataItem!.dataContext!.id;
 
         polygonSeries.zoomToDataItem(ev.target.dataItem);
 

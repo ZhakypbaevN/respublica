@@ -21,10 +21,10 @@
                 <div class="search-blocks-item-header">
                   <h2 class="search-blocks-item-header-title">{{ $t('page.about-party') }}</h2>
 
-                  <RouterLink :to="''" class="itemsList-viewAll">
+                  <!-- <RouterLink :to="''" class="itemsList-viewAll">
                     <span>{{ $t('button.view-all') }}</span>
                     <SvgIcon name="double-arrow-right" :viewboxWidth="24" :viewboxHeight="24" />
-                  </RouterLink>
+                  </RouterLink> -->
                 </div>
 
                 <div
@@ -98,7 +98,8 @@
   import { watch, onMounted, ref } from 'vue';
 
   import { staticInfoList } from '@/assets/search/blocks.json';
-  
+  import i18n from '@/assets/lang'
+
   import getTranslate from '@/helpers/getTranslate';
   import removeHTMLTags from '@/helpers/removeHTMLTags';
   
@@ -114,7 +115,7 @@
     if (title) searchedInTitle = title.toLowerCase().includes(searchInput.value.toLowerCase());
     if (description) searchedInDesscription = description.toLowerCase().includes(searchInput.value.toLowerCase());
 
-    searchedInKeywords = object[`keywords-${'ru'}`].some(keyword =>
+    searchedInKeywords = object[`keywords-${i18n.global.locale.value}`].some(keyword =>
       keyword.toLowerCase().includes(searchInput.value.toLowerCase())
     );
     
