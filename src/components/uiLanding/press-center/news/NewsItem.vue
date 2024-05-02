@@ -27,7 +27,7 @@
   <RouterLink
     v-else-if="!litle"
     class="newsItem withZoomPreview"
-    :to="`${toClient ? '/client' : ''}/news/${data.id}`"
+    :to="`${toClient ? '/client' : ''}/news/${data.id}?${langParams}`"
   >
     <div class="newsItem-preview withZoomPreview-preview">
       <div class="newsItem-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(data.preview_image)});`"></div>
@@ -53,7 +53,7 @@
   <RouterLink
     v-else
     class="newsItemMini withZoomPreview"
-    :to="`${toClient ? '/client' : ''}/news/${data.id}`"
+    :to="`${toClient ? '/client' : ''}/news/${data.id}?${langParams}`"
   >
     <div class="newsItemMini-preview withZoomPreview-preview">
       <div class="newsItemMini-preview-img bg-cover withZoomPreview-preview-img" :style="`background-image: url(${getFileUrl(data.preview_image)});`"></div>
@@ -91,6 +91,7 @@
 
 <script setup lang="ts">
   import { INews } from '@/types/news';
+  import { getLangForURL } from '@/assets/lang/exports';
   import getFileUrl from '@/helpers/getFileUrlByDate'
   import convertDateTime from '@/helpers/convertDateTime.js';
 
@@ -106,6 +107,8 @@
     litle: false,
     toClient: false
   })
+
+  const langParams = `lang=${getLangForURL()}`
 </script>
 
 <style scoped lang="scss">

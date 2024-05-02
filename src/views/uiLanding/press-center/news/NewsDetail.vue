@@ -72,6 +72,8 @@
   import { useRoute } from 'vue-router'
 
   import { INews } from '@/types/news';
+  import { Request } from '@/types/request';
+  import { getLangForURL } from '@/assets/lang/exports';
   import { getNewsData } from '@/actions/uiLanding/news';
   
   import convertDateTime from '@/helpers/convertDateTime.js';
@@ -92,8 +94,8 @@
   }
 
   const onGetNewsDetail = async () => {
-    const { data } = await getNewsData(route.params.news_id.toString());
-    newsData.value = data;
+    const response: Request<INews>|any = await getNewsData(route.params.news_id.toString(), String(route.query.lang ?? getLangForURL()));
+    newsData.value = response.data;
   }
 </script>
 
