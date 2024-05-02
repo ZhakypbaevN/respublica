@@ -3,8 +3,8 @@ import { INews } from '@/types/news'
 import { IComment } from '@/types/comments'
 import { Paginator, Request } from '@/types/request'
 
-export const getNewsData = async (newsID: string) =>
-   await api.asyncGet<Request<INews>>(`/api/v1/articles/${newsID}`)
+export const getNewsData = async (newsID: string, lang: string) =>
+   await api.asyncGet<Request<INews>>(`/api/v1/articles/${newsID}`, null, false, lang)
 
 export const getNewsList = async (newsAlias: string, filters: any) => {
   return (
