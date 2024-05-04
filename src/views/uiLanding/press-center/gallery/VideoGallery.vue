@@ -30,6 +30,7 @@
               v-for="(vidoe, idx) of newsValues.tableValues"
               :key="idx"
               :src="vidoe.content"
+              :createdAt="vidoe.created_at"
             />
 
             <ShowMoreBtn

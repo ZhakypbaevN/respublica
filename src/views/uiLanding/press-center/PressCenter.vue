@@ -95,6 +95,7 @@
             v-for="(vidoe, idx) of youtubeVideosValues.tableValues"
             :key="idx"
             :src="vidoe.content"
+            :createdAt="vidoe.created_at"
           />
         </div>
       </div>

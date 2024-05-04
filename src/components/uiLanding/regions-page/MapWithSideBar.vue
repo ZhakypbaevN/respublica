@@ -2,7 +2,7 @@
   <div>
     <div class="map" ref="chartdiv"></div>
 
-    <div class="mapSidebar" :class="{show: showSideBar}" v-click-outside="() => showSideBar = false">
+    <div class="mapSidebar" :class="{show: showSideBar}" v-click-outside="onHideSidebar">
       <div class="mapSidebar-topBlock" ref="mapSidebarTopBlock"></div>
       <div class="mapSidebar-header">
         <SvgIcon
@@ -31,7 +31,7 @@
 
         <button
           class="mapSidebar-header-exitBtn"
-          @click="() => showSideBar = false"
+          @click="onHideSidebar"
         >
           <SvgIcon
             name="x"
@@ -90,6 +90,7 @@
   const regions = reactive(deputiesMapList.map((x) => x))
   
   const showSideBar = ref(false)
+  const onGoHome = ref<Function>(() => {})
   const activeRegionID = ref()
   const mapSidebarTopBlock = ref(null)
   const sideBarData = reactive({
@@ -98,9 +99,15 @@
     email: '',
     deputies: null
   })
+
+  const onHideSidebar = () => {
+    showSideBar.value = false;
+    onGoHome.value();
+  }
   
   onMounted(() => {
     const map = document.querySelector('.map');
+
     let root = am5.Root.new(map);
     root.setThemes([
       am5themes_Animated.new(root)
@@ -113,6 +120,7 @@
     root.setThemes([
       am5themes_Animated.new(root)
     ]);
+
     let chart = window.innerWidth <= 992 || true
       ? root.container.children.push(
           am5map.MapChart.new(root, {
@@ -133,6 +141,22 @@
             maxZoomLevel: 1
           })
         );
+    
+    onGoHome.value = () => {
+      polygonSeries.data.setAll(deputiesMapList.map(obl => {
+        const polygon = {}
+        polygon.id = obl.code
+        polygon.address = obl.address;
+        polygon.email = obl.email;
+        
+        polygon.name = nameToLowerCase({ id: obl.code, name: obl.title })
+        
+        return polygon
+      }));
+
+      activeRegionID.value = null;
+      chart.goHome();
+    }
   
     // -------- Create polygon series --------
     const getCount = polygonId => {
@@ -200,7 +224,11 @@
     }
 
     polygonSeries.mapPolygons.template.events.on("click", function(ev) {
-      if (activeRegionID.value === ev.target.dataItem!.dataContext!.id) return
+      if (activeRegionID.value === ev.target.dataItem!.dataContext!.id) {
+        onGoHome();
+        return;
+      }
+      
       setTimeout(() => {
         regions.forEach(region => {
           if (region.code === ev.target.dataItem!.dataContext!.id) {

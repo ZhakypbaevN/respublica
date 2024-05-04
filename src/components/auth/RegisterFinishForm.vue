@@ -37,6 +37,7 @@
         name="email"
         validation="email"
         placeholder="Email"
+        required
       />
      
       <Input

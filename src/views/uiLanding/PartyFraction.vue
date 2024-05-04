@@ -4,7 +4,7 @@
 
   <DeputyRequests />
 
-  <!-- <ArchiveDeputyRequests /> -->
+  <ArchiveDeputyRequests />
 
   <section
     class="partyFraction-links landing-block"

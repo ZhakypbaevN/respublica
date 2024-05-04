@@ -116,6 +116,20 @@
             }
           ]
         },
+
+        {
+          date: "12.05.23",
+          name: "Касательно развития сельских территорий",
+          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/120523_AH_Regarding the development of rural areas.pdf",
+          
+          answer: [
+            {
+              date: "12.05.23",
+              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/120523_AX_RESPONSE_Regarding the development of rural areas.pdf",
+            }
+          ]
+        },
+        
         {
           date: "25.05.23",
           name: "Ауыл шаруашылығы өнімдерін экспортауда қойылатын шектеулер туралы",
@@ -128,6 +142,20 @@
             }
           ]
         },
+
+        {
+          date: "16.06.23",
+          name: "Касательно водных ресурсов",
+          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/160623_AH_Regarding water resources.pdf",
+          
+          answer: [
+            {
+              date: "12.05.23",
+              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/160623_AX_RESPONSE_Regarding water resources.pdf",
+            }
+          ]
+        },
+        
         {
           date: "14.09.23",
           name: "Касательно мер по ликвидации засухи",
@@ -173,6 +201,30 @@
       active: false,
       data: [
         {
+          date: "13.04.23",
+          name: "Букмекерлік кеңселер туралы",
+          doc: "/doc/ru/deputies-requests/berdenov/request/130423_РБ_Букмекерлік кеңселер туралы.pdf",
+          
+          answer: [
+            {
+              date: "13.04.23",
+              doc: "/doc/ru/deputies-requests/berdenov/answer/130423_РБ_ОТВЕТ_Букмекерлік кеңселер туралы.pdf",
+            }
+          ]
+        },
+        {
+          date: "22.06.23",
+          name: "По вопросам снижения оборота и обязательной постановки на учет по НДС",
+          doc: "/doc/ru/deputies-requests/berdenov/request/220623_RB_On issues of reducing turnover and mandatory VAT registration.pdf",
+          
+          answer: [
+            {
+              date: "22.06.23",
+              doc: "/doc/ru/deputies-requests/berdenov/answer/220623_РБ_ОТВЕТ_По вопросам снижения оборота и обязательной постановки на учет по НДС.pdf",
+            }
+          ]
+        },
+        {
           date: "07.09.23",
           name: "ҚТЖ және оған бағынышты мекемелер туралы",
           doc: "/doc/ru/deputies-requests/berdenov/request/ҚТЖ және оған бағынышты мекемелер туралы 07.09.23 ДЗ.pdf",
@@ -200,7 +252,7 @@
           date: "15.02.24",
           name: "Бөлшек салығы режиміне қатысты",
           doc: "/doc/ru/deputies-requests/berdenov/request/15.02.24 ДЗ Берденов Бөлшек салығы режиміне қатысты.pdf",
-        }
+        },
       ],
     },
 
@@ -209,6 +261,45 @@
       img: "/img/uiLanding/fraction/tau.jpg",
       active: false,
       data: [
+        {
+          date: "21.04.23",
+          name: "Қосымша білім беру бойынша",
+          doc: "/doc/ru/deputies-requests/tau/request/210423_nt_on additional education.pdf",
+          
+          answer: [
+            {
+              date: "21.04.23",
+              doc: "/doc/ru/deputies-requests/tau/answer/210423_nt_otvet_on additional education.pdf",
+            }
+          ]
+        },
+
+        {
+          date: "05.05.23",
+          name: "Білім беру ұйымдарының техникалық персоналының жекелеген санаттарына еңбек демалысына сауықтыру жәрдемақыларын төлеу мәселесі бойынша",
+          doc: "/doc/ru/deputies-requests/tau/request/050523_nt_on the issue of payment of health benefits for Labor leave to certain categories of technical personnel of educational organizations.pdf",
+          
+          answer: [
+            {
+              date: "05.05.23",
+              doc: "/doc/ru/deputies-requests/tau/answer/050523_nt_otvet_on the issue of payment of health benefits for Labor leave to certain categories of technical personnel of educational organizations.pdf",
+            }
+          ]
+        },
+
+        {
+          date: "11.05.23",
+          name: "Мектеп оқушылары мен жастар арасында «вейп» атымен танымал тұтынудың электрондық жүйелерінің жаппай таралуына тыйым салу туралы",
+          doc: "/doc/ru/deputies-requests/tau/request/110523_nt_about the ban on the mass distribution of electronic consumer systems, known as vape among schoolchildren and young people.pdf",
+          
+          answer: [
+            {
+              date: "11.05.23",
+              doc: "/doc/ru/deputies-requests/tau/answer/110523_nt_otvet_about the ban on the mass distribution of electronic consumer systems, known as vape, among schoolchildren and young people.pdf",
+            }
+          ]
+        },
+        
         {
           date: "29.06.23",
           name: "Қазақстандағы отбасы, әйелдер және балалар мен жастардың проблемалық мәселелері",
@@ -256,6 +347,14 @@
               doc: "/doc/ru/deputies-requests/tau/answer/26.01.2024 ответ Тау Жатақханалардың жағдайы туралы.pdf",
             }
           ]
+        },
+
+        {
+          date: "05.04.24",
+          name: "Туризм саласын дамытуға қатысты",
+          doc: "/doc/ru/deputies-requests/tau/request/050424_nt_are related to the development of the tourism industry.pdf",
+
+          answer: []
         }
       ],
     },
@@ -265,6 +364,34 @@
       img: "/img/uiLanding/fraction/naumova.jpg",
       active: false,
       data: [
+        {
+          date: "28.04.23",
+          name: "Проблема лиц с онкологическими заболеваниями",
+          doc: "/doc/ru/deputies-requests/naumova/request/280423_DN_The problem of people with cancer.pdf",
+          
+          answer: [
+            {
+              date: "28.04.23",
+              name: "Проблема лиц с онкологическими заболеваниями",
+              doc: "/doc/ru/deputies-requests/naumova/answer/280423_DN_RESPONSE_The problem of people with cancer.pdf",
+            }
+          ]
+        },
+
+        {
+          date: "17.05.23",
+          name: "О проблеме трудоустройства молодежи",
+          doc: "/doc/ru/deputies-requests/naumova/request/170523_TO the problem of youth employment.pdf",
+          
+          answer: [
+            {
+              date: "17.05.23",
+              name: "О проблеме трудоустройства молодежи",
+              doc: "/doc/ru/deputies-requests/naumova/answer/170523_RESPONSE to the problem of youth employment.pdf",
+            }
+          ]
+        },
+
         {
           date: "04.10.23",
           name: "Об обеспечении жильем граждан с инвалидностью и семей, имеющих детей-инвалидов",
@@ -277,7 +404,15 @@
               doc: "/doc/ru/deputies-requests/naumova/answer/Об обеспечении жильем граждан с инвалидностью и семей, имеющих детей-инвалидов 03.11.23 ответ.pdf",
             }
           ]
-        }
+        },
+
+        {
+          date: "04.04.24",
+          name: "О трудоустройстве инвалидов",
+          doc: "/doc/ru/deputies-requests/naumova/request/040424_DN_O employment of disabled people.pdf",
+          
+          answer: []
+        },
       ],
     },
 
@@ -286,6 +421,32 @@
       img: "/img/uiLanding/fraction/kuspekov.jpg",
       active: false,
       data: [
+        {
+          date: "14.04.23",
+          name: "Барлық құзыретті органдар мен ұйымдарға ауыл шаруашылығы техникасының жеңілдікті лизинг бағдарламасын жедел іске қосу қажет",
+          doc: "/doc/ru/deputies-requests/kuspekov/request/140423_ok_all competent bodies and organizations need to urgently launch the program of preferential leasing of agricultural machinery.pdf",
+          
+          answer: [
+            {
+              date: "14.04.23",
+              doc: "/doc/ru/deputies-requests/kuspekov/answer/140423_ok_otvet_confessional leasing of agricultural machinery to all competent authorities and organizations.pdf",
+            }
+          ]
+        },
+
+        {
+          date: "21.04.23",
+          name: "Адам өліміне әкеп соғатын жол-көлік оқиғаларын азайтуға, және осыған жол беретін сыбайлас жемқорлықты жоюға бағытталған жүйелі шараларды қабылдау туралы",
+          doc: "/doc/ru/deputies-requests/kuspekov/request/210423_ok_ on the adoption of systematic measures aimed at reducing road accidents that lead to human death and eliminating corruption that leads to this.pdf",
+          
+          answer: [
+            {
+              date: "21.04.23",
+              doc: "/doc/ru/deputies-requests/kuspekov/answer/210423_ok_otvet_reduce_road_accidents_leading_to_human_death.pdf",
+            }
+          ]
+        },
+
         {
           date: "05.05.23",
           name: "Адами капиталды дамыту бойынша",
@@ -337,7 +498,20 @@
               doc: "/doc/ru/deputies-requests/kuspekov/answer/02.02.24 ответ ПМ Куспеков Агломерация мәселесі.pdf",
             }
           ]
-        }
+        },
+
+        {
+          date: "28.04.24",
+          name: "По вопросам регулирования деятельности риэлтеров",
+          doc: "/doc/ru/deputies-requests/kuspekov/request/280224_OK_On_issues_of_regulation_of_realtors_activities.pdf",
+          
+          answer: [
+            {
+              date: "28.04.24",
+              doc: "/doc/ru/deputies-requests/kuspekov/answer/280224_OC_RESPONSE_On issues of regulation of realtors activities.pdf",
+            }
+          ]
+        },
       ],
     },
 
@@ -346,8 +520,20 @@
       img: "/img/uiLanding/fraction/koshmambetov.jpg",
       active: false,
       data: [
+        {
+          date: "20.03.24",
+          name: "Квазимемлекеттік мекемелердің қызметін жетілдіруге қатысты",
+          doc: "/doc/ru/deputies-requests/koshmambetov/request/200324_ak_kvazis related to improving the activities of state institutions.pdf",
+          
+          answer: [
+            {
+              date: "20.03.24",
+              doc: "/doc/ru/deputies-requests/koshmambetov/answer/200324_ak_otvet_kvazin relation to improving the activities of state institutions.pdf",
+            }
+          ]
+        },
       ],
-    },
+    }
   ]);
 
   const tableContentList = ref(deputieslist[0].data);
