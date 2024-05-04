@@ -101,34 +101,56 @@
       active: false,
       data: [
         {
-          date: "12.04.23",
-          name: "Шетелдік астық және сүт өнімдерін жеткізушілер тарапынан ішкі нарықтағы бағалардың заңсыз импорты мен демпингі төңірегінде қал",
-          doc: "/doc/ru/deputies-requests/khodzhanazarov/request/1 Шетелдік астық және сүт өнімдерін жеткізушілер тарапынан ішкі нарықтағы бағалардың заңсыз импорты мен демпингі төңірегінде қал.pdf",
+          date: "22.09.23",
+          name: "Касательно детской наркомании",
+          doc: "/doc/ru/deputies-requests/shukizhanova/request/Касательно детской наркомании 22.09.23 запрос.pdf",
           
           answer: [
             {
-              date: "12.04.23",
-              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/1.1. Шетелдік астық және сүт өнімдерін жеткізушілер тарапынан ішкі нарықтағы бағалардың заңсыз импорты мен демпингі төңірегінде қа.PDF",
-            },
-            {
-              date: "12.04.23",
-              doc: "/doc/ru/deputies-requests/khodzhanazarov/answer/1.2. Шетелдік астық және сүт өнімдерін жеткізушілер тарапынан ішкі нарықтағы бағалардың заңсыз импорты мен демпингі төңірегінде қа.PDF",
+              date: "20.10.23",
+              doc: "/doc/ru/deputies-requests/shukizhanova/answer/Regarding child drug addiction 20.10.23 response.pdf",
             }
           ]
         },
-        // {
-        //   date: "",
-        //   name: "",
-        //   doc: "",
+
+        {
+          date: "22.12.23",
+          name: "О льготной ипотеке для работников обрабатывающей отрасли",
+          doc: "/doc/ru/deputies-requests/shukizhanova/request/22.12.2023 ДЗ Шукижанова О льготной ипотеке для работников обрабатывающей отрасли.pdf",
           
-        //   answer: [
-        //     {
-        //       date: "",
-        //       name: "",
-        //       doc: "",
-        //     }
-        //   ]
-        // },
+          answer: [
+            {
+              date: "22.12.23",
+              doc: "/doc/ru/deputies-requests/shukizhanova/answer/22.12.2023 response to Shukizhanov is DZ On preferential mortgages for workers in the manufacturing industry.pdf",
+            }
+          ]
+        },
+
+        {
+          date: "20.04.23",
+          name: "Касательно противодействия и распространения синтетических наркотиков",
+          doc: "/doc/ru/deputies-requests/shukizhanova/request/Касательно противодействия и распространения синтетических наркотиков.pdf",
+          
+          answer: [
+            {
+              date: "20.04.23",
+              doc: "/doc/ru/deputies-requests/shukizhanova/answer/Regarding_the_counteraction_and_distribution_of_synthetic_drugs.pdf",
+            }
+          ]
+        },
+
+        {
+          date: "24.05.23",
+          name: "Про развитию транспортных средств",
+          doc: "/doc/ru/deputies-requests/shukizhanova/request/Про развитию транспортных средств.pdf",
+          
+          answer: [
+            {
+              date: "20.04.23",
+              doc: "/doc/ru/deputies-requests/shukizhanova/answer/On the need to develop a national concept for the development of the use of vehicles with an electric motor.pdf",
+            }
+          ]
+        },
       ],
     },
   ]

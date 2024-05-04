@@ -94,7 +94,7 @@
             </div>
             
           </div>
-          <div class="newsEdit-videoPreview" v-html="newsData.ru.content"></div>
+          <div class="newsEdit-videoPreview" v-html="newsData.ru.content" />
         </div>
 
 
@@ -285,10 +285,8 @@
 
   &-form {
     &-block {
-      max-width: 1200px;
-
       display: grid;
-      grid-template-columns: 1fr 300px;
+      grid-template-columns: 1fr 40%;
       grid-gap: 40px;
     }
     &-inputs {
@@ -311,6 +309,22 @@
     &-content {
       margin-bottom: 40px !important;
     }
+  }
+}
+</style>
+<style lang="scss">
+.newsEdit-videoPreview {
+  height: 0;
+  
+  position: relative;
+  padding-bottom: 56.25%;
+
+  & iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
