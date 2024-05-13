@@ -8,7 +8,9 @@ export interface IUser {
   iin?: string,
   phone?: string,
   email?: string,
-  role?: string
+  role?: string,
+  password?: string,
+  is_deleted?: boolean
 }
 
 export interface UsersValues {
