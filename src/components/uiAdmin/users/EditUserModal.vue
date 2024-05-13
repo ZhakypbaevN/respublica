@@ -69,6 +69,7 @@
           <Input
             type="password"
             validation="password"
+            v-model="userData.password"
             :name="!data ? 'password' : ''"
             :placeholder="$t('formdata.password')"
             :required="!data"
@@ -127,6 +128,7 @@
       middle_name: null,
       phone: null,
       role: null,
+      password: null,
       email: null
     }
   })
@@ -161,12 +163,13 @@
   
       for (const key in userData.value) {
         if (key === 'phone') formData.append(key, formatPhone(userData.value[key]))
+        else if (key === 'password' && userData.value.password) formData.append(key, userData.value.password!.trim() === '' ?  null : userData.value[key])
         else if (key === 'role' && userData.value[key] !== '--') formData.append(key, userData.value[key] == '--' ? null : userData.value[key])
         else if (key !== 'role') formData.append(key, userData.value[key]);
       }
 
-      formData.append('password', password)
-      
+      if (!userData.value.password || userData.value.password!.trim() === '') formData.delete('password')
+
       const response = props.data
         ? await putUser(props.data.id, formData)
         : await postUser(formData)
