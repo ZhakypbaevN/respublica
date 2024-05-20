@@ -34,6 +34,7 @@ import Filter from '@/components/common/Filter.vue';
 import LangToggle from '@/components/common/LangToggle.vue';
 import ShowMoreBtn from '@/components/common/ShowMoreBtn.vue';
 import Loading from '@/components/common/Loading.vue';
+import DatePicker from '@/components/common/DatePicker.vue';
 
 import LandingLayout from '@/components/uiLanding/layouts/LandingLayout.vue';
 import Header from '@/components/uiLanding/layouts/HeaderCustom.vue';
@@ -60,6 +61,7 @@ createApp(App)
   .directive('click-outside', clickOutside())
   .directive('collapse', Collapse)
   .directive('loading', loading())
+  .component('DatePicker', DatePicker)
   .component('Checkbox', Checkbox)
   .component('Loading', Loading)
   .component('SvgIcon', SvgIcon)

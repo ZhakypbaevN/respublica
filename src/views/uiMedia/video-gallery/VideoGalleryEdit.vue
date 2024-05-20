@@ -191,7 +191,8 @@
         const response = await getMediaNewsData(route.params.news_id.toString(), lang.api);
 
         if (response) newsData[lang.value] = response.data;
-        newsData[lang.value].created_at = moment(response.data.created_at).format('YYYY-MM-DD');
+        newsData[lang.value].created_at = response.data.created_at;
+        newsData[lang.value].created_at_forInput = moment(response.data.created_at).format('YYYY-MM-DD HH:mm');
 
         if (lang.value === 'kz') isLoading.page = false;
       }
@@ -201,7 +202,8 @@
         preview_text: '',
         content: '',
         published: true,
-        created_at: moment().format('YYYY-MM-DD'),
+        created_at: Date.now().toString(),
+        created_at_forInput: moment(Date.now().toString()).format('YYYY-MM-DD HH:mm'),
         preview_image: null
       }
 

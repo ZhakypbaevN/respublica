@@ -65,14 +65,16 @@
           <div>
             <div class="newsEdit-formItem date">
               <label for="" class="newsEdit-formItem-label">{{ $t('formdata.release-day') }}</label>
-              <Input
-                type="date"
-                name="datePublish"
-                v-model="newsData.ru.created_at"
-                :placeholder="$t('formdata.choose-the-day-of-release')"
-                staticPlaceholder
-                required
-              />
+
+              <DatePicker time-picker :value="newsData.ru.created_at" @change="handleSelectDay">
+                <Input
+                  name="datePublish"
+                  v-model="newsData.ru.created_at_forInput"
+                  :placeholder="$t('formdata.choose-the-day-of-release')"
+                  staticPlaceholder
+                  required
+                />
+              </DatePicker>
             </div>
             
             <div class="newsEdit-formsBlock">
@@ -264,6 +266,11 @@
   const newPhotoFile = ref(null);
   const showDeleteModal = ref(false);
 
+  const handleSelectDay = (day: Date): void => {
+    newsData.ru.created_at = day.toString();
+    newsData.ru.created_at_forInput = moment(day.toString()).format('YYYY-MM-DD HH:mm');
+  }
+
   // Get News
   onMounted(async () => {
     if (route.params.news_id) {
@@ -272,7 +279,8 @@
 
         if (response) newsData[lang.value] = response.data;
         newsData[lang.value].preview_image = getFileUrl(response.data.preview_image);
-        newsData[lang.value].created_at = moment(response.data.created_at).format('YYYY-MM-DD');
+        newsData[lang.value].created_at = response.data.created_at;
+        newsData[lang.value].created_at_forInput = moment(response.data.created_at).format('YYYY-MM-DD HH:mm');
 
         if (lang.value === 'kz') isLoading.page = false;
       }
@@ -282,7 +290,8 @@
         preview_text: '',
         content: '',
         published: true,
-        created_at: moment().format('YYYY-MM-DD'),
+        created_at: Date.now().toString(),
+        created_at_forInput: moment(Date.now().toString()).format('YYYY-MM-DD HH:mm'),
         preview_image: null
       }
 
