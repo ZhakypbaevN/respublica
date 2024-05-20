@@ -5,6 +5,7 @@ export interface INews {
   content?: string,
   published: boolean,
   created_at: string,
+  created_at_forInput?: string,
   preview_image?: any,
   source_title?: string,
   source_url?: string,

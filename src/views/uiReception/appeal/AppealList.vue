@@ -9,10 +9,10 @@
         <table class="appeal-table" v-if="appealDataList">
           <thead>
             <tr class="appeal-head">
-              <th>№</th>
-              <th>Вид</th>
-              <th>Категория</th>
-              <th>Дата</th>
+              <th>Рег. №</th>
+              <th>Дата рег.</th>
+              <th>Вид обращения</th>
+              <th>Категория вопроса</th>
               <th>Файлы</th>
               <th>Локация</th>
               <th>Статус</th>
@@ -24,25 +24,22 @@
               class="appeal-item"
               v-for="appeal in appealDataList"
               :key="appeal.id"
+              @click="() => router.push(`/reception/appeal-data/${appeal.id}`)"
             >
               <td class="appeal-item">{{ appeal.id }}</td>
+              <td class="appeal-item">{{ appeal.createAt }}</td>
               <td>
-                <RouterLink class="appeal-item-title" :to="`/business/appeal-data/${appeal.id}`">
-                  {{ appeal.appleanType }}
-                </RouterLink>
+                {{ appeal.type }}
               </td>
               <td class="appeal-item category">
                 <div class="appeal-item-category">
-                  {{ appeal.appleanCategory }}
+                  {{ appeal.category.title }}
                 </div>
               </td>
-              <td class="appeal-item">
-                {{ appeal.dayOfAcceptance }}
-              </td>
-              <td class="appeal-item">0</td>
+              <td class="appeal-item">4</td>
               <td class="appeal-item">{{ appeal.region ?? '-' }}</td>
               <td class="appeal-item">
-                {{ appeal.status }}
+                {{ appeal.status.title }}
               </td>
             </tr>
           </tbody>
@@ -55,33 +52,106 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { useToast } from '../../../modules/toast'
+
+import router from '@/router/index.js'
+import { useToast } from '@/modules/toast'
 
 const { toast } = useToast()
 
-const appealDataList = ref([]);
+const appealDataList = ref([
+  {
+    id: 1,
+    createAt: '07.10.2020',
+    type: 'Запрос на конультацию',
+    category: {
+      title: 'Иммиграция и миграция',
+      color: '#28C397',
+    },
+    file: 4,
+    region: 'Алматы',
+    status: {
+      title: 'В компетентный орган'
+    }
+  },
+  {
+    id: 1,
+    createAt: '07.10.2020',
+    type: 'Запрос на конультацию',
+    category: {
+      title: 'Агропромышленный комплекс',
+      color: '#28C397',
+    },
+    file: 4,
+    region: 'Алматы',
+    status: {
+      title: 'В компетентный орган'
+    }
+  },
+  {
+    id: 1,
+    createAt: '07.10.2020',
+    type: 'Запрос на конультацию',
+    category: {
+      title: 'Судебная и правоохранительная система',
+      color: '#28C397',
+    },
+    file: 4,
+    region: 'Алматы',
+    status: {
+      title: 'В компетентный орган'
+    }
+  },
+  {
+    id: 1,
+    createAt: '07.10.2020',
+    type: 'Запрос на конультацию',
+    category: {
+      title: 'Банки и иные кредитные организации',
+      color: '#28C397',
+    },
+    file: 4,
+    region: 'Алматы',
+    status: {
+      title: 'В компетентный орган'
+    }
+  },
+  {
+    id: 1,
+    createAt: '07.10.2020',
+    type: 'Запрос на конультацию',
+    category: {
+      title: 'Иммиграция и миграция',
+      color: '#28C397',
+    },
+    file: 4,
+    region: 'Алматы',
+    status: {
+      title: 'В компетентный орган'
+    }
+  }
+]);
 
-onMounted(() => {
-  // https://tri.codetau.com/appealCards
-  const url = `https://tri.codetau.com/appealList`;
-  axios({
-    method: "get",
-    url: url,
-  })
-    .then((response) => {
-      appealDataList.value = [];
+// onMounted(() => {
+//   // https://tri.codetau.com/appealCards
+//   const url = `https://tri.codetau.com/appealList`;
+//   axios({
+//     method: "get",
+//     url: url,
+//   })
+//     .then((response) => {
+//       appealDataList.value = [];
 
-      response.data.forEach(appeal => {
-        appealDataList.value.push(appeal);
-      });
-    })
-    .catch((err) => {
-      console.log('err', err);
-      toast({
-        message: 'Возникли ошибки при запросе'
-      })
-    });
-})
+//       response.data.forEach(appeal => {
+//         appealDataList.value.push(appeal);
+//       });
+//     })
+//     .catch((err) => {
+//       console.log('err', err);
+//       toast({
+//         message: 'Возникли ошибки при запросе'
+//       })
+//     });
+// })
 </script>
 
 <style scoped lang="scss">
@@ -120,25 +190,6 @@ onMounted(() => {
         text-align: left;
 
         padding: 14px 20px 15px;
-      }
-
-      & th:first-child {
-        width: 20px;
-      }
-
-      & th:nth-child(2) {
-        width: 20%;
-      }
-
-      & th:nth-child(3) {
-        width: 50%;
-      }
-
-      & th:nth-child(4),
-      & th:nth-child(5),
-      & th:nth-child(6),
-      & th:nth-child(7) {
-        width: 100px;
       }
 
       & td {

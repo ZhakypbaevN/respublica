@@ -22,7 +22,7 @@
 import SideBar from '@/components/common/SideBar.vue';
 import HeaderReception from '@/components/uiReception/layouts/HeaderReception.vue';
 
-import { onMounted } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -31,7 +31,7 @@ onMounted(() => {
   document.body.style ='height:100vh;overflow:hidden;';
 })
 
-const sideBarlinks = [
+const sideBarlinks = reactive([
   {
     title: t('status.new'),
     link: "/business/appeal-list/new",
@@ -55,6 +55,11 @@ const sideBarlinks = [
         link: "/business/page-in-development",
       }
     ]
+  },
+  {
+    title: t('status.signed'),
+    link: "/business/appeal-list/signed",
+    typeButton: true
   },
   {
     title: t('status.completed'),
@@ -84,7 +89,7 @@ const sideBarlinks = [
     link: "/business/analytics",
     typeButton: true
   },
-]
+])
 </script>
 
 <style scoped lang="scss">

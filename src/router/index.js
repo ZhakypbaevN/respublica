@@ -531,7 +531,7 @@ const routes = [
     path: '/reception',
     name: 'Reception',
     component: MainLayoutReception,
-    meta: { title: 'reception', requiresAuth: true },
+    meta: { title: 'reception', requiresAuth: false },
     redirect: to => {
       return '/reception/appeal-list/new'
     },

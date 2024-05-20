@@ -29,7 +29,7 @@
 
   interface IProps {
     name?: string
-    type?: 'default' | 'default-blue' | 'default-green' | 'default-light-blue' | 'default-light-red' | 'default-red' | 'default-grey' | 'default-orange' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'outline-grey'
+    type?: 'default' | 'default-blue' | 'default-green' | 'default-light-blue' | 'default-light-red' | 'default-red' | 'default-grey' | 'default-grey-dark' | 'default-orange' | 'outline-red' | 'outline-blue' | 'outline-default' | 'outline-light' | 'outline-grey'
     loading?: boolean
     htmlType?: 'button' | 'submit' | 'reset',
     disabled?: boolean,
@@ -134,6 +134,14 @@
 
         &:hover {
           background-color: var(--light-gray-color);
+        }
+
+        &-dark {
+          background-color: var(--light-gray-color);
+
+          &:hover {
+            background-color: var(--light-gray-color-op80);
+          }
         }
       }
 

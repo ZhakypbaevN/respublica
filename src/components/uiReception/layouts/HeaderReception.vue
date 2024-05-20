@@ -15,7 +15,7 @@
           <div class="header-main-right">
             <LangToggle />
 
-            <ProfileControl />
+            <!-- <ProfileControl /> -->
           </div>
         </div>
       </div>
