@@ -129,7 +129,8 @@
       phone: null,
       role: null,
       password: null,
-      email: null
+      email: null,
+      is_deleted: false
     }
   })
 
