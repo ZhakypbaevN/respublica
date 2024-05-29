@@ -57,11 +57,24 @@
             : $t('page.create-video')
         }}
       </h2>
-
       <Form
         @finish="postNews"
         class="newsEdit-form"
       >
+        <div class="newsEdit-formItem date">
+          <label for="" class="newsEdit-formItem-label">{{ $t('formdata.release-day') }}</label>
+
+          <DatePicker time-picker :value="newsData.ru.created_at" @change="handleSelectDay">
+            <Input
+              name="datePublish"
+              v-model="newsData.ru.created_at_forInput"
+              :placeholder="$t('formdata.choose-the-day-of-release')"
+              staticPlaceholder
+              required
+            />
+          </DatePicker>
+        </div>
+
         <div class="newsEdit-form-block">
           <div class="newsEdit-form-inputs">
 
@@ -203,7 +216,7 @@
         content: '',
         published: true,
         created_at: Date.now().toString(),
-        created_at_forInput: moment(Date.now().toString()).format('YYYY-MM-DD HH:mm'),
+        created_at_forInput: moment(new Date()).format('YYYY-MM-DD HH:mm'),
         preview_image: null
       }
 
@@ -245,6 +258,11 @@
     } finally {
       isLoading.btn = false
     }
+  }
+
+  const handleSelectDay = (day: Date): void => {
+    newsData.ru.created_at = day.toString();
+    newsData.ru.created_at_forInput = moment(day.toString()).format('YYYY-MM-DD HH:mm');
   }
 
   const onDeletedNews = () => {
@@ -298,6 +316,11 @@
 
   &-formItem {
     margin-bottom: 24px;
+
+    &.date {
+      max-width: 300px;
+      margin-bottom: 40px;
+    }
 
     &-label {
       display: inline-block;
