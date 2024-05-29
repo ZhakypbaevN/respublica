@@ -66,7 +66,11 @@
             <div class="newsEdit-formItem date">
               <label for="" class="newsEdit-formItem-label">{{ $t('formdata.release-day') }}</label>
 
-              <DatePicker time-picker :value="newsData.ru.created_at" @change="handleSelectDay">
+              <DatePicker
+            time-picker
+            v-model="newsData.ru.created_at"
+            @change="handleSelectDay"
+          >
                 <Input
                   name="datePublish"
                   v-model="newsData.ru.created_at_forInput"
@@ -266,9 +270,9 @@
   const newPhotoFile = ref(null);
   const showDeleteModal = ref(false);
 
-  const handleSelectDay = (day: Date): void => {
-    newsData.ru.created_at = day.toString();
-    newsData.ru.created_at_forInput = moment(day.toString()).format('YYYY-MM-DD HH:mm');
+  const handleSelectDay = (date: Date): void => {
+    newsData.ru.created_at = moment(date.toString()).format('YYYY-MM-DD[T]HH:mm:ss');
+    newsData.ru.created_at_forInput = moment(date.toString()).format('YYYY-MM-DD HH:mm');
   }
 
   // Get News
@@ -290,7 +294,7 @@
         preview_text: '',
         content: '',
         published: true,
-        created_at: Date.now().toString(),
+        created_at: moment(new Date()).format('YYYY-MM-DD[T]HH:mm:ss'),
         created_at_forInput: moment(new Date()).format('YYYY-MM-DD HH:mm'),
         preview_image: null
       }

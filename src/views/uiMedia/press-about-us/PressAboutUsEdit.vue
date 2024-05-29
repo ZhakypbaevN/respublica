@@ -27,7 +27,7 @@
       <div class="newsEdit-header">
         <BackButton />
 
-        <div class="newsEdit-header-right">
+        <div v-if="route.params.news_id" class="newsEdit-header-right">
           <PublishToggle
             :data="newsData.ru"
             @finish="() => {
@@ -36,7 +36,6 @@
             }"
           />
           <Button
-            v-if="route.params.news_id"
             class="newsEdit-header-delete"
             type="default-light-red"
             @click.stop="() => showDeleteModal = true"
@@ -67,7 +66,11 @@
             <div class="newsEdit-formItem date">
               <label for="" class="newsEdit-formItem-label">{{ $t('formdata.release-day') }}</label>
 
-              <DatePicker time-picker :value="newsData.ru.created_at" @change="handleSelectDay">
+              <DatePicker
+                time-picker
+                v-model="newsData.ru.created_at"
+                @change="handleSelectDay"
+              >
                 <Input
                   name="datePublish"
                   v-model="newsData.ru.created_at_forInput"
@@ -279,9 +282,9 @@
   const newPhotoFile = ref(null);
   const showDeleteModal = ref(false);
 
-  const handleSelectDay = (day: Date): void => {
-    newsData.ru.created_at = day.toString();
-    newsData.ru.created_at_forInput = moment(day.toString()).format('YYYY-MM-DD HH:mm');
+  const handleSelectDay = (date: Date): void => {
+    newsData.ru.created_at = moment(date.toString()).format('YYYY-MM-DD[T]HH:mm:ss');
+    newsData.ru.created_at_forInput = moment(date.toString()).format('YYYY-MM-DD HH:mm');
   }
 
   // Get News
@@ -305,7 +308,7 @@
         source_title: '',
         source_url: '',
         published: true,
-        created_at: Date.now().toString(),
+        created_at: moment(new Date()).format('YYYY-MM-DD[T]HH:mm:ss'),
         created_at_forInput: moment(new Date()).format('YYYY-MM-DD HH:mm'),
         preview_image: null
       }
