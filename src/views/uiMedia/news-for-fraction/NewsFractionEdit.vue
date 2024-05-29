@@ -293,7 +293,7 @@
         content: '',
         published: true,
         created_at: Date.now().toString(),
-        created_at_forInput: moment(Date.now().toString()).format('YYYY-MM-DD HH:mm'),
+        created_at_forInput: moment(new Date()).format('YYYY-MM-DD HH:mm'),
         preview_image: null
       }
 
