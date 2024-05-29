@@ -23,6 +23,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import { computed, ref } from 'vue-demi'
 
 const props = defineProps({
+  modelValue: String,
   timePicker: {
     type: Boolean,
     default: false
@@ -31,13 +32,12 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  value: Date
 })
-const emit = defineEmits(['change'])
+const emit = defineEmits(['update:modelValue'])
 const dp = ref(null)
 const pickerValue = computed({
-  get: () => props.value,
-  set: (val) => emit('change', val)
+  get: () => props.modelValue,
+  set: (val) => emit('update:modelValue', val)
 })
 
 const selectDate = () => {
