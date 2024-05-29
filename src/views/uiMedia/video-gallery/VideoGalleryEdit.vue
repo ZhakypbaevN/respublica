@@ -29,7 +29,7 @@
 
         <div v-if="route.params.news_id" class="newsEdit-header-right">
           <PublishToggle
-            :data="newsData"
+            :data="newsData.ru"
             @finish="() => {
               newsData.ru.published = !newsData.ru.published;
               newsData.kz.published = !newsData.kz.published;

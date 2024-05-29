@@ -45,6 +45,7 @@
       <Button
         class="newsItem-btns-delete"
         type="default-light-grey"
+        @click.stop="() => showDeleteModal = true"
       >
         <SvgIcon
           name="trash-edit-with-bg"
@@ -53,10 +54,9 @@
         />
       </Button>
 
-      <Button
-        name="Опубликовать"
-        type="default-light-blue"
-        class="newsItem-btns-changeState"
+      <PublishToggle
+        :data="newsData"
+        @finish="togglePublish"
       />
     </div>
 
@@ -70,24 +70,34 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import DeleteModal from '@/components/uiMassMedia/news-for-fraction/DeleteModal.vue'
+  import DeleteModal from '@/components/uiMassMedia/news-for-faction/DeleteModal.vue'
+  import PublishToggle from '@/components/uiMassMedia/common-for-edit/PublishToggle.vue';
+  
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
-import { useRouter } from 'vue-router';
+  import { INews } from '@/types/news';
 
-const router = useRouter()
+  const router = useRouter()
 
-interface IProps {
-  data: any,
-}
+  interface IProps {
+    data: INews,
+  }
 
-const props = defineProps<IProps>()
+  const props = defineProps<IProps>()
 
-const showDeleteModal = ref(false);
+  const newsData = ref(Object.assign({}, props.data));
+  const disabled = ref(false);
+  const showDeleteModal = ref(false);
 
-const goEdit = () => {
-  router.push(`/media/news-for-fraction/${props.data.id}`)
-}
+  const goEdit = () => {
+    router.push(`/media/news-for-fraction/${props.data.id}`)
+  }
+
+  const togglePublish = () => {
+    newsData.value.published = !newsData.value.published;
+    disabled.value = true;
+  }
 </script>
 
 <style scoped lang="scss">

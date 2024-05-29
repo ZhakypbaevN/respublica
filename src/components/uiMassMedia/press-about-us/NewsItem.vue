@@ -72,11 +72,13 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
+  import { ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import PublishToggle from '@/components/uiMassMedia/common-for-edit/PublishToggle.vue'
   import DeleteModal from '@/components/uiMassMedia/news/DeleteModal.vue'
+
+  import { INews } from '@/types/news';
 
   import convertDateTime from '@/helpers/convertDateTime.js'
   import getFileUrl from '@/helpers/getFileUrlByDate';
@@ -84,18 +86,14 @@
   const router = useRouter()
 
   interface IProps {
-    data: any,
+    data: INews,
   }
 
   const props = defineProps<IProps>()
 
-  const newsData = ref(null);
+  const newsData = ref(Object.assign({}, props.data));
   const disabled = ref(false);
   const showDeleteModal = ref(false);
-
-  onMounted(() => {
-    newsData.value = Object.assign({}, props.data);
-  })
 
   const goEdit = () => {
     router.push(`/media/press-about-us/${props.data.id}`)
