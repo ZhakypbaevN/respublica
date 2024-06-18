@@ -75,8 +75,10 @@
   import PublishToggle from '@/components/uiMassMedia/common-for-edit/PublishToggle.vue'
   import DeleteModal from '@/components/uiMassMedia/news/DeleteModal.vue'
 
-  import { ref, onMounted } from 'vue';
+  import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+
+  import { INews } from '@/types/news';
 
   import convertDateTime from '@/helpers/convertDateTime.js'
   import getFileUrl from '@/helpers/getFileUrlByDate'
@@ -84,7 +86,7 @@
   const router = useRouter()
 
   interface IProps {
-    data: any,
+    data: INews,
     linkToNews?: string,
   }
 
@@ -92,13 +94,9 @@
     linkToNews: 'news-list'
   })
 
-  const newsData = ref(null);
+  const newsData = ref(Object.assign({}, props.data));
   const disabled = ref(false);
   const showDeleteModal = ref(false);
-
-  onMounted(() => {
-    newsData.value = Object.assign({}, props.data);
-  })
 
   const goEdit = () => {
     router.push(`/media/${props.linkToNews}/${props.data.id}`)

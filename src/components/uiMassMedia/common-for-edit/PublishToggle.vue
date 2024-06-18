@@ -18,10 +18,12 @@
   import { useToast } from '@/modules/toast'
   import { putMediaNewsData } from '@/actions/uiMedia/news';
   
+  import { INews } from '@/types/news';
+  
   import { getLangForURL } from '@/assets/lang/exports';
 
   interface IProps {
-    data: any
+    data: INews
   }
   interface Emits {
     (event: 'finish'): Function

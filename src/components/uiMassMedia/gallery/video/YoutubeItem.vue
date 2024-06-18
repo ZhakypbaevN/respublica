@@ -4,7 +4,6 @@
     @click="goEdit"
   >
     <div class="newsItem-main">
-
       <!-- Preview -->
       <div class="newsItem-preview withZoomPreview-preview">
         <YoutubeVideo :src="vidoeData.content"></YoutubeVideo>
@@ -47,10 +46,9 @@
         />
       </Button>
 
-      <Button
-        name="Опубликовать"
-        type="default-light-blue"
-        class="newsItem-btns-changeState"
+      <PublishToggle
+        :data="newsData"
+        @finish="togglePublish"
       />
     </div>
 
@@ -64,26 +62,37 @@
 </template>
 
 <script setup lang="ts">
-import DeleteModal from '@/components/uiMassMedia/gallery/video/DeleteModal.vue'
-import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVideo.vue';
+  import DeleteModal from '@/components/uiMassMedia/gallery/video/DeleteModal.vue'
+  import YoutubeVideo from '@/components/uiLanding/press-center/youtube/YoutubeVideo.vue';
+  import PublishToggle from '@/components/uiMassMedia/common-for-edit/PublishToggle.vue';
 
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+  import { ref, onMounted } from 'vue';
+  import { useRouter } from 'vue-router';
 
-import convertDateTime from '@/helpers/convertDateTime.js'
+  import { INews } from '@/types/news';
 
-interface IProps {
-  vidoeData: any,
-}
+  import convertDateTime from '@/helpers/convertDateTime.js'
 
-const props = defineProps<IProps>()
-const router = useRouter()
+  const router = useRouter()
 
-const showDeleteModal = ref(false);
+  interface IProps {
+    vidoeData: INews,
+  }
 
-const goEdit = () => {
-  router.push(`/media/video-gallery/${props.vidoeData.id}`)
-}
+  const props = defineProps<IProps>()
+
+  const newsData = ref(Object.assign({}, props.vidoeData));
+  const disabled = ref(false);
+  const showDeleteModal = ref(false);
+
+  const goEdit = () => {
+    router.push(`/media/video-gallery/${props.vidoeData.id}`)
+  }
+
+  const togglePublish = () => {
+    newsData.value.published = !newsData.value.published;
+    disabled.value = true;
+  }
 </script>
 
 <style scoped lang="scss">
