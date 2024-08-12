@@ -284,7 +284,13 @@
       "email": "S.Beisembayeva@respublica-partiyasy.kz",
       "address": "г. Актау, 16 мкрн, д. 25, БЦ Prime",
       "locationID": 130,
-      "deputies": []
+      "deputies": [
+        {
+          "name": "Кожаев Ержан Аманниязович",
+          "role": "Депутат Актауского городского маслихата",
+          "img": "/img/uiLanding/maslikhats/Kozhaev-Erzhan.jpg"
+        }
+      ]
     },
     {
       "title": "Павлодарская область",
@@ -393,8 +399,8 @@
           "img": "/img/uiLanding/maslikhats/turkestan/Zhumageldieva.jpg"
         },
         {
-          "name": "Куракбаев  Жаксыбай Булатович",
-          "role": "Депутат Мактаральского районного маслихата",
+          "name": "Куракбаев Жаксыбай Булатович",
+          "role": "Депутат Туркестанского областного маслихата",
           "img": "/img/uiLanding/maslikhats/turkestan/Kurakbaev.jpg"
         }
       ]

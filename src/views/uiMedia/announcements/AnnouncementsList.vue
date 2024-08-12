@@ -31,7 +31,7 @@
         Loading
       </div>
       <div class="news-items" v-else>
-        <NewsItem
+        <AnnounceItem
           v-for="news of newsValues.tableValues"
           :key="news.title"
           :data="news"
@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-  import NewsItem from "@/components/uiMassMedia/news/NewsItem.vue"
+  import AnnounceItem from "@/components/uiMassMedia/announcements/AnnounceItem.vue"
 
   import { useI18n } from 'vue-i18n'
   import { useRoute, useRouter } from 'vue-router'

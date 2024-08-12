@@ -54,10 +54,9 @@
         />
       </Button>
 
-      <Button
-        name="Опубликовать"
-        type="default-light-blue"
-        class="newsItem-btns-changeState"
+      <PublishToggle
+        :data="newsData"
+        @finish="togglePublish"
       />
     </div>
 
@@ -71,25 +70,34 @@
 </template>
 
 <script setup lang="ts">
-  import DeleteModal from '@/components/uiMassMedia/announcements/DeleteModal.vue'
-
+  import DeleteModal from '@/components/uiMassMedia/news-for-faction/DeleteModal.vue'
+  import PublishToggle from '@/components/uiMassMedia/common-for-edit/PublishToggle.vue';
+  
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
 
-  import getFileUrl from '@/helpers/getFileUrlByDate';
+  import { INews } from '@/types/news';
+  import getFileUrl from '@/helpers/getFileUrlByDate'
 
   const router = useRouter()
 
   interface IProps {
-    data: any,
+    data: INews,
   }
 
   const props = defineProps<IProps>()
 
+  const newsData = ref(Object.assign({}, props.data));
+  const disabled = ref(false);
   const showDeleteModal = ref(false);
 
   const goEdit = () => {
     router.push(`/media/announcements/${props.data.id}`)
+  }
+
+  const togglePublish = () => {
+    newsData.value.published = !newsData.value.published;
+    disabled.value = true;
   }
 </script>
 

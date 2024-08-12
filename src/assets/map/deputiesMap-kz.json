@@ -283,7 +283,13 @@
       "email": "S.Beisembayeva@respublica-partiyasy.kz",
       "address": "Ақтау қаласы, 16 ықшамаудан, 25 үй, Prime СҮ",
       "locationID": 130,
-      "deputies": []
+      "deputies": [
+        {
+          "name": "Қожаев Ержан Аманниязұлы",
+          "role": "Ақтау қалалық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/Kozhaev-Erzhan.jpg"
+        }
+      ]
     },
     {
       "title": "Павлодар облысы",
@@ -392,8 +398,8 @@
           "img": "/img/uiLanding/maslikhats/turkestan/Zhumageldieva.jpg"
         },
         {
-          "name": "Құрақбаев  Жақсыбай Болатұлы",
-          "role": "Мақтаарал аудандық мәслихат депутаты",
+          "name": "Құрақбаев Жақсыбай Болатұлы",
+          "role": "Түркістан облыстық мәслихатының депутаты",
           "img": "/img/uiLanding/maslikhats/turkestan/Kurakbaev.jpg"
         }
       ]
