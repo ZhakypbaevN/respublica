@@ -27,7 +27,7 @@
       <div class="newsEdit-header">
         <BackButton />
 
-        <div class="newsEdit-header-right">
+        <div v-if="route.params.news_id" class="newsEdit-header-right">
           <PublishToggle
             :data="newsData.ru"
             @finish="() => {
@@ -52,8 +52,8 @@
       <h2 class="landing-title">
         {{
           route.params.news_id
-            ? $t('page.edit-announcements')
-            : $t('page.create-announcements')
+            ? $t('page.editing-the-news')
+            : $t('page.new-news')
         }}
       </h2>
 
@@ -67,10 +67,10 @@
               <label for="" class="newsEdit-formItem-label">{{ $t('formdata.release-day') }}</label>
 
               <DatePicker
-            time-picker
-            v-model="newsData.ru.created_at"
-            @change="handleSelectDay"
-          >
+                time-picker
+                v-model="newsData.ru.created_at"
+                @change="handleSelectDay"
+              >
                 <Input
                   name="datePublish"
                   v-model="newsData.ru.created_at_forInput"
@@ -176,8 +176,9 @@
       </Form>
 
       <DeleteModal
+        v-if="route.params.news_id"
         :show="showDeleteModal"
-        :id="newsData.ru.id!"
+        :id="newsData.ru?.id"
         @click.stop
         @hide="() => showDeleteModal = false"
         @finish="onDeletedNews"
@@ -196,9 +197,11 @@
   import { useI18n } from 'vue-i18n'
   import { ref, reactive, onMounted } from 'vue'
   import { useRoute, useRouter } from 'vue-router';
-
+  
   import { useToast } from '@/modules/toast'
+  
   import getFileUrl from '@/helpers/getFileUrlByDate.js'
+  import removeNbsp from '@/helpers/removeNbsp'
 
   import { INews } from '@/types/news';
   import { getMediaNewsData, postMediaNewsData, putMediaNewsData } from '@/actions/uiMedia/news';
@@ -315,9 +318,10 @@
         const formData = new FormData();
   
         for (const key in newsData[lang.value]) {
-          if (key === 'created_at') formData.append(key, moment(newsData.ru[key]).format('YYYY-MM-DD[T]HH:mm:ss'));
-          else if (key !== 'preview_image' && newsData[lang.value][key]) formData.append(key, newsData[lang.value][key]);
+          if (key === 'created_at') formData.append(key, moment(newsData.ru['created_at']).format('YYYY-MM-DD[T]HH:mm:ss'));
+          else if (key !== 'preview_image' && newsData[lang.value][key]) formData.append(key, removeNbsp(newsData[lang.value][key]));
         }
+
   
         if (newPhotoFile.value) formData.append("preview_image", newPhotoFile.value);
         formData.append("alias_category", 'announcements');
@@ -328,8 +332,8 @@
       
       toast({
         message: route.params.news_id
-        ? t('message.the-news-was-successfully-updated')
-        : t('message.the-news-was-successfully-created'),
+        ? t('message.the-announce-was-successfully-updated')
+        : t('message.the-announce-was-successfully-created'),
         type: 'success'
       })
       router.replace(`/media/announcements/${newsID}`);

@@ -9,7 +9,7 @@
       <div class="newsItem-preview withZoomPreview-preview">
         <div
           class="newsItem-preview-img bg-cover withZoomPreview-preview-img"
-          :style="`background-image:url('https://i.pinimg.com/564x/66/ed/19/66ed190edaf9f2557cbe63978e1b89e2.jpg');`"
+          :style="`background-image:url('${getFileUrl(data.preview_image)}');`"
         ></div>
       </div>
 
@@ -77,6 +77,7 @@
   import { useRouter } from 'vue-router';
 
   import { INews } from '@/types/news';
+  import getFileUrl from '@/helpers/getFileUrlByDate'
 
   const router = useRouter()
 
