@@ -8,13 +8,6 @@
         />
 
         <div class="introBottom-btns">
-          <RouterLink to="/hackathon">
-            <Button
-              name="Hackathon ReCodetau"
-              type="outline-light"
-              uppercase
-            />
-          </RouterLink>
           <Button
             :name="$t('feedback.join-the-party')"
             type="outline-light"
@@ -72,7 +65,7 @@
 
   &-btns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
 
     & button.default-blue {
@@ -136,10 +129,6 @@
       width: 100%;
       grid-gap: 16px;
       grid-template-columns: repeat(2, 1fr);
-
-      & a:first-child {
-        grid-column: 1/3;
-      }
     }
   }
 
