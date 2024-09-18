@@ -14,7 +14,7 @@
             :viewboxHeight="83"
           />
           <h3 class="usersGender-item-preview-procent">
-            {{ calculatorProcents(genderData.male) }}%
+            {{ genderData.male }} <span>({{ calculatorProcents(genderData.male) }}%)</span>
           </h3>
         </div>
         <div class="usersGender-item-list man">
@@ -32,7 +32,7 @@
       <div class="usersGender-item girl">
         <div class="usersGender-item-preview girl">
           <h3 class="usersGender-item-preview-procent">
-            {{ calculatorProcents(genderData.female) }}%
+            {{ genderData.female }} <span>({{ calculatorProcents(genderData.female) }}%)</span>
           </h3>
           <SvgIcon
             name="people-body-girl"
@@ -114,6 +114,12 @@ const calculatorCount = (count) => {
       &-procent {
         font-size: 20px;
         font-weight: 600;
+
+        & span {
+          font-size: 14px;
+          font-weight: 400;
+          color: var(--light-gray-color);
+        }
       }
 
       &.man svg {

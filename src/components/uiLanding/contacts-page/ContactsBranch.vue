@@ -57,7 +57,7 @@
   })
 
   onMounted(() => {
-    const map = document.querySelector('.branch-map');
+    const map: any = document.querySelector('.branch-map');
     let root = am5.Root.new(map);
 
     root._logo!.dispose();
@@ -93,20 +93,19 @@
   
   
     const customMap = am5geodata_kazakhstanMap.features.map(polygon => {
-      let customPolygon = polygon
+      let customPolygon: any = polygon
       customPolygon.properties.count = getCount(polygon.id);
       return customPolygon
     })
   
     let polygonSeries = chart.series.push(
       am5map.MapPolygonSeries.new(root, {
-        geoJSON: { type: am5geodata_kazakhstanMap.type, features: customMap },
+        geoJSON: { type: am5geodata_kazakhstanMap.type as any, features: customMap },
         include: deputiesMapList.map(obl => {
           return obl.code
         }),
         fill: am5.color(0x5882ED),
         stroke: am5.color(0xffffff),
-        strokeWidth: 5
       })
     );
   
@@ -136,8 +135,8 @@
     }
   
 
-    polygonSeries.mapPolygons.template.events.on("click", function(ev) {
-      regions.forEach(region => {
+    polygonSeries.mapPolygons.template.events.on("click", function(ev: any) {
+      regions.forEach((region: any) => {
         if (region.code === ev.target.dataItem!.dataContext!.id) {
           deputiesMapList.forEach(obl => {
             if (obl.code === ev.target.dataItem!.dataContext!.id) {
@@ -152,7 +151,7 @@
       })
 
       polygonSeries.data.setAll(deputiesMapList.map(obl => {
-        const polygon = {}
+        const polygon: any = {}
         polygon.id = obl.code
         polygon.address = obl.address;
         polygon.email = obl.email;
@@ -236,7 +235,7 @@
       },
     ]);
 
-    pointSeries.bullets.push(function(root, series, dataItem) {
+    pointSeries.bullets.push(function(root, series, dataItem: any) {
       if (window.innerWidth > 992) {
         return am5.Bullet.new(root,
           !dataItem.dataContext?.name
@@ -272,7 +271,7 @@
                 centerY: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(720) : am5.p50,
                 text: "{name}",
                 fontSize: 14,
-                fontStyle: 'Tilda Sans',
+                fontFamily: 'Tilda Sans',
                 fill: am5.color(0xFFFFFF),
                 populateText: true
               })
@@ -382,7 +381,7 @@
     // Create line series
     var lineSeries = chart.series.push(
       am5map.MapLineSeries.new(root, {
-        geoJSON: routes
+        geoJSON: routes as any
       })
     );
       

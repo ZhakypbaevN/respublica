@@ -613,6 +613,7 @@
     "first-select-an-area": "Алдымен аймақты таңдаңыз",
     "there-are-no-deputies": "Депутаттар жоқ",
     "new": "Жаңа",
+    "accepted": "Қабылданды",
     "signed": "Қол қойылған",
     "in-processing": "Өңдеулуде",
     "for-signature": "Қол қою үшін",
@@ -636,6 +637,7 @@
     "edit": "Өңдеу",
     "delete": "Жою",
     "all": "Барлығы",
+    "ok": "OK",
     "menu": "Мәзір",
     "publish": "Жариялау",
     "unpublish": "Жарияламау",
@@ -686,7 +688,8 @@
     "select-a-user": "Партия мүшесін таңдау",
     "select-number-of-party-card": "Партиялық билет нөмірін таңдаңыз",
     "select-a-vip-room": "VIP нөмірін таңдаңыз",
-    "go-over": "Өту"
+    "go-over": "Өту",
+    "finish": "Аяқтау"
   },
 
   "message": {

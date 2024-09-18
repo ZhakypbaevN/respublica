@@ -7,24 +7,18 @@
     <div class="appealDetail-inner wrapper">
       <div>
         <div class="appealDetail-block">
-          <div class="appealDetail-top">
-            <div class="appealDetail-info-item">
-              <h4 class="appealDetail-info-title">Вид обращения:</h4>
-              <p class="appealDetail-info-value">Жалоба</p>
+          <div class="appealDetail-block-top">
+            <AppealCategory
+              :title="appealData.category.title"
+              :color="appealData.category.color"
+            />
+
+            <p class="appealDetail-info-value">{{ appealData.title }}</p>
+
+            <div class="appealDetail-info-item vertical">
+              <h4 class="appealDetail-info-title">Описание</h4>
+              <p>{{ appealData.description }}</p>
             </div>
-
-            <div class="appealDetail-info-item">
-              <h4 class="appealDetail-info-title">Категория обращения:</h4>
-              <div class="appealDetail-info-value appealDetail-category">Экология</div>
-            </div>
-
-            <h4 class="appealDetail-info-title">Содержание:</h4>
-            <p>
-              Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com;
-              На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция;
-              Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.
-
-            </p>
           </div>
 
           <h3 class="appealDetail-block-title">Прикрепленные файлы</h3>
@@ -63,100 +57,100 @@
             </div>
           </div>
         </div>
-
-        <div class="appealDetail-block">
-          <Input
-            type="textarea"
-            placeholder="Оставить комментарий"
-            staticPlaceholder
-            :maxSymbol="1000"
-          />
-
-          <div>
-            <p class="appealDetail-info-title">Фото / Видео</p>
-
-            <Button
-              class="appealDetail-addFileBtn"
-              :name="$t('button.attach-a-file')"
-              type="outline-blue"
-              v-slot:left
-            >
-              <SvgIcon name="plus" :viewboxWidth="24" :viewboxHeight="24" />
-            </Button>
-
-            <p class="appealDetail-description" v-html="$t('formdata.the-maximum-size-of-a-single-file-is-19-mb')"></p>
-          </div>
-        </div>
         
-        <!-- <div class="appealDetail-block answer">
-          <div class="appealDetail-answer">Ответ на обращение”</div>
-          <p>
-            Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; <br>
-            На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; <br>
-            Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.
-          </p>
-          <br>
-          
-          <h3 class="appealDetail-block-title">Прикрепленные файлы</h3>
+        <div
+          v-if="appealData.request_info.statusCode != 'new' && appealData.request_info.statusCode != 'accepted'"
+          :class="`appealDetail-answerBlock appealDetail-block ${appealData.request_info.statusCode}`"
+        >
+          <div class="appealDetail-answerBlock-header">
+            <h3 class="appealDetail-answerBlock-header-title">Ответ на обращение</h3>
+            <p class="appealDetail-answerBlock-header-type">{{ appealData.request_info.status }}</p>
+          </div>
 
-          <div class="appealDetail-block-userInfos">
-            <div class="appealDetail-info-item">
-              <h4 class="appealDetail-info-title">Фото:</h4>
-              <p class="appealDetail-info-value">-</p>
+          <div class="appealDetail-answerBlock-content">
+            <p>
+              Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; <br>
+              На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; <br>
+              Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.
+            </p>
+            <br>
+            
+            <h3 class="appealDetail-block-title">Прикрепленные файлы</h3>
+
+            <div class="appealDetail-block-userInfos">
+              <div class="appealDetail-info-item mediaFiles">
+                <h4 class="appealDetail-info-title">Фото:</h4>
+                <div class="appealDetail-info-value-mediaFiles">
+                  <div
+                    class="appealDetail-info-value-mediaFiles-item bg-cover withZoomPreview-preview-img"
+                    :style="`background-image: url(https://respublica-partiyasy.kz/img/uiLanding/home/about-party/events-7.jpg);`"
+                  ></div>
+
+                  <div
+                    class="appealDetail-info-value-mediaFiles-item bg-cover withZoomPreview-preview-img"
+                    :style="`background-image: url(https://respublica-partiyasy.kz/img/uiLanding/home/about-party/events-6.jpg);`"
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
-        </div> -->
+        </div>
 
-        <div class="appealDetail-btns">
+        <div
+          v-if="appealData.request_info.statusCode == 'new'"
+          class="appealDetail-btns"
+        >
           <Button
-            name="Направить на рассмотрение"
-            type="default-blue"
+            name="Принять"
+            type="default-green"
+            @click="() => onToAccept('accepted')"
           />
           <Button
-            name="Ответить и завершить"
-            type="default-green"
+            name="Отправить на доработку"
+            type="default-blue"
+            @click="() => onShowFormModal('in-revision')"
+          />
+          <Button
+            name="Отклонить"
+            type="default-red"
+            @click="() => onShowFormModal('rejected')"
+          />
+        </div>
+        <div
+          v-if="appealData.request_info.statusCode == 'accepted'"
+          class="appealDetail-btns"
+        >
+          <Button
+            name="Завершить"
+            type="default-blue"
+            @click="() => onShowFormModal('finish')"
           />
         </div>
       </div>
 
       <div>
         <div class="appealDetail-block">
-          <h3 class="appealDetail-block-title">Ваши личные данные</h3>
+          <h3 class="appealDetail-block-title">Данные пользователя</h3>
 
           <div class="appealDetail-userInfos">
-            <div class="appealDetail-userInfos-mainInfo">
-              <h3 class="appealDetail-userInfos-mainInfo-fullname">САРСЕНОВА АЙГЕРИМ БАУБЕКОВНА</h3>
-              <div class="appealDetail-userInfos-mainInfo-status"><span>Находящиеся в отпуске по уходу за детьми</span></div>
-            </div>
-
             <div class="appealDetail-info-item">
-              <h4 class="appealDetail-info-title">Пол:</h4>
-              <p class="appealDetail-info-value">Женщина</p>
-            </div>
-
-            <div class="appealDetail-info-item">
-              <h4 class="appealDetail-info-title">Дата рождения:</h4>
-              <p class="appealDetail-info-value">17.05.86</p>
-            </div>
-
-            <div class="appealDetail-info-item">
-              <h4 class="appealDetail-info-title">ИИН:</h4>
-              <p class="appealDetail-info-value">930512589658</p>
+              <h4 class="appealDetail-info-title">ФИО:</h4>
+              <p class="appealDetail-info-value">{{ appealData.user_info.name }}</p>
             </div>
 
             <div class="appealDetail-info-item">
               <h4 class="appealDetail-info-title">Телефон:</h4>
-              <p class="appealDetail-info-value">+7 707 875 58 58</p>
+              <p class="appealDetail-info-value">{{ appealData.user_info.phone }}</p>
             </div>
 
-            <div class="appealDetail-info-item">
-              <h4 class="appealDetail-info-title">E-mail:</h4>
-              <p class="appealDetail-info-value">baubekovna@gmail.com</p>
-            </div>
-
-            <div class="appealDetail-info-item">
+            <div class="appealDetail-info-item status">
               <h4 class="appealDetail-info-title">Статус:</h4>
-              <p class="appealDetail-info-value blue">Член партии Respublica</p>
+              <p class="appealDetail-info-value blue">{{ appealData.user_info.status }}</p>
+            </div>
+
+            <div class="appealDetail-info-item">
+              <h4 class="appealDetail-info-title">Локация:</h4>
+              <p class="appealDetail-info-value">{{ appealData.user_info.location }}</p>
             </div>
           </div>
         </div>
@@ -164,97 +158,278 @@
         <div class="appealDetail-block">
           <div class="appealDetail-info-item">
             <h4 class="appealDetail-info-title">Создано:</h4>
-            <p class="appealDetail-info-value">15 июля 2023 г.</p>
+            <p class="appealDetail-info-value">{{ appealData.request_info.created_date }}</p>
           </div>
         </div>
 
-        <div class="appealDetail-block">
+        <div
+          v-if="appealData.request_info.statusCode != 'new'"
+          class="appealDetail-block"
+        >
           <div class="appealDetail-info-item status">
             <h4 class="appealDetail-info-title">Статус обращения:</h4>
-            <p class="appealDetail-info-value">25 июля 2023 г.</p>
+            <p class="appealDetail-info-value">{{ appealData.request_info.status_date }}</p>
           </div>
 
-          <Button
-            name="В компетентный орган"
-            type="default-grey-dark"
-            class="appealDetail-block-btn"
+          <AppealStatus
+            :title="appealData.request_info.status"
+            :code="appealData.request_info.statusCode"
           />
         </div>
-          
-        <Button
-          name="Показать все действия по обращению"
-          type="outline-grey"
-          class="appealDetail-block-btn-changeStatus"
-          style="width: 100%;"
-        />
-
-        <Button
-          class="appealDetail-block-btn-download"
-          name="Скачать PDF"
-          type="outline-blue"
-          v-slot:left
-        >
-          <SvgIcon
-            name="download"
-            :viewboxWidth="32"
-            :viewboxHeight="32"
-          />
-        </Button>
+      
+        <AppealHistory v-if="appealData.request_info.statusCode != 'new'" />
       </div>
     </div>
+
+    <AppealFormModal
+      :show="isShowFormModal"
+      :type="isTypeForm"
+      @hide="onHideFormModal"
+      @finish="onToFinish"
+    />
+
+    <AppealMessageModal
+      :show="isShowMessageModal"
+      @hide="onHideMessageModal"
+      :title="isTitlesMessage.title"
+      :subtitle="isTitlesMessage.subtitle"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router'
-import { useToast } from '../../../modules/toast'
+  import { ref, reactive } from 'vue';
+  import { useRoute } from 'vue-router';
 
-const { toast } = useToast()
-const route = useRoute()
+  import { useToast } from '@/modules/toast'
 
-const appealData = ref({
-  id: 1,
-  appleanCategory: {
-    title: 'Иммиграция и миграция',
-    color: '#28C397',
-  },
-  file: 4,
-  region: 'Алматы',
-  status: {
-    title: 'В компетентный орган'
-  },
-  dayOfAcceptance: '12-05-2024',
-  locality: '',
-  streat: '',
-  house: '',
-  appartment: '',
-  appleanType: '',
-  messege: ''
-});
+  import AppealCategory from '@/components/uiReception/AppealCategory.vue';
+  import AppealHistory from '@/components/uiReception/AppealHistory.vue';
+  import AppealStatus from '@/components/uiReception/AppealStatus.vue';
+  import AppealFormModal from '@/components/uiReception/AppealFormModal.vue';
+  import AppealMessageModal from '@/components/uiReception/AppealMessageModal.vue';
 
-// onMounted(() => {
+  const { toast } = useToast()
+  const route = useRoute();
 
-//   const url = `https://tri.codetau.com/appealList?id=${route.params.appeal_id}`;
-//   axios({
-//     method: "get",
-//     url: url,
-//   })
-//     .then((response) => {
-//       appealData.value = null;
+  const isShowMessageModal = ref<boolean>(false);
+  const isShowFormModal = ref<boolean>(false);
 
-//       response.data.forEach(user => {
-//         appealData.value = user;
-//       });
-//     })
-//     .catch((err) => {
-//       console.log('err', err);
-//       toast({
-//         message: 'Возникли ошибки при запросе'
-//       })
-//     });
-// })
+  const isTypeForm = ref<string>('in-revision');
+  const isTitlesMessage = reactive<any>({
+    title: '',
+    subtitle: null
+  });
+
+  const appealList = [
+    {
+      id: 1,
+      category: {
+        title: 'Иммиграция и миграция',
+        color: '#28C397',
+      },
+      title: "Участие в мероприятиях. Вступление в партию",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whopr-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от неё их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Новое",
+        statusCode: "new",
+        status_date: "25 июля 2023 г."
+      },
+    },
+    {
+      id: 2,
+      category: {
+        title: 'Агропромышленный комплекс',
+        color: '#9BC328',
+      },
+      title: "Жалоба",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Новое",
+        statusCode: "new",
+        status_date: "25 июля 2023 г."
+      },
+    },
+    {
+      id: 3,
+      category: {
+        title: 'Судебная и правоохранительная система',
+        color: '#C35728',
+      },
+      title: "Жалоба",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Новое",
+        statusCode: "new",
+        status_date: "25 июля 2023 г."
+      },
+    },
+    {
+      id: 4,
+      category: {
+        title: 'Банки и иные кредитные организации',
+        color: '#338DE0',
+      },
+      title: "Жалоба",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Новое",
+        statusCode: "new",
+        status_date: "25 июля 2023 г."
+      },
+    },
+    {
+      id: 5,
+      category: {
+        title: 'Судебная и правоохранительная система',
+        color: '#C35728',
+      },
+      title: "Жалоба",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Принято",
+        statusCode: "accepted",
+        status_date: "25 июля 2023 г."
+      },
+    },
+    {
+      id: 6,
+      category: {
+        title: 'Банки и иные кредитные организации',
+        color: '#338DE0',
+      },
+      title: "Жалоба",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Не решенный",
+        statusCode: "rejected",
+        status_date: "25 июля 2023 г."
+      },
+    },
+    {
+      id: 7,
+      category: {
+        title: 'Банки и иные кредитные организации',
+        color: '#338DE0',
+      },
+      title: "Жалоба",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Разъяснение",
+        statusCode: "in-revision",
+        status_date: "25 июля 2023 г."
+      },
+    },
+    {
+      id: 8,
+      category: {
+        title: 'Банки и иные кредитные организации',
+        color: '#338DE0',
+      },
+      title: "Жалоба",
+      description: "Вы можете войти в WhatsApp Web с компьютера, ноутбука или макбука, для этого кликните по зеленой кнопке выше. Используйте тот же браузер, через который просматриваете наш сайт whapp-club.com; На странице входа просканируйте QR-код через мобильную версию WhatsApp на телефоне. Компьютерная и веб версия мессенджера работают с ней в паре, отдельно от нее их запустить не получится. Если возникнут трудности с авторизацией, на странице входа есть видеоинструкция; Если вы не снимали галочку с параметра «Оставаться в системе», WhatsApp Web будет оставаться онлайн, пока вы не выйдете из него сами, вручную, либо пока не пропадет связь с телефоном. Поэтому: 1) держите телефон рядом; 2) не выключайте его; 3) не закрывайте на нем приложение; 4) и не отключайте интернет.",
+      user_info: {
+        name: "Киценко Артем",
+        phone: "+7 707 875 58 58",
+        status: "Член партии Respublica",
+        location: "Алматинская область, г. Алматы"
+      },
+      request_info: {
+        created_date: "15 июля 2023 г.",
+        status: "Положительно решенные",
+        statusCode: "finish",
+        status_date: "25 июля 2023 г."
+      },
+    }
+  ]
+
+  const appealData = ref(appealList.find(appeal => appeal.id.toString() == route.params.appeal_id) ?? appealList[0]);
+
+  const onToAccept = (status: string) => {
+    appealData.value.request_info.status = 'Принято';
+    appealData.value.request_info.statusCode = status;
+
+    onShowMessageModal(
+      'УСПЕШНО ПРИНЯТО',
+      'Обращение пользователя'
+    )
+  }
+
+  const onToFinish = (status: string) => {
+    appealData.value.request_info.status = 'Положительно решенные'
+    if (status == 'in-revision') appealData.value.request_info.status = 'Разъяснение'
+    if (status == 'rejected') appealData.value.request_info.status = 'Не решенный'
+
+    appealData.value.request_info.statusCode = status;
+
+    isShowFormModal.value = false;
+    onShowMessageModal(
+      'УСПЕШНО ОТПРАВЛЕН'
+    )
+  }
+
+  const onShowMessageModal = (title: string, subtitle?: string) => {
+    isShowMessageModal.value = true;
+    isTitlesMessage.title = title;
+    isTitlesMessage.subtitle = subtitle;
+  }
+
+  const onShowFormModal = (status: string) => {
+    isShowFormModal.value = true;
+    isTypeForm.value = status;
+  }
+
+  const onHideMessageModal = () => isShowMessageModal.value = false;
+  const onHideFormModal = () => isShowFormModal.value = false;
 </script>
 
 <style scoped lang="scss">
@@ -262,7 +437,7 @@ const appealData = ref({
   min-height: 100%;
   grid-gap: 20px;
   
-  padding: 40px 0;
+  padding: 40px 0 200px;
   background-color: var(--accent-color-op05);
 
   justify-content: start !important;
@@ -275,23 +450,18 @@ const appealData = ref({
     grid-gap: 20px;
   }
 
-  &-top {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 16px;
-    margin-bottom: 25px;
-  }
-
   &-block {
     border-radius: 10px;
-    background: #FFF;
+    background: var(--white-color);
     
     padding: 25px;
     margin-bottom: 20px;
 
-    &.answer {
-      border: 1px solid var(--green-color);
-      border-radius: 0px 10px 10px 10px;
+    &-top {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 24px;
+      margin-bottom: 28px;
     }
 
     &-title {
@@ -307,28 +477,6 @@ const appealData = ref({
 
       margin-bottom: 30px;
     }
-
-    &-btn {
-      padding: 9px 20px;
-
-      &-changeStatus {
-        width: 100%;
-
-        padding: 9px 20px;
-        margin-bottom: 20px;
-      }
-
-      &-download {
-        display: flex;
-        align-items: center;
-        grid-gap: 10px;
-
-        & svg {
-          width: 32px;
-          height: 32px;
-        }
-      }
-    }
   }
 
   &-btns {
@@ -336,65 +484,13 @@ const appealData = ref({
     grid-gap: 20px;
   }
 
-  &-category {
-    width: fit-content;
-    
-    color: #28C397;
-    font-size: 18px;
-    font-weight: 500;
-    
-    border-radius: 8px;
-    background: hsl(165, 57%, 95%);
-
-    padding: 9px 19px;
-  }
-
-  &-answer {
-    width: fit-content;
-
-    position: relative;
-    top: -25px;
-    left: -25px;
-
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 700;
-    
-    border-radius: 0px 10px 10px 0px;
-    background: var(--green-color);
-
-    padding: 20px 25px;
-  }
-
   &-userInfos {
     &-mainInfo {
       margin-bottom: 20px;
-
-      &-fullname {
-        color: var(--accent-color);
-        font-size: 20px;
-        font-weight: 600;
-
-        margin-bottom: 10px;
-      }
-
-      &-status {
-        display: inline-block;
-
-        padding: 10px 15px;
-        background-color: var(--accent-color-op10);
-        border-radius: 50px;
-
-        & span {
-          color: var(--accent-color);
-          font-size: 16px;
-          font-weight: 500;
-        }
-      }
     }
 
     & .appealDetail-info-item {
-      margin-bottom: 14px;
+      margin-bottom: 6px;
     }
   }
 
@@ -402,19 +498,24 @@ const appealData = ref({
     &-item {
       display: flex;
       align-items: center;
-      grid-gap: 8px;
+      grid-gap: 16px;
+
+      &.vertical {
+        flex-direction: column;
+        align-items: flex-start;
+
+        & .appealDetail-info-title {
+          margin-bottom: 4px;
+        }
+      }
 
       &.mediaFiles {
         align-items: flex-start;
         margin-bottom: 20px;
-
-        & .appealDetail-info-title {
-          min-width: 100px;
-        }
       }
 
       &.status {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
       }
 
       & .appealDetail-info-title {
@@ -423,9 +524,11 @@ const appealData = ref({
     }
 
     &-title {
+      min-width: 100px;
+
       color: var(--light-gray-color);
       font-size: 18px;
-      font-weight: 500;
+      font-weight: 400;
 
       margin-bottom: 15px;
     }
@@ -464,33 +567,83 @@ const appealData = ref({
     }
   }
 
-  &-status {
-    width: fit-content;
-    padding: 9px 19px;
-    border-radius: 8px;
+  &-answerBlock {
+    padding: 0px;
 
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 500;
+    border: 1px solid var(--green-color);
+    border-radius: 0px 10px 10px 10px;
 
-    margin-top: 20px;
-    
-    &.accepted {
-      background: var(--green-color);
+    &.in-revision {
+      border-color: var(--accent-color);
+
+      & .appealDetail-answerBlock-header {
+        &-title {
+          background-color: var(--accent-color);
+        }
+
+        &-type {
+          color: var(--accent-color);
+        }
+      }
     }
-  }
 
-  &-addFileBtn {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    margin-bottom: 38px;
-    margin-bottom: 8px;
+    &.rejected {
+      border-color: var(--red-color);
 
-    & svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--accent-color);
+      & .appealDetail-answerBlock-header {
+        &-title {
+          background-color: var(--red-color);
+        }
+
+        &-type {
+          color: var(--red-color);
+        }
+      }
+    }
+
+    &.finish {
+      border-color: var(--green-color);
+
+      & .appealDetail-answerBlock-header {
+        &-title {
+          background-color: var(--green-color);
+        }
+
+        &-type {
+          color: var(--green-color);
+        }
+      }
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding-right: 38px;
+      margin-bottom: 20px;
+
+      &-title {
+        width: fit-content;
+
+        color: var(--white-color);
+        font-size: 18px;
+        font-weight: 700;
+        
+        border-radius: 0px 10px 10px 0px;
+
+        padding: 20px 25px;
+
+      }
+
+      &-type {
+        font-size: 18px;
+        font-weight: 700;
+      }
+    }
+
+    &-content {
+      padding: 0 24px 24px;
     }
   }
 }
