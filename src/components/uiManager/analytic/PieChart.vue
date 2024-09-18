@@ -29,7 +29,7 @@ onMounted(async () => {
   if (response) {
     ageData.value = response.data;
 
-    const pieChart = document.querySelector('.pieChart');
+    const pieChart : any = document.querySelector('.pieChart');
     let root = am5.Root.new(pieChart);
   
     root._logo!.dispose();

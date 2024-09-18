@@ -24,7 +24,7 @@
 <style scoped lang="scss">
 .wrapper-main {
   background-color: var(--accent-color-op05);
-  padding: 40px 0;
+  padding: 40px 0 200px;
 }
 
 .analytics {

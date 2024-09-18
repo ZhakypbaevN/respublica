@@ -34,62 +34,85 @@ onMounted(() => {
 const sideBarlinks = reactive([
   {
     title: t('status.new'),
-    link: "/business/appeal-list/new",
+    link: "/reception/appeal-list/new",
     typeButton: true
   },
   {
-    title: t('status.in-processing'),
-    typeDropDown: true,
-    active: false,
-    children: [
-      {
-        title: t('status.in-processing'),
-        link: "/business/page-in-development",
-      },
-      {
-        title: t('status.for-signature'),
-        link: "/business/page-in-development",
-      },
-      {
-        title: t('status.to-the-competent-authority'),
-        link: "/business/page-in-development",
-      }
-    ]
-  },
-  {
-    title: t('status.signed'),
-    link: "/business/appeal-list/signed",
+    title: t('status.accepted'),
+    link: "/reception/appeal-list/accepted",
     typeButton: true
   },
   {
     title: t('status.completed'),
-    typeDropDown: true,
-    active: false,
-    children: [
-      {
-        title: t('status.positive-response'),
-        link: "/business/page-in-development",
-      },
-      {
-        title: t('status.an-explanation-is-given'),
-        link: "/business/page-in-development",
-      },
-      {
-        title: t('status.unresolved-issues'),
-        link: "/business/page-in-development",
-      },
-      {
-        title: t('status.not-subject-to-review'),
-        link: "/business/page-in-development",
-      }
-    ]
+    link: "/reception/appeal-list/completed",
+    typeButton: true
   },
   {
     title: t('page.analytics'),
-    link: "/business/analytics",
+    link: "/reception/analytics",
     typeButton: true
-  },
+  }
 ])
+
+// const sideBarlinks = reactive([
+//   {
+//     title: t('status.new'),
+//     link: "/reception/appeal-list/new",
+//     typeButton: true
+//   },
+//   {
+//     title: t('status.in-processing'),
+//     typeDropDown: true,
+//     active: false,
+//     children: [
+//       {
+//         title: t('status.in-processing'),
+//         link: "/reception/page-in-development",
+//       },
+//       {
+//         title: t('status.for-signature'),
+//         link: "/reception/page-in-development",
+//       },
+//       {
+//         title: t('status.to-the-competent-authority'),
+//         link: "/reception/page-in-development",
+//       }
+//     ]
+//   },
+//   {
+//     title: t('status.signed'),
+//     link: "/reception/appeal-list/signed",
+//     typeButton: true
+//   },
+//   {
+//     title: t('status.completed'),
+//     typeDropDown: true,
+//     active: false,
+//     children: [
+//       {
+//         title: t('status.positive-response'),
+//         link: "/reception/page-in-development",
+//       },
+//       {
+//         title: t('status.an-explanation-is-given'),
+//         link: "/reception/page-in-development",
+//       },
+//       {
+//         title: t('status.unresolved-issues'),
+//         link: "/reception/page-in-development",
+//       },
+//       {
+//         title: t('status.not-subject-to-review'),
+//         link: "/reception/page-in-development",
+//       }
+//     ]
+//   },
+//   {
+//     title: t('page.analytics'),
+//     link: "/reception/analytics",
+//     typeButton: true
+//   },
+// ])
 </script>
 
 <style scoped lang="scss">

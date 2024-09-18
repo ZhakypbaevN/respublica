@@ -3,146 +3,20 @@
     <div class="analytics-item-header">
       <h4 class="analytics-title">{{ title }}</h4>
 
-      <div v-if="withPeriod" class="periodControls">
-        <Button
-          :name="$t('button.the-whole-period')"
-          class="periodControls-btn"
-          :type="!showPeriodFilter ? 'default' : 'default-grey'"
-          @click="() => showPeriodFilter = false"
-        />
-        <Button
-          :name="$t('button.period')"
-          class="periodControls-btn"
-          :type="showPeriodFilter ? 'default' : 'default-grey'"
-          @click="() => showPeriodFilter = true"
-        />
-      </div>
+      <slot name="actions"></slot>
     </div>
-
-    <Transition>
-      <div
-        v-if="showPeriodFilter"
-        v-collapse
-      >
-        <div class="analytics-filter">
-          <Select
-            v-if="showRegionsFilter"
-            :placeholder="$t('formdata.specify-the-area')"
-            :options="regionList"
-            v-model="regionID"
-          />
-          <Select
-            v-if="showCategoryFilter"
-            :placeholder="$t('formdata.specify-the-category')"
-            :options="categoryList"
-            v-model="regionID"
-          />
-          
-          <div class="analytics-filter-period">
-            <Input
-              type="date"
-              placeholder="От"
-            />
-            <Input
-              type="date"
-              placeholder="До"
-            />
-          </div>
-        </div>
-      </div>
-    </Transition>
 
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-  import axios from 'axios'
-  import { useI18n } from 'vue-i18n'
-  import { ref, onMounted, computed } from 'vue';
-
-  // Modules
-  import { useToast } from '@/modules/toast';
-
-  const { t } = useI18n()
-
   interface IProps {
     title: string,
     modelValue?: any,
-    region?: any,
-    withPeriod?: false,
-    showRegionsFilter?: false,
-    showCategoryFilter?: false
-  }
-  interface Emits {
-    (event: 'update:region', value: any): void
   }
 
-  const emit = defineEmits<Emits>()
-
-  const props = withDefaults(defineProps<IProps>(), {
-    showRegionsFilter: false,
-    showCategoryFilter: false,
-    withPeriod: false,
-  })
-
-  const regionID = computed({
-    get: () => props.region ?? null,
-    set: (val) => emit('update:region', val)
-  })
-
-  const showPeriodFilter = ref(false)
-
-  const { toast } = useToast()
-
-  const regionList = ref([]);
-  const categoryList = [
-    {
-      label: t('social-category.pensioners'),
-      value: 'pensioner',
-    },
-    {
-      label: t('social-category.disabled'),
-      value: 'disabled',
-    },
-    {
-      label: t('social-category.unemployed'),
-      value: 'unemployed',
-    },
-    {
-      label: t('social-category.on-childcare-leave'),
-      value: 'onChildcareLeave',
-    }
-  ]
-
-  const getRegions = () => {
-    const url = `https://api.respublica-partiyasy.kz/api/v1/parties/locations?offset=0&limit=100`;
-    axios({
-      method: "get",
-      url: url,
-    })
-      .then((response) => {
-        response.data.forEach(location => {
-          regionList.value.push(
-            {
-              label: location.name,
-              value: location.id.toString()
-            }
-          );
-        });
-      })
-      .catch((err) => {
-        console.log('err', err);
-
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
-      });
-  }
-
-  onMounted(() => {
-    if (props.showRegionsFilter) getRegions()
-  })
+  defineProps<IProps>()
 </script>
 
 <style scoped lang="scss">
@@ -171,31 +45,5 @@
       font-weight: 700;
       margin-bottom: 0px !important;
     }
-
-    &-filter {
-      padding-bottom: 20px;
-
-      &-period {
-        display: grid;
-        grid-template-columns: 190px 190px;
-        grid-gap: 20px;
-      }
-    }
-  }
-
-  .periodControls {
-    display: flex;
-    grid-gap: 14px;
-
-    &-btn {
-      padding: 4px 20px;
-      border-radius: 3px;
-    }
-  }
-</style>
-<style >
-  .periodControls-btn span {
-    font-weight: 400 !important;
-    font-size: 16px !important;
   }
 </style>

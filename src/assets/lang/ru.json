@@ -621,6 +621,7 @@
     "there-are-no-deputies": "Нет депутатов",
 
     "new": "Новые",
+    "accepted": "Принятые",
     "signed": "Подписанные",
     "in-processing": "В обработке",
     "for-signature": "На подпись",
@@ -644,6 +645,7 @@
   "button": {
     "edit": "Редактировать",
     "delete": "Удалить",
+    "ok": "OK",
     "all": "Все",
     "menu": "Меню",
     "publish": "Опубликовать",
@@ -695,7 +697,8 @@
     "select-a-user": "Выбрать пользователя",
     "select-number-of-party-card": "Выбрать номер партийного билета",
     "select-a-vip-room": "Выбрать VIP номер",
-    "go-over": "Перейти"
+    "go-over": "Перейти",
+    "finish": "Завершить"
   },
 
   "message": {

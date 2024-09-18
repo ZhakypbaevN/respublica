@@ -1,84 +1,93 @@
 <template>
-  <AnalyticsBlock
-    :title="$t('analytics.activity-by-region')"
-    v-model="period"
-  >
-    <!-- withPeriod -->
-    <div class="map" ref="chartdiv"></div>
+  <AnalyticsBlock :title="$t('analytics.activity-by-region')">
+    <template v-slot:actions>
+      <div class="regions-controlBtns">
+        <Button
+          v-for="(btn, idx) of controlBtns"
+          :key="btn.icon"
+          :type="btn.active ? 'default' : 'default-grey'"
+          :class="`regions-controlBtns-btn ${btn.name}`"
+          @click="() => toggleShow(idx)"
+        >
+          <SvgIcon
+            :name="btn.icon"
+            :viewboxHeight="32"
+            :viewboxWidth="32"
+          />
+        </Button>
+      </div>
+    </template>
+
+
+    <div class="regions">
+      <Transition>
+        <div v-if="controlBtns[0].active">
+          <div class="regions-map" ref="chartdiv"></div>
+        </div>
+
+        <div v-else>
+          <div class="regions-list">
+            <div
+              v-for="region of regionData"
+              :key="region.location_id"
+              class="regions-list-item"
+            >
+              <h4 class="regions-list-item-name">{{ region.location_name }}</h4>
+              <p class="regions-list-item-count">{{ region.memberships_count }}</p>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </div>
   </AnalyticsBlock>
 </template>
 
 <script setup lang="ts">
-import AnalyticsBlock from '@/components/uiManager/analytic/AnalyticsBlock.vue'
+  import AnalyticsBlock from '@/components/uiManager/analytic/AnalyticsBlock.vue'
 
-import { ref, onMounted, reactive } from 'vue';
-import { useI18n } from 'vue-i18n'
+  import { ref, onMounted, reactive, watch } from 'vue';
+  import { useI18n } from 'vue-i18n'
 
-import * as am5 from "@amcharts/amcharts5";
-import * as am5map from "@amcharts/amcharts5/map";
-import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+  import * as am5 from "@amcharts/amcharts5";
+  import * as am5map from "@amcharts/amcharts5/map";
+  import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap.json";
-import deputiesMapRU from "@/assets/map/deputiesMap-ru.json";
-import deputiesMapKZ from "@/assets/map/deputiesMap-kz.json";
+  import am5geodata_kazakhstanMap from "@/assets/map/kazakhstanMap-withCities.json";
+  import deputiesMapRU from "@/assets/map/deputiesMap-ru.json";
+  import deputiesMapKZ from "@/assets/map/deputiesMap-kz.json";
 
-import { IAnalyticsRegionalMemberships } from '@/types/analytics';
-import { getRegionalMembershipsList } from '@/actions/uiManager/analytics';
+  import { IAnalyticsRegionalMemberships } from '@/types/analytics';
+  import { getRegionalMembershipsList } from '@/actions/uiManager/analytics';
 
-const { t } = useI18n();
+  const { t } = useI18n();
 
-const mapData = ref<IAnalyticsRegionalMemberships[]>();
-
-const period = ref()
-const deputiesMapList = (t('localy') === 'ru' ? deputiesMapRU : deputiesMapKZ).deputiesList;
-const regions = reactive(deputiesMapList.map((x) => x))
-
-onMounted(async () => {
-  const response = await getRegionalMembershipsList();
+  const regionData = ref<IAnalyticsRegionalMemberships[]>();
+  const deputiesMapList = (t('localy') === 'ru' ? deputiesMapRU : deputiesMapKZ).deputiesList;
   
-  if (response) {
-    mapData.value = response.data;
-    
-    const map = document.querySelector('.map');
+  const controlBtns = reactive([
+    {
+      name: 'pin',
+      icon: 'map-control-pin',
+      active: true
+    },
+    {
+      name: 'list',
+      icon: 'map-control-list',
+      active: false
+    }
+  ])
+
+  const toggleShow = (idx: number) => {
+    for (let i = 0; i < controlBtns.length; i++) {
+      controlBtns[i].active = false;
+    }
+    controlBtns[idx].active = true;
+  }
+
+  const onGenerateMap = async () => {
+    const map: any = document.querySelector('.regions-map');
     let root = am5.Root.new(map);
 
-    // DOTS GeoJSON data
-    var cityDotsData = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {
-            "name": "г. Алматы"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [76.8829, 43.2380]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {
-            "name": "г. Астана"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [71.4272, 51.1655]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {
-            "name": "г. Шымкент"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [69.5876, 42.3205]
-          }
-        }
-      ]
-    };
-  
     root._logo!.dispose();
     root.setThemes([
       am5themes_Animated.new(root)
@@ -98,27 +107,25 @@ onMounted(async () => {
     const getCount = polygonId => {
       const polygon = deputiesMapList.find(region => region.code === polygonId)
 
-      let sum = 0;
-      const region = mapData.value.find((region) => polygon.locationID === region.location_id)
+      const region = regionData.value.find((region) => polygon.locationID === region.location_id)
       return String(region.memberships_count)
     }
   
   
     const customMap = am5geodata_kazakhstanMap.features.map(polygon => {
-      let customPolygon = polygon
+      let customPolygon: any = polygon
       customPolygon.properties.count = getCount(polygon.id)
       return customPolygon
     })
   
     let polygonSeries = chart.series.push(
       am5map.MapPolygonSeries.new(root, {
-        geoJSON: { type: am5geodata_kazakhstanMap.type, features: customMap },
+        geoJSON: { type: am5geodata_kazakhstanMap.type as any, features: customMap },
         include: deputiesMapList.map(obl => {
           return obl.code
         }),
         fill: am5.color(0xF2F4F6),
         stroke: am5.color(0xffffff),
-        strokeWidth: 10
       })
     );
   
@@ -178,20 +185,9 @@ onMounted(async () => {
     });
   
     // -------- Map Point Settings --------
-
-    // pointSeries.bullets.push(function() {
-    //   return am5.Bullet.new(root, {
-    //     sprite: am5.Circle.new(root, {
-    //       radius: 5,
-    //       fill: am5.color(0xffba00)
-    //     })
-    //   });
-    // });
-  
     let pointSeries = chart.series.push(
       am5map.MapPointSeries.new(root, {
         polygonIdField: "cityId",
-        // geoJSON: cityDotsData
       })
     );
     
@@ -226,7 +222,7 @@ onMounted(async () => {
       },
     ]);
   
-    pointSeries.bullets.push(function(root, series, dataItem) {
+    pointSeries.bullets.push(function(root, series, dataItem: any) {
       return am5.Bullet.new(root,
         !dataItem.dataContext?.name
           ? {
@@ -238,10 +234,10 @@ onMounted(async () => {
           : {
             sprite: am5.Label.new(root, {
               centerX: am5.p50,
-              centerY: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(300) : am5.p50,
+              centerY: dataItem.dataContext?.cityId === 'KZ-TUR' ? am5.percent(100) : am5.p50,
               text: "{name}",
-              fontSize: 14,
-              fontStyle: 'Tilda Sans',
+              fontSize: 11,
+              fontFamily: 'Tilda Sans',
               fill: am5.color(0x16355B),
               populateText: true
             })
@@ -352,7 +348,7 @@ onMounted(async () => {
     // Create line series
     var lineSeries = chart.series.push(
       am5map.MapLineSeries.new(root, {
-        geoJSON: routes
+        geoJSON: routes as any
       })
     );
       
@@ -366,12 +362,106 @@ onMounted(async () => {
   
     return { root };
   }
-})
+
+  onMounted(async () => {
+    const response = await getRegionalMembershipsList();
+    if (response) {
+      regionData.value = response.data;
+      onGenerateMap();
+    }
+  });
+  watch(
+    () => controlBtns[0].active,
+    () => setTimeout(() => controlBtns[0].active ? onGenerateMap() : null, 100),
+  )
 </script>
 
 <style scoped lang="scss">
-.map {
+.regions {
+  position: relative;
+  
+  &-controlBtns {
+    display: flex;
+    grid-gap: 14px;
+
+    &-btn {
+      height: 40px;
+      width: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0px !important;
+      border-radius: 3px;
+
+      & svg {
+        height: 22px;
+        width: 22px;
+
+        transition: all .3s ease-in-out;
+      }
+
+      &.pin {
+        & svg {
+          stroke: var(--white-color) !important;
+        }
+      }
+
+      &.list {
+        & svg {
+          fill: var(--white-color) !important;
+        }
+      }
+    }
+  }
+
+  &-map {
+    width: 100%;
+    height: 400px;
+  }
+
+  &-list {
+    height: 400px;
+    overflow-y: scroll;
+
+    &-item {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 70% 1fr;
+
+      padding: 16px 8px;
+      border-bottom: 1px solid var(--light-gray-color-op10);
+
+      &-name {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      &-count {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--light-gray-color);
+      }
+    }
+
+    &-item:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Animations
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+.v-leave-active {
   width: 100%;
-  height: 400px;
+  position: absolute;
 }
 </style>

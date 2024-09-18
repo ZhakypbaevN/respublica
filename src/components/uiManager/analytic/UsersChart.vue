@@ -1,11 +1,43 @@
 <template>
-  <AnalyticsBlock
-    :title="$t('page.users')"
-    v-model="period"
-    v-model:region="regionID"
-    withPeriod
-  >
-    <div class="usersChart" ref="chartdiv"></div>
+  <AnalyticsBlock :title="$t('page.users')">
+    <template v-slot:actions>
+      <div class="periodControls">
+        <Button
+          :name="$t('button.the-whole-period')"
+          class="periodControls-btn"
+          :type="!showPeriodFilter ? 'default' : 'default-grey'"
+          @click="() => showPeriodFilter = false"
+        />
+        <Button
+          :name="$t('button.period')"
+          class="periodControls-btn"
+          :type="showPeriodFilter ? 'default' : 'default-grey'"
+          @click="() => showPeriodFilter = true"
+        />
+      </div>
+    </template>
+
+      <Transition>
+        <div
+          v-if="showPeriodFilter"
+          v-collapse
+        >
+          <div class="usersChart-filter">
+            <div class="usersChart-filter-period">
+              <Input
+                type="date"
+                placeholder="От"
+              />
+              <Input
+                type="date"
+                placeholder="До"
+              />
+            </div>
+          </div>
+        </div>
+      </Transition>
+      
+      <div class="usersChart" ref="chartdiv"></div>
   </AnalyticsBlock>
 </template>
 
@@ -25,9 +57,7 @@ import { getMonthlyStatsList } from '@/actions/uiManager/analytics';
 const { t } = useI18n()
 
 const monthlyData = ref<IAnalyticsMonthlyStats[]>();
-
-const period = ref()
-const regionID = ref()
+const showPeriodFilter = ref(false)
 
 onMounted(async () => {
   const response = await getMonthlyStatsList(null);
@@ -35,7 +65,7 @@ onMounted(async () => {
   if (response) {
     monthlyData.value = response;
 
-    const usersChart = document.querySelector('.usersChart');
+    const usersChart: any = document.querySelector('.usersChart');
     let root = am5.Root.new(usersChart);
   
     root._logo!.dispose();
@@ -159,10 +189,10 @@ onMounted(async () => {
   
     legend.labels.template.setAll({
       paddingBottom: 6,
-      paddingLeft: 10,
+      paddingLeft: 8,
       lineHeight: 1.6,
-      fontSize: 16,
-      maxWidth: 120
+      fontSize: 14,
+      maxWidth: 100
     });
   
     legend.markers.template.setAll({
@@ -188,8 +218,34 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="scss">
-.usersChart {
-  width: 100%;
-  height: 400px;
-}
+  .usersChart {
+    width: 100%;
+    height: 400px;
+
+    &-filter {
+      padding-bottom: 20px;
+
+      &-period {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+      }
+    }
+  }
+
+  .periodControls {
+    display: flex;
+    grid-gap: 14px;
+
+    &-btn {
+      padding: 4px 20px;
+      border-radius: 3px;
+    }
+  }
+</style>
+<style >
+  .periodControls-btn span {
+    font-weight: 400 !important;
+    font-size: 16px !important;
+  }
 </style>
