@@ -39,7 +39,7 @@ onMounted(async () => {
   
     // Create chart
     var chart = root.container.children.push(am5percent.PieChart.new(root, {
-      layout: root.horizontalLayout
+      layout: root.horizontalLayout,
     }));
   
     var data = [
@@ -78,26 +78,15 @@ onMounted(async () => {
         categoryField: "category",
         fillField: "fill",
         legendLabelText: "[#818FA7]{category}[/]",
-        legendValueText: "  [medium #000]{valuePercentTotal.formatNumber('0.')}%"
+        legendValueText: "[medium #000]{value}[/] [medium #c1c6ce]({valuePercentTotal.formatNumber('0.')}%)[/]"
       })
     );
   
     // Set up adapters for variable slice radius
-    // series.slices.template.adapters.add("radius", function (radius, target) {
-    //   var dataItem = target.dataItem;
-    //   var high = series.getPrivate("valueHigh");
-  
-    //   if (dataItem) {
-    //     var value = target.dataItem.get("valueWorking", 0);
-    //     return radius * value / high
-    //   }
-    //   return radius;
-    // });
-  
     series.data.setAll(data);
     series.labels.template.set("forceHidden", true);
     series.ticks.template.set("forceHidden", true);
-  
+
     // Custom Tooltip
     let tooltip = am5.Tooltip.new(root, {
       getFillFromSprite: false,
@@ -118,6 +107,7 @@ onMounted(async () => {
     var legend = chart.children.push( 
       am5.Legend.new(root, {
         maxWidth: 300,
+        minWidth: 260,
         centerY: am5.percent(50),
         y: am5.percent(50),
         layout: am5.GridLayout.new(root, {
