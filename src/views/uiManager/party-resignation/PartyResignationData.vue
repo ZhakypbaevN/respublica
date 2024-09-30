@@ -237,12 +237,14 @@
           <ConfirmModal
             :show="showModal.confirm"
             :id="partyData.id"
+            @finish="() => partyData.status = 'approved'"
             @hide="() => showModal.confirm = false"
           />
 
           <CancelModal
             :show="showModal.cancel"
             :id="partyData.id"
+            @finish="() => partyData.status = 'rejected'"
             @hide="() => showModal.cancel = false"
           />
         </div>

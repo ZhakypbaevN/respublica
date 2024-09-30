@@ -61,7 +61,6 @@
       }
     })
       .then((response) => {
-        console.log('response', response);
         toast({
           message: t('message.the-user-has-been-successfully-excluded-from-the-party'),
           type: 'success'

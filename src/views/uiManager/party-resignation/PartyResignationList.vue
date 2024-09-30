@@ -105,7 +105,7 @@
   watch(() => route.query, debounce(getData), { deep: true })
   watch(
     () => search.value,
-    () => router.push({ query: { ...route.query, search: search.value } })
+    () => router.push({ query: { ...route.query, search: search.value, status: 'revoked' } })
   )
 
   const checkStatus = (status) => {
