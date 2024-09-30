@@ -137,8 +137,7 @@ const postCencelExitParty = ({ motive }: { motive: string }) => {
     }
   })
     .then((response) => {
-      console.log('response', response);
-
+      emits('finish');
       toast({
         message: 'Отказ успешно отправлен',
         type: 'success'
@@ -149,10 +148,9 @@ const postCencelExitParty = ({ motive }: { motive: string }) => {
     .catch((err) => {
       console.log('err', err);
 
-     
-        toast({
-          message: 'Возникли ошибки при запросе'
-        })
+      toast({
+        message: 'Возникли ошибки при запросе'
+      })
       loading.value = false;
     });
 }

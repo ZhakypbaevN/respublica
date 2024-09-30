@@ -66,7 +66,8 @@
 
 <style lang="scss">
   .checkboxBlock {
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: 20px 1fr;
     align-items: flex-start;
     grid-gap: 10px;
 
