@@ -23,7 +23,7 @@
       </a>
     </div>
 
-    <div class="contacts-items" id="press-service-for-the-media">
+    <!-- <div class="contacts-items" id="press-service-for-the-media">
       <h4 class="contacts-items-title">{{ $t('contacts.press-service-for-the-media.title') }}</h4>
 
       <a class="contacts-item" :href="`mailto:a.ensebaeva@respublica-partiyasy.kz`">
@@ -32,7 +32,7 @@
           a.ensebaeva@respublica-partiyasy.kz
         </h4>
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
 
