@@ -213,10 +213,15 @@
           "role": "Қостанай облыстық мәслихат депутаты",
           "img": "/img/uiLanding/maslikhats/kostanay/Maishev.jpg"
         },
-		{
+		    {
           "name": "Мұстафин Ермек Әбдуғалиұлы",
           "role": "Әулиекөл аудандық мәслихатының депутаты",
           "img": "/img/uiLanding/maslikhats/kostanay/mustafin.jpg"
+        },
+        {
+          "name": "Молдамуратова Динара Амангелдіқызы",
+          "role": "Лисаковск қалалық мәслихатының депутаты",
+          "img": "/img/uiLanding/maslikhats/Dinara-Moldamuratova.jpg"
         },
         {
           "name": "Молдамұратова Динара Амангелдіқызы",
